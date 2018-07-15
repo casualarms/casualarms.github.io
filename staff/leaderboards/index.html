@@ -1,0 +1,185 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>ARMS</title>
+	<style type="text/css">
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("../../ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+
+	#wrapper {
+		width: 40em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+
+	#formatted
+	{
+		background-color: black;
+		color: white;
+	}
+
+	.Intern     { color: #bfffff; }
+	.Technician { color: #00ffff; }
+	.Analyst    { color: #00ff00; }
+	.Coder      { color: #aaff00; }
+	.Researcher { color: #ffae00; }
+	.Scientist  { color: #ff6000; }
+	.Manager    { color: #ff0004; }
+	.VP         { color: #ff006f; }
+	</style>
+	<script type="text/javascript">
+
+	var pad ="        ";
+
+	var tiers = [1, 100, 250, 500, 1000, 2000, 3000, 5000];
+	var tiernames = ["Intern", "Technician", "Analyst", "Coder", "Researcher", "Scientist", "Manager", "VP"];
+
+	function parseData(text)
+	{
+		rows = text.split("\n");
+		data = [];
+  
+		for (var i = 1; i < rows.length; ++i)
+		{
+			row = rows[i].split(",");
+			datarow = [ row[0], parseInt(row[1]) ];
+			data.push(datarow);
+		}
+		return data;
+	}
+
+	function format()
+	{
+		data = parseData(document.getElementById("input").value);
+		data.sort(function(a, b) {return b[1]-a[1]} );
+  
+		formatted = "";
+		tiercounter = tiers.length-1;
+  
+		for (var i = 0; i < data.length; ++i)
+		{
+			if (data[i][1] < tiers[tiercounter])
+			{
+				formatted += "\n";
+				tiercounter--;
+			}
+			formatted += (data[i][1] + pad).slice(0, pad.length) + data[i][0] + "\n";
+		}
+  
+		document.getElementById("formatted").value = formatted;
+	}
+
+
+	function mergeData(d_old, d_new)
+	{
+		result = {};
+  
+		for (i = 0; i <  d_old.length; ++i)
+		{
+			name = d_old[i][0];
+			if (result[name] == undefined) result[name] = [-1,-1];
+			result[name][0] = d_old[i][1];
+		}
+  
+		for (i = 0; i <  d_new.length; ++i)
+		{
+			name = d_new[i][0];
+			if (result[name] == undefined) result[name] = [-1,-1];
+			result[name][1] = d_new[i][1];
+		}
+  
+		return result;
+	}
+
+
+	function compare()
+	{
+		data_new = parseData(document.getElementById("input").value);
+		data_old = parseData(document.getElementById("previous").value);
+  
+		merged = mergeData(data_old, data_new);
+  
+		newroles = {};
+		for (t = tiers.length-1; t >= 0; --t)
+		{
+			newroles[tiernames[t]] = [];
+		}
+  
+  
+		for (var name in merged)
+		{
+			player = merged[name];
+    
+			for (t = tiers.length-1; t >= 0; --t)
+			{
+				if (player[1] >= tiers[t] && player[0] < tiers[t])
+				{
+					newroles[tiernames[t]].push(name);
+					break;
+				}
+			}
+    
+		}
+  
+		output = "";
+  
+		for (t = tiers.length-1; t >= 0; --t)
+		{
+			output += "<h4 class='" + tiernames[t] + "'>" + tiernames[t] + "</h4><ul>";
+    
+			for (name in newroles[tiernames[t]])
+			{
+				output += "<li>" + newroles[tiernames[t]][name] + "</li>";
+			}
+    
+			output += "</ul>";
+		}
+  
+		document.getElementById("newroles").innerHTML = output;
+	}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<h1>Casual ARMS Leaderboard Tools</h1>
+		<h2>Input <button onCLick="format()">Format</button></h2>
+		<textarea name="Text1" id="input"rows="6"></textarea>
+		<br/>
+
+
+		<h3>Formatted Leaderboard</h3>
+		<textarea name="Text2" id="formatted" rows="10"></textarea>
+
+		<h2>Previous Version Input <button onCLick="compare()">Compare</button></h2>
+		<textarea name="Text3" id="previous" rows="6"></textarea>
+		<br/>
+
+
+		<h3>New Roles</h3>
+		<div id="newroles"></div>
+	</div>
+</body>
+</html>
+

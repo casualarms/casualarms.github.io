@@ -1,0 +1,90 @@
+
+@font-face {
+	font-family: 'ARMS';
+	src: url("ARMSARMSv1.001.ttf");
+}
+
+body {
+	background-color: #1d94fc;
+	padding: 0; margin: 0;
+	
+	font: 1em Helvetica, Arial, sans-serif;
+}
+
+#outer-container {
+	margin: 0 auto;
+	width: 600pt;
+	text-align: center;
+	
+	padding: 0.5em 0em 3em 0em;
+	background-color: yellow;
+}
+
+#controls {
+	margin: 0 auto;
+	width: 25em;
+	text-align: center;
+}
+
+p#warning {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h1, h2 
+{
+	font-family: ARMS;
+	background-color: yellow;
+	color: black; /*#1d94fc;*/
+	
+	
+	border-top: 3pt solid #1d94fc;
+	border-bottom: 3pt solid #1d94fc;
+	
+	font-weight: bold;
+	
+	
+	margin: 1em auto;
+}
+
+h1 { font-size: 3.5em; }
+h2 { font-size: 1.8em; border-top: none; }
+
+.stage-container
+{
+	
+	background-color: #36393f;
+	width: 50%;
+	margin: 0 auto;
+	padding: 0.5em 2em;
+	
+	border: 3pt solid #595d69;
+	border-radius: 1em;
+	box-shadow: 0 0 3pt #36393f;
+}
+
+.stage {
+	background-color: black;
+	color: white;
+	
+	font: 1em Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	
+	padding: 0.2em;
+	margin: 0.5em;
+	border-radius: 2.5em 0px 2.5em 0px;
+	transition: background-color 0.2s;
+	
+	margin: 0.5em auto;
+}
+
+
+.stage:hover {
+	background-color: yellow;
+	color: black;
+}

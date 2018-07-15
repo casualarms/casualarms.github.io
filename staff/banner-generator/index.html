@@ -1,0 +1,265 @@
+<!doctype HTML>
+<html>
+<head>
+<title>ARMS</title>
+<style type="text/css">
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("../../ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+
+	#wrapper {
+		width: 800px;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	input {
+		background-color: #484b52;
+		color: white;
+	}
+
+	</style>
+<script type="text/javascript">
+
+function generate()
+{
+
+function roundRect(ctx, x, y, w, h, r) {
+  if (w < 2 * r) r = w / 2;
+  if (h < 2 * r) r = h / 2;
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y,   x+w, y+h, r);
+  ctx.arcTo(x+w, y+h, x,   y+h, r);
+  ctx.arcTo(x,   y+h, x,   y,   r);
+  ctx.arcTo(x,   y,   x+w, y,   r);
+  ctx.closePath();
+  return ctx;
+}
+
+
+var monthNames = [
+	"Jan.", "Feb.", "March",
+	"April", "May", "June", "July",
+	"August", "Sept.", "Oct.",
+	"Nov.", "Dec." ];
+	
+	
+var dayNames = [
+	"Monday", "Tuesday", "Wednesday",
+	"Thursday", "Friday", "Saturday", "Sunday"];
+  
+// Fill in your stats here
+var titleText = document.getElementById("title").value;
+
+
+var day = parseInt(document.getElementById("day").value);
+var monthIndex = document.getElementById("month").selectedIndex;
+
+var weekdayIndex = document.getElementById("weekday").selectedIndex;
+
+var startTime = document.getElementById("start-time").value;
+var endTime = document.getElementById("end-time").value;
+var timeZone = document.getElementById("timezone").value;
+
+
+var hosts = [];
+
+var name = document.getElementById("easy-name").value;
+var code = document.getElementById("easy-code").value;
+if (name != "")
+{
+	hosts.push([name, code, 0]);
+}
+
+var name = document.getElementById("medium-name").value;
+var code = document.getElementById("medium-code").value;
+if (name != "")
+{
+	hosts.push([name, code, 1]);
+}
+
+var name = document.getElementById("hard-name").value;
+var code = document.getElementById("hard-code").value;
+if (name != "")
+{
+	hosts.push([name, code, 2]);
+}
+
+console.log(hosts);
+
+
+
+
+var dateText = dayNames[weekdayIndex] + " " + monthNames[monthIndex] + ' ' + day;
+var timeText = startTime + " to " + endTime + " " + timeZone;
+
+
+// Fill in style settings here
+// You can use names colors from here:
+// https://www.w3schools.com/colors/colors_names.asp
+backgroundColor = "LightSeaGreen";
+titleColor = "yellow";
+timeDateColor = "white";
+hostsColor = "white";
+tierColor = "black";
+attributeColor = "rgba(255, 255, 255, 1)";
+gridColor = "rgba(255, 255, 255, 0.5)";
+highlightColor = "rgba(255, 255, 0, 0.8)";
+
+titleFont = "20pt ARMS";
+timeDateFont = "26pt ARMS";
+tierFont = "13pt ARMS";
+
+
+hostsFont = "18pt ARMS";
+
+colors = ["green", "yellow", "orange"];
+tiers = ["easy", "medium", "hard"];
+
+
+var drawTiers = document.getElementById("tiers").checked;
+
+
+// End of user settings
+// (But you can experiment with the code below)
+
+// Initialization
+c = document.getElementById("myCanvas");
+ctx = c.getContext("2d");
+
+
+var imgs = document.getElementById("template");
+
+ctx.drawImage(imgs, 0, 0);
+
+
+ctx.lineCap = "round";
+
+midX = c.width / 2;
+midY = c.height / 2 + 60;
+
+
+// Name
+ctx.font = titleFont;
+ctx.textAlign = "center";
+ctx.fillStyle = titleColor;
+ctx.fillText(titleText, 260, 140);
+
+
+ctx.font = timeDateFont;
+ctx.textAlign = "left";
+ctx.fillStyle = timeDateColor;
+ctx.fillText(dateText, 10, 190);
+ctx.fillText(timeText, 10, 230);
+
+
+spacing = 35 + (3 - hosts.length) * 10;
+for (i = 0; i < hosts.length; i++)
+{
+	vOffset = 315 + (3 - hosts.length)*15 + spacing * i;
+	ctx.font = hostsFont;
+	ctx.textAlign = "right";
+	ctx.fillStyle = hostsColor;
+	ctx.fillText(hosts[i][0], 430, vOffset);
+	ctx.textAlign = "left";
+	ctx.fillText(hosts[i][1], 450, vOffset);
+	
+	if (drawTiers)
+	{
+		ctx.fillStyle = colors[hosts[i][2]];
+		roundRect(ctx, 20, vOffset - 20, 100, 25, 10).fill();
+		roundRect(ctx, 700, vOffset - 20, 65, 25, 10).fill();
+		
+		ctx.fillStyle = tierColor;
+		ctx.font = tierFont;
+		ctx.textAlign = "center";
+		ctx.fillText(tiers[hosts[i][2]], 70, vOffset);
+		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 732, vOffset);
+	}
+}
+
+
+var result = c.toDataURL("image/png");
+document.getElementById('result').innerHTML = '<img src="' + result + '"/>';
+
+
+
+}
+</script>
+<style type="text/css">
+/*canvas { display: none; }*/
+@font-face {
+	font-family: 'ARMS';
+	src: url("../../ARMSARMSv1.001.ttf");
+}
+</style>
+</head>
+	<body onLoad="">
+		<div id="wrapper">
+		<h1>Casual ARMS Banner Generator</h1>
+		<p>Title: <input type="text" name="title" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/></p>
+		<p>
+		<select name="weekday" id="weekday">
+			<option value="0">Monday</option>
+			<option value="1">Tuesday</option>
+			<option value="2">Wednesday</option>
+			<option value="3">Thursday</option>
+			<option value="4">Friday</option>
+			<option value="5">Saturday</option>
+			<option value="6">Sunday</option>
+		</select>
+		<select name="month" id="month">
+			<option value="0">January</option>
+			<option value="1">February</option>
+			<option value="2">March</option>
+			<option value="3">April</option>
+			<option value="4">May</option>
+			<option value="5">June</option>
+			<option value="6">July</option>
+			<option value="7">August</option>
+			<option value="8">September</option>
+			<option value="9">October</option>
+			<option value="10">November</option>
+			<option value="11">December</option>
+		</select>
+		<input type="number" name="day"  id="day" value="1"/></p>
+		
+		<p>From <input type="start-time" name="time" id="start-time"  value="2:00 PM"/> to <input type="end-time" name="end-time" id="end-time" value="4:00 PM"/>
+		in time zone: <input type="text" name="timezone" id="timezone" value="EDT"/>
+		</p>
+		
+		<p>Easy host,   name: <input type="text" id="easy-name" value="Easy-Player"/>,   code: <input type="text" id="easy-code" value="0000-1111-2222"/></p>
+		<p>Medium host, name: <input type="text" id="medium-name" value="Medium-Player"/>, code: <input type="text" id="medium-code" value="0000-1111-2222"/></p>
+		<p>Hard host,   name: <input type="text" id="hard-name" value="Hard-Player"/>,   code: <input type="text" id="hard-code" value="0000-1111-2222"/></p>
+		
+		<p>Enable tiers and code display: <input type="checkbox" name="tiers" id="tiers" checked/></p>
+		
+		<p><input type="button" name="generate" value="Generate" onClick="generate()"/>
+		
+		
+		<img id="template" src="banner-template.jpg" style="display: none;"/>
+		<div>
+			<canvas id="myCanvas" width="800" height="400"/>
+		</div>
+    <div id="result">
+    
+    </div>
+    </div>
+	</body>
+</html>
+
