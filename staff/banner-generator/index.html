@@ -160,12 +160,16 @@ ctx.textAlign = "center";
 ctx.fillStyle = titleColor;
 ctx.fillText(titleText, 260, 140);
 
+ctx.fillText("Lobby Hosts", 270, 275);
+
+if (drawTiers)
+	ctx.fillText("Lobby Code", 670, 275);
+
 
 ctx.font = timeDateFont;
-ctx.textAlign = "left";
 ctx.fillStyle = timeDateColor;
-ctx.fillText(dateText, 10, 190);
-ctx.fillText(timeText, 10, 230);
+ctx.fillText(dateText, 280, 190);
+ctx.fillText(timeText, 280, 230);
 
 
 spacing = 35 + (3 - hosts.length) * 10;
@@ -183,13 +187,13 @@ for (i = 0; i < hosts.length; i++)
 	{
 		ctx.fillStyle = colors[hosts[i][2]];
 		roundRect(ctx, 20, vOffset - 20, 100, 25, 10).fill();
-		roundRect(ctx, 700, vOffset - 20, 65, 25, 10).fill();
+		roundRect(ctx, 720, vOffset - 20, 65, 25, 10).fill();
 		
 		ctx.fillStyle = tierColor;
 		ctx.font = tierFont;
 		ctx.textAlign = "center";
 		ctx.fillText(tiers[hosts[i][2]], 70, vOffset);
-		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 732, vOffset);
+		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 752, vOffset);
 	}
 }
 
@@ -201,13 +205,6 @@ document.getElementById('result').innerHTML = '<img src="' + result + '"/>';
 
 }
 </script>
-<style type="text/css">
-canvas { display: none; }
-@font-face {
-	font-family: 'ARMS';
-	src: url("../../ARMSARMSv1.001.ttf");
-}
-</style>
 </head>
 	<body onLoad="">
 		<div id="wrapper">
@@ -243,9 +240,9 @@ canvas { display: none; }
 		in time zone: <input type="text" name="timezone" id="timezone" value="EDT"/>
 		</p>
 		
-		<p>Easy host,   name: <input type="text" id="easy-name" value="Easy-Player"/>,   code: <input type="text" id="easy-code" value="0000-1111-2222"/></p>
-		<p>Medium host, name: <input type="text" id="medium-name" value="Medium-Player"/>, code: <input type="text" id="medium-code" value="0000-1111-2222"/></p>
-		<p>Hard host,   name: <input type="text" id="hard-name" value="Hard-Player"/>,   code: <input type="text" id="hard-code" value="0000-1111-2222"/></p>
+		<p>Easy host,   name: <input type="text" id="easy-name" value="Easy-Player" placeholder="Easy-Player"/>,   code: <input type="text" id="easy-code" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
+		<p>Medium host, name: <input type="text" id="medium-name" value="Medium-Player" placeholder="Medium-Player"/>, code: <input type="text" id="medium-code" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
+		<p>Hard host,   name: <input type="text" id="hard-name" value="Hard-Player" value="Hard-Player"/>,   code: <input type="text" id="hard-code" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
 		
 		<p>Enable tiers and code display: <input type="checkbox" name="tiers" id="tiers" checked/></p>
 		
@@ -254,7 +251,7 @@ canvas { display: none; }
 		
 		<img id="template" src="banner-template.jpg" style="display: none;"/>
 		<div>
-			<canvas id="myCanvas" width="800" height="400"/>
+			<canvas id="myCanvas" width="800" height="400" style="display: none;"/>
 		</div>
     <div id="result">
     

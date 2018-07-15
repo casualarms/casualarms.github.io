@@ -4,17 +4,43 @@
 	<title>Casual ARMS</title>
 	<link rel="stylesheet" href="style.css">
 	<script type="text/javascript">
+	function load()
+	{
+		if (window.location.hash == "#staff")
+		{
+			document.getElementById("staff").style.display = "block";
+			
+		}
+	}
 	</script>
 </head>
 
-<body>
+<body onload="load()">
 	<div id="outer-container">
 		<h1>Casual ARMS</h1>
 		
+		<h2>Tools</h2>
+		
 		<div class="stage-container">
-			<div class="stage"><a href="fighter-randomizer/index.html">Fighter + ARMS Randomizer</a></div>
-			<div class="stage"><a href="stage-randomizer/index.html">Stage Randomizer</a></div>
-			<div class="stage" ><a href="stats-generator/index.html">Fighter Stats Generator</a></div>
+			<div class="stage"><a href="fighter-randomizer/">Fighter + ARMS Randomizer</a></div>
+			<div class="stage"><a href="stage-randomizer/">Stage Randomizer</a></div>
+			<div class="stage" ><a href="stats-generator/">Fighter Stats Generator</a></div>
+		</div>
+		
+		<h2>Community</h2>
+		
+		<div class="stage-container">
+			<div class="stage"><a href="screenshot-contest/">Celebration Screenshot Contest</a></div>
+		</div>
+		
+		<div id="staff" style="display: none;">
+		<h2>For Staff</h2>
+		
+		<div class="stage-container">
+			<div class="stage"><a href="staff/leaderboards/">Leaderboard Tools</a></div>
+			<div class="stage"><a href="staff/banner-generator/">Banner Generator</a></div>
+		</div>
+		
 		</div>
 	
 	</div>
