@@ -1,0 +1,162 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>ARMS</title>
+	<script type="text/javascript">
+	
+	function loader()
+	{
+		//
+		// ARMS stats generator
+		// By Programmability
+		//
+	
+		// Usage: Edit stats and style below
+		// Click "Run" button at the very top left to update the graphic.
+		// Make a manual screen capture to save the image.
+	
+		// Fill in your stats here
+		var fighterName = "MR. YABUKI";
+		var scoreSteps = 5;
+		var myStats = [
+		// [ "Attribute name" , value ]
+		["SPEED", 3],
+		["ACCURACY", 4],
+		["JUMP", 5],
+		["RUSH", 15],
+		["SIZE", 3],
+		["DASH", 2],
+		];
+	
+		// Fill in style settings here
+		// You can use names colors from here:
+		// https://www.w3schools.com/colors/colors_names.asp
+		backgroundColor = "LightSeaGreen";
+		nameColor = "DarkSlateGrey";
+		attributeColor = "rgba(255, 255, 255, 1)";
+		gridColor = "rgba(255, 255, 255, 0.5)";
+		highlightColor = "rgba(255, 255, 0, 0.8)";
+	
+		nameFont = "40pt Arial";
+		attributeFont = "20pt Arial";
+	
+	
+		// End of user settings
+		// (But you can experiment with the code below)
+	
+		// Initialization
+		c = document.getElementById("myCanvas");
+		ctx = c.getContext("2d");
+		ctx.lineCap = "round";
+	
+		midX = c.width / 2;
+		midY = c.height / 2 + 60;
+	
+		// Background
+		ctx.fillStyle = backgroundColor;
+		ctx.fillRect(0, 0, c.width, c.height);
+		numLines = 30;
+		ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+		ctx.lineWidth = c.width / numLines / 3;
+		for (i = -numLines; i < numLines; i++)
+		{
+			x = (i + 0.5) * c.width / numLines;
+			ctx.beginPath();
+			ctx.moveTo(x, 0);
+			ctx.lineTo(x + 500, c.height);
+			ctx.stroke();
+		}
+	
+		// Name
+		ctx.font = nameFont;
+		ctx.textAlign = "center";
+		ctx.fillStyle = ctx.fillStyle = nameColor;
+		ctx.fillText(fighterName, midX, 80);
+	
+		// Circumferences
+		thickness = 200 / scoreSteps;
+		ctx.strokeStyle = gridColor;
+		ctx.lineWidth = 3;
+		for (r = 1; r <= scoreSteps; r++)
+		{
+			ctx.beginPath();
+			ctx.moveTo(midX + r * thickness, midY);
+			for (i = 0; i < myStats.length; i++)
+			{
+				angle = Math.PI * 2 * i / myStats.length;
+			
+				x = midX + Math.cos(angle) * r * thickness;
+				y = midY + Math.sin(angle) * r * thickness;
+			
+				ctx.lineTo(x, y);
+			}
+		
+			ctx.lineTo(midX + r * thickness, midY);
+			ctx.stroke();
+		}
+	
+		// Center lines
+		ctx.lineWidth = 5;
+		for (i = 0; i < myStats.length; i++)
+		{
+			ctx.beginPath();
+			angle = Math.PI * 2 * i / myStats.length;
+		
+			ctx.lineTo(midX, midY);
+			x = midX + Math.cos(angle) * scoreSteps * thickness;
+			y = midY + Math.sin(angle) * scoreSteps * thickness;
+			ctx.lineTo(x, y);
+			ctx.stroke();
+		}
+	
+		// Highlight area
+		ctx.fillStyle = highlightColor;
+		ctx.beginPath();
+		ctx.moveTo(midX + myStats[0][1] * thickness, midY);
+		for (i = 0; i < myStats.length; i++)
+		{
+			angle = Math.PI * 2 * i / myStats.length;
+		
+			x = midX + Math.cos(angle) * myStats[i][1] * thickness;
+			y = midY + Math.sin(angle) * myStats[i][1] * thickness;
+			ctx.lineTo(x, y);
+		}
+		ctx.fill();
+	
+	
+		// Attribute names
+		ctx.font = attributeFont;
+		ctx.textAlign = "center";
+		ctx.fillStyle = ctx.fillStyle = attributeColor;
+	
+		for (i = 0; i < myStats.length; i++)
+		{
+			angle = Math.PI * 2 * i / myStats.length;
+			offset = 35;
+		
+			x = midX + Math.cos(angle) * (scoreSteps * thickness + offset*2.5);
+			y = midY + Math.sin(angle) * (scoreSteps * thickness + offset) + 10;
+		
+			ctx.fillText(myStats[i][0], x, y);
+		}
+	
+		var img    = c.toDataURL("image/png");
+		document.getElementById('result').innerHTML = '<img src="'+img+'"/>';
+	
+	}
+	</script>
+	<style type="text/css">
+	canvas { display: none; }
+	</style>
+</head>
+<body onLoad="loader()">
+	<h1>Preview, coming soon!</h1>
+	<div>
+		<canvas id="myCanvas" width="800" height="600"/>
+	</div>
+	<div id="result">
+	    
+	</div>
+</body>
+</html>
+	

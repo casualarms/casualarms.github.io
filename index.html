@@ -1,112 +1,103 @@
-<!doctype HTML>
 <html>
 <head>
-<title>ARMS</title>
-<script type="text/javascript">
+<meta charset="UTF-8">
+	<style type="text/css">
+	body {
+		background-color: yellow;
+		
+		font: 1em Helvetica, Arial, sans-serif;
+	}
 
-function loader()
-{
-//
-// ARMS stats generator
-// By Programmability
-//
+	#container {
+		margin: 0 auto;
+		width: 40em;
+		text-align: center;
+	}
 
-// Usage: Edit stats and style below
-// Click "Run" button at the very top left to update the graphic.
-// Make a manual screen capture to save the image.
+	#controls {
+		margin: 0 auto;
+		width: 25em;
+		text-align: center;
+	}
 
-var qs = (function(a) {
-    if (a == "") return {};
-    var b = {};
-    for (var i = 0; i < a.length; ++i)
-    {
-        var p=a[i].split('=', 2);
-        if (p.length == 1)
-            b[p[0]] = "";
-        else
-            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-    }
-    return b;
-})(window.location.search.substr(1).split('&'));
+	p#warning {
+		text-align: center;
+	}
+	
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	
+	h1, h2 
+	{
+		background-color: yellow;
+		color: black;
+		
+		font-weight: bold;
+		font-style: italic;
+		
+		padding: 0.2em;
+		margin: 0.5em;
+		border-radius: 2.5em 0px 2.5em 0px;
+		border: 1px solid black;
+		transition: background-color 0.2s;
+		
+		
+		margin: 1em auto;
+	}
+	
+	h1 { font-size: 1.8em; width: 100%; }
+	h2 { font-size: 1.5em; width: 70%; }
 
-// Fill in your stats here
-var fighterName = qs["fighter"];
-var scoreSteps = 5;
-var myStats = [
-  // [ "Attribute name" , value ]
-	["SPEED", 3],
-	["ACCURACY", 4],
-	["JUMP", 5],
-	["RUSH", 15],
-	["SIZE", 3],
-	["DASH", 2],
-];
-
-// Fill in style settings here
-// You can use names colors from here:
-// https://www.w3schools.com/colors/colors_names.asp
-backgroundColor = "LightSeaGreen";
-nameColor = "DarkSlateGrey";
-attributeColor = "rgba(255, 255, 255, 1)";
-gridColor = "rgba(255, 255, 255, 0.5)";
-highlightColor = "rgba(255, 255, 0, 0.8)";
-
-nameFont = "40pt Arial";
-attributeFont = "20pt Arial";
-
-
-// End of user settings
-// (But you can experiment with the code below)
-
-// Initialization
-c = document.getElementById("myCanvas");
-ctx = c.getContext("2d");
-ctx.lineCap = "round";
-
-midX = c.width / 2;
-midY = c.height / 2 + 60;
-
-// Background
-ctx.fillStyle = backgroundColor;
-ctx.fillRect(0, 0, c.width, c.height);
-numLines = 30;
-ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
-ctx.lineWidth = c.width / numLines / 3;
-for (i = -numLines; i < numLines; i++)
-{
-	x = (i + 0.5) * c.width / numLines;
-	ctx.beginPath();
-  ctx.moveTo(x, 0);
-  ctx.lineTo(x + 500, c.height);
-  ctx.stroke();
-}
-
-// Name
-ctx.font = nameFont;
-ctx.textAlign = "center";
-ctx.fillStyle = ctx.fillStyle = nameColor;
-ctx.fillText(fighterName, midX, 80);
+	.stage {
+		background-color: black;
+		color: yellow;
+		
+		font: 1em Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		font-style: italic;
+		
+		padding: 0.2em;
+		margin: 0.5em;
+		border-radius: 2.5em 0px 2.5em 0px;
+		transition: background-color 0.2s;
+		
+		width: 50%;
+		margin: 0.5em auto;
+	}
 
 
-
-
-var img    = c.toDataURL("image/png");
-document.getElementById('result').innerHTML = '<img src="'+img+'"/>';
-
-document.write('<img src="'+img+'"/>');
-}
-</script>
-<style type="text/css">
-canvas { display: none; }
-</style>
+	.stage:hover {
+		background-color: black;
+		color: yellow;
+	}
+	</style>
+	<script type="text/javascript">
+	</script>
 </head>
-	<body onLoad="loader()">
-		<div>
-			<canvas id="myCanvas" width="800" height="150"/>
-		</div>
-    <div id="result">
-    
-    </div>
-	</body>
-</html>
 
+<body>
+	<div id="container">
+		<h1>Casual ARMS Tools and Things</h1>
+	
+		
+		<h2>For Everyone</h1>
+		
+		<div id="stage-container">
+			<div class="stage"><a href="fighter-randomizer/index.html">Fighter + ARMS Randomizer</a></div>
+			<div class="stage"><a href="stage-randomizer/index.html">Stage Randomizer</a></div>
+			<div class="stage" ><a href="stats-generator/index.html">Fighter Stats Generator</a></div>
+		</div>
+		
+		
+		<h2>For Staff</h2>
+		
+		<div id="stage-container">
+			<div class="stage"><a href="leaderboard-tools/index.html">Leaderboard Tools</a></div>
+			<div class="stage"><a href="stage-randomizer/index.html">Banner Generator</a></div>
+		</div>
+	
+	</div>
+
+</body>

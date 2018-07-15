@@ -1,0 +1,220 @@
+<html>
+<head>
+<meta charset="UTF-8">
+	<style type="text/css">
+	body {
+		background-color: yellow;
+	}
+
+	#stage-container {
+		margin: 0 auto;
+		width: 15em;
+		text-align: center;
+	}
+
+	#controls {
+		margin: 0 auto;
+		width: 25em;
+		text-align: center;
+	}
+
+	p#warning {
+		text-align: center;
+	}
+
+	.stage {
+		background-color: yellow;
+		color: black;
+		font: 1em Helvetica, Arial, sans-serif;
+		padding: 0.2em;
+		margin: 0.5em;
+		border-radius: 2.5em 0px 2.5em 0px;
+		border: 1px solid black;
+		font-style: italic;
+		transition: background-color 0.2s;
+	}
+
+	.stage.active {
+		background-color: black;
+		color: yellow;
+		font-weight: bold;
+	}
+
+	.stage.active:after
+	{
+		content: " ●";
+		text-align: left;
+	}
+
+	.stage.inactive {
+		background-color: black;
+		color: yellow;
+		opacity: 0.1;
+	}
+	</style>
+	<script type="text/javascript">
+
+	var stageIDs = [
+	"springstadium",
+	"ribbonring",
+	"ninjacollege",
+	"mausoleum",
+	"ramenbowl",
+	"scrapyard",
+	"cinemadeux",
+	"busterbeach",
+	"snakepark",
+	"dnalab",
+	"skyarena",
+	"viadolce",
+	"templegrounds",
+	"sparringring",
+	"nameredacted",
+	];
+
+	var DEFAULT = 0;
+	var ACTIVE = 1;
+	var INACTIVE = 2;
+
+	var classes = ["", "active", "inactive"];
+	var warning = "";
+
+	var state = [];
+	for (stage = 0; stage < 15; stage++)
+	state[stage] = DEFAULT;
+	var savedstate = state.slice();
+
+	function toggle(event)
+	{
+		console.log("event");
+		stageID = event.target.id;
+		var stage = 0;
+		for (s = 0; s < 15; s++)
+		if (stageIDs[s] == stageID)
+		stage = s;
+
+		console.log(event.target.id);
+		state[stage] = (state[stage] + 1) % 3;
+		updateview();
+	}
+
+	function updateview()
+	{
+		for (stage = 0; stage < 15; stage++)
+		{
+			disp = document.getElementById(stageIDs[stage]);
+			disp.className = "stage " + classes[state[stage]];
+		}
+
+		document.getElementById("warning").innerHTML = warning;
+	}
+
+	function deactivate()
+	{
+		for (stage = 0; stage < 15; stage++)
+		{
+			if (state[stage] == ACTIVE)
+			state[stage] = INACTIVE;
+		}
+	}
+
+	function randomize()
+	{	
+		deactivate();
+
+		var freecount = 0;
+		for (stage = 0; stage < 15; stage++)
+		{
+			if (state[stage] == DEFAULT)
+			freecount++;
+		}
+
+		var max = document.getElementById("randomcount").value;
+		var count = 0;
+
+		if (freecount < max)
+		{
+			warning = "Not enough free stages left!";
+			updateview();
+			return;
+		}
+		else
+		{
+			while (count < max)
+			{
+				stage = Math.floor(Math.random() * 15);
+				if (state[stage] == DEFAULT)
+				{
+					state[stage] = ACTIVE;
+					count++;
+				}
+			}
+			updateview();
+		}
+
+	}
+
+	function reset()
+	{
+		warning = "";
+		for (stage = 0; stage < 15; stage++)
+		{
+			state[stage] = DEFAULT;
+		}
+		updateview();
+	}
+
+	function savestate()
+	{
+		savedstate = state.slice();
+	}
+
+	function restorestate()
+	{
+		state = savedstate.slice();;
+		updateview();
+	}
+	
+	
+	function load()
+	{
+		for (stage = 0; stage < 15; stage++)
+		{
+			disp = document.getElementById(stageIDs[stage]);
+			disp.addEventListener("click", window.toggle, false);
+		}
+	}
+	
+	</script>
+</head>
+
+<body onLoad="load()">
+
+	<div id="controls">
+		<input id="randomcount" type="number" name="Count" min="1" max="15" value="3">
+		<button onClick="randomize();">Randomize</button>
+		<button onClick="reset();">Reset</button>
+		<button onClick="savestate();">Save</button>
+		<button onClick="restorestate();">Restore</button>
+	</div>
+
+	<div id="stage-container">
+		<div class="stage" id="springstadium">Spring Stadium</div>
+		<div class="stage" id="ribbonring"   >Ribbon Ring</div>
+		<div class="stage" id="ninjacollege" >Ninja College</div>
+		<div class="stage" id="mausoleum"    >Mausoleum</div>
+		<div class="stage" id="ramenbowl"    >Ramen Bowl</div>
+		<div class="stage" id="scrapyard"    >Scrapyard</div>
+		<div class="stage" id="cinemadeux"   >Cinema Deux</div>
+		<div class="stage" id="busterbeach"  >Buster Beach</div>
+		<div class="stage" id="snakepark"    >Snake Park</div>
+		<div class="stage" id="dnalab"       >DNA Lab</div>
+		<div class="stage" id="skyarena"     >Sky Arena</div>
+		<div class="stage" id="viadolce"     >Via Dolce</div>
+		<div class="stage" id="templegrounds">Temple Grounds</div>
+		<div class="stage" id="sparringring" >Sparring Ring</div>
+		<div class="stage" id="nameredacted" >[NAME REDACTED]</div>
+	</div>
+
+	<p id="warning"></p>
+</body>
