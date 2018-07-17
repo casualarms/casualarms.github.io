@@ -128,7 +128,7 @@ tierFont = "13pt ARMS";
 
 hostsFont = "18pt ARMS";
 
-colors = ["green", "yellow", "orange"];
+colors = ["#29fb2f", "#efed34", "#fc5935"];
 tiers = ["easy", "medium", "hard"];
 
 
@@ -177,23 +177,23 @@ for (i = 0; i < hosts.length; i++)
 {
 	vOffset = 315 + (3 - hosts.length)*15 + spacing * i;
 	ctx.font = hostsFont;
-	ctx.textAlign = "right";
-	ctx.fillStyle = hostsColor;
-	ctx.fillText(hosts[i][0], 430, vOffset);
 	ctx.textAlign = "left";
-	ctx.fillText(hosts[i][1], 450, vOffset);
+	ctx.fillStyle = hostsColor;
+	ctx.fillText(hosts[i][0], 120, vOffset);
+	ctx.textAlign = "left";
+	ctx.fillText(hosts[i][1], 470, vOffset);
 	
 	if (drawTiers)
 	{
 		ctx.fillStyle = colors[hosts[i][2]];
-		roundRect(ctx, 20, vOffset - 20, 100, 25, 10).fill();
-		roundRect(ctx, 720, vOffset - 20, 65, 25, 10).fill();
+		roundRect(ctx, 10, vOffset - 21, 100, 25, 10).fill();
+		roundRect(ctx, 720, vOffset - 21, 65, 25, 10).fill();
 		
 		ctx.fillStyle = tierColor;
 		ctx.font = tierFont;
 		ctx.textAlign = "center";
-		ctx.fillText(tiers[hosts[i][2]], 70, vOffset);
-		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 752, vOffset);
+		ctx.fillText(tiers[hosts[i][2]], 60, vOffset - 1);
+		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 752, vOffset - 1);
 	}
 }
 
