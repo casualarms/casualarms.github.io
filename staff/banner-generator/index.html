@@ -16,7 +16,7 @@
 	}
 
 	#wrapper {
-		width: 800px;
+		width: 880px;
 		margin: 0 auto;
 		padding: 1em 2em;
 		background-color: #36393f;
@@ -38,17 +38,18 @@
 function generate()
 {
 
-function roundRect(ctx, x, y, w, h, r) {
-  if (w < 2 * r) r = w / 2;
-  if (h < 2 * r) r = h / 2;
-  ctx.beginPath();
-  ctx.moveTo(x+r, y);
-  ctx.arcTo(x+w, y,   x+w, y+h, r);
-  ctx.arcTo(x+w, y+h, x,   y+h, r);
-  ctx.arcTo(x,   y+h, x,   y,   r);
-  ctx.arcTo(x,   y,   x+w, y,   r);
-  ctx.closePath();
-  return ctx;
+function roundRect(ctx, x, y, w, h, r)
+{
+	if (w < 2 * r) r = w / 2;
+	if (h < 2 * r) r = h / 2;
+	ctx.beginPath();
+	ctx.moveTo(x+r, y);
+	ctx.arcTo(x+w, y,   x+w, y+h, r);
+	ctx.arcTo(x+w, y+h, x,   y+h, r);
+	ctx.arcTo(x,   y+h, x,   y,   r);
+	ctx.arcTo(x,   y,   x+w, y,   r);
+	ctx.closePath();
+	return ctx;
 }
 
 
@@ -62,56 +63,38 @@ var monthNames = [
 var dayNames = [
 	"Monday", "Tuesday", "Wednesday",
 	"Thursday", "Friday", "Saturday", "Sunday"];
-  
-// Fill in your stats here
+
+// Read input from the forms
 var titleText = document.getElementById("title").value;
 
-
 var day = parseInt(document.getElementById("day").value);
-var monthIndex = document.getElementById("month").selectedIndex;
-
+var monthIndex   = document.getElementById("month").selectedIndex;
 var weekdayIndex = document.getElementById("weekday").selectedIndex;
 
 var startTime = document.getElementById("start-time").value;
-var endTime = document.getElementById("end-time").value;
-var timeZone = document.getElementById("timezone").value;
+var endTime   = document.getElementById("end-time").value;
+var timeZone  = document.getElementById("timezone").value;
 
 
+var hostsList = ["A", "B", "C"];
 var hosts = [];
 
-var name = document.getElementById("easy-name").value;
-var code = document.getElementById("easy-code").value;
-if (name != "")
+for (i = 0; i < hostsList.length; ++i)
 {
-	hosts.push([name, code, 0]);
+	var name = document.getElementById("name" + hostsList[i]).value;
+	var code = document.getElementById("code" + hostsList[i]).value;
+	var tag  = document.getElementById("tag"  + hostsList[i]).selectedIndex;
+	var tier = document.getElementById("host" + hostsList[i]).selectedIndex;
+	if (name != "")
+	{
+		hosts.push([name, code, tier, (tag == 1)]);
+	}
 }
-
-var name = document.getElementById("medium-name").value;
-var code = document.getElementById("medium-code").value;
-if (name != "")
-{
-	hosts.push([name, code, 1]);
-}
-
-var name = document.getElementById("hard-name").value;
-var code = document.getElementById("hard-code").value;
-if (name != "")
-{
-	hosts.push([name, code, 2]);
-}
-
-console.log(hosts);
-
-
-
 
 var dateText = dayNames[weekdayIndex] + " " + monthNames[monthIndex] + ' ' + day;
 var timeText = startTime + " to " + endTime + " " + timeZone;
 
-
-// Fill in style settings here
-// You can use names colors from here:
-// https://www.w3schools.com/colors/colors_names.asp
+// Style presets
 backgroundColor = "LightSeaGreen";
 titleColor = "yellow";
 timeDateColor = "white";
@@ -121,19 +104,19 @@ attributeColor = "rgba(255, 255, 255, 1)";
 gridColor = "rgba(255, 255, 255, 0.5)";
 highlightColor = "rgba(255, 255, 0, 0.8)";
 
-titleFont = "20pt ARMS";
-timeDateFont = "26pt ARMS";
-tierFont = "13pt ARMS";
-
-
-hostsFont = "18pt ARMS";
+titleFont = "22pt ARMS";
+timeDateFont = "28pt ARMS";
+tierFont = "15pt ARMS";
+teamTagFont = "14pt ARMS";
+hostsFont = "20pt ARMS";
 
 colors = ["#29fb2f", "#efed34", "#fc5935"];
 tiers = ["easy", "medium", "hard"];
 
 
-var drawTiers = document.getElementById("tiers").checked;
-
+var mlmMode   = document.getElementById("mlm").checked;
+var drawTiers = document.getElementById("tiers").checked && !mlmMode;
+var drawCodes = document.getElementById("codes").checked && !mlmMode;
 
 // End of user settings
 // (But you can experiment with the code below)
@@ -144,64 +127,82 @@ ctx = c.getContext("2d");
 
 
 var imgs = document.getElementById("template");
+if (mlmMode) imgs = document.getElementById("template-mlm");
 
 ctx.drawImage(imgs, 0, 0);
 
+if (!mlmMode)
+{
+	// Lobby title
+	ctx.font = titleFont;
+	ctx.textAlign = "center";
+	ctx.fillStyle = titleColor;
+	ctx.fillText(titleText, 280, 152);
 
-ctx.lineCap = "round";
+	// Subtitles
+	ctx.fillText("Lobby Hosts", 290, 302);
+	
+	if (drawCodes)
+		ctx.fillText("Lobby Code", 720, 302);
+}
 
-midX = c.width / 2;
-midY = c.height / 2 + 60;
+vOffset = 0; if (mlmMode) vOffset += 10;
+hOffset = 0; if (mlmMode) hOffset += 130;
 
-
-// Name
-ctx.font = titleFont;
-ctx.textAlign = "center";
-ctx.fillStyle = titleColor;
-ctx.fillText(titleText, 260, 140);
-
-ctx.fillText("Lobby Hosts", 270, 275);
-
-if (drawTiers)
-	ctx.fillText("Lobby Code", 670, 275);
-
-
+// Time and date
 ctx.font = timeDateFont;
 ctx.fillStyle = timeDateColor;
-ctx.fillText(dateText, 280, 190);
-ctx.fillText(timeText, 280, 230);
+ctx.textAlign = "center";
+ctx.fillText(dateText, 300, 210 + vOffset);
+ctx.fillText(timeText, 300 + hOffset, 250 + vOffset);
 
-
+// Hosts
 spacing = 35 + (3 - hosts.length) * 10;
 for (i = 0; i < hosts.length; i++)
 {
-	vOffset = 315 + (3 - hosts.length)*15 + spacing * i;
+	vOffset = 348 + (3 - hosts.length)*15 + spacing * i; if (mlmMode) { vOffset += 10; };
+	hOffset = 150; if (mlmMode) { hOffset += 130; };
+	
+	if (hosts[i][3])
+	{
+		ctx.font = teamTagFont;
+		ctx.fillStyle = hostsColor;
+		ctx.textAlign = "left";
+		ctx.fillText("CC", hOffset, vOffset);
+		hOffset += 40;
+	}
+	
 	ctx.font = hostsFont;
-	ctx.textAlign = "left";
 	ctx.fillStyle = hostsColor;
-	ctx.fillText(hosts[i][0], 120, vOffset);
 	ctx.textAlign = "left";
-	ctx.fillText(hosts[i][1], 470, vOffset);
+	ctx.fillText(hosts[i][0] + "  " + hosts[i][1], hOffset, vOffset);
 	
 	if (drawTiers)
 	{
 		ctx.fillStyle = colors[hosts[i][2]];
-		roundRect(ctx, 10, vOffset - 21, 100, 25, 10).fill();
-		roundRect(ctx, 720, vOffset - 21, 65, 25, 10).fill();
+		roundRect(ctx, 15, vOffset - 21, 120, 25, 10).fill();
 		
 		ctx.fillStyle = tierColor;
 		ctx.font = tierFont;
 		ctx.textAlign = "center";
-		ctx.fillText(tiers[hosts[i][2]], 60, vOffset - 1);
-		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 752, vOffset - 1);
+		ctx.fillText(tiers[hosts[i][2]], 75, vOffset - 1);
+	}
+	
+	if (drawCodes)
+	{
+		ctx.fillStyle = colors[hosts[i][2]];
+		roundRect(ctx, 790, vOffset - 21, 75, 25, 10).fill();
+		
+		ctx.fillStyle = tierColor;
+		ctx.font = tierFont;
+		ctx.textAlign = "center";
+		ctx.fillText(""+(hosts[i][2]+1)+" " + (hosts[i][2]+1)+" " +(hosts[i][2]+1), 827, vOffset - 1);
 	}
 }
 
-
+// Generate image
 var result = c.toDataURL("image/png");
 document.getElementById('result').innerHTML = '<img src="' + result + '"/>';
-
-
 
 }
 </script>
@@ -209,9 +210,8 @@ document.getElementById('result').innerHTML = '<img src="' + result + '"/>';
 	<body onLoad="">
 		<div id="wrapper">
 		<h1>Casual ARMS Banner Generator</h1>
-		<p>Title: <input type="text" name="title" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/></p>
-		<p>
-		<select name="weekday" id="weekday">
+		<p>Title: <input type="text" name="title" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
+		Date: <select name="weekday" id="weekday">
 			<option value="0">Monday</option>
 			<option value="1">Tuesday</option>
 			<option value="2">Wednesday</option>
@@ -240,18 +240,41 @@ document.getElementById('result').innerHTML = '<img src="' + result + '"/>';
 		in time zone: <input type="text" name="timezone" id="timezone" value="EDT"/>
 		</p>
 		
-		<p>Easy host,   name: <input type="text" id="easy-name" value="Easy-Player" placeholder="Easy-Player"/>,   code: <input type="text" id="easy-code" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
-		<p>Medium host, name: <input type="text" id="medium-name" value="Medium-Player" placeholder="Medium-Player"/>, code: <input type="text" id="medium-code" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
-		<p>Hard host,   name: <input type="text" id="hard-name" value="Hard-Player" value="Hard-Player"/>,   code: <input type="text" id="hard-code" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
+		<p><select name="hostA" id="hostA">
+			<option value="0" selected="selected">Easy</option>
+			<option value="1">Medium</option>
+			<option value="2">Hard</option>
+		</select> host: <select name="tagA" id="tagA">
+			<option value="0">--</option>
+			<option value="1">CC</option>
+		</select> <input type="text" id="nameA" value="Easy-Player" placeholder="Easy-Player"/>,   code: <input type="text" id="codeA" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
+		<p><select name="hostB" id="hostB">
+			<option value="0">Easy</option>
+			<option value="1" selected="selected">Medium</option>
+			<option value="2">Hard</option>
+		</select> host: <select name="tagB" id="tagB">
+			<option value="0">--</option>
+			<option value="1">CC</option>
+		</select> <input type="text" id="nameB" value="Medium-Player" placeholder="Medium-Player"/>, code: <input type="text" id="codeB" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
+		<p><select name="hostC" id="hostC">
+			<option value="0">Easy</option>
+			<option value="1">Medium</option>
+			<option value="2" selected="selected">Hard</option>
+		</select> host: <select name="tagC" id="tagC">
+			<option value="0">--</option>
+			<option value="1">CC</option>
+		</select> <input type="text" id="nameC" value="Hard-Player" placeholder="Hard-Player"/>,   code: <input type="text" id="codeC" value="0000-8888-2222" placeholder="0000-1111-2222"/></p>
 		
-		<p>Enable tiers and code display: <input type="checkbox" name="tiers" id="tiers" checked/></p>
+		<p>Enable tiers: <input type="checkbox" name="tiers" id="tiers" checked/>, code display: <input type="checkbox" name="codes" id="codes" checked/></p>
+		<p>MLM mode: <input type="checkbox" name="mlm" id="mlm"/> (overrides some parameters)</p>
 		
 		<p><input type="button" name="generate" value="Generate" onClick="generate()"/>
 		
 		
-		<img id="template" src="template.jpg" style="display: none;"/>
+		<img id="template" src="template.png" style="display: none;"/>
+		<img id="template-mlm" src="template-mlm.png" style="display: none;"/>
 		<div>
-			<canvas id="myCanvas" width="800" height="400" style="display: none;"/>
+			<canvas id="myCanvas" width="880" height="440" style="display: block;"/>
 		</div>
     <div id="result">
     
