@@ -1,0 +1,136 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lobby Schedule – Casual ARMS</title>
+	<link rel="stylesheet" href="../style.css">
+	<style type="text/css">
+	.timeslot {
+		text-align: center;
+		font-weight: bold;
+		color: #1d94fc;
+	}
+	</style>
+	<script type="text/javascript">
+	
+	function formatDate(date, diff, ID)
+	{
+		h = date.getHours();
+		m = date.getMinutes();
+		postfix = "";
+		
+		if (-7 <= diff && diff <= -4)
+		{
+			if (h < 12)
+			{
+				postfix = " AM";
+			}
+			else
+			{
+				h -= 12;
+				postfix = " PM";
+			}
+		}
+		
+		if (h < 10)
+		{
+			h = "0" + h;
+		}
+		if (m < 10)
+		{
+			m = "0" + m;
+		}
+		document.getElementById(ID).innerHTML = h + ":" + m + postfix;
+	}
+	
+	function load()
+	{
+		var now = new Date();
+		
+		diff = -now.getTimezoneOffset() / 60;
+		
+		document.getElementById("timedetect").innerHTML = ""; //"Your local time zone was detected as UTC + " + diff + " hours.";
+		
+		var monStart = new Date(1, 1, 1, 20, 45, 0);
+		var monEnd   = new Date(1, 1, 1, 21, 45, 0);
+		
+		var wedStart = new Date(1, 1, 1, 22, 0, 0);
+		var wedEnd   = new Date(1, 1, 1, 0,  0, 0);
+		
+		var thuStart = new Date(1, 1, 1, 18, 0, 0);
+		var thuEnd   = new Date(1, 1, 1, 20, 0, 0);
+		
+		var satStart = new Date(1, 1, 1, 18, 0, 0);
+		var satEnd   = new Date(1, 1, 1, 20, 0, 0);
+		
+		var sunStart = new Date(1, 1, 1, 20, 45, 0);
+		var sunEnd   = new Date(1, 1, 1, 21, 45, 0);
+		
+		dates = [monStart, monEnd, wedStart, wedEnd, thuStart, thuEnd, satStart, satEnd, sunStart, sunEnd];
+		
+		for (i = 0; i < dates.length; i++)
+		{
+			dates[i].setHours(dates[i].getHours() + diff);
+		}
+		
+		console.log(dates);
+		
+		formatDate(monStart, diff, "mon-start");
+		formatDate(monEnd, diff,   "mon-end");
+		formatDate(wedStart, diff, "wed-start");
+		formatDate(wedEnd, diff,   "wed-end");
+		formatDate(thuStart, diff, "thu-start");
+		formatDate(thuEnd, diff,   "thu-end");
+		formatDate(satStart, diff, "sat-start");
+		formatDate(satEnd, diff,   "sat-end");
+		formatDate(sunStart, diff, "sun-start");
+		formatDate(sunEnd, diff,   "sun-end");
+	}
+	</script>
+</head>
+
+<body onload="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		
+		<p id="timedetect">Could not automatically detect time zone. Defaults to EDT, Eastern American Time.</p>
+		
+		<h2>Leaderboard Lobby Event Schedule</h2>
+		
+		<p>The following three weekly events all count for the Casual ARMS leaderboards!</p>
+		
+		<h3>Wildcard Wednesday</h3>
+		<p class="timeslot">Wednesdays <span id="wed-start">06:00 PM</span> to <span id="wed-end">08:00 PM</span></p>
+		
+		<p>The <em>Wildcard Wednesday</em> event has a unique theme each week!</p>
+		
+		
+		<h3>Thumpin' Thursday</h3>
+		<p class="timeslot">Thursdays <span id="thu-start">02:00 PM</span> to <span id="thu-end">04:00 PM</span></p>
+		
+		<p>The <em>Thumpin' Thursday</em> event is perfect for European players. The event features a rotating stage set, swtiching out every 20 coin lobby!</p>
+		
+		
+		<h3>Saturday Party Lobby</h3>
+		<p class="timeslot">Saturdays <span id="sat-start">02:00 PM</span> to <span id="sat-end">04:00 PM</span></p>
+		
+		<p>The <em>Saturday Party Lobby</em> event features standard party lobbies with VS fights, party games and items on!</p>
+		
+		<br/>
+		<h2>Community Warmup Event Schedule</h2>
+		
+		<p>Warmup events are scheduled before external community events such as tournaments. Everyone can join the warmup lobby regardless of tournament participation! These do not count for Casual ARMS leaderboards.</p>
+		
+		<h3>Mega League Monday Warmup Lobby</h3>
+		<p class="timeslot">Mondays <span id="mon-start">04:45 PM</span> to <span id="mon-end">05:45 PM</span></p>
+		
+		<p>The <em>Mega League Monday Warmup Lobby</em> event prepares ARMS players for Mega League Monday, hosted by Schkrimps!</p>
+		
+		
+		<h3>Champions of the Era Warmup Lobby</h3>
+		<p class="timeslot">Sundays <span id="sun-start">04:45 PM</span> to <span id="sun-end">05:45 PM</span></p>
+		
+		<p>The <em>Champions of the Era Warmup Lobby</em> event prepares ARMS players for Champions of the Era, hosted by Era Wolf!</p>
+	
+	</div>
+
+</body>

@@ -1,10 +1,9 @@
 <html>
 <head>
+	<title>Fighter + ARMS Randomizer – Casual ARMS</title>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../../style.css">
 	<style type="text/css">
-	body {
-		background-color: yellow;
-	}
 
 	.container {
 		margin: 0 auto;
@@ -203,7 +202,7 @@
 	}
 
 	function randomize()
-	{	
+	{
 		deactivate();
 		var text = "Rolled <b>";
   
@@ -310,9 +309,7 @@
 			arms_html += "</div>";
 		}
 		document.getElementById("arms").innerHTML = arms_html;
-	
 		
-	
 		for (arm = 0; arm < armsIDs.length; arm++)
 		{
 			disp = document.getElementById(armsIDs[arm]);
@@ -330,18 +327,20 @@
 </head>
 
 <body onLoad="load()">
-
-	<div id="controls">
-		<!--<input id="randomcount" type="number" name="Count" min="1" max="15" value="3">-->
-		<button onClick="randomize();">Randomize</button>
-		<button onClick="reset();">Reset</button>
-		<button onClick="savestate();">Save</button>
-		<button onClick="restorestate();">Restore</button>
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<h2>Fighter + ARMS Randomizer</h2>
+		<div id="controls">
+			<!--<input id="randomcount" type="number" name="Count" min="1" max="15" value="3">-->
+			<button onClick="randomize();">Randomize</button>
+			<button onClick="reset();">Reset</button>
+			<button onClick="savestate();">Save</button>
+			<button onClick="restorestate();">Restore</button>
+		</div>
+		<p id="text">Click to randomize!</p>
+		<p id="warning"></p>
+	
+		<div id="fighters" class="container"></div>
+		<div id="arms" class="container"></div>
 	</div>
-	<p id="text">Click to randomize!</p>
-	<p id="warning"></p>
-
-	<div id="fighters" class="container"></div>
-	<div id="arms" class="container"></div>
-
 </body>

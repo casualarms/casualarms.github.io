@@ -1,10 +1,9 @@
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<title>Stage Randomizer – Casual ARMS</title>
+	<link rel="stylesheet" href="../../style.css">
 	<style type="text/css">
-	body {
-		background-color: yellow;
-	}
 
 	#stage-container {
 		margin: 0 auto;
@@ -189,32 +188,35 @@
 </head>
 
 <body onLoad="load()">
-
-	<div id="controls">
-		<input id="randomcount" type="number" name="Count" min="1" max="15" value="3">
-		<button onClick="randomize();">Randomize</button>
-		<button onClick="reset();">Reset</button>
-		<button onClick="savestate();">Save</button>
-		<button onClick="restorestate();">Restore</button>
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<h2>Stage Randomizer</h2>
+		<div id="controls">
+			<input id="randomcount" type="number" name="Count" min="1" max="15" value="3">
+			<button onClick="randomize();">Randomize</button>
+			<button onClick="reset();">Reset</button>
+			<button onClick="savestate();">Save</button>
+			<button onClick="restorestate();">Restore</button>
+		</div>
+	
+		<div id="stage-container">
+			<div class="stage" id="springstadium">Spring Stadium</div>
+			<div class="stage" id="ribbonring"   >Ribbon Ring</div>
+			<div class="stage" id="ninjacollege" >Ninja College</div>
+			<div class="stage" id="mausoleum"    >Mausoleum</div>
+			<div class="stage" id="ramenbowl"    >Ramen Bowl</div>
+			<div class="stage" id="scrapyard"    >Scrapyard</div>
+			<div class="stage" id="cinemadeux"   >Cinema Deux</div>
+			<div class="stage" id="busterbeach"  >Buster Beach</div>
+			<div class="stage" id="snakepark"    >Snake Park</div>
+			<div class="stage" id="dnalab"       >DNA Lab</div>
+			<div class="stage" id="skyarena"     >Sky Arena</div>
+			<div class="stage" id="viadolce"     >Via Dolce</div>
+			<div class="stage" id="templegrounds">Temple Grounds</div>
+			<div class="stage" id="sparringring" >Sparring Ring</div>
+			<div class="stage" id="nameredacted" >[NAME REDACTED]</div>
+		</div>
+	
+		<p id="warning"></p>
 	</div>
-
-	<div id="stage-container">
-		<div class="stage" id="springstadium">Spring Stadium</div>
-		<div class="stage" id="ribbonring"   >Ribbon Ring</div>
-		<div class="stage" id="ninjacollege" >Ninja College</div>
-		<div class="stage" id="mausoleum"    >Mausoleum</div>
-		<div class="stage" id="ramenbowl"    >Ramen Bowl</div>
-		<div class="stage" id="scrapyard"    >Scrapyard</div>
-		<div class="stage" id="cinemadeux"   >Cinema Deux</div>
-		<div class="stage" id="busterbeach"  >Buster Beach</div>
-		<div class="stage" id="snakepark"    >Snake Park</div>
-		<div class="stage" id="dnalab"       >DNA Lab</div>
-		<div class="stage" id="skyarena"     >Sky Arena</div>
-		<div class="stage" id="viadolce"     >Via Dolce</div>
-		<div class="stage" id="templegrounds">Temple Grounds</div>
-		<div class="stage" id="sparringring" >Sparring Ring</div>
-		<div class="stage" id="nameredacted" >[NAME REDACTED]</div>
-	</div>
-
-	<p id="warning"></p>
 </body>

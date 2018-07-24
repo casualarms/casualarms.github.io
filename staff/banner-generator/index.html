@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
-<title>ARMS</title>
+<title>Casual ARMS Banner Generator</title>
 <style type="text/css">
 	
 	@font-face {
@@ -95,14 +95,10 @@ var dateText = dayNames[weekdayIndex] + " " + monthNames[monthIndex] + ' ' + day
 var timeText = startTime + " to " + endTime + " " + timeZone;
 
 // Style presets
-backgroundColor = "LightSeaGreen";
 titleColor = "yellow";
 timeDateColor = "white";
 hostsColor = "white";
 tierColor = "black";
-attributeColor = "rgba(255, 255, 255, 1)";
-gridColor = "rgba(255, 255, 255, 0.5)";
-highlightColor = "rgba(255, 255, 0, 0.8)";
 
 titleFont = "22pt ARMS";
 timeDateFont = "28pt ARMS";
@@ -112,7 +108,6 @@ hostsFont = "20pt ARMS";
 
 colors = ["#29fb2f", "#efed34", "#fc5935"];
 tiers = ["easy", "medium", "hard"];
-
 
 var mlmMode   = document.getElementById("mlm").checked;
 var drawTiers = document.getElementById("tiers").checked && !mlmMode;

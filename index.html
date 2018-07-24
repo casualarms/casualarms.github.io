@@ -9,39 +9,47 @@
 		if (window.location.hash == "#staff")
 		{
 			document.getElementById("staff").style.display = "block";
-			
 		}
 	}
 	</script>
 </head>
 
 <body onload="load()">
-	<div id="outer-container">
-		<h1>Casual ARMS</h1>
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<img src="assets/logo.png" id="logo"/>
+		
+		<div class="menu-container">
+			<div class="menu-item m1"><a href="http://discord.gg/u6cfeN9">Discord Server</a></div>
+			<div class="menu-item m2"><a href="lobbies/">Lobby Event Schedule</a></div>
+			<div class="menu-item m2"><a href="clash/">Casual Clash</a></div>
+			<div class="menu-item m3"><a href="screenshot-contest/">Screenshot Contest</a></div>
+		</div>
 		
 		<h2>Tools</h2>
 		
-		<div class="stage-container">
-			<div class="stage"><a href="fighter-randomizer/">Fighter + ARMS Randomizer</a></div>
-			<div class="stage"><a href="stage-randomizer/">Stage Randomizer</a></div>
-			<div class="stage" ><a href="stats-generator/">Fighter Stats Generator</a></div>
-		</div>
-		
-		<h2>Community</h2>
-		
-		<div class="stage-container">
-			<div class="stage"><a href="clash/">Casual Clash</a></div>
-			<div class="stage"><a href="screenshot-contest/">Celebration Screenshot Contest</a></div>
+		<div class="menu-container">
+			<div class="menu-item m4"><a href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a></div>
+			<div class="menu-item m4"><a href="tools/stage-randomizer/">Stage Randomizer</a></div>
+			<div class="menu-item m4"><a href="tools/stats-generator/">Fighter Stats Generator</a></div>
 		</div>
 		
 		<div id="staff" style="display: none;">
 		<h2>For Staff</h2>
 		
-		<div class="stage-container">
-			<div class="stage"><a href="staff/leaderboards/">Leaderboard Tools</a></div>
-			<div class="stage"><a href="staff/banner-generator/">Banner Generator</a></div>
+		<div class="menu-container">
+			<div class="menu-item m4"><a href="staff/leaderboards/">Leaderboard Tools</a></div>
+			<div class="menu-item m4"><a href="staff/banner-generator/">Banner Generator</a></div>
 		</div>
 		
+		</div>
+		
+		
+		<div class="submenu">
+			<div class="submenu-item">Test 1</div>
+			<div class="submenu-item">Test 2</div>
+			<div class="submenu-item">Test 3</div>
+			<div class="submenu-item">Test 4</div>
 		</div>
 	
 	</div>

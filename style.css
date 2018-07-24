@@ -11,13 +11,25 @@ body {
 	font: 1em Helvetica, Arial, sans-serif;
 }
 
-#outer-container {
+#container {
 	margin: 0 auto;
-	width: 600pt;
+	width: 700pt;
 	text-align: center;
 	
-	padding: 0.5em 0em 3em 0em;
+	padding: 1.5em 0em 2em 0em;
 	background-color: yellow;
+	border: 20pt solid black;
+	border-radius: 5pt;
+	position: relative;
+}
+
+#logo {
+	position: absolute;
+	top: 30pt;
+	left: 30pt;
+	opacity: 0.1;
+	width: 100pt;
+	z-index: 0;
 }
 
 #controls {
@@ -26,8 +38,15 @@ body {
 	text-align: center;
 }
 
-p#warning {
-	text-align: center;
+p {
+	padding: 0 100pt;
+	text-align: left;
+}
+
+em {
+	
+	font-style: normal;
+	font-weight: bold;
 }
 
 a {
@@ -35,52 +54,108 @@ a {
 	color: inherit;
 }
 
-h1, h2 
-{
-	color: black;
-	font-weight: bold;
-}
-
 h1 {
+	width: 500pt;
+	text-align: center;
 	font-family: ARMS;
-	font-size: 3.5em;
-	margin: 0.5em auto;
+	font-size: 4em;
+	margin: 0.3em auto;
+	
 	
 	font-style: italic;
-	background-color: black;
+	background-color: #1d94fc;
 	color: white;
-	border-radius: 2.5em 0px 2.5em 0px;
-	width: 80%;
+	border-top-left-radius: 0.8em 100%;
+	border-bottom-right-radius: 0.8em 100%;
+	
+	transition: 0.1s;
+}
+
+h1:hover {
+	transform: scale(1.1);
+	background-color: rgba(0,0,0,0.5);
 }
 
 h2 {
-	font-size: 1em;
-	border-bottom: 1pt solid #1d94fc;
+	font-size: 1.2em;
+	border-bottom: 1pt solid black /*#1d94fc*/;
 	text-align: left;
 	padding-left: 1em;
 }
 
-.stage-container {
-	width: 70%;
-	margin: 0 auto;
-	padding: 0.5em;
+h3 {
+	font-size: 1.2em;
+	border-bottom: 1pt dashed black /*#1d94fc*/;
+	padding-left: 1em;
+	margin-top: 2em;
 }
 
-.stage {
+@keyframes slidein {
+  from { transform: scaleX(1) translateX(0); }
+  50%  { transform: scaleX(1.05) translateX(-13pt); }
+  to   { transform: scaleX(1) translateX(0); }
+}
+
+.menu-container {
+	margin: 0 auto;
+	padding: 0.5em 0 0.5 100pt;
+}
+
+.menu-item {
 	color: black;
-	
 	font: 1.8em Helvetica, Arial, sans-serif;
 	font-weight: bold;
+	font-style: italic;
 	
-	padding: 0.5em;
-	border-radius: 2.5em 0px 2.5em 0px;
+	padding: 0.2em 100pt 0.2em 0;
+	border-top-left-radius: 1em 100%;
 	
-	margin: -0.5em auto;
+	margin: -0.1em auto;
+	z-index: 1;
+}
+
+.m1 { font-size: 3.5em; }
+.m2 { font-size: 2.5em; }
+.m3 { font-size: 1.6em; }
+.m4 { font-size: 1.3em; }
+
+
+
+.menu-item:hover {
+	background-color: #1d94fc;
+	color: white;
+	animation: 0.3s slidein;
+	transition: 0.2s background-color;
+
 }
 
 
-.stage:hover {
+
+
+.submenu {
+	margin-top: 2em;
+}
+
+.submenu-item {
+	display: inline-block;
+	margin: 0 0.3em;
+	font-size: 0.8em;
+	width: 7em;
+	line-height: 1.8em;
 	font-style: italic;
-	background-color: black;
+	color: black;
+	border: 1pt solid black;
+	transition: 0.1s;
+	
+	
+	/*border-radius: 2.5em 0px 2.5em 0px;*/
+	border-top-left-radius: 15% 100%;
+	border-bottom-right-radius: 15% 100%;
+	
+}
+
+.submenu-item:hover {
+	background-color: #1d94fc;
 	color: white;
+	transform: scale(1.2);
 }
