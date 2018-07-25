@@ -40,7 +40,7 @@ body {
 }
 
 p {
-	padding: 0 100pt;
+	padding: 0 70pt;
 	text-align: left;
 	line-height: 1.3em;
 }
@@ -48,7 +48,7 @@ p {
 
 ul {
 	text-align: left;
-	padding: 0 100pt;
+	padding: 0 70pt;
 }
 
 em {
@@ -113,7 +113,7 @@ h3 {
 
 .menu-container {
 	margin: 0 auto;
-	padding: 0.5em 0 0.5 100pt;
+	padding: 0.5em 0 0.5 70pt;
 }
 
 .menu-item {
@@ -122,7 +122,7 @@ h3 {
 	font-weight: bold;
 	font-style: italic;
 	
-	padding: 0.2em 100pt 0.2em 0;
+	padding: 0.2em 70pt 0.2em 0;
 	border-top-left-radius: 1em 100%;
 	
 	margin: -0.1em auto;
@@ -178,4 +178,55 @@ h3 {
 	background-color: #1d94fc;
 	color: white;
 	transform: scale(1.2);
+}
+
+
+.stage-container
+{
+	background-color: #36393f;
+	width: 50%;
+	margin: 0 auto;
+	padding: 1em 2em;
+	
+	border: 3pt solid #595d69;
+	border-radius: 1em;
+	box-shadow: 0 0 3pt #36393f;
+}
+
+.stage {
+	background-color: black;
+	color: white;
+	
+	font: 1em Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	
+	padding: 0.3em 0.2em;
+	margin: 0.5em;
+	border-radius: 0.5em;
+	transition: background-color 0.3s;
+	
+	margin: 0.5em auto;
+}
+
+.stage:hover {
+	background-color: white;
+	color: black;
+}
+
+.stage.active {
+	background-color: yellow;
+	color: black;
+	font-weight: bold;
+}
+
+.stage.active:after
+{
+	content: " ●";
+	text-align: left;
+}
+
+.stage.inactive {
+	background-color: black;
+	opacity: 0.4;
 }

@@ -4,52 +4,11 @@
 	<title>Stage Randomizer – Casual ARMS</title>
 	<link rel="stylesheet" href="../../style.css">
 	<style type="text/css">
-
-	#stage-container {
-		margin: 0 auto;
-		width: 15em;
-		text-align: center;
-	}
-
 	#controls {
-		margin: 0 auto;
-		width: 25em;
+		margin: 1em auto;
 		text-align: center;
 	}
-
-	p#warning {
-		text-align: center;
-	}
-
-	.stage {
-		background-color: yellow;
-		color: black;
-		font: 1em Helvetica, Arial, sans-serif;
-		padding: 0.2em;
-		margin: 0.5em;
-		border-radius: 2.5em 0px 2.5em 0px;
-		border: 1px solid black;
-		font-style: italic;
-		transition: background-color 0.2s;
-	}
-
-	.stage.active {
-		background-color: black;
-		color: yellow;
-		font-weight: bold;
-	}
-
-	.stage.active:after
-	{
-		content: " ●";
-		text-align: left;
-	}
-
-	.stage.inactive {
-		background-color: black;
-		color: yellow;
-		opacity: 0.1;
-	}
+	#warning { text-align: center; }
 	</style>
 	<script type="text/javascript">
 
@@ -198,8 +157,8 @@
 			<button onClick="savestate();">Save</button>
 			<button onClick="restorestate();">Restore</button>
 		</div>
-	
-		<div id="stage-container">
+		<p id="warning"></p>
+		<div class="stage-container">
 			<div class="stage" id="springstadium">Spring Stadium</div>
 			<div class="stage" id="ribbonring"   >Ribbon Ring</div>
 			<div class="stage" id="ninjacollege" >Ninja College</div>
@@ -216,7 +175,5 @@
 			<div class="stage" id="sparringring" >Sparring Ring</div>
 			<div class="stage" id="nameredacted" >[NAME REDACTED]</div>
 		</div>
-	
-		<p id="warning"></p>
 	</div>
 </body>

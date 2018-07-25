@@ -5,14 +5,11 @@
 	<link rel="stylesheet" href="../../style.css">
 	<style type="text/css">
 
-	.container {
-		margin: 0 auto;
-		width: 15em;
-		text-align: center;
-	}
-
-	.arms-section {
-		margin: 1em;
+	.stage-container {
+		display: inline-block;
+		width: 30%;
+		vertical-align: top;
+		margin: 0 1.5em;
 	}
 
 	#controls {
@@ -24,36 +21,6 @@
 	p#warning, p#text {
 		text-align: center;
 		font-family: sans-serif;
-	}
-
-	.arm {
-		background-color: yellow;
-		color: black;
-		font: 1em Helvetica;
-		padding: 0.2em;
-		margin: 0.5em;
-		border-radius: 2.5em 0px 2.5em 0px;
-		border: 1px solid black;
-		font-style: italic;
-		transition: background-color 0.2s;
-	}
-
-	.arm.active {
-		background-color: black;
-		color: yellow;
-		font-weight: bold;
-	}
-
-	.arm.active:after
-	{
-		content: " ●";
-		text-align: left;
-	}
-
-	.arm.inactive {
-		background-color: black;
-		color: yellow;
-		opacity: 0.1;
 	}
 	</style>
 	<script type="text/javascript">
@@ -174,13 +141,13 @@
 		for (stage = 0; stage < armsIDs.length; stage++)
 		{
 			disp = document.getElementById(armsIDs[stage]);
-			disp.className = "arm " + classes[state_arms[stage]];
+			disp.className = "stage " + classes[state_arms[stage]];
 		}
   
 		for (fighter = 0; fighter < fighterIDs.length; fighter++)
 		{
 			disp = document.getElementById(fighterIDs[fighter]);
-			disp.className = "arm " + classes[state_fighters[fighter]];
+			disp.className = "stage " + classes[state_fighters[fighter]];
 		}
   
 		document.getElementById("warning").innerHTML = warning;
@@ -294,7 +261,7 @@
 		var fighters_html = "";
 		for (var fighter = 0; fighter < fighterIDs.length; fighter++)
 		{
-			fighters_html += "<div class='arm' id='" + fighterIDs[fighter] + "'>" + replace(fighterIDs[fighter]) + "</div>";
+			fighters_html += "<div class='stage' id='" + fighterIDs[fighter] + "'>" + replace(fighterIDs[fighter]) + "</div>";
 		}
 		document.getElementById("fighters").innerHTML = fighters_html;
 	
@@ -303,8 +270,8 @@
 		for (var arm = 0; arm < armsIDs.length; arm++)
 		{
 			if (arm % 3 == 0)
-			arms_html += "<div class='arms-section'>";
-			arms_html += "<div class='arm' id='" + armsIDs[arm] + "'>" + replace(armsIDs[arm]) + "</div>";
+			arms_html += "<div>";
+			arms_html += "<div class='stage' id='" + armsIDs[arm] + "'>" + replace(armsIDs[arm]) + "</div>";
 			if (arm % 3 == 2)
 			arms_html += "</div>";
 		}
@@ -340,7 +307,7 @@
 		<p id="text">Click to randomize!</p>
 		<p id="warning"></p>
 	
-		<div id="fighters" class="container"></div>
-		<div id="arms" class="container"></div>
+		<div id="fighters" class="stage-container"></div>
+		<div id="arms" class="stage-container"></div>
 	</div>
 </body>
