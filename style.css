@@ -18,9 +18,10 @@ body {
 	
 	padding: 1.5em 0em 2em 0em;
 	background-color: yellow;
-	border: 20pt solid black;
-	border-radius: 5pt;
+	border: 8pt solid black;
+	border-radius: 4pt;
 	position: relative;
+	overflow: hidden;
 }
 
 #logo {
@@ -41,17 +42,31 @@ body {
 p {
 	padding: 0 100pt;
 	text-align: left;
+	line-height: 1.3em;
+}
+
+
+ul {
+	text-align: left;
+	padding: 0 100pt;
 }
 
 em {
-	
-	font-style: normal;
 	font-weight: bold;
+	font-style: normal;
+	color: #1d94fc;
 }
 
+.command {
+	font-family: monospace;
+	background-color: #33353b;
+	color: white;
+	white-space:nowrap;
+}
+
+
 a {
-	text-decoration: none;
-	color: inherit;
+	color: #1d94fc;
 }
 
 h1 {
@@ -92,7 +107,7 @@ h3 {
 
 @keyframes slidein {
   from { transform: scaleX(1) translateX(0); }
-  50%  { transform: scaleX(1.05) translateX(-13pt); }
+  50%  { transform: scaleX(1.1) translateX(0); }
   to   { transform: scaleX(1) translateX(0); }
 }
 
@@ -112,6 +127,11 @@ h3 {
 	
 	margin: -0.1em auto;
 	z-index: 1;
+}
+
+.menu-item > a, h1 > a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .m1 { font-size: 3.5em; }

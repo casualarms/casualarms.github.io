@@ -3,12 +3,31 @@
 	<meta charset="UTF-8">
 	<title>Casual Clash – Casual ARMS</title>
 	<link rel="stylesheet" href="../style.css">
+	<script type="text/javascript" src="../script.js"></script>
 	<script type="text/javascript">
 	function load()
 	{
+		var diff = getTimeZoneDiff();
 		
+		var checkinStart    = new Date(1, 1, 1, 19, 30, 0);
+		var tournamentStart = new Date(1, 1, 1, 20, 30, 0);
+		
+		dates = [tournamentStart, checkinStart];
+		
+		convertDates(dates, diff);
+		
+		formatDate(checkinStart,    diff, "checkin-start");
+		formatDate(tournamentStart, diff, "tournament-start");
+		formatDate(checkinStart,    diff, "checkin-start2");
+		formatDate(tournamentStart, diff, "tournament-start2");
 	}
 	</script>
+	<style type="text/css">
+		ul {
+			list-style-type: circle;
+		}
+		li { line-height: 1.4em; }
+	</style>
 </head>
 
 <body onload="load()">
@@ -17,12 +36,97 @@
 		
 		<h2>Casual Clash Rules</h2>
 		
+		
+		<p>The Casual ARMS discord is proud to bring you back our Swiss Style tournament! In this tournament format, there is NO ELIMINATION. You will play a series of rounds against other players with similar win-loss rates to you. Your individual fights will all matter, so be sure to report your full results of each fight. Players will be ranked at the end for points earned, and the player with the most points will be the winner!</p>
+		
+		<p>Please read all the rules, and be ready to have tons of fun with us!</p>
+		
+		<h3>CHECK IN</h3>
+		
+		<p>Check in starts at <em><span id="checkin-start">3:30 PM EDT</span> on Saturday, July 28</em>.  
+		The tournament starts at <em><span id="tournament-start">4:30 PM EDT</span> on Saturday, July 28</em>. Match ups will be shuffled at the start of the tournament.</p>
+		
+		<h3>COMMUNICATION</h3>
+		
+		<p>Communication will be handled through the <a href="http://discord.gg/u6cfeN9">Casual ARMS Discord server</a>.</p>
+		
+		<p>Please have your friend code ready to share with fellow competitors. If you have set up a banner with ARMSBot, you can prompt it to automatically post your friend code by typing <span class="command">?whois</span> in the appropriate chat.</p>
+		
+		<p>If Challonge has your current match for the round listed as an even number, please make use of the <em>#matchmaking-even</em> channel on the Discord server. If your current match is listed as an odd number, please make use of the <em>#matchmaking-odd</em> channel on the server. This is intended to cut down on some of the clutter in the chat. If you have any difficulties, please ping either <em>Rashiko</em> or <em>LiteraryFirearms</em>.</p>
+		
+		<h3>TERMS</h3>
+		
+		<ul>
+			<li><em>FIGHT</em> – A single 99 second game</li>
+			<li><em>MATCH</em> – The set of 3-5 games</li>
+			<li><em>ROUND</em> – All competitors' games together</li>
+		</ul>
+		
+		<h3>TOURNAMENT MATCHES</h3>
+		
+		<p>Instead of an Arena, competitors will run through several party lobbies set to 1 coin. One player will make a party lobby with these settings:</p> 
+		
+		<p><em>Solo Fight 2P</em></br>
+		<em>Items ON</em></p>
+		
+		<p><em>Stages (All):</em>
+		<ul>
+		<li>Spring Stadium</li>
+		<li>Ribbon Ring</li>
+		<li>Ninja College</li>
+		<li>Mausoleum</li>
+		<li>Ramen Bowl</li>
+		<li>Scrapyard</li>
+		<li>Cinema Deux</li>
+		<li>Buster Beach</li>
+		<li>Snake Park</li>
+		<li>DNA Lab</li>
+		<li>Sky Arena</li>
+		<li>Via Dolce</li>
+		<li>Temple Grounds</li>
+		<li>Sparring Ring</li>
+		<li>[NAME REDACTED]</li>
+		</ul>
+		</p>
+		
+		<ul>
+			<li>Stages are chosen at random for each fight.</li>
+			
+			<li>When both players are ready, the one hosting the lobby will start. At the conclusion of each fight, the lobby will finish.</li>
+			
+			<li>Repeat. Players will play to best of 5 fights.</li>
+			
+			<li>Players are allowed to switch ARMS and characters between fights.</li>
+			
+			<li>The first person who reaches 3 wins / 3 KO's is the winner of the overall match.</li>
+			
+			<li>Report your results in Challonge after each match by doing the following: <br/>
+			<ul><li>First, click the appropriate button to report your score.</li>
+			<li>Click “add a set” once for each fight you had with your opponent beyond the first.</li>
+			<li>For each fight that you won, enter a 1 in that box. </li>
+			<li>For each fight you lost, enter a 0.</li></ul></li>
+		</ul>
+		
+		<h3>ADDITIONAL RULES</h3>
+		
+		<ul>
+			<li>If you do not check in by <em><span id="tournament-start2">3:30 PM EDT</span></em>, you will be disqualified. (Check-in starts an hour before, at <em><span id="checkin-start2">3:30 PM EDT</span></em>.)</li>
+			
+			<li>If you are not present by the time the rest of the round's matches have finished, you will receive a loss for that match.</li>
+			
+			<li>Lag is a part of online gaming. If you have an issue with lag, DM <em>Rashiko</em> or <em>LiteraryFirearms</em>.</li>
+			
+			<li>If you disconnect mid-fight, you will receive a loss for that fight.</li> 
+			
+			<li>Rude and unsportsmanlike conduct can also be grounds for disqualification. If someone is acting in this way, bring it to the attention of a Moderator. (Ping <em>@Moderator</em> on Discord.)</li>
+		</ul>
+		
 		<h2>Casual Clash History</h2>
 		
 		<div class="menu-container">
-			<div class="menu-item m4"><a href="challonge/">Casual Clash 1</a></div>
-			<div class="menu-item m4"><a href="stage-randomizer/">Casual Clash 2</a></div>
-			<div class="menu-item m4" ><a href="stats-generator/">Casual Clash 3</a></div>
+			<div class="menu-item m4"><a href="https://challonge.com/CasualARMS1/standings">Casual Clash 1</a></div>
+			<div class="menu-item m4"><a href="https://challonge.com/CasualARMS2/standings">Casual Clash 2</a></div>
+			<div class="menu-item m4"><a href="https://challonge.com/CasualARMS3/standings">Casual Clash 3</a></div>
 		</div>
 	
 	</div>

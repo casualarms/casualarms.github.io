@@ -12,6 +12,33 @@
 		}
 	}
 	</script>
+	<style type="text/css">
+	
+	.menu-item {
+		overflow: hidden;
+		position: relative;
+	}
+	
+	.menu-item > a {
+		z-index: 1;
+	}
+	
+	.menu-item > img {
+		position: absolute;
+		z-index: 0;
+		opacity: 0;
+	}
+	
+	.menu-item:hover > img {
+		opacity: 0.3;
+	}
+	
+	.m-discord      > img { width: 1.7em; left: 15pt; top: 15pt; }
+	.m-clash        > img { width: 3.0em; left: 30pt; top: 10pt; }
+	.m-lobby        > img { width: 2.5em; left: 10pt; top: 5pt; }
+	.m-screenshot   > img { width: 3.0em; left: 30pt; top: 5pt; }
+	
+	</style>
 </head>
 
 <body onload="load()">
@@ -20,10 +47,10 @@
 		<img src="assets/logo.png" id="logo"/>
 		
 		<div class="menu-container">
-			<div class="menu-item m1"><a href="http://discord.gg/u6cfeN9">Discord Server</a></div>
-			<div class="menu-item m2"><a href="lobbies/">Lobby Event Schedule</a></div>
-			<div class="menu-item m2"><a href="clash/">Casual Clash</a></div>
-			<div class="menu-item m3"><a href="screenshot-contest/">Screenshot Contest</a></div>
+			<div class="menu-item m1 m-discord"   ><img src="assets/discord-logo.png"/><a href="http://discord.gg/u6cfeN9">Discord Server</a></div>
+			<div class="menu-item m2 m-lobby"     ><img src="assets/lobby-logo.png"/><a href="lobbies/">Lobby Event Schedule</a></div>
+			<div class="menu-item m2 m-clash"     ><img src="assets/clash-logo.png"/><a href="clash/">Casual Clash</a></div>
+			<div class="menu-item m3 m-screenshot"><img src="assets/screenshot-logo.png"/><a href="screenshot-contest/">Screenshot Contest</a></div>
 		</div>
 		
 		<h2>Tools</h2>

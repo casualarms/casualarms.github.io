@@ -3,6 +3,7 @@
 	<meta charset="UTF-8">
 	<title>Lobby Schedule – Casual ARMS</title>
 	<link rel="stylesheet" href="../style.css">
+	<script type="text/javascript" src="../script.js"></script>
 	<style type="text/css">
 	.timeslot {
 		text-align: center;
@@ -12,42 +13,9 @@
 	</style>
 	<script type="text/javascript">
 	
-	function formatDate(date, diff, ID)
-	{
-		h = date.getHours();
-		m = date.getMinutes();
-		postfix = "";
-		
-		if (-7 <= diff && diff <= -4)
-		{
-			if (h < 12)
-			{
-				postfix = " AM";
-			}
-			else
-			{
-				h -= 12;
-				postfix = " PM";
-			}
-		}
-		
-		if (h < 10)
-		{
-			h = "0" + h;
-		}
-		if (m < 10)
-		{
-			m = "0" + m;
-		}
-		document.getElementById(ID).innerHTML = h + ":" + m + postfix;
-	}
-	
 	function load()
 	{
-		var now = new Date();
-		
-		diff = -now.getTimezoneOffset() / 60;
-		
+		var diff = getTimeZoneDiff();
 		document.getElementById("timedetect").innerHTML = ""; //"Your local time zone was detected as UTC + " + diff + " hours.";
 		
 		var monStart = new Date(1, 1, 1, 20, 45, 0);
@@ -67,23 +35,18 @@
 		
 		dates = [monStart, monEnd, wedStart, wedEnd, thuStart, thuEnd, satStart, satEnd, sunStart, sunEnd];
 		
-		for (i = 0; i < dates.length; i++)
-		{
-			dates[i].setHours(dates[i].getHours() + diff);
-		}
-		
-		console.log(dates);
+		convertDates(dates, diff);
 		
 		formatDate(monStart, diff, "mon-start");
-		formatDate(monEnd, diff,   "mon-end");
+		formatDate(monEnd,   diff, "mon-end");
 		formatDate(wedStart, diff, "wed-start");
-		formatDate(wedEnd, diff,   "wed-end");
+		formatDate(wedEnd,   diff, "wed-end");
 		formatDate(thuStart, diff, "thu-start");
-		formatDate(thuEnd, diff,   "thu-end");
+		formatDate(thuEnd,   diff, "thu-end");
 		formatDate(satStart, diff, "sat-start");
-		formatDate(satEnd, diff,   "sat-end");
+		formatDate(satEnd,   diff, "sat-end");
 		formatDate(sunStart, diff, "sun-start");
-		formatDate(sunEnd, diff,   "sun-end");
+		formatDate(sunEnd,   diff, "sun-end");
 	}
 	</script>
 </head>
