@@ -10,7 +10,26 @@
 		{
 			document.getElementById("staff").style.display = "block";
 		}
+		
 	}
+	
+	function checkKey(e)
+	{
+		e = e || window.event;
+		if (e.keyCode == '38') {
+			switchSet(-1);
+		}
+		else if (e.keyCode == '40') {
+			switchSet(1);
+		}
+		else if (e.keyCode == '37') {
+			switchImage(-1)
+		}
+		else if (e.keyCode == '39') {
+			switchImage(1)
+		}
+	}
+	document.onkeydown = checkKey;
 	</script>
 	<style type="text/css">
 	
@@ -19,7 +38,7 @@
 		position: relative;
 	}
 	
-	.menu-item > a {
+	.menu-item a {
 		z-index: 1;
 	}
 	
@@ -33,50 +52,90 @@
 		opacity: 0.3;
 	}
 	
-	#m-discord      > img { width: 1.7em; left: 25pt; top: 15pt; }
+	.main-menu h2 {
+		margin-top: -0.4em;
+		margin-bottom: 0.4em;
+		opacity: 0.8;
+	}
+	
+	#logo {
+		position: absolute;
+		top: 25pt;
+		right: 30pt;
+		opacity: 0.15;
+		width: 120pt;
+		z-index: 0;
+	}
+	
+	#shield {
+		position: absolute;
+		top: 25pt;
+		left: 30pt;
+		opacity: 0.08;
+		width: 120pt;
+		z-index: 0;
+	}
+	
+	#arms-text {
+		position: absolute;
+		top: -100pt;
+		left: -180pt;
+		color: black;
+		opacity: 0.03;
+		z-index: 0;
+		font-size: 340pt;
+		font-family: 'ARMS';
+	}
+	
+	#m-discord      > img { width: 2.0em; left: 25pt; top: 10pt; }
+	#m-twitter      > img { width: 3.0em; left: 25pt; top: 5pt; }
+	#m-clash        > img { width: 3.5em; left: 30pt; top: 5pt; }
 	#m-lobby        > img { width: 2.5em; left: 20pt; top: 5pt; }
-	#m-clash        > img { width: 3.0em; left: 30pt; top: 10pt; }
 	#m-screenshot   > img { width: 3.0em; left: 30pt; top: 5pt; }
 	
 	</style>
 </head>
 
-<body onload="load()">
+<body onload="load()" ontouchstart="">
 	<h1><a href="/">Casual ARMS</a></h1>
-	<div id="container">
+	<div class="main-menu" id="container">
+		<img src="assets/rank-shield.png" id="shield"/>
 		<img src="assets/logo.png" id="logo"/>
+		<span id="arms-text">ARMS</span>
 		
 		<div class="menu-container">
 			<div class="menu-item m1" id="m-discord"   ><img src="assets/discord-logo.png"/><a href="http://discord.gg/u6cfeN9">Discord Server</a></div>
-			<div class="menu-item m2" id="m-lobby"     ><img src="assets/lobby-logo.png"/><a href="lobbies/">Lobby Event Schedule</a></div>
-			<div class="menu-item m2" id="m-clash"     ><img src="assets/clash-logo.png"/><a href="clash/">Casual Clash</a></div>
-			<div class="menu-item m3" id="m-screenshot"><img src="assets/screenshot-logo.png"/><a href="screenshot-contest/">Screenshot Contest</a></div>
+			<div class="menu-item m2" id="m-twitter"   ><img src="assets/twitter-logo.png"/><a href="https://twitter.com/casualARMS">Twitter Feed</a></div>
+			<div class="menu-item m3" id="m-lobby"     ><img src="assets/lobby-logo.png"/><a href="lobbies/">Lobby Events</a></div>
+			<div class="menu-item m3" id="m-clash"     ><img src="assets/clash-logo.png"/><a href="clash/">Casual Clash</a></div>
+			<div class="menu-item m4" id="m-screenshot"><img src="assets/screenshot-logo.png"/><a href="screenshot-contest/">Screenshot Contest</a></div>
 		</div>
 		
 		<h2>Tools</h2>
 		
 		<div class="menu-container">
-			<div class="menu-item m4"><a href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a></div>
-			<div class="menu-item m4"><a href="tools/stage-randomizer/">Stage Randomizer</a></div>
-			<div class="menu-item m4"><a href="tools/stats-generator/">Fighter Stats Generator</a></div>
+			<div class="menu-item m5"><a href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a></div>
+			<div class="menu-item m5"><a href="tools/stage-randomizer/">Stage Randomizer</a></div>
+			<div class="menu-item m5"><a href="tools/stats-generator/">Fighter Stats Generator</a></div>
 		</div>
 		
 		<div id="staff" style="display: none;">
 		<h2>For Staff</h2>
 		
 		<div class="menu-container">
-			<div class="menu-item m4"><a href="staff/leaderboards/">Leaderboard Tools</a></div>
-			<div class="menu-item m4"><a href="staff/banner-generator/">Banner Generator</a></div>
+			<div class="menu-item m5"><a href="staff/leaderboards/">Leaderboard Tools</a></div>
+			<div class="menu-item m5"><a href="staff/banner-generator/">Banner Generator</a></div>
 		</div>
 		
 		</div>
 		
+		<h2>External</h2>
 		
 		<div class="submenu">
-			<div class="submenu-item">Test 1</div>
-			<div class="submenu-item">Test 2</div>
-			<div class="submenu-item">Test 3</div>
-			<div class="submenu-item">Test 4</div>
+			<div class="submenu-item"><img src="assets/logo-nintendo.png"/><a href="https://arms.nintendo.com">Nintendo</a></div>
+			<div class="submenu-item"><img src="assets/logo-wiki.png"/><a href="https://armswiki.org/">Wiki</a></div>
+			<div class="submenu-item"><img src="assets/logo-reddit.png"/><a href="https://reddit.com/r/arms/">Reddit</a></div>
+			<div class="submenu-item"><img src="assets/logo-schkrimps.png"/><a href="https://twitch.com/schkrimps/">Schkrimps</a></div>
 		</div>
 	
 	</div>

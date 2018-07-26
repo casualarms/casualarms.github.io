@@ -19,18 +19,8 @@ body {
 	padding: 1.5em 0em 2em 0em;
 	background-color: yellow;
 	border: 8pt solid black;
-	border-radius: 4pt;
 	position: relative;
 	overflow: hidden;
-}
-
-#logo {
-	position: absolute;
-	top: 30pt;
-	left: 30pt;
-	opacity: 0.1;
-	width: 100pt;
-	z-index: 0;
 }
 
 #controls {
@@ -93,7 +83,7 @@ h1:hover {
 
 h2 {
 	font-size: 1.2em;
-	border-bottom: 1pt solid black /*#1d94fc*/;
+	border-bottom: 1pt dotted rgba(0, 0, 0, 0.5);
 	text-align: left;
 	padding-left: 1em;
 }
@@ -125,8 +115,9 @@ h3 {
 	padding: 0.2em 70pt 0.2em 0;
 	border-top-left-radius: 1em 100%;
 	
-	margin: -0.1em auto;
+	margin: -0.15em auto;
 	z-index: 1;
+	transition: 0.2s background-color;
 }
 
 .menu-item > a, h1 > a {
@@ -135,9 +126,10 @@ h3 {
 }
 
 .m1 { font-size: 3.5em; }
-.m2 { font-size: 2.5em; }
-.m3 { font-size: 1.6em; }
-.m4 { font-size: 1.3em; }
+.m2 { font-size: 3.0em; }
+.m3 { font-size: 2.2em; }
+.m4 { font-size: 1.6em; }
+.m5 { font-size: 1.3em; }
 
 
 
@@ -145,11 +137,14 @@ h3 {
 	background-color: #1d94fc;
 	color: white;
 	animation: 0.3s slidein;
-	transition: 0.2s background-color;
 
 }
 
-
+.menu-item:active {
+	background-color: #1d94fc;
+	color: white;
+	transform: translateX(10pt);
+}
 
 
 .submenu {
@@ -158,26 +153,45 @@ h3 {
 
 .submenu-item {
 	display: inline-block;
-	margin: 0 0.3em;
+	position: relative;
+	margin: 0 0.5em;
 	font-size: 0.8em;
-	width: 7em;
-	line-height: 1.8em;
+	width: 6em;
+	line-height: 1.7em;
 	font-style: italic;
 	color: black;
 	border: 1pt solid black;
-	transition: 0.1s;
-	
-	
-	/*border-radius: 2.5em 0px 2.5em 0px;*/
 	border-top-left-radius: 15% 100%;
 	border-bottom-right-radius: 15% 100%;
+	transition: 0.2s;
 	
+}
+
+.submenu-item > a
+{
+	position: relative;
+	text-decoration: none;
+	color: black;
+	top: 1.8em;
+}
+
+.submenu-item > img
+{
+	position: absolute;
+	bottom: 0;
+	left: 1em;
+	width: 4em;
+	transition: 0.2s;
 }
 
 .submenu-item:hover {
 	background-color: #1d94fc;
-	color: white;
-	transform: scale(1.2);
+}
+
+.submenu-item:hover > img
+{
+	left: 0.5em;
+	width: 5em;
 }
 
 
