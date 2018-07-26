@@ -56,6 +56,7 @@
 		margin-top: -0.4em;
 		margin-bottom: 0.4em;
 		opacity: 0.8;
+		text-align: right;
 	}
 	
 	#logo {
@@ -92,6 +93,40 @@
 	#m-clash        > img { width: 3.5em; left: 30pt; top: 5pt; }
 	#m-lobby        > img { width: 2.5em; left: 20pt; top: 5pt; }
 	#m-screenshot   > img { width: 3.0em; left: 30pt; top: 5pt; }
+	
+	#featured
+	{
+		background-color: #1d94fc;
+		height: 80pt;
+		position: absolute;
+		border-radius: 3pt;
+		left: -35pt;
+		top: 21em;
+		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+		transform: rotate(-2deg);
+		z-index: 10;
+		transition: 0.2s;
+	}
+	
+	#featured:hover
+	{
+		transform: rotate(-2deg) scale(1.4) translateX(20pt);
+	}
+	
+	#featured > .featured-left
+	{
+		height: 100%;
+		width: 50pt;
+		display: inline-block;
+		border-right: 2pt dotted yellow;
+	}
+	
+	#featured img
+	{
+		height: 70pt;
+		margin: 5pt 5pt 5pt 0;
+		display: inline-block;
+	}
 	
 	</style>
 </head>
@@ -136,6 +171,11 @@
 			<div class="submenu-item"><img src="assets/logo-wiki.png"/><a href="https://armswiki.org/">Wiki</a></div>
 			<div class="submenu-item"><img src="assets/logo-reddit.png"/><a href="https://reddit.com/r/arms/">Reddit</a></div>
 			<div class="submenu-item"><img src="assets/logo-schkrimps.png"/><a href="https://twitch.tv/schkrimps/">Schkrimps</a></div>
+		</div>
+		
+		<div id="featured">
+			<div class="featured-left"></div>
+			<a href="lobbies/"><img src="featured.png"/></a>
 		</div>
 	
 	</div>
