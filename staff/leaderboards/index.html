@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
-	<title>ARMS</title>
+	<title>Leaderboard Tools - Casual ARMS</title>
 	<style type="text/css">
 	
 	@font-face {
@@ -14,32 +14,37 @@
 		color: #c3c4c6;
 		font-family: sans-serif;
 	}
-
+	
 	#wrapper {
 		width: 40em;
 		margin: 0 auto;
 		padding: 1em 2em;
 		background-color: #36393f;
 	}
-
+	
 	h1, h2, h3, h4 {
 		border-bottom: 1pt solid #3e4147;
 		padding-bottom: 0.25em;
 	}
-
+	
 	textarea {
 		background-color: #484b52;
 		color: white;
 		width: 100%;
 		font-family: monospace;
 	}
-
+	
 	#formatted
 	{
 		background-color: black;
 		color: white;
 	}
-
+	
+	#input, #previous, #format-text-button, #compare-text-button
+	{
+		display: none;
+	}
+	
 	.Intern     { color: #bfffff; }
 	.Technician { color: #00ffff; }
 	.Analyst    { color: #00ff00; }
@@ -50,17 +55,21 @@
 	.VP         { color: #ff006f; }
 	</style>
 	<script type="text/javascript">
-
+	
 	var pad ="        ";
-
+	
 	var tiers = [1, 100, 250, 500, 1000, 2000, 3000, 5000];
 	var tiernames = ["Intern", "Technician", "Analyst", "Coder", "Researcher", "Scientist", "Manager", "VP"];
-
+	
+	var reader = new FileReader();
+	var textNew = null;
+	var state = "";
+	
 	function parseData(text)
 	{
 		rows = text.split("\n");
 		data = [];
-  
+		
 		for (var i = 1; i < rows.length; ++i)
 		{
 			row = rows[i].split(",");
@@ -69,15 +78,15 @@
 		}
 		return data;
 	}
-
-	function format()
+	
+	function format(text)
 	{
-		data = parseData(document.getElementById("input").value);
+		data = parseData(text);
 		data.sort(function(a, b) {return b[1]-a[1]} );
-  
+		
 		formatted = "";
 		tiercounter = tiers.length-1;
-  
+		
 		for (var i = 0; i < data.length; ++i)
 		{
 			if (data[i][1] < tiers[tiercounter])
@@ -87,51 +96,54 @@
 			}
 			formatted += (data[i][1] + pad).slice(0, pad.length) + data[i][0] + "\n";
 		}
-  
 		document.getElementById("formatted").value = formatted;
 	}
-
-
+	
+	function formatTextEntry()
+	{
+		format(document.getElementById("input").value);
+	}
+	
+	function formatFile()
+	{
+		var selectedFile = document.getElementById("file-new").files[0];
+		state = "FORMATFILE";
+		reader.readAsText(selectedFile);
+	}
+	
 	function mergeData(d_old, d_new)
 	{
 		result = {};
-  
 		for (i = 0; i <  d_old.length; ++i)
 		{
 			name = d_old[i][0];
 			if (result[name] == undefined) result[name] = [-1,-1];
 			result[name][0] = d_old[i][1];
 		}
-  
 		for (i = 0; i <  d_new.length; ++i)
 		{
 			name = d_new[i][0];
 			if (result[name] == undefined) result[name] = [-1,-1];
 			result[name][1] = d_new[i][1];
 		}
-  
 		return result;
 	}
-
-
-	function compare()
+	
+	function compare(text_new, text_old)
 	{
-		data_new = parseData(document.getElementById("input").value);
-		data_old = parseData(document.getElementById("previous").value);
-  
+		data_new = parseData(text_new);
+		data_old = parseData(text_old);
 		merged = mergeData(data_old, data_new);
-  
+		
 		newroles = {};
 		for (t = tiers.length-1; t >= 0; --t)
 		{
 			newroles[tiernames[t]] = [];
 		}
-  
-  
+		
 		for (var name in merged)
 		{
 			player = merged[name];
-    
 			for (t = tiers.length-1; t >= 0; --t)
 			{
 				if (player[1] >= tiers[t] && player[0] < tiers[t])
@@ -140,43 +152,89 @@
 					break;
 				}
 			}
-    
 		}
-  
+		
 		output = "";
-  
 		for (t = tiers.length-1; t >= 0; --t)
 		{
 			output += "<h4 class='" + tiernames[t] + "'>" + tiernames[t] + "</h4><ul>";
-    
 			for (name in newroles[tiernames[t]])
 			{
 				output += "<li>" + newroles[tiernames[t]][name] + "</li>";
 			}
-    
 			output += "</ul>";
 		}
-  
+		
 		document.getElementById("newroles").innerHTML = output;
+	}
+	
+	function compareTextEntry()
+	{
+		text_new = document.getElementById("input").value;
+		text_old = document.getElementById("previous").value;
+		compare(text_new, text_old);
+	}
+	
+	function compareFiles()
+	{
+		var selectedFileNew = document.getElementById("file-new").files[0];
+		state = "COMPAREFILES1";
+		reader.readAsText(selectedFileNew);
+	}
+	
+	reader.onloadend = function(event)
+	{
+		if (state == "FORMATFILE")
+		{
+			format(reader.result);
+			state = "";
+		}
+		else if (state == "COMPAREFILES1")
+		{
+			textNew = reader.result;
+			format(textNew);
+		
+			var selectedFileOld = document.getElementById("file-old").files[0];
+			state = "COMPAREFILES2";
+			reader.readAsText(selectedFileOld);
+		}
+		else if (state == "COMPAREFILES2")
+		{
+			textOld = reader.result;
+			compare(textNew, textOld);
+			state = "";
+		}
+	}
+	
+	function enableTextInput()
+	{
+		document.getElementById("input").style.display = "inline";
+		document.getElementById("previous").style.display = "inline";
+		document.getElementById("format-text-button").style.display = "inline";
+		document.getElementById("compare-text-button").style.display = "inline";
 	}
 	</script>
 </head>
 <body>
 	<div id="wrapper">
 		<h1>Casual ARMS Leaderboard Tools</h1>
-		<h2>Input <button onCLick="format()">Format</button></h2>
-		<textarea name="Text1" id="input"rows="6"></textarea>
+		<button onCLick="enableTextInput()">Manual Text Input</button>
+		
+		<h2>Input</h2>
+		<input type="file" name="File1" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
+		<textarea name="Text1" id="input" rows="6"></textarea>
+		<button onCLick="formatTextEntry()" id="format-text-button">Format Text</button>
 		<br/>
-
-
+		
 		<h3>Formatted Leaderboard</h3>
 		<textarea name="Text2" id="formatted" rows="10"></textarea>
-
-		<h2>Previous Version Input <button onCLick="compare()">Compare</button></h2>
+		
+		<h2>Previous Version Input</h2>
+		<input type="file" name="File3" id="file-old"/><button onCLick="compareFiles()">Read and Compare Files</button>
 		<textarea name="Text3" id="previous" rows="6"></textarea>
+		<button onCLick="compareTextEntry()" id="compare-text-button">Compare</button>
 		<br/>
-
-
+		
 		<h3>New Roles</h3>
 		<div id="newroles"></div>
 	</div>
