@@ -21,6 +21,13 @@ body {
 	border: 8pt solid black;
 	position: relative;
 	overflow: hidden;
+	transition: 0.5s;
+}
+
+#container.event
+{
+	background-color: #1d94fc;
+	color: white;
 }
 
 #controls {
@@ -96,9 +103,9 @@ h3 {
 }
 
 @keyframes slidein {
-  from { transform: scaleX(1) translateX(0); }
-  50%  { transform: scaleX(1.1) translateX(0); }
-  to   { transform: scaleX(1) translateX(0); }
+  from { transform: scaleX(1); }
+  50%  { transform: scaleX(1.1); }
+  to   { transform: scaleX(1); }
 }
 
 .menu-container {
@@ -133,17 +140,23 @@ h3 {
 
 
 
-.menu-item:hover {
+.menu-item:hover, .menu-item:active {
 	background-color: #1d94fc;
 	color: white;
 	animation: 0.3s slidein;
 
 }
 
-.menu-item:active {
-	background-color: #1d94fc;
+
+#container.event .menu-item
+{
 	color: white;
-	transform: translateX(10pt);
+}
+
+#container.event .menu-item:hover, #container.event .menu-item:active
+{
+	background-color: black;
+	color: yellow;
 }
 
 
@@ -157,7 +170,7 @@ h3 {
 	margin: 0 0.5em;
 	font-size: 0.8em;
 	width: 6em;
-	line-height: 1.3em;
+	line-height: 1.4em;
 	font-style: italic;
 	color: black;
 	border: 1pt solid black;
@@ -172,7 +185,7 @@ h3 {
 	position: relative;
 	text-decoration: none;
 	color: black;
-	top: 1.8em;
+	top: 1.5em;
 }
 
 .submenu-item > img
@@ -192,6 +205,19 @@ h3 {
 {
 	left: 0.5em;
 	width: 5em;
+}
+
+#container.event .submenu-item {
+	border-color: white;
+}
+
+#container.event .submenu-item > a
+{
+	color: white;
+}
+
+#container.event .submenu-item:hover {
+	background-color: yellow;
 }
 
 

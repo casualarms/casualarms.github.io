@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Casual ARMS</title>
+	<title>Screenshot Contest - Casual ARMS</title>
 	<link rel="stylesheet" href="../style.css">
 	<script type="text/javascript">
 	
@@ -66,7 +66,7 @@
 		setImage();
 	}
 	
-	function switchSet(direction)
+	function switchSetDir(direction)
 	{
 		activeSet += direction;
 		
@@ -92,10 +92,10 @@
 		activeIndex += direction;
 		
 		if (activeIndex < 0)
-			switchSet(-1);
+			switchSetDir(-1);
 		
 		else if (activeIndex == screenshots[activeSet].length)
-			switchSet(1);
+			switchSetDir(1);
 		
 		else
 			setImage();

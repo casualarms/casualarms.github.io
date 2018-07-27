@@ -3,13 +3,22 @@
 	<meta charset="UTF-8">
 	<title>Casual ARMS</title>
 	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="database.js"></script>
+	<script type="text/javascript" src="events.js"></script>
 	<script type="text/javascript">
 	function load()
 	{
-		if (window.location.hash == "#staff")
+		if (window.location.hash.indexOf("staff") !== -1)
 		{
 			document.getElementById("staff").style.display = "block";
 		}
+		
+		if (eventIsOngoingNow() || window.location.hash.indexOf("event") !== -1)
+		{
+			document.getElementById("container").className += " event";
+		}
+		
+		document.getElementById("random-fact").innerHTML = randomFact();
 		
 	}
 	
@@ -94,12 +103,22 @@
 	#m-lobby        > img { width: 2.5em; left: 20pt; top: 5pt; }
 	#m-screenshot   > img { width: 3.0em; left: 30pt; top: 5pt; }
 	
+	@keyframes pulse {
+		from { transform: scale(1); color: white; }
+		50%  { transform: scale(1.1); color: yellow;  }
+		to   { transform: scale(1); color: white;  }
+	}
+	
+	#container.event #m-lobby { animation: 1s pulse infinite; }
+	#container.event #m-lobby:after { content: " - Active Now"; }
+	
+	/*#container.event #featured {  animation: 1s pulse infinite;}*/
+	
 	#featured
 	{
 		background-color: #1d94fc;
 		height: 80pt;
 		position: absolute;
-		border-radius: 3pt;
 		left: -35pt;
 		top: 21em;
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
@@ -126,6 +145,12 @@
 		height: 70pt;
 		margin: 5pt 5pt 5pt 0;
 		display: inline-block;
+	}
+	
+	p.bottom 
+	{
+		text-align: center;
+		color: white;
 	}
 	
 	</style>
@@ -175,9 +200,11 @@
 		
 		<div id="featured">
 			<div class="featured-left"></div>
-			<a href="lobbies/"><img src="featured.png"/></a>
+			<a href="clash/"><img src="featured.png"/></a>
 		</div>
 	
 	</div>
+	
+	<p class="bottom"><span id="random-fact"></span></p>
 
 </body>
