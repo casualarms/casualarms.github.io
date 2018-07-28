@@ -15,7 +15,7 @@
 		
 		if (eventIsOngoingNow() || window.location.hash.indexOf("event") !== -1)
 		{
-			document.getElementById("container").className += " event";
+			document.getElementById("event-id").className += " event";
 		}
 		
 		document.getElementById("random-fact").innerHTML = randomFact();
@@ -25,17 +25,8 @@
 	function checkKey(e)
 	{
 		e = e || window.event;
-		if (e.keyCode == '38') {
-			switchSet(-1);
-		}
-		else if (e.keyCode == '40') {
-			switchSet(1);
-		}
-		else if (e.keyCode == '37') {
-			switchImage(-1)
-		}
-		else if (e.keyCode == '39') {
-			switchImage(1)
+		if (e.keyCode == '13') {
+			 document.location.href = document.activeElement.childNodes[1].href;
 		}
 	}
 	document.onkeydown = checkKey;
@@ -109,8 +100,8 @@
 		to   { transform: scale(1); color: white;  }
 	}
 	
-	#container.event #m-lobby { animation: 1s pulse infinite; }
-	#container.event #m-lobby:after { content: " - Active Now"; }
+	.event #m-lobby { animation: 1s pulse infinite; }
+	.event #m-lobby:after { content: " - Active Now"; }
 	
 	/*#container.event #featured {  animation: 1s pulse infinite;}*/
 	
@@ -156,7 +147,7 @@
 	</style>
 </head>
 
-<body onload="load()" ontouchstart="">
+<body id="event-id" onload="load()" ontouchstart="">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div class="main-menu" id="container">
 		<img src="assets/rank-shield.png" id="shield"/>
@@ -164,27 +155,27 @@
 		<span id="arms-text">ARMS</span>
 		
 		<div class="menu-container">
-			<div class="menu-item m1" id="m-discord"   ><img src="assets/discord-logo.png"/><a href="http://discord.gg/u6cfeN9">Discord Server</a></div>
-			<div class="menu-item m2" id="m-twitter"   ><img src="assets/twitter-logo.png"/><a href="https://twitter.com/casualARMS">Twitter Feed</a></div>
-			<div class="menu-item m3" id="m-lobby"     ><img src="assets/lobby-logo.png"/><a href="lobbies/">Lobby Events</a></div>
-			<div class="menu-item m3" id="m-clash"     ><img src="assets/clash-logo.png"/><a href="clash/">Casual Clash</a></div>
-			<div class="menu-item m4" id="m-screenshot"><img src="assets/screenshot-logo.png"/><a href="screenshot-contest/">Screenshot Contest</a></div>
+			<a class="menu-item m1" id="m-discord"    href="http://discord.gg/u6cfeN9"><img src="assets/discord-logo.png"/>Discord Server</a>
+			<a class="menu-item m2" id="m-twitter"    href="https://twitter.com/casualARMS"><img src="assets/twitter-logo.png"/>Twitter Feed</a>
+			<a class="menu-item m3" id="m-lobby"      href="lobbies/"><img src="assets/lobby-logo.png"/>Lobby Events</a>
+			<a class="menu-item m3" id="m-clash"      href="clash/"><img src="assets/clash-logo.png"/>Casual Clash</a>
+			<a class="menu-item m4" id="m-screenshot" href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Contest</a>
 		</div>
 		
 		<h2>Tools</h2>
 		
 		<div class="menu-container">
-			<div class="menu-item m5"><a href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a></div>
-			<div class="menu-item m5"><a href="tools/stage-randomizer/">Stage Randomizer</a></div>
-			<div class="menu-item m5"><a href="tools/stats-generator/">Fighter Stats Generator</a></div>
+			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
+			<a class="menu-item m5" href="tools/stage-randomizer/">Stage Randomizer</a>
+			<a class="menu-item m5" href="tools/stats-generator/">Fighter Stats Generator</a>
 		</div>
 		
 		<div id="staff" style="display: none;">
 		<h2>For Staff</h2>
 		
 		<div class="menu-container">
-			<div class="menu-item m5"><a href="staff/leaderboards/">Leaderboard Tools</a></div>
-			<div class="menu-item m5"><a href="staff/banner-generator/">Banner Generator</a></div>
+			<a class="menu-item m5" href="staff/leaderboards/">Leaderboard Tools</a>
+			<a class="menu-item m5" href="staff/banner-generator/">Banner Generator</a>
 		</div>
 		
 		</div>
@@ -192,10 +183,10 @@
 		<h2>External</h2>
 		
 		<div class="submenu">
-			<div class="submenu-item"><img src="assets/logo-nintendo.png"/><a href="https://arms.nintendo.com">Nintendo</a></div>
-			<div class="submenu-item"><img src="assets/logo-wiki.png"/><a href="https://armswiki.org/">Wiki</a></div>
-			<div class="submenu-item"><img src="assets/logo-reddit.png"/><a href="https://reddit.com/r/arms/">Reddit</a></div>
-			<div class="submenu-item"><img src="assets/logo-schkrimps.png"/><a href="https://twitch.tv/schkrimps/">Schkrimps</a></div>
+			<a class="submenu-item" href="https://arms.nintendo.com"   ><img src="assets/logo-nintendo.png"/><span class="sub-text">Nintendo</span></a>
+			<a class="submenu-item" href="https://armswiki.org/"       ><img src="assets/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
+			<a class="submenu-item" href="https://reddit.com/r/arms/"  ><img src="assets/logo-reddit.png"/><span class="sub-text">Reddit</span></a>
+			<a class="submenu-item" href="https://twitch.tv/schkrimps/"><img src="assets/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
 		</div>
 		
 		<div id="featured">

@@ -11,6 +11,12 @@ body {
 	font: 1em Helvetica, Arial, sans-serif;
 }
 
+
+.event
+{
+	background-color: #333;
+}
+
 #container {
 	margin: 0 auto;
 	width: 700pt;
@@ -24,10 +30,35 @@ body {
 	transition: 0.5s;
 }
 
-#container.event
+
+@keyframes pulseopacity {
+  from { opacity: 0.05; }
+  40%  { opacity: 0.05; }
+  60%  { opacity: 0.2; }
+  80%  { opacity: 0.05; }
+  to   { opacity: 0.05; }
+}
+
+.event #shield {
+	animation: 2.2s pulseopacity infinite;
+}
+
+.event #logo {
+	animation: 3s pulseopacity infinite;
+}
+
+
+@keyframes colorshift {
+  from { background-color: #1d94fc; }
+  50%  { background-color: #0a73c7; }
+  to   { background-color: #1d94fc; }
+}
+
+.event #container
 {
 	background-color: #1d94fc;
 	color: white;
+	animation: 10s colorshift infinite;
 }
 
 #controls {
@@ -72,15 +103,18 @@ h1 {
 	font-family: ARMS;
 	font-size: 4em;
 	margin: 0.3em auto;
-	
-	
 	font-style: italic;
-	background-color: #1d94fc;
 	color: white;
 	border-top-left-radius: 0.8em 100%;
 	border-bottom-right-radius: 0.8em 100%;
 	
 	transition: 0.1s;
+}
+
+
+.event h1 {
+	color: yellow;
+	background: none;
 }
 
 h1:hover {
@@ -113,7 +147,9 @@ h3 {
 	padding: 0.5em 0 0.5 70pt;
 }
 
-.menu-item {
+a.menu-item {
+	text-decoration: none;
+	display: block;
 	color: black;
 	font: 1.8em Helvetica, Arial, sans-serif;
 	font-weight: bold;
@@ -127,20 +163,20 @@ h3 {
 	transition: 0.2s background-color;
 }
 
-.menu-item > a, h1 > a {
+h1 > a {
 	text-decoration: none;
 	color: inherit;
 }
 
-.m1 { font-size: 3.5em; }
-.m2 { font-size: 3.0em; }
-.m3 { font-size: 2.2em; }
-.m4 { font-size: 1.6em; }
-.m5 { font-size: 1.3em; }
+.m1 { font-size: 3.5em !important; }
+.m2 { font-size: 3.0em !important; }
+.m3 { font-size: 2.2em !important; }
+.m4 { font-size: 1.6em !important; }
+.m5 { font-size: 1.3em !important; }
 
 
 
-.menu-item:hover, .menu-item:active {
+a.menu-item:hover, a.menu-item:active {
 	background-color: #1d94fc;
 	color: white;
 	animation: 0.3s slidein;
@@ -148,12 +184,12 @@ h3 {
 }
 
 
-#container.event .menu-item
+.event a.menu-item
 {
 	color: white;
 }
 
-#container.event .menu-item:hover, #container.event .menu-item:active
+.event a.menu-item:hover, .event a.menu-item:active
 {
 	background-color: black;
 	color: yellow;
@@ -164,7 +200,8 @@ h3 {
 	margin-top: 2em;
 }
 
-.submenu-item {
+a.submenu-item {
+	text-decoration: none;
 	display: inline-block;
 	position: relative;
 	margin: 0 0.5em;
@@ -180,7 +217,7 @@ h3 {
 	
 }
 
-.submenu-item > a
+a.submenu-item > .sub-text
 {
 	position: relative;
 	text-decoration: none;
@@ -207,16 +244,16 @@ h3 {
 	width: 5em;
 }
 
-#container.event .submenu-item {
+.event .submenu-item {
 	border-color: white;
 }
 
-#container.event .submenu-item > a
+.event a.submenu-item > .sub-text
 {
 	color: white;
 }
 
-#container.event .submenu-item:hover {
+.event .submenu-item:hover {
 	background-color: yellow;
 }
 
