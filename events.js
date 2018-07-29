@@ -4,26 +4,41 @@
 // - Start date+time in an exact format and time zone offset (from UTC)
 // - Duration in minutes
 // - Optional description
-var eventschedule = [
-	[new Date('2018-07-28T22:30+02:00'), 120, "Casual Clash 3"],
+
+// Lobby events
+var lobbySchedule = [
 	[new Date('2018-07-29T22:45+02:00'),  60, "Champions of the Era Warmup"],
 	[new Date('2018-07-30T22:45+02:00'),  60, "Mega League Monday Warmup"],
 	[new Date('2018-08-02T00:00+02:00'), 120, "Wildcard Wednesday"],
 	[new Date('2018-08-02T20:00+02:00'), 120, "Thumpin' Thursday"],
 ];
 
+// Clash events
+var clashSchedule = [
+	[new Date('2018-07-28T22:30+02:00'), 120, "Casual Clash 3"],
+];
 
-function eventIsOngoingNow()
+
+function eventOngoingNow()
 {
 	var now = new Date();
-	for (i = 0; i < eventschedule.length; ++i)
+	for (i = 0; i < lobbySchedule.length; ++i)
 	{
-		start = eventschedule[i][0];
+		start = lobbySchedule[i][0];
 		end = new Date();
-		end.setTime(start.getTime() + eventschedule[i][1] * 60000);
+		end.setTime(start.getTime() + lobbySchedule[i][1] * 60000);
 		
 		if (now > start && now < end)
-			return true;
+			return ["lobby"];
 	}
-	return false;
+	for (i = 0; i < clashSchedule.length; ++i)
+	{
+		start = clashSchedule[i][0];
+		end = new Date();
+		end.setTime(start.getTime() + clashSchedule[i][1] * 60000);
+		
+		if (now > start && now < end)
+			return ["clash"];
+	}
+	return ["none"];
 }
