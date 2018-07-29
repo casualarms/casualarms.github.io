@@ -67,7 +67,7 @@ body {
 	text-align: center;
 }
 
-.container p {
+#container p {
 	padding: 0 70pt;
 	text-align: left;
 	line-height: 1.3em;
