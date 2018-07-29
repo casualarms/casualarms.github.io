@@ -122,15 +122,17 @@ h1:hover {
 	background-color: rgba(0,0,0,0.5);
 }
 
+h2, h3 { font-family: 'ARMS';}
+
 h2 {
-	font-size: 1.2em;
-	border-bottom: 1pt dotted rgba(0, 0, 0, 0.5);
+	font-size: 1.4em;
 	text-align: left;
 	padding: 0 1em;
+	border-bottom: 1pt solid black;
 }
 
 h3 {
-	font-size: 1.2em;
+	font-size: 1em;
 	border-bottom: 1pt dashed black /*#1d94fc*/;
 	padding-left: 1em;
 	margin-top: 2em;
@@ -198,22 +200,37 @@ a.menu-item:hover, a.menu-item:active {
 
 .submenu {
 	margin-top: 2em;
+	margin-left: 6em;
 }
 
 a.submenu-item {
 	text-decoration: none;
 	display: inline-block;
 	position: relative;
-	margin: 0 0.5em;
+	margin: 0 0.1em;
 	font-size: 0.8em;
 	width: 6em;
 	line-height: 1.4em;
 	font-style: italic;
 	color: black;
-	border: 1pt solid black;
+	border: 1.5pt solid black;
 	border-top-left-radius: 15% 100%;
 	border-bottom-right-radius: 15% 100%;
 	transition: 0.2s;
+}
+
+a.submenu-item.long {
+	width: 10em;
+	margin-right: 0;
+}
+
+a.submenu-item.extra {
+	margin-left: -5em;
+	width: auto;
+	padding: 0 1.2em;
+	color: yellow;
+	font-weight: bold;
+	background-color: black;
 	
 }
 
