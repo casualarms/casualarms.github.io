@@ -98,16 +98,15 @@ a {
 }
 
 h1 {
-	width: 500pt;
+	width: 450pt;
 	text-align: center;
 	font-family: ARMS;
-	font-size: 4em;
-	margin: 0.3em auto;
-	font-style: italic;
+	font-size: 3.5em;
+	margin: 0.2em auto -6pt auto;
 	color: white;
 	border-top-left-radius: 0.8em 100%;
-	border-bottom-right-radius: 0.8em 100%;
-	
+	border-top-right-radius: 0.8em 100%;
+	background-color: black;
 	transition: 0.1s;
 }
 
@@ -118,8 +117,7 @@ h1 {
 }
 
 h1:hover {
-	transform: scale(1.1);
-	background-color: rgba(0,0,0,0.5);
+	color: yellow;
 }
 
 h2, h3 { font-family: 'ARMS';}
