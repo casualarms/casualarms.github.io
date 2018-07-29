@@ -26,7 +26,7 @@ function generateBanner(width, height, params)
 		"Thursday", "Friday", "Saturday", "Sunday"];
 	
 	
-	var dateText = dayNames[params.weekdayIndex] + " " + monthNames[params.monthIndex] + ' ' + day;
+	var dateText = dayNames[params.weekdayIndex] + " " + monthNames[params.monthIndex] + ' ' + params.day;
 	var timeText = params.startTime + " to " + params.endTime + " " + params.timeZone;
 	
 	// Style presets
