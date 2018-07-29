@@ -81,8 +81,8 @@ function generateBanner(width, height, params)
 	ctx.font = timeDateFont;
 	ctx.fillStyle = timeDateColor;
 	ctx.textAlign = "center";
-	ctx.fillText(params.dateText, 300, 210 + vOffset);
-	ctx.fillText(params.timeText, 300 + hOffset, 250 + vOffset);
+	ctx.fillText(dateText, 300, 210 + vOffset);
+	ctx.fillText(timeText, 300 + hOffset, 250 + vOffset);
 	
 	// Hosts
 	spacing = 35 + (3 - params.hosts.length) * 10;
