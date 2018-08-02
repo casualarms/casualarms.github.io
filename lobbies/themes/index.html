@@ -1,0 +1,73 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lobby Themes – Casual ARMS</title>
+	<link rel="stylesheet" href="../../style.css">
+	<script type="text/javascript" src="../../events.js"></script>
+	<script type="text/javascript" src="../../script.js"></script>
+	<style type="text/css">
+	.mode-name {
+		width: 20em;
+		text-align: right;
+		display: inline-block;
+		font-weight: bold;
+	}
+	</style>
+	<script type="text/javascript">
+	
+	function printMode(ev, key, name)
+	{
+		html = "";
+		if (ev[key].length > 0)
+		{
+			html += "<p><span class='mode-name'>" + name + "</span>: ";
+			for (s = 0; s < ev[key].length; ++s)
+				html += ev[key][s] + "P ";
+			html += "</p>"
+		}
+		return html;
+	}
+	
+	function load()
+	{
+		var html = "";
+		
+		for (i = 0; i < eventThemes.length; ++i)
+		{
+			ev = eventThemes[i];
+			html += "<h3 id='" + ev.key + "'>" + ev["name"] + "</h3>";
+			
+			html += printMode(ev, "solo-fight", "Solo Fight");
+			html += printMode(ev, "team-fight", "Team Fight");
+			html += printMode(ev, "vs-hedlok", "VS Hedlok");
+			html += printMode(ev, "hedlok-scramble", "Hedlok Scramble");
+			html += printMode(ev, "hoops", "Hoops");
+			html += printMode(ev, "skillshot", "Skillshot");
+			html += printMode(ev, "v-ball", "V-ball");
+			
+			html += "<p><span class='mode-name'>Items</span>: " + (ev["items"] ? "On" : "Off") + "</p>";
+			html += "<p><span class='mode-name'>Streak Bonuses</span>: " + (ev["streak-bonuses"] ? "On" : "Off") + "</p>";
+			
+			html += "<div class='stage-container'>";
+			for (s = 0; s < ev["stages"].length; ++s)
+			{
+				html += "<div class='stage'>";
+				html += eventStages[ev["stages"][s]];
+				html += "</div>";
+			}
+			html += "</div>";
+		}
+		
+		document.getElementById("themes").innerHTML += html;
+		
+	}
+	</script>
+</head>
+
+<body onload="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<h2>Lobby Themes</h2>
+		<div id="themes"/>
+	</div>
+</body>

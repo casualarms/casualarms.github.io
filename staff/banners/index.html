@@ -1,0 +1,222 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>Casual ARMS Banner Generator</title>
+	<script type="text/javascript" src="../../events.js"></script>
+<style type="text/css">
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("../../ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+
+	#wrapper {
+		width: 880px;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	input {
+		background-color: #484b52;
+		color: white;
+	}
+	
+	input[type=number] {
+		width: 40px;
+	}
+	
+	input[type=number]#year {
+		width: 60px;
+	}
+	
+	textarea {
+		background-color: black;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+	
+	</style>
+<script type="text/javascript" src="../../script.js"></script>
+<script type="text/javascript" src="banner-gen.js"></script>
+<script type="text/javascript">
+	
+	function load()
+	{
+		var options = "<option value='undefined' selected>---</option>";
+		for (i = 0; i < eventThemes.length; ++i)
+		{
+			ev = eventThemes[i];
+			options += "<option value='" + ev.key + "'>" + ev.name + "</option>";
+		}
+		document.getElementById("theme").innerHTML = options;
+	}
+	
+	function readAndGenerate()
+	{
+		var eventdata = {};
+		
+		// Read input from the forms
+		
+		var month = document.getElementById("month").selectedIndex;
+		var day = parseInt(document.getElementById("day").value);
+		var year = parseInt(document.getElementById("year").value);
+		
+		var startHours   = parseInt(document.getElementById("start-hours").value);
+		var startMinutes = parseInt(document.getElementById("start-minutes").value);
+		
+		var durationMinutes = parseInt(document.getElementById("duration-minutes").value);
+		
+		var zoneString  = document.getElementById("timezone").value;
+		var offset = timeZoneOffset(zoneString);
+		
+		var startDate = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
+		
+		var hostsList = ["A", "B", "C"];
+		var hosts = [];
+		
+		for (i = 0; i < hostsList.length; ++i)
+		{
+			var host = {};
+			host.name = document.getElementById("name" + hostsList[i]).value;
+			host.tag  = (document.getElementById("tag"  + hostsList[i]).selectedIndex == 1) ? "CC" : "";
+			host.code = document.getElementById("code" + hostsList[i]).value;
+			host.tier = document.getElementById("host" + hostsList[i]).selectedIndex;
+			if (host.name != "")
+			{
+				hosts.push(host);
+			}
+		}
+		
+		var themeIndex = document.getElementById("theme").selectedIndex;
+		
+		eventdata.titleText = document.getElementById("title").value;
+		eventdata.type = document.getElementById("type").selectedIndex;
+		eventdata.theme = (themeIndex != 0) ? eventThemes[themeIndex-1].key : "undefined";
+		
+		eventdata.date = startDate;
+		eventdata.duration = durationMinutes;
+		eventdata.timeZone = zoneString;
+		eventdata.hosts = hosts;
+		
+		document.getElementById("text-output").value = "'" + JSON.stringify(eventdata) + "',";
+		
+		result = generateBanner(880, 440, eventdata, null, false);
+		document.getElementById("result").innerHTML = '<img src="' + result + '"/>';
+	}
+	
+	
+</script>
+</head>
+	<body onLoad="load()">
+		<div id="wrapper">
+			<h1>Casual ARMS Banner Generator</h1>
+			<p>
+				Title: <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
+				Type: <select id="type">
+					<option value="0">Leaderboard Lobby</option>
+					<option value="1">Impromptu Lobby</option>
+					<option value="2">Casual Clash</option>
+					<option value="3">MLM Warmup Lobby</option>
+					<option value="4">Era Warmup Lobby</option>
+				</select>
+				Theme: <select id="theme"></select>
+			</p>
+			
+			<p>Date: <select id="month">
+				<option value="0">January</option>
+				<option value="1">February</option>
+				<option value="2">March</option>
+				<option value="3">April</option>
+				<option value="4">May</option>
+				<option value="5">June</option>
+				<option value="6">July</option>
+				<option value="7">August</option>
+				<option value="8">September</option>
+				<option value="9">October</option>
+				<option value="10">November</option>
+				<option value="11">December</option>
+			</select>
+			<input type="number" id="day" value="1"/>
+			<input type="number" id="year" value="2018"/>
+			</p>
+			
+			<p>
+				Start: <input type="number" id="start-hours" value="14"/> : <input type="number" id="start-minutes" value="00"/>
+				in time zone: <input type="text" id="timezone" value="EDT" size="5"/>
+				Duration: <input type="number" id="duration-minutes" value="120"/> minutes
+			</p>
+			
+			<p>
+				<select id="hostA">
+					<option value="0">No Tier</option>
+					<option value="1" selected>Easy</option>
+					<option value="2">Medium</option>
+					<option value="3">Hard</option>
+				</select>
+				host: <select id="tagA">
+					<option value="0">--</option>
+					<option value="1">CC</option>
+				</select>
+				<input type="text" id="nameA" value="Easy-Player" placeholder="Easy-Player"/>
+				code: <input type="text" id="codeA" value="0000-8888-2222" placeholder="0000-1111-2222"/>
+			</p>
+			
+			<p>
+				<select id="hostB">
+					<option value="0" selected>No Tier</option>
+					<option value="1">Easy</option>
+					<option value="2" selected>Medium</option>
+					<option value="3">Hard</option>
+				</select>
+				host: <select id="tagB">
+					<option value="0">--</option>
+					<option value="1">CC</option>
+				</select>
+				<input type="text" id="nameB" value="Medium-Player" placeholder="Medium-Player"/>
+				code: <input type="text" id="codeB" value="0000-8888-2222" placeholder="0000-1111-2222"/>
+			</p>
+			
+			<p>
+				<select id="hostC">
+					<option value="0" selected>No Tier</option>
+					<option value="1">Easy</option>
+					<option value="2">Medium</option>
+					<option value="3" selected=>Hard</option>
+				</select>
+				host: <select id="tagC">
+					<option value="0">--</option>
+					<option value="1">CC</option>
+				</select>
+				<input type="text" id="nameC" value="Hard-Player" placeholder="Hard-Player"/>
+				code: <input type="text" id="codeC" value="0000-8888-2222" placeholder="0000-1111-2222"/>
+			</p>
+			
+			<p><input type="button" value="Generate" onClick="readAndGenerate()"/>
+			
+			<p>For warmup events, tiers will not have any effect. For Clash events, hosts will not have any effect.</p>
+			
+			<img id="logo-mlm" src="logo-mlm.jpg" style="display: none;"/>
+			<img id="logo-cote" src="logo-cote.jpg" style="display: none;"/>
+			<img id="logo-discord" src="logo-discord.png" style="display: none;"/>
+			<img id="logo-casualarms" src="logo-casualarms.png" style="display: none;"/>
+			
+			<!--<canvas width="880" height="440" id="test-canvas"></canvas>-->
+			<textarea id="text-output" rows="4"></textarea>
+			<div id="result"></div>
+		</div>
+	</body>
+</html>
+

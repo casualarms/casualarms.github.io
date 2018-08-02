@@ -16,10 +16,10 @@
 		
 		convertDates(dates, diff);
 		
-		formatDate(checkinStart,    diff, "checkin-start");
-		formatDate(tournamentStart, diff, "tournament-start");
-		formatDate(checkinStart,    diff, "checkin-start2");
-		formatDate(tournamentStart, diff, "tournament-start2");
+		document.getElementById("checkin-start").innerHTML     = formatTime(checkinStart,    diff);
+		document.getElementById("tournament-start").innerHTML  = formatTime(tournamentStart, diff);
+		document.getElementById("checkin-start2").innerHTML    = formatTime(checkinStart,    diff);
+		document.getElementById("tournament-start2").innerHTML = formatTime(tournamentStart, diff);
 	}
 	</script>
 	<style type="text/css">

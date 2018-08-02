@@ -1,44 +1,125 @@
 
-// Add new events here. Can also remove old ones for efficiency.
-// Three elements per entry:
-// - Start date+time in an exact format and time zone offset (from UTC)
-// - Duration in minutes
-// - Optional description
-
 // Lobby events
-var lobbySchedule = [
-	[new Date('2018-07-29T22:45+02:00'),  60, "Champions of the Era Warmup"],
-	[new Date('2018-07-30T22:45+02:00'),  60, "Mega League Monday Warmup"],
-	[new Date('2018-08-02T00:00+02:00'), 120, "Wildcard Wednesday"],
-	[new Date('2018-08-02T20:00+02:00'), 120, "Thumpin' Thursday"],
+var eventsJSON = [
+	'{"titleText":"Custom Party Lobby","type":0,"theme":"undefined","date":"2018-08-02T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":2}]}',
+	
 ];
 
-// Clash events
-var clashSchedule = [
-	[new Date('2018-07-28T22:30+02:00'), 120, "Casual Clash 3"],
+var eventStages = {
+	 0 : "Spring Stadium",
+	 1 : "Ribbon Ring",
+	 2 : "Ninja College",
+	 3 : "Mausoleum",
+	 4 : "Ramen Bowl",
+	 5 : "Scrapyard",
+	 6 : "Cinema Deux",
+	 7 : "Buster Beach",
+	 8 : "Snake Park",
+	 9 : "DNA Lab",
+	10 : "Sky Arena",
+	11 : "Via Dolce",
+	12 : "Temple Grounds",
+	13 : "Sparring Ring",
+	14 : "[NAME REDACTED]"
+};
+
+var eventThemes = [
+	{
+		"key"             : "everything",
+		"name"            : "Anything Goes",
+		"solo-fight"      : [2, 3, 4],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [2, 3],
+		"hedlok-scramble" : [2, 3, 4],
+		"hoops"           : [2],
+		"skillshot"       : [2, 4],
+		"v-ball"          : [2, 4],
+		"items"           : true,
+		"streak-bonouses" : true,
+		"stages"          : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+	},
+	{
+		"key"             : "breakable-bits",
+		"name"            : "Breakable Bits",
+		"solo-fight"      : [2],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [],
+		"hedlok-scramble" : [2, 3, 4],
+		"hoops"           : [],
+		"skillshot"       : [2, 4],
+		"v-ball"          : [],
+		"items"           : true,
+		"streak-bonouses" : false,
+		"stages"          : [1, 3, 5, 9, 11, 12, 14],
+	},
+	{
+		"key"             : "teambuilding",
+		"name"            : "Teambuilding",
+		"solo-fight"      : [],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [2, 3],
+		"hedlok-scramble" : [],
+		"hoops"           : [],
+		"skillshot"       : [4],
+		"v-ball"          : [4],
+		"items"           : true,
+		"streak-bonouses" : false,
+		"stages"          : [0, 1, 3, 4, 8, 9, 10, 12],
+	},
+	{
+		"key"             : "bane-of-ranked",
+		"name"            : "Bane of Ranked",
+		"solo-fight"      : [3, 4],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [],
+		"hedlok-scramble" : [3, 4],
+		"hoops"           : [2],
+		"skillshot"       : [2, 4],
+		"v-ball"          : [2, 4],
+		"items"           : true,
+		"streak-bonouses" : false,
+		"stages"          : [2, 4, 6, 8, 14],
+	},
+	{
+		"key"             : "teambuilding-near-far",
+		"name"            : "Teambuilding: Near & Far",
+		"solo-fight"      : [],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [2, 3],
+		"hedlok-scramble" : [],
+		"hoops"           : [],
+		"skillshot"       : [4],
+		"v-ball"          : [4],
+		"items"           : true,
+		"streak-bonouses" : false,
+		"stages"          : [0, 1, 2, 4, 8, 11, 13],
+	},
+	{
+		"key"             : "barrier-bonanza",
+		"name"            : "Barrier Bonanza",
+		"solo-fight"      : [2, 3, 4],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [],
+		"hedlok-scramble" : [2, 3, 4],
+		"hoops"           : [],
+		"skillshot"       : [],
+		"v-ball"          : [2, 4],
+		"items"           : true,
+		"streak-bonouses" : false,
+		"stages"          : [1, 5, 6, 7, 8, 9, 12, 14],
+	},
+	{
+		"key"             : "corner-chaos",
+		"name"            : "Corner Chaos",
+		"solo-fight"      : [2],
+		"team-fight"      : [4],
+		"vs-hedlok"       : [3],
+		"hedlok-scramble" : [],
+		"hoops"           : [],
+		"skillshot"       : [],
+		"v-ball"          : [],
+		"items"           : true,
+		"streak-bonouses" : false,
+		"stages"          : [0, 1, 7, 10, 11, 13, 14],
+	},
 ];
-
-
-function eventOngoingNow()
-{
-	var now = new Date();
-	for (i = 0; i < lobbySchedule.length; ++i)
-	{
-		start = lobbySchedule[i][0];
-		end = new Date();
-		end.setTime(start.getTime() + lobbySchedule[i][1] * 60000);
-		
-		if (now > start && now < end)
-			return ["lobby"];
-	}
-	for (i = 0; i < clashSchedule.length; ++i)
-	{
-		start = clashSchedule[i][0];
-		end = new Date();
-		end.setTime(start.getTime() + clashSchedule[i][1] * 60000);
-		
-		if (now > start && now < end)
-			return ["clash"];
-	}
-	return ["none"];
-}

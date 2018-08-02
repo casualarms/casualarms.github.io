@@ -3,8 +3,10 @@
 	<meta charset="UTF-8">
 	<title>Casual ARMS</title>
 	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="staff/banners/banner-gen.js"></script>
 	<script type="text/javascript" src="database.js"></script>
 	<script type="text/javascript" src="events.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript">
 	function load()
 	{
@@ -12,6 +14,7 @@
 		{
 			document.getElementById("staff").style.display = "block";
 		}
+		
 		
 		var currentEvent = eventOngoingNow();
 		
@@ -22,6 +25,14 @@
 		
 		document.getElementById("random-fact").innerHTML = randomFact();
 		
+		
+		
+		var nextEventData = nextEvent();
+		if (nextEventData != null)
+		{
+			document.getElementById("featured").style.display = "block";
+			result = generateBanner(880, 440, nextEventData, "test-canvas", true);
+		}
 	}
 	
 	function checkKey(e)
@@ -55,12 +66,17 @@
 		opacity: 0.3;
 	}
 	
-	.main-menu h2 {
+	.main-menu {
+		padding-top: 1.5em;
+	}
+	
+	.main-menu h3 {
 		font-size: 1em;
-		margin-top: -0.4em;
-		margin-bottom: 0.4em;
+		margin-top: -0.6em;
+		margin-bottom: 0.6em;
 		opacity: 0.6;
 		text-align: right;
+		padding-right: 1em;
 		border-bottom: 1pt dotted rgba(0, 0, 0, 0.5);
 	}
 	
@@ -137,7 +153,7 @@
 		border-right: 2pt dotted yellow;
 	}
 	
-	#featured img
+	#featured img, #featured canvas
 	{
 		height: 70pt;
 		margin: 5pt 5pt 5pt 0;
@@ -168,7 +184,7 @@
 			<a class="menu-item m4" id="m-screenshot" href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Contest</a>
 		</div>
 		
-		<h2>Tools</h2>
+		<h3>Tools</h3>
 		
 		<div class="menu-container">
 			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
@@ -177,16 +193,16 @@
 		</div>
 		
 		<div id="staff" style="display: none;">
-		<h2>For Staff</h2>
+		<h3>For Staff</h3>
 		
 		<div class="menu-container">
 			<a class="menu-item m5" href="staff/leaderboards/">Leaderboard Tools</a>
-			<a class="menu-item m5" href="staff/banner-generator/">Banner Generator</a>
+			<a class="menu-item m5" href="staff/banners/">Banner Generator</a>
 		</div>
 		
 		</div>
 		
-		<h2>External</h2>
+		<h3>External</h3>
 		
 		<div class="submenu">
 			<a class="submenu-item" href="https://arms.nintendo.com"   ><img src="assets/logo-nintendo.png"/><span class="sub-text">Nintendo</span></a>
@@ -199,11 +215,16 @@
 		
 		<div id="featured" style="display: none;">
 			<div class="featured-left"></div>
-			<a href="clash/"><img src="featured.png"/></a>
+			<a href="clash/"><!--<img id="featured-banner"/>--><canvas width="880" height="440" id="test-canvas"></canvas></a>
 		</div>
 	
 	</div>
 	
 	<p class="bottom"><span id="random-fact"></span></p>
+	
+	<img id="logo-mlm" src="staff/banners/logo-mlm.jpg" style="display: none;"/>
+	<img id="logo-cote" src="staff/banners/logo-cote.jpg" style="display: none;"/>
+	<img id="logo-discord" src="staff/banners/logo-discord.png" style="display: none;"/>
+	<img id="logo-casualarms" src="staff/banners/logo-casualarms.png" style="display: none;"/>
 
 </body>

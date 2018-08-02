@@ -3,50 +3,211 @@
 	<meta charset="UTF-8">
 	<title>Lobby Schedule – Casual ARMS</title>
 	<link rel="stylesheet" href="../style.css">
+	<script type="text/javascript" src="../staff/banners/banner-gen.js"></script>
+	<script type="text/javascript" src="../events.js"></script>
 	<script type="text/javascript" src="../script.js"></script>
 	<style type="text/css">
 	.timeslot {
-		text-align: center;
+		text-align: center !important;
 		font-weight: bold;
 		color: #1d94fc;
 	}
+	
+	#next-lobby {
+		width: 440pt;
+		border: 2pt solid black;
+	}
+	
+	
+	#calendar {
+		width: 800px;
+		height: 380px;
+		border: 2pt solid black;
+		margin: 1em auto;
+		position: relative;
+	}
+	
+	#calendar div {
+		position: absolute;
+		width: 100px;
+		border-right: 1px dashed black;
+		height: 380px;
+	}
+	
+	#calendar .cal-time {
+		text-align: left;
+		position: absolute;
+		width: 750px;
+		border-top: 1pt dotted black;
+		padding-left: 50px;
+		font-size: 0.7em;
+		z-index: 0;
+	}
+	
+	#calendar .cal-event {
+		position: absolute;
+		width: 100px;
+		background-color: #1d94fc;
+		color: white;
+		overflow: hidden;
+		z-index: 0;
+	}
+	
+	#calendar .cal-event-slot {
+		background-color: gray;
+	}
+	
+	#calendar .cal-event .info {
+		display: none;
+	}
+	
+	#calendar .cal-event:hover {
+		height: auto !important;
+		width: 250px;
+		padding: 0.5em;
+		transform: translatex(-75px) translateY(-10px);
+		z-index: 1;
+	}
+	
+	#calendar .cal-event:hover .info {
+		display: inline;
+	}
+	
+	#cal-times     { left:   0px; }
+	#cal-monday    { left: 100px; }
+	#cal-tuesday   { left: 200px; }
+	#cal-wednesday { left: 300px; }
+	#cal-thursday  { left: 400px; }
+	#cal-friday    { left: 500px; }
+	#cal-saturday  { left: 600px; }
+	#cal-sunday    { left: 700px; }
+	
+	#calendar .cal-title
+	{
+		display: block;
+		width: 100px;
+		height: 20px;
+		background-color: black;
+		color: white;
+	}
+	
+	.legend {
+		padding: 2pt 1em;
+		color: white;
+		font-weight: bold;
+	}
+	
 	</style>
 	<script type="text/javascript">
+	
+	function createEntry(start, end, anchor, evtype, description)
+	{
+		console.log(start);
+		console.log(end);
+		var result = "";
+		if (start.getUTCDate() != end.getUTCDate() && !(end.getUTCHours() == 0 && end.getUTCMinutes() == 0))
+		{
+			console.log("Different dates");
+			
+			var newEnd = new Date(end);
+			var updatedEnd = new Date(end);
+			updatedEnd.setUTCHours(0);
+			updatedEnd.setUTCMinutes(0);
+			
+			var newStart = new Date(start);
+			newStart.setUTCHours(0);
+			newStart.setUTCMinutes(0);
+			
+			if (newStart.getUTCDate() <= 6)
+				newStart.setUTCDate(newStart.getUTCDate()+1);
+			else
+			{
+				newStart.setUTCDate(1);
+				newEnd.setUTCDate(1);
+			}
+			
+			result = createEntry(newStart, newEnd, anchor, evtype, description);
+			end = updatedEnd;
+		}
+		
+		var duration = end - start;
+		var h = start.getUTCHours();
+		var m = start.getUTCMinutes();
+		
+		var offset = 20 + h * 15 + m * 0.25;
+		var height = duration / 60000 * 0.25;
+		var dateOffset = (start.getUTCDay() + 6) % 7 + 1;
+		
+		return result + "<a href='#" + anchor + "' class='cal-event cal-event-" + evtype + "' style='top: " + offset + "px; left: " + (dateOffset*100) + "px; height: " + height + ";'><span class='info'>" + description + "</span></a>";
+	}
 	
 	function load()
 	{
 		var diff = getTimeZoneDiff();
-		document.getElementById("timedetect").innerHTML = ""; //"Your local time zone was detected as UTC + " + diff + " hours.";
 		
-		var monStart = new Date(1, 1, 1, 20, 45, 0);
-		var monEnd   = new Date(1, 1, 1, 21, 45, 0);
+		var monStart = new Date(Date.UTC(4, 1, 1, 20, 45, 0));
+		var monEnd   = new Date(Date.UTC(4, 1, 1, 21, 45, 0));
 		
-		var wedStart = new Date(1, 1, 1, 22, 0, 0);
-		var wedEnd   = new Date(1, 1, 1, 0,  0, 0);
+		var wedStart = new Date(Date.UTC(4, 1, 3, 22, 0, 0));
+		var wedEnd   = new Date(Date.UTC(4, 1, 4, 0,  0, 0));
 		
-		var thuStart = new Date(1, 1, 1, 18, 0, 0);
-		var thuEnd   = new Date(1, 1, 1, 20, 0, 0);
+		var thuStart = new Date(Date.UTC(4, 1, 4, 18, 0, 0));
+		var thuEnd   = new Date(Date.UTC(4, 1, 4, 20, 0, 0));
 		
-		var satStart = new Date(1, 1, 1, 18, 0, 0);
-		var satEnd   = new Date(1, 1, 1, 20, 0, 0);
+		var satStart = new Date(Date.UTC(4, 1, 6, 18, 0, 0));
+		var satEnd   = new Date(Date.UTC(4, 1, 6, 20, 0, 0));
 		
-		var sunStart = new Date(1, 1, 1, 20, 45, 0);
-		var sunEnd   = new Date(1, 1, 1, 21, 45, 0);
+		var sunStart = new Date(Date.UTC(4, 1, 7, 20, 45, 0));
+		var sunEnd   = new Date(Date.UTC(4, 1, 7, 21, 45, 0));
 		
 		dates = [monStart, monEnd, wedStart, wedEnd, thuStart, thuEnd, satStart, satEnd, sunStart, sunEnd];
 		
 		convertDates(dates, diff);
 		
-		formatDate(monStart, diff, "mon-start");
-		formatDate(monEnd,   diff, "mon-end");
-		formatDate(wedStart, diff, "wed-start");
-		formatDate(wedEnd,   diff, "wed-end");
-		formatDate(thuStart, diff, "thu-start");
-		formatDate(thuEnd,   diff, "thu-end");
-		formatDate(satStart, diff, "sat-start");
-		formatDate(satEnd,   diff, "sat-end");
-		formatDate(sunStart, diff, "sun-start");
-		formatDate(sunEnd,   diff, "sun-end");
+		document.getElementById("mon-start").innerHTML = textWeekday(monStart) + "s " + formatTimeUTC(monStart, diff);
+		document.getElementById("wed-start").innerHTML = textWeekday(wedStart) + "s " + formatTimeUTC(wedStart, diff);
+		document.getElementById("thu-start").innerHTML = textWeekday(thuStart) + "s " + formatTimeUTC(thuStart, diff);
+		document.getElementById("sat-start").innerHTML = textWeekday(satStart) + "s " + formatTimeUTC(satStart, diff);
+		document.getElementById("sun-start").innerHTML = textWeekday(sunStart) + "s " + formatTimeUTC(sunStart, diff);
+		document.getElementById("mon-end")  .innerHTML = formatTimeUTC(monEnd,   diff);
+		document.getElementById("wed-end",) .innerHTML = formatTimeUTC(wedEnd,   diff);
+		document.getElementById("thu-end")  .innerHTML = formatTimeUTC(thuEnd,   diff);
+		document.getElementById("sat-end")  .innerHTML = formatTimeUTC(satEnd,   diff);
+		document.getElementById("sun-end")  .innerHTML = formatTimeUTC(sunEnd,   diff);
+		
+		var timemarks = "";
+		for (i = 0; i < 24; i += 2)
+		{
+			timemarks += "<span class='cal-time' style='top: " + (i * 15 + 20) + "px; left: 0px;'>" + i + ":00</span>";
+		}
+		document.getElementById("calendar").innerHTML += timemarks;
+		
+		
+		
+		var events = "";
+		
+		events += createEntry(monStart, monEnd, "monday",    "slot", "Mega League Monday warmup<br/>"   + formatTimeUTC(monStart, diff) + " to " + formatTimeUTC(monEnd, diff));
+		events += createEntry(wedStart, wedEnd, "wednesday", "slot", "Wildcard Wednesday<br/>"          + formatTimeUTC(wedStart, diff) + " to " + formatTimeUTC(wedEnd, diff));
+		events += createEntry(thuStart, thuEnd, "thursday",  "slot", "Thumpin' Thursday<br/>"           + formatTimeUTC(thuStart, diff) + " to " + formatTimeUTC(thuEnd, diff));
+		events += createEntry(satStart, satEnd, "saturday",  "slot", "Saturday Party Lobby<br/>"        + formatTimeUTC(satStart, diff) + " to " + formatTimeUTC(satEnd, diff));
+		events += createEntry(sunStart, sunEnd, "sunday",    "slot", "Champions of the Era warmup<br/>" + formatTimeUTC(sunStart, diff) + " to " + formatTimeUTC(sunEnd, diff));
+		
+		
+		var nextEventData = nextEvent();
+		if (nextEventData != null)
+		{
+			document.getElementById("next-section").style.display = "block";
+			result = generateBanner(880, 440, nextEventData, "next-lobby", true);
+			
+			var evStart = nextEventData.date;
+			var evEnd = getEventEnd(nextEventData);
+			convertDates([evStart, evEnd], diff);
+			
+			events += createEntry(evStart, evEnd, "next",    "announced",  nextEventData.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
+		}
+		
+		document.getElementById("calendar").innerHTML += events;
+		
 	}
 	</script>
 </head>
@@ -55,51 +216,82 @@
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div id="container">
 		
-		<p id="timedetect">Could not automatically detect time zone. Defaults to EDT, Eastern American Time.</p>
-		
 		<h2>Lobby Events</h2>
 		
 		<p>The Casual ARMS lobby events are for all ARMS players to join in! We run custom party lobbies in the "friend lobby" mode, so you just need to add one of the lobby hosts as a Switch friend to participate. The hosts are shown on the promotional banner for each event, which is always found on the Casual ARMS <a href="http://discord.gg/u6cfeN9">Discord server</a> as well as on <a href="https://twitter.com/casualARMS">Twitter</a>.
 		
 		<p>There are two types of events: <em>Leaderboard events</em> where the player's lobby coins are counted and added to the leaderboards (on Discord). <em>Warmup events</em> are just for fun and/or to let players get in shape for community tournaments.</p>
 		
-		<h2>Leaderboard Lobby Event Schedule</h2>
+		<div class="menu-container">
+			<a class="menu-item m5" href="#monday">Mega League Monday Warmup</a>
+			<a class="menu-item m5" href="#wednesday">Wildcard Wednesday</a>
+			<a class="menu-item m5" href="#thursday">Thumpin' Thursday</a>
+			<a class="menu-item m5" href="#saturday">Saturday Party Lobby</a>
+			<a class="menu-item m5" href="#sunday">Champions of the Era Warmup</a>
+		</div>
+		
+		<div id="next-section" style="display: none;">
+			<h3 id="next">Next Lobby Event</h3>
+			<canvas width="880" height="440" id="next-lobby"></canvas>
+		</div>
+		
+		<h3>Upcoming Lobby Events</h3>
+		
+		<div id="calendar">
+			<div id="cal-times"><span class="cal-title"></span></div>
+			<div id="cal-monday"><span class="cal-title">Monday</span></div>
+			<div id="cal-tuesday"><span class="cal-title">Tuesday</span></div>
+			<div id="cal-wednesday"><span class="cal-title">Wednesday</span></div>
+			<div id="cal-thursday"><span class="cal-title">Thursday</span></div>
+			<div id="cal-friday"><span class="cal-title">Friday</span></div>
+			<div id="cal-saturday"><span class="cal-title">Saturday</span></div>
+			<div id="cal-sunday"><span class="cal-title">Sunday</span></div>
+		</div>
+		
+		<p>Legend: <span class="legend" style="background-color: grey;">Regular Lobby Slot</span> <span class="legend" style="background-color: #1d94fc;">Announced Lobby Event</span></p>
+		
+		
+		<h2>Leaderboard Lobby Events</h2>
 		
 		<p>The following three weekly events all count for the Casual ARMS leaderboards!</p>
 		
-		<h3>Wildcard Wednesday</h3>
-		<p class="timeslot">Wednesdays <span id="wed-start">06:00 PM</span> to <span id="wed-end">08:00 PM</span></p>
+		<h3 id="wednesday">Wildcard Wednesday</h3>
+		<p class="timeslot"><span id="wed-start">06:00 PM</span> to <span id="wed-end">08:00 PM</span></p>
 		
-		<p>The <em>Wildcard Wednesday</em> event has a unique theme each week!</p>
+		<p>The <em>Wildcard Wednesday</em> event has a unique theme each week! Each theme has a unique mix of active modes and stages. Settings for each theme can be found <a href="themes/">here</a>.</p>
 		
 		
-		<h3>Thumpin' Thursday</h3>
-		<p class="timeslot">Thursdays <span id="thu-start">02:00 PM</span> to <span id="thu-end">04:00 PM</span></p>
+		<h3 id="thursday">Thumpin' Thursday</h3>
+		<p class="timeslot"><span id="thu-start">02:00 PM</span> to <span id="thu-end">04:00 PM</span></p>
 		
 		<p>The <em>Thumpin' Thursday</em> event is perfect for European players. The event features a rotating stage set, swtiching out every 20 coin lobby!</p>
 		
 		
-		<h3>Saturday Party Lobby</h3>
-		<p class="timeslot">Saturdays <span id="sat-start">02:00 PM</span> to <span id="sat-end">04:00 PM</span></p>
+		<h3 id="saturday">Saturday Party Lobby</h3>
+		<p class="timeslot"><span id="sat-start">02:00 PM</span> to <span id="sat-end">04:00 PM</span></p>
 		
 		<p>The <em>Saturday Party Lobby</em> event features standard party lobbies with VS fights, minigames and items always on!</p>
 		
-		<br/>
-		<h2>Community Warmup Event Schedule</h2>
+		<h2>Community Warmup Events</h2>
 		
 		<p>Warmup events are scheduled before external community events such as tournaments. Everyone can join the warmup lobby regardless of tournament participation! These do not count for Casual ARMS leaderboards.</p>
 		
-		<h3>Mega League Monday Warmup Lobby</h3>
-		<p class="timeslot">Mondays <span id="mon-start">04:45 PM</span> to <span id="mon-end">05:45 PM</span></p>
+		<h3 id="monday">Mega League Monday Warmup Lobby</h3>
+		<p class="timeslot"><span id="mon-start">04:45 PM</span> to <span id="mon-end">05:45 PM</span></p>
 		
 		<p>The <em>Mega League Monday Warmup Lobby</em> event prepares ARMS players for Mega League Monday, hosted by Schkrimps!</p>
 		
 		
-		<h3>Champions of the Era Warmup Lobby</h3>
-		<p class="timeslot">Sundays <span id="sun-start">04:45 PM</span> to <span id="sun-end">05:45 PM</span></p>
+		<h3 id="sunday">Champions of the Era Warmup Lobby</h3>
+		<p class="timeslot"><span id="sun-start">04:45 PM</span> to <span id="sun-end">05:45 PM</span></p>
 		
 		<p>The <em>Champions of the Era Warmup Lobby</em> event prepares ARMS players for Champions of the Era, hosted by Era Wolf!</p>
 	
 	</div>
-
+	
+	<img id="logo-mlm" src="../staff/banners/logo-mlm.jpg" style="display: none;"/>
+	<img id="logo-cote" src="../staff/banners/logo-cote.jpg" style="display: none;"/>
+	<img id="logo-discord" src="../staff/banners/logo-discord.png" style="display: none;"/>
+	<img id="logo-casualarms" src="../staff/banners/logo-casualarms.png" style="display: none;"/>
+	
 </body>

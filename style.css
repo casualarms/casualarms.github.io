@@ -7,27 +7,19 @@
 body {
 	background-color: #1d94fc;
 	padding: 0; margin: 0;
-	
 	font: 1em Helvetica, Arial, sans-serif;
 }
 
-.event
-{
-	background-color: #444;
-}
-
-.event h1 { color: yellow; }
-
 #container {
 	margin: 0 auto;
-	width: 700pt;
+	max-width: 700pt;
 	text-align: center;
-	padding: 1.5em 0em 2em 0em;
+	padding-bottom: 2em;
 	background-color: yellow;
-	border: 10pt solid black;
+	border: 2pt solid black;
 	position: relative;
 	overflow: hidden;
-	transition: 0.5s;
+	transition: background-color 0.5s;
 }
 
 
@@ -39,26 +31,11 @@ body {
   to   { opacity: 0.05; }
 }
 
-.event #shield {
-	animation: 2.2s pulseopacity infinite;
-}
-
-.event #logo {
-	animation: 3s pulseopacity infinite;
-}
-
 
 @keyframes colorshift {
   from { background-color: #1d94fc; }
   50%  { background-color: #0a73c7; }
   to   { background-color: #1d94fc; }
-}
-
-.event #container
-{
-	background-color: #1d94fc;
-	color: white;
-	animation: 10s colorshift infinite;
 }
 
 #controls {
@@ -98,38 +75,52 @@ a {
 }
 
 h1 {
-	width: 400pt;
 	text-align: center;
 	font-family: ARMS;
-	font-size: 3em;
-	margin: 0.2em auto -8pt auto;
-	color: white;
-	border-top-left-radius: 0.8em 100%;
-	border-top-right-radius: 0.8em 100%;
-	background-color: black;
+	font-size: 2.5em;
+	margin: 0 auto;
 	transition: 0.1s;
 }
 
+h1 > a {
+	text-decoration: none;
+	color: white;
+	background-color: black;
+	padding: 0 1em;
+	border-top-left-radius: 0.8em 100%;
+	border-top-right-radius: 0.8em 100%;
+	white-space: nowrap;
+}
 
 
-h1:hover {
+
+h1 > a:hover {
 	color: yellow;
 }
 
-h2, h3 { font-family: 'ARMS';}
+h2, h3 { font-family: 'ARMS'; }
 
 h2 {
 	font-size: 1.4em;
-	text-align: left;
-	padding: 0 1em;
-	border-bottom: 1pt solid black;
+	background-color: black;
+	color: white;
+	margin-top: 2em;
+	padding: 2pt 0;
+}
+
+#container h2:first-child {
+	margin-top: 0;
 }
 
 h3 {
-	font-size: 1em;
-	border-bottom: 1pt dashed black /*#1d94fc*/;
-	padding-left: 1em;
+	font-size: 1.2em;
 	margin-top: 2em;
+	border-bottom: 2pt solid black;
+}
+
+h3:target {
+	background-color: #1d94fc;
+	color: white;
 }
 
 @keyframes slidein {
@@ -157,10 +148,6 @@ a.menu-item {
 	transition: 0.2s background-color;
 }
 
-h1 > a {
-	text-decoration: none;
-	color: inherit;
-}
 
 .m1 { font-size: 3.5em !important; }
 .m2 { font-size: 3.0em !important; }
@@ -176,19 +163,8 @@ a.menu-item:hover, a.menu-item:active {
 
 }
 
-
-.event a.menu-item {
-	color: white;
-}
-
-.event a.menu-item:hover, .event a.menu-item:active {
-	background-color: black;
-	color: yellow;
-}
-
-
 .submenu {
-	margin-top: 2em;
+	margin-top: 1.5em;
 	margin-left: 7.5em;
 }
 
@@ -199,13 +175,12 @@ a.submenu-item {
 	margin: 0 0.1em;
 	font-size: 0.8em;
 	width: 6em;
-	line-height: 1.4em;
 	font-style: italic;
 	color: black;
 	border: 1.5pt solid black;
-	border-top-left-radius: 15% 100%;
-	border-bottom-right-radius: 15% 100%;
-	transition: 0.2s;
+	border-top-left-radius: 10pt 100%;
+	border-bottom-right-radius: 10pt 100%;
+	transition: background-color 0.2s;
 }
 
 a.submenu-item.long {
@@ -245,24 +220,6 @@ a.submenu-item > .sub-text {
 	left: 0.5em;
 	width: 5em;
 }
-
-.event .submenu-item {
-	border-color: white;
-}
-
-.event a.submenu-item > .sub-text {
-	color: white;
-}
-
-.event .submenu-item:hover {
-	background-color: black;
-}
-
-.event .submenu-item.extra {
-	background-color: white;
-	color: #1d94fc;
-}
-
 
 .stage-container {
 	background-color: #36393f;
@@ -308,4 +265,61 @@ a.submenu-item > .sub-text {
 .stage.inactive {
 	background-color: black;
 	opacity: 0.4;
+}
+
+
+/* Event mode */
+
+.event #container {
+	background-color: #1d94fc;
+	color: white;
+	animation: 10s colorshift infinite;
+}
+
+.event #shield {
+	animation: 2.2s pulseopacity infinite;
+}
+
+.event #logo {
+	animation: 3s pulseopacity infinite;
+}
+
+.event {
+	background-color: #444;
+}
+
+.event h1 { color: yellow; }
+
+.event a.menu-item {
+	color: white;
+}
+
+.event a.menu-item:hover, .event a.menu-item:active {
+	background-color: black;
+	color: yellow;
+}
+
+.event .submenu-item {
+	border-color: white;
+}
+
+.event a.submenu-item > .sub-text {
+	color: white;
+}
+
+.event .submenu-item:hover {
+	background-color: black;
+}
+
+.event .submenu-item.extra {
+	background-color: white;
+	color: #1d94fc;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+	body {
+		background-color: lightblue !important;
+	}
 }
