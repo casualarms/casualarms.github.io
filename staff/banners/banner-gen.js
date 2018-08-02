@@ -162,7 +162,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.textAlign = "left";
 		ctx.fillText(eventdata.hosts[i].name + "  " + eventdata.hosts[i].code, hOffset, vOffset);
 		
-		if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts > 1)
+		if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts.length > 1)
 		{
 			ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
 			roundRect(ctx, 15, vOffset - 21, 120, 25, 10).fill();
