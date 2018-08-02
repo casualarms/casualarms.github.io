@@ -38,12 +38,14 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	boxBgColor = "black";
 	stripeBgColor = "#1d94fc";
 	stripeStrokeColor = "black";
+	websiteBgColor = "yellow";
 	
 	logoColor = "black";
 	titleColor = "yellow";
 	timeDateColor = "white";
 	hostsColor = "white";
 	tierColor = "black";
+	websiteColor = "black";
 	
 	logoFont = "57pt ARMS";
 	titleFont = "22pt ARMS";
@@ -51,6 +53,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	tierFont = "15pt ARMS";
 	teamTagFont = "14pt ARMS";
 	hostsFont = "20pt ARMS";
+	websiteFont = "26pt ARMS";
 	
 	colors = ["#29fb2f", "#efed34", "#fc5935"];
 	tiers = ["easy", "medium", "hard"];
@@ -94,6 +97,9 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	ctx.fillRect  (370, 87, 600, 15);
 	ctx.strokeRect(370, 87, 600, 15);
 	
+	ctx.fillStyle = websiteBgColor;
+	ctx.fillRect(0, 440, width, 40);
+	
 	// Logo
 	ctx.drawImage(caLogo, 22, 0, 114, 114);
 	
@@ -128,6 +134,12 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	ctx.fillText(dateText, 300, 210);
 	ctx.fillText(timeText, 300, 250);
 	
+	// Website
+	ctx.font = websiteFont;
+	ctx.textAlign = "center";
+	ctx.fillStyle = websiteColor;
+	ctx.fillText("www.casualarms.net", 440, 472);
+	
 	// Hosts
 	var didDrawCodes = false;
 	spacing = 35 + (3 - eventdata.hosts.length) * 10;
@@ -150,7 +162,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.textAlign = "left";
 		ctx.fillText(eventdata.hosts[i].name + "  " + eventdata.hosts[i].code, hOffset, vOffset);
 		
-		if (!isWarmup && eventdata.hosts[i].tier != 0)
+		if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts > 1)
 		{
 			ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
 			roundRect(ctx, 15, vOffset - 21, 120, 25, 10).fill();

@@ -113,7 +113,7 @@
 		
 		document.getElementById("text-output").value = "'" + JSON.stringify(eventdata) + "',";
 		
-		result = generateBanner(880, 440, eventdata, null, false);
+		result = generateBanner(880, 480, eventdata, null, false);
 		document.getElementById("result").innerHTML = '<img src="' + result + '"/>';
 	}
 	
@@ -213,7 +213,7 @@
 			<img id="logo-discord" src="logo-discord.png" style="display: none;"/>
 			<img id="logo-casualarms" src="logo-casualarms.png" style="display: none;"/>
 			
-			<!--<canvas width="880" height="440" id="test-canvas"></canvas>-->
+			<!--<canvas width="880" height="480" id="test-canvas"></canvas>-->
 			<textarea id="text-output" rows="4"></textarea>
 			<div id="result"></div>
 		</div>
