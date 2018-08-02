@@ -37,11 +37,14 @@
 	#calendar .cal-time {
 		text-align: left;
 		position: absolute;
-		width: 750px;
+		width: 98px;
 		border-top: 1pt dotted black;
-		padding-left: 50px;
-		font-size: 0.7em;
+		padding-right: 2px;
+		font-size: 0.8em;
 		z-index: 0;
+		display: inline-block;
+		text-align: right;
+		right: 700px;
 	}
 	
 	#calendar .cal-event {
@@ -170,7 +173,7 @@
 		document.getElementById("sat-start").innerHTML = textWeekday(satStart) + "s " + formatTimeUTC(satStart, diff);
 		document.getElementById("sun-start").innerHTML = textWeekday(sunStart) + "s " + formatTimeUTC(sunStart, diff);
 		document.getElementById("mon-end")  .innerHTML = formatTimeUTC(monEnd,   diff);
-		document.getElementById("wed-end") .innerHTML = formatTimeUTC(wedEnd,   diff);
+		document.getElementById("wed-end")  .innerHTML = formatTimeUTC(wedEnd,   diff);
 		document.getElementById("thu-end")  .innerHTML = formatTimeUTC(thuEnd,   diff);
 		document.getElementById("sat-end")  .innerHTML = formatTimeUTC(satEnd,   diff);
 		document.getElementById("sun-end")  .innerHTML = formatTimeUTC(sunEnd,   diff);
@@ -178,7 +181,8 @@
 		var timemarks = "";
 		for (i = 0; i < 24; i += 2)
 		{
-			timemarks += "<span class='cal-time' style='top: " + (i * 15 + 20) + "px; left: 0px;'>" + i + ":00</span>";
+			var d = new Date(Date.UTC(1, 1, 1, i, 0, 0))
+			timemarks += "<span class='cal-time' style='top: " + (i * 15 + 20) + "px;'>" + formatTimeUTC(d, diff) + "</span>";
 		}
 		document.getElementById("calendar").innerHTML += timemarks;
 		

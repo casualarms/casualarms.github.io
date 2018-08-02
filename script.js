@@ -68,14 +68,17 @@ function formatTimeHelper(h, m, diff)
 	
 	if (useAMPM)
 	{
+		
 		if (h < 12)
 		{
 			postfix = " AM";
+			if (h == 0) h = 12; 
 		}
 		else
 		{
-			h -= 12;
 			postfix = " PM";
+			h -= 12;
+			if (h == 0) h = 12; 
 		}
 	}
 	
