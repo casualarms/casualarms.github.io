@@ -2,7 +2,7 @@
 // Lobby events
 var eventsJSON = [
 	'{"titleText":"Custom Party Lobby","type":0,"theme":"undefined","date":"2018-08-02T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":2}]}',
-	'{"titleText":"Standard Party Lobby","type":0,"theme":"undefined","date":"2018-08-04T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Programmability","tag":"","code":"4898-5196-4000","tier":1},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Ackus","tag":"CC","code":"4014-0482-4441","tier":3}]}',
+	'{"titleText":"Standard Party Lobby","type":0,"theme":"everything","date":"2018-08-04T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Programmability","tag":"","code":"4898-5196-4000","tier":1},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Ackus","tag":"CC","code":"4014-0482-4441","tier":3}]}',
 
 ];
 
@@ -28,6 +28,7 @@ var eventThemes = [
 	{
 		"key"             : "everything",
 		"name"            : "Anything Goes",
+		"description"     : "",
 		"solo-fight"      : [2, 3, 4],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [2, 3],
@@ -42,6 +43,7 @@ var eventThemes = [
 	{
 		"key"             : "breakable-bits",
 		"name"            : "Breakable Bits",
+		"description"     : "",
 		"solo-fight"      : [2],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [],
@@ -56,6 +58,7 @@ var eventThemes = [
 	{
 		"key"             : "teambuilding",
 		"name"            : "Teambuilding",
+		"description"     : "",
 		"solo-fight"      : [],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [2, 3],
@@ -70,6 +73,7 @@ var eventThemes = [
 	{
 		"key"             : "bane-of-ranked",
 		"name"            : "Bane of Ranked",
+		"description"     : "",
 		"solo-fight"      : [3, 4],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [],
@@ -84,6 +88,7 @@ var eventThemes = [
 	{
 		"key"             : "teambuilding-near-far",
 		"name"            : "Teambuilding: Near & Far",
+		"description"     : "",
 		"solo-fight"      : [],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [2, 3],
@@ -98,6 +103,7 @@ var eventThemes = [
 	{
 		"key"             : "barrier-bonanza",
 		"name"            : "Barrier Bonanza",
+		"description"     : "",
 		"solo-fight"      : [2, 3, 4],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [],
@@ -112,6 +118,7 @@ var eventThemes = [
 	{
 		"key"             : "corner-chaos",
 		"name"            : "Corner Chaos",
+		"description"     : "",
 		"solo-fight"      : [2],
 		"team-fight"      : [4],
 		"vs-hedlok"       : [3],
@@ -122,5 +129,35 @@ var eventThemes = [
 		"items"           : true,
 		"streak-bonouses" : false,
 		"stages"          : [0, 1, 7, 10, 11, 13, 14],
+	},
+	{
+		"key"             : "mlm",
+		"name"            : "Restricted Competitive (MLM style)",
+		"description"     : "This theme is used for the Mega League Mondays warmup lobbies.",
+		"solo-fight"      : [2],
+		"team-fight"      : [],
+		"vs-hedlok"       : [],
+		"hedlok-scramble" : [],
+		"hoops"           : [],
+		"skillshot"       : [],
+		"v-ball"          : [],
+		"items"           : false,
+		"streak-bonouses" : false,
+		"stages"          : [3, 7, 9, 12, 13],
+	},
+	{
+		"key"             : "cote",
+		"name"            : "Extended Competitive (Era style)",
+		"description"     : "This theme is used for the Champions of the Era warmup lobbies.",
+		"solo-fight"      : [2],
+		"team-fight"      : [],
+		"vs-hedlok"       : [],
+		"hedlok-scramble" : [],
+		"hoops"           : [],
+		"skillshot"       : [],
+		"v-ball"          : [],
+		"items"           : false,
+		"streak-bonouses" : false,
+		"stages"          : [0, 1, 3, 5, 7, 9, 11, 12, 13],
 	},
 ];

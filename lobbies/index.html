@@ -18,6 +18,11 @@
 		border: 2pt solid black;
 	}
 	
+	p#next-theme-info
+	{
+		text-align: center;
+	}
+	
 	
 	#calendar {
 		width: 800px;
@@ -115,13 +120,9 @@
 	
 	function createEntry(start, end, anchor, evtype, description)
 	{
-		console.log(start);
-		console.log(end);
 		var result = "";
 		if (start.getUTCDate() != end.getUTCDate() && !(end.getUTCHours() == 0 && end.getUTCMinutes() == 0))
 		{
-			console.log("Different dates");
-			
 			var newEnd = new Date(end);
 			var updatedEnd = new Date(end);
 			updatedEnd.setUTCHours(0);
@@ -214,6 +215,14 @@
 			document.getElementById("next-section").style.display = "block";
 			result = generateBanner(880, 480, nextEventData, "next-lobby", true);
 			
+			var themeData = null;
+			for (t = 0; t < eventThemes.length; ++t)
+				if (eventThemes[t].key == nextEventData.theme)
+					themeData = eventThemes[t];
+			
+			if (themeData != null)
+				document.getElementById("next-theme-info").innerHTML = "Featuring the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a>!";
+			
 			var evStart = nextEventData.date;
 			var evEnd = getEventEnd(nextEventData);
 			convertDates([evStart, evEnd], diff);
@@ -248,6 +257,7 @@
 		<div id="next-section" style="display: none;">
 			<h3 id="next">Next Lobby Event</h3>
 			<canvas width="880" height="480" id="next-lobby"></canvas>
+			<p id="next-theme-info"></p>
 		</div>
 		
 		<h3>Upcoming Lobby Events</h3>

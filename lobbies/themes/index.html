@@ -12,6 +12,25 @@
 		display: inline-block;
 		font-weight: bold;
 	}
+	
+	.mode-options {
+		background-color: #36393f;
+		color: yellow;
+		font-weight: bold;
+		font-style: italic;
+		white-space: pre;
+		padding: 2pt 4pt;
+		margin-left: 0.5em;
+		border: 2pt solid #595d69;
+		border-radius: 4pt;
+	}
+	
+	.mode-options.option-off {
+		color: lightgray;
+	}
+	.mode-options.option-on {
+		color: yellow;
+	}
 	</style>
 	<script type="text/javascript">
 	
@@ -20,22 +39,30 @@
 		html = "";
 		if (ev[key].length > 0)
 		{
-			html += "<p><span class='mode-name'>" + name + "</span>: ";
+			html += "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  ";
 			for (s = 0; s < ev[key].length; ++s)
-				html += ev[key][s] + "P ";
-			html += "</p>"
+				html += ev[key][s] + "P  ";
+			html += "</span></p>"
 		}
 		return html;
 	}
 	
 	function load()
 	{
-		var html = "";
+		var html = "<div class='menu-container'>";
 		
 		for (i = 0; i < eventThemes.length; ++i)
 		{
 			ev = eventThemes[i];
-			html += "<h3 id='" + ev.key + "'>" + ev["name"] + "</h3>";
+			html += "<a class='menu-item m5' href='#" + ev.key + "'>" + ev.name + "</a>";
+		}
+		html += "</div>";
+		
+		for (i = 0; i < eventThemes.length; ++i)
+		{
+			ev = eventThemes[i];
+			html += "<h3 id='" + ev.key + "'>" + ev.name + "</h3>";
+			html += "<p>" + ev.description + "</p>";
 			
 			html += printMode(ev, "solo-fight", "Solo Fight");
 			html += printMode(ev, "team-fight", "Team Fight");
@@ -45,14 +72,14 @@
 			html += printMode(ev, "skillshot", "Skillshot");
 			html += printMode(ev, "v-ball", "V-ball");
 			
-			html += "<p><span class='mode-name'>Items</span>: " + (ev["items"] ? "On" : "Off") + "</p>";
-			html += "<p><span class='mode-name'>Streak Bonuses</span>: " + (ev["streak-bonuses"] ? "On" : "Off") + "</p>";
+			html += "<p><span class='mode-name'>Items</span> <span class='mode-options option-" + (ev.items ? "on" : "off") + "'>  " + (ev.items ? "On" : "Off") + "  </span></p>";
+			html += "<p><span class='mode-name'>Streak Bonuses</span> <span class='mode-options option-" + (ev["streak-bonuses"] ? "on" : "off") + "'>  " + (ev["streak-bonuses"] ? "On" : "Off") + "  </span></p>";
 			
 			html += "<div class='stage-container'>";
-			for (s = 0; s < ev["stages"].length; ++s)
+			for (s = 0; s < ev.stages.length; ++s)
 			{
 				html += "<div class='stage'>";
-				html += eventStages[ev["stages"][s]];
+				html += eventStages[ev.stages[s]];
 				html += "</div>";
 			}
 			html += "</div>";

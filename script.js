@@ -119,9 +119,7 @@ function parseEvents()
 	for (i = 0; i < eventsJSON.length; i++)
 	{
 		var eventdata = JSON.parse(eventsJSON[i]);
-		console.log("Parsed date: " + eventdata.date);
 		eventdata.date = new Date(eventdata.date);
-		console.log("As: " + eventdata.date);
 		events[i] = eventdata;
 	}
 	return events;
