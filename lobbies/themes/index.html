@@ -49,12 +49,16 @@
 	
 	function load()
 	{
+		var scrolltoid = null;
 		var html = "<div class='menu-container'>";
 		
 		for (i = 0; i < eventThemes.length; ++i)
 		{
 			ev = eventThemes[i];
 			html += "<a class='menu-item m5' href='#" + ev.key + "'>" + ev.name + "</a>";
+			
+			if (window.location.hash.substring(1) == ev.key)
+				scrolltoid = ev.key;
 		}
 		html += "</div>";
 		
@@ -86,6 +90,9 @@
 		}
 		
 		document.getElementById("themes").innerHTML += html;
+		
+		if (scrolltoid != null)
+			document.getElementById(scrolltoid).scrollIntoView();
 		
 	}
 	</script>
