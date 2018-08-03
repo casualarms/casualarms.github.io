@@ -47,6 +47,16 @@
 		right: 700px;
 	}
 	
+	#calendar .cal-divider {
+		position: absolute;
+		width: 700px;
+		border-top: 1pt dotted black;
+		z-index: 0;
+		display: inline-block;
+		text-align: right;
+		left: 100px;
+	}
+	
 	#calendar .cal-event {
 		position: absolute;
 		width: 100px;
@@ -183,6 +193,7 @@
 		{
 			var d = new Date(Date.UTC(1, 1, 1, i, 0, 0))
 			timemarks += "<span class='cal-time' style='top: " + (i * 15 + 20) + "px;'>" + formatTimeUTC(d, diff) + "</span>";
+			timemarks += "<span class='cal-divider' style='top: " + (i * 15 + 20) + "px;'></span>";
 		}
 		document.getElementById("calendar").innerHTML += timemarks;
 		
