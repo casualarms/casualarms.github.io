@@ -2,7 +2,8 @@
 // Lobby events
 var eventsJSON = [
 	'{"titleText":"Custom Party Lobby","type":0,"theme":"undefined","date":"2018-08-02T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":2}]}',
-	
+	'{"titleText":"Standard Party Lobby","type":0,"theme":"undefined","date":"2018-08-04T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Programmability","tag":"","code":"4898-5196-4000","tier":1},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Ackus","tag":"CC","code":"4014-0482-4441","tier":3}]}',
+
 ];
 
 var eventStages = {
