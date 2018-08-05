@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Leaderboard Tools - Casual ARMS</title>
+	<script type="text/javascript" src="../../events.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../../script.js"></script>
 	<style type="text/css">
 	
 	@font-face {
@@ -79,12 +81,12 @@
 		return data;
 	}
 	
-	function format(text)
+	function format(data)
 	{
-		data = parseData(text);
 		data.sort(function(a, b) {return b[1]-a[1]} );
 		
 		formatted = "";
+		formattedWeb = "'{";
 		tiercounter = tiers.length-1;
 		
 		for (var i = 0; i < data.length; ++i)
@@ -95,8 +97,12 @@
 				tiercounter--;
 			}
 			formatted += (data[i][1] + pad).slice(0, pad.length) + data[i][0] + "\n";
+			
+			var name = JSON.stringify(data[i][0]).replace(/'/g, "\\'").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+			formattedWeb += name + ":" + data[i][1] + ((i != data.length - 1) ? "," : "");
 		}
 		document.getElementById("formatted").value = formatted;
+		document.getElementById("formatted-for-web").value = formattedWeb + "}'";
 	}
 	
 	function formatTextEntry()
@@ -129,11 +135,13 @@
 		return result;
 	}
 	
-	function compare(text_new, text_old)
+	function compare(data_new, data_old)
 	{
-		data_new = parseData(text_new);
-		data_old = parseData(text_old);
+		format(data_new);
+		
 		merged = mergeData(data_old, data_new);
+		
+		console.log(merged);
 		
 		newroles = {};
 		for (t = tiers.length-1; t >= 0; --t)
@@ -170,9 +178,27 @@
 	
 	function compareTextEntry()
 	{
-		text_new = document.getElementById("input").value;
-		text_old = document.getElementById("previous").value;
+		text_new = parseData(document.getElementById("input").value);
+		text_old = parseData(document.getElementById("previous").value);
 		compare(text_new, text_old);
+	}
+	
+	function newFormat(data_new)
+	{
+		console.log(data_new);
+		data_old = [];
+		
+		var leaderboard = JSON.parse(leaderboardData);
+		console.log(leaderboard);
+		
+		for (var key in leaderboard)
+		{
+			var coins = leaderboard[key];
+			data_old.push([key, coins]);
+		}
+		
+		console.log(data_old);
+		compare(data_new, data_old);
 	}
 	
 	function compareFiles()
@@ -186,7 +212,8 @@
 	{
 		if (state == "FORMATFILE")
 		{
-			format(reader.result);
+		//	format(reader.result);
+			newFormat(parseData(reader.result));
 			state = "";
 		}
 		else if (state == "COMPAREFILES1")
@@ -201,7 +228,7 @@
 		else if (state == "COMPAREFILES2")
 		{
 			textOld = reader.result;
-			compare(textNew, textOld);
+			compare(parseData(textNew), parseData(textOld));
 			state = "";
 		}
 	}
@@ -218,22 +245,24 @@
 <body>
 	<div id="wrapper">
 		<h1>Casual ARMS Leaderboard Tools</h1>
-		<button onCLick="enableTextInput()">Manual Text Input</button>
+		<!--<button onCLick="enableTextInput()">Manual Text Input</button>-->
 		
 		<h2>Input</h2>
-		<input type="file" name="File1" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
-		<textarea name="Text1" id="input" rows="6"></textarea>
-		<button onCLick="formatTextEntry()" id="format-text-button">Format Text</button>
+		<input type="file" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
+		<!--<textarea id="input" rows="6"></textarea>
+		<button onCLick="formatTextEntry()" id="format-text-button">Format Text</button>-->
 		<br/>
 		
 		<h3>Formatted Leaderboard</h3>
-		<textarea name="Text2" id="formatted" rows="10"></textarea>
+		<textarea id="formatted" rows="6"></textarea>
+		<p>For web</p>
+		<textarea id="formatted-for-web" rows="6"></textarea>
 		
-		<h2>Previous Version Input</h2>
-		<input type="file" name="File3" id="file-old"/><button onCLick="compareFiles()">Read and Compare Files</button>
-		<textarea name="Text3" id="previous" rows="6"></textarea>
+		<!--<h2>Previous Version Input</h2>
+		<input type="file" id="file-old"/><button onCLick="compareFiles()">Read and Compare Files</button>
+		<textarea id="previous" rows="6"></textarea>
 		<button onCLick="compareTextEntry()" id="compare-text-button">Compare</button>
-		<br/>
+		<br/>-->
 		
 		<h3>New Roles</h3>
 		<div id="newroles"></div>
