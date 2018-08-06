@@ -12,13 +12,19 @@ function roundRect(ctx, x, y, w, h, r)
 	return ctx;
 }
 
-function generateBanner(width, height, eventdata, canvasid, nativeTime)
+function bannerDateString(date)
 {
 	var monthNames = [
 		"Jan.", "Feb.", "March", "April", "May", "June", 
 		"July", "August", "Sept.", "Oct.", "Nov.", "Dec."];
 	
 	var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	
+	return dayNames[date.getUTCDay()] + " " + monthNames[date.getUTCMonth()] + ' ' + date.getUTCDate();
+}
+
+function generateBanner(width, height, eventdata, canvasid, nativeTime)
+{
 	
 	var diff = timeZoneOffset(eventdata.timeZone);
 	if (nativeTime)
@@ -27,7 +33,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	var endDate = getEventEnd(eventdata);
 	convertDates([startDate, endDate], diff);
 	
-	var dateText = dayNames[startDate.getDay()] + " " + monthNames[startDate.getMonth()] + ' ' + startDate.getDate();
+	var dateText = bannerDateString(startDate);
 	var timeText = formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "");
 	
 	var isWarmup = eventdata.type == 3 || eventdata.type == 4;

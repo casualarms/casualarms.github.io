@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
 <head>
-	<title>Casual ARMS Banner Generator</title>
+	<title>Banner Generator - Casual ARMS</title>
 	<script type="text/javascript" src="../../events.js"></script>
 <style type="text/css">
 	
@@ -57,11 +57,78 @@
 	{
 		var options = "<option value='undefined' selected>---</option>";
 		for (i = 0; i < eventThemes.length; ++i)
-		{
-			ev = eventThemes[i];
-			options += "<option value='" + ev.key + "'>" + ev.name + "</option>";
-		}
+			options += "<option value='" + eventThemes[i].key + "'>" + eventThemes[i].name + "</option>";
 		document.getElementById("theme").innerHTML = options;
+		
+		// Read old events
+		var options = "";
+		var events = parseEvents();
+		for (i = 0; i < events.length; ++i)
+			options += "<option>" + bannerDateString(events[i].date) + ": " + events[i].titleText + "</option>";
+		var eventDataIndex = document.getElementById("event-history").innerHTML = options;
+	}
+	
+	
+	function fillFromEventData(eventData)
+	{
+		var date = new Date(eventData.date);
+		var diff = timeZoneOffset(eventData.timeZone);
+		convertDates([date], diff);
+		
+		document.getElementById("month").selectedIndex = date.getUTCMonth();
+		document.getElementById("day").value = date.getUTCDate();
+		document.getElementById("year").value = date.getFullYear();
+		
+		document.getElementById("start-hours").value = date.getUTCHours();
+		document.getElementById("start-minutes").value = date.getUTCMinutes();
+		
+		document.getElementById("duration-minutes").value = eventData.duration;
+		
+		document.getElementById("timezone").value = eventData.timeZone;
+		
+		var hostsList = ["A", "B", "C"];
+		
+		for (i = 0; i < hostsList.length; ++i)
+		{
+			var active = (i < eventData.hosts.length);
+			document.getElementById("name" + hostsList[i]).value         = (active ? eventData.hosts[i].name : "");
+			document.getElementById("tag"  + hostsList[i]).selectedIndex = (active ? ((eventData.hosts[i].tag == "CC") ? 1: 0) : 0);
+			document.getElementById("code" + hostsList[i]).value         = (active ? eventData.hosts[i].code : "");
+			document.getElementById("host" + hostsList[i]).selectedIndex = (active ? eventData.hosts[i].tier : 0);
+		}
+		
+		themeIndex = 0;
+		for (i = 0; i < eventThemes.length; ++i)
+		{
+			if (eventData.theme == eventThemes[i].key)
+			{
+				themeIndex = i+1;
+				break;
+			}
+		}
+		
+		document.getElementById("theme").selectedIndex = themeIndex;
+		document.getElementById("title").value = eventData.titleText
+		document.getElementById("type").selectedIndex = eventData.type
+	}
+	
+	function fillFromEventDataHistory()
+	{
+		var eventDataIndex = document.getElementById("event-history").selectedIndex;
+		var events = parseEvents();
+		var eventData = events[eventDataIndex];
+		
+		fillFromEventData(eventData);
+	}
+	
+	function fillFromEventDataJSON()
+	{
+		var json = document.getElementById("text-output").value;
+		json = json.substr(1, json.length - 3);
+		var eventdata = JSON.parse(json);
+		eventdata.date = new Date(eventdata.date);
+		
+		fillFromEventData(eventdata);
 	}
 	
 	function readAndGenerate()
@@ -69,7 +136,6 @@
 		var eventdata = {};
 		
 		// Read input from the forms
-		
 		var month = document.getElementById("month").selectedIndex;
 		var day = parseInt(document.getElementById("day").value);
 		var year = parseInt(document.getElementById("year").value);
@@ -91,7 +157,7 @@
 		{
 			var host = {};
 			host.name = document.getElementById("name" + hostsList[i]).value;
-			host.tag  = (document.getElementById("tag"  + hostsList[i]).selectedIndex == 1) ? "CC" : "";
+			host.tag  = (document.getElementById("tag" + hostsList[i]).selectedIndex == 1) ? "CC" : "";
 			host.code = document.getElementById("code" + hostsList[i]).value;
 			host.tier = document.getElementById("host" + hostsList[i]).selectedIndex;
 			if (host.name != "")
@@ -123,6 +189,11 @@
 	<body onLoad="load()">
 		<div id="wrapper">
 			<h1>Casual ARMS Banner Generator</h1>
+			<p>Start from previous event: 
+				<select id="event-history"></select>
+				<input type="button" value="Fill form from previous event" onClick="fillFromEventDataHistory()"/>
+			</p>
+			<hr/>
 			<p>
 				Title: <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
 				Type: <select id="type">
@@ -206,7 +277,10 @@
 			
 			<p><input type="button" value="Generate" onClick="readAndGenerate()"/>
 			
+			
 			<p>For warmup events, tiers will not have any effect. For Clash events, hosts will not have any effect.</p>
+			
+			<hr/>
 			
 			<img id="logo-mlm" src="logo-mlm.jpg" style="display: none;"/>
 			<img id="logo-cote" src="logo-cote.jpg" style="display: none;"/>
@@ -216,6 +290,7 @@
 			<!--<canvas width="880" height="480" id="test-canvas"></canvas>-->
 			<textarea id="text-output" rows="4"></textarea>
 			<div id="result"></div>
+			<p><input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/></p>
 		</div>
 	</body>
 </html>
