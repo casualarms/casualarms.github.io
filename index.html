@@ -8,6 +8,14 @@
 	<script type="text/javascript" src="events.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript">
+	
+	function loadWidgetData(data)
+	{
+		console.log(data);
+		
+		document.getElementById("footer-text").innerHTML = " " + data.members.length + " members online on Discord. Join now!";
+	}
+	
 	function load()
 	{
 		if (window.location.hash.indexOf("staff") !== -1)
@@ -33,6 +41,21 @@
 			document.getElementById("featured").style.display = "block";
 			result = generateBanner(880, 480, nextEventData, "test-canvas", true);
 		}
+		
+	
+		var xmlhttp = new XMLHttpRequest();
+		var url = "https://discordapp.com/api/guilds/396373087278465038/widget.json";
+		
+		xmlhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				var myArr = JSON.parse(this.responseText);
+				loadWidgetData(myArr);
+			}
+		};
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
 	}
 	
 	function checkKey(e)
@@ -66,14 +89,15 @@
 		opacity: 0.5;
 	}
 	
-	.main-menu {
-		padding-top: 1.5em;
+	#container.main-menu {
+		padding-top: 1em;
+		padding-bottom: 0;
 	}
 	
 	.main-menu h3 {
 		font-size: 1em;
 		margin-top: -0.6em;
-		margin-bottom: 0.6em;
+		margin-bottom: 0.4em;
 		opacity: 0.6;
 		text-align: right;
 		padding-right: 1em;
@@ -101,18 +125,19 @@
 	#arms-text {
 		position: absolute;
 		top: -100pt;
-		left: -180pt;
+		left: -150pt;
 		color: black;
 		opacity: 0.03;
 		z-index: 0;
-		font-size: 340pt;
+		font-size: 310pt;
 		font-family: 'ARMS';
 	}
 	
 	#m-discord      > img { width: 2.0em; left: 25pt; top: 10pt; }
 	#m-twitter      > img { width: 3.0em; left: 25pt; top: 5pt; }
-	#m-clash        > img { width: 3.5em; left: 30pt; top: 5pt; }
 	#m-lobby        > img { width: 3.2em; left: 30pt; top: -5pt; }
+	#m-leaderboards > img { width: 3.3em; left: 30pt; top: 0pt; }
+	#m-clash        > img { width: 3.5em; left: 30pt; top: 5pt; }
 	#m-screenshot   > img { width: 3.0em; left: 30pt; top: 5pt; }
 	
 	@keyframes pulse {
@@ -130,10 +155,10 @@
 	#featured
 	{
 		background-color: #1d94fc;
-		height: 80pt;
+		height: 90pt;
 		position: absolute;
 		left: -35pt;
-		top: 21em;
+		top: 230pt;
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 		transform: rotate(-2deg);
 		z-index: 10;
@@ -142,7 +167,7 @@
 	
 	#featured:hover
 	{
-		transform: rotate(-2deg) scale(1.4) translateX(20pt);
+		transform: rotate(-2deg) scale(1.3) translateX(20pt);
 	}
 	
 	#featured > .featured-left
@@ -155,7 +180,7 @@
 	
 	#featured img, #featured canvas
 	{
-		height: 70pt;
+		height: 80pt;
 		margin: 5pt 5pt 5pt 0;
 		display: inline-block;
 	}
@@ -164,6 +189,27 @@
 	{
 		text-align: center;
 		color: white;
+	}
+	
+	#discord-footer {
+		display: block;
+		background-color: #738bd7;
+		height: 35pt;
+		font-size: 1.1em;
+		line-height: 35pt;
+		text-decoration: none;
+		margin-top: 2em;
+		color: white;
+	}
+	
+	#discord-footer:hover {
+		background-color: #5c70ae;
+	}
+	
+	#discord-footer img {
+		height: 15pt;
+		position: relative;
+		top: 3pt;
 	}
 	
 	</style>
@@ -177,14 +223,15 @@
 		<span id="arms-text">ARMS</span>
 		
 		<div class="menu-container">
-			<a class="menu-item m1" id="m-discord"    href="http://discord.gg/u6cfeN9"><img src="assets/discord-logo.png"/>Discord Server</a>
-			<a class="menu-item m2" id="m-twitter"    href="https://twitter.com/casualARMS"><img src="assets/twitter-logo.png"/>Twitter Feed</a>
-			<a class="menu-item m3" id="m-lobby"      href="lobbies/"><img src="assets/lobby-logo.png"/>Lobby Events</a>
-			<a class="menu-item m3" id="m-clash"      href="clash/"><img src="assets/clash-logo.png"/>Casual Clash</a>
-			<a class="menu-item m4" id="m-screenshot" href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Contest</a>
+			<!--<a class="menu-item m1" id="m-discord"      href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/>Discord Server</a>-->
+			<!--<a class="menu-item m2" id="m-twitter"      href="https://twitter.com/casualARMS"><img src="assets/twitter-logo.png"/>Twitter Feed</a>-->
+			<a class="menu-item m1" id="m-lobby"        href="lobbies/"><img src="assets/lobby-logo.png"/>Lobby Events</a>
+			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="assets/clash-logo.png"/>Casual Clash</a>
+			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="assets/leaderboards-logo.png"/>Leaderboards</a>
+			<a class="menu-item m4" id="m-screenshot"   href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Contest</a>
 		</div>
 		
-		<h3>Tools</h3>
+		<br/>
 		
 		<div class="menu-container">
 			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
@@ -202,12 +249,11 @@
 		
 		</div>
 		
-		<h3>External</h3>
-		
 		<div class="submenu">
-			<a class="submenu-item" href="https://arms.nintendo.com"   ><img src="assets/logo-nintendo.png"/><span class="sub-text">Nintendo</span></a>
-			<a class="submenu-item" href="https://armswiki.org/"       ><img src="assets/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
+			<a class="submenu-item" href="https://twitter.com/casualARMS"   ><img src="assets/logo-twitter.png"/><span class="sub-text">Twitter</span></a>
+			<!--<a class="submenu-item" href="https://arms.nintendo.com"   ><img src="assets/logo-nintendo.png"/><span class="sub-text">Nintendo</span></a>-->
 			<a class="submenu-item" href="https://reddit.com/r/arms/"  ><img src="assets/logo-reddit.png"/><span class="sub-text">Reddit</span></a>
+			<a class="submenu-item" href="https://armswiki.org/"       ><img src="assets/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
 			<a class="submenu-item" href="https://twitch.tv/schkrimps/"><img src="assets/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
 			<a class="submenu-item long" href="https://twitter.com/SlosherWailord"><img src="assets/logo-champion.png"/><span class="sub-text">Clash Champion</span></a>
 			<a class="submenu-item extra" href="https://twitter.com/SlosherWailord">SlosherWailord</a>
@@ -217,6 +263,8 @@
 			<div class="featured-left"></div>
 			<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="test-canvas"></canvas></a>
 		</div>
+		
+		<a id="discord-footer" href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/><span id="footer-text">Join the Discord community!</span></a>
 	
 	</div>
 	

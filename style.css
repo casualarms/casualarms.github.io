@@ -16,7 +16,7 @@ body {
 	text-align: center;
 	padding-bottom: 2em;
 	background-color: yellow;
-	border: 2pt solid black;
+	border: 3pt solid black;
 	position: relative;
 	overflow: hidden;
 	transition: background-color 0.5s;
@@ -77,8 +77,8 @@ a {
 h1 {
 	text-align: center;
 	font-family: ARMS;
-	font-size: 2.5em;
-	margin: 0 auto;
+	font-size: 3.5em;
+	margin: 0.3em auto;
 	transition: 0.1s;
 }
 
@@ -86,16 +86,19 @@ h1 > a {
 	text-decoration: none;
 	color: white;
 	background-color: black;
-	padding: 0 1em;
+	padding: 0em 0.5em;
 	border-top-left-radius: 0.8em 100%;
-	border-top-right-radius: 0.8em 100%;
+	border-bottom-right-radius: 0.8em 100%;
+	border: 3pt solid black;
 	white-space: nowrap;
+	transition: 0.2s;
 }
 
 
 
 h1 > a:hover {
-	color: yellow;
+	color: black;
+	background-color: yellow;
 }
 
 h2, h3 { font-family: 'ARMS'; }
@@ -143,7 +146,7 @@ a.menu-item {
 	font-style: italic;
 	padding: 0.2em 70pt 0.2em 0;
 	border-top-left-radius: 1em 100%;
-	margin: -0.15em auto;
+	margin: -0.1em auto;
 	z-index: 1;
 	transition: 0.2s background-color;
 }
@@ -151,8 +154,8 @@ a.menu-item {
 
 .m1 { font-size: 3.5em !important; }
 .m2 { font-size: 3.0em !important; }
-.m3 { font-size: 2.2em !important; }
-.m4 { font-size: 1.6em !important; }
+.m3 { font-size: 2.5em !important; }
+.m4 { font-size: 1.8em !important; }
 .m5 { font-size: 1.3em !important; }
 
 
@@ -164,7 +167,7 @@ a.menu-item:hover, a.menu-item:active {
 }
 
 .submenu {
-	margin-top: 1.5em;
+	margin-top: 2.2em;
 	margin-left: 7.5em;
 }
 
@@ -172,7 +175,6 @@ a.submenu-item {
 	text-decoration: none;
 	display: inline-block;
 	position: relative;
-	margin: 0 0.1em;
 	font-size: 0.8em;
 	width: 6em;
 	font-style: italic;
