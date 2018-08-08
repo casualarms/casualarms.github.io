@@ -1,0 +1,359 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Quiz - Casual ARMS</title>
+	<link rel="stylesheet" href="../style.css">
+	<script type="text/javascript" src="../script.js"></script>
+	<script type="text/javascript" src="../database.js"></script>
+	<script type="text/javascript">
+	
+	var questionCount = 5;
+	
+	function checkKey(e)
+	{
+		e = e || window.event;
+		var key = parseInt(e.keyCode);
+		if (key >= 49 && key <= 57)
+		{
+			var option = key - 49;
+			answer(option);
+		}
+	}
+	document.onkeydown = checkKey;
+	
+	var qs = [];
+	var qi = 0;
+	var qCorrect = 0;
+	var qID = null;
+	
+	var didAnswer = false;
+	
+	function generateNewID(length)
+	{
+		var characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		var id = "";
+		for (var i = 0; i < length; ++i)
+			id += characters[Math.floor(Math.random() * characters.length)];
+		return id;
+	}
+	
+	function assignQuestions(PRNG, count)
+	{
+		for (var i = 0; i < count; ++i)
+		{
+			qs.push(generateQuestion(PRNG));
+		}
+		console.log(qs);
+	}
+	
+	function updateQuestion()
+	{
+		console.log("New question: " + qi);
+		
+		document.getElementById("question").classList = "";
+		document.getElementById("q-options").style.display = "block";
+		document.getElementById("q-result").style.display = "none";
+		
+		document.getElementById("q-heading").innerHTML = "Question " + (qi + 1);
+		document.getElementById("q-title").innerHTML = qs[qi].question;
+		document.getElementById("q-answer").innerHTML = "Select an answer!";
+		
+		
+		for (o = 0; o < 9; ++o)
+		{
+			document.getElementById("opt-" + o).classList = "q-option";
+			if (o < qs[qi].options.length)
+			{
+				document.getElementById("opt-" + o).innerHTML = qs[qi].options[o];
+				document.getElementById("opt-" + o).style.display = "inline-block";
+			}
+			else
+				document.getElementById("opt-" + o).style.display = "none";
+		}
+		
+	}
+	
+	function answer(ansIndex)
+	{
+		if (didAnswer)
+		{
+			continueOn();
+			return;
+		}
+		
+		didAnswer = true;
+		
+		var correct = (qs[qi].options[ansIndex] == qs[qi].answer);
+		var color = correct ? "yellow" : "black";
+		
+		qCorrect += (correct ? 1 : 0);
+		
+		document.getElementById("indicator-" + qi).style.color = color;
+		document.getElementById("opt-" + ansIndex).classList += (correct ? " q-right" : " q-wrong");
+		
+		document.getElementById("q-answer").innerHTML = qs[qi].trivia + "<br/>Click to continue!";
+	}
+	
+	function showScore()
+	{
+		document.getElementById("q-options").style.display = "none";
+		document.getElementById("q-result").style.display = "block";
+		
+		document.getElementById("q-heading").innerHTML = "Results";
+		document.getElementById("q-title").innerHTML = "You scored " + qCorrect + " out of " + questionCount + " correct answers!";
+		document.getElementById("q-answer").innerHTML = "<a href='https://www.casualarms.net/quiz/?id=" + qID + "'>Try again</a> – <a href='https://www.casualarms.net/quiz/'>Try a new one</a>";
+		
+		var ratio = qCorrect / questionCount;
+		var rank = rankNames[Math.floor(ratio * 14)];
+		
+		document.getElementById("q-result").innerHTML = "<p>You are a <br/><span id='q-rank'>" + rank + "</span></p>";
+		
+		if (qCorrect == questionCount)
+			document.getElementById("question").classList = "perfect";
+		
+	}
+	
+	function continueOn()
+	{
+		if (didAnswer)
+		{
+			qi++;
+			
+			if (qi < questionCount)
+			{
+				didAnswer = false;
+				updateQuestion();
+			}
+			else
+				showScore();
+		}
+	}
+	
+	
+	function load()
+	{
+		var questionSeed = getQueryVariable("id");
+		
+		if (questionSeed != undefined)
+			qID = questionSeed;
+		else
+			qID = generateNewID(6);
+		
+		var indicators = "";
+		for (var i = 0; i < questionCount; i++)
+			indicators += "<span class='q-indicator' id='indicator-" + i + "'>&#9679;</span> ";
+		document.getElementById("indicators").innerHTML = indicators;
+		
+		document.getElementById("share").innerHTML = "Share this quiz:<br/><a href='https://www.casualarms.net/quiz/?id=" + qID + "'>https://www.casualarms.net/quiz/?id=" + qID + "</a>";
+		
+		PRNG = Math.seed(qID.hashCode());
+		assignQuestions(PRNG, questionCount);
+		updateQuestion();
+	}
+	
+	</script>
+	
+	<style type="text/css">
+	
+	#container {
+		background-color: #555;
+	}
+	
+	#container p {
+		color: white;
+	}
+	
+	#container a {
+		color: yellow;
+	}
+		
+	#question {
+		width: 380pt;
+		background-color: #bbb;
+		border: 4pt solid #adadad;
+		border-radius: 30pt;
+		margin: 4em auto 3em auto;
+		padding: 0 20pt;
+		background: radial-gradient(rgba(238, 238, 238, 1) 46.64%, rgba(177, 177, 177, 1));
+		box-shadow: 0 0 20pt #333;
+		transition: 1s;
+	}
+	
+	#question.perfect {
+		background-color: #bbb;
+		border: 4pt solid #d7e305;
+		background: radial-gradient(#feffa1 46.64%, yellow);
+	}
+	
+	h3#q-heading {
+		border: none;
+		font-family: ARMS;
+		font-size: 3.8em;
+		color: #eee;
+		text-shadow: 1pt 3pt 2pt #666;
+		margin: -35pt 0 0 0;
+		white-space: nowrap;
+	}
+	
+	.perfect h3#q-heading {
+		color: rgb(255, 219, 56);
+	}
+	
+	p#q-title {
+		text-align: center !important;
+		padding: 0;
+		font-size: 18pt;
+		font-style: italic;
+		font-weight: bold;
+		color: #444;
+		margin: 0.7em;
+	}
+	
+	p#q-answer {
+		text-align: center !important;
+		width: 80%;
+		font-style: italic;
+		font-weight: bold;
+		background-color: rgba(240, 240, 240, 0.5);
+		color: #555;
+		padding: 1em;
+		min-height: 2.5em;
+		border-bottom-left-radius: 15pt;
+		border-bottom-right-radius: 15pt;
+		margin: 1.2em auto 0.6em auto;
+	}
+	
+	p#q-answer > a {
+		color: black;
+	}
+	
+	#question .q-option {
+		display: inline-block;
+		width: 75%;
+		font-size: 1.1em;
+		line-height: 30pt;
+		background-color: #777;
+		margin: 4pt 0;
+		color: white;
+		box-shadow: 0px 0px 5px #bbb;
+		
+		border-top-left-radius: 1.3em 100%;
+		border-bottom-right-radius: 1.3em 100%;
+		font-weight: bold;
+		font-style: italic;
+		text-transform: capitalize;
+		
+		transition: 0.3s;
+	}
+	
+	#question .q-option.q-right {
+		background-color: yellow !important;
+		color: black !important;
+	}
+	
+	#question .q-option.q-wrong {
+		background-color: black !important;
+		color: white !important;
+	}
+	
+	#question .q-option:hover {
+		background-color: #777;
+		transform: scale(1.1);
+	}
+	
+	p#indicators {
+		color: white;
+		text-align: center;
+		font-size: 15pt;
+		margin: 0.6em;
+		text-shadow: 0 0 2pt #888;
+	}
+	
+	.q-indicator {
+		color: white;
+	}
+	
+	div#q-result {
+		margin: 0 auto;
+		width: 70%;
+		padding: 0.1em 0.5em;
+		background-color: white;
+		color: #999;
+		border-top-left-radius: 3em 100%;
+		border-bottom-right-radius: 3em 100%;
+	}
+	
+	div#q-result p {
+		text-align: center !important;
+		padding: 0;
+		font-size: 18pt;
+		font-style: italic;
+		font-weight: bold;
+		color: #777;
+		margin: 0.5em 0.5em 0.8em 0.5em;
+	}
+	
+	.perfect div#q-result, .perfect p#q-answer {
+		background-color: rgb(255, 219, 56);
+		color: rgb(121, 117, 18) !important;
+	}
+	
+	.perfect div#q-result p {
+		color: rgb(121, 117, 18) !important;
+	}
+	
+	#q-rank {
+		font-family: ARMS;
+		font-size: 1.5em;
+	}
+	
+	p#share {
+		text-align: center;
+	}
+		
+		
+	</style>
+</head>
+
+<body onLoad="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		
+		<h2>Community quiz</h2>
+		
+		<p>Challenge yourself with a quiz about ARMS information, including statistics and trivia! And why not compare your score with a friend when you're done. A direct link to this exact question set can be found below.</p>
+		
+		<p id="share"></p>
+		
+		<div id="question">
+			<h3 id="q-heading">Loading...</h3>
+			<p id="q-title">Question</p>
+			
+			<div id="q-options">
+				<a class="q-option" id="opt-0" onClick="answer(0);">Option 1</a>
+				<a class="q-option" id="opt-1" onClick="answer(1);">Option 2</a>
+				<a class="q-option" id="opt-2" onClick="answer(2);">Option 3</a>
+				<a class="q-option" id="opt-3" onClick="answer(3);">Option 4</a>
+				<a class="q-option" id="opt-4" onClick="answer(4);">Option 5</a>
+				<a class="q-option" id="opt-5" onClick="answer(5);">Option 6</a>
+				<a class="q-option" id="opt-6" onClick="answer(6);">Option 7</a>
+				<a class="q-option" id="opt-7" onClick="answer(7);">Option 8</a>
+				<a class="q-option" id="opt-8" onClick="answer(8);">Option 9</a>
+			</div>
+			<div id="q-result">
+				<p>You are a <br/><span id='q-rank'>Whirlpool</span></p>
+			</div>
+			
+			<p id="q-answer" onClick="continueOn();"></p>
+			
+			<p id="indicators"></p>
+			
+		</div>
+		
+		
+		<p>The database behind the quiz is based on information and statistics taken from official Nintendo sources as well as the <a href="https://armswiki.org/">ARMS Institite Wiki</a>.
+			The system auto-generates questions from over 30 different templates, making for tens of thousands of possible questions (not counting variations in answer options). If you find an error, contact the webmaster via <a href="mailto:contact@casualarms.net">email</a> or Discord DM (<em>@programmability</em>).</p>
+	
+</div>
+
+</body>

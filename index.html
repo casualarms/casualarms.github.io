@@ -11,8 +11,6 @@
 	
 	function loadWidgetData(data)
 	{
-		console.log(data);
-		
 		document.getElementById("footer-text").innerHTML = " " + data.members.length + " members online on Discord. Join now!";
 	}
 	
@@ -31,7 +29,9 @@
 			document.getElementById("event-id").className += " event " + currentEvent[0] + "-event";
 		}
 		
-		document.getElementById("random-fact").innerHTML = randomFact();
+		var PRNG = Math.seed(Math.random()*10000);
+		
+		document.getElementById("random-fact").innerHTML = generateQuestion(PRNG).trivia;
 		
 		
 		
@@ -264,7 +264,7 @@
 			<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="test-canvas"></canvas></a>
 		</div>
 		
-		<a id="discord-footer" href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/><span id="footer-text">Join the Discord community!</span></a>
+		<a id="discord-footer" href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/><span id="footer-text"> Join the Discord community!</span></a>
 	
 	</div>
 	
