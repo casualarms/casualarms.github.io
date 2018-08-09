@@ -1,17 +1,17 @@
 // name, size, girth, speed, jumping, base grab, default ARMS (indexes ARMS table)
 
 var fighterStats = [
-	["Spring Man",   3, 3, 3, 3, 150, [ 0,  1,  2]],
+	["Spring Man",   3, 3, 3, 3, 150, [ 0,  1,  2]], // 0
 	["Ribbon Girl",  2, 2, 3, 4, 150, [ 3,  4,  5]],
 	["Ninjara",      3, 3, 5, 4, 150, [ 6,  7,  8]],
 	["Master Mummy", 5, 5, 1, 1, 200, [ 9, 10, 11]],
 	["Min Min",      2, 1, 3, 3, 150, [12, 13, 14]],
-	["Mechanica",    5, 4, 2, 2, 160, [15, 16, 17]],
+	["Mechanica",    5, 4, 2, 2, 160, [15, 16, 17]], // 5
 	["Twintelle",    4, 3, 3, 3, 160, [18, 19, 20]],
 	["Byte & Barq",  4, 2, 3, 3, 150, [21, 22, 23]],
 	["Kid Cobra",    3, 5, 2, 5, 170, [24, 25, 26]],
 	["Helix",        2, 3, 3, 3, 150, [27, 28, 29]],
-	["Max Brass",    4, 4, 3, 3, 170, [30, 31, 32]],
+	["Max Brass",    4, 4, 3, 3, 170, [30, 31, 32]], // 10
 	["Lola Pop",     4, 3, 3, 4, 150, [33, 34, 35]],
 	["Misango",      4, 3, 3, 3, 160, [36, 37, 38]],
 	["Springtron",   3, 3, 3, 3, 150, [ 0,  1,  2]],
@@ -118,11 +118,22 @@ var rankNames = [
 	"Cyclone", "Aurora", "Solar Flare", "Galaxy", "Supernova",
 ];
 
-/*
+
 var partyCrash = [
-	[[0,1], [2,4], [], [], [], [], [], []],
-		]
-];*/
+	[ 0,  1, 62, "Battle for Stardom",],
+	[ 2,  4, 58, "Martial Arts Mash-Up",],
+	[ 3,  6, 49, "That's a Wrap"],
+	[11, 12, 57, "New Face-Off"],
+	[13,  8, 53, "Innovative Metal"],
+	[ 5,  7, 51, "Shake the Rush Off"],
+	[10, 14, 52, "Best Frenemies"],
+	[ 4,  9, 55, "Stretch to the Limit"],
+	[ 0,  2, 48, "Conflict of Interests"],
+	[ 3, 10, 49, "Beef on Beef"],
+	[ 1,  6, 52, "Star Power Showdown"],
+	[ 4,  8, 51, "Serpents"],
+	[ 5, 13, 39, "Metal Meets Metal"],
+];
 
 
 var armWeights = ["light", "medium", "heavy"];
@@ -215,16 +226,28 @@ function offsetIntervalMin(PRNG, center, step, count, min)
 	return intervalStep(start, step, count);
 }
 
+function formatOrdinal(nr)
+{
+	if (nr % 10 == 1 && nr % 100 != 11)
+		return nr + "st";
+	else if (nr % 10 == 2 && nr % 100 != 12)
+		return nr + "nd";
+	else if (nr % 10 == 3 && nr % 100 != 13)
+		return nr + "rd";
+	else
+		return nr + "th";
+}
+
 
 
 
 function generateQuestion(PRNG)
 {
-	var question_count = 35;
+	var question_count = 44;
 	
 	var rand = randomNumber(PRNG, question_count);
 	
-	var q, ans, opts, trivia;
+	var q, ans, opts, trivia, image;
 	
 	switch (rand)
 	{
@@ -293,11 +316,15 @@ function generateQuestion(PRNG)
 			trivia = fighterStats[fighter][0] + " is affiliated with " + ans + ".";
 			break;
 			
-		case 13: // fighter affiliation, inverse // has bug with repeats
+		case 13: // fighter affiliation, inverse
 			var fighter = randomNumber(PRNG, fighterStats.length);
 			q = "Which fighter is affiliated with " + affiliations[fighter] + "?";
 			ans = fighterStats[fighter][0];
-			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), [ans])));
+			var avoid = [];
+			for (var f = 0; f < fighterStats.length; f++)
+				if (affiliations[f] == affiliations[fighter])
+					avoid.push(fighterStats[f][0]);
+			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), avoid)));
 			trivia = ans + " is affiliated with " + affiliations[fighter] + ".";
 			break;
 			
@@ -309,11 +336,15 @@ function generateQuestion(PRNG)
 			trivia = fighterStats[fighter][0] + " is voiced by " + ans + ".";
 			break;
 			
-		case 15: // voice actor, inverse (has a bug with repeat actors)
+		case 15: // voice actor, inverted
 			var fighter = randomNumber(PRNG, fighterStats.length);
 			q = "Which fighter did " + voiceActors[fighter] + " do voice acting for?";
 			ans = fighterStats[fighter][0];
-			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), [ans])));
+			var avoid = [];
+			for (var f = 0; f < fighterStats.length; f++)
+				if (voiceActors[f] == voiceActors[fighter])
+					avoid.push(fighterStats[f][0]);
+			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), avoid)));
 			trivia = ans + " is voiced by " + voiceActors[fighter] + ".";
 			break;
 			
@@ -397,7 +428,6 @@ function generateQuestion(PRNG)
 			trivia = "The " + armStatsMap[stat-1] + " damage of " + armsStats[arm][0] + " is " + ans + " (base version, excl. secondary effects).";
 			break;
 		
-		
 		case 26: // Plus ARM uncharged damage
 		case 27: // Plus ARM charged damage
 			var arm = randomNumber(PRNG, armsStats.length);
@@ -407,19 +437,50 @@ function generateQuestion(PRNG)
 			opts = offsetInterval(PRNG, ans, 5, 5);
 			trivia = "The " + armStatsMap[stat-1] + " damage of " + armsStats[arm][0] + "+ is " + ans + " (excl. secondary effects).";
 			break;
+			
+		case 28: // (standard or plus) ARM uncharged damage, comparision
+		case 29: // (standard or plus) ARM charged damage, comparision
+			var arm1 = randomNumber(PRNG, armsStats.length);
+			var arm2 = randomNumberButNot(PRNG, armsStats.length, [arm1]);
+			var stat = rand - 27; // 1 or 2
+			q = "How does the " + armStatsMap[stat-1] + " damage of " + armsStats[arm1][0] + " compare to that of " + armsStats[arm2][0] + " (excl. secondary effects)?";
+			
+			ans = "equal to";
+			if (armsStats[arm1][stat] > armsStats[arm2][stat])
+				ans = "greater than";
+			else if (armsStats[arm1][stat] < armsStats[arm2][stat])
+				ans = "lesser than";
+			
+			opts = ["greater than", "equal to", "lesser than"];
+			trivia = "The " + armStatsMap[stat-1] + " damage of " + armsStats[arm1][0] + " is " + ans + " that of " + armsStats[arm2][0] + " (excl. secondary effects).";
+			break;
 		
-		case 28: // ARM rush damage
+		case 30: // ARM rush damage
 			var arm = randomNumber(PRNG, armsStats.length);
-			var stat = rand - 25; // 3
-			q = "What is the " + armStatsMap[stat-1] + " damage of " + armsStats[arm][0] + " (excl. secondary effects)?";
-			ans = armsStats[arm][stat];
+			q = "What is the " + armStatsMap[2] + " damage of " + armsStats[arm][0] + " (excl. secondary effects)?";
+			ans = armsStats[arm][3];
 			opts = offsetInterval(PRNG, ans, 5, 5);
-			trivia = "The " + armStatsMap[stat-1] + " damage of " + armsStats[arm][0] + " is " + ans + " (excl. secondary effects).";
+			trivia = "The " + armStatsMap[2] + " damage of " + armsStats[arm][0] + " is " + ans + " (excl. secondary effects).";
+			break;
+		
+		case 31: // ARM rush damage, comparision
+			var arm1 = randomNumber(PRNG, armsStats.length);
+			var arm2 = randomNumberButNot(PRNG, armsStats.length, [arm1]);
+			q = "How does the " + armStatsMap[2] + " damage of " + armsStats[arm1][0] + " compare to that of " + armsStats[arm2][0] + " (excl. secondary effects)?";
+			
+			ans = "equal to";
+			if (armsStats[arm1][3] > armsStats[arm2][3])
+				ans = "greater than";
+			else if (armsStats[arm1][3] < armsStats[arm2][3])
+				ans = "lesser than";
+			
+			opts = ["greater than", "equal to", "lesser than"];
+			trivia = "The " + armStatsMap[2] + " damage of " + armsStats[arm1][0] + " is " + ans + " that of " + armsStats[arm2][0] + " (excl. secondary effects).";
 			break;
 		
 		
 		
-		case 29: // ARM element
+		case 32: // ARM element
 			var arm = randomNumber(PRNG, armsStats.length);
 			q = "What is the element of " + armsStats[arm][0] + "?";
 			ans = armsStats[arm][6];
@@ -427,7 +488,7 @@ function generateQuestion(PRNG)
 			trivia = "The element of " + armsStats[arm][0] + " is " + ans + ".";
 			break;
 		
-		case 30: // ARM weight
+		case 33: // ARM weight
 			var arm = randomNumber(PRNG, armsStats.length);
 			q = "What is the weight class of " + armsStats[arm][0] + "?";
 			ans = armsStats[arm][7];
@@ -435,7 +496,7 @@ function generateQuestion(PRNG)
 			trivia = armsStats[arm][0] + " is a " + ans + " ARM.";
 			break;
 		
-		case 31: // combined grab damage
+		case 34: // combined grab damage
 			var fighter = randomNumber(PRNG, fighterStats.length);
 			var arm1 = randomNumber(PRNG, armsStats.length);
 			var arm2 = randomNumberButNot(PRNG, armsStats.length, [arm1]);
@@ -445,7 +506,7 @@ function generateQuestion(PRNG)
 			trivia = "The grab damage of " + fighterStats[fighter][0] + " using " + armsStats[arm1][0] + "+ and " + armsStats[arm2][0] + "+ is " + ans + ".";
 			break;
 		
-		case 32: // combined rush damage
+		case 35: // combined rush damage
 			var arm1 = randomNumber(PRNG, armsStats.length);
 			var arm2 = randomNumberButNot(PRNG, armsStats.length, [arm1]);
 			q = "What is the maximum rush damage when using " + armsStats[arm1][0] + " and " + armsStats[arm2][0] + " (excl. secondary effects)?";
@@ -454,7 +515,7 @@ function generateQuestion(PRNG)
 			trivia = "The maximum rush damage when using " + armsStats[arm1][0] + " and " + armsStats[arm2][0] + " is " + ans + " (excl. secondary effects).";
 			break;
 		
-		case 33: // Weight count
+		case 36: // Weight count
 			var weight = randomNumber(PRNG, armWeights.length);
 			q = "How many ARMS are of the " + armWeights[weight] + " class?";
 			ans = weightCount[armWeights[weight]];
@@ -462,7 +523,7 @@ function generateQuestion(PRNG)
 			trivia = ans + " ARMS are of the " + armWeights[weight] + " weight class.";
 			break;
 		
-		case 34: // Element count
+		case 37: // Element count
 			var element = randomNumber(PRNG, armElements.length);
 			q = "How many ARMS have " + ((element != 0) ? " the " + armElements[element] : " no" ) + " element?";
 			ans = elementCount[armElements[element]];
@@ -470,7 +531,7 @@ function generateQuestion(PRNG)
 			trivia = ans + " ARMS have " + ((element != 0) ? " the " + armElements[element] : " no" ) + " element.";
 			break;
 		
-		case 35: // Default ARMS
+		case 38: // Default ARMS
 			var fighter = randomNumber(PRNG, fighterStats.length);
 			var defaultarms = [armsStats[fighterStats[fighter][6][0]][0], armsStats[fighterStats[fighter][6][1]][0], armsStats[fighterStats[fighter][6][2]][0]];
 			q = "Which is one of " + fighterStats[fighter][0] + "'s default ARMS?";
@@ -479,8 +540,58 @@ function generateQuestion(PRNG)
 			trivia = "One of " + fighterStats[fighter][0] + "'s default ARMS is " + ans + ".";
 			break;
 		
+		// PARTY CRASH
+		
+		case 39: // Party Crash, matchup
+			var crash = randomNumber(PRNG, partyCrash.length);
+			var pick = randomNumber(PRNG, 2);
+			q = "Who did " + fighterStats[partyCrash[crash][pick]][0] + " go up against in the " + formatOrdinal(crash+1) + " Party Crash?";
+			ans = fighterStats[partyCrash[crash][((pick == 1) ? 0 : 1)]][0];
+			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), [ans])));
+			trivia = fighterStats[partyCrash[crash][pick]][0] + " faced " + ans + " in the " + formatOrdinal(crash+1) + " Party Crash.";
+			break;
+		
+		case 40: // Party Crash, title
+			var crash = randomNumber(PRNG, partyCrash.length);
+			var pick = randomNumber(PRNG, 2);
+			q = "What was the title of the " + formatOrdinal(crash+1) + " Party Crash?";
+			ans = partyCrash[crash][3];
+			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(partyCrash, 3), [ans])));
+			trivia = "The " + formatOrdinal(crash+1) + " Party Crash was titled " + ans + ".";
+			break;
+		
+		case 41: // Party Crash, win percentage
+			var crash = randomNumber(PRNG, partyCrash.length);
+			var pick = randomNumber(PRNG, 2);
+			var other = fighterStats[partyCrash[crash][((pick == 1) ? 0 : 1)]][0];
+			var perc = (pick == 0) ? partyCrash[crash][2] : (100 - partyCrash[crash][2]);
+			q = "What win percentage did " + fighterStats[partyCrash[crash][pick]][0] + " get in the Party Crash against " + other + "?";
+			ans = perc + " %";
+			opts = offsetIntervalMin(PRNG, perc, 2, 5, 0);
+			for (var o = 0; o < opts.length; ++o) opts[o] = opts[o] + " %";
+			trivia = fighterStats[partyCrash[crash][pick]][0] + " got a win percentage of " + ans + " in the Party Crash against " + other + ".";
+			break;
+		
+		
+		
+		case 42: // fighter title, inverted
+			var fighter = randomNumber(PRNG, fighterStats.length);
+			q = "Which fighter goes under the title " + fighterTitles[fighter] + "?";
+			ans = fighterStats[fighter][0];
+			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), [ans])));
+			trivia = fighterTitles[fighter] + " is the title of " + ans + ".";
+			break;
+		
+		case 43: // Fighter signature
+			var fighter = randomNumber(PRNG, fighterStats.length);
+			q = "Which fighter is this the signature of?";
+			image = "assets/sig-" + ((fighter < 10) ? "0" + fighter : fighter) + ".png";
+			ans = fighterStats[fighter][0];
+			opts = shuffle([ans].concat(pickNButNot(PRNG, 4, extractIndexAsArray(fighterStats, 0), [ans])));
+			trivia = fighterTitles[fighter] + " is the title of " + ans + ".";
+			break;
 	}
 	
-	return {"question": q, "answer": ans, "options": opts, "trivia": trivia};
+	return {"question": q, "answer": ans, "options": opts, "trivia": trivia, "image": image};
 }
 

@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="../database.js"></script>
 	<script type="text/javascript">
 	
-	var questionCount = 5;
+	var questionCount = 10;
 	
 	function checkKey(e)
 	{
@@ -43,13 +43,10 @@
 		{
 			qs.push(generateQuestion(PRNG));
 		}
-		console.log(qs);
 	}
 	
 	function updateQuestion()
 	{
-		console.log("New question: " + qi);
-		
 		document.getElementById("question").classList = "";
 		document.getElementById("q-options").style.display = "block";
 		document.getElementById("q-result").style.display = "none";
@@ -57,6 +54,15 @@
 		document.getElementById("q-heading").innerHTML = "Question " + (qi + 1);
 		document.getElementById("q-title").innerHTML = qs[qi].question;
 		document.getElementById("q-answer").innerHTML = "Select an answer!";
+		
+		if (qs[qi].image)
+		{
+			document.getElementById("q-image").style.display = "block";
+			document.getElementById("q-image").src = qs[qi].image;
+		}
+		else {
+			document.getElementById("q-image").style.display = "none";
+		}
 		
 		
 		for (o = 0; o < 9; ++o)
@@ -97,6 +103,7 @@
 	function showScore()
 	{
 		document.getElementById("q-options").style.display = "none";
+		document.getElementById("q-image").style.display = "none";
 		document.getElementById("q-result").style.display = "block";
 		
 		document.getElementById("q-heading").innerHTML = "Results";
@@ -106,7 +113,9 @@
 		var ratio = qCorrect / questionCount;
 		var rank = rankNames[Math.floor(ratio * 14)];
 		
-		document.getElementById("q-result").innerHTML = "<p>You are a <br/><span id='q-rank'>" + rank + "</span></p>";
+		var rankPrefix = "a";
+		if (rank == "Aurora") rankPrefix = "an";
+		document.getElementById("q-result").innerHTML = "<p>You are " + rankPrefix + "<br/><span id='q-rank'>" + rank + "</span></p>";
 		
 		if (qCorrect == questionCount)
 			document.getElementById("question").classList = "perfect";
@@ -310,6 +319,13 @@
 	p#share {
 		text-align: center;
 	}
+	
+	#q-image {
+		max-width: 200pt;
+		max-height: 100pt;
+		margin: 1em auto;
+		display: none;
+	}
 		
 		
 	</style>
@@ -328,6 +344,7 @@
 		<div id="question">
 			<h3 id="q-heading">Loading...</h3>
 			<p id="q-title">Question</p>
+			<img id="q-image"/>
 			
 			<div id="q-options">
 				<a class="q-option" id="opt-0" onClick="answer(0);">Option 1</a>
