@@ -51,6 +51,15 @@ function shuffle(array)
 	return array;
 }
 
+function escapeHTML(str)
+{
+	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, '&quot;');
+}
+
+function unEscapeHTML(str)
+{
+	return str.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+}
 
 function getTimeZoneDiff()
 {

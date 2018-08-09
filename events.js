@@ -1,12 +1,13 @@
 
 // Lobby events
 var eventsJSON = [
-	'{"titleText":"Thumpin Thursday","type":0,"theme":"undefined","date":"2018-08-09T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":1},{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":3}]}',
-	'{"titleText":"Standard Party Lobby","type":0,"theme":"everything","date":"2018-08-04T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Programmability","tag":"","code":"4898-5196-4000","tier":1},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Ackus","tag":"CC","code":"4014-0482-4441","tier":3}]}',
-	'{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-08-05T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0},{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}]}',
-	'{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-08-06T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Fang","tag":"CC","code":"8434-0819-1597","tier":1},{"name":"Program","tag":"","code":"4898-5196-4000","tier":2}]}',
-	'{"titleText":"Wildcard Wednesday","type":0,"theme":"teambuilding-near-far","date":"2018-08-08T22:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":1},{"name":"Marie","tag":"CC","code":"5693-4645-2698","tier":3}]}',
-		
+	"{\"titleText\":\"Custom Party Lobby\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-02T18:00:00.000Z\",\"duration\":120,\"timeZone\":\"GMT\",\"hosts\":[{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":2}]}",
+	"{\"titleText\":\"Standard Party Lobby\",\"type\":0,\"theme\":\"everything\",\"date\":\"2018-08-04T18:00:00.000Z\",\"duration\":120,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Programmability\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Literary\",\"tag\":\"\",\"code\":\"4704-7597-7783\",\"tier\":2},{\"name\":\"Ackus\",\"tag\":\"CC\",\"code\":\"4014-0482-4441\",\"tier\":3}]}",
+	"{\"titleText\":\"Fights Only Lobby\",\"type\":4,\"theme\":\"cote\",\"date\":\"2018-08-05T20:45:00.000Z\",\"duration\":60,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Literary\",\"tag\":\"\",\"code\":\"4704-7597-7783\",\"tier\":0},{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":0}]}",
+	"{\"titleText\":\"Fights Only Lobby\",\"type\":3,\"theme\":\"mlm\",\"date\":\"2018-08-06T20:45:00.000Z\",\"duration\":60,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Fang\",\"tag\":\"CC\",\"code\":\"8434-0819-1597\",\"tier\":1},{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":2}]}",
+	"{\"titleText\":\"Wildcard Wednesday\",\"type\":0,\"theme\":\"teambuilding-near-far\",\"date\":\"2018-08-08T22:00:00.000Z\",\"duration\":120,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Marie\",\"tag\":\"CC\",\"code\":\"5693-4645-2698\",\"tier\":3}]}",
+	"{\"titleText\":\"Thumpin' Thursday\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-09T18:00:00.000Z\",\"duration\":120,\"timeZone\":\"GMT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":3}]}",
+	
 ];
 
 var leaderboardData = [

@@ -130,7 +130,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	ctx.font = titleFont;
 	ctx.textAlign = "center";
 	ctx.fillStyle = titleColor;
-	ctx.fillText(eventdata.titleText, 280, 152);
+	ctx.fillText(unEscapeHTML(eventdata.titleText), 280, 152);
 	ctx.fillText("Lobby Host" + pluralHosts, 290 + (isWarmup ? 250 : 0), 302);
 	
 	// Time and date
@@ -166,7 +166,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.font = hostsFont;
 		ctx.fillStyle = hostsColor;
 		ctx.textAlign = "left";
-		ctx.fillText(eventdata.hosts[i].name + "  " + eventdata.hosts[i].code, hOffset, vOffset);
+		ctx.fillText(unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code), hOffset, vOffset);
 		
 		if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts.length > 1)
 		{
