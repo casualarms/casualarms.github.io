@@ -26,46 +26,53 @@
 	
 	
 	#calendar {
-		width: 800px;
-		height: 380px;
+		width: 95%;
+		max-width: 700px;
+		height: 336px;
 		border: 2pt solid black;
 		margin: 1em auto;
 		position: relative;
+		background-color: rgb(255, 255, 170);
 	}
 	
 	#calendar div {
 		position: absolute;
-		width: 100px;
-		border-right: 1px dashed black;
-		height: 380px;
+		width: 12.5%;
+		border-right: 1px solid black;
+		height: 100%;
 	}
 	
 	#calendar .cal-time {
 		text-align: left;
 		position: absolute;
-		width: 98px;
-		border-top: 1pt dotted black;
+		width: 12.5%;
+		border-top: 1pt solid white;
 		padding-right: 2px;
 		font-size: 0.8em;
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
-		right: 700px;
+		color: white;
+		right: 87.5%;
 	}
 	
 	#calendar .cal-divider {
 		position: absolute;
-		width: 700px;
+		width: 87.5%;
 		border-top: 1pt dotted black;
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
-		left: 100px;
+		left: 12.5%;
+	}
+	
+	#calendar .cal-time:nth-of-type(1), #calendar .cal-divider:nth-of-type(2) {
+		border: none;
 	}
 	
 	#calendar .cal-event {
 		position: absolute;
-		width: 100px;
+		width: 12.5%;
 		background-color: #1d94fc;
 		color: white;
 		overflow: hidden;
@@ -92,28 +99,47 @@
 		display: inline;
 	}
 	
-	#cal-times     { left:   0px; }
-	#cal-monday    { left: 100px; }
-	#cal-tuesday   { left: 200px; }
-	#cal-wednesday { left: 300px; }
-	#cal-thursday  { left: 400px; }
-	#cal-friday    { left: 500px; }
-	#cal-saturday  { left: 600px; }
-	#cal-sunday    { left: 700px; }
+	#cal-times     { left:  0.0%; background-color: black; }
+	#cal-monday    { left: 12.5%; }
+	#cal-tuesday   { left: 25.0%; }
+	#cal-wednesday { left: 37.5%; }
+	#cal-thursday  { left: 50.0%; }
+	#cal-friday    { left: 62.5%; }
+	#cal-saturday  { left: 75.0%; }
+	#cal-sunday    { left: 87.5%; }
 	
 	#calendar .cal-title
 	{
 		display: block;
-		width: 100px;
-		height: 20px;
+		width: 100%;
+		height: 4%;
 		background-color: black;
 		color: white;
+		font-size: 0.8em;
+		text-transform: uppercase;
 	}
 	
-	.legend {
-		padding: 2pt 1em;
+	#calendar .cal-short
+	{
+		display: none;
+	}
+	
+	#legend {
+		text-align: center !important;
 		color: white;
 		font-weight: bold;
+	}
+	
+	#legend > span {
+		padding: 2pt 5pt;
+		line-height: 1.5em;
+		white-space: nowrap;
+	}
+	
+	@media only screen and (max-width: 700px)
+	{
+		#calendar .cal-short { display: block; }
+		#calendar .cal-long { display: none; }
 	}
 	
 	</style>
@@ -149,11 +175,11 @@
 		var h = start.getUTCHours();
 		var m = start.getUTCMinutes();
 		
-		var offset = 20 + h * 15 + m * 0.25;
-		var height = duration / 60000 * 0.25;
+		var offset = 4 + h * 4 + m * (4/60);
+		var height = duration / 3600000 * 4;
 		var dateOffset = (start.getUTCDay() + 6) % 7 + 1;
 		
-		return result + "<a href='#" + anchor + "' class='cal-event cal-event-" + evtype + "' style='top: " + offset + "px; left: " + (dateOffset*100) + "px; height: " + height + ";'><span class='info'>" + description + "</span></a>";
+		return result + "<a href='#" + anchor + "' class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
 	}
 	
 	function load()
@@ -194,8 +220,8 @@
 		for (i = 0; i < 24; i += 2)
 		{
 			var d = new Date(Date.UTC(1, 1, 1, i, 0, 0))
-			timemarks += "<span class='cal-time' style='top: " + (i * 15 + 20) + "px;'>" + formatTimeUTC(d, diff) + "</span>";
-			timemarks += "<span class='cal-divider' style='top: " + (i * 15 + 20) + "px;'></span>";
+			timemarks += "<span class='cal-time' style='top: " + (i * 4 + 4) + "%;'>" + formatTimeUTC(d, diff) + "</span>";
+			timemarks += "<span class='cal-divider' style='top: " + (i * 4 + 4) + "%;'></span>";
 		}
 		document.getElementById("calendar").innerHTML += timemarks;
 		
@@ -265,16 +291,16 @@
 		
 		<div id="calendar">
 			<div id="cal-times"><span class="cal-title"></span></div>
-			<div id="cal-monday"><span class="cal-title">Monday</span></div>
-			<div id="cal-tuesday"><span class="cal-title">Tuesday</span></div>
-			<div id="cal-wednesday"><span class="cal-title">Wednesday</span></div>
-			<div id="cal-thursday"><span class="cal-title">Thursday</span></div>
-			<div id="cal-friday"><span class="cal-title">Friday</span></div>
-			<div id="cal-saturday"><span class="cal-title">Saturday</span></div>
-			<div id="cal-sunday"><span class="cal-title">Sunday</span></div>
+			<div id="cal-monday"><span class="cal-title cal-long">Monday</span><span class="cal-title cal-short">Mon</span></div>
+			<div id="cal-tuesday"><span class="cal-title cal-long">Tuesday</span><span class="cal-title cal-short">Tue</span></div>
+			<div id="cal-wednesday"><span class="cal-title cal-long">Wednesday</span><span class="cal-title cal-short">Wed</span></div>
+			<div id="cal-thursday"><span class="cal-title cal-long">Thursday</span><span class="cal-title cal-short">Thu</span></div>
+			<div id="cal-friday"><span class="cal-title cal-long">Friday</span><span class="cal-title cal-short">Fri</span></div>
+			<div id="cal-saturday"><span class="cal-title cal-long">Saturday</span><span class="cal-title cal-short">Sat</span></div>
+			<div id="cal-sunday"><span class="cal-title cal-long">Sunday</span><span class="cal-title cal-short">Sun</span></div>
 		</div>
 		
-		<p>Legend: <span class="legend" style="background-color: grey;">Regular Lobby Slot</span> <span class="legend" style="background-color: #1d94fc;">Announced Lobby Event</span></p>
+		<p id="legend"><span style="background-color: grey;">Regular Slot</span> <span style="background-color: #1d94fc;">Announced Event</span></p>
 		
 		
 		<h2>Leaderboard Lobby Events</h2>
