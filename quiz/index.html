@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Quiz - Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../style.css">
 	<script type="text/javascript" src="../script.js"></script>
 	<script type="text/javascript" src="../database.js"></script>
@@ -177,12 +178,12 @@
 	}
 		
 	#question {
-		width: 380pt;
+		max-width: 380pt;
 		background-color: #bbb;
 		border: 4pt solid #adadad;
 		border-radius: 30pt;
 		margin: 4em auto 3em auto;
-		padding: 0 20pt;
+		padding: 0 5%;
 		background: radial-gradient(rgba(238, 238, 238, 1) 46.64%, rgba(177, 177, 177, 1));
 		box-shadow: 0 0 20pt #333;
 		transition: 1s;
@@ -220,7 +221,7 @@
 	
 	p#q-answer {
 		text-align: center !important;
-		width: 80%;
+		width: 85%;
 		font-style: italic;
 		font-weight: bold;
 		background-color: rgba(240, 240, 240, 0.5);
@@ -238,13 +239,13 @@
 	
 	#question .q-option {
 		display: inline-block;
-		width: 75%;
+		width: 90%;
 		font-size: 1.1em;
-		line-height: 30pt;
-		background-color: #777;
+		line-height: 2.5em;
+		background-color: #888;
 		margin: 4pt 0;
 		color: white;
-		box-shadow: 0px 0px 5px #bbb;
+		//box-shadow: 0px 0px 5px #bbb;
 		
 		border-top-left-radius: 1.3em 100%;
 		border-bottom-right-radius: 1.3em 100%;
@@ -252,7 +253,7 @@
 		font-style: italic;
 		text-transform: capitalize;
 		
-		transition: 0.3s;
+		transition: 0.1s;
 	}
 	
 	#question .q-option.q-right {
@@ -266,8 +267,7 @@
 	}
 	
 	#question .q-option:hover {
-		background-color: #777;
-		transform: scale(1.1);
+		background-color: #444;
 	}
 	
 	p#indicators {
@@ -284,12 +284,13 @@
 	
 	div#q-result {
 		margin: 0 auto;
-		width: 70%;
+		width: 85%;
 		padding: 0.1em 0.5em;
 		background-color: white;
 		color: #999;
 		border-top-left-radius: 3em 100%;
 		border-bottom-right-radius: 3em 100%;
+		display: none;
 	}
 	
 	div#q-result p {
@@ -325,6 +326,29 @@
 		max-height: 100pt;
 		margin: 1em auto;
 		display: none;
+	}
+	
+	@media only screen and (max-width: 600px)
+	{
+		h3#q-heading {
+			font-size: 1.8em;
+			margin: -18pt 0 0 0;
+		}
+		
+		p#q-title {
+			font-size: 1em;
+		}
+		
+		#question .q-option {
+			font-size: 0.8em;
+		}
+		
+		p#q-answer {
+			font-size: 0.8em;
+		}
+		#q-rank {
+			font-size: 1.2em;
+		}
 	}
 		
 		

@@ -350,7 +350,7 @@ function generateQuestion(PRNG)
 			
 		case 16: // hobby
 			fighter = randomNumber(PRNG, fighterStats.length);
-			q = "Which is a hobby of " + fighterStats[fighter][0] + "'s?";
+			q = "Which is a hobby of " + fighterStats[fighter][0] + "?";
 			var hobbies = fighterHobbies[fighter];
 			ans = randomItemFrom(PRNG, hobbies);
 			opts = shuffle([ans].concat(randomFlatten(PRNG, pickNButNot(PRNG, 4, fighterHobbies, [hobbies]))));
@@ -368,7 +368,7 @@ function generateQuestion(PRNG)
 		
 		case 18: // special stat
 			fighter = randomNumber(PRNG, fighterStats.length);
-			q = "Which is a unique statistic of " + fighterStats[fighter][0] + "'s?";
+			q = "Which is a unique statistic of " + fighterStats[fighter][0] + "?";
 			var specials = extraStats[fighter];
 			ans = randomItemFrom(PRNG, specials);
 			opts = shuffle([ans].concat(randomFlatten(PRNG, pickNButNot(PRNG, 4, extraStats, [specials]))));

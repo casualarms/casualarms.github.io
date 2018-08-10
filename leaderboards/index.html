@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Leaderboards – Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../style.css">
 	<script type="text/javascript" src="../events.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../script.js"></script>
@@ -46,15 +47,16 @@
 	}
 	
 	#leaderboard .tier {
-		width: 330pt;
+		max-width: 330pt;
 		margin: 0 auto;
 	}
 	
 	#leaderboard p.entry
 	{
 		background-color: #171717;
-		padding: 0pt 8pt;
-		margin: 12pt 0;
+		line-height: 0.9em;
+		padding: 0 8pt 0pt 4pt;
+		margin: 12pt 2pt 12pt 40pt;
 		position: relative;
 		transition: 0.2s;
 		border-top-left-radius: 15pt 100%;
@@ -64,7 +66,7 @@
 	.index {
 		display: inline-block;
 		width: 35pt;
-		margin: -4pt 0 -4pt -28pt;
+		margin: -4pt 0 -4pt -24pt;
 		line-height: 32pt;
 		text-align: center;
 		color: white;
@@ -84,6 +86,9 @@
 	}
 	
 	.player {
+		max-width: 65%;
+		display: inline-block;
+		margin-top: 5pt;
 	}
 	
 	.coins {
@@ -132,8 +137,8 @@
 	#sponsor {
 		background-color: black;
 		border: 2pt solid yellow;
-		width: 400pt;
-		height: 40pt;
+		max-width: 400pt;
+		min-height: 40pt;
 		position: relative;
 		margin: 0 auto;
 		padding: 5pt;
@@ -141,12 +146,12 @@
 	
 	#sponsor span {
 		display: inline-block;
-		width: 340pt;
+		width: 80%;
 		color: yellow;
-		position: absolute;
-		left: 5pt;
 		text-align: center;
-		font-size: 1.3em;
+		font-size: 1.2em;
+		display: inline-block;
+		margin-right: 20%;
 	}
 	
 	#sponsor img {
@@ -185,13 +190,13 @@
 	a.menu-item.tier-VP         { color: #ff006f; }
 	
 	a.menu-item.tier-Intern:hover     { background-color: #bfffff; color: black; }
-	a.menu-item.tier-Technician:hover { background-color: #00ffff; color: black;  }
-	a.menu-item.tier-Analyst:hover    { background-color: #00ff00; color: black;  }
-	a.menu-item.tier-Coder:hover      { background-color: #aaff00; color: black;  }
-	a.menu-item.tier-Researcher:hover { background-color: #ffae00; color: black;  }
-	a.menu-item.tier-Scientist:hover  { background-color: #ff6000; color: white;  }
-	a.menu-item.tier-Manager:hover    { background-color: #ff0004; color: white;  }
-	a.menu-item.tier-VP:hover         { background-color: #ff006f; color: white;  }
+	a.menu-item.tier-Technician:hover { background-color: #00ffff; color: black; }
+	a.menu-item.tier-Analyst:hover    { background-color: #00ff00; color: black; }
+	a.menu-item.tier-Coder:hover      { background-color: #aaff00; color: black; }
+	a.menu-item.tier-Researcher:hover { background-color: #ffae00; color: black; }
+	a.menu-item.tier-Scientist:hover  { background-color: #ff6000; color: white; }
+	a.menu-item.tier-Manager:hover    { background-color: #ff0004; color: white; }
+	a.menu-item.tier-VP:hover         { background-color: #ff006f; color: white; }
 	
 	</style>
 	<script type="text/javascript">
@@ -262,6 +267,6 @@
 		
 		<div id="leaderboard"></div>
 		<br/>
-		<div id="sponsor"><span>Casual ARMS leaderboards are sponsored by<br/> ~~~ ARMS Laboratories, Inc. ~~~</span><img src="arms-labs.png"/>
+		<div id="sponsor"><span>Casual ARMS leaderboards are sponsored by<br/>ARMS Laboratories, Inc.</span><img src="arms-labs.png"/>
 	
 </body>

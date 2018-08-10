@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="staff/banners/banner-gen.js"></script>
 	<script type="text/javascript" src="database.js"></script>
@@ -11,7 +12,7 @@
 	
 	function loadWidgetData(data)
 	{
-		document.getElementById("footer-text").innerHTML = " " + data.members.length + " members online on Discord. Join now!";
+		document.getElementById("footer-text").innerHTML = " " + data.members.length + " members online on Discord. Join&nbsp;now!";
 	}
 	
 	function load()
@@ -92,6 +93,7 @@
 	#container.main-menu {
 		padding-top: 1em;
 		padding-bottom: 0;
+		border-top: 3pt solid black;
 	}
 	
 	.main-menu h3 {
@@ -104,22 +106,21 @@
 		border-bottom: 1pt dotted rgba(0, 0, 0, 0.5);
 	}
 	
-	#logo {
+	#logo, #shield {
 		position: absolute;
-		top: 25pt;
-		right: 30pt;
-		opacity: 0.15;
-		width: 120pt;
+		top: 4%;
+		width: 18%;
 		z-index: 0;
 	}
 	
+	#logo {
+		right: 4%;
+		opacity: 0.15;
+	}
+	
 	#shield {
-		position: absolute;
-		top: 25pt;
-		left: 30pt;
+		left: 4%;
 		opacity: 0.08;
-		width: 120pt;
-		z-index: 0;
 	}
 	
 	#arms-text {
@@ -194,9 +195,8 @@
 	#discord-footer {
 		display: block;
 		background-color: #738bd7;
-		height: 35pt;
 		font-size: 1.1em;
-		line-height: 35pt;
+		padding: 0.6em;
 		text-decoration: none;
 		margin-top: 2em;
 		color: white;
@@ -231,8 +231,6 @@
 			<a class="menu-item m4" id="m-screenshot"   href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Contest</a>
 		</div>
 		
-		<br/>
-		
 		<div class="menu-container">
 			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
 			<a class="menu-item m5" href="tools/stage-randomizer/">Stage Randomizer</a>
@@ -255,8 +253,10 @@
 			<a class="submenu-item" href="https://reddit.com/r/arms/"  ><img src="assets/logo-reddit.png"/><span class="sub-text">Reddit</span></a>
 			<a class="submenu-item" href="https://armswiki.org/"       ><img src="assets/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
 			<a class="submenu-item" href="https://twitch.tv/schkrimps/"><img src="assets/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
-			<a class="submenu-item long" href="https://twitter.com/SlosherWailord"><img src="assets/logo-champion.png"/><span class="sub-text">Clash Champion</span></a>
-			<a class="submenu-item extra" href="https://twitter.com/SlosherWailord">SlosherWailord</a>
+			<span class="submenu-group">
+				<a class="submenu-item long" href="https://twitter.com/SlosherWailord"><img src="assets/logo-champion.png"/><span class="sub-text">Clash Champion</span></a>
+				<a class="submenu-item extra" href="https://twitter.com/SlosherWailord">SlosherWailord</a>
+			</span>
 		</div>
 		
 		<div id="featured" style="display: none;">

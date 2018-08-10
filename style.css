@@ -8,6 +8,7 @@ body {
 	background-color: #1d94fc;
 	padding: 0; margin: 0;
 	font: 1em Helvetica, Arial, sans-serif;
+	-webkit-text-size-adjust: 100%;
 }
 
 #container {
@@ -17,6 +18,7 @@ body {
 	padding-bottom: 2em;
 	background-color: yellow;
 	border: 3pt solid black;
+	border-top: none;
 	position: relative;
 	overflow: hidden;
 	transition: background-color 0.5s;
@@ -45,7 +47,7 @@ body {
 }
 
 #container p {
-	padding: 0 70pt;
+	padding: 0 10%;
 	text-align: left;
 	line-height: 1.3em;
 }
@@ -53,7 +55,7 @@ body {
 
 ul {
 	text-align: left;
-	padding: 0 70pt;
+	padding: 0 10%;
 }
 
 em {
@@ -91,7 +93,7 @@ h1 > a {
 	border-bottom-right-radius: 0.8em 100%;
 	border: 3pt solid black;
 	white-space: nowrap;
-	transition: 0.2s;
+	transition: color 0.2s, background-color: 0.2s;
 }
 
 
@@ -133,7 +135,7 @@ h3:target {
 }
 
 .menu-container {
-	margin: 0 auto;
+	margin: 0 auto 0.5em auto;
 	padding: 0.5em 0 0.5 70pt;
 }
 
@@ -167,8 +169,6 @@ a.menu-item:hover, a.menu-item:active {
 }
 
 .submenu {
-	margin-top: 2.2em;
-	margin-left: 7.5em;
 }
 
 a.submenu-item {
@@ -177,6 +177,7 @@ a.submenu-item {
 	position: relative;
 	font-size: 0.8em;
 	width: 6em;
+	margin-top: 2.5em;
 	font-style: italic;
 	color: black;
 	border: 1.5pt solid black;
@@ -223,9 +224,14 @@ a.submenu-item > .sub-text {
 	width: 5em;
 }
 
+.submenu-group {
+	white-space: nowrap;
+}
+
 .stage-container {
 	background-color: #36393f;
-	width: 50%;
+	width: 80%;
+	max-width: 250pt;
 	margin: 0 auto;
 	padding: 0.4em 1em;
 	border: 3pt solid #595d69;
@@ -236,7 +242,7 @@ a.submenu-item > .sub-text {
 .stage {
 	background-color: black;
 	color: white;
-	font: 1em Helvetica, Arial, sans-serif;
+	font: 0.8em Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	font-style: italic;
 	padding: 0.3em 0.2em;
@@ -319,9 +325,43 @@ a.submenu-item > .sub-text {
 }
 
 
-
-@media only screen and (max-width: 600px) {
-	body {
-		background-color: lightblue !important;
+@media only screen and (max-width: 600px)
+{
+	#container {
+		border-left: none;
+		border-right: none;
 	}
+	
+	#container p {
+		padding: 0 5%;
+		line-height: 1.1em;
+	}
+	
+	h1 {
+		font-size: 1.5em;
+	}
+	
+	h2, h3 {
+		font-size: 1em;
+	}
+	
+	#container h2:first-child {
+		margin-top: 0;
+	}
+	
+	.menu-container {
+		margin: 0 auto;
+		padding: 0.5em 0 0.5 10pt;
+	}
+	
+	a.menu-item {
+		padding: 0.2em 10pt 0.2em 0;
+	}
+	
+	.m1 { font-size: 2.0em !important; }
+	.m2 { font-size: 1.8em !important; }
+	.m3 { font-size: 1.4em !important; }
+	.m4 { font-size: 1.1em !important; }
+	.m5 { font-size: 1.0em !important; }
+	
 }
