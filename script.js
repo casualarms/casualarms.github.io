@@ -15,11 +15,11 @@ function getQueryVariable(variable)
 
 Math.seed = function(s)
 {
+	var hiddenState = s;
 	return function()
 	{
-		s = (s + "").hashCode();
-		s = s / (Math.pow(2, 32));
-	//	console.log("rand = " + (s - Math.floor(s)));
+		hiddenState = (hiddenState + "").hashCode();
+		s = hiddenState / (Math.pow(2, 32));
 		return s - Math.floor(s);
 	};
 };
