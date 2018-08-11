@@ -39,7 +39,7 @@
 		var nextEventData = nextEvent();
 		if (nextEventData != null)
 		{
-			document.getElementById("featured").style.display = "block";
+			document.getElementById("featured").classList = "";
 			result = generateBanner(880, 480, nextEventData, "test-canvas", true);
 		}
 		
@@ -138,6 +138,7 @@
 	#m-twitter      > img { width: 3.0em; left: 25pt; top: 5pt; }
 	#m-lobby        > img { width: 3.2em; left: 30pt; top: -5pt; }
 	#m-leaderboards > img { width: 3.3em; left: 30pt; top: 0pt; }
+	#m-quiz         > img { width: 2.9em; left: 40pt; top: -10pt; }
 	#m-clash        > img { width: 3.5em; left: 30pt; top: 5pt; }
 	#m-screenshot   > img { width: 3.0em; left: 30pt; top: 5pt; }
 	
@@ -148,10 +149,14 @@
 	}
 	
 	.lobby-event #m-lobby { animation: 1s pulse infinite; }
-	.lobby-event #m-lobby:after { content: " - Active Now"; }
+	.lobby-event #m-lobby:after { content: " - Live"; }
 	
 	.clash-event #m-clash { animation: 1s pulse infinite; }
-	.clash-event #m-clash:after { content: " - Active Now"; }
+	.clash-event #m-clash:after { content: " - Live"; }
+	
+	#featured-aligner {
+		white-space: nowrap;
+	}
 	
 	#featured
 	{
@@ -166,8 +171,7 @@
 		transition: 0.2s;
 	}
 	
-	#featured:hover
-	{
+	#featured:hover {
 		transform: rotate(-2deg) scale(1.3) translateX(20pt);
 	}
 	
@@ -212,6 +216,29 @@
 		top: 3pt;
 	}
 	
+	#featured.featured-hidden {
+		display: none !important;
+	}
+	
+	@media only screen and (max-width: 600px)
+	{
+		#featured-aligner {
+			text-align: left;
+		}
+		
+		#featured {
+			display: inline-block;
+			position: relative;
+			top: 0; left: -30pt;
+			margin-top: 1em;
+			transform: none;
+		}
+		
+		#featured:hover {
+			transform: translateX(20pt);
+		}
+	}
+	
 	</style>
 </head>
 
@@ -228,10 +255,9 @@
 			<a class="menu-item m1" id="m-lobby"        href="lobbies/"><img src="assets/lobby-logo.png"/>Lobby Events</a>
 			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="assets/clash-logo.png"/>Casual Clash</a>
 			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="assets/leaderboards-logo.png"/>Leaderboards</a>
-			<a class="menu-item m4" id="m-screenshot"   href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Contest</a>
-		</div>
-		
-		<div class="menu-container">
+			<a class="menu-item m3" id="m-quiz" href="quiz/"><img src="assets/quiz-logo.png"/>Quiz</a>
+
+			<a class="menu-item m4" id="m-screenshot"   href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Gallery</a>
 			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
 			<a class="menu-item m5" href="tools/stage-randomizer/">Stage Randomizer</a>
 			<a class="menu-item m5" href="tools/stats-generator/">Fighter Stats Generator</a>
@@ -247,6 +273,13 @@
 		
 		</div>
 		
+		<div id="featured-aligner">
+			<div id="featured" class="featured-hidden">
+				<div class="featured-left"></div>
+				<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="test-canvas"></canvas></a>
+			</div>
+		</div>
+		
 		<div class="submenu">
 			<a class="submenu-item" href="https://twitter.com/casualARMS"   ><img src="assets/logo-twitter.png"/><span class="sub-text">Twitter</span></a>
 			<!--<a class="submenu-item" href="https://arms.nintendo.com"   ><img src="assets/logo-nintendo.png"/><span class="sub-text">Nintendo</span></a>-->
@@ -257,11 +290,6 @@
 				<a class="submenu-item long" href="https://twitter.com/SlosherWailord"><img src="assets/logo-champion.png"/><span class="sub-text">Clash Champion</span></a>
 				<a class="submenu-item extra" href="https://twitter.com/SlosherWailord">SlosherWailord</a>
 			</span>
-		</div>
-		
-		<div id="featured" style="display: none;">
-			<div class="featured-left"></div>
-			<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="test-canvas"></canvas></a>
 		</div>
 		
 		<a id="discord-footer" href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/><span id="footer-text"> Join the Discord community!</span></a>

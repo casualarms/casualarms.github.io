@@ -78,6 +78,7 @@ a {
 
 h1 {
 	text-align: center;
+	text-transform: uppercase;
 	font-family: ARMS;
 	font-size: 3.5em;
 	margin: 0.3em auto;
@@ -93,7 +94,7 @@ h1 > a {
 	border-bottom-right-radius: 0.8em 100%;
 	border: 3pt solid black;
 	white-space: nowrap;
-	transition: color 0.2s, background-color: 0.2s;
+	transition: color 0.2s, background-color 0.2s;
 }
 
 
@@ -103,7 +104,10 @@ h1 > a:hover {
 	background-color: yellow;
 }
 
-h2, h3 { font-family: 'ARMS'; }
+h2, h3 {
+	font-family: 'ARMS';
+	text-transform: uppercase;
+}
 
 h2 {
 	font-size: 1.4em;
