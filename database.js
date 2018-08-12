@@ -241,11 +241,14 @@ function formatOrdinal(nr)
 
 
 
-function generateQuestion(PRNG)
+function generateQuestion(PRNG, avoid)
 {
 	var question_count = 44;
 	
-	var rand = randomNumber(PRNG, question_count);
+	if (avoid == null || avoid.length == question_count)
+		avoid = [];
+	
+	var rand = randomNumberButNot(PRNG, question_count, avoid);
 	
 	var q, ans, opts, trivia, image;
 	
@@ -566,9 +569,9 @@ function generateQuestion(PRNG)
 			var other = fighterStats[partyCrash[crash][((pick == 1) ? 0 : 1)]][0];
 			var perc = (pick == 0) ? partyCrash[crash][2] : (100 - partyCrash[crash][2]);
 			q = "What win percentage did " + fighterStats[partyCrash[crash][pick]][0] + " get in the Party Crash against " + other + "?";
-			ans = perc + " %";
+			ans = perc + "&nbsp%";
 			opts = offsetIntervalMin(PRNG, perc, 2, 5, 0);
-			for (var o = 0; o < opts.length; ++o) opts[o] = opts[o] + " %";
+			for (var o = 0; o < opts.length; ++o) opts[o] = opts[o] + "&nbsp%";
 			trivia = fighterStats[partyCrash[crash][pick]][0] + " got a win percentage of " + ans + " in the Party Crash against " + other + ".";
 			break;
 		
@@ -592,6 +595,7 @@ function generateQuestion(PRNG)
 			break;
 	}
 	
-	return {"question": q, "answer": ans, "options": opts, "trivia": trivia, "image": image};
+	avoid.push(rand);
+	return {"question": q, "answer": ans, "options": opts, "trivia": trivia, "image": image, "avoid": avoid};
 }
 

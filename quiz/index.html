@@ -22,6 +22,7 @@
 	}
 	document.onkeydown = checkKey;
 	
+	var spentTypes = [];
 	var qs = [];
 	var qi = 0;
 	var qCorrect = 0;
@@ -42,7 +43,9 @@
 	{
 		for (var i = 0; i < count; ++i)
 		{
-			qs.push(generateQuestion(PRNG));
+			var newQ = generateQuestion(PRNG, spentTypes);
+			spentTypes = newQ.avoid;
+			qs.push(newQ);
 		}
 	}
 	
