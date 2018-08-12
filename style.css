@@ -6,7 +6,7 @@
 
 body {
 	background-color: #1d94fc;
-	padding: 0; margin: 0;
+	padding: 10pt 0; margin: 0;
 	font: 1em Helvetica, Arial, sans-serif;
 	-webkit-text-size-adjust: 100%;
 }
@@ -14,7 +14,6 @@ body {
 #container {
 	margin: 0 auto;
 	max-width: 700pt;
-	text-align: center;
 	padding-bottom: 2em;
 	background-color: yellow;
 	border: 3pt solid black;
@@ -48,8 +47,7 @@ body {
 
 #container p {
 	padding: 0 10%;
-	text-align: left;
-	line-height: 1.3em;
+	line-height: 1.4em;
 }
 
 
@@ -61,34 +59,47 @@ ul {
 em {
 	font-weight: bold;
 	font-style: normal;
+	background-color: black;
+	color: white;
+	padding: 1pt 8pt;
+	white-space: nowrap;
+	border-top-left-radius: 0.8em 100%;
+	border-bottom-right-radius: 0.8em 100%;
+}
+
+a {
 	color: #1d94fc;
+}
+
+a > em {
+	background-color: #1d94fc;
+	color: white;
+	text-decoration: underline;
 }
 
 .command {
 	font-family: monospace;
+	font-size: 1.2em;
+	padding: 1pt 2pt;
 	background-color: #33353b;
 	color: white;
 	white-space:nowrap;
 }
 
 
-a {
-	color: #1d94fc;
-}
 
 h1 {
 	text-align: center;
 	text-transform: uppercase;
 	font-family: ARMS;
 	font-size: 3.5em;
-	margin: 0.3em auto;
-	transition: 0.1s;
+	margin-bottom: 10pt;
 }
 
 h1 > a {
 	text-decoration: none;
-	color: white;
-	background-color: black;
+	color: black;
+	background-color: yellow;
 	padding: 0em 0.5em;
 	border-top-left-radius: 0.8em 100%;
 	border-bottom-right-radius: 0.8em 100%;
@@ -100,13 +111,14 @@ h1 > a {
 
 
 h1 > a:hover {
-	color: black;
-	background-color: yellow;
+	color: white;
+	background-color: black;
 }
 
 h2, h3 {
 	font-family: 'ARMS';
 	text-transform: uppercase;
+	text-align: center;
 }
 
 h2 {
@@ -139,6 +151,7 @@ h3:target {
 }
 
 .menu-container {
+	text-align: center;
 	margin: 0 auto 0.5em auto;
 	padding: 0.5em 0 0.5 70pt;
 }
@@ -162,7 +175,7 @@ a.menu-item {
 .m2 { font-size: 3.0em !important; }
 .m3 { font-size: 2.5em !important; }
 .m4 { font-size: 1.8em !important; }
-.m5 { font-size: 1.3em !important; }
+.m5 { font-size: 1.2em !important; }
 
 
 a.menu-item:hover, a.menu-item:active {
@@ -173,6 +186,7 @@ a.menu-item:hover, a.menu-item:active {
 }
 
 .submenu {
+	text-align: center;
 }
 
 a.submenu-item {
@@ -233,6 +247,7 @@ a.submenu-item > .sub-text {
 }
 
 .stage-container {
+	text-align: center;
 	background-color: #36393f;
 	width: 80%;
 	max-width: 250pt;
@@ -277,6 +292,35 @@ a.submenu-item > .sub-text {
 .stage.inactive {
 	background-color: black;
 	opacity: 0.4;
+}
+
+
+/* Lobby settings */
+
+.mode-name {
+	width: 50%;
+	text-align: right;
+	display: inline-block;
+	font-weight: bold;
+}
+
+.mode-options {
+	background-color: #36393f;
+	color: yellow;
+	font-weight: bold;
+	font-style: italic;
+	white-space: pre;
+	padding: 2pt 4pt;
+	margin-left: 0.5em;
+	border: 2pt solid #595d69;
+	border-radius: 4pt;
+}
+
+.mode-options.option-off {
+	color: lightgray;
+}
+.mode-options.option-on {
+	color: yellow;
 }
 
 
@@ -328,9 +372,17 @@ a.submenu-item > .sub-text {
 	color: #1d94fc;
 }
 
+.discord-bg {
+	background-color: #738bd7;
+}
+
 
 @media only screen and (max-width: 600px)
 {
+	body {
+		padding: 0;
+	}
+	
 	#container {
 		border-left: none;
 		border-right: none;
@@ -343,6 +395,7 @@ a.submenu-item > .sub-text {
 	
 	h1 {
 		font-size: 1.5em;
+		margin: 3pt;
 	}
 	
 	h2, h3 {

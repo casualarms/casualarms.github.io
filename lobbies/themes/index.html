@@ -7,30 +7,10 @@
 	<script type="text/javascript" src="../../events.js"></script>
 	<script type="text/javascript" src="../../script.js"></script>
 	<style type="text/css">
-	.mode-name {
-		width: 50%;
-		text-align: right;
-		display: inline-block;
-		font-weight: bold;
-	}
 	
-	.mode-options {
-		background-color: #36393f;
+	.stage.active {
 		color: yellow;
-		font-weight: bold;
-		font-style: italic;
-		white-space: pre;
-		padding: 2pt 4pt;
-		margin-left: 0.5em;
-		border: 2pt solid #595d69;
-		border-radius: 4pt;
-	}
-	
-	.mode-options.option-off {
-		color: lightgray;
-	}
-	.mode-options.option-on {
-		color: yellow;
+		background-color: black;
 	}
 	</style>
 	<script type="text/javascript">
@@ -83,14 +63,14 @@
 			html += "<div class='stage-container'>";
 			for (s = 0; s < ev.stages.length; ++s)
 			{
-				html += "<div class='stage'>";
+				html += "<div class='stage active'>";
 				html += eventStages[ev.stages[s]];
 				html += "</div>";
 			}
 			html += "</div>";
 		}
 		
-		document.getElementById("themes").innerHTML += html;
+		document.getElementById("themes").innerHTML = html;
 		
 		if (scrolltoid != null)
 			document.getElementById(scrolltoid).scrollIntoView();
@@ -103,6 +83,7 @@
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div id="container">
 		<h2>Lobby Themes</h2>
-		<div id="themes"/>
+		<p>These are the themes we use in our <a href="/lobbies/"><em>lobby events</em></a>! We have a focus on <em>casual play</em> with items on and a varied selection of stages. The competitive themes are reserved for our tournament warm-up lobbies.</p>
+		<div id="themes">Loading...</div>
 	</div>
 </body>

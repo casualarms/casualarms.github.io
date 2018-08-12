@@ -184,6 +184,7 @@
 	}
 		
 	#question {
+		text-align: center;
 		max-width: 380pt;
 		background-color: #bbb;
 		border: 4pt solid #adadad;
@@ -192,7 +193,6 @@
 		padding: 0 5%;
 		background: radial-gradient(rgba(238, 238, 238, 1) 46.64%, rgba(177, 177, 177, 1));
 		box-shadow: 0 0 20pt #333;
-		transition: 1s;
 	}
 	
 	#question.perfect {
@@ -216,7 +216,6 @@
 	}
 	
 	p#q-title {
-		text-align: center !important;
 		padding: 0;
 		font-size: 18pt;
 		font-style: italic;
@@ -226,7 +225,6 @@
 	}
 	
 	p#q-answer {
-		text-align: center !important;
 		width: 85%;
 		font-style: italic;
 		font-weight: bold;
@@ -258,7 +256,7 @@
 		font-style: italic;
 		text-transform: capitalize;
 		
-		transition: 0.1s;
+		transition: color 0.1s background-color 0.1s;
 	}
 	
 	#question .q-option.q-right {
@@ -299,7 +297,7 @@
 	}
 	
 	div#q-result p {
-		text-align: center !important;
+		text-align: center;
 		padding: 0;
 		font-size: 18pt;
 		font-style: italic;
@@ -333,8 +331,9 @@
 	}
 	
 	img#bot {
+		display: block;
 		width: 40pt;
-		margin-bottom: -6pt;
+		margin: 0 auto -5pt auto;
 	}
 	
 	div#share > p {
@@ -427,7 +426,7 @@
 		<div id="share"></div>
 		
 		<p>The database behind the quiz is based on information and statistics taken from official Nintendo sources as well as the <a href="https://armswiki.org/">ARMS Institite Wiki</a>.
-			The system auto-generates questions from over 30 different templates, making for tens of thousands of possible questions (not counting variations in answer options). If you find an error, contact the webmaster via <a href="mailto:contact@casualarms.net">email</a> or Discord DM (<em>@programmability</em>).</p>
+			The system auto-generates questions from over 30 different templates, making for tens of thousands of possible questions (not counting variations in answer options). If you find an error, contact the webmaster via <a href="mailto:contact@casualarms.net">email</a> or Discord DM <span class="command">@programmability</span>.</p>
 	
 </div>
 
