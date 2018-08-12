@@ -12,7 +12,7 @@
 	
 	function loadWidgetData(data)
 	{
-		document.getElementById("footer-text").innerHTML = data.members.length + " members online on Discord. Join&nbsp;now!";
+		document.getElementById("footer-text").innerHTML = data.members.length + " members online on Discord";
 	}
 	
 	function load()
@@ -93,7 +93,6 @@
 	#container.main-menu {
 		padding-top: 1em;
 		padding-bottom: 0;
-		border-top: 3pt solid black;
 	}
 	
 	.main-menu h3 {
@@ -189,6 +188,8 @@
 	
 	p.bottom  {
 		text-align: center;
+		font-size: 0.8em;
+		padding: 0 5pt;
 	}
 	
 	a#random-fact {
@@ -201,7 +202,7 @@
 		display: block;
 		background-color: #738bd7;
 		font-size: 1.1em;
-		padding: 0.5em 0 0.7em 0;
+		padding: 0.5em 5pt 0.7em 5pt;
 		text-decoration: none;
 		margin-top: 2em;
 		color: white;
