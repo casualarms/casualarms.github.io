@@ -160,7 +160,7 @@
 		if (questionCount != 10)
 			link += "&count=" + questionCount;
 		
-		document.getElementById("share").innerHTML = "<p>Share this quiz with others<br/><a href='" + link + "'>" + link + "</a><br/><a id='s-twitter' href='https://twitter.com/intent/tweet?text=" + encodeURIComponent(link) + "'>Share to Twitter</a></p>";
+		document.getElementById("share").innerHTML = "<p>Share this quiz with others<br/><a id='quiz-link' href='" + link + "'>" + link + "</a><br/><a id='s-twitter' href='https://twitter.com/intent/tweet?text=" + encodeURIComponent(link) + "'>Share to Twitter</a></p>";
 		
 		PRNG = Math.seed(qID.hashCode());
 		assignQuestions(PRNG, questionCount);
@@ -170,18 +170,6 @@
 	</script>
 	
 	<style type="text/css">
-	
-	#container {
-		background-color: #444;
-	}
-	
-	#container p {
-		color: white;
-	}
-	
-	#container a {
-		color: yellow;
-	}
 		
 	#question {
 		text-align: center;
@@ -238,10 +226,10 @@
 	}
 	
 	p#q-answer > a {
-		color: black;
+		color: black !important;
 	}
 	
-	#question .q-option {
+	#question a.q-option {
 		display: inline-block;
 		width: 90%;
 		font-size: 1.1em;
@@ -256,7 +244,7 @@
 		font-style: italic;
 		text-transform: capitalize;
 		
-		transition: color 0.1s background-color 0.1s;
+		transition: color 0.1s, background-color 0.1s;
 	}
 	
 	#question .q-option.q-right {
@@ -343,7 +331,7 @@
 		margin: 0;
 	}
 	
-	div#share > p > a {
+	div#share > p > a#quiz-link {
 		font-weight: normal;
 		color: black;
 	}
@@ -389,7 +377,7 @@
 
 <body onLoad="load()">
 	<h1><a href="/">Casual ARMS</a></h1>
-	<div id="container">
+	<div id="container" class="container-dark">
 		
 		<h2>Community quiz</h2>
 		

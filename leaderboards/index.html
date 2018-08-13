@@ -8,27 +8,6 @@
 	<script type="text/javascript" src="../script.js"></script>
 	<style type="text/css">
 	
-	.tier-Intern     { color: #bfffff; }
-	.tier-Technician { color: #00ffff; }
-	.tier-Analyst    { color: #00ff00; }
-	.tier-Coder      { color: #aaff00; }
-	.tier-Researcher { color: #ffae00; }
-	.tier-Scientist  { color: #ff6000; }
-	.tier-Manager    { color: #ff0004; }
-	.tier-VP         { color: #ff006f; }
-	
-	#container {
-		background-color: #43464d;
-	}
-	
-	#container > p {
-		color: yellow;
-	}
-	
-	#leaderboard
-	{
-	}
-	
 	h3 { background-color: black; }
 	
 	p.limits {
@@ -40,19 +19,12 @@
 		text-align: center;
 	}
 	
-	p.limits img {
-		width: 1.1em;
-		position: relative;
-		top: 2.5pt;
-	}
-	
 	#leaderboard .tier {
 		max-width: 330pt;
 		margin: 0 auto;
 	}
 	
-	#leaderboard p.entry
-	{
+	#leaderboard p.entry {
 		background-color: #171717;
 		line-height: 0.9em;
 		padding: 0 8pt 0pt 4pt;
@@ -109,28 +81,19 @@
 		top: 3pt;
 	}
 	
-	#leaderboard p.entry:hover .coins
-	{
+	#leaderboard p.entry:hover .coins {
 		color: black;
 	}
 	
-	#leaderboard p.entry:hover .coin-yellow
-	{
+	.coin-dark, p.entry:hover .coin-yellow {
 		opacity: 0;
 	}
 	
-	.coin-light, .coin-dark
-	{
-		opacity: 0;
-	}
-	
-	#leaderboard p.entry:hover .coin-dark
-	{
+	p.entry:hover .coin-dark {
 		opacity: 1;
 	}
 	
-	#leaderboard p.entry:hover .index
-	{
+	#leaderboard p.entry:hover .index {
 		transform: scale(1.5);
 	}
 	
@@ -160,72 +123,44 @@
 		right: 5pt; top: 5pt;
 	}
 	
-	
-	p.entry.tier-Intern .index     { background-image: url(placement-intern.png); color: black; }
-	p.entry.tier-Technician .index { background-image: url(placement-technician.png); color: black;  }
-	p.entry.tier-Analyst .index    { background-image: url(placement-analyst.png); color: black; }
-	p.entry.tier-Coder .index      { background-image: url(placement-coder.png); color: black; }
-	p.entry.tier-Researcher .index { background-image: url(placement-researcher.png); color: black; }
-	p.entry.tier-Scientist .index  { background-image: url(placement-scientist.png); }
-	p.entry.tier-Manager .index    { background-image: url(placement-manager.png); }
-	p.entry.tier-VP      .index    { background-image: url(placement-vp.png); }
-	
-	p.entry.tier-Intern:hover     { background-color: #bfffff !important; color: black; }
-	p.entry.tier-Technician:hover { background-color: #00ffff !important; color: black; }
-	p.entry.tier-Analyst:hover    { background-color: #00ff00 !important; color: black; }
-	p.entry.tier-Coder:hover      { background-color: #aaff00 !important; color: black; }
-	p.entry.tier-Researcher:hover { background-color: #ffae00 !important; color: black; }
-	p.entry.tier-Scientist:hover  { background-color: #ff6000 !important; color: white; }
-	p.entry.tier-Manager:hover    { background-color: #ff0004 !important; color: white; }
-	p.entry.tier-VP:hover         { background-color: #ff006f !important; color: white; }
-	
-	
-	a.menu-item.tier-Intern     { color: #bfffff; }
-	a.menu-item.tier-Technician { color: #00ffff; }
-	a.menu-item.tier-Analyst    { color: #00ff00; }
-	a.menu-item.tier-Coder      { color: #aaff00; }
-	a.menu-item.tier-Researcher { color: #ffae00; }
-	a.menu-item.tier-Scientist  { color: #ff6000; }
-	a.menu-item.tier-Manager    { color: #ff0004; }
-	a.menu-item.tier-VP         { color: #ff006f; }
-	
-	a.menu-item.tier-Intern:hover     { background-color: #bfffff; color: black; }
-	a.menu-item.tier-Technician:hover { background-color: #00ffff; color: black; }
-	a.menu-item.tier-Analyst:hover    { background-color: #00ff00; color: black; }
-	a.menu-item.tier-Coder:hover      { background-color: #aaff00; color: black; }
-	a.menu-item.tier-Researcher:hover { background-color: #ffae00; color: black; }
-	a.menu-item.tier-Scientist:hover  { background-color: #ff6000; color: white; }
-	a.menu-item.tier-Manager:hover    { background-color: #ff0004; color: white; }
-	a.menu-item.tier-VP:hover         { background-color: #ff006f; color: white; }
-	
 	</style>
 	<script type="text/javascript">
 	
 	
-	
 	function load()
 	{
-		var tiers = [1, 100, 250, 500, 1000, 2000, 3000, 5000];
-		var tiernames = ["Intern", "Technician", "Analyst", "Coder", "Researcher", "Scientist", "Manager", "VP"];
 		var leaderboard = JSON.parse(leaderboardData);
 		
 		var html = "<div class='menu-container'>";
 		var scrolltoid = null;
-		for (i = tiernames.length-1; i >= 0; --i)
+		
+		var css = "";
+		
+		for (i = leaderboardTiers.length-1; i >= 0; --i)
 		{
-			html += "<a class='menu-item m5 tier-" + tiernames[i] + "' href='#tier-" + tiernames[i] + "'>ARMS Labs " + tiernames[i] + "</a>";
+			var tierName = leaderboardTiers[i].name;
+			var style = "style='color: " + leaderboardTiers[i].color + ";'";
+			html += "<a class='menu-item m5 tier-" + tierName + "' href='#tier-" + tierName + "'" + style + ">ARMS Labs " + tierName + "</a>";
 			
-			if (window.location.hash.substring(1) == tiernames[i])
-				scrolltoid = tiernames[i];
+			if (window.location.hash.substring(1) == tierName)
+				scrolltoid = tierName;
+			
+			// Generate CSS
+			css += "p.entry.tier-" + tierName + ":hover, a.menu-item.tier-" + tierName + ":hover ";
+			css += "{ background-color: " + leaderboardTiers[i].color + " !important; color: black !important; }";
+			css += "p.entry.tier-" + tierName + " .index " + "{ background-image: url(placement-" + tierName.toLowerCase() + ".png); color: black; }";
 		}
 		html += "</div>";
 		
-		tiercounter = tiers.length-1;
-		index = 1;
+		var style = document.createElement('style');
+		style.appendChild(document.createTextNode(css));
+		document.getElementsByTagName('head')[0].appendChild(style);
 		
+		var tc = leaderboardTiers.length-1;
+		var index = 1;
 		
-		html += "<h3 id='tier-" + tiernames[tiercounter] + "' class='tier-" + tiernames[tiercounter] + "'>ARMS Labs " + tiernames[tiercounter] + "</h3><div class='tier'>";
-		html += "<p class='limits'>" + tiers[tiers.length-1] + " <img class='armscoin-limits' src='coin.png'/> &#8211; ???? <img class='armscoin-limits' src='coin.png'/></p>";
+		html += "<h3 id='tier-" + leaderboardTiers[tc].name + "' style='color: " + leaderboardTiers[tc].color + ";'>ARMS Labs " + leaderboardTiers[tc].name + "</h3><div class='tier'>";
+		html += "<p class='limits'>" + leaderboardTiers[leaderboardTiers.length-1].start + " <img class='armscoin-text' src='coin.png'/> &#8211; ???? <img class='armscoin-text' src='coin.png'/></p>";
 		
 		for (var key in leaderboard)
 		{
@@ -233,20 +168,20 @@
 			
 			if (coins == 0)
 				break;
-			else if (coins < tiers[tiercounter])
+			else if (coins < leaderboardTiers[tc].start)
 			{
-				tiercounter--;
+				tc--;
 				index = 1;
-				html += "</div><h3 id='tier-" + tiernames[tiercounter] + "' class='tier-" + tiernames[tiercounter] + "'>ARMS Labs " + tiernames[tiercounter] + "</h3><div class='tier'>";
+				var tierName = leaderboardTiers[tc].name;
+				html += "</div><h3 id='tier-" + tierName + "' style='color: " + leaderboardTiers[tc].color + ";'>ARMS Labs " + tierName + "</h3><div class='tier'>";
 				
-				if (i < tiernames.length - 2)
-					html += "<p class='limits'>" + tiers[tiercounter] + " <img class='armscoin-limits' src='coin.png'/> &#8211; " + (tiers[tiercounter+1]-1) + " <img class='armscoin-limits' src='coin.png'/></p>";
-			
-			
+				if (i < leaderboardTiers.length - 2)
+					html += "<p class='limits'>" + leaderboardTiers[tc].start + " <img class='armscoin-text' src='coin.png'/> &#8211; " + (leaderboardTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
 			}
 			
-			html += "<p class='entry tier-" + tiernames[tiercounter] + ((index > 99) ? " small" : "") + "'><span class='index'>" + (index++) + "</span>";
-			html += "<span class='player'>" + key + "</span><span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-light' src='coin-white.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span>";
+			html += "<p class='entry tier-" + leaderboardTiers[tc].name + ((index > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
+			html += "<span class='player'>" + key + "</span>";
+			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 		}
 			
 		html += "</div>";
@@ -257,13 +192,11 @@
 
 <body onload="load()">
 	<h1><a href="/">Casual ARMS</a></h1>
-	<div id="container">
+	<div id="container" class="container-dark">
 		
 		<h2>Leaderboards</h2>
 		
-		<p>Casual ARMS are officially tracking your coins throughout every major event we hold! At the moment, this is just the Wednesday, Thursday, and Saturday lobbies, but there will be more main events in the future! As every lobby finishes, a screenshot of the coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here!</p>
-
-		<p>(New roles will be revealed as they are acquired.)</p>
+		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin.png'/> coins throughout every major <a href="/lobbies/"><em>lobby event</em></a> we hold! At the moment, this is just the <a href="/lobbies/#wednesday">Wednesday</a>, <a href="/lobbies/#thursday">Thursday</a>, and <a href="/lobbies/#saturday">Saturday</a> lobbies, but there will be more main events in the future! As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
 		
 		<div id="leaderboard"></div>
 		<br/>

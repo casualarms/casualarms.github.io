@@ -36,32 +36,19 @@
 		font-family: monospace;
 	}
 	
-	#formatted
-	{
+	#formatted {
 		background-color: black;
 		color: white;
 	}
 	
-	#input, #previous, #format-text-button, #compare-text-button
-	{
+	#input, #previous, #format-text-button, #compare-text-button {
 		display: none;
 	}
 	
-	.Intern     { color: #bfffff; }
-	.Technician { color: #00ffff; }
-	.Analyst    { color: #00ff00; }
-	.Coder      { color: #aaff00; }
-	.Researcher { color: #ffae00; }
-	.Scientist  { color: #ff6000; }
-	.Manager    { color: #ff0004; }
-	.VP         { color: #ff006f; }
 	</style>
 	<script type="text/javascript">
 	
 	var pad ="        ";
-	
-	var tiers = [1, 100, 250, 500, 1000, 2000, 3000, 5000];
-	var tiernames = ["Intern", "Technician", "Analyst", "Coder", "Researcher", "Scientist", "Manager", "VP"];
 	
 	var reader = new FileReader();
 	var textNew = null;
@@ -85,13 +72,13 @@
 	{
 		data.sort(function(a, b) {return b[1]-a[1]} );
 		
-		formatted = "";
-		formattedWeb = "'{";
-		tiercounter = tiers.length-1;
+		var formatted = "";
+		var formattedWeb = "'{";
+		var tiercounter = leaderboardTiers.length-1;
 		
-		for (var i = 0; i < data.length; ++i)
+		for (var i = 0; i < data.length && data[i][1] > 0; ++i)
 		{
-			if (data[i][1] < tiers[tiercounter])
+			if (data[i][1] < leaderboardTiers[tiercounter].start)
 			{
 				formatted += "\n";
 				tiercounter--;
@@ -119,16 +106,16 @@
 	
 	function mergeData(d_old, d_new)
 	{
-		result = {};
-		for (i = 0; i <  d_old.length; ++i)
+		var result = {};
+		for (var i = 0; i <  d_old.length; ++i)
 		{
-			name = d_old[i][0];
+			var name = d_old[i][0];
 			if (result[name] == undefined) result[name] = [-1,-1];
 			result[name][0] = d_old[i][1];
 		}
-		for (i = 0; i <  d_new.length; ++i)
+		for (var i = 0; i <  d_new.length; ++i)
 		{
-			name = d_new[i][0];
+			var name = d_new[i][0];
 			if (result[name] == undefined) result[name] = [-1,-1];
 			result[name][1] = d_new[i][1];
 		}
@@ -138,38 +125,33 @@
 	function compare(data_new, data_old)
 	{
 		format(data_new);
+		var merged = mergeData(data_old, data_new);
+		var newroles = {};
 		
-		merged = mergeData(data_old, data_new);
-		
-		console.log(merged);
-		
-		newroles = {};
-		for (t = tiers.length-1; t >= 0; --t)
-		{
-			newroles[tiernames[t]] = [];
-		}
+		for (var t = leaderboardTiers.length-1; t >= 0; --t)
+			newroles[leaderboardTiers[t].name] = [];
 		
 		for (var name in merged)
 		{
-			player = merged[name];
-			for (t = tiers.length-1; t >= 0; --t)
+			var player = merged[name];
+			for (var t = leaderboardTiers.length-1; t >= 0; --t)
 			{
-				if (player[1] >= tiers[t] && player[0] < tiers[t])
+				if (player[1] >= leaderboardTiers[t].start && player[0] < leaderboardTiers[t].start)
 				{
-					newroles[tiernames[t]].push(name);
+					newroles[leaderboardTiers[t].name].push(name);
 					break;
 				}
 			}
 		}
 		
-		output = "";
-		for (t = tiers.length-1; t >= 0; --t)
+		var output = "";
+		for (var t = leaderboardTiers.length-1; t >= 0; --t)
 		{
-			output += "<h4 class='" + tiernames[t] + "'>" + tiernames[t] + "</h4><ul>";
-			for (name in newroles[tiernames[t]])
-			{
-				output += "<li>" + newroles[tiernames[t]][name] + "</li>";
-			}
+			var tierName = leaderboardTiers[t].name;
+			output += "<h4 style='color: " + leaderboardTiers[t].color + ";'>" + tierName + "</h4><ul>";
+			for (name in newroles[tierName])
+				output += "<li>" + newroles[tierName][name] + "</li>";
+			
 			output += "</ul>";
 		}
 		
@@ -178,18 +160,16 @@
 	
 	function compareTextEntry()
 	{
-		text_new = parseData(document.getElementById("input").value);
-		text_old = parseData(document.getElementById("previous").value);
+		var text_new = parseData(document.getElementById("input").value);
+		var text_old = parseData(document.getElementById("previous").value);
 		compare(text_new, text_old);
 	}
 	
 	function newFormat(data_new)
 	{
-		console.log(data_new);
-		data_old = [];
+		var data_old = [];
 		
 		var leaderboard = JSON.parse(leaderboardData);
-		console.log(leaderboard);
 		
 		for (var key in leaderboard)
 		{
@@ -197,7 +177,6 @@
 			data_old.push([key, coins]);
 		}
 		
-		console.log(data_old);
 		compare(data_new, data_old);
 	}
 	

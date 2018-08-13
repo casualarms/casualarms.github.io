@@ -52,6 +52,16 @@ body {
 	line-height: 1.4em;
 }
 
+/* Dark theme */
+#container.container-dark {
+	background-color: #444;
+	color: white;
+}
+
+.container-dark a {
+	color: yellow;
+}
+
 
 ul {
 	text-align: left;
@@ -77,6 +87,12 @@ a > em {
 	background-color: #1d94fc;
 	color: white;
 	text-decoration: underline;
+}
+
+img.armscoin-text {
+	width: 1.1em;
+	position: relative;
+	top: 2.5pt;
 }
 
 .command {
@@ -382,12 +398,6 @@ a.submenu-item > .sub-text {
 
 @media only screen and (max-width: 600px)
 {
-	body {
-	}
-	
-	#container {
-	}
-	
 	#container p {
 		padding: 0 5%;
 	}
