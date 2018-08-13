@@ -33,8 +33,8 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	var endDate = getEventEnd(eventdata);
 	convertDates([startDate, endDate], diff);
 	
-	var dateText = bannerDateString(startDate);
-	var timeText = formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "");
+	var dateText = bannerDateString(startDate).toUpperCase();
+	var timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
 	
 	var isWarmup = eventdata.type == 3 || eventdata.type == 4;
 	
@@ -112,7 +112,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	ctx.font = logoFont;
 	ctx.fillStyle = logoColor;
 	ctx.textAlign = "left";
-	ctx.fillText("Casual ARMS", 170, 80);
+	ctx.fillText("Casual ARMS".toUpperCase(), 170, 80);
 	
 	// Discord link
 	if (!isWarmup)
@@ -130,8 +130,8 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	ctx.font = titleFont;
 	ctx.textAlign = "center";
 	ctx.fillStyle = titleColor;
-	ctx.fillText(unEscapeHTML(eventdata.titleText), 280, 152);
-	ctx.fillText("Lobby Host" + pluralHosts, 290 + (isWarmup ? 250 : 0), 302);
+	ctx.fillText(unEscapeHTML(eventdata.titleText).toUpperCase(), 280, 152);
+	ctx.fillText(("Lobby Host" + pluralHosts).toUpperCase(), 290 + (isWarmup ? 250 : 0), 302);
 	
 	// Time and date
 	ctx.font = timeDateFont;
@@ -144,7 +144,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	ctx.font = websiteFont;
 	ctx.textAlign = "center";
 	ctx.fillStyle = websiteColor;
-	ctx.fillText("www.casualarms.net", 440, 472);
+	ctx.fillText("www.casualarms.net".toUpperCase(), 440, 472);
 	
 	// Hosts
 	var didDrawCodes = false;
@@ -159,14 +159,14 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			ctx.font = teamTagFont;
 			ctx.fillStyle = hostsColor;
 			ctx.textAlign = "left";
-			ctx.fillText(eventdata.hosts[i].tag, hOffset, vOffset);
+			ctx.fillText(eventdata.hosts[i].tag.toUpperCase(), hOffset, vOffset);
 			hOffset += 40;
 		}
 		
 		ctx.font = hostsFont;
 		ctx.fillStyle = hostsColor;
 		ctx.textAlign = "left";
-		ctx.fillText(unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code), hOffset, vOffset);
+		ctx.fillText((unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code)).toUpperCase(), hOffset, vOffset);
 		
 		if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts.length > 1)
 		{
@@ -176,7 +176,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			ctx.fillStyle = tierColor;
 			ctx.font = tierFont;
 			ctx.textAlign = "center";
-			ctx.fillText(tiers[eventdata.hosts[i].tier-1], 75, vOffset - 1);
+			ctx.fillText(tiers[eventdata.hosts[i].tier-1].toUpperCase(), 75, vOffset - 1);
 		}
 		
 		if (!isWarmup && eventdata.hosts[i].tier != 0)
@@ -197,7 +197,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.font = titleFont;
 		ctx.textAlign = "center";
 		ctx.fillStyle = titleColor;
-		ctx.fillText("Lobby Code" + pluralHosts, 720, 302);
+		ctx.fillText(("Lobby Code" + pluralHosts).toUpperCase(), 720, 302);
 	}
 	
 	// Generate image
