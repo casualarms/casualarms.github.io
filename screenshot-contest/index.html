@@ -1,10 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Screenshot Contest - Casual ARMS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../style.css">
-	<script type="text/javascript">
+	<script>
 	
 	var screenshots = [
 	["01-05", "02-04", "03-01", "04-04", "05-01", "06-01", "07-11", "08-06", "09-01", "10-07", "11-09", "12-05", "13-11", "14-01", "15-01"],
@@ -105,7 +106,7 @@
 	
 	
 	</script>
-	<style type="text/css">
+	<style>
 	img
 	{
 		border: 2pt solid black;
@@ -121,7 +122,6 @@
 <body onLoad="load()">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div id="container">
-		
 		<h2>One year of ARMS Celebration Screenshot Contest</h2>
 		
 		<p>The Casual ARMS screenshot contest took place in June 2018 to celebrate the one-year anniversary of ARMS. Over one hundred submissions was filtered down to just 15 from voting by Casual ARMS members. After final stage voting, three winners received one eShop gift card each.</p>
@@ -130,28 +130,28 @@
 			<img src="" width="640" id="image"/>
 		</div>
 		
-		<p id="nav"><select name="theme" id="theme" onChange="switchSet()">
-			<option value="0">Finalists</option>
-			<option value="1">Spring Man</option>
-			<option value="2">Ribbon Girl</option>
-			<option value="3">Ninjara</option>
-			<option value="4">Master Mummy</option>
-			<option value="5">Min Min</option>
-			<option value="6">Mechanica</option>
-			<option value="7">Twintelle</option>
-			<option value="8">Byte and Barq</option>
-			<option value="9">Kid Cobra</option>
-			<option value="10">Helix</option>
-			<option value="11">Max Brass</option>
-			<option value="12">Lola Pop</option>
-			<option value="13">Misango</option>
-			<option value="14">Springtron</option>
-			<option value="15">Dr. Coyle</option>
-		</select>
-		<button onClick="switchImage(-1)" id="previous">Previous</button>
-		<button onClick="switchImage(1)" id="next">Next</button>
-	</p>
-	
-</div>
-
+		<p id="nav">
+			<select name="theme" id="theme" onChange="switchSet()">
+				<option value="0">Finalists</option>
+				<option value="1">Spring Man</option>
+				<option value="2">Ribbon Girl</option>
+				<option value="3">Ninjara</option>
+				<option value="4">Master Mummy</option>
+				<option value="5">Min Min</option>
+				<option value="6">Mechanica</option>
+				<option value="7">Twintelle</option>
+				<option value="8">Byte and Barq</option>
+				<option value="9">Kid Cobra</option>
+				<option value="10">Helix</option>
+				<option value="11">Max Brass</option>
+				<option value="12">Lola Pop</option>
+				<option value="13">Misango</option>
+				<option value="14">Springtron</option>
+				<option value="15">Dr. Coyle</option>
+			</select>
+			<button onClick="switchImage(-1)" id="previous">Previous</button>
+			<button onClick="switchImage(1)" id="next">Next</button>
+		</p>
+	</div>
 </body>
+</html>

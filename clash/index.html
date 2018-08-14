@@ -1,11 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Casual Clash – Casual ARMS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../style.css">
-	<script type="text/javascript" src="../script.js"></script>
-	<script type="text/javascript">
+	<script src="../script.js"></script>
+	<script>
 	function load()
 	{
 		var diff = getTimeZoneDiff();
@@ -23,10 +24,11 @@
 		document.getElementById("tournament-start2").innerHTML = formatTime(tournamentStart, diff);
 	}
 	</script>
-	<style type="text/css">
+	<style>
 		ul {
 			list-style-type: circle;
 		}
+		
 		li { line-height: 1.4em; }
 		
 		.stage.active {
@@ -41,7 +43,6 @@
 	<div id="container">
 		
 		<h2>Casual Clash Rules</h2>
-		
 		
 		<p>The Casual ARMS <a href="http://discord.gg/u6cfeN9"><em class="discord-bg">Discord server</em></a> is proud to bring you back our <em>Swiss style</em> tournament! In this tournament format, there is <em>no elimination</em>. You will play a series of rounds against other players with similar win-loss rates to you. Your individual fights will all matter, so be sure to report your full results of each fight. Players will be ranked at the end for points earned, and the player with the most points will be the winner!</p>
 		
@@ -134,5 +135,5 @@
 		</div>
 	
 	</div>
-
 </body>
+</html>
