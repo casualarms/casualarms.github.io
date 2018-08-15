@@ -48,62 +48,7 @@
 	</style>
 	<script>
 	
-	var pad = "        ";
-	
-	var reader = new FileReader();
-	var textNew = null;
-	var state = "";
-	
-	function parseData(text)
-	{
-		rows = text.split("\n");
-		data = [];
-		
-		for (var i = 1; i < rows.length; ++i)
-		{
-			row = rows[i].split(",");
-			datarow = [ row[0], parseInt(row[1]) ];
-			data.push(datarow);
-		}
-		return data;
-	}
-	
-	function format(data)
-	{
-		data.sort(function(a, b) {return b[1]-a[1]} );
-		
-		var formatted = "";
-		var formattedWeb = "'{";
-		var tiercounter = leaderboardTiers.length-1;
-		
-		for (var i = 0; i < data.length && data[i][1] > 0; ++i)
-		{
-			if (data[i][1] < leaderboardTiers[tiercounter].start)
-			{
-				formatted += "\n";
-				tiercounter--;
-			}
-			formatted += (data[i][1] + pad).slice(0, pad.length) + data[i][0] + "\n";
-			
-			var name = JSON.stringify(data[i][0]).replace(/'/g, "\\'").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-			formattedWeb += name + ":" + data[i][1] + ((i != data.length - 1) ? "," : "");
-		}
-		document.getElementById("formatted").value = formatted;
-		document.getElementById("formatted-for-web").value = formattedWeb + "}'";
-	}
-	
-	function formatTextEntry()
-	{
-		format(document.getElementById("input").value);
-	}
-	
-	function formatFile()
-	{
-		var selectedFile = document.getElementById("file-new").files[0];
-		state = "FORMATFILE";
-		reader.readAsText(selectedFile);
-	}
-	
+	// Merges entries with unknown ID
 	function mergeData(d_old, d_new)
 	{
 		var result = {};
@@ -121,16 +66,37 @@
 		}
 		return result;
 	}
+
 	
-	function compare(data_new, data_old)
+	function compare(dataNew, dataOld)
 	{
-		format(data_new);
-		var merged = mergeData(data_old, data_new);
+		// Prepare result
 		var newroles = {};
-		
 		for (var t = leaderboardTiers.length-1; t >= 0; --t)
 			newroles[leaderboardTiers[t].name] = [];
 		
+		
+		// Handle players with known IDs
+		for (key in dataNew)
+		{
+			if (key == "UNKNOWN") continue;
+			
+			var newCoins = dataNew[key].coins;
+			var oldCoins = (dataOld[key] != undefined) ? dataOld[key].coins : 0;
+			
+			for (var t = leaderboardTiers.length-1; t >= 0; --t)
+			{
+				if (newCoins >= leaderboardTiers[t].start && oldCoins < leaderboardTiers[t].start)
+				{
+					newroles[leaderboardTiers[t].name].push(dataNew[key].name);
+					break;
+				}
+			}
+		}
+		
+		
+		// Handle players with unknown IDs
+		var merged = mergeData(dataOld.UNKNOWN, dataNew.UNKNOWN);
 		for (var name in merged)
 		{
 			var player = merged[name];
@@ -144,6 +110,8 @@
 			}
 		}
 		
+		
+		// Output result
 		var output = "";
 		for (var t = leaderboardTiers.length-1; t >= 0; --t)
 		{
@@ -158,90 +126,64 @@
 		document.getElementById("newroles").innerHTML = output;
 	}
 	
-	function compareTextEntry()
-	{
-		var text_new = parseData(document.getElementById("input").value);
-		var text_old = parseData(document.getElementById("previous").value);
-		compare(text_new, text_old);
-	}
 	
-	function newFormat(data_new)
+	
+	function parseData(text)
 	{
-		var data_old = [];
+		var rows = text.split(/[\r\n]+/);
+		var data = {};
+		var unknowns = [];
 		
-		var leaderboard = JSON.parse(leaderboardData);
-		
-		for (var key in leaderboard)
+		for (var i = 1; i < rows.length; ++i)
 		{
-			var coins = leaderboard[key];
-			data_old.push([key, coins]);
+			var row = rows[i].split(",");
+			var userName = row[1];//.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+			var userID = row[0];
+			
+			if (userID == "UNKNOWN")
+				unknowns.push([userName, parseInt(row[2])]);
+			else
+				data[userID] = {"name" : userName, "coins" : parseInt(row[2])};
 		}
 		
-		compare(data_new, data_old);
+		data["UNKNOWN"] = unknowns;
+		return data;
 	}
 	
-	function compareFiles()
-	{
-		var selectedFileNew = document.getElementById("file-new").files[0];
-		state = "COMPAREFILES1";
-		reader.readAsText(selectedFileNew);
-	}
+	
+	var reader = new FileReader();
 	
 	reader.onloadend = function(event)
 	{
-		if (state == "FORMATFILE")
-		{
-		//	format(reader.result);
-			newFormat(parseData(reader.result));
-			state = "";
-		}
-		else if (state == "COMPAREFILES1")
-		{
-			textNew = reader.result;
-			format(textNew);
+		var dataNew = parseData(reader.result);
+		document.getElementById("formatted-for-web").value = JSON.stringify(dataNew);
 		
-			var selectedFileOld = document.getElementById("file-old").files[0];
-			state = "COMPAREFILES2";
-			reader.readAsText(selectedFileOld);
-		}
-		else if (state == "COMPAREFILES2")
+		var callback = function(dataOld)
 		{
-			textOld = reader.result;
-			compare(parseData(textNew), parseData(textOld));
-			state = "";
+			compare(dataNew, dataOld);
 		}
+		
+		fetchLeaderboards(callback);
 	}
 	
-	function enableTextInput()
+	function formatFile()
 	{
-		document.getElementById("input").style.display = "inline";
-		document.getElementById("previous").style.display = "inline";
-		document.getElementById("format-text-button").style.display = "inline";
-		document.getElementById("compare-text-button").style.display = "inline";
+		var selectedFile = document.getElementById("file-new").files[0];
+		reader.readAsText(selectedFile);
 	}
+	
 	</script>
 </head>
 <body>
 	<div id="wrapper">
 		<h1>Casual ARMS Leaderboard Tools</h1>
-		<!--<button onCLick="enableTextInput()">Manual Text Input</button>-->
 		
 		<h2>Input</h2>
 		<input type="file" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
-		<!--<textarea id="input" rows="6"></textarea>
-		<button onCLick="formatTextEntry()" id="format-text-button">Format Text</button>-->
 		<br/>
 		
-		<h3>Formatted Leaderboard</h3>
-		<textarea id="formatted" rows="6"></textarea>
-		<p>For web</p>
-		<textarea id="formatted-for-web" rows="6"></textarea>
-		
-		<!--<h2>Previous Version Input</h2>
-		<input type="file" id="file-old"/><button onCLick="compareFiles()">Read and Compare Files</button>
-		<textarea id="previous" rows="6"></textarea>
-		<button onCLick="compareTextEntry()" id="compare-text-button">Compare</button>
-		<br/>-->
+		<h3>JSON Leaderboard</h3>
+		<textarea id="formatted-for-web" rows="15"></textarea>
 		
 		<h3>New Roles</h3>
 		<div id="newroles"></div>

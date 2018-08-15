@@ -128,16 +128,16 @@
 	<script>
 	
 	
-	function load()
+	function renderLeaderboards(rawBoards)
 	{
-		var leaderboard = JSON.parse(leaderboardData);
+		var leaderboard = reorganizeLeaderboards(rawBoards);
 		
 		var html = "<div class='menu-container'>";
 		var scrolltoid = null;
 		
 		var css = "";
 		
-		for (i = leaderboardTiers.length-1; i >= 0; --i)
+		for (var i = leaderboardTiers.length-1; i >= 0; --i)
 		{
 			var tierName = leaderboardTiers[i].name;
 			var style = "style='color: " + leaderboardTiers[i].color + ";'";
@@ -163,9 +163,9 @@
 		html += "<h3 id='tier-" + leaderboardTiers[tc].name + "' style='color: " + leaderboardTiers[tc].color + ";'>ARMS Labs " + leaderboardTiers[tc].name + "</h3><div class='tier'>";
 		html += "<p class='limits'>" + leaderboardTiers[leaderboardTiers.length-1].start + " <img class='armscoin-text' src='coin.png'/> &#8211; ???? <img class='armscoin-text' src='coin.png'/></p>";
 		
-		for (var key in leaderboard)
+		for (var i = 0; i < leaderboard.length; ++i)
 		{
-			var coins = leaderboard[key];
+			var coins = leaderboard[i][1];
 			
 			if (coins == 0)
 				break;
@@ -181,12 +181,19 @@
 			}
 			
 			html += "<p class='entry tier-" + leaderboardTiers[tc].name + ((index > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
-			html += "<span class='player'>" + key + "</span>";
+			html += "<span class='player'>" + leaderboard[i][0] + "</span>";
 			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 		}
 			
 		html += "</div>";
 		document.getElementById("leaderboard").innerHTML = html;
+	}
+	
+	
+	
+	function load()
+	{
+		fetchLeaderboards(renderLeaderboards);
 	}
 	</script>
 </head>

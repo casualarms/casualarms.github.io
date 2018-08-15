@@ -166,6 +166,45 @@ function formatTimeUTC(date, diff)
 }
 
 
+function reorganizeLeaderboards(rawBoards)
+{
+	var leaderboards = [];
+	
+	for (var key in rawBoards)
+	{
+		if (rawBoards.hasOwnProperty(key) && key != "UNKNOWN")
+		{
+			var user = rawBoards[key];
+			leaderboards.push([user.name, user.coins]);
+		}
+	}
+	
+	for (var i = 0; i < rawBoards.UNKNOWN.length; ++i)
+		leaderboards.push(rawBoards.UNKNOWN[i]);
+	
+	leaderboards.sort(function(a, b) {return b[1]-a[1]} );
+	
+	return leaderboards;
+}
+
+function fetchLeaderboards(callback)
+{
+	var xmlhttp = new XMLHttpRequest();
+	var url = "/leaderboards.json";
+	
+	xmlhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			var rawBoards = JSON.parse(this.responseText);
+			callback(rawBoards);
+		}
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+
 function parseEvents()
 {
 	events = [];
