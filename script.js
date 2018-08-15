@@ -190,7 +190,7 @@ function reorganizeLeaderboards(rawBoards)
 function fetchLeaderboards(callback)
 {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://www.casualarms.net/leaderboards.json";
+	var url = "/leaderboard-data.json";
 	
 	xmlhttp.onreadystatechange = function()
 	{
