@@ -10,6 +10,7 @@ var eventsJSON = [
 	"{\"titleText\":\"Thumpin' Thursday\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-09T18:00:00.000Z\",\"duration\":120,\"timeZone\":\"GMT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":3}]}",
 	"{\"titleText\":\"Fights Only Lobby\",\"type\":3,\"theme\":\"mlm\",\"date\":\"2018-08-13T20:45:00.000Z\",\"duration\":60,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Mileve\",\"tag\":\"\",\"code\":\"2795-2096-7893\",\"tier\":2}]}",
 	"{\"titleText\":\"Wildcard Wednesday!\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-15T22:00:00.000Z\",\"duration\":120,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Taste\",\"tag\":\"\",\"code\":\"4535-5139-5505\",\"tier\":1},{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":3}]}",
+	"{\"titleText\":\"Thumpin' Thursday\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-16T18:00:00.000Z\",\"duration\":120,\"timeZone\":\"GMT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":3}]}",
 	
 ];
 
