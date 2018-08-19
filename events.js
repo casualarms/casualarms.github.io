@@ -23,6 +23,7 @@ var leaderboardTiers = [
 	{"start" :  2000, "name" : "Scientist",  "color" : "#ff6000"},
 	{"start" :  3000, "name" : "Manager",    "color" : "#ff0004"},
 	{"start" :  5000, "name" : "VP",         "color" : "#ff006f"},
+	{"start" :  7000, "name" : "EVP",        "color" : "#ff00e6"},
 ];
 
 var eventStages = {

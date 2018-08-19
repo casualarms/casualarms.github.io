@@ -132,36 +132,13 @@
 	{
 		var leaderboard = reorganizeLeaderboards(rawBoards);
 		
-		var html = "<div class='menu-container'>";
-		var scrolltoid = null;
-		
+		var menu_html = "<div class='menu-container'>";
+		var html = "";
 		var css = "";
 		
-		for (var i = leaderboardTiers.length-1; i >= 0; --i)
-		{
-			var tierName = leaderboardTiers[i].name;
-			var style = "style='color: " + leaderboardTiers[i].color + ";'";
-			html += "<a class='menu-item m5 tier-" + tierName + "' href='#tier-" + tierName + "'" + style + ">ARMS Labs " + tierName + "</a>";
-			
-			if (window.location.hash.substring(1) == tierName)
-				scrolltoid = tierName;
-			
-			// Generate CSS
-			css += "p.entry.tier-" + tierName + ":hover, a.menu-item.tier-" + tierName + ":hover ";
-			css += "{ background-color: " + leaderboardTiers[i].color + " !important; color: black !important; }";
-			css += "p.entry.tier-" + tierName + " .index " + "{ background-image: url(placement-" + tierName.toLowerCase() + ".png); color: black; }";
-		}
-		html += "</div>";
-		
-		var style = document.createElement('style');
-		style.appendChild(document.createTextNode(css));
-		document.getElementsByTagName('head')[0].appendChild(style);
-		
+		var scrolltoid = null;
 		var tc = leaderboardTiers.length-1;
 		var index = 1;
-		
-		html += "<h3 id='tier-" + leaderboardTiers[tc].name + "' style='color: " + leaderboardTiers[tc].color + ";'>ARMS Labs " + leaderboardTiers[tc].name + "</h3><div class='tier'>";
-		html += "<p class='limits'>" + leaderboardTiers[leaderboardTiers.length-1].start + " <img class='armscoin-text' src='coin.png'/> &#8211; ???? <img class='armscoin-text' src='coin.png'/></p>";
 		
 		for (var i = 0; i < leaderboard.length; ++i)
 		{
@@ -175,18 +152,35 @@
 				index = 1;
 				var tierName = leaderboardTiers[tc].name;
 				html += "</div><h3 id='tier-" + tierName + "' style='color: " + leaderboardTiers[tc].color + ";'>ARMS Labs " + tierName + "</h3><div class='tier'>";
+				html += "<p class='limits'>" + leaderboardTiers[tc].start + " <img class='armscoin-text' src='coin.png'/> &#8211; " + (leaderboardTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
 				
-				if (i < leaderboardTiers.length - 2)
-					html += "<p class='limits'>" + leaderboardTiers[tc].start + " <img class='armscoin-text' src='coin.png'/> &#8211; " + (leaderboardTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
+				// Build menu
+				var tierName = leaderboardTiers[tc].name;
+				var style = "style='color: " + leaderboardTiers[tc].color + ";'";
+				menu_html += "<a class='menu-item m5 tier-" + tierName + "' href='#tier-" + tierName + "'" + style + ">ARMS Labs " + tierName + "</a>";
+				
+				if (window.location.hash.substring(1) == tierName)
+					scrolltoid = tierName;
+				
+				// Generate CSS
+				css += "p.entry.tier-" + tierName + ":hover, a.menu-item.tier-" + tierName + ":hover ";
+				css += "{ background-color: " + leaderboardTiers[tc].color + " !important; color: black !important; }";
+				css += "p.entry.tier-" + tierName + " .index " + "{ background-image: url(placement-" + tierName.toLowerCase() + ".png); color: black; }";
 			}
 			
 			html += "<p class='entry tier-" + leaderboardTiers[tc].name + ((index > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
 			html += "<span class='player'>" + leaderboard[i][0] + "</span>";
 			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 		}
-			
+		
+		menu_html += "</div>";
 		html += "</div>";
-		document.getElementById("leaderboard").innerHTML = html;
+		document.getElementById("leaderboard").innerHTML = menu_html + html;
+		
+		// Add CSS
+		var style = document.createElement('style');
+		style.appendChild(document.createTextNode(css));
+		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
 	
