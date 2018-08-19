@@ -159,7 +159,7 @@ h3 {
 
 h3:target {
 	background-color: #1d94fc;
-	color: white;
+	color: white !important;
 }
 
 @keyframes slidein {
@@ -200,7 +200,6 @@ a.menu-item:hover, a.menu-item:active {
 	background-color: #1d94fc;
 	color: white;
 	animation: 0.3s slidein;
-
 }
 
 .submenu {

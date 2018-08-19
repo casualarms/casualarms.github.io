@@ -13,7 +13,7 @@
 	
 	function loadWidgetData(data)
 	{
-		document.getElementById("footer-text").innerHTML = data.members.length + " members online on Discord";
+		document.getElementById("footer-text").innerHTML = data.members.length + " members online on Discord. <span style='white-space: nowrap;'>Click here to join!</span>";
 	}
 	
 	function load()
@@ -241,6 +241,11 @@
 		#featured:hover {
 			transform: translateX(20pt);
 		}
+		
+		#discord-footer {
+			font-size: 0.8em;
+			padding-top: 0;
+		}
 	}
 	
 	</style>
@@ -297,7 +302,6 @@
 		</div>
 		
 		<a id="discord-footer" href="https://discord.gg/5A7QkPC"><img src="assets/discord-logo.png"/><span id="footer-text"> Join the Discord community!</span></a>
-	
 	</div>
 	
 	<p class="bottom"><a href="quiz/" id="random-fact"></a></p>
