@@ -12,6 +12,7 @@ var eventsJSON = [
 	"{\"titleText\":\"Wildcard Wednesday!\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-15T22:00:00.000Z\",\"duration\":120,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Taste\",\"tag\":\"\",\"code\":\"4535-5139-5505\",\"tier\":1},{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":3}]}",
 	"{\"titleText\":\"Thumpin' Thursday\",\"type\":0,\"theme\":\"undefined\",\"date\":\"2018-08-16T18:00:00.000Z\",\"duration\":120,\"timeZone\":\"GMT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":1},{\"name\":\"Rashiko\",\"tag\":\"CC\",\"code\":\"6822-5055-2423\",\"tier\":3}]}",
 	"{\"titleText\":\"Fights Only Lobby\",\"type\":4,\"theme\":\"cote\",\"date\":\"2018-08-19T20:45:00.000Z\",\"duration\":60,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Program\",\"tag\":\"\",\"code\":\"4898-5196-4000\",\"tier\":0}]}",
+	"{\"titleText\":\"Fights Only Lobby\",\"type\":3,\"theme\":\"mlm\",\"date\":\"2018-08-20T20:45:00.000Z\",\"duration\":60,\"timeZone\":\"EDT\",\"hosts\":[{\"name\":\"Marie\",\"tag\":\"CC\",\"code\":\"5693-5645-2698\",\"tier\":0},{\"name\":\"Spenjo\",\"tag\":\"\",\"code\":\"0725-4824-1895\",\"tier\":0}]}",
 	
 ];
 
