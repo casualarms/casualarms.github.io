@@ -245,30 +245,48 @@
 		events += createEntry(satStart, satEnd, "saturday",  "slot", "Saturday Party Lobby<br/>"        + formatTimeUTC(satStart, diff) + " to " + formatTimeUTC(satEnd, diff));
 		events += createEntry(sunStart, sunEnd, "sunday",    "slot", "Champions of the Era warmup<br/>" + formatTimeUTC(sunStart, diff) + " to " + formatTimeUTC(sunEnd, diff));
 		
-		
-		var nextEventData = nextEvent();
-		if (nextEventData != null)
+		nextEvents(function(nextEventData)
 		{
-			document.getElementById("next-section").style.display = "block";
-			result = generateBanner(880, 480, nextEventData, "next-lobby", true);
-			
-			var themeData = null;
-			for (t = 0; t < eventThemes.length; ++t)
-				if (eventThemes[t].key == nextEventData.theme)
-					themeData = eventThemes[t];
-			
-			if (themeData != null)
-				document.getElementById("next-theme-info").innerHTML = "Featuring the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a>!";
-			
-			var evStart = nextEventData.date;
-			var evEnd = getEventEnd(nextEventData);
-			convertDates([evStart, evEnd], diff);
-			
-			events += createEntry(evStart, evEnd, "next",    "announced",  nextEventData.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
-		}
+			var html = "";
+			var first = true;
+			for (var i = 0; i < nextEventData.length; ++i)
+			{
+				var ev = nextEventData[i];
+				
+				if (first)
+				{
+					document.getElementById("next-section").style.display = "block";
+					result = generateBanner(880, 480, ev, "next-lobby", true);
+					
+					var themeData = null;
+					for (t = 0; t < eventThemes.length; ++t)
+						if (eventThemes[t].key == ev.theme)
+							themeData = eventThemes[t];
+					
+					var info_html = "This event ";
+					
+					if (themeData != null)
+						info_html += "features the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a> and ";
+					first = false;
+					
+					if (ev.type == 0)
+						info_html += " counts for the Casual ARMS <a href='/leaderboards/''><em>leaderboards</em></a>!";
+					else
+						info_html += " <em>does not</em> count for the Casual ARMS leaderboards.";
+					
+					document.getElementById("next-info").innerHTML = info_html;
+				}
+				
+				var evStart = ev.date;
+				var evEnd = getEventEnd(ev);
+				convertDates([evStart, evEnd], diff);
+				
+				html += createEntry(evStart, evEnd, "next",    "announced",  ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
+			}
+			document.getElementById("calendar").innerHTML += html;
+		});
 		
 		document.getElementById("calendar").innerHTML += events;
-		
 	}
 	</script>
 </head>
@@ -294,7 +312,7 @@
 		<div id="next-section" style="display: none;">
 			<h3 id="next">Next Lobby Event</h3>
 			<canvas width="880" height="480" id="next-lobby"></canvas>
-			<p id="next-theme-info"></p>
+			<p id="next-info"></p>
 		</div>
 		
 		<h3>Upcoming Lobby Events</h3>

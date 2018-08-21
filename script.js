@@ -2,9 +2,11 @@ function getQueryVariable(variable)
 {
 	var query = window.location.search.substring(1);
 	var vars = query.split('&');
-	for (var i = 0; i < vars.length; i++) {
+	for (var i = 0; i < vars.length; i++)
+	{
 		var pair = vars[i].split('=');
-		if (decodeURIComponent(pair[0]) == variable) {
+		if (decodeURIComponent(pair[0]) == variable)
+		{
 			return decodeURIComponent(pair[1]);
 		}
 	}
@@ -182,7 +184,7 @@ function reorganizeLeaderboards(rawBoards)
 	for (var i = 0; i < rawBoards.UNKNOWN.length; ++i)
 		leaderboards.push(rawBoards.UNKNOWN[i]);
 	
-	leaderboards.sort(function(a, b) {return b[1]-a[1]} );
+	leaderboards.sort(function(a, b) { return b[1] - a[1]; });
 	
 	return leaderboards;
 }
@@ -204,54 +206,73 @@ function fetchLeaderboards(callback)
 	xmlhttp.send();
 }
 
-
-function parseEvents()
+function fetchEvents(callback)
 {
-	events = [];
-	for (i = 0; i < eventsJSON.length; i++)
+	var xmlhttp = new XMLHttpRequest();
+	var url = "/event-data.json";
+	
+	xmlhttp.onreadystatechange = function()
 	{
-		var eventdata = JSON.parse(eventsJSON[i]);
-		eventdata.date = new Date(eventdata.date);
-		events[i] = eventdata;
-	}
-	return events;
+		if (this.readyState == 4 && this.status == 200)
+		{
+			var events = JSON.parse(this.responseText);
+			for (i = 0; i < events.length; i++)
+			{
+				var eventdata = events[i];
+				eventdata.date = new Date(eventdata.date);
+				events[i] = eventdata;
+			}
+			events.sort(function(a, b) { return a.date - b.date; });
+			callback(events);
+		}
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
 }
 
-function eventOngoingNow()
+
+
+function eventOngoingNow(callback)
 {
-	var lobbySchedule = parseEvents();
-	var classes = ["lobby", "lobby", "clash", "lobby", "lobby"];
-	
-	var now = new Date();
-	for (i = 0; i < lobbySchedule.length; ++i)
+	fetchEvents(function(lobbySchedule)
 	{
-		var start = lobbySchedule[i].date;
-		var end = getEventEnd(lobbySchedule[i]);
+		var classes = ["lobby", "lobby", "clash", "lobby", "lobby"];
+		var now = new Date();
 		
-		if (now > start && now < end)
-			return [classes[lobbySchedule[i].type]];
-	}
-	return ["none"];
+		for (i = 0; i < lobbySchedule.length; ++i)
+		{
+			var start = lobbySchedule[i].date;
+			var end = getEventEnd(lobbySchedule[i]);
+			
+			if (now > start && now < end)
+			{
+				callback([classes[lobbySchedule[i].type]]);
+				return;
+			}
+		}
+		callback(["none"]);
+		return;
+	});
 }
 
-function nextEvent()
+function nextEvents(callback)
 {
-	var lobbySchedule = parseEvents();
-	
-	applicable = null;
-	
-	
-	
-	var now = new Date();
-	for (i = 0; i < lobbySchedule.length; ++i)
+	fetchEvents(function(lobbySchedule)
 	{
-		var start = lobbySchedule[i].date;
-		var end = getEventEnd(lobbySchedule[i]);
+		var applicables = [];
+		var now = new Date();
 		
-		if (now < end)
-			applicable = lobbySchedule[i];
-	}
-	return applicable;
+		for (i = 0; i < lobbySchedule.length; ++i)
+		{
+			var start = lobbySchedule[i].date;
+			var end = getEventEnd(lobbySchedule[i]);
+			
+			if (now < end)
+				applicables.push(lobbySchedule[i]);
+		}
+		
+		callback(applicables);
+	});
 }
 
 function getEventEnd(eventdata)

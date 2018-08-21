@@ -23,28 +23,28 @@
 			document.getElementById("staff").style.display = "block";
 		}
 		
-		
-		var currentEvent = eventOngoingNow();
-		
-		if (currentEvent[0] != "none" || window.location.hash.indexOf("event") !== -1)
+		// Change to event mode
+		eventOngoingNow(function(currentEvent)
 		{
-			document.getElementById("event-id").className += " event " + currentEvent[0] + "-event";
-		}
+			if (currentEvent[0] != "none" || window.location.hash.indexOf("event") !== -1)
+				document.getElementById("event-id").className += " event " + currentEvent[0] + "-event";
+		});
 		
+		// Add random trivia
 		var PRNG = Math.seed(Math.random()*10000);
-		
 		document.getElementById("random-fact").innerHTML = generateQuestion(PRNG).trivia;
 		
-		
-		
-		var nextEventData = nextEvent();
-		if (nextEventData != null)
+		// Display next event feature
+		nextEvents(function(nextEventData)
 		{
-			document.getElementById("featured").classList = "";
-			result = generateBanner(880, 480, nextEventData, "test-canvas", true);
-		}
+			if (nextEventData.length > 0)
+			{
+				document.getElementById("featured").classList = "";
+				result = generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
+			}
+		});
 		
-	
+		// Discord widget display
 		var xmlhttp = new XMLHttpRequest();
 		var url = "https://discordapp.com/api/guilds/396373087278465038/widget.json";
 		
@@ -285,7 +285,7 @@
 		<div id="featured-aligner">
 			<div id="featured" class="featured-hidden">
 				<div class="featured-left"></div>
-				<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="test-canvas"></canvas></a>
+				<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="featured-canvas"/></a>
 			</div>
 		</div>
 		
