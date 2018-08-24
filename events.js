@@ -12,6 +12,19 @@ var leaderboardTiers = [
 	{"start" : 10000, "name" : "Codirector", "color" : "#b700ff"},
 ];
 
+var badgeList = {
+	"ldb0" : { "caption" : "ARMS Labs Intern", "style" : "light" },
+	"ldb1" : { "caption" : "ARMS Labs Technician", "style" : "light" },
+	"ldb2" : { "caption" : "ARMS Labs Analyst", "style" : "light" },
+	"ldb3" : { "caption" : "ARMS Labs Coder", "style" : "light" },
+	"ldb4" : { "caption" : "ARMS Labs Researcher", "style" : "light" },
+	"ldb5" : { "caption" : "ARMS Labs Scientist", "style" : "light" },
+	"ldb6" : { "caption" : "ARMS Labs Manager", "style" : "light" },
+	"ldb7" : { "caption" : "ARMS Labs VP", "style" : "light" },
+	"ldb8" : { "caption" : "ARMS Labs EVP", "style" : "light" },
+	"ldb9" : { "caption" : "ARMS Labs Codirector", "style" : "light" },
+};
+
 var eventStages = {
 	 0 : "Spring Stadium",
 	 1 : "Ribbon Ring",
