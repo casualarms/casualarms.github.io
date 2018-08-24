@@ -40,7 +40,14 @@
 			if (nextEventData.length > 0)
 			{
 				document.getElementById("featured").classList = "";
-				result = generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
+				if (nextEventData[0].type != 2) // Not Clash
+					result = generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
+				else { // Clash
+					document.getElementById("featured-banner").src = "/clash/nextclash.jpg";
+					document.getElementById("featured-banner").style.display = "inline-block";
+					document.getElementById("featured-canvas").style.display = "none";
+					document.getElementById("featured-link").href = "/clash/";
+				}
 			}
 		});
 		
@@ -181,6 +188,10 @@
 		border-right: 2pt dotted yellow;
 	}
 	
+	#featured-banner {
+		display: none;
+	}
+	
 	#featured img, #featured canvas {
 		height: 80pt;
 		margin: 5pt 5pt 5pt 0;
@@ -285,7 +296,7 @@
 		<div id="featured-aligner">
 			<div id="featured" class="featured-hidden">
 				<div class="featured-left"></div>
-				<a href="lobbies/#next"><!--<img id="featured-banner"/>--><canvas width="880" height="480" id="featured-canvas"/></a>
+				<a href="lobbies/#next" id="featured-link"><img id="featured-banner"/><canvas width="880" height="480" id="featured-canvas"/></a>
 			</div>
 		</div>
 		

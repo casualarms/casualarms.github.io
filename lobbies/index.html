@@ -92,6 +92,10 @@
 		background-color: gray;
 	}
 	
+	#calendar .cal-event-clash {
+		background-color: red;
+	}
+	
 	#calendar .cal-event .info {
 		display: none;
 	}
@@ -189,7 +193,7 @@
 		var height = duration / 3600000 * 4;
 		var dateOffset = (start.getUTCDay() + 6) % 7 + 1;
 		
-		return result + "<a href='#" + anchor + "' class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
+		return result + "<a href='" + anchor + "' class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
 	}
 	
 	function load()
@@ -239,11 +243,11 @@
 		
 		var events = "";
 		
-		events += createEntry(monStart, monEnd, "monday",    "slot", "Mega League Monday warmup<br/>"   + formatTimeUTC(monStart, diff) + " to " + formatTimeUTC(monEnd, diff));
-		events += createEntry(wedStart, wedEnd, "wednesday", "slot", "Wildcard Wednesday<br/>"          + formatTimeUTC(wedStart, diff) + " to " + formatTimeUTC(wedEnd, diff));
-		events += createEntry(thuStart, thuEnd, "thursday",  "slot", "Thumpin' Thursday<br/>"           + formatTimeUTC(thuStart, diff) + " to " + formatTimeUTC(thuEnd, diff));
-		events += createEntry(satStart, satEnd, "saturday",  "slot", "Saturday Party Lobby<br/>"        + formatTimeUTC(satStart, diff) + " to " + formatTimeUTC(satEnd, diff));
-		events += createEntry(sunStart, sunEnd, "sunday",    "slot", "Champions of the Era warmup<br/>" + formatTimeUTC(sunStart, diff) + " to " + formatTimeUTC(sunEnd, diff));
+		events += createEntry(monStart, monEnd, "#monday",    "slot", "Mega League Monday warmup<br/>"   + formatTimeUTC(monStart, diff) + " to " + formatTimeUTC(monEnd, diff));
+		events += createEntry(wedStart, wedEnd, "#wednesday", "slot", "Wildcard Wednesday<br/>"          + formatTimeUTC(wedStart, diff) + " to " + formatTimeUTC(wedEnd, diff));
+		events += createEntry(thuStart, thuEnd, "#thursday",  "slot", "Thumpin' Thursday<br/>"           + formatTimeUTC(thuStart, diff) + " to " + formatTimeUTC(thuEnd, diff));
+		events += createEntry(satStart, satEnd, "#saturday",  "slot", "Saturday Party Lobby<br/>"        + formatTimeUTC(satStart, diff) + " to " + formatTimeUTC(satEnd, diff));
+		events += createEntry(sunStart, sunEnd, "#sunday",    "slot", "Champions of the Era warmup<br/>" + formatTimeUTC(sunStart, diff) + " to " + formatTimeUTC(sunEnd, diff));
 		
 		nextEvents(function(nextEventData)
 		{
@@ -253,7 +257,7 @@
 			{
 				var ev = nextEventData[i];
 				
-				if (first)
+				if (first && ev.type != 2) // No Clash
 				{
 					document.getElementById("next-section").style.display = "block";
 					result = generateBanner(880, 480, ev, "next-lobby", true);
@@ -281,7 +285,9 @@
 				var evEnd = getEventEnd(ev);
 				convertDates([evStart, evEnd], diff);
 				
-				html += createEntry(evStart, evEnd, "next",    "announced",  ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
+				var anchor = (ev.type != 2) ? "#next" : "/clash/";
+				var evtype = (ev.type != 2) ? "announced" : "clash";
+				html += createEntry(evStart, evEnd, anchor, evtype, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 			}
 			document.getElementById("calendar").innerHTML += html;
 		});
