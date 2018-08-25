@@ -290,6 +290,9 @@
 				html += createEntry(evStart, evEnd, anchor, evtype, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 			}
 			document.getElementById("calendar").innerHTML += html;
+			
+			if (window.location.hash.substring(1) == "next")
+				document.getElementById("next").scrollIntoView();
 		});
 		
 		document.getElementById("calendar").innerHTML += events;
