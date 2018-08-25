@@ -15,4 +15,6 @@
 	,{"titleText":"Thumpin' Thursday!","type":0,"theme":"fights-only","date":"2018-08-23T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Levi","tag":"","code":"3256-0282-5625","tier":1},{"name":"Program","tag":"","code":"4898-5196-4000","tier":3}]}
 	,{"titleText":"Casual Clash 4","type":2,"theme":"undefined","date":"2018-08-25T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
 	
+	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-08-26T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}]}
+	
 ]
