@@ -13,7 +13,7 @@
 	
 	function loadWidgetData(data)
 	{
-		document.getElementById("footer-text").innerHTML = data.members.length + " members online on Discord. <span style='white-space: nowrap;'>Click here to join!</span>";
+		document.getElementById("footer-discord-text").innerHTML = data.members.length + " members online on Discord. <span style='white-space: nowrap;'>Click here to join!</span>";
 	}
 	
 	function load()
@@ -209,30 +209,62 @@
 		text-decoration: none;
 	}
 	
+	#main-footer {
+		position: relative;
+		height: 40pt;
+	}
+	
 	#discord-footer {
 		text-align: center;
 		display: block;
 		background-color: #738bd7;
-		font-size: 1.1em;
-		padding: 0.5em 5pt 0.7em 5pt;
+		height: 100%;
+		width: 55%;
 		text-decoration: none;
 		margin-top: 2em;
 		color: white;
+	}
+	
+	#footer-discord-text {
+		display: inline-block;
+		width: 50%;
+		line-height: 1.2em;
+		padding: 5pt;
 	}
 	
 	#discord-footer:hover {
 		background-color: #5c70ae;
 	}
 	
-	#discord-footer img {
-		height: 15pt;
-		position: relative;
-		top: 3pt;
-		margin-right: 6pt;
+	img#discord-logo  {
+		height: 20pt;
+		position: absolute;
+		top: 10pt;
+		left: 10pt;
+	}
+	
+	img#patreon-logo  {
+		height: 20pt;
+		position: absolute;
+		top: 10pt;
+		right: 10pt;
 	}
 	
 	#featured.featured-hidden {
 		display: none !important;
+	}
+	
+	#patreon-footer svg {
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		height: 90px;
+	}
+	
+	#patreon-footer svg:hover {
+		fill: green;
 	}
 	
 	@media only screen and (max-width: 600px)
@@ -312,7 +344,17 @@
 			</span>
 		</div>
 		
-		<a id="discord-footer" href="https://discord.gg/5A7QkPC"><img src="assets/discord-logo.png"/><span id="footer-text"> Join the Discord community!</span></a>
+		<div id="main-footer">
+			<img id="discord-logo" src="assets/discord-logo.png"/>
+			<a id="discord-footer" href="https://discord.gg/5A7QkPC"><span id="footer-discord-text"> Join the Discord community!</span></a>
+			<a id="patreon-footer">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
+					<polygon points="100 0 100 10 45 10 50 0" fill="#f36b61"/>
+				</svg>
+				<span id="footer-discord-text"> Join the Discord community!</span>
+			</a>
+			<img id="patreon-logo" src="assets/patreon-logo.png"/>
+		</div>
 	</div>
 	
 	<p class="bottom"><a href="quiz/" id="random-fact"></a></p>

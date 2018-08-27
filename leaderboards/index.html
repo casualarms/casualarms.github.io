@@ -126,7 +126,6 @@
 	}
 	
 	
-	
 	.badge-stash {
 		width: 100%;
 		background-color: #222;
@@ -165,6 +164,22 @@
 	
 	@media only screen and (max-width: 600px)
 	{
+	#mode-selector {
+		text-align: center;
+		font-family: ARMS;
+		font-size: 1.3em;
+		text-transform: uppercase;
+	}
+	
+	.mode {
+		padding: 3pt 12pt;
+		line-height: 2em;
+		cursor: pointer;
+	}
+	
+	.mode.active-mode {
+		background-color: yellow;
+		color: black;
 	}
 	
 	</style>
@@ -194,10 +209,16 @@
 		document.getElementById(member).style.height = "auto";
 	}
 	
-	function renderLeaderboards(rawBoards)
+	var leaderboard = null;
+	
+	function storeLeaderboards(rawBoards)
 	{
-		var leaderboard = reorganizeLeaderboards(rawBoards);
-		
+		leaderboard = reorganizeLeaderboards(rawBoards);
+		displayLeaderboards();
+	}
+	
+	function displayLeaderboards()
+	{
 		var menu_html = "<div class='menu-container'>";
 		var html = "";
 		var css = "";
@@ -252,11 +273,39 @@
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
+	function displayMonthly()
+	{
+		var html = "";
+		document.getElementById("leaderboard").innerHTML = html;
+	}
+	
+	function displayPatreon()
+	{
+		var html = "";
+		document.getElementById("leaderboard").innerHTML = html;
+	}
+	
+	
+	function changeMode(mode)
+	{
+		document.getElementById("md0").classList = "mode";
+		document.getElementById("md1").classList = "mode";
+		document.getElementById("md2").classList = "mode";
+		document.getElementById("md" + mode).classList += " active-mode";
+		
+		if (mode == 0)
+			displayLeaderboards();
+		else if (mode == 1)
+			displayMonthly();
+		else if (mode == 2)
+			displayPatreon();
+		
+	}
 	
 	
 	function load()
 	{
-		fetchLeaderboards(renderLeaderboards);
+		fetchLeaderboards(storeLeaderboards);
 	}
 	</script>
 </head>
@@ -268,6 +317,12 @@
 		<h2>Leaderboards</h2>
 		
 		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin.png'/> coins throughout every major <a href="/lobbies/"><em>lobby event</em></a> we hold! At the moment, this is just the <a href="/lobbies/#wednesday">Wednesday</a>, <a href="/lobbies/#thursday">Thursday</a>, and <a href="/lobbies/#saturday">Saturday</a> lobbies, but there will be more main events in the future! As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
+		
+		<p id="mode-selector">
+			<em class="mode active-mode" id="md0" onClick="changeMode(0);">Leaderboard</em>
+			<em class="mode" id="md1" onClick="changeMode(1);">Monthly Board</em>
+			<em class="mode" id="md2" onClick="changeMode(2);">Patrons</em>
+		</p>
 		
 		<div id="leaderboard"></div>
 		<br/>
