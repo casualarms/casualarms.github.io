@@ -51,6 +51,23 @@
 			}
 		});
 		
+		// Patreon feature display
+		fetchPatrons(function(patrons)
+		{
+			raffle = [];
+			for (var key in patrons)
+			{
+				if (patrons.hasOwnProperty(key))
+				{
+					var user = patrons[key];
+					for (var i = 0; i < user.tier; ++i)
+						raffle.push(user.name);
+				}
+			}
+			var winner = raffle[Math.floor(Math.random() * raffle.length)];
+			document.getElementById("patron-feature").innerHTML = winner;
+		});
+		
 		// Discord widget display
 		var xmlhttp = new XMLHttpRequest();
 		var url = "https://discordapp.com/api/guilds/396373087278465038/widget.json";
@@ -400,7 +417,7 @@
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
 					<polygon points="100 0 100 10 0 10 6 0" fill="#f36b61"/>
 				</svg>
-				<span id="footer-patreon-text"><u>Patreon</u> spotlight: tehbs!</span>
+				<span id="footer-patreon-text"><u>Patreon</u> spotlight: <span id="patron-feature">tehbs</span>!</span>
 			</a>
 			<img id="patreon-logo" src="assets/patreon-logo.png"/>
 		</div>
