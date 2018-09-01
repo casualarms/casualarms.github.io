@@ -21,4 +21,6 @@
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"hedlok-havok","date":"2018-08-29T22:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Taste","tag":"","code":"4535-5139-5505","tier":1},{"name":"Marie","tag":"CC","code":"5693-4645-2698","tier":3}]}
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-08-30T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"«Spinning»","tag":"","code":"2949-1142-1025","tier":1},{"name":"Program","tag":"","code":"4898-5196-4000","tier":3}]}
 	,{"titleText":"Standard Party Lobby","type":0,"theme":"everything","date":"2018-09-01T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":1},{"name":"Reis","tag":"","code":"1753-6049-3315","tier":3}]}
+	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-09-02T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}]}
+	
 ]
