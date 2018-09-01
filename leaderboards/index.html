@@ -366,17 +366,20 @@
 	
 	function displayMonthly()
 	{
-		console.log(leaderboard);
+		var copyboard = leaderboard.slice();
+		copyboard.sort(function(a, b) { return b[2] - a[2]; });
+		console.log(copyboard);
+		
 		var index = 1;
 		var html = "<div class='tier'>";
-		for (var i = 0; i < leaderboard.length; ++i)
+		for (var i = 0; i < copyboard.length; ++i)
 		{
-			var coins = leaderboard[i][2];
+			var coins = copyboard[i][2];
 			if (coins > 0)
 			{
 				var pid = "badges-monthly-" + i;
-				html += "<p onclick=showBadges('" + pid + "','" + leaderboard[i][3] + "'); class='entry basic" + ((index > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + index++ + "</span>";
-				html += "<span class='player'>" + leaderboard[i][0] + "</span>";
+				html += "<p onclick=showBadges('" + pid + "','" + copyboard[i][3] + "'); class='entry basic" + ((index > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + index++ + "</span>";
+				html += "<span class='player'>" + copyboard[i][0] + "</span>";
 				html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 				html += "<div class='badge-stash' id='" + pid + "'>A Discord connection is required for badge collection!</div>";
 			}
