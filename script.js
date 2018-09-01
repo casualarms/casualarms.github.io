@@ -165,12 +165,12 @@ function reorganizeLeaderboards(rawBoards)
 		if (rawBoards.hasOwnProperty(key) && key != "UNKNOWN")
 		{
 			var user = rawBoards[key];
-			leaderboards.push([user.name, user.coins, key]);
+			leaderboards.push([user.name, user.coins, user.monthly, key]);
 		}
 	}
 	
 	for (var i = 0; i < rawBoards.UNKNOWN.length; ++i)
-		leaderboards.push([rawBoards.UNKNOWN[i][0], rawBoards.UNKNOWN[i][1], null]);
+		leaderboards.push([rawBoards.UNKNOWN[i][0], rawBoards.UNKNOWN[i][1], rawBoards.UNKNOWN[i][2], null]);
 	
 	leaderboards.sort(function(a, b) { return b[1] - a[1]; });
 	return leaderboards;

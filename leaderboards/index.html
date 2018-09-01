@@ -348,7 +348,7 @@
 			}
 			
 			var pid = "badges-leaderboard-" + tc + "-" + index;
-			html += "<p onclick=showBadges('" + pid + "','" + leaderboard[i][2] + "'); class='entry tier-" + leaderboardTiers[tc].name + ((index > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
+			html += "<p onclick=showBadges('" + pid + "','" + leaderboard[i][3] + "'); class='entry tier-" + leaderboardTiers[tc].name + ((index > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
 			html += "<span class='player'>" + leaderboard[i][0] + "</span>";
 			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			
@@ -367,15 +367,16 @@
 	
 	function displayMonthly()
 	{
+		console.log(leaderboard);
 		var index = 1;
 		var html = "<div class='tier'>";
 		for (var i = 0; i < leaderboard.length; ++i)
 		{
-			var coins = leaderboard[i][1];
-			if (coins % 10 == 0)
+			var coins = leaderboard[i][2];
+			if (coins > 0)
 			{
 				var pid = "badges-monthly-" + i;
-				html += "<p onclick=showBadges('" + pid + "','" + leaderboard[i][2] + "'); class='entry basic" + ((index > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + index++ + "</span>";
+				html += "<p onclick=showBadges('" + pid + "','" + leaderboard[i][3] + "'); class='entry basic" + ((index > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + index++ + "</span>";
 				html += "<span class='player'>" + leaderboard[i][0] + "</span>";
 				html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 				html += "<div class='badge-stash' id='" + pid + "'>A Discord connection is required for badge collection!</div>";
@@ -391,7 +392,6 @@
 		var css = "";
 		var tc = patreonTiers.length;
 		var index = 1;
-		console.log(patrons);
 		
 		for (var i = 0; i < patrons.length; ++i)
 		{
