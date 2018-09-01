@@ -12,6 +12,12 @@ var leaderboardTiers = [
 	{"start" : 10000, "name" : "Codirector", "color" : "#b700ff"},
 ];
 
+var patreonTiers = [
+	{"start" :  1, "name" : "Casual Contributor", "color" : "#995449"},
+	{"start" :  5, "name" : "Committed Casual",   "color" : "#a0a19c"},
+	{"start" : 25, "name" : "True Casual",        "color" : "#c2971c"},
+];
+
 var badgeList = {
 	"ldb0" : { "caption" : "ARMS Labs Intern", "style" : "light" },
 	"ldb1" : { "caption" : "ARMS Labs Technician", "style" : "light" },
@@ -23,6 +29,12 @@ var badgeList = {
 	"ldb7" : { "caption" : "ARMS Labs VP", "style" : "light" },
 	"ldb8" : { "caption" : "ARMS Labs EVP", "style" : "light" },
 	"ldb9" : { "caption" : "ARMS Labs Codirector", "style" : "light" },
+	
+	"p0" : { "caption" : "Patreon: Casual Contributor", "style" : "light" },
+	"p1" : { "caption" : "Patreon: Committed Casual", "style" : "light" },
+	"p2" : { "caption" : "Patreon: True Casual", "style" : "light" },
+	
+	"casualcouple" : { "caption" : "Casual ARMS founder", "style" : "light" },
 };
 
 var eventStages = {

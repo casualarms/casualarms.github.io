@@ -140,10 +140,13 @@
 			var userName = row[1];//.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 			var userID = row[0];
 			
+			var monthly = parseInt(row[3]);
+			if (!monthly) monthly = 0;
+			
 			if (userID == "UNKNOWN")
-				unknowns.push([userName, parseInt(row[2])]);
+				unknowns.push([userName, parseInt(row[2]), monthly]);
 			else
-				data[userID] = {"name" : userName, "coins" : parseInt(row[2])};
+				data[userID] = {"name" : userName, "coins" : parseInt(row[2]), "monthly" : monthly};
 		}
 		
 		data["UNKNOWN"] = unknowns;

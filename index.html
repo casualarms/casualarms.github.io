@@ -13,7 +13,7 @@
 	
 	function loadWidgetData(data)
 	{
-		document.getElementById("footer-discord-text").innerHTML = data.members.length + " members online on Discord. <span style='white-space: nowrap;'>Click here to join!</span>";
+		document.getElementById("footer-discord-text").innerHTML = data.members.length + " members online on <u>Discord</u>!";
 	}
 	
 	function load()
@@ -212,6 +212,7 @@
 	#main-footer {
 		position: relative;
 		height: 40pt;
+		margin-top: 2.5em;
 	}
 	
 	#discord-footer {
@@ -219,17 +220,38 @@
 		display: block;
 		background-color: #738bd7;
 		height: 100%;
-		width: 55%;
+		width: 53%;
 		text-decoration: none;
-		margin-top: 2em;
 		color: white;
 	}
 	
 	#footer-discord-text {
 		display: inline-block;
-		width: 50%;
-		line-height: 1.2em;
+		width: 75%;
+		line-height: 30pt;
 		padding: 5pt;
+	}
+	
+	#patreon-footer {
+		position: absolute;
+		right: 0;
+		top: 0;
+		text-align: center;
+		line-height: 30pt;
+		display: block;
+		height: 102%;
+		width: 53%;
+	}
+	
+	#footer-patreon-text {
+		display: inline-block;
+		width: 75%;
+		line-height: 30pt;
+		padding: 5pt;
+		position: absolute;
+		top: 0;
+		right: 40pt;
+		color: white !important;
 	}
 	
 	#discord-footer:hover {
@@ -256,15 +278,11 @@
 	
 	#patreon-footer svg {
 		display: block;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 100%;
-		height: 90px;
+		height: 100%;
 	}
 	
-	#patreon-footer svg:hover {
-		fill: green;
+	#patreon-footer:hover > svg > polygon {
+		fill: #d65a4e;
 	}
 	
 	@media only screen and (max-width: 600px)
@@ -285,9 +303,40 @@
 			transform: translateX(20pt);
 		}
 		
+		#featured.featured-hidden {
+			display: none !important;
+		}
+		
 		#discord-footer {
+			width: 100%;
+		}
+		
+		#footer-discord-text, #footer-patreon-text {
+			position: unset;
 			font-size: 0.8em;
-			padding-top: 0;
+			line-height: 20pt;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		#main-footer {
+			position: relative;
+			height: auto;
+		}
+		
+		#patreon-footer {
+			width: 100%;
+			background-color: #f36b61;
+			position: relative;
+			height: 30pt;
+		}
+		
+		#patreon-footer:hover {
+			background-color: #d65a4e;
+		}
+		
+		img#discord-logo, img#patreon-logo, #patreon-footer svg  {
+			display: none;
 		}
 	}
 	
@@ -346,12 +395,12 @@
 		
 		<div id="main-footer">
 			<img id="discord-logo" src="assets/discord-logo.png"/>
-			<a id="discord-footer" href="https://discord.gg/5A7QkPC"><span id="footer-discord-text"> Join the Discord community!</span></a>
-			<a id="patreon-footer">
+			<a id="discord-footer" href="https://discord.gg/5A7QkPC"><span id="footer-discord-text">Join the <u>Discord</u> server!</span></a>
+			<a id="patreon-footer" href="https://discord.gg/5A7QkPC">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
-					<polygon points="100 0 100 10 45 10 50 0" fill="#f36b61"/>
+					<polygon points="100 0 100 10 0 10 6 0" fill="#f36b61"/>
 				</svg>
-				<span id="footer-discord-text"> Join the Discord community!</span>
+				<span id="footer-patreon-text"><u>Patreon</u> spotlight: programmability!</span>
 			</a>
 			<img id="patreon-logo" src="assets/patreon-logo.png"/>
 		</div>

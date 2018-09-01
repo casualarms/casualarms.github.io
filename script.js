@@ -123,7 +123,6 @@ function formatTimeHelper(h, m, diff)
 	
 	if (useAMPM)
 	{
-		
 		if (h < 12)
 		{
 			postfix = " AM";
@@ -137,25 +136,15 @@ function formatTimeHelper(h, m, diff)
 		}
 	}
 	
-	if (h < 10 && !useAMPM)
-	{
-		h = "0" + h;
-	}
-	if (m < 10)
-	{
-		m = "0" + m;
-	}
-	
-	var result = h + ":" + m + postfix;
-	
-	return result;
+	if (h < 10 && !useAMPM) h = "0" + h;
+	if (m < 10) m = "0" + m;
+	return h + ":" + m + postfix;
 }
 
 function formatTime(date, diff)
 {
 	h = date.getHours();
 	m = date.getMinutes();
-	
 	return formatTimeHelper(h, m, diff);
 }
 
@@ -163,7 +152,6 @@ function formatTimeUTC(date, diff)
 {
 	h = date.getUTCHours();
 	m = date.getUTCMinutes();
-	
 	return formatTimeHelper(h, m, diff);
 }
 
@@ -177,59 +165,63 @@ function reorganizeLeaderboards(rawBoards)
 		if (rawBoards.hasOwnProperty(key) && key != "UNKNOWN")
 		{
 			var user = rawBoards[key];
-			leaderboards.push([user.name, user.coins]);
+			leaderboards.push([user.name, user.coins, key]);
 		}
 	}
 	
 	for (var i = 0; i < rawBoards.UNKNOWN.length; ++i)
-		leaderboards.push(rawBoards.UNKNOWN[i]);
+		leaderboards.push([rawBoards.UNKNOWN[i][0], rawBoards.UNKNOWN[i][1], null]);
 	
 	leaderboards.sort(function(a, b) { return b[1] - a[1]; });
-	
 	return leaderboards;
+}
+
+function fetchJSON(url, callback)
+{
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			var data = JSON.parse(this.responseText);
+			callback(data);
+		}
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
 }
 
 function fetchLeaderboards(callback)
 {
-	var xmlhttp = new XMLHttpRequest();
-	var url = "/leaderboard-data.json";
-	
-	xmlhttp.onreadystatechange = function()
-	{
-		if (this.readyState == 4 && this.status == 200)
-		{
-			var rawBoards = JSON.parse(this.responseText);
-			callback(rawBoards);
-		}
-	};
-	xmlhttp.open("GET", url, true);
-	xmlhttp.send();
+	return fetchJSON("/leaderboard-data.json", callback);
+}
+
+function fetchBadges(callback)
+{
+	return fetchJSON("/badge-data.json", callback);
+}
+
+function fetchPatrons(callback)
+{
+	return fetchJSON("/patreon-data.json", callback);
 }
 
 function fetchEvents(callback)
 {
-	var xmlhttp = new XMLHttpRequest();
-	var url = "/event-data.json";
-	
-	xmlhttp.onreadystatechange = function()
+	var interceptCallback = function(events)
 	{
-		if (this.readyState == 4 && this.status == 200)
+		for (var i = 0; i < events.length; i++)
 		{
-			var events = JSON.parse(this.responseText);
-			for (i = 0; i < events.length; i++)
-			{
-				var eventdata = events[i];
-				eventdata.date = new Date(eventdata.date);
-				events[i] = eventdata;
-			}
-			events.sort(function(a, b) { return a.date - b.date; });
-			callback(events);
+			var eventdata = events[i];
+			eventdata.date = new Date(eventdata.date);
+			events[i] = eventdata;
 		}
+		events.sort(function(a, b) { return a.date - b.date; });
+		callback(events);
 	};
-	xmlhttp.open("GET", url, true);
-	xmlhttp.send();
+	
+	return fetchJSON("/event-data.json", interceptCallback);
 }
-
 
 
 function eventOngoingNow(callback)
