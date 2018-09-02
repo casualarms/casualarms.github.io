@@ -195,10 +195,13 @@
 	</style>
 	<script>
 	
-	function showBadges(member, uid)
+	function badgeDetail(badge, pid)
 	{
-		console.log("show badges for " + uid);
-		var stash = document.getElementById(member);
+	}
+	
+	function showBadges(pid, uid)
+	{
+		var stash = document.getElementById("badges-" + pid);
 		var display = stash.style.display;
 		stash.style.display = (display != "block" ? "block" : "none");
 		
@@ -206,12 +209,8 @@
 		
 		// Manual badges
 		if (badges.hasOwnProperty(uid))
-		{
 			for (var i = 0; i < badges[uid].length; ++i)
-			{
 				user_badges.push(badges[uid][i]);
-			}
-		}
 		
 		// Patreon badges
 		if (rawPatrons.hasOwnProperty(uid))
@@ -226,7 +225,7 @@
 		{
 			for (var i = 0; i < leaderboardTiers.length; ++i)
 			{
-				if (rawLeaderboard[uid].coins > leaderboardTiers[i].start)
+				if (rawLeaderboard[uid].coins >= leaderboardTiers[i].start)
 					user_badges.push("ldb" + i);
 			}
 		}
@@ -238,7 +237,7 @@
 			{
 				var badgeKey = user_badges[i];
 				var badge = badgeList[badgeKey];
-				html += "<div class='badge-container' title='" + badge.caption + "'>";
+				html += "<div class='badge-container' onclick=\"badgeDetail('" + badgeKey + "','" + pid + "');\" title='" + badge.caption + "'>";
 				html += "<img class='badge-image' src='/badges/" + badgeKey + ".png'/>";
 				html += "<img class='badge-overlay' src='/badges/overlay-" + badge.style + ".png'/>";
 				html += "</div>";
@@ -316,7 +315,10 @@
 		
 		var scrolltoid = null;
 		var tc = leaderboardTiers.length-1;
-		var index = 1;
+		var index = 0;
+		
+		var previous = -1;
+		var duplicates = 0;
 		
 		for (var i = 0; i < leaderboard.length; ++i)
 		{
@@ -327,7 +329,7 @@
 			else if (coins < leaderboardTiers[tc].start)
 			{
 				tc--;
-				index = 1;
+				index = 0;
 				var tierName = leaderboardTiers[tc].name;
 				html += "</div><h3 id='tier-" + tierName + "' style='color: " + leaderboardTiers[tc].color + ";'>ARMS Labs " + tierName + "</h3><div class='tier'>";
 				html += "<p class='limits'>" + leaderboardTiers[tc].start + " <img class='armscoin-text' src='coin.png'/> &#8211; " + (leaderboardTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
@@ -346,12 +348,18 @@
 				css += "p.entry.tier-" + tierName + " .index " + "{ background-image: url(placement-" + tierName.toLowerCase() + ".png); color: black; }";
 			}
 			
-			var pid = "badges-leaderboard-" + tc + "-" + index;
-			html += "<p onclick=showBadges('" + pid + "','" + leaderboard[i][3] + "'); class='entry tier-" + leaderboardTiers[tc].name + ((index > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
+			index++;
+			if (coins == previous) duplicates++;
+			else duplicates = 0;
+			var useindex = index - duplicates;
+			previous = coins;
+			
+			var pid = "leaderboard-" + tc + "-" + index;
+			html += "<p onclick=\"showBadges('" + pid + "','" + leaderboard[i][3] + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name + ((useindex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + useindex + "</span>";
 			html += "<span class='player'>" + leaderboard[i][0] + "</span>";
 			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			
-			html += "<div class='badge-stash' id='" + pid + "'>A Discord connection is required for badge collection!</div>";
+			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		
 		menu_html += "</div>";
@@ -370,18 +378,27 @@
 		copyboard.sort(function(a, b) { return b[2] - a[2]; });
 		console.log(copyboard);
 		
-		var index = 1;
+		var index = 0;
+		var previous = -1;
+		var duplicates = 0;
 		var html = "<div class='tier'>";
+		
 		for (var i = 0; i < copyboard.length; ++i)
 		{
 			var coins = copyboard[i][2];
 			if (coins > 0)
 			{
-				var pid = "badges-monthly-" + i;
-				html += "<p onclick=showBadges('" + pid + "','" + copyboard[i][3] + "'); class='entry basic" + ((index > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + index++ + "</span>";
+				index++;
+				if (coins == previous) duplicates++;
+				else duplicates = 0;
+				var useindex = index - duplicates;
+				previous = coins;
+			
+				var pid = "monthly-" + i;
+				html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i][3] + "');\" id='player-" + pid + "' class='entry basic" + ((useindex > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + useindex + "</span>";
 				html += "<span class='player'>" + copyboard[i][0] + "</span>";
 				html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
-				html += "<div class='badge-stash' id='" + pid + "'>A Discord connection is required for badge collection!</div>";
+				html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 			}
 		}
 		html += "</div>";
@@ -414,12 +431,12 @@
 				css += "p.entry.tier-" + tierID + " .index " + "{ background-image: url(placement-" + tierID + ".png); color: black; }";
 			}
 			
-			var pid = "badges-patron-" + tc + "-" + index;
-			html += "<p onclick=showBadges('" + pid + "','" + patrons[i][2] + "'); class='entry basic tier-" + tierID + ((index > 99) ? " small" : "") + "' style='color: " + patreonTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
+			var pid = "patron-" + tc + "-" + index;
+			html += "<p onclick=\"showBadges('" + pid + "','" + patrons[i][2] + "');\" id='player-" + pid + "' class='entry basic tier-" + tierID + ((index > 99) ? " small" : "") + "' style='color: " + patreonTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
 			html += "<span class='player'>" + patrons[i][0] + "</span>";
 		//	html += "<span class='coins'>" + (index) + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			
-			html += "<div class='badge-stash' id='" + pid + "'>A Discord connection is required for badge collection!</div>";
+			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		
 		html += "</div>";
