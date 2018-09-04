@@ -426,10 +426,10 @@
 	
 	function changeMode(mode)
 	{
-		document.getElementById("md0").classList = "mode";
-		document.getElementById("md1").classList = "mode";
-		document.getElementById("md2").classList = "mode";
-		document.getElementById("md" + mode).classList += " active-mode";
+		document.getElementById("md0").className = "mode";
+		document.getElementById("md1").className = "mode";
+		document.getElementById("md2").className = "mode";
+		document.getElementById("md" + mode).className += " active-mode";
 		
 		if (mode == 0)
 			displayLeaderboards();

@@ -39,7 +39,7 @@
 		{
 			if (nextEventData.length > 0)
 			{
-				document.getElementById("featured").classList = "";
+				document.getElementById("featured").className = "";
 				if (nextEventData[0].type != 2) // Not Clash
 					result = generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
 				else { // Clash
