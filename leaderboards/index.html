@@ -173,25 +173,6 @@
 		height: 100%;
 	}
 	
-	
-	#mode-selector {
-		text-align: center;
-		font-family: ARMS;
-		font-size: 1.3em;
-		text-transform: uppercase;
-	}
-	
-	.mode {
-		padding: 3pt 12pt;
-		line-height: 2.2em;
-		cursor: pointer;
-	}
-	
-	.mode.active-mode {
-		background-color: yellow;
-		color: black;
-	}
-	
 	</style>
 	<script>
 	
@@ -259,17 +240,11 @@
 	{
 		if (leaderboard && badges && patrons)
 		{
-			var anchor = window.location.hash.substring(1);
-			switch (anchor)
+			switch (window.location.hash.substring(1))
 			{
-			case "monthly":
-				changeMode(1)
-				break;
-			case "patrons":
-				changeMode(2)
-				break;
-			default:
-				changeMode(0);
+			case "monthly": changeMode(1); break;
+			case "patrons": changeMode(2); break;
+			default:        changeMode(0);
 			}
 		}
 	}

@@ -21,7 +21,6 @@ body {
 	border-top: none;
 	position: relative;
 	overflow: hidden;
-	transition: background-color 0.5s;
 }
 
 
@@ -391,6 +390,26 @@ a.submenu-item > .sub-text {
 
 .discord-bg {
 	background-color: #738bd7;
+}
+
+
+#mode-selector {
+	text-align: center;
+	font-family: ARMS;
+	font-size: 1.3em;
+	text-transform: uppercase;
+}
+
+.mode {
+	padding: 3pt 12pt;
+	line-height: 2.2em;
+	border: 1pt solid black;
+	cursor: pointer;
+}
+
+.mode.active-mode {
+	background-color: yellow;
+	color: black;
 }
 
 

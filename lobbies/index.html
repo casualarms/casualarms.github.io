@@ -221,18 +221,18 @@
 		
 		convertDates(dates, diff);
 		
-		document.getElementById("mon-start").innerHTML = textWeekday(monStart) + "s " + formatTimeUTC(monStart, diff);
-		document.getElementById("tue-start").innerHTML = textWeekday(tueStart) + "s " + formatTimeUTC(tueStart, diff);
-		document.getElementById("wed-start").innerHTML = textWeekday(wedStart) + "s " + formatTimeUTC(wedStart, diff);
-		document.getElementById("thu-start").innerHTML = textWeekday(thuStart) + "s " + formatTimeUTC(thuStart, diff);
-		document.getElementById("sat-start").innerHTML = textWeekday(satStart) + "s " + formatTimeUTC(satStart, diff);
-		document.getElementById("sun-start").innerHTML = textWeekday(sunStart) + "s " + formatTimeUTC(sunStart, diff);
-		document.getElementById("mon-end")  .innerHTML = formatTimeUTC(monEnd,   diff);
-		document.getElementById("tue-end")  .innerHTML = formatTimeUTC(tueEnd,   diff);
-		document.getElementById("wed-end")  .innerHTML = formatTimeUTC(wedEnd,   diff);
-		document.getElementById("thu-end")  .innerHTML = formatTimeUTC(thuEnd,   diff);
-		document.getElementById("sat-end")  .innerHTML = formatTimeUTC(satEnd,   diff);
-		document.getElementById("sun-end")  .innerHTML = formatTimeUTC(sunEnd,   diff);
+		$("mon-start").innerHTML = textWeekday(monStart) + "s " + formatTimeUTC(monStart, diff);
+		$("tue-start").innerHTML = textWeekday(tueStart) + "s " + formatTimeUTC(tueStart, diff);
+		$("wed-start").innerHTML = textWeekday(wedStart) + "s " + formatTimeUTC(wedStart, diff);
+		$("thu-start").innerHTML = textWeekday(thuStart) + "s " + formatTimeUTC(thuStart, diff);
+		$("sat-start").innerHTML = textWeekday(satStart) + "s " + formatTimeUTC(satStart, diff);
+		$("sun-start").innerHTML = textWeekday(sunStart) + "s " + formatTimeUTC(sunStart, diff);
+		$("mon-end")  .innerHTML = formatTimeUTC(monEnd,   diff);
+		$("tue-end")  .innerHTML = formatTimeUTC(tueEnd,   diff);
+		$("wed-end")  .innerHTML = formatTimeUTC(wedEnd,   diff);
+		$("thu-end")  .innerHTML = formatTimeUTC(thuEnd,   diff);
+		$("sat-end")  .innerHTML = formatTimeUTC(satEnd,   diff);
+		$("sun-end")  .innerHTML = formatTimeUTC(sunEnd,   diff);
 		
 		var timemarks = "";
 		for (i = 0; i < 24; i += 2)
@@ -241,7 +241,7 @@
 			timemarks += "<span class='cal-time' style='top: " + (i * 4 + 4) + "%;'>" + formatTimeUTC(d, diff) + "</span>";
 			timemarks += "<span class='cal-divider' style='top: " + (i * 4 + 4) + "%;'></span>";
 		}
-		document.getElementById("calendar").innerHTML += timemarks;
+		$("calendar").innerHTML += timemarks;
 		
 		
 		
@@ -264,7 +264,7 @@
 				
 				if (first && ev.type != 2) // No Clash
 				{
-					document.getElementById("next-section").style.display = "block";
+					$("next-section").style.display = "block";
 					result = generateBanner(880, 480, ev, "next-lobby", true);
 					
 					var themeData = null;
@@ -283,7 +283,7 @@
 					else
 						info_html += " <em>does not</em> count for the Casual ARMS leaderboards.";
 					
-					document.getElementById("next-info").innerHTML = info_html;
+					$("next-info").innerHTML = info_html;
 				}
 				
 				var evStart = ev.date;
@@ -294,13 +294,13 @@
 				var evtype = (ev.type != 2) ? "announced" : "clash";
 				html += createEntry(evStart, evEnd, anchor, evtype, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 			}
-			document.getElementById("calendar").innerHTML += html;
+			$("calendar").innerHTML += html;
 			
 			if (window.location.hash.substring(1) == "next")
-				document.getElementById("next").scrollIntoView();
+				$("next").scrollIntoView();
 		});
 		
-		document.getElementById("calendar").innerHTML += events;
+		$("calendar").innerHTML += events;
 	}
 	</script>
 </head>

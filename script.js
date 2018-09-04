@@ -13,6 +13,11 @@ function getQueryVariable(variable)
 	return null;
 }
 
+function $(id)
+{
+	return document.getElementById(id);
+}
+
 /* Random gen */
 
 Math.seed = function(s)
