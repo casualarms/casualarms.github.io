@@ -19,9 +19,7 @@
 	function load()
 	{
 		if (window.location.hash.indexOf("staff") !== -1)
-		{
 			document.getElementById("staff").style.display = "block";
-		}
 		
 		// Change to event mode
 		eventOngoingNow(function(currentEvent)
@@ -46,7 +44,7 @@
 					document.getElementById("featured-banner").src = "/clash/nextclash.jpg";
 					document.getElementById("featured-banner").style.display = "inline-block";
 					document.getElementById("featured-canvas").style.display = "none";
-					document.getElementById("featured-link").href = "/clash/";
+					document.getElementById("featured-link").href = "/scramble/";
 				}
 			}
 		});
@@ -87,9 +85,8 @@
 	function checkKey(e)
 	{
 		e = e || window.event;
-		if (e.keyCode == '13') {
+		if (e.keyCode == '13')
 			 document.location.href = document.activeElement.childNodes[1].href;
-		}
 	}
 	document.onkeydown = checkKey;
 	
@@ -215,7 +212,7 @@
 		display: inline-block;
 	}
 	
-	p.bottom  {
+	p.bottom {
 		text-align: center;
 		font-size: 0.8em;
 		padding: 0 5pt;
@@ -371,7 +368,7 @@
 			<!--<a class="menu-item m1" id="m-discord"      href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/>Discord Server</a>-->
 			<!--<a class="menu-item m2" id="m-twitter"      href="https://twitter.com/casualARMS"><img src="assets/twitter-logo.png"/>Twitter Feed</a>-->
 			<a class="menu-item m1" id="m-lobby"        href="lobbies/"><img src="assets/lobby-logo.png"/>Lobby Events</a>
-			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="assets/clash-logo.png"/>Casual Clash</a>
+			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="assets/clash-logo.png"/>Tournaments</a>
 			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="assets/leaderboards-logo.png"/>Leaderboards</a>
 			<a class="menu-item m3" id="m-quiz" href="quiz/"><img src="assets/quiz-logo.png"/>Quiz</a>
 
