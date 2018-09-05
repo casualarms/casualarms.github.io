@@ -24,7 +24,7 @@
 	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-09-02T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}]}
 	,{"titleText":"Standard Party Lobby","type":0,"theme":"everything","date":"2018-09-05T01:00:00.000Z","duration":120,"timeZone":"PDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Sora","tag":"","code":"0499-4528-8293","tier":3}]}
 	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-09-03T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0},{"name":"Mileve","tag":"","code":"2795-2096-7893","tier":0}]}
-	
+	,{"titleText":"Wildcard Wednesday","type":0,"theme":"corner-chaos","date":"2018-09-05T22:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Spenjo","tag":"","code":"0725-4824-1895","tier":2},{"name":"Main Main","tag":"CC","code":"5606-1821-7507","tier":3}]}
 	
 	,{"titleText":"Casual Scramble 1","type":2,"theme":"undefined","date":"2018-09-08T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
 ]
