@@ -34,9 +34,9 @@ var badgeList = {
 	"p1" : { "caption" : "Patreon: Committed Casual", "style" : "light" },
 	"p2" : { "caption" : "Patreon: True Casual", "style" : "dark" },
 	
-	"casualcouple" : { "caption" : "Casual ARMS founder", "style" : "light" },
-	"clsh" : { "caption" : "Casual Clash Winner", "style" : "light" },
-	"scrmbl" : { "caption" : "Casual Scramble Winner", "style" : "dark" },
+	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light" },
+	"clsh" : { "caption" : "Casual Clash Champion", "style" : "light" },
+	"scrmbl" : { "caption" : "Casual Scramble Sovereign", "style" : "dark" },
 };
 
 var eventStages = {
