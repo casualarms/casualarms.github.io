@@ -13,9 +13,9 @@ var leaderboardTiers = [
 ];
 
 var patreonTiers = [
-	{"start" :  1, "name" : "Casual Contributor", "color" : "#995449"},
-	{"start" :  5, "name" : "Committed Casual",   "color" : "#a0a19c"},
-	{"start" : 25, "name" : "True Casual",        "color" : "#c2971c"},
+	{"start" :  1, "name" : "Casual Contributor", "color" : "#2E666B"},
+	{"start" :  5, "name" : "Committed Casual",   "color" : "#0A680D"},
+	{"start" : 25, "name" : "True Casual",        "color" : "#8c230B"},
 ];
 
 var badgeList = {
@@ -32,9 +32,11 @@ var badgeList = {
 	
 	"p0" : { "caption" : "Patreon: Casual Contributor", "style" : "light" },
 	"p1" : { "caption" : "Patreon: Committed Casual", "style" : "light" },
-	"p2" : { "caption" : "Patreon: True Casual", "style" : "light" },
+	"p2" : { "caption" : "Patreon: True Casual", "style" : "dark" },
 	
 	"casualcouple" : { "caption" : "Casual ARMS founder", "style" : "light" },
+	"clsh" : { "caption" : "Casual Clash Winner", "style" : "light" },
+	"scrmbl" : { "caption" : "Casual Scramble Winner", "style" : "dark" },
 };
 
 var eventStages = {
