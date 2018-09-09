@@ -173,16 +173,36 @@
 		height: 100%;
 	}
 	
+	#badge-feature {
+		background-color: #222;
+		box-shadow: 0px -2px 3px #000 inset;
+		text-align: center;
+		margin: 0 auto;
+	}
+	
+	#badge-feature-container {
+		width: 200pt;
+		height: 200pt;
+	}
+	
 	</style>
 	<script>
-	
-	function badgeDetail(badge, pid)
+	function badgeDetail(badgeKey, pid)
 	{
+		var badge = badgeList[badgeKey];
+		
+		$("badge-feature-title").innerHTML = badge.caption;
+		$("badge-feature-image").src = "/badges/" + badgeKey + ".png";
+		$("badge-feature-overlay").src = "/badges/overlay-" + badge.style + ".png";
+		$("badge-feature-subtext").innerHTML = "<a onClick=\"$('player-" + pid + "').scrollIntoView();\">Go back</a>";
+		
+		$("badge-feature").style.display = "block";
+		$("badge-feature").scrollIntoView();
 	}
 	
 	function showBadges(pid, uid)
 	{
-		var stash = document.getElementById("badges-" + pid);
+		var stash = $("badges-" + pid);
 		var display = stash.style.display;
 		stash.style.display = (display != "block" ? "block" : "none");
 		
@@ -339,7 +359,7 @@
 		
 		menu_html += "</div>";
 		html += "</div>";
-		document.getElementById("leaderboard").innerHTML = menu_html + html;
+		$("leaderboard").innerHTML = menu_html + html;
 		
 		// Add CSS
 		var style = document.createElement('style');
@@ -377,7 +397,7 @@
 			}
 		}
 		html += "</div>";
-		document.getElementById("leaderboard").innerHTML = html;
+		$("leaderboard").innerHTML = html;
 	}
 	
 	function displayPatreon()
@@ -415,7 +435,7 @@
 		}
 		
 		html += "</div>";
-		document.getElementById("leaderboard").innerHTML = html;
+		$("leaderboard").innerHTML = html;
 		
 		// Add CSS
 		var style = document.createElement('style');
@@ -426,10 +446,10 @@
 	
 	function changeMode(mode)
 	{
-		document.getElementById("md0").className = "mode";
-		document.getElementById("md1").className = "mode";
-		document.getElementById("md2").className = "mode";
-		document.getElementById("md" + mode).className += " active-mode";
+		$("md0").className = "mode";
+		$("md1").className = "mode";
+		$("md2").className = "mode";
+		$("md" + mode).className += " active-mode";
 		
 		if (mode == 0)
 			displayLeaderboards();
@@ -461,6 +481,15 @@
 		<h3>Badges</h3>
 		
 		<p>Members of the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> can now collect badges from different activities! Badges are awarded for leaderboard progression and <a href='https://www.patreon.com/CasualARMS'><em style="background-color: #f36b61;">Patreon</em></a> support, among other things, and new badges will be unveiled regularly! Click on an entry in the leaderboard listings to view their badge stash.</p>
+		
+		<div id="badge-feature" style="display: none;">
+			<h3 id="badge-feature-title"></h3>
+			<div id="badge-feature-container" class="badge-container">
+				<img id="badge-feature-image" class="badge-image">
+				<img id="badge-feature-overlay" class="badge-overlay">
+			</div>
+			<p id="badge-feature-subtext"></p>
+		</div>
 		
 		<p id="mode-selector">
 			<em class="mode active-mode" id="md0" onClick="changeMode(0);">Leaderboard</em>
