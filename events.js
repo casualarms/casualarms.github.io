@@ -19,24 +19,24 @@ var patreonTiers = [
 ];
 
 var badgeList = {
-	"ldb0" : { "caption" : "ARMS Labs Intern", "style" : "light" },
-	"ldb1" : { "caption" : "ARMS Labs Technician", "style" : "light" },
-	"ldb2" : { "caption" : "ARMS Labs Analyst", "style" : "light" },
-	"ldb3" : { "caption" : "ARMS Labs Coder", "style" : "light" },
-	"ldb4" : { "caption" : "ARMS Labs Researcher", "style" : "light" },
-	"ldb5" : { "caption" : "ARMS Labs Scientist", "style" : "light" },
-	"ldb6" : { "caption" : "ARMS Labs Manager", "style" : "light" },
-	"ldb7" : { "caption" : "ARMS Labs VP", "style" : "light" },
-	"ldb8" : { "caption" : "ARMS Labs EVP", "style" : "light" },
-	"ldb9" : { "caption" : "ARMS Labs Codirector", "style" : "light" },
+	"ldb0" : { "caption" : "ARMS Labs Intern",     "style" : "light", "criterion": "Earn at least 1 coin in our leaderboard lobbies"},
+	"ldb1" : { "caption" : "ARMS Labs Technician", "style" : "light", "criterion": "Earn at least 100 coins in our leaderboard lobbies" },
+	"ldb2" : { "caption" : "ARMS Labs Analyst",    "style" : "light", "criterion": "Earn at least 250 coins in our leaderboard lobbies" },
+	"ldb3" : { "caption" : "ARMS Labs Coder",      "style" : "light", "criterion": "Earn at least 500 coins in our leaderboard lobbies" },
+	"ldb4" : { "caption" : "ARMS Labs Researcher", "style" : "light", "criterion": "Earn at least 1000 coins in our leaderboard lobbies" },
+	"ldb5" : { "caption" : "ARMS Labs Scientist",  "style" : "light", "criterion": "Earn at least 2000 coins in our leaderboard lobbies" },
+	"ldb6" : { "caption" : "ARMS Labs Manager",    "style" : "light", "criterion": "Earn at least 3000 coins in our leaderboard lobbies" },
+	"ldb7" : { "caption" : "ARMS Labs VP",         "style" : "light", "criterion": "Earn at least 5000 coins in our leaderboard lobbies" },
+	"ldb8" : { "caption" : "ARMS Labs EVP",        "style" : "light", "criterion": "Earn at least 7000 coins in our leaderboard lobbies" },
+	"ldb9" : { "caption" : "ARMS Labs Codirector", "style" : "light", "criterion": "Earn at least 10000 coins in our leaderboard lobbies" },
 	
-	"p0" : { "caption" : "Patreon: Casual Contributor", "style" : "light" },
-	"p1" : { "caption" : "Patreon: Committed Casual", "style" : "light" },
-	"p2" : { "caption" : "Patreon: True Casual", "style" : "dark" },
+	"p0" : { "caption" : "Patreon: Casual Contributor", "style" : "light", "criterion": "Contribute more than $1 on the Patreon for at least one month" },
+	"p1" : { "caption" : "Patreon: Committed Casual",   "style" : "light", "criterion": "Contribute more than $5 on the Patreon for at least one month" },
+	"p2" : { "caption" : "Patreon: True Casual",        "style" : "dark",  "criterion": "Contribute more than $25 on the Patreon for at least one month" },
 	
-	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light" },
-	"clsh" : { "caption" : "Casual Clash Champion", "style" : "light" },
-	"scrmbl" : { "caption" : "Casual Scramble Sovereign", "style" : "dark" },
+	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light", "criterion": "This is a special badge for the two founders of Casual ARMS" },
+	"clsh" : { "caption" : "Casual Clash Champion", "style" : "light", "criterion": "Play in a Casual Clash and achieve victory" },
+	"scrmbl" : { "caption" : "Casual Scramble Sovereign", "style" : "dark", "criterion": "Play in a Casual Scramble and achieve victory" },
 };
 
 var eventStages = {

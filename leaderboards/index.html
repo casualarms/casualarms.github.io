@@ -194,7 +194,7 @@
 		$("badge-feature-title").innerHTML = badge.caption;
 		$("badge-feature-image").src = "/badges/" + badgeKey + ".png";
 		$("badge-feature-overlay").src = "/badges/overlay-" + badge.style + ".png";
-		$("badge-feature-subtext").innerHTML = "<a onClick=\"$('player-" + pid + "').scrollIntoView();\">Go back</a>";
+		$("badge-feature-subtext").innerHTML = badge.criterion + ".<br/><a onClick=\"$('player-" + pid + "').scrollIntoView();\">Go back</a>";
 		
 		$("badge-feature").style.display = "block";
 		$("badge-feature").scrollIntoView();
