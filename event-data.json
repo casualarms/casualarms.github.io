@@ -29,4 +29,5 @@
 	,{"titleText":"Casual Scramble 1","type":2,"theme":"undefined","date":"2018-09-08T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
 	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-09-09T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Mileve","tag":"","code":"2795-2096-7893","tier":0}]}
 	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-09-10T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0},{"name":"Mileve","tag":"","code":"2795-2096-7893","tier":0}]}
+	,{"titleText":"Tidal Tuesday","type":0,"theme":"everything","date":"2018-09-12T01:00:00.000Z","duration":120,"timeZone":"PDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Sora","tag":"","code":"0499-4528-8293","tier":3}]}
 ]
