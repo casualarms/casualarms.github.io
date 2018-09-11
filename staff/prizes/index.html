@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Prize Randomizer - Casual ARMS</title>
+	<script src="../../script.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("../../ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+	
+	#wrapper {
+		width: 40em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+	
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+	
+	#formatted {
+		background-color: black;
+		color: white;
+	}
+	
+	</style>
+	<script>
+	
+	function padString(str, paddingValue)
+	{
+		return String(str + paddingValue).slice(0, paddingValue.length);
+	};
+
+	function process()
+	{
+		var input = $("input").value;
+		
+		var lines = input.split(/\r?\n/g);
+		
+		var scores = [];
+		var sumscores = 0;
+		
+		for (var line in lines)
+		{
+			var split = lines[line].split(/\s/g).filter(function(item) { return item != "" && item != "-"; });
+			var offset = (split[2][0] == "(") ? 1 : 0;
+			var score = parseFloat(split[7+offset]);
+			scores.push([split[1], score, 0]);
+			sumscores += score;
+		}
+		
+		var raffle = [];
+		for (var p = 0; p < scores.length; ++p)
+			for (var i = 0; i < scores[p][1]*2; ++i)
+				raffle.push(scores[p][0]);
+		
+		console.log(sumscores);
+		
+		var rolls = parseInt($("rolls").value);
+		for (var r = 0; r < rolls; ++r)
+		{
+			var winner = raffle[Math.floor(Math.random() * raffle.length)];
+			for (var p = 0; p < scores.length; ++p)
+				if (scores[p][0] == winner)
+					scores[p][2]++;
+		}
+		
+		console.log(scores);
+		
+		var text = "";
+		for (var p = 0; p < scores.length; ++p)
+		{
+			var expected = scores[p][1] / sumscores * rolls;
+			text += padString(scores[p][0], "                        ") + scores[p][2] + " (expected " + expected +  ")\n";
+		}
+		
+		$("result").value = text;
+	}
+	
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<h1>Casual ARMS Prize Randomizer</h1>
+		
+		<h2>Input</h2>
+		<p>Rolls: <input type="number" value="1" id="rolls"/></p>
+		<textarea id="input" rows="10"></textarea>
+		<button onCLick="process()">Process </button>
+		<br/>
+		
+		<h3>Results</h3>
+		<textarea id="result" rows="30"></textarea>
+		
+	</div>
+</body>
+</html>
