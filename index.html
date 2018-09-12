@@ -55,7 +55,17 @@
 			raffle = [];
 			for (var key in patrons)
 			{
-				if (patrons.hasOwnProperty(key))
+				if (patrons.hasOwnProperty(key) && key == "UNKNOWN")
+				{
+					var unknowns = patrons[key];
+					for (var u = 0; u < unknowns.length; ++u)
+					{
+						var user = unknowns[u];
+						for (var i = 0; i < user.tier; ++i)
+							raffle.push(user.name);
+					}
+				}
+				else if (patrons.hasOwnProperty(key))
 				{
 					var user = patrons[key];
 					for (var i = 0; i < user.tier; ++i)
