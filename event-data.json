@@ -31,6 +31,6 @@
 	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-09-10T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0},{"name":"Mileve","tag":"","code":"2795-2096-7893","tier":0}]}
 	,{"titleText":"Tidal Tuesday","type":0,"theme":"everything","date":"2018-09-12T01:00:00.000Z","duration":120,"timeZone":"PDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Sora","tag":"","code":"0499-4528-8293","tier":3}]}
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"bane-of-ranked","date":"2018-09-12T22:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Taste","tag":"","code":"4535-5139-5505","tier":1},{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":3}]}
-	,{"titleText":"Thumpin' Thursday","type":0,"theme":"undefined","date":"2018-09-13T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"","code":"6822-5055-2423","tier":2},{"name":"Program","tag":"CC","code":"4898-5196-4000","tier":3}]}
+	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-09-13T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Levi","tag":"","code":"3256-0282-5625","tier":1},{"name":"Program","tag":"","code":"4898-5196-4000","tier":3}]}
 	
 ]
