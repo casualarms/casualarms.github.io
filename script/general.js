@@ -1,3 +1,5 @@
+/* General scripts */
+
 function getQueryVariable(variable)
 {
 	var query = window.location.search.substring(1);
@@ -198,17 +200,17 @@ function fetchJSON(url, callback)
 
 function fetchLeaderboards(callback)
 {
-	return fetchJSON("/leaderboard-data.json", callback);
+	return fetchJSON("/data/leaderboards.json", callback);
 }
 
 function fetchBadges(callback)
 {
-	return fetchJSON("/badge-data.json", callback);
+	return fetchJSON("/data/badges.json", callback);
 }
 
 function fetchPatrons(callback)
 {
-	return fetchJSON("/patreon-data.json", callback);
+	return fetchJSON("/data/patreon.json", callback);
 }
 
 function fetchEvents(callback)
@@ -225,7 +227,7 @@ function fetchEvents(callback)
 		callback(events);
 	};
 	
-	return fetchJSON("/event-data.json", interceptCallback);
+	return fetchJSON("/data/events.json", interceptCallback);
 }
 
 
