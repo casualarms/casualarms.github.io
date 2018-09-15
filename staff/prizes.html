@@ -1,8 +1,11 @@
+---
+permalink: /staff/prizes/index.html
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Prize Randomizer - Casual ARMS</title>
-	<script src="../../script.js"></script>
+	<script src="/script/general.js"></script>
 	<style>
 	
 	@font-face {
@@ -71,8 +74,6 @@
 			for (var i = 0; i < scores[p][1]*2; ++i)
 				raffle.push(scores[p][0]);
 		
-		console.log(sumscores);
-		
 		var rolls = parseInt($("rolls").value);
 		for (var r = 0; r < rolls; ++r)
 		{
@@ -81,8 +82,6 @@
 				if (scores[p][0] == winner)
 					scores[p][2]++;
 		}
-		
-		console.log(scores);
 		
 		var text = "";
 		for (var p = 0; p < scores.length; ++p)
