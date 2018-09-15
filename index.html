@@ -4,11 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Casual ARMS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<script src="staff/banners/banner-gen.js"></script>
-	<script src="database.js"></script>
-	<script src="events.js"></script>
-	<script src="script.js"></script>
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/script/banner-gen.js"></script>
+	<script src="/script/arms-data.js"></script>
+	<script src="/data/support.js"></script>
 	<script>
 	
 	function loadWidgetData(data)
@@ -18,9 +18,6 @@
 	
 	function load()
 	{
-		if (window.location.hash.indexOf("staff") !== -1)
-			document.getElementById("staff").style.display = "block";
-		
 		// Change to event mode
 		eventOngoingNow(function(currentEvent)
 		{
@@ -370,32 +367,20 @@
 <body id="event-id" onload="load()" ontouchstart="">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div class="main-menu" id="container">
-		<img src="assets/rank-shield.png" id="shield"/>
-		<img src="assets/logo.png" id="logo"/>
+		<img src="assets/main/rank-shield.png" id="shield"/>
+		<img src="assets/main/logo.png" id="logo"/>
 		<span id="arms-text">ARMS</span>
 		
 		<div class="menu-container">
-			<!--<a class="menu-item m1" id="m-discord"      href="https://discordapp.com/invite/fQgCuA/"><img src="assets/discord-logo.png"/>Discord Server</a>-->
-			<!--<a class="menu-item m2" id="m-twitter"      href="https://twitter.com/casualARMS"><img src="assets/twitter-logo.png"/>Twitter Feed</a>-->
-			<a class="menu-item m1" id="m-lobby"        href="lobbies/"><img src="assets/lobby-logo.png"/>Lobby Events</a>
-			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="assets/clash-logo.png"/>Tournaments</a>
-			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="assets/leaderboards-logo.png"/>Leaderboards</a>
-			<a class="menu-item m3" id="m-quiz" href="quiz/"><img src="assets/quiz-logo.png"/>Quiz</a>
+			<a class="menu-item m1" id="m-lobby"        href="lobbies/"><img src="/assets/main/lobby-logo.png"/>Lobby Events</a>
+			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="/assets/main/clash-logo.png"/>Tournaments</a>
+			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="/assets/main/leaderboards-logo.png"/>Leaderboards</a>
+			<a class="menu-item m3" id="m-quiz" href="quiz/"><img src="/assets/main/quiz-logo.png"/>Quiz</a>
 
-			<a class="menu-item m4" id="m-screenshot"   href="screenshot-contest/"><img src="assets/screenshot-logo.png"/>Screenshot Gallery</a>
+			<a class="menu-item m4" id="m-screenshot"   href="screenshots/"><img src="/assets/main/screenshot-logo.png"/>Screenshot Gallery</a>
 			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
 			<a class="menu-item m5" href="tools/stage-randomizer/">Stage Randomizer</a>
 			<a class="menu-item m5" href="tools/stats-generator/">Fighter Stats Generator</a>
-		</div>
-		
-		<div id="staff" style="display: none;">
-		<h3>For Staff</h3>
-		
-		<div class="menu-container">
-			<a class="menu-item m5" href="staff/leaderboards/">Leaderboard Tools</a>
-			<a class="menu-item m5" href="staff/banners/">Banner Generator</a>
-		</div>
-		
 		</div>
 		
 		<div id="featured-aligner">
@@ -406,19 +391,18 @@
 		</div>
 		
 		<div class="submenu">
-			<a class="submenu-item" href="https://twitter.com/casualARMS" target="_blank"><img src="assets/logo-twitter.png"/><span class="sub-text">Twitter</span></a>
-			<!--<a class="submenu-item" href="https://arms.nintendo.com" target="_blank"><img src="assets/logo-nintendo.png"/><span class="sub-text">Nintendo</span></a>-->
-			<a class="submenu-item" href="https://reddit.com/r/arms/" target="_blank"><img src="assets/logo-reddit.png"/><span class="sub-text">Reddit</span></a>
-			<a class="submenu-item" href="https://armswiki.org/" target="_blank"><img src="assets/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
-			<a class="submenu-item" href="https://twitch.tv/schkrimps/" target="_blank"><img src="assets/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
+			<a class="submenu-item" href="https://twitter.com/casualARMS" target="_blank"><img src="/assets/main/logo-twitter.png"/><span class="sub-text">Twitter</span></a>
+			<a class="submenu-item" href="https://reddit.com/r/arms/" target="_blank"><img src="/assets/main/logo-reddit.png"/><span class="sub-text">Reddit</span></a>
+			<a class="submenu-item" href="https://armswiki.org/" target="_blank"><img src="/assets/main/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
+			<a class="submenu-item" href="https://twitch.tv/schkrimps/" target="_blank"><img src="/assets/main/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
 			<span class="submenu-group">
-				<a class="submenu-item long" href="https://twitter.com/XMrPiedPiperX"><img src="assets/logo-champion.png"/><span class="sub-text">Scramble Sovereign</span></a>
+				<a class="submenu-item long" href="https://twitter.com/XMrPiedPiperX"><img src="/assets/main/logo-champion.png"/><span class="sub-text">Scramble Sovereign</span></a>
 				<a class="submenu-item extra" href="https://twitter.com/XMrPiedPiperX">MrPiedPiper</a>
 			</span>
 		</div>
 		
 		<div id="main-footer">
-			<img id="discord-logo" src="assets/discord-logo.png"/>
+			<img id="discord-logo" src="/assets/main/discord-logo.png"/>
 			<a id="discord-footer" href="https://discord.gg/5A7QkPC"><span id="footer-discord-text">Join the <u>Discord</u> server!</span></a>
 			<a id="patreon-footer" href="https://www.patreon.com/CasualARMS">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -426,16 +410,16 @@
 				</svg>
 				<span id="footer-patreon-text"><u>Patreon</u> spotlight: <span id="patron-feature">tehbs</span>!</span>
 			</a>
-			<img id="patreon-logo" src="assets/patreon-logo.png"/>
+			<img id="patreon-logo" src="/assets/main/patreon-logo.png"/>
 		</div>
 	</div>
 	
 	<p class="bottom"><a href="quiz/" id="random-fact"></a></p>
 	
-	<img id="logo-mlm" src="staff/banners/logo-mlm.jpg" style="display: none;"/>
-	<img id="logo-cote" src="staff/banners/logo-cote.jpg" style="display: none;"/>
-	<img id="logo-discord" src="staff/banners/logo-discord.png" style="display: none;"/>
-	<img id="logo-casualarms" src="staff/banners/logo-casualarms.png" style="display: none;"/>
+	<img id="logo-mlm" src="/assets/banners/logo-mlm.jpg" style="display: none;"/>
+	<img id="logo-cote" src="/assets/banners/logo-cote.jpg" style="display: none;"/>
+	<img id="logo-discord" src="/assets/banners/logo-discord.png" style="display: none;"/>
+	<img id="logo-casualarms" src="/assets/banners/logo-casualarms.png" style="display: none;"/>
 
 </body>
 </html>
