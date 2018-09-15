@@ -13,7 +13,7 @@
 	
 	function loadWidgetData(data)
 	{
-		document.getElementById("footer-discord-text").innerHTML = data.members.length + " members online on <u>Discord</u>!";
+		$("footer-discord-text").innerHTML = data.members.length + " members online on <u>Discord</u>!";
 	}
 	
 	function load()
@@ -22,26 +22,28 @@
 		eventOngoingNow(function(currentEvent)
 		{
 			if (currentEvent[0] != "none" || window.location.hash.indexOf("event") !== -1)
-				document.getElementById("event-id").className += " event " + currentEvent[0] + "-event";
+				$("event-id").className += " event " + currentEvent[0] + "-event";
 		});
 		
 		// Add random trivia
 		var PRNG = Math.seed(Math.random()*10000);
-		document.getElementById("random-fact").innerHTML = generateQuestion(PRNG).trivia;
+		$("random-fact").innerHTML = generateQuestion(PRNG).trivia;
 		
 		// Display next event feature
 		nextEvents(function(nextEventData)
 		{
 			if (nextEventData.length > 0)
 			{
-				document.getElementById("featured").className = "";
-				if (nextEventData[0].type != 2) // Not Clash
+				$("featured").className = "";
+				if (nextEventData[0].type != 2 && nextEventData[0].type != 5) // Not Clash or Scramble
 					result = generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
 				else { // Clash
-					document.getElementById("featured-banner").src = "/clash/nextclash.jpg";
-					document.getElementById("featured-banner").style.display = "inline-block";
-					document.getElementById("featured-canvas").style.display = "none";
-					document.getElementById("featured-link").href = "/scramble/";
+					var tournament = (nextEventData[0].type == 2) ? "clash" : "scramble";
+					$("featured-banner").src = "/tournaments/next" + tournament + ".jpg";
+					$("featured-link").href = "/" + tournament + "/";
+					
+					$("featured-banner").style.display = "inline-block";
+					$("featured-canvas").style.display = "none";
 				}
 			}
 		});
@@ -70,7 +72,7 @@
 				}
 			}
 			var winner = raffle[Math.floor(Math.random() * raffle.length)];
-			document.getElementById("patron-feature").innerHTML = winner;
+			$("patron-feature").innerHTML = winner;
 		});
 		
 		// Discord widget display

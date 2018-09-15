@@ -92,7 +92,7 @@
 		background-color: gray;
 	}
 	
-	#calendar .cal-event-clash {
+	#calendar .cal-event-clash, #calendar .cal-event-scramble {
 		background-color: red;
 	}
 	
@@ -262,7 +262,7 @@
 			{
 				var ev = nextEventData[i];
 				
-				if (first && ev.type != 2) // No Clash
+				if (first && ev.type != 2 && ev.type != 5) // No Clash
 				{
 					$("next-section").style.display = "block";
 					result = generateBanner(880, 480, ev, "next-lobby", true);
@@ -290,8 +290,8 @@
 				var evEnd = getEventEnd(ev);
 				convertDates([evStart, evEnd], diff);
 				
-				var anchor = (ev.type != 2) ? "#next" : "/clash/";
-				var evtype = (ev.type != 2) ? "announced" : "clash";
+				var anchor = (ev.type == 2) ? "/clash/" : ((ev.type == 5) ? "/scramble/" : "#next");
+				var evtype = (ev.type == 2) ? "clash"   : ((ev.type == 5) ? "scramble"   : "announced");
 				html += createEntry(evStart, evEnd, anchor, evtype, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 			}
 			$("calendar").innerHTML += html;
@@ -391,10 +391,10 @@
 	
 	</div>
 	
-	<img id="logo-mlm" src="../staff/banners/logo-mlm.jpg" style="display: none;"/>
-	<img id="logo-cote" src="../staff/banners/logo-cote.jpg" style="display: none;"/>
-	<img id="logo-discord" src="../staff/banners/logo-discord.png" style="display: none;"/>
-	<img id="logo-casualarms" src="../staff/banners/logo-casualarms.png" style="display: none;"/>
+	<img id="logo-mlm" src="/assets/banners/logo-mlm.jpg" style="display: none;"/>
+	<img id="logo-cote" src="/assets/banners/logo-cote.jpg" style="display: none;"/>
+	<img id="logo-discord" src="/assets/banners/logo-discord.png" style="display: none;"/>
+	<img id="logo-casualarms" src="/assets/banners/logo-casualarms.png" style="display: none;"/>
 	
 </body>
 </html>
