@@ -192,8 +192,8 @@
 		var badge = badgeList[badgeKey];
 		
 		$("badge-feature-title").innerHTML = badge.caption;
-		$("badge-feature-image").src = "/badges/" + badgeKey + ".png";
-		$("badge-feature-overlay").src = "/badges/overlay-" + badge.style + ".png";
+		$("badge-feature-image").src = "/assets/badges/" + badgeKey + ".png";
+		$("badge-feature-overlay").src = "/assets/badges/overlay-" + badge.style + ".png";
 		$("badge-feature-subtext").innerHTML = badge.criterion + ".<br/><a onClick=\"$('player-" + pid + "').scrollIntoView();\">Go back</a>";
 		
 		$("badge-feature").style.display = "block";
@@ -239,8 +239,8 @@
 				var badgeKey = user_badges[i];
 				var badge = badgeList[badgeKey];
 				html += "<div class='badge-container' onclick=\"badgeDetail('" + badgeKey + "','" + pid + "');\" title='" + badge.caption + "'>";
-				html += "<img class='badge-image' src='/badges/" + badgeKey + ".png'/>";
-				html += "<img class='badge-overlay' src='/badges/overlay-" + badge.style + ".png'/>";
+				html += "<img class='badge-image' src='/assets/badges/" + badgeKey + ".png'/>";
+				html += "<img class='badge-overlay' src='/assets/badges/overlay-" + badge.style + ".png'/>";
 				html += "</div>";
 			}
 			stash.innerHTML = html;
