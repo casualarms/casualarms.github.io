@@ -7,25 +7,59 @@
 	<link rel="stylesheet" href="/assets/style.css">
 	<script src="/script/general.js"></script>
 	<script>
+	
+	var clashes = [];
+	var scrambles = [];
+	
 	function load()
 	{
-		var diff = getTimeZoneDiff();
-		
-		var checkinStart    = new Date(1, 1, 1, 19, 30, 0);
-		var tournamentStart = new Date(1, 1, 1, 20, 30, 0);
-		
-		dates = [tournamentStart, checkinStart];
-		
-		convertDates(dates, diff);
-		
-		$("checkin-start").innerHTML     = formatTime(checkinStart,    diff);
-		$("tournament-start").innerHTML  = formatTime(tournamentStart, diff);
-		$("checkin-start2").innerHTML    = formatTime(checkinStart,    diff);
-		$("tournament-start2").innerHTML = formatTime(tournamentStart, diff);
+		var type = "clash";
 		
 		{% if scramble %}
 			changeMode(1);
+			type = "scramble";
 		{% endif %}
+		
+		// Display next event feature
+		nextEvents(function(nextEventData)
+		{
+			for (var i = 0; i < nextEventData.length; ++i)
+			{
+				var ev = nextEventData[i];
+				if (ev.type == 2) // Clash
+					clashes.push(ev);
+				else if (ev.type == 5) // Scramble
+					scrambles.push(ev);
+			}
+			
+			displayEvent(type);
+		});
+	}
+	
+	function displayEvent(type)
+	{
+		$("next-section").style.display = "none";
+		
+		var diff = getTimeZoneDiff();
+		var events = (type == "clash") ? clashes : scrambles;
+		
+		if (events.length > 0)
+		{
+			var evStart = new Date(events[0].date);
+			var evEnd = getEventEnd(events[0]);
+			var evCheckIn = new Date(evStart.getTime() - 60 * 60000);
+			convertDates([evStart, evEnd, evCheckIn], diff);
+			
+			$("next-event-day").innerHTML = textMonthUTC(evStart) + " " + evStart.getUTCDate();
+			
+			$("checkin-start").innerHTML     = formatTimeUTC(evCheckIn,    diff);
+			$("tournament-start").innerHTML  = formatTimeUTC(evStart, diff);
+			$("checkin-start2").innerHTML    = formatTimeUTC(evCheckIn,    diff);
+			$("tournament-start2").innerHTML = formatTimeUTC(evStart, diff);
+			
+			$("next-banner").src = "/tournaments/next" + type + ".jpg";
+			$("next-section").style.display = "block";
+		}
 	}
 	
 	function changeMode(mode)
@@ -45,6 +79,15 @@
 		
 		$("config-mode-name").innerHTML = modeName;
 		$("container").className = classes;
+		
+		
+		if (mode == 0)
+			displayEvent("clash");
+		else if (mode == 1)
+			displayEvent("scramble");
+		
+		
+		
 	}
 	
 	</script>
@@ -64,7 +107,7 @@
 			text-align: center;
 		}
 		
-		#next-lobby {
+		#next-banner {
 			width: 95%;
 			max-width: 500pt;
 			box-sizing: border-box;
@@ -106,9 +149,9 @@
 		
 		<p>Please read all the rules, and be ready to have tons of fun with us!</p>
 		
-		<div id="next-section" style="display: block;">
+		<div id="next-section" style="display: none;">
 			<h3>Next tournament</h3>
-			<img src="/tournaments/nextclash.jpg" id="next-lobby"/>
+			<img src="/tournaments/nextclash.jpg" id="next-banner"/>
 			<p>Sign up on <a href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> today!</p>
 		</div>
 		
@@ -121,7 +164,7 @@
 		
 		<h3>Check In</h3>
 		
-		<p>Check in starts at <em><span id="checkin-start">3:30 PM EDT</span></em> on <em>Saturday, September 22</em>.  
+		<p>Check in starts at <em><span id="checkin-start">3:30 PM EDT</span></em> on <em>Saturday, <span id="next-event-day">September 22</span></em>.  
 		The tournament starts at <em><span id="tournament-start">4:30 PM EDT</span></em>. Match ups will be shuffled at the start of the tournament.</p>
 		
 		<h3>Communication</h3>

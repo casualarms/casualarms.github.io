@@ -123,6 +123,14 @@ function textWeekday(date)
 	return days[date.getDay()];
 }
 
+function textMonthUTC(date)
+{
+	var months = [
+		"January", "February", "March", "April", "May", "June", 
+		"July", "August", "September", "October", "November", "December"];
+	return months[date.getUTCMonth()];
+}
+
 function formatTimeHelper(h, m, diff)
 {
 	postfix = "";

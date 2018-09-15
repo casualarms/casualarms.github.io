@@ -286,7 +286,7 @@
 					$("next-info").innerHTML = info_html;
 				}
 				
-				var evStart = ev.date;
+				var evStart = new Date(ev.date);
 				var evEnd = getEventEnd(ev);
 				convertDates([evStart, evEnd], diff);
 				
