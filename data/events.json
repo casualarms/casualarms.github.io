@@ -34,6 +34,8 @@
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-09-13T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Levi","tag":"","code":"3256-0282-5625","tier":1},{"name":"Program","tag":"","code":"4898-5196-4000","tier":3}]}
 	,{"titleText":"Standard Party Lobby","type":0,"theme":"everything","date":"2018-09-15T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Taste","tag":"","code":"4535-5139-5505","tier":1},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Main Main","tag":"CC","code":"5606-1821-7507","tier":3}]}
 	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-09-16T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Marie","tag":"CC","code":"5693-4645-2698","tier":0}]}
+	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-09-17T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Reis","tag":"","code":"1753-6049-3315","tier":0}]}
+	
 	
 	
 	
