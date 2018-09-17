@@ -10,6 +10,8 @@
 	
 	,"UNKNOWN": [
 	{"name": "Vanmuundegar", "tier": 2, "active": true, "months": 1}
+	]
+	,"UNKNOWN": [
 	{"name": "DatoldMan", "tier": 3, "active": true, "months": 1}
 	]
 }
