@@ -50,6 +50,10 @@
 			var evCheckIn = new Date(evStart.getTime() - 60 * 60000);
 			convertDates([evStart, evEnd, evCheckIn], diff);
 			
+			var challongeURL = "https://challonge.com/" + events[0].titleText.replace(/\s/g, "");
+			$("challonge-1").href = challongeURL;
+			$("challonge-2").href = challongeURL;
+			
 			$("next-event-day").innerHTML = textMonthUTC(evStart) + " " + evStart.getUTCDate();
 			
 			$("checkin-start").innerHTML     = formatTimeUTC(evCheckIn,    diff);
@@ -142,6 +146,8 @@
 	<div id="container">
 		<h2>Casual Tournaments</h2>
 		
+		<!-- BEGIN INTRO TEXT AREA -->
+		
 		<p>Thanks to your generous support through our Patreon, all major tournaments held by Casual ARMS will now feature <em>prize packages!</em> All participants will be eligible for these prizes as detailed below.</p>
 		<p>All Casual ARMS tournament prizes will be distributed via random drawing with odds of winning determined by each participant's performance. Winning a fight earns .5 points with an additional 1 point awarded for the winner of every match (.5 each for a tie). A bye awards 2 points. At the end of each tournament, all accumulated points will serve as entries in the drawing for any prizes being distributed. Each participant can win only one prize per event.</p>
 		
@@ -149,18 +155,20 @@
 		
 		<p>Please read all the rules before participating, and be ready to have tons of fun with us at Casual ARMS!</p>
 		
-		<div id="next-section" style="display: none;">
-			<h3>Next tournament</h3>
-			<img src="/tournaments/nextclash.jpg" id="next-banner"/>
-			<p>Sign up on <a href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> today!</p>
-		</div>
-		
-		<h2 id="rules">Casual Tournament Rules</h2>
+		<!-- END INTRO TEXT AREA -->
 		
 		<p id="mode-selector">
 			<em class="mode active-mode" id="md0" onClick="changeMode(0);">Clash</em>
 			<em class="mode" id="md1" onClick="changeMode(1);">Scramble</em>
 		</p>
+		
+		<div id="next-section" style="display: none;">
+			<h3>Next tournament</h3>
+			<img src="/tournaments/nextclash.jpg" id="next-banner"/>
+			<p>Sign up on <a id="challonge-1" href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> today!</p>
+		</div>
+		
+		<h2 id="rules">Casual Tournament Rules</h2>
 		
 		<h3>Check In</h3>
 		
@@ -219,7 +227,7 @@
 			
 			<li>The match ends after 4 fights. The match can either result in a win for one of the players or a 2-2 tie.</li>
 			
-			<li>Report your results in <a href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> after each match by doing the following: <br/>
+			<li>Report your results in <a id="challonge-2" href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> after each match by doing the following: <br/>
 			<ul><li>First, click the appropriate button to report your score.</li>
 			<li>Click <em>add a set</em> once for each fight you had with your opponent beyond the first.</li>
 			<li>For each fight that you <em>won</em>, enter a <em>1</em> in that box. </li>
