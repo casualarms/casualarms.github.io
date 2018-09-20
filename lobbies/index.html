@@ -262,6 +262,11 @@
 			{
 				var ev = nextEventData[i];
 				
+				var weekAhead = new Date();
+				weekAhead.setDate(weekAhead.getDate() + 7);
+				if (ev.date > weekAhead)
+					break;
+				
 				if (first && ev.type != 2 && ev.type != 5) // No Clash
 				{
 					$("next-section").style.display = "block";

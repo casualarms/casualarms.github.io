@@ -37,7 +37,7 @@ var badgeList = {
 	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light", "criterion": "This is a special badge for the two founders of Casual ARMS" },
 	"clsh" : { "caption" : "Casual Clash Champion", "style" : "light", "criterion": "Play in a Casual Clash and achieve victory" },
 	"scrmbl" : { "caption" : "Casual Scramble Sovereign", "style" : "dark", "criterion": "Play in a Casual Scramble and achieve victory" },
-	"casualcrew" : { "caption" : "Casual Crew Member", "style" : "dark", "criterion": "Be a current or former member of the Casual Crew." },
+	"casualcrew" : { "caption" : "Casual Crew Member", "style" : "dark", "criterion": "Be a current or former member of the Casual Crew" },
 };
 
 var eventStages = {
