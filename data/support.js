@@ -35,9 +35,13 @@ var badgeList = {
 	"p2" : { "caption" : "Patreon: True Casual",        "style" : "dark",  "criterion": "Contribute more than $25 on the Patreon for at least one month" },
 	
 	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light", "criterion": "This is a special badge for the two founders of Casual ARMS" },
-	"clsh" : { "caption" : "Casual Clash Champion", "style" : "light", "criterion": "Play in a Casual Clash and achieve victory" },
-	"scrmbl" : { "caption" : "Casual Scramble Sovereign", "style" : "dark", "criterion": "Play in a Casual Scramble and achieve victory" },
 	"casualcrew" : { "caption" : "Casual Crew Member", "style" : "dark", "criterion": "Be a current or former member of the Casual Crew" },
+	
+	"clash" : { "caption" : "Casual Clash Participant", "style" : "light", "criterion": "Play in a Casual Clash" },
+	"scramble" : { "caption" : "Casual Scramble Participant", "style" : "dark", "criterion": "Play in a Casual Scramble" },
+	
+	"clash-win" : { "caption" : "Casual Clash Champion", "style" : "hololight", "criterion": "Achieve victory in a Casual Clash" },
+	"scramble-win" : { "caption" : "Casual Scramble Sovereign", "style" : "holodark", "criterion": "Achieve victory in a Casual Scramble" },
 };
 
 var eventStages = {

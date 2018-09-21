@@ -52,7 +52,6 @@
 		position: relative;
 		left: -22pt;
 		transition: 0.2s;
-		
 	}
 	
 	.small .index {
@@ -210,8 +209,8 @@
 		
 		// Manual badges
 		if (badges.hasOwnProperty(uid))
-			for (var i = 0; i < badges[uid].length; ++i)
-				user_badges.push(badges[uid][i]);
+			for (var i = 0; i < badges[uid]["badges"].length; ++i)
+				user_badges.push(badges[uid]["badges"][i]);
 		
 		// Patreon badges
 		if (rawPatrons.hasOwnProperty(uid))
