@@ -39,8 +39,13 @@
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"breakable-bits","date":"2018-09-19T22:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":2},{"name":"Marie","tag":"CC","code":"5693-4645-2698","tier":3}]}
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-09-20T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":3}]}
 	,{"titleText":"Clash HYPE Lobby!","type":1,"theme":"fights-only","date":"2018-09-22T19:15:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Reis","tag":"","code":"1753-6049-3315","tier":0}]}
-	
-	
 	,{"titleText":"Casual Clash 5","type":2,"theme":"undefined","date":"2018-09-22T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
+	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-09-23T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}]}
+	
+	
+	
+	
+	
+	
 	,{"titleText":"Casual Scramble 2","type":5,"theme":"undefined","date":"2018-10-06T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
 ]
