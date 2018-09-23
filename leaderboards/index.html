@@ -314,9 +314,12 @@
 		var previous = -1;
 		var duplicates = 0;
 		
+		var ldbPLayers = {};
+		
 		for (var i = 0; i < leaderboard.length; ++i)
 		{
 			var coins = leaderboard[i][1];
+			ldbPLayers[leaderboard[i][3]] = 1;
 			
 			if (coins == 0)
 				break;
@@ -329,7 +332,6 @@
 				html += "<p class='limits'>" + leaderboardTiers[tc].start + " <img class='armscoin-text' src='coin.png'/> &#8211; " + (leaderboardTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
 				
 				// Build menu
-				var tierName = leaderboardTiers[tc].name;
 				var style = "style='color: " + leaderboardTiers[tc].color + ";'";
 				menu_html += "<a class='menu-item m5 tier-" + tierName + "' href='#tier-" + tierName + "'" + style + ">ARMS Labs " + tierName + "</a>";
 				
@@ -354,6 +356,39 @@
 			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
+		}
+		
+		// Players not in leaderboard but still with badges
+		
+		var zeroes = {};
+		for (var key in badges)
+			if (!ldbPLayers.hasOwnProperty(key))
+				zeroes[key] = badges[key];
+		
+		html += "</div><h3 id='tier-testsubject' style='color: white;'>ARMS Labs Test Subject</h3><div class='tier'>";
+		html += "<p class='limits'>0 <img class='armscoin-text' src='coin.png'/></p>";
+		
+		// Build menu
+		var style = "style='color: white;'";
+		menu_html += "<a class='menu-item m5 tier-testsubject' href='#tier-testsubject'" + style + ">ARMS Labs Test Subject</a>";
+		
+		if (window.location.hash.substring(1) == "testsubject")
+			scrolltoid = tierName;
+		
+		// Generate CSS
+		css += "p.entry.tier-testsubject:hover, a.menu-item.tier-testsubject:hover ";
+		css += "{ background-color: white !important; color: black !important; }";
+		css += "p.entry.tier-testsubject .index { background-image: url(placement-blank.png); color: black; }";
+		
+		index = 1;
+		for (var key in zeroes)
+		{
+			var pid = "leaderboard-X-" + (index++);
+			html += "<p onclick=\"showBadges('" + pid + "','" + key + "');\" id='player-" + pid + "' class='entry tier-testsubject" + ((index > 99) ? " small" : "") + "' style='color: white;'><span class='index'>&nbsp;</span>";
+			html += "<span class='player'>" + zeroes[key].name + "</span>";
+			html += "<span class='coins'>0 <img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
+			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
+			
 		}
 		
 		menu_html += "</div>";
