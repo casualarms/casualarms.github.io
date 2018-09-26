@@ -172,12 +172,12 @@
 			newStart.setUTCHours(0);
 			newStart.setUTCMinutes(0);
 			
-			if (newStart.getUTCDate() <= 6)
+			if ((newStart.getUTCDay()+6) % 7 <= 6)
 				newStart.setUTCDate(newStart.getUTCDate()+1);
 			else
 			{
-				newStart.setUTCDate(1);
-				newEnd.setUTCDate(1);
+				newStart.setUTCDay(1);
+				newEnd.setUTCDay(1);
 			}
 			
 			result = createEntry(newStart, newEnd, anchor, evtype, description);
