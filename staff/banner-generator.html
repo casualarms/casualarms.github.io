@@ -63,7 +63,7 @@ permalink: /staff/banners/index.html
 		var options = "<option value='undefined' selected>---</option>";
 		for (var i = 0; i < eventThemes.length; ++i)
 			options += "<option value='" + eventThemes[i].key + "'>" + eventThemes[i].name + "</option>";
-		document.getElementById("theme").innerHTML = options;
+		$("theme").innerHTML = options;
 		
 		// Read old events
 		fetchEvents(function(events)
@@ -72,7 +72,7 @@ permalink: /staff/banners/index.html
 			var options = "";
 			for (var i = 0; i < events.length; ++i)
 				options += "<option>" + bannerDateString(events[i].date) + ": " + events[i].titleText + "</option>";
-			var eventDataIndex = document.getElementById("event-history").innerHTML = options;
+			var eventDataIndex = $("event-history").innerHTML = options;
 		});
 	}
 	
@@ -83,26 +83,26 @@ permalink: /staff/banners/index.html
 		var diff = timeZoneOffset(eventData.timeZone);
 		convertDates([date], diff);
 		
-		document.getElementById("month").selectedIndex = date.getUTCMonth();
-		document.getElementById("day").value = date.getUTCDate();
-		document.getElementById("year").value = date.getFullYear();
+		$("month").selectedIndex = date.getUTCMonth();
+		$("day").value = date.getUTCDate();
+		$("year").value = date.getFullYear();
 		
-		document.getElementById("start-hours").value = date.getUTCHours();
-		document.getElementById("start-minutes").value = date.getUTCMinutes();
+		$("start-hours").value = date.getUTCHours();
+		$("start-minutes").value = date.getUTCMinutes();
 		
-		document.getElementById("duration-minutes").value = eventData.duration;
+		$("duration-minutes").value = eventData.duration;
 		
-		document.getElementById("timezone").value = eventData.timeZone;
+		$("timezone").value = eventData.timeZone;
 		
 		var hostsList = ["A", "B", "C"];
 		
 		for (var i = 0; i < hostsList.length; ++i)
 		{
 			var active = (i < eventData.hosts.length);
-			document.getElementById("name" + hostsList[i]).value         = (active ? unEscapeHTML(eventData.hosts[i].name) : "");
-			document.getElementById("tag"  + hostsList[i]).selectedIndex = (active ? ((eventData.hosts[i].tag == "CC") ? 1: 0) : 0);
-			document.getElementById("code" + hostsList[i]).value         = (active ? unEscapeHTML(eventData.hosts[i].code) : "");
-			document.getElementById("host" + hostsList[i]).selectedIndex = (active ? eventData.hosts[i].tier : 0);
+			$("name" + hostsList[i]).value         = (active ? unEscapeHTML(eventData.hosts[i].name) : "");
+			$("tag"  + hostsList[i]).selectedIndex = (active ? ((eventData.hosts[i].tag == "CC") ? 1: 0) : 0);
+			$("code" + hostsList[i]).value         = (active ? unEscapeHTML(eventData.hosts[i].code) : "");
+			$("host" + hostsList[i]).selectedIndex = (active ? eventData.hosts[i].tier : 0);
 		}
 		
 		var themeIndex = 0;
@@ -115,20 +115,20 @@ permalink: /staff/banners/index.html
 			}
 		}
 		
-		document.getElementById("theme").selectedIndex = themeIndex;
-		document.getElementById("title").value = unEscapeHTML(eventData.titleText);
-		document.getElementById("type").selectedIndex = eventData.type;
+		$("theme").selectedIndex = themeIndex;
+		$("title").value = unEscapeHTML(eventData.titleText);
+		$("type").selectedIndex = eventData.type;
 	}
 	
 	function fillFromEventDataHistory()
 	{
-		var eventDataIndex = document.getElementById("event-history").selectedIndex;
+		var eventDataIndex = $("event-history").selectedIndex;
 		fillFromEventData(eventsHistory[eventDataIndex]);
 	}
 	
 	function fillFromEventDataJSON()
 	{
-		var json = document.getElementById("text-output").value;
+		var json = $("text-output").value;
 		var eventdata = JSON.parse(json.substr(1, json.length - 1));
 		eventdata.date = new Date(eventdata.date);
 		fillFromEventData(eventdata);
@@ -139,16 +139,16 @@ permalink: /staff/banners/index.html
 		var eventdata = {};
 		
 		// Read input from the forms
-		var month = document.getElementById("month").selectedIndex;
-		var day = parseInt(document.getElementById("day").value);
-		var year = parseInt(document.getElementById("year").value);
+		var month = $("month").selectedIndex;
+		var day = parseInt($("day").value);
+		var year = parseInt($("year").value);
 		
-		var startHours   = parseInt(document.getElementById("start-hours").value);
-		var startMinutes = parseInt(document.getElementById("start-minutes").value);
+		var startHours   = parseInt($("start-hours").value);
+		var startMinutes = parseInt($("start-minutes").value);
 		
-		var durationMinutes = parseInt(document.getElementById("duration-minutes").value);
+		var durationMinutes = parseInt($("duration-minutes").value);
 		
-		var zoneString  = document.getElementById("timezone").value;
+		var zoneString  = $("timezone").value;
 		var offset = timeZoneOffset(zoneString);
 		
 		var startDate = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
@@ -159,17 +159,17 @@ permalink: /staff/banners/index.html
 		for (i = 0; i < hostsList.length; ++i)
 		{
 			var host = {};
-			host.name = escapeHTML(document.getElementById("name" + hostsList[i]).value);
-			host.tag  = (document.getElementById("tag" + hostsList[i]).selectedIndex == 1) ? "CC" : "";
-			host.code = escapeHTML(document.getElementById("code" + hostsList[i]).value);
-			host.tier = document.getElementById("host" + hostsList[i]).selectedIndex;
-			if (host.name != "") hosts.push(host);
+			host.name = escapeHTML($("name" + hostsList[i]).value);
+			host.tag  = ($("tag" + hostsList[i]).selectedIndex == 1) ? "CC" : "";
+			host.code = escapeHTML($("code" + hostsList[i]).value);
+			host.tier = $("host" + hostsList[i]).selectedIndex;
+			if (host.code != "") hosts.push(host);
 		}
 		
-		var themeIndex = document.getElementById("theme").selectedIndex;
+		var themeIndex = $("theme").selectedIndex;
 		
-		eventdata.titleText = escapeHTML(document.getElementById("title").value);
-		eventdata.type = document.getElementById("type").selectedIndex;
+		eventdata.titleText = escapeHTML($("title").value);
+		eventdata.type = $("type").selectedIndex;
 		eventdata.theme = (themeIndex != 0) ? eventThemes[themeIndex-1].key : "undefined";
 		
 		eventdata.date = startDate;
@@ -177,10 +177,9 @@ permalink: /staff/banners/index.html
 		eventdata.timeZone = zoneString;
 		eventdata.hosts = hosts;
 		
-		document.getElementById("text-output").value = "," + JSON.stringify(eventdata);
+		$("text-output").value = "," + JSON.stringify(eventdata);
 		
-		result = generateBanner(880, 480, eventdata, null, false);
-		document.getElementById("result").innerHTML = '<img src="' + result + '"/>';
+		generateBanner(880, 480, eventdata, "result", false);
 	}
 	
 	
@@ -243,8 +242,8 @@ permalink: /staff/banners/index.html
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameA" value="Easy-Player" placeholder="Easy-Player"/>
-				code: <input type="text" id="codeA" value="0000-8888-2222" placeholder="0000-1111-2222"/>
+				<input type="text" id="nameA" placeholder="Easy Player"/>
+				code: <input type="text" id="codeA" placeholder="0000-1111-2222"/>
 			</p>
 			
 			<p>
@@ -258,8 +257,8 @@ permalink: /staff/banners/index.html
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameB" value="Medium-Player" placeholder="Medium-Player"/>
-				code: <input type="text" id="codeB" value="0000-8888-2222" placeholder="0000-1111-2222"/>
+				<input type="text" id="nameB" placeholder="Medium Player"/>
+				code: <input type="text" id="codeB" placeholder="0000-1111-2222"/>
 			</p>
 			
 			<p>
@@ -273,8 +272,8 @@ permalink: /staff/banners/index.html
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameC" value="Hard-Player" placeholder="Hard-Player"/>
-				code: <input type="text" id="codeC" value="0000-8888-2222" placeholder="0000-1111-2222"/>
+				<input type="text" id="nameC" placeholder="Hard Player"/>
+				code: <input type="text" id="codeC" placeholder="0000-1111-2222"/>
 			</p>
 			
 			<p><input type="button" value="Generate" onClick="readAndGenerate()"/>
@@ -284,14 +283,9 @@ permalink: /staff/banners/index.html
 			
 			<hr/>
 			
-			<img id="logo-mlm" src="/assets/banners/logo-mlm.jpg" style="display: none;"/>
-			<img id="logo-cote" src="/assets/banners/logo-cote.jpg" style="display: none;"/>
-			<img id="logo-discord" src="/assets/banners/logo-discord.png" style="display: none;"/>
-			<img id="logo-casualarms" src="/assets/banners/logo-casualarms.png" style="display: none;"/>
-			
 			<!--<canvas width="880" height="480" id="test-canvas"></canvas>-->
 			<textarea id="text-output" rows="4"></textarea>
-			<div id="result"></div>
+			<div><img id="result"/></div>
 			<p><input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/></p>
 			
 			<p style="font-family: ARMS;">This text is here for Rashiko's computer</p>

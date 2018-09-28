@@ -24,13 +24,36 @@
 		width: 95%;
 		max-width: 500pt;
 		box-sizing: border-box;
-		border: 5pt solid #1d94fc;
+		border: 3pt solid black;
 	}
 	
 	p#next-theme-info {
 		text-align: center;
 	}
 	
+	#banner-indicators {
+		text-align: center;
+		font-size: 16pt;
+	}
+	
+	.banner-indicator {
+		cursor: pointer;
+		display: inline-block;
+		height: 7pt;
+		width: 7pt;
+		border-radius: 100%;
+		background-color: yellow;
+		border: 2pt solid black;
+		margin: -2pt 4pt;
+	}
+	
+	.indicator-type-2, .indicator-type-5 {
+		background-color: #1d94fc;
+	}
+	
+	.indicator-type-6 {
+		background-color: #f92473;
+	}
 	
 	#calendar {
 		width: 95%;
@@ -40,7 +63,7 @@
 		border: 2pt solid black;
 		margin: 1em auto;
 		position: relative;
-		background-color: rgb(255, 255, 170);
+		background-color: white;
 	}
 	
 	#calendar div {
@@ -82,8 +105,8 @@
 		text-align: center;
 		position: absolute;
 		width: 12.5%;
-		background-color: #1d94fc;
-		color: white;
+		background-color: yellow;
+		color: black;
 		overflow: hidden;
 		z-index: 0;
 	}
@@ -92,8 +115,12 @@
 		background-color: gray;
 	}
 	
-	#calendar .cal-event-clash, #calendar .cal-event-scramble {
-		background-color: red;
+	#calendar .cal-event-2, #calendar .cal-event-5 {
+		background-color: #1d94fc;
+	}
+	
+	#calendar .cal-event-6 {
+		background-color: #f92473;
 	}
 	
 	#calendar .cal-event .info {
@@ -158,7 +185,7 @@
 	</style>
 	<script>
 	
-	function createEntry(start, end, anchor, evtype, description)
+	function createEntry(start, end, anchor, index, evtype, description)
 	{
 		var result = "";
 		if (start.getUTCDate() != end.getUTCDate() && !(end.getUTCHours() == 0 && end.getUTCMinutes() == 0))
@@ -180,7 +207,7 @@
 				newEnd.setUTCDay(1);
 			}
 			
-			result = createEntry(newStart, newEnd, anchor, evtype, description);
+			result = createEntry(newStart, newEnd, anchor, index, evtype, description);
 			end = updatedEnd;
 		}
 		
@@ -192,7 +219,51 @@
 		var height = duration / 3600000 * 4;
 		var dateOffset = (start.getUTCDay() + 6) % 7 + 1;
 		
-		return result + "<a href='" + anchor + "' class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
+		var onclick = (evtype != "slot") ? "onclick='previewEvent(" + index + ");'" : "";
+		return result + "<a href='" + anchor + "' " + onclick +" class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
+	}
+	
+	var eventData;
+	var focusEvent;
+	function previewEvent(i)
+	{
+		var ev = eventData[i];
+		focusEvent = i;
+		generateBanner(880, 480, eventData[i], "next-lobby", true);
+		
+		var themeData = null;
+		for (t = 0; t < eventThemes.length; ++t)
+			if (eventThemes[t].key == ev.theme)
+				themeData = eventThemes[t];
+		
+		var info_html = "This event ";
+		
+		if (themeData != null)
+			info_html += "features the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a> and ";
+		
+		if (ev.type == 0)
+			info_html += " counts for the Casual ARMS <a href='/leaderboards/''><em>leaderboards</em></a>!";
+		else
+			info_html += " <em>does not</em> count for the Casual ARMS leaderboards.";
+		
+		$("next-section").style.display = "block";
+		$("next-info").innerHTML = info_html;
+		
+		$("banner-previous").disabled = (i == 0);
+		$("banner-next").disabled = (i == eventData.length-1);
+		
+		var indicators = document.getElementsByClassName("banner-indicator");
+		for (var ind = 0; ind < indicators.length; ++ind)
+			indicators[ind].style.backgroundColor = "";
+		
+		$("banner-indicator-" + i).style.backgroundColor = "black";
+		
+	}
+	
+	function changeBanner(dir)
+	{
+		var index = Math.max(0, Math.min(focusEvent + dir, eventData.length - 1));
+		previewEvent(index);
 	}
 	
 	function load()
@@ -247,59 +318,44 @@
 		
 		var events = "";
 		
-		events += createEntry(monStart, monEnd, "#monday",    "slot", "Mega League Monday warmup<br/>"   + formatTimeUTC(monStart, diff) + " to " + formatTimeUTC(monEnd, diff));
-		events += createEntry(tueStart, tueEnd, "#tuesday",   "slot", "Tidal Tuesday<br/>"               + formatTimeUTC(tueStart, diff) + " to " + formatTimeUTC(tueEnd, diff));
-		events += createEntry(wedStart, wedEnd, "#wednesday", "slot", "Wildcard Wednesday<br/>"          + formatTimeUTC(wedStart, diff) + " to " + formatTimeUTC(wedEnd, diff));
-		events += createEntry(thuStart, thuEnd, "#thursday",  "slot", "Thumpin' Thursday<br/>"           + formatTimeUTC(thuStart, diff) + " to " + formatTimeUTC(thuEnd, diff));
-		events += createEntry(satStart, satEnd, "#saturday",  "slot", "Saturday Party Lobby<br/>"        + formatTimeUTC(satStart, diff) + " to " + formatTimeUTC(satEnd, diff));
-		events += createEntry(sunStart, sunEnd, "#sunday",    "slot", "Champions of the Era warmup<br/>" + formatTimeUTC(sunStart, diff) + " to " + formatTimeUTC(sunEnd, diff));
+		events += createEntry(monStart, monEnd, "#monday",    -1, "slot", "Mega League Monday warmup<br/>"   + formatTimeUTC(monStart, diff) + " to " + formatTimeUTC(monEnd, diff));
+		events += createEntry(tueStart, tueEnd, "#tuesday",   -1, "slot", "Tidal Tuesday<br/>"               + formatTimeUTC(tueStart, diff) + " to " + formatTimeUTC(tueEnd, diff));
+		events += createEntry(wedStart, wedEnd, "#wednesday", -1, "slot", "Wildcard Wednesday<br/>"          + formatTimeUTC(wedStart, diff) + " to " + formatTimeUTC(wedEnd, diff));
+		events += createEntry(thuStart, thuEnd, "#thursday",  -1, "slot", "Thumpin' Thursday<br/>"           + formatTimeUTC(thuStart, diff) + " to " + formatTimeUTC(thuEnd, diff));
+		events += createEntry(satStart, satEnd, "#saturday",  -1, "slot", "Saturday Party Lobby<br/>"        + formatTimeUTC(satStart, diff) + " to " + formatTimeUTC(satEnd, diff));
+		events += createEntry(sunStart, sunEnd, "#sunday",    -1, "slot", "Champions of the Era warmup<br/>" + formatTimeUTC(sunStart, diff) + " to " + formatTimeUTC(sunEnd, diff));
 		
 		nextEvents(function(nextEventData)
 		{
-			var html = "";
-			var first = true;
+			eventData = nextEventData;
+			var html = "", indicator_html = "";
+			var first = undefined;
 			for (var i = 0; i < nextEventData.length; ++i)
 			{
 				var ev = nextEventData[i];
+				indicator_html += "<span class='banner-indicator indicator-type-" + ev.type + "' id='banner-indicator-" + i + "' onclick='previewEvent(" + i + ");'></span>";
+				
+				if (first == undefined && ev.type != 2 && ev.type != 5) // No Clash
+					first = i;
 				
 				var weekAhead = new Date();
 				weekAhead.setDate(weekAhead.getDate() + 7);
-				if (ev.date > weekAhead)
-					break;
 				
-				if (first && ev.type != 2 && ev.type != 5) // No Clash
+				if (ev.date < weekAhead)
 				{
-					$("next-section").style.display = "block";
-					result = generateBanner(880, 480, ev, "next-lobby", true);
+					var evStart = new Date(ev.date);
+					var evEnd = getEventEnd(ev);
+					convertDates([evStart, evEnd], diff);
 					
-					var themeData = null;
-					for (t = 0; t < eventThemes.length; ++t)
-						if (eventThemes[t].key == ev.theme)
-							themeData = eventThemes[t];
-					
-					var info_html = "This event ";
-					
-					if (themeData != null)
-						info_html += "features the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a> and ";
-					first = false;
-					
-					if (ev.type == 0)
-						info_html += " counts for the Casual ARMS <a href='/leaderboards/''><em>leaderboards</em></a>!";
-					else
-						info_html += " <em>does not</em> count for the Casual ARMS leaderboards.";
-					
-					$("next-info").innerHTML = info_html;
+					var anchor = (ev.type == 2) ? "/clash/" : ((ev.type == 5) ? "/scramble/" : "#next");
+				//	var evtype = (ev.type == 2) ? "clash"   : ((ev.type == 5) ? "scramble"   : "announced");
+					html += createEntry(evStart, evEnd, anchor, i, ev.type, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 				}
-				
-				var evStart = new Date(ev.date);
-				var evEnd = getEventEnd(ev);
-				convertDates([evStart, evEnd], diff);
-				
-				var anchor = (ev.type == 2) ? "/clash/" : ((ev.type == 5) ? "/scramble/" : "#next");
-				var evtype = (ev.type == 2) ? "clash"   : ((ev.type == 5) ? "scramble"   : "announced");
-				html += createEntry(evStart, evEnd, anchor, evtype, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 			}
 			$("calendar").innerHTML += html;
+			$("banner-indicators").innerHTML = indicator_html;
+			
+			previewEvent(first);
 			
 			if (window.location.hash.substring(1) == "next")
 				$("next").scrollIntoView();
@@ -333,6 +389,11 @@
 			<h3 id="next">Next Lobby Event</h3>
 			<canvas width="880" height="480" id="next-lobby"></canvas>
 			<p id="next-info"></p>
+			<p id="banner-nav">
+				<button onClick="changeBanner(-1)" id="banner-previous">&lt;</button>
+				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
+				<button onClick="changeBanner(1)" id="banner-next">&gt;</button>
+			</p>
 		</div>
 		
 		<h3>Upcoming Lobby Events</h3>
@@ -395,11 +456,5 @@
 		<p>The <em>Champions of the Era Warmup Lobby</em> event prepares ARMS players for Champions of the Era, hosted by Era Wolf!</p>
 	
 	</div>
-	
-	<img id="logo-mlm" src="/assets/banners/logo-mlm.jpg" style="display: none;"/>
-	<img id="logo-cote" src="/assets/banners/logo-cote.jpg" style="display: none;"/>
-	<img id="logo-discord" src="/assets/banners/logo-discord.png" style="display: none;"/>
-	<img id="logo-casualarms" src="/assets/banners/logo-casualarms.png" style="display: none;"/>
-	
 </body>
 </html>
