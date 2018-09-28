@@ -36,6 +36,10 @@ var badgeList = {
 	
 	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light", "criterion": "This is a special badge for the two founders of Casual ARMS" },
 	"casualcrew" : { "caption" : "Casual Crew Member", "style" : "dark", "criterion": "Be a current or former member of the Casual Crew" },
+	"cgc" : { "caption" : "Cobra Gloves Club", "style" : "light", "criterion": "Join the CGC and the Cobra hive mind by playing gloves-only Kid Cobra with a CGC member" },
+	
+	"season" : { "caption" : "Monthly Leaderboards", "style" : "light", "criterion": "Finish top 10 in the monthly leaderboards" },
+	"season-win" : { "caption" : "Monthly Leaderboards Win", "style" : "hololight", "criterion": "Finish as the winner in the monthly leaderboards" },
 	
 	"clash" : { "caption" : "Casual Clash Participant", "style" : "light", "criterion": "Play in a Casual Clash" },
 	"scramble" : { "caption" : "Casual Scramble Participant", "style" : "dark", "criterion": "Play in a Casual Scramble" },
