@@ -31,16 +31,16 @@
 		text-align: center;
 	}
 	
-	#banner-indicators {
+	#banner-nav {
+		margin: 0;
 		text-align: center;
-		font-size: 16pt;
 	}
 	
 	.banner-indicator {
 		cursor: pointer;
 		display: inline-block;
-		height: 7pt;
-		width: 7pt;
+		height: 8pt;
+		width: 8pt;
 		border-radius: 100%;
 		background-color: yellow;
 		border: 2pt solid black;
@@ -265,7 +265,6 @@
 			indicators[ind].style.backgroundColor = "";
 		
 		$("banner-indicator-" + i).style.backgroundColor = "black";
-		
 	}
 	
 	function changeBanner(dir)
@@ -297,7 +296,6 @@
 		var sunEnd   = new Date(Date.UTC(4, 1, 7, 21, 45, 0));
 		
 		dates = [monStart, monEnd, tueStart, tueEnd, wedStart, wedEnd, thuStart, thuEnd, satStart, satEnd, sunStart, sunEnd];
-		
 		convertDates(dates, diff);
 		
 		$("mon-start").innerHTML = textWeekday(monStart) + "s " + formatTimeUTC(monStart, diff);
@@ -322,10 +320,7 @@
 		}
 		$("calendar").innerHTML += timemarks;
 		
-		
-		
 		var events = "";
-		
 		events += createEntry(monStart, monEnd, "#monday",    -1, "slot", "Mega League Monday warmup<br/>"   + formatTimeUTC(monStart, diff) + " to " + formatTimeUTC(monEnd, diff));
 		events += createEntry(tueStart, tueEnd, "#tuesday",   -1, "slot", "Tidal Tuesday<br/>"               + formatTimeUTC(tueStart, diff) + " to " + formatTimeUTC(tueEnd, diff));
 		events += createEntry(wedStart, wedEnd, "#wednesday", -1, "slot", "Wildcard Wednesday<br/>"          + formatTimeUTC(wedStart, diff) + " to " + formatTimeUTC(wedEnd, diff));
@@ -335,22 +330,22 @@
 		
 		var rightNow = new Date();
 		var rightSoon = new Date(rightNow.getTime() + 20 * 60000);
-		events += createEntry(rightNow, rightSoon, "", -1, "current-time", "Your Local Time");
-		
-		var targetEvent = getQueryVariable("event");
+		convertDates([rightNow, rightSoon], diff);
+		events += createEntry(rightNow, rightSoon, "", -1, "current-time", "Your Local Time: " + formatTimeUTC(rightNow, diff));
 		
 		nextEvents(function(nextEventData)
 		{
 			eventData = nextEventData;
+			var targetEvent = getQueryVariable("event");
 			var html = "", indicator_html = "";
-			var first = undefined;
-			var target = undefined;
+			var first = undefined, target = undefined;
+			
 			for (var i = 0; i < nextEventData.length; ++i)
 			{
 				var ev = nextEventData[i];
 				indicator_html += "<span class='banner-indicator indicator-type-" + ev.type + "' id='banner-indicator-" + i + "' onclick='previewEvent(" + i + ");'></span>";
 				
-				if (first == undefined && ev.type != 2 && ev.type != 5) // No Clash
+				if (first == undefined && ev.type != 2 && ev.type != 5) // No Clash or Scramble
 					first = i;
 				
 				if (ev.date.getTime() / 1000 == targetEvent)
@@ -366,7 +361,6 @@
 					convertDates([evStart, evEnd], diff);
 					
 					var anchor = (ev.type == 2) ? "/clash/" : ((ev.type == 5) ? "/scramble/" : "#next");
-				//	var evtype = (ev.type == 2) ? "clash"   : ((ev.type == 5) ? "scramble"   : "announced");
 					html += createEntry(evStart, evEnd, anchor, i, ev.type, ev.titleText + "<br/>"  + formatTimeUTC(evStart, diff) + " to " + formatTimeUTC(evEnd, diff));
 				}
 			}
@@ -400,12 +394,12 @@
 		<div id="next-section" style="display: none;">
 			<h3 id="next">Next Event</h3>
 			<canvas width="880" height="480" id="next-lobby"></canvas>
-			<p id="next-info"></p>
 			<p id="banner-nav">
 				<button onClick="changeBanner(-1)" id="banner-previous">&lt;</button>
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
 				<button onClick="changeBanner(1)" id="banner-next">&gt;</button>
 			</p>
+			<p id="next-info"></p>
 		</div>
 		
 		<h3>Upcoming Events</h3>
