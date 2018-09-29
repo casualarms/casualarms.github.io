@@ -337,11 +337,14 @@
 		var rightSoon = new Date(rightNow.getTime() + 20 * 60000);
 		events += createEntry(rightNow, rightSoon, "", -1, "current-time", "Your Local Time");
 		
+		var targetEvent = getQueryVariable("event");
+		
 		nextEvents(function(nextEventData)
 		{
 			eventData = nextEventData;
 			var html = "", indicator_html = "";
 			var first = undefined;
+			var target = undefined;
 			for (var i = 0; i < nextEventData.length; ++i)
 			{
 				var ev = nextEventData[i];
@@ -349,6 +352,9 @@
 				
 				if (first == undefined && ev.type != 2 && ev.type != 5) // No Clash
 					first = i;
+				
+				if (ev.date.getTime() / 1000 == targetEvent)
+					target = i;
 				
 				var weekAhead = new Date();
 				weekAhead.setDate(weekAhead.getDate() + 7);
@@ -367,7 +373,8 @@
 			$("calendar").innerHTML += html;
 			$("banner-indicators").innerHTML = indicator_html;
 			
-			previewEvent(first);
+			var preview = (target != undefined) ? target : first;
+			previewEvent(preview);
 			
 			if (window.location.hash.substring(1) == "next")
 				$("next").scrollIntoView();
