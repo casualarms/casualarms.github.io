@@ -12,17 +12,6 @@ function roundRect(ctx, x, y, w, h, r)
 	return ctx;
 }
 
-function bannerDateString(date)
-{
-	var monthNames = [
-		"Jan.", "Feb.", "March", "April", "May", "June", 
-		"July", "August", "Sept.", "Oct.", "Nov.", "Dec."];
-	
-	var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	
-	return dayNames[date.getUTCDay()] + " " + monthNames[date.getUTCMonth()] + ' ' + date.getUTCDate();
-}
-
 function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, height)
 {
 	var scratch = document.createElement('canvas');
@@ -57,11 +46,10 @@ function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, h
 function generateBanner(width, height, eventdata, canvasid, nativeTime)
 {
 	var caLogo, mlmLogo, mk8dLogo, coteLogo, discordLogo;
-	
+	var template, sponsor;
 	
 	var performBannerRendering = function()
 	{
-		var canvasMode = $(canvasid).tagName == "CANVAS";
 		var diff = timeZoneOffset(eventdata.timeZone);
 		if (nativeTime)
 			diff = getTimeZoneDiff();
@@ -69,17 +57,9 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		var endDate = getEventEnd(eventdata);
 		convertDates([startDate, endDate], diff);
 		
-		var dateText = bannerDateString(startDate).toUpperCase();
+		var dateText = (dayNames[startDate.getUTCDay()] + " " + monthNames[startDate.getUTCMonth()] + " " + startDate.getUTCDate()).toUpperCase();
 		var timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
-		
 		var isWarmup = eventdata.type == 3 || eventdata.type == 4 || eventdata.type == 6;
-		
-		
-		// Initialization
-		var c = canvasMode ? $(canvasid) : document.createElement('canvas');
-		c.width = width;
-		c.height = height;
-		ctx = c.getContext("2d");
 		
 		// Style presets
 		bgColor = "#1d94fc";
@@ -259,22 +239,76 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			ctx.fillStyle = titleColor;
 			ctx.fillText(("Lobby Code" + pluralHosts).toUpperCase(), 720, 302);
 		}
-		
-		// Generate image
-		if (!canvasMode)
-			$(canvasid).src = c.toDataURL("image/png");
 	}
 	
+	var handleTournamentBanner = function()
+	{
+		ctx.drawImage(template, 0, 0);
+		
+		var diff = timeZoneOffset(eventdata.timeZone);
+		if (nativeTime)
+			diff = getTimeZoneDiff();
+		var startDate = new Date(eventdata.date);
+		convertDates([startDate], diff);
+		
+		var dateText = (monthNames[startDate.getUTCMonth()].slice(0, 3) + ". " + startDate.getUTCDate()).toUpperCase();
+		var timeText = (formatTimeUTC(startDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
+		
+		dateFont = "58pt ARMS";
+		timeFont = "32pt ARMS";
+		sponsorFont = "12pt ARMS";
+		timeDateColor = (eventdata.type == 2) ? "white" : "yellow";
+		
+		ctx.fillStyle = timeDateColor;
+		ctx.textAlign = "center";
+		
+		ctx.shadowColor = "black";
+		ctx.shadowBlur = 8;
+		
+		var clashOffsetX = (eventdata.type == 2) ? -50 : 0;
+		var clashOffsetY = (eventdata.type == 2) ?  20 : 0;
+		
+		ctx.font = dateFont;
+		for (var r = 0; r < 3; ++r)
+			ctx.fillText(dateText, 220, 405);
+		ctx.font = timeFont;
+		for (var r = 0; r < 3; ++r)
+			ctx.fillText(timeText, 700 + clashOffsetX, 400 + clashOffsetY);
+		
+		if (eventdata.sponsor == "mindgames")
+		{
+			ctx.font = sponsorFont;
+			for (var r = 0; r < 3; ++r)
+				ctx.fillText("SPONSORED BY", 100, 30);
+			
+			ctx.drawImage(sponsor, 30, 30);
+		}
+	}
 	
-	var imageURLs = [];
 	var imagesOK = 0;
 	var imgs = [];
 	
+	var imageURLs = [];
 	imageURLs.push("/assets/banners/logo-casualarms.png");
-	imageURLs.push("/assets/banners/logo-mlm.jpg");
-	imageURLs.push("/assets/banners/logo-cote.jpg");
-	imageURLs.push("/assets/banners/logo-mk8d.png");
 	imageURLs.push("/assets/banners/logo-discord.png");
+	
+	if (eventdata.type == 2)
+	{
+		imageURLs.push("/assets/banners/template-clash.jpg");
+		imageURLs.push("/assets/banners/sponsor-mind-games.png");
+	}
+	else if (eventdata.type == 5)
+	{
+		imageURLs.push("/assets/banners/template-scramble.jpg");
+		imageURLs.push("/assets/banners/sponsor-mind-games.png");
+	}
+	else
+	{
+		imageURLs.push("/assets/banners/logo-mlm.jpg");
+		imageURLs.push("/assets/banners/logo-cote.jpg");
+		imageURLs.push("/assets/banners/logo-mk8d.png");
+	}
+	
 	loadAllImages();
 
 	function loadAllImages()
@@ -292,13 +326,34 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	{
 		if (imagesOK == imageURLs.length)
 		{
-			// all images are fully loaded an ready to use
+			// All images are fully loaded an ready to use
 			caLogo = imgs[0];
-			mlmLogo = imgs[1];
-			coteLogo = imgs[2];
-			mk8dLogo = imgs[3];
-			discordLogo = imgs[4];
-			performBannerRendering();
+			discordLogo = imgs[1];
+			template = imgs[2];
+			sponsor = imgs[3];
+			
+			if (imgs.length > 4)
+			{
+				mlmLogo = imgs[2];
+				coteLogo = imgs[3];
+				mk8dLogo = imgs[4];
+			}
+			
+			// Initialization
+			var canvasMode = $(canvasid).tagName == "CANVAS";
+			var c = canvasMode ? $(canvasid) : document.createElement("canvas");
+			c.width = width;
+			c.height = height;
+			ctx = c.getContext("2d");
+			
+			if (eventdata.type == 2 || eventdata.type == 5)
+				handleTournamentBanner(ctx);
+			else
+				performBannerRendering(ctx);
+			
+			// Generate image
+			if (!canvasMode)
+				$(canvasid).src = c.toDataURL("image/png");
 		}
 	};
 }

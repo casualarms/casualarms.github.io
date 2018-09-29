@@ -35,16 +35,9 @@
 			if (nextEventData.length > 0)
 			{
 				$("featured").className = "";
-				if (nextEventData[0].type != 2 && nextEventData[0].type != 5) // Not Clash or Scramble
-					result = generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
-				else { // Clash
-					var tournament = (nextEventData[0].type == 2) ? "clash" : "scramble";
-					$("featured-banner").src = "/tournaments/next" + tournament + ".jpg";
-					$("featured-link").href = "/" + tournament + "/";
-					
-					$("featured-banner").style.display = "inline-block";
-					$("featured-canvas").style.display = "none";
-				}
+				generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
+				if (nextEventData[0].type == 2 || nextEventData[0].type == 5)
+					$("featured-link").href = "/" + ((nextEventData[0].type == 2) ? "clash" : "scramble") + "/";
 			}
 		});
 		
@@ -388,7 +381,7 @@
 		<div id="featured-aligner">
 			<div id="featured" class="featured-hidden">
 				<div class="featured-left"></div>
-				<a href="lobbies/#next" id="featured-link"><img id="featured-banner"/><canvas width="880" height="480" id="featured-canvas"/></a>
+				<a href="lobbies/#next" id="featured-link"><canvas width="880" height="480" id="featured-canvas"/></a>
 			</div>
 		</div>
 		

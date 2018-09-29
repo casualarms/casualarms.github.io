@@ -1,5 +1,11 @@
 /* General scripts */
 
+var monthNames = [
+	"Jan.", "Feb.", "March", "April", "May", "June", 
+	"July", "August", "Sept.", "Oct.", "Nov.", "Dec."];
+
+var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 function getQueryVariable(variable)
 {
 	var query = window.location.search.substring(1);

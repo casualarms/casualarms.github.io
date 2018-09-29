@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/assets/style.css">
 	<script src="/script/general.js"></script>
+	<script src="/script/banner-gen.js"></script>
 	<script>
 	
 	var clashes = [];
@@ -61,7 +62,7 @@
 			$("checkin-start2").innerHTML    = formatTimeUTC(evCheckIn,    diff);
 			$("tournament-start2").innerHTML = formatTimeUTC(evStart, diff);
 			
-			$("next-banner").src = "/tournaments/next" + type + ".jpg";
+			generateBanner(880, 480, events[0], "next-banner", true);
 			$("next-section").style.display = "block";
 		}
 	}
@@ -84,14 +85,10 @@
 		$("config-mode-name").innerHTML = modeName;
 		$("container").className = classes;
 		
-		
 		if (mode == 0)
 			displayEvent("clash");
 		else if (mode == 1)
 			displayEvent("scramble");
-		
-		
-		
 	}
 	
 	</script>
@@ -115,7 +112,7 @@
 			width: 95%;
 			max-width: 500pt;
 			box-sizing: border-box;
-			border: 5pt solid #1d94fc;
+			border: 3pt solid black;
 		}
 		
 		#container.scramble {
@@ -164,7 +161,7 @@
 		
 		<div id="next-section" style="display: none;">
 			<h3>Next tournament</h3>
-			<img src="/tournaments/nextclash.jpg" id="next-banner"/>
+			<canvas id="next-banner"/>
 			<p>Sign up on <a id="challonge-1" href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> today!</p>
 		</div>
 		

@@ -71,7 +71,10 @@ permalink: /staff/banners/index.html
 			eventsHistory = events;
 			var options = "";
 			for (var i = 0; i < events.length; ++i)
-				options += "<option>" + bannerDateString(events[i].date) + ": " + events[i].titleText + "</option>";
+			{
+				var dateString = dayNames[events[i].date.getUTCDay()] + " " + monthNames[events[i].date.getUTCMonth()] + ' ' + events[i].date.getUTCDate();
+				options += "<option>" + dateString + ": " + events[i].titleText + "</option>";
+			}
 			var eventDataIndex = $("event-history").innerHTML = options;
 		});
 	}
@@ -118,6 +121,7 @@ permalink: /staff/banners/index.html
 		$("theme").selectedIndex = themeIndex;
 		$("title").value = unEscapeHTML(eventData.titleText);
 		$("type").selectedIndex = eventData.type;
+		$("sponsor").selectedIndex = (eventData.sponsor == "mindgames") ? 1 : 0;
 	}
 	
 	function fillFromEventDataHistory()
@@ -176,6 +180,9 @@ permalink: /staff/banners/index.html
 		eventdata.duration = durationMinutes;
 		eventdata.timeZone = zoneString;
 		eventdata.hosts = hosts;
+		
+		if ($("sponsor").selectedIndex > 0)
+			eventdata.sponsor = "mindgames";
 		
 		$("text-output").value = "," + JSON.stringify(eventdata);
 		
@@ -250,7 +257,7 @@ permalink: /staff/banners/index.html
 				<select id="hostB">
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
-					<option value="2" selected>Medium</option>
+					<option value="2" >Medium</option>
 					<option value="3">Hard</option>
 				</select>
 				host: <select id="tagB">
@@ -266,7 +273,7 @@ permalink: /staff/banners/index.html
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
 					<option value="2">Medium</option>
-					<option value="3" selected=>Hard</option>
+					<option value="3">Hard</option>
 				</select>
 				host: <select id="tagC">
 					<option value="0">--</option>
@@ -274,6 +281,12 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameC" placeholder="Hard Player"/>
 				code: <input type="text" id="codeC" placeholder="0000-1111-2222"/>
+			</p>
+			
+			<p>Sponsor: <select id="sponsor">
+					<option value="0" selected>---</option>
+					<option value="1">MindGames</option>
+				</select>
 			</p>
 			
 			<p><input type="button" value="Generate" onClick="readAndGenerate()"/>
