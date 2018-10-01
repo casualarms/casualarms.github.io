@@ -217,6 +217,11 @@ function fetchLeaderboards(callback)
 	return fetchJSON("/data/leaderboards.json", callback);
 }
 
+function fetchSeasonHistory(callback)
+{
+	return fetchJSON("/data/season-history.json", callback);
+}
+
 function fetchBadges(callback)
 {
 	return fetchJSON("/data/badges.json", callback);

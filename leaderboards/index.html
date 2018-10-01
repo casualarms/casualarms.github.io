@@ -11,6 +11,11 @@
 	
 	h3 { background-color: black; }
 	
+	#season-nav {
+		text-align: center;
+		display: none;
+	}
+	
 	p.limits {
 		font-size: 1.2em;
 		font-style: italic;
@@ -251,13 +256,14 @@
 	var rawLeaderboard = null;
 	var leaderboard = null;
 	var badges = null;
+	var seasonHistory = null;
 	
 	var rawPatrons = null;
 	var patrons = null;
 	
 	function finalizeLoading()
 	{
-		if (leaderboard && badges && patrons)
+		if (leaderboard && badges && patrons && seasonHistory)
 		{
 			switch (window.location.hash.substring(1))
 			{
@@ -272,6 +278,19 @@
 	{
 		rawLeaderboard = rawBoards;
 		leaderboard = reorganizeLeaderboards(rawBoards);
+		finalizeLoading();
+	}
+	
+	function storeSeasons(rawBoards)
+	{
+		seasonHistory = [];
+		for (var i = 0; i < rawBoards.length; ++i)
+		{
+			var season = {};
+			season.title = monthNames[rawBoards[i].month-1] + " " + rawBoards[i].year;
+			season.data = reorganizeLeaderboards(rawBoards[i].leaderboard);
+			seasonHistory.push(season);
+		}
 		finalizeLoading();
 	}
 	
@@ -401,11 +420,10 @@
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
-	function displayMonthly()
+	function displayMonthly(useBoard)
 	{
-		var copyboard = leaderboard.slice();
+		var copyboard = useBoard.slice();
 		copyboard.sort(function(a, b) { return b[2] - a[2]; });
-		console.log(copyboard);
 		
 		var index = 0;
 		var previous = -1;
@@ -484,20 +502,34 @@
 		$("md1").className = "mode";
 		$("md2").className = "mode";
 		$("md" + mode).className += " active-mode";
+		$("season").selectedIndex = 0;
+		$("season-nav").style.display = (mode == 1) ? "block" : "none";
 		
 		if (mode == 0)
 			displayLeaderboards();
 		else if (mode == 1)
-			displayMonthly();
+			displayMonthly(leaderboard);
 		else if (mode == 2)
 			displayPatreon();
 		
+	}
+	
+	function selectSeason()
+	{
+		var activeSeason = $("season").selectedIndex;
+		
+		var useBoard = leaderboard;
+		if (activeSeason > 0)
+			useBoard = seasonHistory[activeSeason-1].data;
+		
+		displayMonthly(useBoard);
 	}
 	
 	
 	function load()
 	{
 		fetchLeaderboards(storeLeaderboards);
+		fetchSeasonHistory(storeSeasons);
 		fetchPatrons(storePatrons);
 		fetchBadges(storeBadges);
 	}
@@ -529,6 +561,13 @@
 			<em class="mode active-mode" id="md0" onClick="changeMode(0);">Leaderboard</em>
 			<em class="mode" id="md1" onClick="changeMode(1);">Monthly</em>
 			<em class="mode" id="md2" onClick="changeMode(2);">Patrons</em>
+		</p>
+		
+		<p id="season-nav">
+			<select id="season" onChange="selectSeason()">
+				<option value="0">October 2018 (Current)</option>
+				<option value="1">September 2018</option>
+			</select>
 		</p>
 		
 		<div id="leaderboard"></div>
