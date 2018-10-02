@@ -24,6 +24,10 @@
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-09-27T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Levi ","tag":"","code":"3256-0282-5625","tier":1},{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":3}]}
 	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-09-30T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}]}
 	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-10-01T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Spenjo","tag":"","code":"0725-4824-1895","tier":0}]}
+	,{"titleText":"Tidal Tuesday","type":0,"theme":"breakable-bits","date":"2018-10-03T01:00:00.000Z","duration":120,"timeZone":"PDT","hosts":[{"name":"Sora","tag":"","code":"0499-4528-8293","tier":3}]}
+	
+	
+	
 	
 	
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-10-01T18:00:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"","tag":"","code":"4076-2665-7323","tier":0}]}
