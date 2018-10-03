@@ -33,6 +33,10 @@ permalink: /staff/banners/index.html
 		padding-bottom: 0.25em;
 	}
 	
+	a {
+		color: white;
+	}
+	
 	input {
 		background-color: #484b52;
 		color: white;
@@ -185,6 +189,7 @@ permalink: /staff/banners/index.html
 			eventdata.sponsor = "mindgames";
 		
 		$("text-output").value = "," + JSON.stringify(eventdata);
+		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + (eventdata.date.getTime() / 1000);
 		
 		generateBanner(880, 480, eventdata, "result", false);
 	}
@@ -298,6 +303,7 @@ permalink: /staff/banners/index.html
 			
 			<!--<canvas width="880" height="480" id="test-canvas"></canvas>-->
 			<textarea id="text-output" rows="4"></textarea>
+			<p>Direct link (valid only after publishing): <a id="direct-link"></a></p>
 			<div><img id="result"/></div>
 			<p><input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/></p>
 			
