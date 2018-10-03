@@ -220,9 +220,9 @@
 		// Patreon badges
 		if (rawPatrons.hasOwnProperty(uid))
 		{
-			if (rawPatrons[uid].tier >= 1) user_badges.push("p0");
-			if (rawPatrons[uid].tier >= 2) user_badges.push("p1");
-			if (rawPatrons[uid].tier >= 3) user_badges.push("p2");
+			if (rawPatrons[uid].max >= 1) user_badges.push("p0");
+			if (rawPatrons[uid].max >= 2) user_badges.push("p1");
+			if (rawPatrons[uid].max >= 3) user_badges.push("p2");
 		}
 		
 		// Leaderboard badges
