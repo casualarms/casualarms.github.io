@@ -71,12 +71,19 @@
 			html += "</div>";
 		}
 		
-		document.getElementById("themes").innerHTML = html;
+		$("themes").innerHTML = html;
 		
 		if (scrolltoid != null)
-			document.getElementById(scrolltoid).scrollIntoView();
+			$(scrolltoid).scrollIntoView();
 		
 	}
+	
+	function randomizeTheme()
+	{
+		var theme = eventThemes[Math.floor(Math.random() * eventThemes.length)];
+		$("random-result").innerHTML = "Random theme: <a href='#" + theme.key + "'>" + theme.name + "</a>!";
+	}
+	
 	</script>
 </head>
 
@@ -85,6 +92,10 @@
 	<div id="container">
 		<h2>Lobby Themes</h2>
 		<p>These are the themes we use in our <a href="/lobbies/"><em>lobby events</em></a>! We have a focus on <em>casual play</em> with items on and a varied selection of stages. The competitive themes are reserved for our tournament warm-up lobbies.</p>
+		<p style="text-align: center;">
+			<button onclick="randomizeTheme()">Random Theme</button><br/>
+			<span id="random-result"></span>
+		</p>
 		<div id="themes">Loading...</div>
 	</div>
 </body>
