@@ -92,6 +92,12 @@
 	}
 	document.onkeydown = checkKey;
 	
+	function goScramble(e)
+	{
+		document.location.href = 'scramble/';
+		e.preventDefault();
+	}
+	
 	</script>
 	<style type="text/css">
 	
@@ -186,7 +192,7 @@
 		height: 90pt;
 		position: absolute;
 		left: -35pt;
-		top: 230pt;
+		top: 200pt;
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 		transform: rotate(-2deg);
 		z-index: 10;
@@ -301,6 +307,34 @@
 		fill: #d65a4e;
 	}
 	
+	a > em.subselect {
+		display: none;
+	}
+	
+	@media only screen and (min-width: 800px)
+	{
+		a > em.subselect {
+			background-color: rgba(0,0,0,0);
+			font-size: 10pt;
+			text-decoration: none;
+			position: relative;
+			top: -0.7em;
+			padding: 3pt 8pt;
+		}
+		
+		a:hover > em.subselect {
+			display: inline-block;
+		}
+		
+		a:hover > em.subselect:hover {
+			background-color: #ff9310;
+		}
+		
+		#m-clash:hover {
+			padding-left: 3.5em;
+		}
+	}
+	
 	@media only screen and (max-width: 600px)
 	{
 		#featured-aligner {
@@ -368,14 +402,16 @@
 		
 		<div class="menu-container">
 			<a class="menu-item m1" id="m-lobby"        href="lobbies/"><img src="/assets/main/lobby-logo.png"/>Community Events</a>
-			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="/assets/main/clash-logo.png"/>Tournaments</a>
+			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="/assets/main/clash-logo.png"/>
+				Tournaments <em class="subselect">Clash</em><em class="subselect" onclick="goScramble(event);">Scramble</em>
+			</a>
 			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="/assets/main/leaderboards-logo.png"/>Leaderboards</a>
 			<a class="menu-item m3" id="m-quiz" href="quiz/"><img src="/assets/main/quiz-logo.png"/>Quiz</a>
 
 			<a class="menu-item m4" id="m-screenshot"   href="screenshots/"><img src="/assets/main/screenshot-logo.png"/>Screenshot Gallery</a>
 			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
 			<a class="menu-item m5" href="tools/stage-randomizer/">Stage Randomizer</a>
-			<a class="menu-item m5" href="tools/stats-generator/">Fighter Stats Generator</a>
+			<!--<a class="menu-item m5" href="tools/stats-generator/">Fighter Stats Generator</a>-->
 		</div>
 		
 		<div id="featured-aligner">
