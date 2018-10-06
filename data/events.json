@@ -29,7 +29,7 @@
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-10-04T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Levi","tag":"","code":"3256-0282-5625","tier":1},{"name":"Program","tag":"","code":"4898-5196-4000","tier":3}]}
 	,{"titleText":"Scramble Warmup!","type":1,"theme":"undefined","date":"2018-10-06T19:15:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":3}]}
 	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-10-07T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Reis","tag":"","code":"1753-6049-3315","tier":0}]}
-	,{"titleText":"Fights Only Lobby","type":3,"theme":"cote","date":"2018-10-08T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}]}
+	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-10-08T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}]}
 	
 	
 	
