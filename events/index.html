@@ -351,7 +351,7 @@ redirect_from: "/lobbies/"
 				if (first == undefined && ev.type != 2 && ev.type != 5) // No Clash or Scramble
 					first = i;
 				
-				if (ev.date.getTime() / 1000 == targetEvent)
+				if (getEventID(ev) == targetEvent)
 					target = i;
 				
 				var weekAhead = new Date();

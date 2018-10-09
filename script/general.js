@@ -293,6 +293,14 @@ function nextEvents(callback)
 	});
 }
 
+function getEventID(eventdata)
+{
+	var epochString = (eventdata.date.getTime() / 1000) + "";
+	var id = parseInt(epochString.substring(2, 8)).toString(16).toUpperCase();
+	console.log(id);
+	return id;
+}
+
 function getEventEnd(eventdata)
 {
 	return new Date(eventdata.date.getTime() + eventdata.duration * 60000);
