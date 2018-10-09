@@ -133,7 +133,7 @@
 		var rect = canvas.getBoundingClientRect();
 		mousePos = {
 			x: Math.max(50, Math.min(evt.clientX - rect.left, 250)),
-			y: evt.clientY - rect.top
+			y: Math.max(250, Math.min(evt.clientY - rect.top, 400))
 		};
 	}
 	
