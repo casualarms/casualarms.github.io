@@ -10,6 +10,7 @@ var leaderboardTiers = [
 	{"start" :  5000, "name" : "VP",         "color" : "#ff006f"},
 	{"start" :  7000, "name" : "EVP",        "color" : "#ff00e6"},
 	{"start" : 10000, "name" : "Codirector", "color" : "#b700ff"},
+	{"start" : 10000000, "name" : "[Dummy]", "color" : "white"},
 ];
 
 var patreonTiers = [
