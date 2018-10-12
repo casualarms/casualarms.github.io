@@ -409,7 +409,7 @@
 			var useindex = index - duplicates;
 			
 			var pid = "leaderboard-" + tc + "-" + index;
-			html += "<p onclick=\"showBadges('" + pid + "','" + leaderboard[i][3] + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name + ((useindex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + useindex + "</span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + leaderboard[i][3] + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name + ((useindex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>&nbsp;</span>";
 			html += "<span class='player'>" + leaderboard[i][0] + "</span>";
 			html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			
@@ -489,7 +489,7 @@
 				}
 			
 				var pid = "monthly-" + i;
-				html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i][3] + "');\" id='player-" + pid + "' class='entry basic" + ((useindex > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + useindex + "</span>";
+				html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i][3] + "');\" id='player-" + pid + "' class='entry basic" + ((useindex > 99) ? " small" : "") + "' style='color: white;'><span class='index'>&nbsp;</span>";
 				html += "<span class='player'>" + copyboard[i][0] + "</span>";
 				html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 				html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
@@ -525,7 +525,7 @@
 			}
 			
 			var pid = "patron-" + tc + "-" + index;
-			html += "<p onclick=\"showBadges('" + pid + "','" + patrons[i][2] + "');\" id='player-" + pid + "' class='entry basic tier-" + tierID + ((index > 99) ? " small" : "") + "' style='color: " + patreonTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + patrons[i][2] + "');\" id='player-" + pid + "' class='entry basic tier-" + tierID + ((index > 99) ? " small" : "") + "' style='color: " + patreonTiers[tc].color + ";'><span class='index'>&nbsp;</span>";
 			html += "<span class='player'>" + patrons[i][0] + "</span>";
 			
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
