@@ -490,7 +490,7 @@
 			
 				var pid = "monthly-" + i;
 				html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i][3] + "');\" id='player-" + pid + "' class='entry basic" + ((useindex > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + useindex + "</span>";
-				html += changetext + "<span class='player'>" + copyboard[i][0] + "</span>";
+				html += "<span class='player'>" + copyboard[i][0] + "</span>";
 				html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 				html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
