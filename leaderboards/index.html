@@ -36,7 +36,7 @@
 		padding: 0 8pt 0pt 4pt;
 		margin: 12pt 2pt 12pt 40pt;
 		position: relative;
-		transition: 0.2s;
+		transition: 0.2s background-color, 0.2s color;
 		border-top-left-radius: 15pt 100%;
 		border-bottom-right-radius: 15pt 100%;
 		cursor: pointer;
@@ -189,6 +189,24 @@
 		height: 200pt;
 	}
 	
+	.change {
+		font-weight: bold;
+		display: inline-block;
+		width: 25pt;
+		position: relative;
+		left: -7pt;
+		transition: 0.2s color;
+	}
+	
+	.change-neutral  { color: yellow; }
+	.change-positive { color: #0f0; }
+	.change-negative { color: #f00; }
+	.change-new, .change-unknown { color: silver; font-style: italic; }
+	
+	#leaderboard p.entry:hover .change {
+		color: black !important;
+	}
+	
 	</style>
 	<script>
 	function badgeDetail(badgeKey, pid)
@@ -283,6 +301,7 @@
 	
 	function storeSeasons(rawBoards)
 	{
+		rawSeasonHistory = [];
 		seasonHistory = [];
 		for (var i = 0; i < rawBoards.length; ++i)
 		{
@@ -290,6 +309,19 @@
 			season.title = monthNames[rawBoards[i].month-1] + " " + rawBoards[i].year;
 			season.data = reorganizeLeaderboards(rawBoards[i].leaderboard);
 			seasonHistory.push(season);
+			
+			var copyboard = season.data.slice().sort(function(a, b) { return b[2] - a[2]; });
+			var rawSeason = {};
+			var previous = -1;
+			var duplicates = 0;
+			
+			for (var si = 0; si < copyboard.length && copyboard[si][2] > 0; ++si)
+			{
+				duplicates = (copyboard[si][2] == previous) ? duplicates + 1 : 0;
+				previous = copyboard[si][2];
+				rawSeason[copyboard[si][3]] = si + 1 - duplicates;
+			}
+			rawSeasonHistory.push(rawSeason);
 		}
 		finalizeLoading();
 	}
@@ -372,10 +404,9 @@
 			}
 			
 			index++;
-			if (coins == previous) duplicates++;
-			else duplicates = 0;
-			var useindex = index - duplicates;
+			duplicates = (coins == previous) ? duplicates + 1 : 0;
 			previous = coins;
+			var useindex = index - duplicates;
 			
 			var pid = "leaderboard-" + tc + "-" + index;
 			html += "<p onclick=\"showBadges('" + pid + "','" + leaderboard[i][3] + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name + ((useindex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'>" + useindex + "</span>";
@@ -428,33 +459,40 @@
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
-	function displayMonthly(useBoard)
+	function displayMonthly(useBoard, prevRawBoard)
 	{
-		var copyboard = useBoard.slice();
-		copyboard.sort(function(a, b) { return b[2] - a[2]; });
-		
-		var index = 0;
+		var copyboard = useBoard.slice().sort(function(a, b) { return b[2] - a[2]; });
 		var previous = -1;
 		var duplicates = 0;
 		var html = "<div class='tier'>";
 		
-		for (var i = 0; i < copyboard.length; ++i)
+		for (var i = 0; i < copyboard.length && copyboard[i][2] > 0; ++i)
 		{
-			var coins = copyboard[i][2];
-			if (coins > 0)
-			{
-				index++;
-				if (coins == previous) duplicates++;
-				else duplicates = 0;
-				var useindex = index - duplicates;
+				var coins = copyboard[i][2];
+				var id = copyboard[i][3];
+				duplicates = (coins == previous) ? duplicates + 1 : 0;
 				previous = coins;
+				var useindex = i + 1 - duplicates;
+				var changetext = "<span class='change change-unknown'>" + ((prevRawBoard != null) ? "???" : "new") + "</span>";
+				
+				if (prevRawBoard != null && id != null)
+				{
+					var change = prevRawBoard.hasOwnProperty(id) ? (prevRawBoard[id] - useindex) : undefined;
+					if (change == 0)
+						changetext = "<span class='change change-neutral'>&nbsp;&nbsp;➡︎"  + "</span>";
+					else if (change > 0)
+						changetext = "<span class='change change-positive'>⬆︎" +   change  + "</span>";
+					else if (change < 0)
+						changetext = "<span class='change change-negative'>⬇︎" + (-change) + "</span>";
+					else
+						changetext = "<span class='change change-new'>new</span>";
+				}
 			
 				var pid = "monthly-" + i;
 				html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i][3] + "');\" id='player-" + pid + "' class='entry basic" + ((useindex > 99) ? " small" : "") + "' style='color: white;'><span class='index'>" + useindex + "</span>";
-				html += "<span class='player'>" + copyboard[i][0] + "</span>";
+				html += changetext + "<span class='player'>" + copyboard[i][0] + "</span>";
 				html += "<span class='coins'>" + coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 				html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
-			}
 		}
 		html += "</div>";
 		$("leaderboard").innerHTML = html;
@@ -489,7 +527,6 @@
 			var pid = "patron-" + tc + "-" + index;
 			html += "<p onclick=\"showBadges('" + pid + "','" + patrons[i][2] + "');\" id='player-" + pid + "' class='entry basic tier-" + tierID + ((index > 99) ? " small" : "") + "' style='color: " + patreonTiers[tc].color + ";'><span class='index'>" + (index++) + "</span>";
 			html += "<span class='player'>" + patrons[i][0] + "</span>";
-		//	html += "<span class='coins'>" + (index) + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
@@ -516,7 +553,7 @@
 		if (mode == 0)
 			displayLeaderboards();
 		else if (mode == 1)
-			displayMonthly(leaderboard);
+			displayMonthly(leaderboard, rawSeasonHistory[0]);
 		else if (mode == 2)
 			displayPatreon();
 		
@@ -530,7 +567,9 @@
 		if (activeSeason > 0)
 			useBoard = seasonHistory[activeSeason-1].data;
 		
-		displayMonthly(useBoard);
+		var prevRawBoard = (activeSeason < rawSeasonHistory.length) ? rawSeasonHistory[activeSeason] : null;
+		
+		displayMonthly(useBoard, prevRawBoard);
 	}
 	
 	
