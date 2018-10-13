@@ -251,10 +251,10 @@
 		// Leaderboard badges
 		if (rawLeaderboard.hasOwnProperty(uid))
 		{
-			for (var i = 0; i < leaderboardTiers.length; ++i)
+			for (var i = 1; i < leaderboardTiers.length-1; ++i)
 			{
 				if (rawLeaderboard[uid].coins >= leaderboardTiers[i].start)
-					user_badges.push("ldb" + i);
+					user_badges.push("ldb" + (i-1));
 			}
 		}
 		
