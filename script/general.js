@@ -186,14 +186,14 @@ function reorganizeLeaderboards(rawBoards)
 		if (rawBoards.hasOwnProperty(key) && key != "UNKNOWN")
 		{
 			var user = rawBoards[key];
-			leaderboards.push([user.name, user.coins, user.monthly, key]);
+			leaderboards.push({ name: user.name, coins: user.coins, monthly: user.monthly, id: key});
 		}
 	}
 	
 	for (var i = 0; i < rawBoards.UNKNOWN.length; ++i)
-		leaderboards.push([rawBoards.UNKNOWN[i][0], rawBoards.UNKNOWN[i][1], rawBoards.UNKNOWN[i][2], null]);
+		leaderboards.push({ name: rawBoards.UNKNOWN[i][0], coins: rawBoards.UNKNOWN[i][1], monthly: rawBoards.UNKNOWN[i][2], id: null});
 	
-	leaderboards.sort(function(a, b) { return b[1] - a[1]; });
+	leaderboards.sort(function(a, b) { return b.coins - a.coins; });
 	return leaderboards;
 }
 
@@ -304,4 +304,23 @@ function getEventID(eventdata)
 function getEventEnd(eventdata)
 {
 	return new Date(eventdata.date.getTime() + eventdata.duration * 60000);
+}
+
+function shuffle(array)
+{
+	var counter = array.length;
+	while (counter > 0)
+	{
+		var index = Math.floor(Math.random() * counter);
+		counter--;
+		var temp = array[counter];
+		array[counter] = array[index];
+		array[index] = temp;
+	}
+	return array;
+}
+
+function getTierID(tc)
+{
+	return leaderboardTiers[tc].name.toLowerCase().replace(" ", "-");
 }

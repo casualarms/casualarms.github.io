@@ -1,16 +1,17 @@
 
 var leaderboardTiers = [
-	{"start" :     1, "name" : "Intern",     "color" : "#bfffff"},
-	{"start" :   100, "name" : "Technician", "color" : "#00ffff"},
-	{"start" :   250, "name" : "Analyst",    "color" : "#00ff00"},
-	{"start" :   500, "name" : "Coder",      "color" : "#aaff00"},
-	{"start" :  1000, "name" : "Researcher", "color" : "#ffae00"},
-	{"start" :  2000, "name" : "Scientist",  "color" : "#ff6000"},
-	{"start" :  3000, "name" : "Manager",    "color" : "#ff0004"},
-	{"start" :  5000, "name" : "VP",         "color" : "#ff006f"},
-	{"start" :  7000, "name" : "EVP",        "color" : "#ff00e6"},
-	{"start" : 10000, "name" : "Codirector", "color" : "#b700ff"},
-	{"start" : 10000000, "name" : "[Dummy]", "color" : "white"},
+	{"start" :     0, "name" : "Test Subject", "color" : "white"},
+	{"start" :     1, "name" : "Intern",       "color" : "#bfffff"},
+	{"start" :   100, "name" : "Technician",   "color" : "#00ffff"},
+	{"start" :   250, "name" : "Analyst",      "color" : "#00ff00"},
+	{"start" :   500, "name" : "Coder",        "color" : "#aaff00"},
+	{"start" :  1000, "name" : "Researcher",   "color" : "#ffae00"},
+	{"start" :  2000, "name" : "Scientist",    "color" : "#ff6000"},
+	{"start" :  3000, "name" : "Manager",      "color" : "#ff0004"},
+	{"start" :  5000, "name" : "VP",           "color" : "#ff006f"},
+	{"start" :  7000, "name" : "EVP",          "color" : "#ff00e6"},
+	{"start" : 10000, "name" : "Codirector",   "color" : "#b700ff"},
+	{"start" : 10000000, "name" : "[Dummy]",   "color" : "white"},
 ];
 
 var patreonTiers = [
