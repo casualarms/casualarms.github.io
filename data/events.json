@@ -34,7 +34,7 @@
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"teambuilding","date":"2018-10-10T22:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Spenjo","tag":"","code":"0725-4824-1895","tier":2},{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":3}]}
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-10-11T18:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":3}]}
 	,{"titleText":"Standard Saturday!","type":0,"theme":"everything","date":"2018-10-13T18:00:00.000Z","duration":120,"timeZone":"EDT","hosts":[{"name":"Taste","tag":"","code":"4535-5139-5505","tier":1},{"name":"Spenjo","tag":"","code":"0725-4824-4895","tier":3}]}
-	
+	,{"titleText":"Fights Only Lobby","type":4,"theme":"cote","date":"2018-10-14T20:45:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}]}
 	
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-10-01T18:00:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"","tag":"","code":"4076-2665-7323","tier":0}]}
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-10-03T18:00:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"","tag":"","code":"4301-7523-5627","tier":0}]}
