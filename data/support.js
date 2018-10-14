@@ -38,6 +38,7 @@ var badgeList = {
 	
 	"casualcouple" : { "caption" : "Casual ARMS Founder", "style" : "light", "criterion": "This is a special badge for the two founders of Casual ARMS" },
 	"casualcrew" : { "caption" : "Casual Crew Member", "style" : "dark", "criterion": "Be a current or former member of the Casual Crew" },
+	"host" : { "caption" : "Official Lobby Host", "style" : "dark", "criterion": "Volunteer as a host of Casual ARMS lobby events" },
 	"cgc" : { "caption" : "Cobra Gloves Club", "style" : "light", "criterion": "Join the CGC and the Cobra hive mind by playing gloves-only Kid Cobra with a CGC member" },
 	
 	"season" : { "caption" : "Monthly Leaderboards", "style" : "light", "criterion": "Finish top 10 in the monthly leaderboards" },
