@@ -88,6 +88,10 @@ a > em {
 	text-decoration: underline;
 }
 
+a > em.streamer {
+	background-color: #4b367c;
+}
+
 img.armscoin-text {
 	width: 1.1em;
 	position: relative;

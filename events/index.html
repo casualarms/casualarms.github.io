@@ -257,6 +257,11 @@ redirect_from: "/lobbies/"
 		else
 			info_html += " <em>does not</em> count for the Casual ARMS leaderboards.";
 		
+		if ("streamers" in ev)
+			for (var si = 0; si < ev["streamers"].length; ++si)
+				info_html += "<br><a href='https://www.twitch.tv/" + ev["streamers"][i] + "'><em class='streamer'>This event is streamed online here!</em></a>";
+		
+		
 		$("next-section").style.display = "block";
 		$("next-info").innerHTML = info_html;
 		

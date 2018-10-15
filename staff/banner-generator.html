@@ -112,6 +112,11 @@ permalink: /staff/banners/index.html
 			$("host" + hostsList[i]).selectedIndex = (active ? eventData.hosts[i].tier : 0);
 		}
 		
+		$("streamerA").value = $("streamerB").value = $("streamerC").value = "";
+		if ("streamers" in eventData)
+			for (var i = 0; i < eventData["streamers"].length; ++i)
+				$("streamer" + hostsList[i]).value = eventData["streamers"][i];
+		
 		var themeIndex = 0;
 		for (var i = 0; i < eventThemes.length; ++i)
 		{
@@ -174,6 +179,13 @@ permalink: /staff/banners/index.html
 			if (host.code != "") hosts.push(host);
 		}
 		
+		var streamers = [];
+		for (i = 0; i < hostsList.length; ++i)
+		{
+			var streamID = $("streamer" + hostsList[i]).value;
+			if (streamID != "") streamers.push(streamID);
+		}
+		
 		var themeIndex = $("theme").selectedIndex;
 		
 		eventdata.titleText = escapeHTML($("title").value);
@@ -184,6 +196,7 @@ permalink: /staff/banners/index.html
 		eventdata.duration = durationMinutes;
 		eventdata.timeZone = zoneString;
 		eventdata.hosts = hosts;
+		eventdata.streamers = streamers;
 		
 		if ($("sponsor").selectedIndex > 0)
 			eventdata.sponsor = "mindgames";
@@ -254,11 +267,9 @@ permalink: /staff/banners/index.html
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameA" placeholder="Easy Player"/>
+				<input type="text" id="nameA" placeholder="Player name"/>
 				code: <input type="text" id="codeA" placeholder="0000-1111-2222"/>
-			</p>
-			
-			<p>
+				<br/>
 				<select id="hostB">
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
@@ -269,11 +280,9 @@ permalink: /staff/banners/index.html
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameB" placeholder="Medium Player"/>
+				<input type="text" id="nameB" placeholder="Player name"/>
 				code: <input type="text" id="codeB" placeholder="0000-1111-2222"/>
-			</p>
-			
-			<p>
+				<br/>
 				<select id="hostC">
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
@@ -284,8 +293,14 @@ permalink: /staff/banners/index.html
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameC" placeholder="Hard Player"/>
+				<input type="text" id="nameC" placeholder="Player name"/>
 				code: <input type="text" id="codeC" placeholder="0000-1111-2222"/>
+			</p>
+			
+			<p>
+				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerA" placeholder="twitchID"/><br/>
+				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerB" placeholder="twitchID"/><br/>
+				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerC" placeholder="twitchID"/>
 			</p>
 			
 			<p>Sponsor: <select id="sponsor">
@@ -295,7 +310,6 @@ permalink: /staff/banners/index.html
 			</p>
 			
 			<p><input type="button" value="Generate" onClick="readAndGenerate()"/>
-			
 			
 			<p>For warmup events, tiers will not have any effect. For Clash events, hosts will not have any effect.</p>
 			
