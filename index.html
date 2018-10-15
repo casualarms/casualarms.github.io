@@ -21,7 +21,7 @@
 		// Change to event mode
 		eventOngoingNow(function(currentEvent)
 		{
-			if (currentEvent[0] != "none" || window.location.hash.indexOf("event") !== -1)
+			if (currentEvent[0] != "none" || getQueryVariable("event") == "on")
 				$("event-id").className += " event " + currentEvent[0] + "-event";
 		});
 		

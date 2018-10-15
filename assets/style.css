@@ -10,7 +10,7 @@ body {
 	margin: 0;
 	font: 1em Helvetica, Arial, sans-serif;
 	background: #1d94fc;
-	background: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(backdrop.png) repeat 100px, #1d94fc;
+	background: radial-gradient(rgba(0,0,0,0) 65%, rgba(0,0,0,0.3) 100%) fixed, url(backdrop.png) repeat fixed, #1d94fc;
 	-webkit-text-size-adjust: 100%;
 }
 
@@ -357,7 +357,7 @@ a.submenu-item > .sub-text {
 }
 
 .event {
-	background-color: #444;
+	background-color: #666;
 }
 
 .event h1 { color: yellow; }
