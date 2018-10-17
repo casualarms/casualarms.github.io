@@ -31,6 +31,7 @@ permalink: /staff/banners/index.html
 	h1, h2, h3, h4 {
 		border-bottom: 1pt solid #3e4147;
 		padding-bottom: 0.25em;
+		font-family: ARMS;
 	}
 	
 	a {
@@ -81,6 +82,17 @@ permalink: /staff/banners/index.html
 			}
 			var eventDataIndex = $("event-history").innerHTML = options;
 		});
+		
+		// Fill quick entry lists
+		var hostsList = ["A", "B", "C"];
+		for (var i = 0; i < hostsList.length; ++i)
+		{
+			for (var h = 0; h < hostDatabase.length; ++h)
+			{
+				var html = "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
+				$("quickEntry" + hostsList[i]).innerHTML += html;
+			}
+		}
 	}
 	
 	
@@ -169,7 +181,7 @@ permalink: /staff/banners/index.html
 		var hostsList = ["A", "B", "C"];
 		var hosts = [];
 		
-		for (i = 0; i < hostsList.length; ++i)
+		for (var i = 0; i < hostsList.length; ++i)
 		{
 			var host = {};
 			host.name = escapeHTML($("name" + hostsList[i]).value);
@@ -180,7 +192,7 @@ permalink: /staff/banners/index.html
 		}
 		
 		var streamers = [];
-		for (i = 0; i < hostsList.length; ++i)
+		for (var i = 0; i < hostsList.length; ++i)
 		{
 			var streamID = $("streamer" + hostsList[i]).value;
 			if (streamID != "") streamers.push(streamID);
@@ -202,9 +214,22 @@ permalink: /staff/banners/index.html
 			eventdata.sponsor = "mindgames";
 		
 		$("text-output").value = "," + JSON.stringify(eventdata);
-		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + (eventdata.date.getTime() / 1000);
+		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
 		
 		generateBanner(880, 480, eventdata, "result", false);
+	}
+	
+	function quickEntry(id)
+	{
+		var index = $("quickEntry" + id).selectedIndex;
+		if (index > 0)
+		{
+			var useHost = hostDatabase[index-1];
+			$("name" + id).value         = useHost.name;
+			$("tag"  + id).selectedIndex = (useHost.tag == "CC") ? 1 : 0;
+			$("code" + id).value         = useHost.code;
+			$("host" + id).selectedIndex = useHost.tier;
+		}
 	}
 	
 	
@@ -233,27 +258,24 @@ permalink: /staff/banners/index.html
 			</p>
 			
 			<p>Date: <select id="month">
-				<option value="0">January</option>
-				<option value="1">February</option>
-				<option value="2">March</option>
-				<option value="3">April</option>
-				<option value="4">May</option>
-				<option value="5">June</option>
-				<option value="6">July</option>
-				<option value="7">August</option>
-				<option value="8">September</option>
-				<option value="9">October</option>
-				<option value="10">November</option>
-				<option value="11">December</option>
-			</select>
-			<input type="number" id="day" value="1"/>
-			<input type="number" id="year" value="2018"/>
-			</p>
-			
-			<p>
+					<option value="0">January</option>
+					<option value="1">February</option>
+					<option value="2">March</option>
+					<option value="3">April</option>
+					<option value="4">May</option>
+					<option value="5">June</option>
+					<option value="6">July</option>
+					<option value="7">August</option>
+					<option value="8">September</option>
+					<option value="9">October</option>
+					<option value="10">November</option>
+					<option value="11">December</option>
+				</select>
+				<input type="number" id="day" value="1"/>
+				<input type="number" id="year" value="2018"/>
 				Start: <input type="number" id="start-hours" value="14"/> : <input type="number" id="start-minutes" value="00"/>
 				in time zone: <input type="text" id="timezone" value="EDT" size="5"/>
-				Duration: <input type="number" id="duration-minutes" value="120"/> minutes
+				Duration: <input type="number" id="duration-minutes" value="120"/> min.
 			</p>
 			
 			<p>
@@ -269,6 +291,7 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameA" placeholder="Player name"/>
 				code: <input type="text" id="codeA" placeholder="0000-1111-2222"/>
+				[ QuickEntry&#8482;<select id="quickEntryA" onchange="quickEntry('A');"><option value="0" selected>---</option></select> ]
 				<br/>
 				<select id="hostB">
 					<option value="0" selected>No Tier</option>
@@ -282,6 +305,7 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameB" placeholder="Player name"/>
 				code: <input type="text" id="codeB" placeholder="0000-1111-2222"/>
+				[ QuickEntry&#8482;<select id="quickEntryB" onchange="quickEntry('B');"><option value="0" selected>---</option></select> ]
 				<br/>
 				<select id="hostC">
 					<option value="0" selected>No Tier</option>
@@ -295,6 +319,7 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameC" placeholder="Player name"/>
 				code: <input type="text" id="codeC" placeholder="0000-1111-2222"/>
+				[ QuickEntry&#8482;<select id="quickEntryC" onchange="quickEntry('C');"><option value="0" selected>---</option></select> ]
 			</p>
 			
 			<p>
@@ -309,19 +334,14 @@ permalink: /staff/banners/index.html
 				</select>
 			</p>
 			
-			<p><input type="button" value="Generate" onClick="readAndGenerate()"/>
-			
-			<p>For warmup events, tiers will not have any effect. For Clash events, hosts will not have any effect.</p>
-			
-			<hr/>
+			<p><input type="button" value="Generate" onClick="readAndGenerate()"/> <input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/></p>
 			
 			<!--<canvas width="880" height="480" id="test-canvas"></canvas>-->
 			<textarea id="text-output" rows="4"></textarea>
+			
 			<p>Direct link (valid only after publishing): <a id="direct-link"></a></p>
 			<div><img id="result"/></div>
-			<p><input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/></p>
-			
-			<p style="font-family: ARMS;">This text is here for Rashiko's computer</p>
+			<p>Have a nice day :)</p>
 		</div>
 	</body>
 </html>

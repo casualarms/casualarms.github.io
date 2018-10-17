@@ -51,6 +51,20 @@ var badgeList = {
 	"scramble-win" : { "caption" : "Casual Scramble Sovereign", "style" : "holodark", "criterion": "Achieve victory in a Casual Scramble" },
 };
 
+var hostDatabase = [
+	{"tag" : "",   "name" : "Program",   "code" : "4898-5196-4000", "tier" : 3},
+	{"tag" : "",   "name" : "Mileve",    "code" : "2795-2096-7893", "tier" : 3},
+	{"tag" : "",   "name" : "Sora",      "code" : "0499-4528-8293", "tier" : 3},
+	{"tag" : "",   "name" : "Reis",      "code" : "1753-6049-3315", "tier" : 3},
+	
+	{"tag" : "CC", "name" : "Rashiko",   "code" : "6822-5055-2423", "tier" : 2},
+	{"tag" : "",   "name" : "Literary",  "code" : "4704-7597-7783", "tier" : 2},
+	{"tag" : "",   "name" : "Spenjo",    "code" : "0725-4824-1895", "tier" : 2},
+	
+	{"tag" : "",   "name" : "Levi",      "code" : "3256-0282-5625", "tier" : 1},
+	{"tag" : "",   "name" : "Taste",     "code" : "4535-5139-5505", "tier" : 1},
+]
+
 var eventStages = {
 	 0 : "Spring Stadium",
 	 1 : "Ribbon Ring",

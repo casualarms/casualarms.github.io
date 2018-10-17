@@ -189,26 +189,19 @@
 	}
 	
 	.change {
+		display: none;
 		font-weight: bold;
-		display: inline-block;
-		width: 25pt;
-		position: relative;
-		left: -7pt;
 		transition: 0.2s color;
 	}
 	
 	.change-neutral  { color: yellow; }
-	.change-positive { color: #0f0; }
+	.change-positive { color: #0f0; display: inline !important; }
 	.change-negative { color: #f00; }
 	.change-new, .change-unknown { color: silver; font-style: italic; }
 	
 	#leaderboard p.entry:hover .change {
 		color: black !important;
 	}
-	
-	.index-number { opacity: 0; }
-/*	.coins { opacity: 0; }*/
-	.change { display: none; }
 	
 	</style>
 	<script>
@@ -357,7 +350,7 @@
 		finalizeLoading();
 	}
 	
-	function displayRolePlayers(players, tc)
+	function displayRolePlayers(players, tc, showIndex)
 	{
 		if (globalShuffle) shuffle(players);
 		var html = "";
@@ -370,7 +363,7 @@
 			var useIndex = pi + 1 - duplicates;
 			
 			var pid = "leaderboard-" + tc + "-" + pi;
-			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name.toLowerCase().replace(" ", "-") + ((useIndex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name.toLowerCase().replace(" ", "-") + ((useIndex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
 			html += "<span class='player'>" + players[pi].name + "</span>";
 			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
@@ -418,7 +411,7 @@
 		{
 			while (leaderboard[i].coins < leaderboardTiers[tc].start)
 			{
-				body_html += displayRolePlayers(players, tc);
+				body_html += displayRolePlayers(players, tc, true);
 				players = [];
 				
 				tc--;
@@ -435,7 +428,7 @@
 			players.push(leaderboard[i]);
 		}
 		
-		body_html += displayRolePlayers(players, tc);
+		body_html += displayRolePlayers(players, tc, true);
 		
 		// Players not in leaderboard but still with badges
 		var result = displayRoleMeta(0, activateLast);
@@ -451,7 +444,7 @@
 			if (!ldbPLayers.hasOwnProperty(key))
 				zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
 		
-		body_html += displayRolePlayers(zeroes, 0);
+		body_html += displayRolePlayers(zeroes, 0, false);
 		
 		$("leaderboard").innerHTML = menu_html + "</div>" + body_html + "</div>";
 		var style = document.createElement('style');
@@ -489,7 +482,7 @@
 		
 			var pid = "monthly-" + i;
 			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic" + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
-			html += changetext + "<span class='player'>" + copyboard[i].name + "</span>";
+			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
 			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
