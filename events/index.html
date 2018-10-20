@@ -242,11 +242,7 @@ redirect_from: "/lobbies/"
 		focusEvent = i;
 		generateBanner(880, 480, eventData[i], "next-lobby", true);
 		
-		var themeData = null;
-		for (t = 0; t < eventThemes.length; ++t)
-			if (eventThemes[t].key == ev.theme)
-				themeData = eventThemes[t];
-		
+		var themeData = getTheme(ev.theme);
 		var info_html = "This event ";
 		
 		if (themeData != null)

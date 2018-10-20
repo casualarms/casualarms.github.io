@@ -6,16 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/assets/style.css">
 	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
 	<script src="/script/banner-gen.js"></script>
 	<script>
 	
 	var clashes = [];
 	var scrambles = [];
+	var type = "clash";
 	
 	function load()
 	{
-		var type = "clash";
-		
 		{% if scramble %}
 			changeMode(1);
 			type = "scramble";
@@ -64,6 +64,8 @@
 			
 			generateBanner(880, 480, events[0], "next-banner", true);
 			$("next-section").style.display = "block";
+			
+			$("settings").innerHTML = printTheme(getTheme(events[0].theme));
 		}
 	}
 	
@@ -82,7 +84,6 @@
 			classes = "scramble";
 		}
 		
-		$("config-mode-name").innerHTML = modeName;
 		$("container").className = classes;
 		
 		if (mode == 0)
@@ -147,9 +148,7 @@
 		
 		<p>Thanks to your generous support through our Patreon, all major tournaments held by Casual ARMS will now feature <em>prize packages!</em> All participants will be eligible for these prizes as detailed below.</p>
 		<p>All Casual ARMS tournament prizes will be distributed via random drawing with odds of winning determined by each participant's performance. Winning a fight earns .5 points with an additional 1 point awarded for the winner of every match (.5 each for a tie). A bye awards 2 points. At the end of each tournament, all accumulated points will serve as entries in the drawing for any prizes being distributed. Each participant can win only one prize per event.</p>
-		
 		<p>Tournaments at Casual ARMS feature a Swiss style ruleset, which means there are <em>no eliminations</em>. You will play a series of rounds against other players with similar win-loss rates to you. Your individual fights will all matter, so be sure to report your full results of each fight as detailed in the rules below. Players will be ranked at the end for points earned, and the player with the most points will be the winner!</p>
-		
 		<p>Please read all the rules before participating, and be ready to have tons of fun with us at Casual ARMS!</p>
 		
 		<!-- END INTRO TEXT AREA -->
@@ -175,9 +174,7 @@
 		<h3>Communication</h3>
 		
 		<p>Communication will be handled through the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a>.</p>
-		
 		<p>Please have your friend code ready to share with fellow competitors. If you have set up a banner with ARMSBot, you can prompt it to automatically post your friend code by typing <span class="command">?whois</span> in the appropriate chat.</p>
-		
 		<p>If Challonge has your current match for the round listed as an even number, please make use of the <em>#matchmaking-even</em> channel on the Discord server. If your current match is listed as an odd number, please make use of the <em>#matchmaking-odd</em> channel on the server. This is intended to cut down on some of the clutter in the chat. If you have any difficulties, please ping either <span class="command">@Rashiko</span> or <span class="command">@LiteraryFirearms</span>.</p>
 		
 		<h3>Terms</h3>
@@ -192,38 +189,14 @@
 		
 		<p>Instead of an Arena, competitors will run through several <em>party lobbies set to 1 coin</em>. One player will make a party lobby with these settings:</p> 
 		
-		<p><span class="mode-name" id="config-mode-name">Solo Fight</span><span class="mode-options">  2P  </span></p>
-		<p><span class="mode-name">Items</span><span class="mode-options">  On  </span></p>
-		
-		<div class="stage-container">
-			<div class="stage active">Spring Stadium</div>
-			<div class="stage active">Ribbon Ring</div>
-			<div class="stage active">Ninja College</div>
-			<div class="stage active">Mausoleum</div>
-			<div class="stage active">Ramen Bowl</div>
-			<div class="stage active">Scrapyard</div>
-			<div class="stage active">Cinema Deux</div>
-			<div class="stage active">Buster Beach</div>
-			<div class="stage active">Snake Park</div>
-			<div class="stage active">DNA Lab</div>
-			<div class="stage active">Sky Arena</div>
-			<div class="stage active">Via Dolce</div>
-			<div class="stage active">Temple Grounds</div>
-			<div class="stage active">Sparring Ring</div>
-			<div class="stage active">[NAME REDACTED]</div>
-		</div>
+		<div id="settings"></div>
 		
 		<ul>
 			<li>Stages are chosen at <em>random</em> for each fight.</li>
-			
 			<li>When both players are ready, the one hosting the lobby will start. At the conclusion of each fight, the lobby will finish.</li>
-			
 			<li>Repeat. Players will play <em>a total of 4</em> fights.</li>
-			
 			<li>Players are allowed to switch ARMS and characters between fights.</li>
-			
 			<li>The match ends after 4 fights. The match can either result in a win for one of the players or a 2-2 tie.</li>
-			
 			<li>Report your results in <a id="challonge-2" href="https://challonge.com/CasualClash5"/><em>Challonge</em></a> after each match by doing the following: <br/>
 			<ul><li>First, click the appropriate button to report your score.</li>
 			<li>Click <em>add a set</em> once for each fight you had with your opponent beyond the first.</li>
@@ -237,13 +210,9 @@
 		
 		<ul>
 			<li>If you do not check in by <em><span id="tournament-start2">4:30 PM EDT</span></em>, you will be disqualified. (Check-in starts an hour before, at <em><span id="checkin-start2">3:30 PM EDT</span></em>.)</li>
-			
 			<li>If you are not present by the time the rest of the round's matches have finished, you will receive a loss for that match.</li>
-			
 			<li>Lag is a part of online gaming. If you have an issue with lag, DM <span class="command">@Rashiko</span> or <span class="command">@LiteraryFirearms</span>.</li>
-			
 			<li>If you <em>disconnect</em> mid-fight, you will receive a loss for that fight.</li> 
-			
 			<li>Rude and unsportsmanlike conduct can also be grounds for disqualification. If someone is acting in this way, bring it to the attention of a Moderator. (Ping <span class="command">@Moderator</span> on Discord.)</li>
 		</ul>
 		

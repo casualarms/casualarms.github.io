@@ -324,3 +324,51 @@ function getTierID(tc)
 {
 	return leaderboardTiers[tc].name.toLowerCase().replace(" ", "-");
 }
+
+function getTheme(themeID)
+{
+	for (var t = 0; t < eventThemes.length; ++t)
+		if (eventThemes[t].key == themeID)
+			return eventThemes[t];
+	return null;
+}
+
+function printTheme(ev)
+{
+	function printMode(ev, key, name)
+	{
+		var html = "";
+		if (ev[key].length > 0)
+		{
+			html += "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  ";
+			for (s = 0; s < ev[key].length; ++s)
+				html += ev[key][s] + "P  ";
+			html += "</span></p>"
+		}
+		return html;
+	}
+	
+	var html = "<h3 id='" + ev.key + "'>" + ev.name + "</h3>";
+	html += "<p>" + ev.description + "</p>";
+	
+	html += printMode(ev, "solo-fight", "Solo Fight");
+	html += printMode(ev, "team-fight", "Team Fight");
+	html += printMode(ev, "vs-hedlok", "VS Hedlok");
+	html += printMode(ev, "hedlok-scramble", "Hedlok Scramble");
+	html += printMode(ev, "hoops", "Hoops");
+	html += printMode(ev, "skillshot", "Skillshot");
+	html += printMode(ev, "v-ball", "V-ball");
+	
+	html += "<p><span class='mode-name'>Items</span> <span class='mode-options option-" + (ev.items ? "on" : "off") + "'>  " + (ev.items ? "On" : "Off") + "  </span></p>";
+	html += "<p><span class='mode-name'>Streak Bonuses</span> <span class='mode-options option-" + (ev["streak-bonuses"] ? "on" : "off") + "'>  " + (ev["streak-bonuses"] ? "On" : "Off") + "  </span></p>";
+	
+	html += "<div class='stage-container'>";
+	for (s = 0; s < ev.stages.length; ++s)
+	{
+		html += "<div class='stage active'>";
+		html += eventStages[ev.stages[s]];
+		html += "</div>";
+	}
+	html += "</div>";
+	return html;
+}
