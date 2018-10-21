@@ -212,9 +212,18 @@ function fetchJSON(url, callback)
 	xmlhttp.send();
 }
 
-function fetchLeaderboards(callback)
+
+var cachedLeaderboardsJSON = undefined;
+function fetchLeaderboards(game, callback)
 {
-	return fetchJSON("/data/leaderboards.json", callback);
+	if (cachedLeaderboardsJSON)
+		callback(cachedLeaderboardsJSON[game]);
+	else
+		fetchJSON("/data/leaderboards.json", function(rawJSON)
+		{
+			cachedLeaderboardsJSON = rawJSON
+			callback(cachedLeaderboardsJSON[game]);
+		});
 }
 
 function fetchSeasonHistory(callback)
@@ -320,9 +329,9 @@ function shuffle(array)
 	return array;
 }
 
-function getTierID(tc)
+function getTierID(tier)
 {
-	return leaderboardTiers[tc].name.toLowerCase().replace(" ", "-");
+	return tier.name.toLowerCase().replace(" ", "-");
 }
 
 function getTheme(themeID)

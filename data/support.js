@@ -14,6 +14,21 @@ var leaderboardTiers = [
 	{"start" : 10000000, "name" : "[Dummy]",   "color" : "white"},
 ];
 
+var leaderboardTiersMarioKart = [
+	{"start" :     0, "name" : "Racing Mascot", "color" : "white"},
+	{"start" :     1, "name" : "Shell",       "color" : "#bfffff"},
+	{"start" :   100, "name" : "Mushroom",   "color" : "#00ffff"},
+	{"start" :   250, "name" : "Banana",      "color" : "#00ff00"},
+	{"start" :   500, "name" : "Flower",        "color" : "#aaff00"},
+	{"start" :  1000, "name" : "Leaf",   "color" : "#ffae00"},
+	{"start" :  2000, "name" : "Star",    "color" : "#ff6000"},
+	{"start" :  3000, "name" : "Egg",      "color" : "#ff0004"},
+	{"start" :  5000, "name" : "Bell",           "color" : "#ff006f"},
+	{"start" :  7000, "name" : "Lightning",          "color" : "#ff00e6"},
+	{"start" : 10000, "name" : "Special",   "color" : "#b700ff"},
+	{"start" : 10000000, "name" : "[Dummy]",   "color" : "white"},
+];
+
 var patreonTiers = [
 	{"start" :  1, "name" : "Casual Contributor", "color" : "#2E666B"},
 	{"start" :  5, "name" : "Committed Casual",   "color" : "#0A680D"},

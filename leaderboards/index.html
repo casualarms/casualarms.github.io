@@ -270,22 +270,21 @@
 	}
 	
 	var rawLeaderboard = null;
-	var leaderboard = null;
+	var rawLeaderboardMarioKart = null;
 	var badges = null;
 	var seasonHistory = null;
-	
 	var rawPatrons = null;
-	var patrons = null;
 	
 	function finalizeLoading()
 	{
-		if (leaderboard && badges && patrons && seasonHistory)
+		if (rawLeaderboard && rawLeaderboardMarioKart && badges && rawPatrons && seasonHistory)
 		{
 			switch (window.location.hash.substring(1))
 			{
-			case "monthly": changeMode(1); break;
-			case "patrons": changeMode(2); break;
-			default:        changeMode(0);
+			case "monthly":   changeMode(1); break;
+			case "mariokart": changeMode(2); break;
+			case "patrons":   changeMode(3); break;
+			default:          changeMode(0);
 			}
 		}
 	}
@@ -293,7 +292,12 @@
 	function storeLeaderboards(rawBoards)
 	{
 		rawLeaderboard = rawBoards;
-		leaderboard = reorganizeLeaderboards(rawBoards);
+		finalizeLoading();
+	}
+	
+	function storeLeaderboardsMarioKart(rawBoards)
+	{
+		rawLeaderboardMarioKart = rawBoards;
 		finalizeLoading();
 	}
 	
@@ -327,20 +331,6 @@
 	function storePatrons(getPatrons)
 	{
 		rawPatrons = getPatrons;
-		pat = [];
-		for (var key in getPatrons)
-		{
-			if (getPatrons.hasOwnProperty(key) && key != "UNKNOWN")
-			{
-				var user = getPatrons[key];
-				pat.push([user.name, user.tier, key]);
-			}
-		}
-		for (var i = 0; i < getPatrons.UNKNOWN.length; ++i)
-			pat.push([getPatrons.UNKNOWN[i].name, getPatrons.UNKNOWN[i].tier, null]);
-		
-		pat.sort(function(a, b) { return b[1] - a[1]; });
-		patrons = pat;
 		finalizeLoading();
 	}
 	
@@ -350,7 +340,7 @@
 		finalizeLoading();
 	}
 	
-	function displayRolePlayers(players, tc, showIndex)
+	function displayRolePlayers(players, useTiers, tc, showIndex)
 	{
 		if (globalShuffle) shuffle(players);
 		var html = "";
@@ -363,7 +353,7 @@
 			var useIndex = pi + 1 - duplicates;
 			
 			var pid = "leaderboard-" + tc + "-" + pi;
-			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry tier-" + leaderboardTiers[tc].name.toLowerCase().replace(" ", "-") + ((useIndex > 99) ? " small" : "") + "' style='color: " + leaderboardTiers[tc].color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry tier-" + useTiers[tc].name.toLowerCase().replace(" ", "-") + ((useIndex > 99) ? " small" : "") + "' style='color: " + useTiers[tc].color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
 			html += "<span class='player'>" + players[pi].name + "</span>";
 			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
@@ -371,19 +361,20 @@
 		return html;
 	}
 	
-	function displayRoleMeta(tc, activateLast)
+	function displayRoleMeta(useTiers, tc, mode, activateLast)
 	{
-		var tierID = getTierID(tc);
-		var tier = leaderboardTiers[tc];
+		var tierID = getTierID(useTiers[tc]);
+		var tier = useTiers[tc];
 		
-		html  = "</div><h3 id='tier-" + tierID + "' style='color: " + tier.color + ";'>ARMS Labs " + tier.name + "</h3><div class='tier'>";
+		var title = (mode == "arms") ? "ARMS Labs " + tier.name : tier.name + " Cup Racer";
+		html  = "</div><h3 id='tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</h3><div class='tier'>";
 		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin.png'/>";
-		if (tc == leaderboardTiers.length-2 && activateLast)
+		if (tc == useTiers.length-2 && activateLast)
 			html += " +";
 		else if (tc != 0)
-			html += " &#8211; " + (leaderboardTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
+			html += " &#8211; " + (useTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
 		
-		menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>ARMS Labs " + tier.name + "</a>";
+		menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</a>";
 		
 		css  = "p.entry.tier-" + tierID + ":hover, a.menu-item.tier-" + tierID + ":hover ";
 		css += "{ background-color: " + tier.color + " !important; color: black !important; }";
@@ -392,16 +383,18 @@
 		return {css: css, menu: menu_html, body: html};
 	}
 	
-	function displayLeaderboards()
+	function displayLeaderboards(useLeaderboard, useTiers, mode)
 	{
+		var leaderboard = reorganizeLeaderboards(useLeaderboard);
+		
 		var menu_html = "<div class='menu-container'>";
 		var body_html = "<div>";
 		var css = "";
 		
 		var scrolltoid = null;
-		var tc = leaderboardTiers.length-1;
+		var tc = useTiers.length-1;
 		
-		var activateLast = (leaderboard[0].coins >= 10000);
+		var activateLast = (leaderboard.length > 0 && leaderboard[0].coins >= 10000);
 		if (!activateLast) tc--;
 		
 		var players = [];
@@ -409,42 +402,45 @@
 		
 		for (var i = 0; i < leaderboard.length && leaderboard[i].coins > 0; ++i)
 		{
-			while (leaderboard[i].coins < leaderboardTiers[tc].start)
+			while (leaderboard[i].coins < useTiers[tc].start)
 			{
-				body_html += displayRolePlayers(players, tc, true);
+				body_html += displayRolePlayers(players, useTiers, tc, true);
 				players = [];
 				
 				tc--;
-				var result = displayRoleMeta(tc, activateLast);
+				var result = displayRoleMeta(useTiers, tc, mode, activateLast);
 				menu_html += result.menu;
 				body_html += result.body;
 				css += result.css;
 				
-				if (window.location.hash.substring(1) == getTierID(tc))
-					scrolltoid = getTierID(tc);
+				if (window.location.hash.substring(1) == getTierID(useTiers[tc]))
+					scrolltoid = getTierID(useTiers[tc]);
 			}
 			
 			ldbPLayers[leaderboard[i].id] = 1;
 			players.push(leaderboard[i]);
 		}
 		
-		body_html += displayRolePlayers(players, tc, true);
+		body_html += displayRolePlayers(players, useTiers, tc, true);
 		
-		// Players not in leaderboard but still with badges
-		var result = displayRoleMeta(0, activateLast);
-		menu_html += result.menu;
-		body_html += result.body;
-		css += result.css;
-		
-		if (window.location.hash.substring(1) == "testsubject")
-			scrolltoid = tierName;
-		
-		var zeroes = [];
-		for (var key in badges)
-			if (!ldbPLayers.hasOwnProperty(key))
-				zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
-		
-		body_html += displayRolePlayers(zeroes, 0, false);
+		if (mode == "arms")
+		{
+			// Players not in leaderboard but still with badges
+			var result = displayRoleMeta(useTiers, 0, mode, activateLast);
+			menu_html += result.menu;
+			body_html += result.body;
+			css += result.css;
+			
+			if (window.location.hash.substring(1) == "testsubject")
+				scrolltoid = tierName;
+			
+			var zeroes = [];
+			for (var key in badges)
+				if (!ldbPLayers.hasOwnProperty(key))
+					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
+			
+			body_html += displayRolePlayers(zeroes, useTiers, 0, false);
+		}
 		
 		$("leaderboard").innerHTML = menu_html + "</div>" + body_html + "</div>";
 		var style = document.createElement('style');
@@ -497,6 +493,21 @@
 		var tc = patreonTiers.length;
 		var index = 1;
 		
+		// Reformat database
+		var patrons = [];
+		for (var key in rawPatrons)
+		{
+			if (rawPatrons.hasOwnProperty(key) && key != "UNKNOWN")
+			{
+				var user = rawPatrons[key];
+				patrons.push([user.name, user.tier, key]);
+			}
+		}
+		for (var i = 0; i < rawPatrons.UNKNOWN.length; ++i)
+			patrons.push([rawPatrons.UNKNOWN[i].name, rawPatrons.UNKNOWN[i].tier, null]);
+		
+		patrons.sort(function(a, b) { return b[1] - a[1]; });
+		
 		for (var i = 0; i < patrons.length; ++i)
 		{
 			if (tc != (patrons[i][1]-1))
@@ -533,18 +544,21 @@
 	
 	function changeMode(mode)
 	{
-		$("md0").className = "mode";
-		$("md1").className = "mode";
-		$("md2").className = "mode";
+		$("md0").className = $("md1").className = $("md2").className = $("md3").className = "mode";
 		$("md" + mode).className += " active-mode";
 		$("season").selectedIndex = 0;
 		$("season-nav").style.display = (mode == 1) ? "block" : "none";
 		
+		document.getElementsByTagName("H1")[0].className = (mode == 2) ? "mariokart" : "";
+		document.getElementsByTagName("H1")[0].children[0].innerHTML = (mode == 2) ? "Casual Kart" : "Casual ARMS";
+		
 		if (mode == 0)
-			displayLeaderboards();
+			displayLeaderboards(rawLeaderboard, leaderboardTiers, "arms");
 		else if (mode == 1)
-			displayMonthly(leaderboard, rawSeasonHistory[0]);
+			selectSeason();
 		else if (mode == 2)
+			displayLeaderboards(rawLeaderboardMarioKart, leaderboardTiersMarioKart, "mariokart");
+		else if (mode == 3)
 			displayPatreon();
 	}
 	
@@ -552,7 +566,7 @@
 	{
 		var activeSeason = $("season").selectedIndex;
 		
-		var useBoard = leaderboard;
+		var useBoard = reorganizeLeaderboards(rawLeaderboard);
 		if (activeSeason > 0)
 			useBoard = seasonHistory[activeSeason-1].data;
 		
@@ -563,7 +577,8 @@
 	
 	function load()
 	{
-		fetchLeaderboards(storeLeaderboards);
+		fetchLeaderboards("arms", storeLeaderboards);
+		fetchLeaderboards("mariokart", storeLeaderboardsMarioKart);
 		fetchSeasonHistory(storeSeasons);
 		fetchPatrons(storePatrons);
 		fetchBadges(storeBadges);
@@ -593,9 +608,11 @@
 		</div>
 		
 		<p id="mode-selector">
-			<em class="mode active-mode" id="md0" onClick="changeMode(0);">Roles</em>
-			<em class="mode" id="md1" onClick="changeMode(1);">Monthly</em>
-			<em class="mode" id="md2" onClick="changeMode(2);">Patrons</em>
+			<span class="split-mode">
+				<em class="mode active-mode" id="md0" onClick="changeMode(0);">ARMS</em><em class="mode" id="md1" onClick="changeMode(1);">Monthly</em>
+			</span>
+			<em class="mode" id="md2" onClick="changeMode(2);">Mario Kart</em>
+			<em class="mode" id="md3" onClick="changeMode(3);">Patrons</em>
 		</p>
 		
 		<p id="season-nav">
@@ -606,8 +623,7 @@
 		</p>
 		
 		<div id="leaderboard"></div>
-		<br/>
-		<div id="sponsor"><span>Casual ARMS leaderboards are sponsored by<br/>ARMS Laboratories, Inc.</span><img src="arms-labs.png"/>
+		
 	</div>
 </body>
 </html>

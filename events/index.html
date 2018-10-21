@@ -249,9 +249,11 @@ redirect_from: "/lobbies/"
 			info_html += "features the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a> and ";
 		
 		if (ev.type == 0)
-			info_html += " counts for the Casual ARMS <a href='/leaderboards/''><em>leaderboards</em></a>!";
+			info_html += " counts for the <a href='/leaderboards/''><em>ARMS leaderboards</em></a>!";
+		else if (ev.type == 6)
+			info_html += " counts for the <a href='/leaderboards/#mariokart''><em style='background-color: #f92473;''>Mario Kart leaderboards</em></a>!";
 		else
-			info_html += " <em>does not</em> count for the Casual ARMS leaderboards.";
+			info_html += " does not count for the leaderboards.";
 		
 		if ("streamers" in ev)
 			for (var si = 0; si < ev["streamers"].length; ++si)
