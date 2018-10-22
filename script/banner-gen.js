@@ -50,15 +50,11 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	
 	var performBannerRendering = function()
 	{
-		var diff = timeZoneOffset(eventdata.timeZone);
-		if (nativeTime)
-			diff = getTimeZoneDiff();
 		var startDate = new Date(eventdata.date);
 		var endDate = getEventEnd(eventdata);
-		convertDates([startDate, endDate], diff);
 		
-		var dateText = (dayNames[startDate.getUTCDay()] + " " + monthNames[startDate.getUTCMonth()] + " " + startDate.getUTCDate()).toUpperCase();
-		var timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
+		var dateText = (dayNames[startDate.getDay()] + " " + monthNames[startDate.getMonth()] + " " + startDate.getDate()).toUpperCase();
+		var timeText = (formatTime(startDate) + " to " + formatTime(endDate) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
 		var isWarmup = eventdata.type == 3 || eventdata.type == 4 || eventdata.type == 6;
 		
 		// Style presets
@@ -244,15 +240,9 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	var handleTournamentBanner = function()
 	{
 		ctx.drawImage(template, 0, 0);
-		
-		var diff = timeZoneOffset(eventdata.timeZone);
-		if (nativeTime)
-			diff = getTimeZoneDiff();
 		var startDate = new Date(eventdata.date);
-		convertDates([startDate], diff);
-		
-		var dateText = (monthNames[startDate.getUTCMonth()].slice(0, 3) + ". " + startDate.getUTCDate()).toUpperCase();
-		var timeText = (formatTimeUTC(startDate, diff) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
+		var dateText = (monthNames[startDate.getMonth()].slice(0, 3) + ". " + startDate.getDate()).toUpperCase();
+		var timeText = (formatTime(startDate) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
 		
 		dateFont = "58pt ARMS";
 		timeFont = "32pt ARMS";

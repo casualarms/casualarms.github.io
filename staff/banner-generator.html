@@ -228,7 +228,7 @@ permalink: /staff/banners/index.html
 			$("name" + id).value         = useHost.name;
 			$("tag"  + id).selectedIndex = (useHost.tag == "CC") ? 1 : 0;
 			$("code" + id).value         = useHost.code;
-			$("host" + id).selectedIndex = useHost.tier;
+		//	$("host" + id).selectedIndex = useHost.tier;
 		}
 	}
 	
@@ -280,8 +280,8 @@ permalink: /staff/banners/index.html
 			
 			<p>
 				<select id="hostA">
-					<option value="0">No Tier</option>
-					<option value="1" selected>Easy</option>
+					<option value="0" selected>No Tier</option>
+					<option value="1">Easy</option>
 					<option value="2">Medium</option>
 					<option value="3">Hard</option>
 				</select>
@@ -291,7 +291,7 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameA" placeholder="Player name"/>
 				code: <input type="text" id="codeA" placeholder="0000-1111-2222"/>
-				[ QuickEntry&#8482;<select id="quickEntryA" onchange="quickEntry('A');"><option value="0" selected>---</option></select> ]
+				[ Quick Entry <select id="quickEntryA" onchange="quickEntry('A');"><option value="0" selected>---</option></select> ]
 				<br/>
 				<select id="hostB">
 					<option value="0" selected>No Tier</option>
@@ -305,7 +305,7 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameB" placeholder="Player name"/>
 				code: <input type="text" id="codeB" placeholder="0000-1111-2222"/>
-				[ QuickEntry&#8482;<select id="quickEntryB" onchange="quickEntry('B');"><option value="0" selected>---</option></select> ]
+				[ Quick Entry <select id="quickEntryB" onchange="quickEntry('B');"><option value="0" selected>---</option></select> ]
 				<br/>
 				<select id="hostC">
 					<option value="0" selected>No Tier</option>
@@ -319,7 +319,7 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameC" placeholder="Player name"/>
 				code: <input type="text" id="codeC" placeholder="0000-1111-2222"/>
-				[ QuickEntry&#8482;<select id="quickEntryC" onchange="quickEntry('C');"><option value="0" selected>---</option></select> ]
+				[ Quick Entry <select id="quickEntryC" onchange="quickEntry('C');"><option value="0" selected>---</option></select> ]
 			</p>
 			
 			<p>

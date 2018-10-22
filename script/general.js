@@ -109,14 +109,6 @@ function timeZoneOffset(timeZoneString)
 	return timeZoneOffsets[timeZoneString];
 }
 
-function convertDates(dates, diff)
-{
-	for (i = 0; i < dates.length; i++)
-	{
-		dates[i].setHours(dates[i].getHours() + diff);
-	}
-}
-
 function weekCorrect(date)
 {
 	if (date.getDate() == 8)
@@ -129,17 +121,21 @@ function textWeekday(date)
 	return days[date.getDay()];
 }
 
-function textMonthUTC(date)
+function textMonth(date)
 {
 	var months = [
 		"January", "February", "March", "April", "May", "June", 
 		"July", "August", "September", "October", "November", "December"];
-	return months[date.getUTCMonth()];
+	return months[date.getMonth()];
 }
 
-function formatTimeHelper(h, m, diff)
+function formatTime(date)
 {
-	postfix = "";
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var diff = getTimeZoneDiff();
+	
+	var postfix = "";
 	var useAMPM = (-7 <= diff && diff <= -4);
 	
 	if (useAMPM)
@@ -160,20 +156,6 @@ function formatTimeHelper(h, m, diff)
 	if (h < 10 && !useAMPM) h = "0" + h;
 	if (m < 10) m = "0" + m;
 	return h + ":" + m + postfix;
-}
-
-function formatTime(date, diff)
-{
-	h = date.getHours();
-	m = date.getMinutes();
-	return formatTimeHelper(h, m, diff);
-}
-
-function formatTimeUTC(date, diff)
-{
-	h = date.getUTCHours();
-	m = date.getUTCMinutes();
-	return formatTimeHelper(h, m, diff);
 }
 
 
@@ -305,9 +287,7 @@ function nextEvents(callback)
 function getEventID(eventdata)
 {
 	var epochString = (eventdata.date.getTime() / 1000) + "";
-	var id = parseInt(epochString.substring(2, 8)).toString(16).toUpperCase();
-	console.log(id);
-	return id;
+	return parseInt(epochString.substring(2, 8)).toString(16).toUpperCase();
 }
 
 function getEventEnd(eventdata)

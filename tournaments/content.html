@@ -40,8 +40,6 @@
 	function displayEvent(type)
 	{
 		$("next-section").style.display = "none";
-		
-		var diff = getTimeZoneDiff();
 		var events = (type == "clash") ? clashes : scrambles;
 		
 		if (events.length > 0)
@@ -49,18 +47,17 @@
 			var evStart = new Date(events[0].date);
 			var evEnd = getEventEnd(events[0]);
 			var evCheckIn = new Date(evStart.getTime() - 60 * 60000);
-			convertDates([evStart, evEnd, evCheckIn], diff);
 			
 			var challongeURL = "https://challonge.com/" + events[0].titleText.replace(/\s/g, "");
 			$("challonge-1").href = challongeURL;
 			$("challonge-2").href = challongeURL;
 			
-			$("next-event-day").innerHTML = textMonthUTC(evStart) + " " + evStart.getUTCDate();
+			$("next-event-day").innerHTML = textMonth(evStart) + " " + evStart.getDate();
 			
-			$("checkin-start").innerHTML     = formatTimeUTC(evCheckIn,    diff);
-			$("tournament-start").innerHTML  = formatTimeUTC(evStart, diff);
-			$("checkin-start2").innerHTML    = formatTimeUTC(evCheckIn,    diff);
-			$("tournament-start2").innerHTML = formatTimeUTC(evStart, diff);
+			$("checkin-start").innerHTML     = formatTime(evCheckIn);
+			$("tournament-start").innerHTML  = formatTime(evStart);
+			$("checkin-start2").innerHTML    = formatTime(evCheckIn);
+			$("tournament-start2").innerHTML = formatTime(evStart);
 			
 			generateBanner(880, 480, events[0], "next-banner", true);
 			$("next-section").style.display = "block";
@@ -226,6 +223,7 @@
 			<a class="menu-item m4" href="https://challonge.com/CasualScramble1/standings" target="_blank">Casual Scramble 1</a>
 			<a class="menu-item m4" href="https://challonge.com/CasualClash5/standings" target="_blank">Casual Clash 5</a>
 			<a class="menu-item m4" href="https://challonge.com/CasualScramble2/standings" target="_blank">Casual Scramble 2</a>
+			<a class="menu-item m4" href="https://challonge.com/CasualClash6/standings" target="_blank">Casual Clash 6</a>
 		</div>
 	
 	</div>
