@@ -2,10 +2,10 @@
 	 "339592807104643083": {"name": "Rashiko",             "badges": ["casualcouple", "casualcrew", "season", "host"] }
 	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season", "clash", "cgc", "host"] }
 	
-	,"398284103541063690": {"name": "Sim",                 "badges": ["clash", "clash-win"] }
-	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash-win", "season"] }
-	,"192081577306488842": {"name": "Serperiorfan",        "badges": ["clash", "scramble", "clash-win", "scramble-win"] }
-	,"180917649444700160": {"name": "MrPiedPiper",         "badges": ["clash", "scramble", "scramble-win", "cgc"] }
+	,"398284103541063690": {"name": "Sim",                 "badges": ["clash", "clash_win"] }
+	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "season"] }
+	,"192081577306488842": {"name": "Serperiorfan",        "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
+	,"180917649444700160": {"name": "MrPiedPiper",         "badges": ["clash", "scramble", "scramble_win", "cgc"] }
 	
 	,"378970992095264769": {"name": "Program",             "badges": ["casualcrew", "clash", "scramble", "season", "cgc", "host"] }
 	,"403932918466215948": {"name": "Main Main",           "badges": ["casualcrew", "clash", "scramble", "host"] }
@@ -18,7 +18,7 @@
 	,"340340760698159115": {"name": "Horrible",            "badges": ["casualcrew", "host"] }
 	
 	,"450773792588038144": {"name": "Becca",               "badges": ["clash", "scramble"] }
-	,"303693190932987905": {"name": "Bogalizard",          "badges": ["clash", "scramble", "season", "season-win", "host"] }
+	,"303693190932987905": {"name": "Bogalizard",          "badges": ["clash", "scramble", "season", "season_win", "host"] }
 	,"427587118030651393": {"name": "Reis",                "badges": ["clash", "scramble", "cgc", "host"] }
 	,"118794402561785857": {"name": "ToxicGamer",          "badges": ["clash", "scramble", "season", "cgc"] }
 	,"312024400457236492": {"name": "Lucario814",          "badges": ["clash", "scramble"] }

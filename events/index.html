@@ -26,16 +26,42 @@ redirect_from: "/lobbies/"
 	#next-lobby {
 		width: 95%;
 		max-width: 500pt;
-		box-sizing: border-box;
-		border: 3pt solid black;
+		box-shadow: 0px 0px 8px rgb(88, 83, 2);
+		border-radius: 8pt;
 	}
+	
+	.next-box {
+		display: none;
+		width: 95%;
+		height: 25pt;
+		font-size: 0.9em;
+		line-height: 25pt;
+		max-width: 400pt;
+		margin: 0.6em auto;
+		border-top-left-radius: 1.2em 100%;
+		border-bottom-right-radius: 1.2em 100%;
+		box-shadow: 0px 0px 8px rgb(88, 83, 2);
+		font-family: ARMS;
+		text-decoration: none;
+		color: white;
+	}
+	
+	.nx-big {
+		font-size: 1.3em;
+	}
+	
+	#next-streamer { background-color: #4b367c; }
+	#next-theme { background-color: black; }
+	#next-leaderboards { background-color: #1d94fc; }
+	#next-leaderboards-mariokart { background-color: #f92473; }
+	
 	
 	p#next-theme-info {
 		text-align: center;
 	}
 	
 	#banner-nav {
-		margin: 0;
+		margin: 0.5em 0;
 		text-align: center;
 	}
 	
@@ -61,18 +87,17 @@ redirect_from: "/lobbies/"
 	#calendar {
 		width: 95%;
 		max-width: 500pt;
-		box-sizing: border-box;
-		height: 336px;
-		border: 2pt solid black;
+		height: 350px;
 		margin: 1em auto;
 		position: relative;
 		background-color: white;
+		box-shadow: 0px 0px 8px rgb(88, 83, 2);
 	}
 	
 	#calendar div {
 		position: absolute;
 		width: 12.5%;
-		border-right: 1px solid black;
+		border-right: 1px solid #bbb;
 		height: 100%;
 	}
 	
@@ -80,24 +105,26 @@ redirect_from: "/lobbies/"
 		text-align: left;
 		position: absolute;
 		width: 12.5%;
-		border-top: 1pt solid white;
+		border-top: 1pt solid #444;
 		padding-right: 2px;
 		font-size: 0.8em;
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
-		color: white;
+		color: #bbb;
 		right: 87.5%;
+		box-sizing: border-box;
 	}
 	
 	#calendar .cal-divider {
 		position: absolute;
 		width: 87.5%;
-		border-top: 1pt dotted black;
+		border-top: 1pt dotted #bbb;
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
 		left: 12.5%;
+		box-sizing: border-box;
 	}
 	
 	#calendar .cal-time:nth-of-type(1), #calendar .cal-divider:nth-of-type(2) {
@@ -110,14 +137,16 @@ redirect_from: "/lobbies/"
 		width: 12.5%;
 		background-color: yellow;
 		color: black;
-		border: 1pt solid black;
-		box-sizing: border-box;
 		overflow: hidden;
+		box-sizing: border-box;
+		border: 1pt solid #bbb;
 		z-index: 0;
+		text-decoration: none;
 	}
 	
 	#calendar .cal-event-slot {
 		background-color: #888;
+		color: white;
 	}
 	
 	#calendar .cal-event-current-time {
@@ -131,6 +160,7 @@ redirect_from: "/lobbies/"
 	
 	#calendar .cal-event-6 {
 		background-color: #f92473;
+		color: white;
 	}
 	
 	#calendar .cal-event .info {
@@ -164,7 +194,7 @@ redirect_from: "/lobbies/"
 		width: 100%;
 		height: 4%;
 		background-color: black;
-		color: white;
+		color: #bbb;
 		font-size: 0.8em;
 		text-transform: uppercase;
 	}
@@ -179,14 +209,18 @@ redirect_from: "/lobbies/"
 	}
 	
 	#legend > span {
-		padding: 2pt 5pt;
+		padding: 2pt 10pt;
 		line-height: 2em;
 		white-space: nowrap;
-		border: 2pt solid black;
+		box-shadow: 0px 0px 5px rgb(88, 83, 2);
+		border-top-left-radius: 0.8em 100%;
+		border-bottom-right-radius: 0.8em 100%;
+		margin: 2pt;
 	}
 	
 	@media only screen and (max-width: 700px)
 	{
+		.next-box { font-size: 0.7em; }
 		#calendar .cal-short { display: block; }
 		#calendar .cal-long { display: none; }
 	}
@@ -241,25 +275,26 @@ redirect_from: "/lobbies/"
 		generateBanner(880, 480, eventData[i], "next-lobby", true);
 		
 		var themeData = getTheme(ev.theme);
-		var info_html = "This event ";
 		
+		$("next-theme").style.display = "none";
 		if (themeData != null)
-			info_html += "features the theme <a href='themes/#" + themeData.key + "'>" + themeData.name + "</a> and ";
+		{
+			$("next-theme").style.display = "block";
+			$("next-theme").href = "themes/#" + themeData.key;
+			$("nx-theme-field").innerHTML = themeData.name;
+		}
 		
-		if (ev.type == 0)
-			info_html += " counts for the <a href='/leaderboards/''><em>ARMS leaderboards</em></a>!";
-		else if (ev.type == 6)
-			info_html += " counts for the <a href='/leaderboards/#mariokart''><em style='background-color: #f92473;''>Mario Kart leaderboards</em></a>!";
-		else
-			info_html += " does not count for the leaderboards.";
+		$("next-leaderboards").style.display = (ev.type == 0) ? "block" : "none";
+		$("next-leaderboards-mariokart").style.display = (ev.type == 6) ? "block" : "none";
 		
 		if ("streamers" in ev)
-			for (var si = 0; si < ev["streamers"].length; ++si)
-				info_html += "<br><a href='https://www.twitch.tv/" + ev["streamers"][i] + "'><em class='streamer'>This event is streamed online here!</em></a>";
-		
+		{
+			$("nx-stream-field").innerHTML = ev["streamers"][i];
+			$("next-streamer").href = "https://www.twitch.tv/" + ev["streamers"][i];
+		}
+		$("next-streamer").style.display = ("streamers" in ev && ev["streamers"].length > 0) ? "block" : "none";
 		
 		$("next-section").style.display = "block";
-		$("next-info").innerHTML = info_html;
 		
 		$("banner-previous").disabled = (i == 0);
 		$("banner-next").disabled = (i == eventData.length-1);
@@ -309,11 +344,7 @@ redirect_from: "/lobbies/"
 		}
 		$("calendar").innerHTML += timemarks;
 		
-		// Add current time indicator
-		var rightNow = new Date();
-		var rightSoon = new Date(rightNow.getTime() + 20 * 60000);
-		events += createEntry(rightNow, rightSoon, "", -1, "current-time", "Your Local Time: " + formatTime(rightNow));
-		
+		// Add standard slots
 		var events = "";
 		for (var i = 0; i < eventSlots.length; ++i)
 		{
@@ -324,6 +355,7 @@ redirect_from: "/lobbies/"
 			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 		}
 		
+		// Add upcoming events for one week
 		nextEvents(function(nextEventData)
 		{
 			eventData = nextEventData;
@@ -363,6 +395,11 @@ redirect_from: "/lobbies/"
 				$("next").scrollIntoView();
 		});
 		
+		// Add current time indicator
+		var rightNow = new Date();
+		var rightSoon = new Date(rightNow.getTime() + 20 * 60000);
+		events += createEntry(rightNow, rightSoon, "", -1, "current-time", "Your Local Time: " + formatTime(rightNow));
+		
 		$("calendar").innerHTML += events;
 	}
 	</script>
@@ -388,6 +425,10 @@ redirect_from: "/lobbies/"
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
 				<button onClick="changeBanner(1)" id="banner-next">&gt;</button>
 			</p>
+			<a href="" class="next-box" id="next-streamer">twitch.tv/ <span class="nx-big" id="nx-stream-field"></span></a>
+			<a href="/leaderboards/" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big">ARMS</span></a>
+			<a href="/leaderboards/#mariokart" class="next-box" id="next-leaderboards-mariokart">leaderboards: <span class="nx-big">Mario Kart</span></a>
+			<a href="" class="next-box" id="next-theme">theme: <span class="nx-big" id="nx-theme-field"></span></a>
 			<p id="next-info"></p>
 		</div>
 		

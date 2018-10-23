@@ -16,6 +16,11 @@
 		display: none;
 	}
 	
+	.tier {
+		max-width: 330pt;
+		margin: 0 auto;
+	}
+	
 	p.limits {
 		font-size: 1.2em;
 		font-style: italic;
@@ -25,12 +30,7 @@
 		text-align: center;
 	}
 	
-	#leaderboard .tier {
-		max-width: 330pt;
-		margin: 0 auto;
-	}
-	
-	#leaderboard p.entry {
+	p.entry {
 		background-color: black;
 		line-height: 0.9em;
 		padding: 0 8pt 0pt 4pt;
@@ -87,12 +87,12 @@
 		top: 3pt;
 	}
 	
-	#leaderboard p.entry:hover {
+	p.entry:hover {
 		background-color: yellow;
 		color: black !important;
 	}
 	
-	#leaderboard p.entry:hover .coins {
+	p.entry:hover .coins {
 		color: black;
 		opacity: 1;
 	}
@@ -105,7 +105,7 @@
 		opacity: 1;
 	}
 	
-	#leaderboard p.entry:hover .index {
+	p.entry:hover .index {
 		transform: scale(1.5);
 	}
 	
@@ -199,7 +199,7 @@
 	.change-negative { color: #f00; }
 	.change-new, .change-unknown { color: silver; font-style: italic; }
 	
-	#leaderboard p.entry:hover .change {
+	p.entry:hover .change {
 		color: black !important;
 	}
 	
@@ -244,7 +244,7 @@
 		// Leaderboard badges
 		var badgeBoards = [
 			{"board" : rawLeaderboard, "tiers" : leaderboardTiers, "prefix" : ""},
-			{"board" : rawLeaderboardMarioKart, "tiers" : leaderboardTiersMarioKart, "prefix" : "mk-"}
+			{"board" : rawLeaderboardMarioKart, "tiers" : leaderboardTiersMarioKart, "prefix" : "mk_"}
 		];
 		
 		for (var bi = 0; bi < badgeBoards.length; ++bi)
@@ -348,8 +348,10 @@
 	
 	function displayRolePlayers(players, useTiers, tc, showIndex)
 	{
+		var tier = useTiers[tc];
 		if (globalShuffle) shuffle(players);
-		var html = "";
+		
+		var html = "<div class='tier tier-" + getTierID(tier) + "'>";
 		var previous = -1;
 		var duplicates = 0;
 		for (var pi = 0; pi < players.length; pi++)
@@ -359,32 +361,32 @@
 			var useIndex = pi + 1 - duplicates;
 			
 			var pid = "leaderboard-" + tc + "-" + pi;
-			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry tier-" + useTiers[tc].name.toLowerCase().replace(" ", "-") + ((useIndex > 99) ? " small" : "") + "' style='color: " + useTiers[tc].color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry " + ((useIndex > 99) ? " small" : "") + "' style='color: " + tier.color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
 			html += "<span class='player'>" + players[pi].name + "</span>";
 			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
-		return html;
+		return html + "</div>";
 	}
 	
-	function displayRoleMeta(useTiers, tc, mode, activateLast)
+	function displayRoleMeta(useTiers, tc, mode)
 	{
 		var tierID = getTierID(useTiers[tc]);
 		var tier = useTiers[tc];
-		
 		var title = (mode == "arms") ? "ARMS Labs " + tier.name : tier.name + " Cup Racer";
-		html  = "</div><h3 id='tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</h3><div class='tier'>";
+		
+		var html = "<h3 id='tier-" + getTierID(tier) + "' style='color: " + tier.color + ";'>" + title + "</h3>";
 		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin.png'/>";
-		if (tc == useTiers.length-2 && activateLast)
+		if (tc == useTiers.length-2)
 			html += " +";
 		else if (tc != 0)
 			html += " &#8211; " + (useTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
 		
-		menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</a>";
+		var menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</a>";
 		
-		css  = "p.entry.tier-" + tierID + ":hover, a.menu-item.tier-" + tierID + ":hover ";
+		var css  = ".tier-" + tierID + " p.entry:hover, a.menu-item.tier-" + tierID + ":hover ";
 		css += "{ background-color: " + tier.color + " !important; color: black !important; }";
-		css += "p.entry.tier-" + tierID + " .index " + "{ background-image: url(placement-" + tierID + ".png); color: black; }";
+		css += ".tier-" + tierID + " .index " + "{ background-image: url(placement-" + tierID + ".png); color: black; }";
 		
 		return {css: css, menu: menu_html, body: html};
 	}
@@ -398,49 +400,49 @@
 		var css = "";
 		
 		var scrolltoid = null;
-		var tc = useTiers.length-1;
-		
-		var activateLast = (leaderboard.length > 0 && leaderboard[0].coins >= 10000);
-		if (!activateLast) tc--;
+		var tc = useTiers.length-2;
 		
 		var players = [];
 		var ldbPLayers = {};
 		
+		var first = true;
+		
 		for (var i = 0; i < leaderboard.length && leaderboard[i].coins > 0; ++i)
 		{
-			var newd = false;
 			while (leaderboard[i].coins < useTiers[tc].start)
 			{
-				newd = true;
-				tc--;
-			}
-			
-			if (newd)
-			{
-				body_html += displayRolePlayers(players, useTiers, tc, true);
-				players = [];
+				if (players.length > 0 || !first)
+				{
+					var result = displayRoleMeta(useTiers, tc, mode);
+					body_html += result.body;
+					menu_html += result.menu;
+					css += result.css;
+					first = false;
+				}
 				
-				var result = displayRoleMeta(useTiers, tc, mode, activateLast);
-				menu_html += result.menu;
-				body_html += result.body;
-				css += result.css;
+				body_html += displayRolePlayers(players, useTiers, tc, true);
 				
 				if (window.location.hash.substring(1) == getTierID(useTiers[tc]))
 					scrolltoid = getTierID(useTiers[tc]);
+				
+				tc--;
+				players = [];
 			}
 			
 			ldbPLayers[leaderboard[i].id] = 1;
 			players.push(leaderboard[i]);
 		}
 		
-		body_html += displayRolePlayers(players, useTiers, tc, true);
+		var result = displayRoleMeta(useTiers, tc, mode);
+		menu_html += result.menu;
+		css += result.css;
+		body_html += result.body + displayRolePlayers(players, useTiers, tc, true);
 		
 		if (mode == "arms")
 		{
 			// Players not in leaderboard but still with badges
-			var result = displayRoleMeta(useTiers, 0, mode, activateLast);
+			var result = displayRoleMeta(useTiers, 0, mode);
 			menu_html += result.menu;
-			body_html += result.body;
 			css += result.css;
 			
 			if (window.location.hash.substring(1) == "testsubject")
@@ -451,7 +453,7 @@
 				if (!ldbPLayers.hasOwnProperty(key))
 					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
 			
-			body_html += displayRolePlayers(zeroes, useTiers, 0, false);
+			body_html += result.body + displayRolePlayers(zeroes, useTiers, 0, false);
 		}
 		
 		$("leaderboard").innerHTML = menu_html + "</div>" + body_html + "</div>";
