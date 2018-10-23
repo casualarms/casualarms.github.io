@@ -408,12 +408,18 @@
 		
 		for (var i = 0; i < leaderboard.length && leaderboard[i].coins > 0; ++i)
 		{
+			var newd = false;
 			while (leaderboard[i].coins < useTiers[tc].start)
+			{
+				newd = true;
+				tc--;
+			}
+			
+			if (newd)
 			{
 				body_html += displayRolePlayers(players, useTiers, tc, true);
 				players = [];
 				
-				tc--;
 				var result = displayRoleMeta(useTiers, tc, mode, activateLast);
 				menu_html += result.menu;
 				body_html += result.body;
