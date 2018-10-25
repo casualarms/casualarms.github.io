@@ -54,7 +54,18 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		var endDate = getEventEnd(eventdata);
 		
 		var dateText = (dayNames[startDate.getDay()] + " " + monthNames[startDate.getMonth()] + " " + startDate.getDate()).toUpperCase();
-		var timeText = (formatTime(startDate) + " to " + formatTime(endDate) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
+		var timeText = (formatTime(startDate) + " to " + formatTime(endDate)).toUpperCase();
+		
+		if (!nativeTime)
+		{
+			var diff = timeZoneOffset(eventdata.timeZone);
+			startDate.setUTCHours(startDate.getUTCHours() + diff);
+			endDate.setUTCHours(endDate.getUTCHours() + diff);
+			
+			dateText = (dayNames[startDate.getUTCDay()] + " " + monthNames[startDate.getUTCMonth()] + " " + startDate.getUTCDate()).toUpperCase();
+			timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.timeZone).toUpperCase();
+		}
+		
 		var isWarmup = eventdata.type == 3 || eventdata.type == 4 || eventdata.type == 6;
 		
 		// Style presets
@@ -242,7 +253,16 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.drawImage(template, 0, 0);
 		var startDate = new Date(eventdata.date);
 		var dateText = (monthNames[startDate.getMonth()].slice(0, 3) + ". " + startDate.getDate()).toUpperCase();
-		var timeText = (formatTime(startDate) + ((!nativeTime) ? " " + eventdata.timeZone : "")).toUpperCase();
+		var timeText = formatTime(startDate).toUpperCase();
+		
+		if (!nativeTime)
+		{
+			var diff = timeZoneOffset(eventdata.timeZone);
+			startDate.setUTCHours(startDate.getUTCHours() + diff);
+			
+			dateText = (monthNames[startDate.getUTCMonth()].slice(0, 3) + ". " + startDate.getUTCDate()).toUpperCase();
+			timeText = (formatTimeUTC(startDate, diff) + " " + eventdata.timeZone).toUpperCase();
+		}
 		
 		dateFont = "58pt ARMS";
 		timeFont = "32pt ARMS";

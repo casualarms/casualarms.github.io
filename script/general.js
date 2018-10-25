@@ -129,14 +129,12 @@ function textMonth(date)
 	return months[date.getMonth()];
 }
 
-function formatTime(date)
+function formatTimeHelper(date, diff, h, m)
 {
-	var h = date.getHours();
-	var m = date.getMinutes();
-	var diff = getTimeZoneDiff();
+	if (!diff) diff = getTimeZoneDiff();
 	
 	var postfix = "";
-	var useAMPM = (-7 <= diff && diff <= -4);
+	var useAMPM = (-8 <= diff && diff <= -4);
 	
 	if (useAMPM)
 	{
@@ -158,6 +156,15 @@ function formatTime(date)
 	return h + ":" + m + postfix;
 }
 
+function formatTime(date, diff)
+{
+	return formatTimeHelper(date, diff, date.getHours(), date.getMinutes());
+}
+
+function formatTimeUTC(date, diff)
+{
+	return formatTimeHelper(date, diff, date.getUTCHours(), date.getUTCMinutes());
+}
 
 function reorganizeLeaderboards(rawBoards)
 {

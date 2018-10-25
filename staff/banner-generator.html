@@ -99,8 +99,7 @@ permalink: /staff/banners/index.html
 	function fillFromEventData(eventData)
 	{
 		var date = new Date(eventData.date);
-		var diff = timeZoneOffset(eventData.timeZone);
-		convertDates([date], diff);
+		date.setHours(date.getHours() + timeZoneOffset(eventData.timeZone));
 		
 		$("month").selectedIndex = date.getUTCMonth();
 		$("day").value = date.getUTCDate();
