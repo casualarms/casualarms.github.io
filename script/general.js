@@ -329,7 +329,7 @@ function getTheme(themeID)
 	return null;
 }
 
-function printTheme(ev)
+function printTheme(ev, concise)
 {
 	function printMode(ev, key, name)
 	{
@@ -345,7 +345,7 @@ function printTheme(ev)
 	}
 	
 	var html = "<h3 id='" + ev.key + "'>" + ev.name + "</h3>";
-	html += "<p>" + ev.description + "</p>";
+	if (!concise) html += "<p>" + ev.description + "</p>";
 	
 	html += printMode(ev, "solo-fight", "Solo Fight");
 	html += printMode(ev, "team-fight", "Team Fight");

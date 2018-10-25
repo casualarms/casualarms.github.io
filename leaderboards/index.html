@@ -346,7 +346,7 @@
 		finalizeLoading();
 	}
 	
-	function displayRolePlayers(players, useTiers, tc, showIndex)
+	function displayRolePlayers(players, useTiers, tc, mode, showIndex)
 	{
 		var tier = useTiers[tc];
 		if (globalShuffle) shuffle(players);
@@ -363,7 +363,7 @@
 			var pid = "leaderboard-" + tc + "-" + pi;
 			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry " + ((useIndex > 99) ? " small" : "") + "' style='color: " + tier.color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
 			html += "<span class='player'>" + players[pi].name + "</span>";
-			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
+			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin_" + mode +".png'/><img class='armscoin coin-dark' src='coin_" + mode +"_dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		return html + "</div>";
@@ -376,11 +376,11 @@
 		var title = (mode == "arms") ? "ARMS Labs " + tier.name : tier.name + " Cup Racer";
 		
 		var html = "<h3 id='tier-" + getTierID(tier) + "' style='color: " + tier.color + ";'>" + title + "</h3>";
-		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin.png'/>";
+		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin_" + mode +".png'/>";
 		if (tc == useTiers.length-2)
 			html += " +";
 		else if (tc != 0)
-			html += " &#8211; " + (useTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin.png'/></p>";
+			html += " &#8211; " + (useTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin_" + mode +".png'/></p>";
 		
 		var menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</a>";
 		
@@ -420,7 +420,7 @@
 					first = false;
 				}
 				
-				body_html += displayRolePlayers(players, useTiers, tc, true);
+				body_html += displayRolePlayers(players, useTiers, tc, mode, true);
 				
 				if (window.location.hash.substring(1) == getTierID(useTiers[tc]))
 					scrolltoid = getTierID(useTiers[tc]);
@@ -436,7 +436,7 @@
 		var result = displayRoleMeta(useTiers, tc, mode);
 		menu_html += result.menu;
 		css += result.css;
-		body_html += result.body + displayRolePlayers(players, useTiers, tc, true);
+		body_html += result.body + displayRolePlayers(players, useTiers, tc, mode, true);
 		
 		if (mode == "arms")
 		{
@@ -453,7 +453,7 @@
 				if (!ldbPLayers.hasOwnProperty(key))
 					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
 			
-			body_html += result.body + displayRolePlayers(zeroes, useTiers, 0, false);
+			body_html += result.body + displayRolePlayers(zeroes, useTiers, 0, mode, false);
 		}
 		
 		$("leaderboard").innerHTML = menu_html + "</div>" + body_html + "</div>";
@@ -493,7 +493,7 @@
 			var pid = "monthly-" + i;
 			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic" + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
 			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
-			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin.png'/><img class='armscoin coin-dark' src='coin-dark.png'/></span></p>";
+			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin_arms.png'/><img class='armscoin coin-dark' src='coin_arms_dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		
@@ -605,7 +605,7 @@
 		
 		<h2>Leaderboards</h2>
 		
-		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin.png'/> coins throughout every major <a href="/lobbies/"><em>lobby event</em></a> we hold! At the moment, this means the <a href="/lobbies/#tuesday">Tuesday</a>, <a href="/lobbies/#wednesday">Wednesday</a>, <a href="/lobbies/#thursday">Thursday</a>, and <a href="/lobbies/#saturday">Saturday</a> lobbies. As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
+		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin_arms.png'/> coins throughout every major <a href="/lobbies/"><em>lobby event</em></a> we hold! At the moment, this means the <a href="/lobbies/#tuesday">Tuesday</a>, <a href="/lobbies/#wednesday">Wednesday</a>, <a href="/lobbies/#thursday">Thursday</a>, and <a href="/lobbies/#saturday">Saturday</a> lobbies. As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin_arms.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
 		
 		<h3>Badges</h3>
 		
