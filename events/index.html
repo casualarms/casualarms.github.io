@@ -289,8 +289,8 @@ redirect_from: "/lobbies/"
 		
 		if ("streamers" in ev)
 		{
-			$("nx-stream-field").innerHTML = ev["streamers"][i];
-			$("next-streamer").href = "https://www.twitch.tv/" + ev["streamers"][i];
+			$("nx-stream-field").innerHTML = ev["streamers"][0];
+			$("next-streamer").href = "https://www.twitch.tv/" + ev["streamers"][0];
 		}
 		$("next-streamer").style.display = ("streamers" in ev && ev["streamers"].length > 0) ? "block" : "none";
 		
