@@ -248,7 +248,7 @@ var eventThemes = [
 	},
 	{
 		key             : "mlm",
-		name            : "Restricted Competitive (MLM style)",
+		name            : "Competitive (MLM Warmup)",
 		description     : "This theme is used for the Mega League Mondays warmup lobbies.",
 		"solo-fight"      : [2],
 		"team-fight"      : [],
@@ -263,7 +263,7 @@ var eventThemes = [
 	},
 	{
 		key             : "cote",
-		name            : "Extended Competitive (Era style)",
+		name            : "Competitive (Era Warmup)",
 		description     : "This theme is used for the Champions of the Era warmup lobbies.",
 		"solo-fight"      : [2],
 		"team-fight"      : [],

@@ -444,6 +444,11 @@ a.submenu-item > .sub-text {
 	border-left: none;
 }
 
+#themes > p {
+	padding: 0 10%;
+	line-height: 1.4em;
+}
+
 
 @media only screen and (max-width: 600px)
 {
