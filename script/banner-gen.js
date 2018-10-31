@@ -53,7 +53,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		var startDate = new Date(eventdata.date);
 		var endDate = getEventEnd(eventdata);
 		
-		var dateText = (dayNames[startDate.getDay()] + " " + monthNames[startDate.getMonth()] + " " + startDate.getDate()).toUpperCase();
+		var dateText = (dayNames[startDate.getDay()] + " " + monthNames[startDate.getMonth()].slice(0, 3) + ". " + startDate.getDate()).toUpperCase();
 		var timeText = (formatTime(startDate) + " to " + formatTime(endDate)).toUpperCase();
 		
 		if (!nativeTime)
@@ -62,7 +62,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			startDate.setUTCHours(startDate.getUTCHours() + diff);
 			endDate.setUTCHours(endDate.getUTCHours() + diff);
 			
-			dateText = (dayNames[startDate.getUTCDay()] + " " + monthNames[startDate.getUTCMonth()] + " " + startDate.getUTCDate()).toUpperCase();
+			dateText = (dayNames[startDate.getUTCDay()] + " " + monthNames[startDate.getUTCMonth()].slice(0, 3) + ". " + startDate.getUTCDate()).toUpperCase();
 			timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.timeZone).toUpperCase();
 		}
 		

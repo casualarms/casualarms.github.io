@@ -52,6 +52,7 @@ redirect_from: "/lobbies/"
 	
 	#next-streamer { background-color: #4b367c; }
 	#next-theme { background-color: black; }
+	#next-link { background-color: grey; }
 	#next-leaderboards { background-color: #1d94fc; }
 	#next-leaderboards-mariokart { background-color: #f92473; }
 	
@@ -284,6 +285,10 @@ redirect_from: "/lobbies/"
 			$("nx-theme-field").innerHTML = themeData.name;
 		}
 		
+		$("next-link").style.display = "block";
+		$("next-link").href = "https://www.casualarms.net/events/?id=" + getEventID(ev);
+		$("nx-link-field").innerHTML = getEventID(ev);
+		
 		$("next-leaderboards").style.display = (ev.type == 0) ? "block" : "none";
 		$("next-leaderboards-mariokart").style.display = (ev.type == 6) ? "block" : "none";
 		
@@ -426,9 +431,10 @@ redirect_from: "/lobbies/"
 				<button onClick="changeBanner(1)" id="banner-next">&gt;</button>
 			</p>
 			<a href="" class="next-box" id="next-streamer">twitch.tv/ <span class="nx-big" id="nx-stream-field"></span></a>
-			<a href="/leaderboards/" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big">ARMS</span></a>
+			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big">ARMS</span></a>
 			<a href="/leaderboards/#mariokart" class="next-box" id="next-leaderboards-mariokart">leaderboards: <span class="nx-big">Mario Kart</span></a>
 			<a href="" class="next-box" id="next-theme">theme: <span class="nx-big" id="nx-theme-field"></span></a>
+			<a href="" class="next-box" id="next-link">www.casualarms.net/events/?id=<span class="nx-big" id="nx-link-field"></span></a>
 			<p id="next-info"></p>
 		</div>
 		

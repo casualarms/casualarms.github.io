@@ -242,18 +242,18 @@
 		}
 		
 		// Leaderboard badges
-		var badgeBoards = [
-			{"board" : rawLeaderboard, "tiers" : leaderboardTiers, "prefix" : ""},
-			{"board" : rawLeaderboardMarioKart, "tiers" : leaderboardTiersMarioKart, "prefix" : "mk_"}
+		var games = [
+			{ game : "arms", prefix : "" },
+			{ game : "kart", prefix : "mk_" }
 		];
 		
-		for (var bi = 0; bi < badgeBoards.length; ++bi)
-			if (badgeBoards[bi].board.hasOwnProperty(uid))
+		for (var gi = 0; gi < games.length; ++gi)
+			if (rawLeaderboard[games[gi].game].hasOwnProperty(uid))
 			{
-				for (var i = 1; i < badgeBoards[bi].tiers.length-1; ++i)
+				for (var i = 1; i < leaderboardTiers[games[gi].game].length-1; ++i)
 				{
-					if (badgeBoards[bi].board[uid].coins >= badgeBoards[bi].tiers[i].start)
-						user_badges.push(badgeBoards[bi].prefix + "ldb" + (i-1));
+					if (rawLeaderboard[games[gi].game][uid].coins >= leaderboardTiers[games[gi].game][i].start)
+						user_badges.push(games[gi].prefix + "ldb" + (i-1));
 				}
 			}
 		
@@ -275,61 +275,67 @@
 		stash.style.height = "auto";
 	}
 	
-	var rawLeaderboard = null;
-	var rawLeaderboardMarioKart = null;
+	var rawLeaderboard = { arms: null, kart: null };
+	var rawSeasonHistory = { arms: null, kart: null };
+	var seasonHistory = { arms: null, kart: null };
 	var badges = null;
-	var seasonHistory = null;
 	var rawPatrons = null;
 	
 	function finalizeLoading()
 	{
-		if (rawLeaderboard && rawLeaderboardMarioKart && badges && rawPatrons && seasonHistory)
+		if (rawLeaderboard.arms && rawLeaderboard.kart && badges && rawPatrons && seasonHistory.arms)
 		{
 			switch (window.location.hash.substring(1))
 			{
-			case "monthly":   changeMode(1); break;
-			case "mariokart": changeMode(2); break;
-			case "patrons":   changeMode(3); break;
-			default:          changeMode(0);
+			case "arms":        changeMode(0); break;
+			case "monthly":     changeMode(1); break;
+			case "kart":        changeMode(2); break;
+			case "monthlykart": changeMode(3); break;
+			case "patrons":     changeMode(4); break;
+			default:            changeMode(0);
 			}
 		}
 	}
 	
 	function storeLeaderboards(rawBoards)
 	{
-		rawLeaderboard = rawBoards;
+		rawLeaderboard.arms = rawBoards;
 		finalizeLoading();
 	}
 	
 	function storeLeaderboardsMarioKart(rawBoards)
 	{
-		rawLeaderboardMarioKart = rawBoards;
+		rawLeaderboard.kart = rawBoards;
 		finalizeLoading();
 	}
 	
 	function storeSeasons(rawBoards)
 	{
-		rawSeasonHistory = [];
-		seasonHistory = [];
-		for (var i = 0; i < rawBoards.length; ++i)
+		var games = ["arms", "kart"];
+		for (var gi = 0; gi < games.length; ++gi)
 		{
-			var season = {};
-			season.title = monthNames[rawBoards[i].month-1] + " " + rawBoards[i].year;
-			season.data = reorganizeLeaderboards(rawBoards[i].leaderboard);
-			seasonHistory.push(season);
-			
-			var copyboard = season.data.slice().sort(function(a, b) { return b.monthly - a.monthly; });
-			var rawSeason = {};
-			var previous = -1;
-			var duplicates = 0;
-			
-			for (var si = 0; si < copyboard.length && copyboard[si].monthly > 0; ++si)
+			rawSeasonHistory[games[gi]] = [];
+			seasonHistory[games[gi]] = [];
+			for (var i = 0; i < rawBoards[games[gi]].length; ++i)
 			{
-				duplicates = (copyboard[si].monthly == previous) ? duplicates + 1 : 0;
-				previous = copyboard[si].monthly;
-				rawSeason[copyboard[si].id] = si + 1 - duplicates;
+				var season = {};
+				season.title = monthNames[rawBoards[games[gi]][i].month-1] + " " + rawBoards[games[gi]][i].year;
+				season.data = reorganizeLeaderboards(rawBoards[games[gi]][i].leaderboard);
+				seasonHistory[games[gi]].push(season);
+				
+				var copyboard = season.data.slice().sort(function(a, b) { return b.monthly - a.monthly; });
+				var rawSeason = {};
+				var previous = -1;
+				var duplicates = 0;
+				
+				for (var si = 0; si < copyboard.length && copyboard[si].monthly > 0; ++si)
+				{
+					duplicates = (copyboard[si].monthly == previous) ? duplicates + 1 : 0;
+					previous = copyboard[si].monthly;
+					rawSeason[copyboard[si].id] = si + 1 - duplicates;
+				}
+				rawSeasonHistory[games[gi]].push(rawSeason);
 			}
-			rawSeasonHistory.push(rawSeason);
 		}
 		finalizeLoading();
 	}
@@ -346,9 +352,9 @@
 		finalizeLoading();
 	}
 	
-	function displayRolePlayers(players, useTiers, tc, mode, showIndex)
+	function displayRolePlayers(players, tc, mode, showIndex)
 	{
-		var tier = useTiers[tc];
+		var tier = leaderboardTiers[mode][tc];
 		if (globalShuffle) shuffle(players);
 		
 		var html = "<div class='tier tier-" + getTierID(tier) + "'>";
@@ -369,18 +375,18 @@
 		return html + "</div>";
 	}
 	
-	function displayRoleMeta(useTiers, tc, mode)
+	function displayRoleMeta(tc, mode)
 	{
-		var tierID = getTierID(useTiers[tc]);
-		var tier = useTiers[tc];
+		var tierID = getTierID(leaderboardTiers[mode][tc]);
+		var tier = leaderboardTiers[mode][tc];
 		var title = (mode == "arms") ? "ARMS Labs " + tier.name : tier.name + " Cup Racer";
 		
 		var html = "<h3 id='tier-" + getTierID(tier) + "' style='color: " + tier.color + ";'>" + title + "</h3>";
 		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin_" + mode +".png'/>";
-		if (tc == useTiers.length-2)
+		if (tc == leaderboardTiers[mode].length-2)
 			html += " +";
 		else if (tc != 0)
-			html += " &#8211; " + (useTiers[tc+1].start-1) + " <img class='armscoin-text' src='coin_" + mode +".png'/></p>";
+			html += " &#8211; " + (leaderboardTiers[mode][tc+1].start-1) + " <img class='armscoin-text' src='coin_" + mode +".png'/></p>";
 		
 		var menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</a>";
 		
@@ -391,15 +397,16 @@
 		return {css: css, menu: menu_html, body: html};
 	}
 	
-	function displayLeaderboards(useLeaderboard, useTiers, mode)
+	function displayLeaderboards(mode)
 	{
-		var leaderboard = reorganizeLeaderboards(useLeaderboard);
+		var leaderboard = reorganizeLeaderboards(rawLeaderboard[mode]);
 		
 		var menu_html = "<div class='menu-container'>";
 		var body_html = "<div>";
 		var css = "";
 		
 		var scrolltoid = null;
+		var useTiers = leaderboardTiers[mode];
 		var tc = useTiers.length-2;
 		
 		var players = [];
@@ -413,14 +420,14 @@
 			{
 				if (players.length > 0 || !first)
 				{
-					var result = displayRoleMeta(useTiers, tc, mode);
+					var result = displayRoleMeta(tc, mode);
 					body_html += result.body;
 					menu_html += result.menu;
 					css += result.css;
 					first = false;
 				}
 				
-				body_html += displayRolePlayers(players, useTiers, tc, mode, true);
+				body_html += displayRolePlayers(players, tc, mode, true);
 				
 				if (window.location.hash.substring(1) == getTierID(useTiers[tc]))
 					scrolltoid = getTierID(useTiers[tc]);
@@ -433,15 +440,15 @@
 			players.push(leaderboard[i]);
 		}
 		
-		var result = displayRoleMeta(useTiers, tc, mode);
+		var result = displayRoleMeta(tc, mode);
 		menu_html += result.menu;
 		css += result.css;
-		body_html += result.body + displayRolePlayers(players, useTiers, tc, mode, true);
+		body_html += result.body + displayRolePlayers(players, tc, mode, true);
 		
 		if (mode == "arms")
 		{
 			// Players not in leaderboard but still with badges
-			var result = displayRoleMeta(useTiers, 0, mode);
+			var result = displayRoleMeta(0, mode);
 			menu_html += result.menu;
 			css += result.css;
 			
@@ -453,7 +460,7 @@
 				if (!ldbPLayers.hasOwnProperty(key))
 					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
 			
-			body_html += result.body + displayRolePlayers(zeroes, useTiers, 0, mode, false);
+			body_html += result.body + displayRolePlayers(zeroes, 0, mode, false);
 		}
 		
 		$("leaderboard").innerHTML = menu_html + "</div>" + body_html + "</div>";
@@ -555,35 +562,46 @@
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
+	var activeGame;
+	
 	function changeMode(mode)
 	{
-		$("md0").className = $("md1").className = $("md2").className = $("md3").className = "mode";
+		$("md0").className = $("md1").className = $("md2").className = $("md3").className = $("md4").className = "mode";
 		$("md" + mode).className += " active-mode";
 		$("season").selectedIndex = 0;
-		$("season-nav").style.display = (mode == 1) ? "block" : "none";
+		$("season-nav").style.display = (mode == 1 || mode == 3) ? "block" : "none";
 		
-		document.getElementsByTagName("H1")[0].className = (mode == 2) ? "mariokart" : "";
-		document.getElementsByTagName("H1")[0].children[0].innerHTML = (mode == 2) ? "Casual Kart" : "Casual ARMS";
+		document.getElementsByTagName("H1")[0].className = (mode == 2 || mode == 3) ? "kart" : "";
+		document.getElementsByTagName("H1")[0].children[0].innerHTML = (mode == 2 || mode == 3) ? "Casual Kart" : "Casual ARMS";
 		
-		if (mode == 0)
-			displayLeaderboards(rawLeaderboard, leaderboardTiers, "arms");
-		else if (mode == 1)
-			selectSeason();
-		else if (mode == 2)
-			displayLeaderboards(rawLeaderboardMarioKart, leaderboardTiersMarioKart, "mariokart");
-		else if (mode == 3)
-			displayPatreon();
+		activeGame = (mode == 2 || mode == 3) ? "kart" : "arms";
+		
+		var today = new Date();
+		var options = "<option value='0'>" + monthNames[today.getMonth()] + " " + today.getFullYear() + " (Current)</option>";
+		
+		for (var i = 0; i < seasonHistory[activeGame].length; ++i)
+			options += "<option value='" + (i+1) +"'>" + seasonHistory[activeGame][i].title + "</option>";
+		$("season").innerHTML = options;
+		
+		switch (mode)
+		{
+		case 0: displayLeaderboards("arms"); break;
+		case 1: selectSeason("arms"); break;
+		case 2: displayLeaderboards("kart"); break;
+		case 3: selectSeason("kart"); break;
+		case 4: displayPatreon(); break;
+		}
 	}
 	
-	function selectSeason()
+	function selectSeason(game)
 	{
-		var activeSeason = $("season").selectedIndex;
+		var activeSeasonIndex = $("season").selectedIndex;
 		
-		var useBoard = reorganizeLeaderboards(rawLeaderboard);
-		if (activeSeason > 0)
-			useBoard = seasonHistory[activeSeason-1].data;
+		var useBoard = reorganizeLeaderboards(rawLeaderboard[game]);
+		if (activeSeasonIndex > 0)
+			useBoard = seasonHistory[game][activeSeasonIndex-1].data;
 		
-		var prevRawBoard = (activeSeason < rawSeasonHistory.length) ? rawSeasonHistory[activeSeason] : null;
+		var prevRawBoard = (activeSeasonIndex < rawSeasonHistory[game].length) ? rawSeasonHistory[game][activeSeasonIndex] : null;
 		
 		displayMonthly(useBoard, prevRawBoard);
 	}
@@ -591,7 +609,7 @@
 	function load()
 	{
 		fetchLeaderboards("arms", storeLeaderboards);
-		fetchLeaderboards("mariokart", storeLeaderboardsMarioKart);
+		fetchLeaderboards("kart", storeLeaderboardsMarioKart);
 		fetchSeasonHistory(storeSeasons);
 		fetchPatrons(storePatrons);
 		fetchBadges(storeBadges);
@@ -624,14 +642,14 @@
 			<span class="split-mode">
 				<em class="mode active-mode" id="md0" onClick="changeMode(0);">ARMS</em><em class="mode" id="md1" onClick="changeMode(1);">Monthly</em>
 			</span>
-			<em class="mode" id="md2" onClick="changeMode(2);">Mario Kart</em>
-			<em class="mode" id="md3" onClick="changeMode(3);">Patrons</em>
+			<span class="split-mode">
+				<em class="mode" id="md2" onClick="changeMode(2);">Kart</em><em class="mode" id="md3" onClick="changeMode(3);">Monthly</em>
+			</span>
+			<em class="mode" id="md4" onClick="changeMode(4);">Patrons</em>
 		</p>
 		
 		<p id="season-nav">
-			<select id="season" onChange="selectSeason()">
-				<option value="0">October 2018 (Current)</option>
-				<option value="1">September 2018</option>
+			<select id="season" onChange="selectSeason(activeGame)">
 			</select>
 		</p>
 		
