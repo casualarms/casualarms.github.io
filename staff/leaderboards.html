@@ -71,13 +71,14 @@ permalink: /staff/leaderboards/index.html
 	}
 
 	
-	function compare(useTiers, dataNew, dataOld)
+	function compare(mode, dataNew, dataOld)
 	{
+		var useTiers = leaderboardTiers[mode];
+		
 		// Prepare result
 		var newroles = {};
 		for (var t = useTiers.length-1; t >= 0; --t)
 			newroles[useTiers[t].name] = [];
-		
 		
 		// Handle players with known IDs
 		for (key in dataNew)
@@ -163,18 +164,8 @@ permalink: /staff/leaderboards/index.html
 	{
 		var dataNew = parseData(reader.result);
 		$("formatted-for-web").value = JSON.stringify(dataNew);
-		
-		var mode = ["arms", "mariokart"][$("mode").selectedIndex];
-		var useTiers = [leaderboardTiers, leaderboardTiersMarioKart][$("mode").selectedIndex];
-		
-		
-		var callback = function(dataOld)
-		{
-			compare(useTiers, dataNew, dataOld);
-		}
-		
-		
-		fetchLeaderboards(mode, callback);
+		var mode = ["arms", "kart"][$("mode").selectedIndex];
+		fetchLeaderboards(mode, function(dataOld) { compare(mode, dataNew, dataOld); });
 	}
 	
 	function formatFile()
