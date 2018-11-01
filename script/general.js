@@ -166,6 +166,17 @@ function formatTimeUTC(date, diff)
 	return formatTimeHelper(date, diff, date.getUTCHours(), date.getUTCMinutes());
 }
 
+function getNextWeekday(weekday, hours, minutes)
+{
+	var d = new Date();
+	d.setUTCHours(hours);
+	d.setUTCMinutes(minutes);
+	d.setUTCSeconds(0);
+	d.setUTCMilliseconds(0);
+	d.setUTCDate(d.getUTCDate() + ((7 - d.getUTCDay()) % 7 + weekday) % 7);
+	return d;
+}
+
 function reorganizeLeaderboards(rawBoards)
 {
 	var leaderboards = [];

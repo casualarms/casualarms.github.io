@@ -7,21 +7,12 @@
 	<link rel="stylesheet" href="/assets/style.css">
 	<script src="/script/general.js"></script>
 	<script src="/data/support.js"></script>
-	<style>
-	
-	
-	</style>
 	<script>
 	
 	function load()
 	{
-		var diff = getTimeZoneDiff();
-		var timeStart = new Date(Date.UTC(4, 1, 4, 20, 15, 0));
-		
-		convertDates([timeStart], diff);
-		
-		$("time-start").innerHTML = textWeekday(timeStart) + "s " + formatTimeUTC(timeStart, diff);
-		
+		var timeStart = getNextWeekday(4, 20, 15);
+		$("time-start").innerHTML = textWeekday(timeStart) + "s " + formatTime(timeStart);
 	}
 	
 	</script>
@@ -36,6 +27,9 @@
 		<p>The movie is shown, along with community chat, on the <a href="http://rabb.it/ReisAgainst">Rabbit</a> website.</p>
 		
 		<h2>Movie History</h2>
+		
+		<h3>Over the Garden Wall</h3>
+		<p>Watched 2018-10-25. Katie Krentz & Patrick McHale, 2014. <a href="https://www.imdb.com/title/tt3718778/">IMDb</a></p>
 		
 		<h3>もののけ姫 <span style="font-style: italic;">Mononoke-hime</span> (Princess Mononoke)</h3>
 		<p>Watched 2018-10-18. Hayao Miyazaki, 1997. <a href="https://www.imdb.com/title/tt0119698/">IMDb</a></p>
