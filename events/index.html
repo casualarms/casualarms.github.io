@@ -318,15 +318,15 @@ redirect_from: "/lobbies/"
 	}
 	
 	var eventSlots = [
-		{"id" : "monday",    "start" : getNextWeekday(1, 20, 45), "duration" :  60, "title" : "Mega League Monday warmup"},
-		{"id" : "tuesday",   "start" : getNextWeekday(3, 01, 00), "duration" : 120, "title" : "Tidal Tuesday"},
-		{"id" : "wednesday", "start" : getNextWeekday(3, 22, 00), "duration" : 120, "title" : "Wildcard Wednesday"},
-		{"id" : "thursday",  "start" : getNextWeekday(4, 18, 00), "duration" : 120, "title" : "Thumpin' Thursday"},
-		{"id" : "saturday",  "start" : getNextWeekday(6, 18, 00), "duration" : 120, "title" : "Saturday Party Lobby"},
-		{"id" : "sunday",    "start" : getNextWeekday(0, 20, 45), "duration" :  60, "title" : "Champions of the Era warmup"},
-		{"id" : "saturday",  "start" : getNextWeekday(6, 23, 00), "duration" : 120, "title" : "Mario Kart 8 DK 150cc"},
-		{"id" : "wednesday", "start" : getNextWeekday(3, 18, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
-		{"id" : "monday",    "start" : getNextWeekday(1, 18, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
+		{"id" : "monday",    "start" : getNextWeekday(1, 21, 45), "duration" :  60, "title" : "Mega League Monday warmup"},
+		{"id" : "tuesday",   "start" : getNextWeekday(3, 02, 00), "duration" : 120, "title" : "Tidal Tuesday"},
+		{"id" : "wednesday", "start" : getNextWeekday(3, 23, 00), "duration" : 120, "title" : "Wildcard Wednesday"},
+		{"id" : "thursday",  "start" : getNextWeekday(4, 19, 00), "duration" : 120, "title" : "Thumpin' Thursday"},
+		{"id" : "saturday",  "start" : getNextWeekday(6, 19, 00), "duration" : 120, "title" : "Saturday Party Lobby"},
+		{"id" : "sunday",    "start" : getNextWeekday(0, 21, 45), "duration" :  60, "title" : "Champions of the Era warmup"},
+		{"id" : "saturday-kart",  "start" : getNextWeekday(0, 00, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
+		{"id" : "wednesday-kart", "start" : getNextWeekday(3, 19, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
+		{"id" : "monday-kart",    "start" : getNextWeekday(1, 19, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
 	];
 	
 	function load()
@@ -467,24 +467,24 @@ redirect_from: "/lobbies/"
 		<p>The following three weekly events all count for the Casual ARMS leaderboards! All dates and times are in <em>your local time zone</em> unless otherwise specified.</p>
 		
 		<h3 id="tuesday">Tidal Tuesday</h3>
-		<p class="timeslot"><span id="tuesday-start">9:00 PM EDT</span> to <span id="tuesday-end">11:00 PM EDT</span></p>
+		<p class="timeslot"><span id="tuesday-start">9:00 PM EST</span> to <span id="tuesday-end">11:00 PM EST</span></p>
 		
 		<p>The <em>Tidal Tuesday</em> event is a later event aimed at our Pacific Time players! We feature a <a href="themes/#everything">standard party lobby</a> experience so anyone can get the full casual experience outside of our other events.</p>
 		
 		<h3 id="wednesday">Wildcard Wednesday</h3>
-		<p class="timeslot"><span id="wednesday-start">6:00 PM EDT</span> to <span id="wednesday-end">8:00 PM EDT</span></p>
+		<p class="timeslot"><span id="wednesday-start">6:00 PM EST</span> to <span id="wednesday-end">8:00 PM EST</span></p>
 		
 		<p>The <em>Wildcard Wednesday</em> event has a unique theme each week! Each theme has a unique mix of active modes and stages. Settings for each theme can be found in the <a href="themes/"><em>theme list</em></a>.</p>
 		
 		
 		<h3 id="thursday">Thumpin' Thursday</h3>
-		<p class="timeslot"><span id="thursday-start">2:00 PM EDT</span> to <span id="thursday-end">4:00 PM EDT</span></p>
+		<p class="timeslot"><span id="thursday-start">2:00 PM EST</span> to <span id="thursday-end">4:00 PM EST</span></p>
 		
 		<p>The <em>Thumpin' Thursday</em> event is perfect for European players. The event features a rotating stage set, swtiching out every 20 coin lobby!</p>
 		
 		
 		<h3 id="saturday">Saturday Party Lobby</h3>
-		<p class="timeslot"><span id="saturday-start">2:00 PM EDT</span> to <span id="saturday-end">4:00 PM EDT</span></p>
+		<p class="timeslot"><span id="saturday-start">2:00 PM EST</span> to <span id="saturday-end">4:00 PM EST</span></p>
 		
 		<p>The <em>Saturday Party Lobby</em> event features <a href="themes/#everything">standard party lobbies</a> with VS fights, minigames and items always on!</p>
 		
@@ -494,15 +494,37 @@ redirect_from: "/lobbies/"
 			All dates and times are in <em>your local time zone</em> unless otherwise specified.</p>
 		
 		<h3 id="monday">Mega League Monday Warmup Lobby</h3>
-		<p class="timeslot"><span id="monday-start">4:45 PM EDT</span> to <span id="monday-end">5:45 PM EDT</span></p>
+		<p class="timeslot"><span id="monday-start">4:45 PM EST</span> to <span id="monday-end">5:45 PM EST</span></p>
 		
 		<p>The <em>Mega League Monday Warmup Lobby</em> event prepares ARMS players for Mega League Monday, hosted by Schkrimps!</p>
 		
 		
 		<h3 id="sunday">Champions of the Era Warmup Lobby</h3>
-		<p class="timeslot"><span id="sunday-start">4:45 PM EDT</span> to <span id="sunday-end">5:45 PM EDT</span></p>
+		<p class="timeslot"><span id="sunday-start">4:45 PM EST</span> to <span id="sunday-end">5:45 PM EST</span></p>
 		
 		<p>The <em>Champions of the Era Warmup Lobby</em> event prepares ARMS players for Champions of the Era, hosted by Era Wolf!</p>
+		
+		
+		<h2>Mario Kart Events</h2>
+		
+		<p>Tournaments hosted in Mario Kart 8 Deluxe!</p>
+		
+		<h3 id="monday-kart">Monday Kart</h3>
+		<p class="timeslot"><span id="monday-kart-start">2:00 PM EST</span> to <span id="monday-kart-end">4:00 PM EST</span></p>
+		
+		<p>Standard all-track <em>150 cc</em> races!</p>
+		
+		
+		<h3 id="wednesday-kart">Wednesday Kart</h3>
+		<p class="timeslot"><span id="wednesday-kart-start">2:00 PM EST</span> to <span id="wednesday-kart-end">4:00 PM EST</span></p>
+		
+		<p>Standard all-track <em>150 cc</em> races!</p>
+		
+		
+		<h3 id="saturday-kart">Saturday Kart</h3>
+		<p class="timeslot"><span id="saturday-kart-start">7:00 PM EST</span> to <span id="saturday-kart-end">9:00 PM EST</span></p>
+		
+		<p>Standard all-track <em>150 cc</em> races!</p>
 	
 	</div>
 </body>
