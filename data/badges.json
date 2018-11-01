@@ -8,8 +8,8 @@
 	,"180917649444700160": {"name": "MrPiedPiper",         "badges": ["clash", "scramble", "scramble_win", "cgc"] }
 	
 	,"378970992095264769": {"name": "Program",             "badges": ["casualcrew", "clash", "scramble", "season", "cgc", "host"] }
-	,"403932918466215948": {"name": "Main Main",           "badges": ["casualcrew", "clash", "scramble", "host"] }
-	,"215215084090294274": {"name": "Marie",               "badges": ["casualcrew", "clash", "scramble", "host"] }
+	,"403932918466215948": {"name": "Main Main",           "badges": ["casualcrew", "clash", "scramble", "host", "season"] }
+	,"215215084090294274": {"name": "Marie",               "badges": ["casualcrew", "clash", "scramble", "host", "season"] }
 	,"223927575053991936": {"name": "LandFrog",            "badges": ["casualcrew", "clash", "scramble"] }
 	,"327864229673697290": {"name": "Cosmos",              "badges": ["casualcrew", "clash", "scramble"] }
 	,"412681834493640705": {"name": "Ackus",               "badges": ["casualcrew", "clash", "host"] }
@@ -19,7 +19,7 @@
 	
 	,"450773792588038144": {"name": "Becca",               "badges": ["clash", "scramble"] }
 	,"303693190932987905": {"name": "Bogalizard",          "badges": ["clash", "scramble", "season", "season_win", "host"] }
-	,"427587118030651393": {"name": "Reis",                "badges": ["clash", "scramble", "cgc", "host"] }
+	,"427587118030651393": {"name": "Reis",                "badges": ["clash", "scramble", "cgc", "host", "season"] }
 	,"118794402561785857": {"name": "ToxicGamer",          "badges": ["clash", "scramble", "season", "cgc"] }
 	,"312024400457236492": {"name": "Lucario814",          "badges": ["clash", "scramble"] }
 	,"311317784166531073": {"name": "Šime",                "badges": ["clash", "scramble"] }
@@ -80,7 +80,7 @@
 	,"136779908910153728": {"name": "IncredibleMeh",       "badges": ["scramble"] }
 	,"140236006380142592": {"name": "ShinySP",             "badges": ["scramble"] }
 	,"430764831927304193": {"name": "Mr.M",                "badges": ["clash", "scramble"] }
-	,"283658643407110144": {"name": "GalacticDaz",         "badges": ["scramble"] }
+	,"283658643407110144": {"name": "GalacticDaz",         "badges": ["scramble", "season"] }
 	,"350461137357242368": {"name": "FuzMustard",          "badges": ["scramble"] }
 	
 	,"417021831854292992": {"name": "JoyJaz",              "badges": ["host"] }
