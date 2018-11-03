@@ -26,8 +26,7 @@ redirect_from: "/lobbies/"
 	#next-lobby {
 		width: 95%;
 		max-width: 500pt;
-		box-shadow: 0px 0px 8px rgb(88, 83, 2);
-		border-radius: 8pt;
+		box-shadow: 0px 0px 8px rgba(85, 85, 0, 0.5);
 	}
 	
 	.next-box {
@@ -40,7 +39,6 @@ redirect_from: "/lobbies/"
 		margin: 0.6em auto;
 		border-top-left-radius: 1.2em 100%;
 		border-bottom-right-radius: 1.2em 100%;
-		box-shadow: 0px 0px 8px rgb(88, 83, 2);
 		font-family: ARMS;
 		text-decoration: none;
 		color: white;
@@ -69,20 +67,24 @@ redirect_from: "/lobbies/"
 	.banner-indicator {
 		cursor: pointer;
 		display: inline-block;
-		height: 8pt;
-		width: 8pt;
+		height: 10pt;
+		width: 10pt;
 		border-radius: 100%;
 		background-color: yellow;
-		border: 2pt solid black;
-		margin: -2pt 4pt;
+		box-sizing: border-box;
+		border: 1pt solid black;
+		margin: -2pt 5pt;
+		transition: 0.2s transform;
 	}
 	
 	.indicator-type-2, .indicator-type-5 {
 		background-color: #1d94fc;
+		border: none;
 	}
 	
 	.indicator-type-6 {
 		background-color: #f92473;
+		border: none;
 	}
 	
 	#calendar {
@@ -92,35 +94,38 @@ redirect_from: "/lobbies/"
 		margin: 1em auto;
 		position: relative;
 		background-color: white;
-		box-shadow: 0px 0px 8px rgb(88, 83, 2);
+		box-shadow: 0px 0px 8px rgba(85, 85, 0, 0.5);
 	}
 	
 	#calendar div {
 		position: absolute;
 		width: 12.5%;
-		border-right: 1px solid #bbb;
 		height: 100%;
 	}
 	
-	#calendar .cal-time {
+	#calendar div:nth-child(even) {
+		background-color: rgba(0,0,0,0.025);
+	}
+	
+	.cal-time {
 		text-align: left;
 		position: absolute;
 		width: 12.5%;
-		border-top: 1pt solid #444;
+		height: 8%;
 		padding-right: 2px;
 		font-size: 0.8em;
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
-		color: #bbb;
+		color: #ccc;
 		right: 87.5%;
 		box-sizing: border-box;
 	}
 	
-	#calendar .cal-divider {
+	.cal-divider {
 		position: absolute;
 		width: 87.5%;
-		border-top: 1pt dotted #bbb;
+		height: 8%;
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
@@ -128,11 +133,15 @@ redirect_from: "/lobbies/"
 		box-sizing: border-box;
 	}
 	
-	#calendar .cal-time:nth-of-type(1), #calendar .cal-divider:nth-of-type(2) {
-		border: none;
+	.cal-time:nth-child(even) {
+		background-color: rgba(255,255,255,0.2);
 	}
 	
-	#calendar .cal-event {
+	.cal-divider:nth-child(odd) {
+		background-color: rgba(0,0,0,0.025);
+	}
+	
+	.cal-event {
 		text-align: center;
 		position: absolute;
 		width: 12.5%;
@@ -140,43 +149,57 @@ redirect_from: "/lobbies/"
 		color: black;
 		overflow: hidden;
 		box-sizing: border-box;
-		border: 1pt solid #bbb;
 		z-index: 0;
 		text-decoration: none;
+		box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
 	}
 	
-	#calendar .cal-event-slot {
-		background-color: #888;
-		color: white;
+	.cal-event-slot-arms, .cal-event-slot-kart {
+		color: rgba(0, 0, 0, 0.4);
+		border: 2pt dotted rgba(0, 0, 0, 0.7);
+		box-shadow: none;
+		opacity: 0.15;
 	}
 	
-	#calendar .cal-event-current-time {
+	.cal-event-slot-arms {
+		background-color: yellow;
+	}
+	
+	.cal-event-slot-kart {
+		background-color: #f92473;
+	}
+	
+	.cal-event-current-time {
 		background-color: black;
 		color: white;
 	}
 	
-	#calendar .cal-event-2, #calendar .cal-event-5 {
+	.cal-event-2, #calendar .cal-event-5 {
 		background-color: #1d94fc;
+		color: white;
 	}
 	
-	#calendar .cal-event-6 {
+	.cal-event-6 {
 		background-color: #f92473;
 		color: white;
 	}
 	
-	#calendar .cal-event .info {
+	.cal-event .info {
 		display: none;
 	}
 	
-	#calendar .cal-event:hover {
+	.cal-event:hover {
 		height: auto !important;
-		width: 250px;
+		width: 270px;
 		padding: 0.5em;
-		transform: translatex(-75px) translateY(-10px);
+		transform: translatex(-85px) translateY(-10px);
 		z-index: 1;
+		border-top-left-radius: 2em 100%;
+		border-bottom-right-radius: 2em 100%;
+		opacity: 1;
 	}
 	
-	#calendar .cal-event:hover .info {
+	.cal-event:hover .info {
 		display: inline;
 	}
 	
@@ -195,7 +218,7 @@ redirect_from: "/lobbies/"
 		width: 100%;
 		height: 4%;
 		background-color: black;
-		color: #bbb;
+		color: #ccc;
 		font-size: 0.8em;
 		text-transform: uppercase;
 	}
@@ -210,13 +233,18 @@ redirect_from: "/lobbies/"
 	}
 	
 	#legend > span {
-		padding: 2pt 10pt;
-		line-height: 2em;
+		font-size: 0.8em;
+		padding: 0pt 8pt;
+		line-height: 2.2em;
 		white-space: nowrap;
-		box-shadow: 0px 0px 5px rgb(88, 83, 2);
-		border-top-left-radius: 0.8em 100%;
-		border-bottom-right-radius: 0.8em 100%;
+		border: 2pt solid rgba(0, 0, 0, 0.4);
 		margin: 2pt;
+	}
+	
+	#legend > span#legend-slot {
+		background-color: rgb(240, 240, 240);
+		color: black;
+		border: 2pt dotted rgba(0, 0, 0, 0.15);
 	}
 	
 	@media only screen and (max-width: 700px)
@@ -263,7 +291,7 @@ redirect_from: "/lobbies/"
 		var height = duration / 3600000 * 4;
 		var dateOffset = (start.getDay() + 6) % 7 + 1;
 		
-		var onclick = (evtype != "slot") ? "onclick='previewEvent(" + index + ");'" : "";
+		var onclick = (index != -1) ? "onclick='previewEvent(" + index + ");'" : "";
 		return result + "<a href='" + anchor + "' " + onclick +" class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
 	}
 	
@@ -287,7 +315,18 @@ redirect_from: "/lobbies/"
 		
 		$("next-link").style.display = "block";
 		$("next-link").href = "https://www.casualarms.net/events/?id=" + getEventID(ev);
-		$("nx-link-field").innerHTML = getEventID(ev);
+		$("nx-link-field").innerHTML = "events/?id=" + getEventID(ev);
+		
+		if (ev["type"] == 2)
+		{
+			$("next-link").href = "https://www.casualarms.net/clash";
+			$("nx-link-field").innerHTML = "clash";
+		}
+		else if (ev["type"] == 5)
+		{
+			$("next-link").href = "https://www.casualarms.net/scramble";
+			$("nx-link-field").innerHTML = "scramble";
+		}
 		
 		$("next-leaderboards").style.display = (ev.type == 0) ? "block" : "none";
 		$("next-leaderboards-mariokart").style.display = (ev.type == 6) ? "block" : "none";
@@ -306,9 +345,8 @@ redirect_from: "/lobbies/"
 		
 		var indicators = document.getElementsByClassName("banner-indicator");
 		for (var ind = 0; ind < indicators.length; ++ind)
-			indicators[ind].style.backgroundColor = "";
-		
-		$("banner-indicator-" + i).style.backgroundColor = "black";
+			indicators[ind].style.transform = "";
+		$("banner-indicator-" + i).style.transform = "scale(1.6)";
 	}
 	
 	function changeBanner(dir)
@@ -318,15 +356,15 @@ redirect_from: "/lobbies/"
 	}
 	
 	var eventSlots = [
-		{"id" : "monday",    "start" : getNextWeekday(1, 21, 45), "duration" :  60, "title" : "Mega League Monday warmup"},
-		{"id" : "tuesday",   "start" : getNextWeekday(3, 02, 00), "duration" : 120, "title" : "Tidal Tuesday"},
-		{"id" : "wednesday", "start" : getNextWeekday(3, 23, 00), "duration" : 120, "title" : "Wildcard Wednesday"},
-		{"id" : "thursday",  "start" : getNextWeekday(4, 19, 00), "duration" : 120, "title" : "Thumpin' Thursday"},
-		{"id" : "saturday",  "start" : getNextWeekday(6, 19, 00), "duration" : 120, "title" : "Saturday Party Lobby"},
-		{"id" : "sunday",    "start" : getNextWeekday(0, 21, 45), "duration" :  60, "title" : "Champions of the Era warmup"},
-		{"id" : "saturday-kart",  "start" : getNextWeekday(0, 00, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
-		{"id" : "wednesday-kart", "start" : getNextWeekday(3, 19, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
-		{"id" : "monday-kart",    "start" : getNextWeekday(1, 19, 00), "duration" : 120, "title" : "Mario Kart 8 DX 150cc"},
+		{ id : "monday",         game : "arms", start : getNextWeekday(1, 21, 45), duration :  60, title : "Mega League Monday warmup"},
+		{ id : "tuesday",        game : "arms", start : getNextWeekday(3, 02, 00), duration : 120, title : "Tidal Tuesday"},
+		{ id : "wednesday",      game : "arms", start : getNextWeekday(3, 23, 00), duration : 120, title : "Wildcard Wednesday"},
+		{ id : "thursday",       game : "arms", start : getNextWeekday(4, 19, 00), duration : 120, title : "Thumpin' Thursday"},
+		{ id : "saturday",       game : "arms", start : getNextWeekday(6, 19, 00), duration : 120, title : "Saturday Party Lobby"},
+		{ id : "sunday",         game : "arms", start : getNextWeekday(0, 21, 45), duration :  60, title : "Champions of the Era warmup"},
+		{ id : "saturday-kart",  game : "kart", start : getNextWeekday(0, 00, 00), duration : 120, title : "Mario Kart 8 DX 150cc"},
+		{ id : "wednesday-kart", game : "kart", start : getNextWeekday(3, 19, 00), duration : 120, title : "Mario Kart 8 DX 150cc"},
+		{ id : "monday-kart",    game : "kart", start : getNextWeekday(1, 19, 00), duration : 120, title : "Mario Kart 8 DX 150cc"},
 	];
 	
 	function load()
@@ -334,11 +372,9 @@ redirect_from: "/lobbies/"
 		// Add time marks
 		var timemarks = "";
 		for (i = 0; i < 24; i += 2)
-		{
-			var d = new Date(1, 1, 1, i, 0, 0);
-			timemarks += "<span class='cal-time' style='top: " + (i * 4 + 4) + "%;'>" + formatTime(d) + "</span>";
+			timemarks += "<span class='cal-time' style='top: " + (i * 4 + 4) + "%;'>" + formatTime(new Date(1, 1, 1, i, 0, 0)) + "</span>";
+		for (i = 0; i < 24; i += 2)
 			timemarks += "<span class='cal-divider' style='top: " + (i * 4 + 4) + "%;'></span>";
-		}
 		$("calendar").innerHTML += timemarks;
 		
 		// Add standard slots
@@ -349,7 +385,7 @@ redirect_from: "/lobbies/"
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
 			$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
 			$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
-			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
+			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, "slot-" + eventSlots[i].game, eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 		}
 		
 		// Add upcoming events for one week
@@ -414,9 +450,9 @@ redirect_from: "/lobbies/"
 		
 		<p>There are two types of events: <em>Leaderboard events</em> where the player's <img class='armscoin-text' src='/leaderboards/coin_arms_dark.png'/>  coins are counted and added to the <a href="/leaderboards/"><em>leaderboards</em></a>. <em>Warmup events</em> are just for fun and/or to let players get in shape for community tournaments.</p>
 		
-		<div id="next-section" style="display: none;">
+		<div id="next-section">
 			<h3 id="next">Next Event</h3>
-			<canvas width="880" height="480" id="next-lobby"></canvas>
+			<canvas width="880" height="480" id="next-lobby">There is no announced event right now.</canvas>
 			<p id="banner-nav">
 				<button onClick="changeBanner(-1)" id="banner-previous">&lt;</button>
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
@@ -426,11 +462,11 @@ redirect_from: "/lobbies/"
 			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big">ARMS</span></a>
 			<a href="/leaderboards/#mariokart" class="next-box" id="next-leaderboards-mariokart">leaderboards: <span class="nx-big">Mario Kart</span></a>
 			<a href="" class="next-box" id="next-theme">theme: <span class="nx-big" id="nx-theme-field"></span></a>
-			<a href="" class="next-box" id="next-link">www.casualarms.net/events/?id=<span class="nx-big" id="nx-link-field"></span></a>
+			<a href="" class="next-box" id="next-link">www.casualarms.net/<span class="nx-big" id="nx-link-field"></span></a>
 			<p id="next-info"></p>
 		</div>
 		
-		<h3>Upcoming Events</h3>
+		<h3 id="schedule">Upcoming Events</h3>
 		
 		<div id="calendar">
 			<div id="cal-times"><span class="cal-title"></span></div>
@@ -445,7 +481,7 @@ redirect_from: "/lobbies/"
 		
 		<p style="text-align: center;">
 			<span id="legend">
-				<span style="background-color: #888;">Regular Slot</span>
+				<span id="legend-slot">Regular Slot</span>
 				<span style="background-color: yellow; color: black;">ARMS Lobby</span>
 				<span style="background-color: #1d94fc;">ARMS Tournament</span>
 				<span style="background-color: #f92473;">Mario Kart</span>
