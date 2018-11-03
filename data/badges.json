@@ -1,6 +1,6 @@
 {
 	 "339592807104643083": {"name": "Rashiko",             "badges": ["casualcouple", "casualcrew", "season", "host"] }
-	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season", "clash", "cgc", "host"] }
+	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season", "clash", "scramble", "cgc", "host"] }
 	
 	,"398284103541063690": {"name": "Sim",                 "badges": ["clash", "clash_win"] }
 	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "season"] }
@@ -50,7 +50,7 @@
 	,"258098427844493316": {"name": "SoraFirestorm",       "badges": ["clash", "scramble", "season", "host"] }
 	,"269980957212147714": {"name": "Mario119",            "badges": ["clash"] }
 	,"231574706506039298": {"name": "Rick Hardslab",       "badges": ["clash"] }
-	,"191293552142057473": {"name": "Kat",                 "badges": ["clash"] }
+	,"191293552142057473": {"name": "Kat",                 "badges": ["clash", "scramble"] }
 	,"211794202370113536": {"name": "Levi",                "badges": ["clash", "scramble", "cgc", "host"] }
 	,"415266965788295168": {"name": "Dendrimer",           "badges": ["clash"] }
 	,"333469682952830976": {"name": "Ai-chan",             "badges": ["clash"] }
@@ -69,11 +69,11 @@
 	,"226824104399994881": {"name": "lilbeansie",          "badges": ["scramble"] }
 	,"208664924145188866": {"name": "Idranoid",            "badges": ["scramble"] }
 	
-	,"315301009117413376": {"name": "GM-Tom",              "badges": ["season", "clash"] }
+	,"315301009117413376": {"name": "GM-Tom",              "badges": ["season", "clash", "scramble"] }
 	,"308818549655339008": {"name": "E.P.Silon",           "badges": ["cgc"] }
 	,"398013985619968010": {"name": "idkhonestly",         "badges": ["cgc"] }
 	,"302855132431777792": {"name": "ABowlOfCereal",       "badges": ["cgc"] }
-	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "clash"] }
+	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "clash", "scramble"] }
 	
 	,"196169851788591104": {"name": "Jiko",                "badges": ["clash", "scramble"] }
 	,"327106519785275392": {"name": "SirRacha",            "badges": ["clash", "scramble"] }
@@ -91,9 +91,15 @@
 	
 	,"382484155822243842": {"name": "mattatthat",          "badges": ["clash"] }
 	,"249430453751250945": {"name": "Asqew",               "badges": ["clash", "clash-win"] }
-	,"396420455545831425": {"name": "C-smax",              "badges": ["clash"] }
+	,"396420455545831425": {"name": "C-smax",              "badges": ["clash", "scramble"] }
 	,"389920535653515264": {"name": "RuctionGaming",       "badges": ["clash"] }
 	,"86282152777367552":  {"name": "Mileve",              "badges": ["clash"] }
 	,"196390864543678464": {"name": "Mogori",              "badges": ["clash"] }
+	
+	
+	,"138729882556301313": {"name": "Dendy",               "badges": ["scramble"] }
+	,"196399844988813312": {"name": "BOOP",                "badges": ["scramble"] }
+	,"381626947119218699": {"name": "Beamblaster10",       "badges": ["scramble", "scramble_win"] }
+	
 	
 }
