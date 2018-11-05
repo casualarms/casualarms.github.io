@@ -46,7 +46,7 @@
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-07T19:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"4621-2901-6363","tier":0}],"streamers":[]}
 	,{"titleText":"Casual Scramble Warmup","type":1,"theme":"scramble","date":"2018-11-03T19:15:00.000Z","duration":60,"timeZone":"EDT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":[],"sponsor":"mindgames"}
 	,{"titleText":"CotE Warmup","type":4,"theme":"cote","date":"2018-11-04T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0},{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}],"streamers":[]}
-	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-11-05T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}],"streamers":[]}
+	,{"titleText":"Fights Only Lobby","type":3,"theme":"mlm","date":"2018-11-05T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0}],"streamers":["mileve"]}
 	,{"titleText":"Tidal Tuesday","type":0,"theme":"hedlok-havok","date":"2018-11-07T02:00:00.000Z","duration":120,"timeZone":"PST","hosts":[{"name":"Sora","tag":"","code":"0499-4528-8293","tier":0},{"name":"Marie","tag":"CC","code":"5693-4645-2698","tier":0}],"streamers":["sorafirestorm"]}
 	
 	,{"titleText":"Casual Clash 6","type":2,"theme":"clash","date":"2018-10-20T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
