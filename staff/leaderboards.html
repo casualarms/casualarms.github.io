@@ -130,6 +130,11 @@ permalink: /staff/leaderboards/index.html
 		$("newroles").innerHTML = output;
 	}
 	
+	function error(message)
+	{
+		$("error").innerHTML = "Fatal Error: " + message;
+		throw new Error(message);
+	}
 	
 	
 	function parseData(text)
@@ -144,13 +149,20 @@ permalink: /staff/leaderboards/index.html
 			var userName = row[1];
 			var userID = row[0];
 			
+			if (userName == "" || userID == "")
+				error("Found empty name and/or ID");
+			
 			var monthly = parseInt(row[3]);
 			if (!monthly) monthly = 0;
 			
 			if (userID == "UNKNOWN")
 				unknowns.push([userName, parseInt(row[2]), monthly]);
 			else
+			{
+				if (userID in data)
+					error("Duplicate ID (" + userID + ")");
 				data[userID] = {"name" : userName, "coins" : parseInt(row[2]), "monthly" : monthly};
+			}
 		}
 		
 		data["UNKNOWN"] = unknowns;
@@ -170,6 +182,7 @@ permalink: /staff/leaderboards/index.html
 	
 	function formatFile()
 	{
+		$("error").innerHTML = "";
 		var selectedFile = $("file-new").files[0];
 		reader.readAsText(selectedFile);
 	}
@@ -190,6 +203,8 @@ permalink: /staff/leaderboards/index.html
 		<h2>Input</h2>
 		<input type="file" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
 		<br/>
+		
+		<p id="error"></p>
 		
 		<h3>JSON Leaderboard</h3>
 		<textarea id="formatted-for-web" rows="15"></textarea>
