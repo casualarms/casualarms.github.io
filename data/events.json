@@ -50,6 +50,9 @@
 	,{"titleText":"Tidal Tuesday","type":0,"theme":"barrier-bonanza","date":"2018-11-07T02:00:00.000Z","duration":120,"timeZone":"PST","hosts":[{"name":"Sora","tag":"","code":"0499-4528-8293","tier":0},{"name":"Marie","tag":"CC","code":"5693-4645-2698","tier":0}],"streamers":["sorafirestorm"]}
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"corner-chaos","date":"2018-11-07T23:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":[]}
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-11-08T19:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":[]}
+	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-11T00:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"2249-6629-0987","tier":0}],"streamers":[]}
+	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-12T19:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"1077-9421-4443","tier":0}],"streamers":[]}
+	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-14T19:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"4621-2901-6363","tier":0}],"streamers":[]}
 	
 	
 	,{"titleText":"Casual Clash 6","type":2,"theme":"clash","date":"2018-10-20T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
