@@ -60,7 +60,7 @@
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"teambuilding-near-far","date":"2018-11-14T23:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0},{"name":"Spenjo","tag":"","code":"0725-4824-1895","tier":0}],"streamers":[]}
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-11-15T19:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0},{"name":"GV-97","tag":"","code":"5861-0816-5793","tier":0}],"streamers":[]}
 	,{"titleText":"Casual Clash 7","type":2,"theme":"clash","date":"2018-11-17T21:30:00.000Z","duration":90,"timeZone":"EST","hosts":[],"streamers":[]}
-	,{"titleText":"Clash Warmup","type":1,"theme":"clash","date":"2018-11-17T20:15:00.000Z","duration":60,"timeZone":"EST","hosts":[],"streamers":[]}
+	,{"titleText":"Clash Warmup","type":1,"theme":"clash","date":"2018-11-17T20:15:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0},{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}],"streamers":[]}
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-18T00:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"4412-5645-5723","tier":0}],"streamers":[]}
 	,{"titleText":"CotE Warmup","type":4,"theme":"cote","date":"2018-11-18T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"To be announced","tag":"","code":"-","tier":0}],"streamers":[]}
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-19T19:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"1077-9421-4443","tier":0}],"streamers":[]}
