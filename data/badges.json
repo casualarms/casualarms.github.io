@@ -95,11 +95,14 @@
 	,"389920535653515264": {"name": "RuctionGaming",       "badges": ["clash"] }
 	,"86282152777367552":  {"name": "Mileve",              "badges": ["clash"] }
 	,"196390864543678464": {"name": "Mogori",              "badges": ["clash"] }
+	,"350643816404877322": {"name": "BunnyChamp",          "badges": ["clash"] }
+	,"219155908830298132": {"name": "uran10",              "badges": ["clash"] }
+	,"265719610681065472": {"name": "cheesyluigi",         "badges": ["clash"] }
 	
 	
 	,"138729882556301313": {"name": "Dendy",               "badges": ["scramble"] }
 	,"196399844988813312": {"name": "BOOP",                "badges": ["scramble"] }
-	,"381626947119218699": {"name": "Beamblaster10",       "badges": ["scramble", "scramble_win"] }
+	,"381626947119218699": {"name": "Beamblaster10",       "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	
 	
 }
