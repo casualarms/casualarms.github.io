@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ItemBot - Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<style>
+		
+	
+	#container {
+		background-color: #ddd;
+	}
+	
+	.arg {
+		
+	}
+	
+	.arg:before {
+		content: "[";
+	}
+	
+	.arg:after {
+		content: "]";
+	}
+	
+	#bot {
+		display: block;
+		margin: 0 auto;
+		width: 20%;
+		border-radius: 100%;
+		box-shadow: 0 2pt 5pt #888;
+	}
+	
+	.command-box {
+		padding: 0 10%;
+		line-height: 1.4em;
+	}
+	
+	.command {
+		font-family: monospace;
+		font-size: 1.2em;
+		padding: 1pt 2pt;
+		white-space: nowrap;
+		text-transform: lowercase;
+	}
+	
+	h3 .command {
+		font-size: 1.2em;
+		padding: 3pt 4pt;
+	}
+	
+	.argument {
+		color: yellow;
+		font-weight: bold;
+		font-style: italic;
+	}
+	
+	.argument-nest {
+		font-family: monospace;
+		white-space: nowrap;
+		color: yellow;
+		font-style: italic;
+	}
+	
+	.response {
+		background-color: #33353b;
+		padding: 0.5em;
+		font-size: 0.8em;
+	}
+	
+	
+	@media only screen and (max-width: 600px)
+	{
+		.command-box {
+			line-height: 1.1em;
+			font-size: 0.8em;
+			padding: 0 5%;
+		}
+	}
+	
+	</style>
+	
+	<script>
+	
+	function fetchItemBot(callback)
+	{
+		return fetchJSON("/data/itembot.json", callback);
+	}
+	
+	function renderDocumentation(itembot)
+	{
+		var docs = "";
+		var prompt = itembot.prompt;
+		var scrolltoid = null;
+		
+		for (var c = 0; c < itembot.commands.length; ++c)
+		{
+			var command = itembot.commands[c];
+			
+			if (window.location.hash.substring(1) == command.opcodes[0])
+				scrolltoid = command.opcodes[0];
+			
+			var header = prompt + command.opcodes[0];
+			var argdoc = "<div class='command-box'>";
+			
+			argdoc += "<p>" + escapeHTML(command.desc) + ".</p>";
+			
+			if (command.opcodes.length > 1)
+			{
+				argdoc += "<p>Aliases: ";
+				for (var oc = 1; oc < command.opcodes.length; oc++)
+					argdoc += "<span class='command'>" + prompt + command.opcodes[oc] + "</span> ";
+				argdoc += "</p>";
+			}
+			
+			if (command.args.length > 0)
+			{
+				argdoc += "<p>Arguments:";
+				argdoc += "<ul>";
+				
+				for (var a = 0; a < command.args.length; a++)
+				{
+					var arg = command.args[a];
+					var req = arg.required ? "required" : "optional";
+					argdoc += "<li><span class='command argument'>" + arg.name + "</span> (" + req + ")";
+					header += " <span class='argument-nest'>" + arg.name + "</span>";
+					
+					if (arg.type == "fixed")
+					{
+						argdoc += "<ul>";
+						for (key in arg.legend)
+							argdoc += "<li><span class='command'>" + key + "</span>: " + arg.legend[key] + ".</li>";
+						argdoc += "</ul>";
+					}
+					else if (arg.type == "free")
+					{
+						argdoc += "<br/>" + arg.legend + ".";
+					}
+					argdoc += "</li>";
+				}
+				argdoc += "</ul></p>";
+			}
+			argdoc += "</div>";
+			
+			docs += "<h3 id='" + command.opcodes[0] + "'><span class='command'>" + header + "</span></h3>";
+			docs += argdoc;
+		}
+		
+		
+		$("documentation").innerHTML = docs;
+		
+		$(scrolltoid).scrollIntoView();
+	}
+	
+	function load()
+	{
+		fetchItemBot(renderDocumentation);
+	}
+	
+	</script>
+</head>
+
+<body onLoad="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		
+		<h2>ItemBot 2</h2>
+		
+		<img id="bot" src="itembot2.png"/>
+		
+		<p><em>ItemBot</em> is the chat bot serving the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> members. It connects the server to the website, with the <em>event scheduling</em> and <em>leaderboard tracking</em>, among other features. This page shows documentation for the available ItemBot commands.</p>
+		
+		
+		<div id="documentation"></div>
+	
+	</div>
+</body>
+</html>
