@@ -75,8 +75,7 @@
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-21T19:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"4621-2901-6363","tier":0}],"streamers":[]}
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-11-25T00:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"4412-5645-5723","tier":0}],"streamers":[]}
 	,{"titleText":"CotE Warmup","type":4,"theme":"cote","date":"2018-11-25T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"to be announced","tag":"","code":"-","tier":0}],"streamers":[]}
-	
-	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-11-22T19:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"to be announced","tag":"","code":"-","tier":0}],"streamers":[]}
+	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-11-22T19:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"Program","tag":"","code":"4898-5196-4000","tier":0},{"name":"GV-97","tag":"","code":"5861-0816-5793","tier":0}],"streamers":[]}	
 	
 	
 	
