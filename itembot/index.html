@@ -70,12 +70,34 @@
 		font-size: 0.8em;
 	}
 	
+	#summary {
+		padding: 0 10%;
+		text-align: justify;
+	}
+	
+	#summary .command {
+		line-height: 1.6em;
+	}
+	
+	a.command {
+		text-decoration: none;
+	}
+	
+	a.command:hover {
+		text-decoration: none;
+		background-color: #1d94fc;
+	}
+	
 	
 	@media only screen and (max-width: 600px)
 	{
 		.command-box {
 			line-height: 1.1em;
 			font-size: 0.8em;
+			padding: 0 5%;
+		}
+		
+		#summary {
 			padding: 0 5%;
 		}
 	}
@@ -94,6 +116,7 @@
 		var docs = "";
 		var prompt = itembot.prompt;
 		var scrolltoid = null;
+		var summary = "";
 		
 		for (var c = 0; c < itembot.commands.length; ++c)
 		{
@@ -102,11 +125,11 @@
 			if (window.location.hash.substring(1) == command.opcodes[0])
 				scrolltoid = command.opcodes[0];
 			
-			
 			var header = prompt + command.opcodes[0];
 			var argdoc = "<div class='command-box'>";
 			
 			argdoc += "<p>" + escapeHTML(command.desc) + ".</p>";
+			summary += "<a href='#" + command.opcodes[0] + "' class='command'>" + prompt + command.opcodes[0] + "</a> ";
 			
 			if (command.opcodes.length > 1)
 			{
@@ -150,9 +173,11 @@
 		}
 		
 		
+		$("summary").innerHTML = summary;
 		$("documentation").innerHTML = docs;
 		
-		$(scrolltoid).scrollIntoView();
+		if (scrolltoid)
+			$(scrolltoid).scrollIntoView();
 	}
 	
 	function load()
@@ -173,6 +198,11 @@
 		
 		<p><em>ItemBot</em> is the chat bot serving the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> members. It connects the server to the website, with the <em>event scheduling</em> and <em>leaderboard tracking</em>, among other features. This page shows documentation for the available ItemBot commands.</p>
 		
+		<h2>Command Overview</h2>
+		
+		<div id="summary"></div>
+		
+		<h2>Command Documentation</h2>
 		
 		<div id="documentation"></div>
 	
