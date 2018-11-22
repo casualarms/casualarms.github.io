@@ -379,3 +379,17 @@ function printTheme(ev, concise)
 	html += "</div>";
 	return html;
 }
+
+function copyToClipboard(tid)
+{
+	var copyTextarea = $(tid);
+	copyTextarea.focus();
+	copyTextarea.select();
+	
+	try {
+		var successful = document.execCommand('copy');
+		console.log('Copying text command was ' + (successful ? 'successful' : 'unsuccessful'));
+	} catch (err) {
+		console.log('Oops, unable to copy');
+	}
+}

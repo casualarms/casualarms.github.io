@@ -58,6 +58,10 @@ permalink: /staff/banners/index.html
 		font-family: monospace;
 	}
 	
+	.btn-cpy {
+		background-color: yellow;
+	}
+	
 	</style>
 	<script>
 	
@@ -93,6 +97,7 @@ permalink: /staff/banners/index.html
 				$("quickEntry" + hostsList[i]).innerHTML += html;
 			}
 		}
+		readAndGenerate();
 	}
 	
 	
@@ -113,6 +118,7 @@ permalink: /staff/banners/index.html
 		$("timezone").value = eventData.timeZone;
 		
 		var hostsList = ["A", "B", "C"];
+		var streamersList = ["C"];
 		
 		for (var i = 0; i < hostsList.length; ++i)
 		{
@@ -123,10 +129,12 @@ permalink: /staff/banners/index.html
 			$("host" + hostsList[i]).selectedIndex = (active ? eventData.hosts[i].tier : 0);
 		}
 		
-		$("streamerA").value = $("streamerB").value = $("streamerC").value = "";
+		for (var i = 0; i < streamersList.length; ++i)
+			$("streamer" + streamersList[i]).value = "";
+		
 		if ("streamers" in eventData)
 			for (var i = 0; i < eventData["streamers"].length; ++i)
-				$("streamer" + hostsList[i]).value = eventData["streamers"][i];
+				$("streamer" + streamersList[i]).value = eventData["streamers"][i];
 		
 		var themeIndex = 0;
 		for (var i = 0; i < eventThemes.length; ++i)
@@ -142,6 +150,8 @@ permalink: /staff/banners/index.html
 		$("title").value = unEscapeHTML(eventData.titleText);
 		$("type").selectedIndex = eventData.type;
 		$("sponsor").selectedIndex = (eventData.sponsor == "mindgames") ? 1 : 0;
+		
+		readAndGenerate();
 	}
 	
 	function fillFromEventDataHistory()
@@ -190,10 +200,11 @@ permalink: /staff/banners/index.html
 			if (host.code != "") hosts.push(host);
 		}
 		
+		var streamersList = ["C"];
 		var streamers = [];
-		for (var i = 0; i < hostsList.length; ++i)
+		for (var i = 0; i < streamersList.length; ++i)
 		{
-			var streamID = $("streamer" + hostsList[i]).value;
+			var streamID = $("streamer" + streamersList[i]).value;
 			if (streamID != "") streamers.push(streamID);
 		}
 		
@@ -229,6 +240,7 @@ permalink: /staff/banners/index.html
 			$("code" + id).value         = useHost.code;
 		//	$("host" + id).selectedIndex = useHost.tier;
 		}
+		readAndGenerate();
 	}
 	
 	
@@ -238,13 +250,13 @@ permalink: /staff/banners/index.html
 		<div id="wrapper">
 			<h1>Casual ARMS Banner Generator</h1>
 			<p>Start from previous event: 
-				<select id="event-history"></select>
-				<input type="button" value="Fill form from previous event" onClick="fillFromEventDataHistory()"/>
+				<select id="event-history" onChange="fillFromEventDataHistory()"></select>
+				<!--<input type="button" value="Fill form from previous event" onClick="fillFromEventDataHistory()"/>-->
 			</p>
 			<hr/>
 			<p>
-				Title: <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
-				Type: <select id="type">
+				Title: <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
+				Type: <select id="type" onChange="readAndGenerate()">
 					<option value="0">Leaderboard Lobby</option>
 					<option value="1">Impromptu Lobby</option>
 					<option value="2">Casual Clash</option>
@@ -253,10 +265,10 @@ permalink: /staff/banners/index.html
 					<option value="5">Casual Scramble</option>
 					<option value="6">Mario Kart</option>
 				</select>
-				Theme: <select id="theme"></select>
+				Theme: <select id="theme" onChange="readAndGenerate()"></select>
 			</p>
 			
-			<p>Date: <select id="month">
+			<p>Date: <select id="month" onChange="readAndGenerate()">
 					<option value="0">January</option>
 					<option value="1">February</option>
 					<option value="2">March</option>
@@ -270,70 +282,71 @@ permalink: /staff/banners/index.html
 					<option value="10">November</option>
 					<option value="11">December</option>
 				</select>
-				<input type="number" id="day" value="1"/>
-				<input type="number" id="year" value="2018"/>
-				Start: <input type="number" id="start-hours" value="14"/> : <input type="number" id="start-minutes" value="00"/>
-				in time zone: <input type="text" id="timezone" value="EDT" size="5"/>
-				Duration: <input type="number" id="duration-minutes" value="120"/> min.
+				<input type="number" id="day" value="1" min="1" max="31" onChange="readAndGenerate()"/>
+				<input type="number" id="year" value="2018" onChange="readAndGenerate()"/>
+				Start: <input type="number" id="start-hours" value="14" min="0" max="23" onChange="readAndGenerate()"/> : <input type="number" id="start-minutes" value="00" min="0" max="59" onChange="readAndGenerate()">
+				in time zone: <input type="text" id="timezone" value="EDT" size="5" onChange="readAndGenerate()"/>
+				Duration: <input type="number" id="duration-minutes" value="120" min="0" onChange="readAndGenerate()"/> min.
 			</p>
 			
 			<p>
-				<select id="hostA">
+				<select id="hostA" onChange="readAndGenerate()">
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
 					<option value="2">Medium</option>
 					<option value="3">Hard</option>
 				</select>
-				host: <select id="tagA">
+				host: <select id="tagA" onChange="readAndGenerate()">
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameA" placeholder="Player name"/>
-				code: <input type="text" id="codeA" placeholder="0000-1111-2222"/>
+				<input type="text" id="nameA" placeholder="Player name" onChange="readAndGenerate()"/>
+				code: <input type="text" id="codeA" placeholder="0000-1111-2222" onChange="readAndGenerate()"/>
 				[ Quick Entry <select id="quickEntryA" onchange="quickEntry('A');"><option value="0" selected>---</option></select> ]
 				<br/>
-				<select id="hostB">
+				<select id="hostB" onChange="readAndGenerate()">
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
 					<option value="2" >Medium</option>
 					<option value="3">Hard</option>
 				</select>
-				host: <select id="tagB">
+				host: <select id="tagB" onChange="readAndGenerate()">
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameB" placeholder="Player name"/>
-				code: <input type="text" id="codeB" placeholder="0000-1111-2222"/>
+				<input type="text" id="nameB" placeholder="Player name" onChange="readAndGenerate()"/>
+				code: <input type="text" id="codeB" placeholder="0000-1111-2222" onChange="readAndGenerate()"/>
 				[ Quick Entry <select id="quickEntryB" onchange="quickEntry('B');"><option value="0" selected>---</option></select> ]
 				<br/>
-				<select id="hostC">
+				<select id="hostC" onChange="readAndGenerate()">
 					<option value="0" selected>No Tier</option>
 					<option value="1">Easy</option>
 					<option value="2">Medium</option>
 					<option value="3">Hard</option>
 				</select>
-				host: <select id="tagC">
+				host: <select id="tagC" onChange="readAndGenerate()">
 					<option value="0">--</option>
 					<option value="1">CC</option>
 				</select>
-				<input type="text" id="nameC" placeholder="Player name"/>
-				code: <input type="text" id="codeC" placeholder="0000-1111-2222"/>
+				<input type="text" id="nameC" placeholder="Player name" onChange="readAndGenerate()"/>
+				code: <input type="text" id="codeC" placeholder="0000-1111-2222" onChange="readAndGenerate()"/>
 				[ Quick Entry <select id="quickEntryC" onchange="quickEntry('C');"><option value="0" selected>---</option></select> ]
 			</p>
 			
 			<p>
-				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerA" placeholder="twitchID"/><br/>
-				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerB" placeholder="twitchID"/><br/>
-				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerC" placeholder="twitchID"/>
-			</p>
-			
-			<p>Sponsor: <select id="sponsor">
+			<!--	Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerA" placeholder="twitchID" onChange="readAndGenerate()"/><br/>
+			<!--	Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerB" placeholder="twitchID" onChange="readAndGenerate()"/><br/>-->
+				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerC" placeholder="twitchID" onChange="readAndGenerate()"/>
+				
+				Sponsor: <select id="sponsor" onChange="readAndGenerate()">
 					<option value="0" selected>---</option>
 					<option value="1">MindGames</option>
 				</select>
 			</p>
 			
-			<p><input type="button" value="Generate" onClick="readAndGenerate()"/> <input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/></p>
+			<!--<input type="button" value="Generate" onClick="readAndGenerate()"/>-->
+			<button onCLick="copyToClipboard('text-output')" class="btn-cpy">Copy to Clipboard</button>
+			<input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/>
 			
 			<!--<canvas width="880" height="480" id="test-canvas"></canvas>-->
 			<textarea id="text-output" rows="4"></textarea>

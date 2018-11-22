@@ -48,6 +48,10 @@ permalink: /staff/leaderboards/index.html
 		display: none;
 	}
 	
+	.btn-cpy {
+		background-color: yellow;
+	}
+	
 	</style>
 	<script>
 	
@@ -207,6 +211,7 @@ permalink: /staff/leaderboards/index.html
 		<p id="error"></p>
 		
 		<h3>JSON Leaderboard</h3>
+		<button onCLick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
 		<textarea id="formatted-for-web" rows="15"></textarea>
 		
 		<h3>New Roles</h3>
