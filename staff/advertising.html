@@ -1,0 +1,206 @@
+---
+permalink: /staff/advertising/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Leaderboard Tools - Casual ARMS</title>
+	<script src="/script/general.js"></script>
+	<script src="/script/banner-gen.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("/assets/ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+	
+	#wrapper {
+		max-width: 50em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+	
+	h1, h2, h3, h4 {
+		font-family: ARMS;
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	img {
+		width: 35%;
+		vertical-align: top;
+		margin-right: 3%;
+	}
+	
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 60%;
+		font-family: monospace;
+		margin: 0;
+	}
+	
+	#formatted {
+		background-color: black;
+		color: white;
+	}
+	
+	#input, #previous, #format-text-button, #compare-text-button {
+		display: none;
+	}
+	
+	.btn-cpy {
+		background-color: yellow;
+	}
+	
+	.text-live {
+		display: none;
+	}
+	
+	</style>
+	<script>
+	
+	var templates = {
+		"arms-tuesday" : [
+			"Tidal Tuesday features an earlier #ARMS party lobby slot, aimed at our friends in the Pacific time zone! Just add our listed host and join when the lobby goes live.\n\nJoin us for themed party lobbies and earn coins for our Casual ARMS leaderboards: {leaderboards}",
+			"Our Tidal Tuesday #ARMS party lobby is now live!\n\nJoin our hosts to play:\n{hosts}\nAll coins earned during this event will go on our server leaderboards!\n\nTheme:{theme}",
+		],
+		"arms-wednesday" : [
+			"Thumpin' Thursday is our earlier weekday #ARMS party lobby, aimed at our friends in Europe!\n\nJoin us for fights-focused lobbies on a variety of stages! All coins earned during this event go towards our server leaderboards at {leaderboards}",
+			"Our Thumpin' Thursday #ARMS party lobby is now live!\n\nCoins you earn during this event will go towards our Casual ARMS leaderboards!\n\nJoin our hosts to play:\n{hosts}",
+		],
+		"arms-thursday" : [
+			"Thumpin' Thursday is our earlier weekday #ARMS party lobby, aimed at our friends in Europe!\n\nJoin us for fights-focused lobbies on a variety of stages! All coins earned during this event go towards our server leaderboards at {leaderboards}",
+			"Our Thumpin' Thursday #ARMS party lobby is now live!\n\nCoins you earn during this event will go towards our Casual ARMS leaderboards!\n\nJoin our hosts to play:\n{hosts}",
+		],
+		"arms-mlm" : [
+			"Monday means MEGA LEAGUE MONDAY, a weekly #ARMS tournament hosted by @Schkrimps!\n\nCasual ARMS is hosting a warm-up lobby to get fired up for the tournament!\n\nJoin us the hour before MLM to play!\n\nMore event details: {directlink}\n\nSign up for MLM: https://mlm.challonge.com/MLM59",
+			"Our Mega League Monday warm up #ARMS lobby is now live!\n\nJoin our hosts to play:\n{hosts}\nJoin MLM: https://mlm.challonge.com/MLM59",
+		],
+		"arms-cote" : [
+			"Join us in about 20 minutes to warm up for the Champions of the Era tournament, a weekly #ARMS competition hosted by @EraWolfOfficial !\n\nAll are welcome to play or do the tourney!\n\nMore Casual event details: {directlink}\n\nJoin CotE: https://challonge.com/4magbicr",
+			"Our Champions of the Era #ARMS warmup lobby is now live!\n\nJust join our hosts to play! Both CotE competitors and non-competitors are welcome!\n\nHosts:\n{hosts}\nJoin CotE: https://challonge.com/4magbicr",
+		],
+		
+		"kart" : [
+			"Have you seen our new Casual Kart events? By participating in our tournament slots, rack up points in #MarioKart to work your way up to new roles and colors, just like with ARMS!\n\n{leaderboards} We have a racing event later today! More details: {directlink}",
+			"Our Casual Kart #MarioKart event is now live! Join us with tournament code {code}!",
+		]
+	};
+	
+	function textBlurb(ev, variant)
+	{
+		var key = "";
+		if (ev.type == 6)
+			key = "kart";
+		
+		console.log(ev.titleText + " " + ev.date.getDay());
+		
+		if (ev.type == 0 && ev.date.getDay() == 4)
+			key = "arms-thursday";
+		else if (ev.type == 0 && ev.date.getDay() == 3)
+			key = "arms-tuesday";
+		else if (ev.type == 4)
+			key = "arms-cote";
+		else if (ev.type == 3)
+			key = "arms-mlm";
+		
+		
+		
+		var text = templates[key][variant];
+		var theme = getTheme(ev.theme);
+		var themeText = theme ? theme.name + ": " + "https://www.casualarms.net/events/themes/#" + theme.key : "";
+		
+		var hosttext = "";
+		for (var h = 0; h < ev.hosts.length; h++)
+			hosttext += ev.hosts[h].name + ": [" + ev.hosts[h].code + "]\n";
+			
+		var leaderboards = "https://www.casualarms.net/leaderboards/";
+		
+		text = text.replace("{directlink}", "http://www.casualarms.net/events/?id=" + getEventID(ev));
+		text = text.replace("{hosts}", hosttext);
+		text = text.replace("{leaderboards}", leaderboards);
+		text = text.replace("{code}", ev.hosts[0].code);
+		text = text.replace("{theme}", themeText);
+		
+		if (ev.streamers.length > 0)
+			text += "\n\nWatch the event on stream! http://twitch.tv/" + ev.streamers[0];
+		
+		return text;
+	}
+	
+	function load()
+	{
+	
+	// Add upcoming events for one week
+		nextEvents(function(nextEventData)
+		{
+			var targetEvent = getQueryVariable("id");
+			var first = undefined, target = undefined;
+			
+			for (var i = 0; i < nextEventData.length; ++i)
+			{
+				var html = "";
+				var ev = nextEventData[i];
+				
+				html += "<h2>" + ev.titleText + "</h2>";
+				html += "<img id='result-" + i + "'/>";
+				
+				var id1 = "text-preview-" + getEventID(ev);
+				html += "<textarea rows='12' id='" + id1 + "' class='text-preview'>" + textBlurb(ev, 0) + "</textarea>";
+				html += "<button onCLick=\"copyToClipboard('" + id1 + "')\" class='btn-cpy text-preview'>Copy Text to Clipboard</button>";
+				
+				var id2 = "text-live-" + getEventID(ev);
+				html += "<textarea rows='12'  id='" + id2 + "' class='text-live'>" + textBlurb(ev, 1) + "</textarea>";
+				html += "<button onCLick=\"copyToClipboard('" + id2 + "')\" class='btn-cpy text-live'>Copy Text to Clipboard</button>";
+				
+				$("calendar").innerHTML += html;
+				
+				generateBanner(880, 480, ev, "result-" + i, false);
+			}
+			
+		});
+	}
+	
+	function showAnnouncements()
+	{
+		var elems = document.getElementsByClassName("text-preview");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "inline";
+		
+		var elems = document.getElementsByClassName("text-live");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "none";
+	}
+	
+	function showLiveAlerts()
+	{
+		var elems = document.getElementsByClassName("text-preview");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "none";
+		
+		var elems = document.getElementsByClassName("text-live");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "inline";
+	}
+	
+	</script>
+</head>
+<body onLoad="load()">
+	<div id="wrapper">
+		<h1>Casual ARMS Advertising</h1>
+		
+		<input type="button" value="Preannouncements" onClick="showAnnouncements()"/>
+		<input type="button" value="Live alerts" onClick="showLiveAlerts()"/>
+		<div id="calendar"></div>
+	</div>
+</body>
+</html>
