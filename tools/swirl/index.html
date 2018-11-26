@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Swirl Generator – Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/script/general.js"></script>
+	<link rel="stylesheet" href="/assets/style.css">
+	<style>
+	body {
+		background: #cccccc;
+	}
+	
+	#canvas, #imgres, button {
+		display: block;
+		margin: 10px auto;
+		//    background: white;
+	}
+	
+	#canvas {
+		width: 500px;
+		height: 500px;
+	}
+	
+	label {
+		width: 100px;
+		display: inline-block;
+		text-align: right;
+	}
+	
+	#imgres {
+		height: 100px;
+	}
+	</style>
+	<script>
+	
+	
+	function drawSwirl(startX, startY, maxRadius, rotation, curvature, width, color)
+	{
+		var canvas = document.getElementsByTagName("canvas")[0];
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = color;
+		ctx.moveTo(startX, startY);
+		ctx.beginPath();
+		
+		var steps = 300;
+		function calcStep(i, angle)
+		{
+			var radius = i / steps * maxRadius;
+			var phi = angle + i / steps * curvature;
+			var x = startX + radius * Math.cos(phi);
+			var y = startY + radius * Math.sin(phi);
+			ctx.lineTo(x, y);
+		}
+		
+		for (var i = 0; i < steps; ++i)
+			calcStep(i, rotation);
+		
+		var phiSteps = 50;
+		for (var phi = 0; phi < phiSteps; ++phi)
+			calcStep(steps-1, rotation + (phi / phiSteps) * width);
+		
+		for (var i = steps-1; i >= 0; --i)
+			calcStep(i, rotation + width);
+		
+		ctx.fill();
+	}
+	
+	function drawSwirlComponents(startX, startY, maxRadius, rotation, curvature, width, gaps, color)
+	{
+		var components = gaps * 2 + 1;
+		var width_s = width / components;
+		for (var i = 0; i < components; i += 2)
+		{
+			var m_rotation = rotation + i * width_s;
+			drawSwirl(startX, startY, maxRadius, m_rotation, curvature, width_s, color);
+		}
+	}
+	
+	function render()
+	{
+		var canvas = document.getElementsByTagName("canvas")[0];
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		var midX = canvas.width / 2;
+		var midY = canvas.height / 2;
+		var radius = Math.max(canvas.width, canvas.height) * 2;
+		
+		var lines = [
+			[midX, midY + 25, radius, 0.6 * Math.PI, 3,   0.6, 0, "red"],
+			[midX, midY - 25, radius, 1.7 * Math.PI, 2.5, 0.4, 1, "blue"],
+			[
+				midX + parseFloat($("anchorX").value),
+				midY + parseFloat($("anchorY").value),
+				radius,
+				parseFloat($("rotation").value),
+				parseFloat($("curvature").value),
+				parseFloat($("width").value),
+				parseFloat($("gaps").value),
+				"rgba("+$("colorR").value+","+$("colorG").value+","+$("colorB").value+","+$("colorAlpha").value+")"
+			]
+		];
+		
+		for (var l = 0; l < lines.length; l++)
+			drawSwirlComponents(lines[l][0], lines[l][1], lines[l][2],lines[l][3], lines[l][4],lines[l][5], lines[l][6], lines[l][7]);
+	}
+	
+	function load()
+	{
+		render();
+		
+		$("swirl1").addEventListener('input', function() {
+			render();
+		});
+	}
+	
+	function genImg()
+	{
+		$("imgres").src = $("canvas").toDataURL("image/png");
+	}
+	
+	</script>
+</head>
+<body onLoad="load()">
+	<form id="swirl1">
+		<label for="anchorX"/>Anchor X</label> <input id="anchorX"  type="range" min="-500" max="500" step="1" value="0">
+		<label for="anchorY"/>Anchor Y</label> <input id="anchorY"  type="range" min="-500" max="500" step="1" value="0"><br/>
+   
+		<label for="rotation"/>Rotation</label>   <input id="rotation"  type="range" min="0"   max="6.283" step="0.001"  value="1">
+		<label for="curvature"/>Curvature</label> <input id="curvature" type="range" min="-20"   max="20"  step="0.1"  value="1"><br/>
+		<label for="width"/>Width</label>         <input id="width"     type="range" min="0.1" max="6.283" step="0.001" value="0.5">
+		<label for="gaps"/>Gaps</label>           <input id="gaps"      type="range" min="0"   max="10"  step="1"    value="0"><br/>
+  
+		<label for="colorR"/>Red</label>       <input id="colorR"     type="range" min="0" max="255" step="1"    value="0">
+		<label for="colorG"/>Green</label>     <input id="colorG"     type="range" min="0" max="255" step="1"    value="0"><br/>
+		<label for="colorB"/>Blue</label>      <input id="colorB"     type="range" min="0" max="255" step="1"    value="0">
+		<label for="colorAlpha"/>Alpha</label> <input id="colorAlpha" type="range" min="0" max="1"   step="0.01" value="0.5"><br/>
+	</form>
+
+	<canvas id="canvas" width="3000" height="3000">
+		<p>No canvas.</p>
+	</canvas>
+	<button onclick="genImg()">Generate Image</button>
+	<img src="" id="imgres"/>
+</body>
+</html>
