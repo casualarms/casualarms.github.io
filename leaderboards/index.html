@@ -11,6 +11,10 @@
 	
 	h3 { background-color: black; }
 	
+	#container {
+		background-size: 100%;
+	}
+	
 	#season-nav {
 		text-align: center;
 		display: none;
@@ -608,6 +612,17 @@
 	
 	function load()
 	{
+		var params = [
+			[+50, +20, 0.6 * Math.PI, 3, 0.5, 0, "rgba(0,0,0,0.1)"],
+			[-50, -20, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,200,0.05)"],
+		];
+		var canvas = document.createElement("canvas");
+		canvas.width = 500;
+		canvas.height = 500;
+		renderSwirls(canvas, params);
+		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
+		
+		
 		fetchLeaderboards("arms", storeLeaderboards);
 		fetchLeaderboards("kart", storeLeaderboardsMarioKart);
 		fetchSeasonHistory(storeSeasons);

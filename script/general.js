@@ -393,3 +393,57 @@ function copyToClipboard(tid)
 		console.log('Oops, unable to copy');
 	}
 }
+
+
+function drawSwirl(canvas, startX, startY, maxRadius, rotation, curvature, width, color)
+{
+	var ctx = canvas.getContext('2d');
+	ctx.fillStyle = color;
+	ctx.moveTo(startX, startY);
+	ctx.beginPath();
+	
+	var steps = 300;
+	function calcStep(i, angle)
+	{
+		var radius = i / steps * maxRadius;
+		var phi = angle + i / steps * curvature;
+		var x = startX + radius * Math.cos(phi);
+		var y = startY + radius * Math.sin(phi);
+		ctx.lineTo(x, y);
+	}
+	
+	for (var i = 0; i < steps; ++i)
+		calcStep(i, rotation);
+	
+	var phiSteps = 50;
+	for (var phi = 0; phi < phiSteps; ++phi)
+		calcStep(steps-1, rotation + (phi / phiSteps) * width);
+	
+	for (var i = steps-1; i >= 0; --i)
+		calcStep(i, rotation + width);
+	
+	ctx.fill();
+}
+
+function drawSwirlComponents(canvas, startX, startY, maxRadius, rotation, curvature, width, gaps, color)
+{
+	var components = gaps * 2 + 1;
+	var width_s = width / components;
+	for (var i = 0; i < components; i += 2)
+	{
+		var m_rotation = rotation + i * width_s;
+		drawSwirl(canvas, startX, startY, maxRadius, m_rotation, curvature, width_s, color);
+	}
+}
+
+function renderSwirls(canvas, lines)
+{
+	var ctx = canvas.getContext('2d');
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	var midX = canvas.width / 2;
+	var midY = canvas.height / 2;
+	var radius = Math.max(canvas.width, canvas.height) * 2;
+	
+	for (var l = 0; l < lines.length; l++)
+		drawSwirlComponents(canvas, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
+}
