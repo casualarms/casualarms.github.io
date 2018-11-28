@@ -113,7 +113,8 @@ permalink: /staff/advertising/index.html
 		else if (ev.type == 3)
 			key = "arms-mlm";
 		
-		
+		if (key == "")
+			return ""
 		
 		var text = templates[key][variant];
 		var theme = getTheme(ev.theme);

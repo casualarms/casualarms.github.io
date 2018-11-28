@@ -56,6 +56,7 @@
 		renderSwirls($("canvas"), getParams());
 		
 		$("swirl1").addEventListener('input', function() {
+			$("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
 			renderSwirls($("canvas"), getParams());
 		});
 	}

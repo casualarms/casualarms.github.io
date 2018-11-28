@@ -438,8 +438,6 @@ function drawSwirlComponents(canvas, startX, startY, maxRadius, rotation, curvat
 
 function renderSwirls(canvas, lines)
 {
-	var ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	var midX = canvas.width / 2;
 	var midY = canvas.height / 2;
 	var radius = Math.max(canvas.width, canvas.height) * 2;

@@ -45,7 +45,7 @@ function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, h
 
 function generateBanner(width, height, eventdata, canvasid, nativeTime)
 {
-	var caLogo, mlmLogo, mk8dLogo, coteLogo, discordLogo;
+	var caLogo, mlmLogo, mk8dLogo, coteLogo, discordLogo, streamIcon, leaderboardsIcon;
 	var template, sponsor;
 	
 	var performBannerRendering = function()
@@ -89,7 +89,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		tierFont = "15pt ARMS";
 		teamTagFont = "14pt ARMS";
 		hostsFont = "20pt ARMS";
-		websiteFont = "26pt ARMS";
+		websiteFont = "20pt ARMS";
 		
 		if (eventdata.type == 6)
 		{
@@ -115,13 +115,17 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			ctx.fillRect(0, 0, width, height);
 			ctx.fillStyle = logoBgColor;
 			ctx.fillRect(0, 0, width, 115);
+			var params = [
+				[ 100, 40, 0.6 * Math.PI, 3, 0.4, 0, "rgba(0,0,0,0.09)"],
+				[-100, 50, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,255,0.12)"],
+			];
+			renderSwirls(ctx.canvas, params);
 		}
 		else
 		{
 			renderCheckerboard(ctx, (height-115-40) / 3, 24, 132, 226, "#0991ff", 0, 115, width, height-115-40);
 			renderCheckerboard(ctx, 115 / 3, 50,  50,  50, "#555", 0, 0, width, 115);
 		}
-		
 		
 		ctx.fillStyle = boxBgColor;
 		ctx.fillRect(0, 122, 600, 40);
@@ -191,7 +195,20 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.font = websiteFont;
 		ctx.textAlign = "center";
 		ctx.fillStyle = websiteColor;
-		ctx.fillText("www.casualarms.net".toUpperCase(), 440, 472);
+		var websiteText = (eventdata.theme != "undefined") ? "\"" + getTheme(eventdata.theme).name + "\"" : "www.casualarms.net";
+		ctx.fillText(websiteText.toUpperCase(), 440, 470);
+		
+		if (eventdata.theme != "undefined") 
+		{
+			ctx.font = "12pt ARMS";
+			ctx.fillText("www.casualarms.net".toUpperCase(), 716, 18);
+		}
+		
+		if (eventdata.type == 0 || eventdata.type == 6)
+			ctx.drawImage(leaderboardsIcon, width - 139, height - 40);
+		
+		if (eventdata.streamers.length > 0)
+			ctx.drawImage(streamIcon, 0, height - 40);
 		
 		// Hosts
 		var didDrawCodes = false;
@@ -314,9 +331,11 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	}
 	else
 	{
-		imageURLs.push("/assets/banners/logo-mlm.jpg");
+		imageURLs.push("/assets/banners/logo-mlm.png");
 		imageURLs.push("/assets/banners/logo-cote.jpg");
 		imageURLs.push("/assets/banners/logo-mk8d.png");
+		imageURLs.push("/assets/banners/icon-livestream.png");
+		imageURLs.push("/assets/banners/icon-leaderboards.png");
 	}
 	
 	loadAllImages();
@@ -347,6 +366,8 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 				mlmLogo = imgs[2];
 				coteLogo = imgs[3];
 				mk8dLogo = imgs[4];
+				streamIcon = imgs[5];
+				leaderboardsIcon = imgs[6];
 			}
 			
 			// Initialization
