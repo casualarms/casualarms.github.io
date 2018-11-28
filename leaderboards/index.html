@@ -246,18 +246,15 @@
 		}
 		
 		// Leaderboard badges
-		var games = [
-			{ game : "arms", prefix : "" },
-			{ game : "kart", prefix : "mk_" }
-		];
+		var games = ["arms", "kart"];
 		
 		for (var gi = 0; gi < games.length; ++gi)
-			if (rawLeaderboard[games[gi].game].hasOwnProperty(uid))
+			if (rawLeaderboard[games[gi]].hasOwnProperty(uid))
 			{
-				for (var i = 1; i < leaderboardTiers[games[gi].game].length-1; ++i)
+				for (var i = 1; i < leaderboardTiers[games[gi]].length-1; ++i)
 				{
-					if (rawLeaderboard[games[gi].game][uid].coins >= leaderboardTiers[games[gi].game][i].start)
-						user_badges.push(games[gi].prefix + "ldb" + (i-1));
+					if (rawLeaderboard[games[gi]][uid].coins >= leaderboardTiers[games[gi]][i].start)
+						user_badges.push(games[gi] + "_ldb" + (i-1));
 				}
 			}
 		
