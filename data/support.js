@@ -68,8 +68,10 @@ var badgeList = {
 	host : { caption : "Official Lobby Host", style : "dark", criterion: "Volunteer as a host of Casual ARMS lobby events" },
 	cgc : { caption : "Cobra Gloves Club", style : "light", criterion: "Join the CGC and the Cobra hive mind by playing gloves-only Kid Cobra with a CGC member" },
 	
-	season : { caption : "Monthly Leaderboards", style : "light", criterion: "Finish top 10 in the monthly leaderboards" },
-	season_win : { caption : "Monthly Leaderboards Win", style : "hololight", criterion: "Finish as the winner in the monthly leaderboards" },
+	season_arms     : { caption : "Monthly ARMS Leaderboards", style : "light", criterion: "Finish top 10 in the monthly ARMS leaderboards" },
+	season_arms_win : { caption : "Monthly ARMS Leaderboards Win", style : "hololight", criterion: "Finish as the winner in the monthly ARMS leaderboards" },
+	season_kart     : { caption : "Monthly Mario Kart Leaderboards", style : "light", criterion: "Finish top 10 in the monthly Mario Kart leaderboards" },
+	season_kart_win : { caption : "Monthly Mario Kart Leaderboards Win", style : "hololight", criterion: "Finish as the winner in the monthly Mario Kart leaderboards" },
 	
 	clash : { caption : "Casual Clash Participant", style : "light", criterion: "Play in a Casual Clash" },
 	scramble : { caption : "Casual Scramble Participant", style : "dark", criterion: "Play in a Casual Scramble" },
