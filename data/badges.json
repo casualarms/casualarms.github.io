@@ -73,7 +73,7 @@
 	,"315301009117413376": {"name": "GM-Tom",              "badges": ["season_arms", "season_arms_win", "clash", "scramble"] }
 	,"308818549655339008": {"name": "E.P.Silon",           "badges": ["cgc"] }
 	,"398013985619968010": {"name": "idkhonestly",         "badges": ["cgc"] }
-	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_kart"] }
+	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_kart", "scramble"] }
 	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "season_arms", "clash", "scramble"] }
 	
 	,"196169851788591104": {"name": "Jiko",                "badges": ["clash", "scramble"] }
@@ -94,19 +94,26 @@
 	,"249430453751250945": {"name": "Asqew",               "badges": ["clash", "clash_win"] }
 	,"396420455545831425": {"name": "C-smax",              "badges": ["clash", "scramble"] }
 	,"389920535653515264": {"name": "Ruction",             "badges": ["clash"] }
-	,"86282152777367552":  {"name": "Mileve",              "badges": ["clash"] }
+	,"86282152777367552":  {"name": "Mileve",              "badges": ["clash", "scramble"] }
 	,"196390864543678464": {"name": "Mogori",              "badges": ["clash"] }
-	,"350643816404877322": {"name": "BunnyChamp",          "badges": ["clash"] }
+	,"350643816404877322": {"name": "BunnyChamp",          "badges": ["clash", "scramble"] }
 	,"219155908830298132": {"name": "Uran",                "badges": ["season_kart", "clash"] }
 	,"265719610681065472": {"name": "CheezLuigi",          "badges": ["season_arms", "clash"] }
 	,"508809343597281305": {"name": "GlitchWork",          "badges": ["season_arms"] }
-	,"464467971574595585": {"name": "Goomba",              "badges": ["season_kart"] }
+	,"464467971574595585": {"name": "Goomba",              "badges": ["season_kart", "scramble"] }
 	,"207741284050403328": {"name": "Geeligan",            "badges": ["season_kart"] }
 	
 	
 	,"138729882556301313": {"name": "Dendy",               "badges": ["scramble"] }
 	,"196399844988813312": {"name": "Boop",                "badges": ["scramble"] }
 	,"381626947119218699": {"name": "Beamer",              "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
+	
+	
+	,"196380470177562625": {"name": "Gote",               "badges": ["scramble"] }
+	,"163427256264425472": {"name": "Xelor41023",         "badges": ["scramble"] }
+	,"164685995583733760": {"name": "AntheM",             "badges": ["scramble", "scramble_win"] }
+	,"266330502439370752": {"name": "kilian_smt",         "badges": ["scramble"] }
+	,"518513221561352213": {"name": "creamerpm",          "badges": ["scramble"] }
 	
 	
 }
