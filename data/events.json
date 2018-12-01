@@ -24,7 +24,7 @@
 	,{"titleText":"Casual Scramble 4","type":5,"theme":"scramble","date":"2018-12-01T21:30:00.000Z","duration":120,"timeZone":"EST","hosts":[],"streamers":[],"sponsor":"mindgames"}
 	,{"titleText":"CotE Warmup","type":4,"theme":"cote","date":"2018-11-25T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}],"streamers":[]}
 	
-	,{"titleText":"CotE Warmup","type":4,"theme":"cote","date":"2018-12-02T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"To Be Announced","tag":"","code":"-","tier":0}],"streamers":[]}
+	,{"titleText":"Sunday Showdown","type":0,"theme":"everything","date":"2018-12-02T20:45:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"To Be Announced","tag":"","code":"-","tier":0}],"streamers":[]}
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-12-02T00:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"4412-5645-5723","tier":0}],"streamers":[]}
 	,{"titleText":"Mario Kart 8 DX Event","type":6,"theme":"undefined","date":"2018-12-03T19:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"1077-9421-4443","tier":0}],"streamers":[]}
 	,{"titleText":"MLM Warmup","type":3,"theme":"mlm","date":"2018-12-03T21:45:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"To Be Announced","tag":"","code":"-","tier":0}],"streamers":[]}
