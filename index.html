@@ -122,7 +122,7 @@
 	}
 	
 	#container.main-menu {
-		padding-top: 1em;
+	/*	padding-top: 1em;*/
 		padding-bottom: 0;
 	}
 	
@@ -159,7 +159,7 @@
 		left: -150pt;
 		color: black;
 		opacity: 0.03;
-		z-index: 0;
+		z-index: -1;
 		font-size: 310pt;
 		font-family: 'ARMS';
 	}
@@ -391,12 +391,19 @@
 		}
 	}
 	
+	h2 a {
+		color: white;
+		z-index: 1;
+	}
+	
 	</style>
 </head>
 
 <body id="event-id" onload="load()" ontouchstart="">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div class="main-menu" id="container">
+		<h2>&gt;&gt;&nbsp;<a href="/giveaway">Smash Ultimate Giveaway</a>&nbsp;&lt;&lt;</h2>
+		
 		<img src="assets/main/rank-shield.png" id="shield"/>
 		<img src="assets/main/logo.png" id="logo"/>
 		<span id="arms-text">ARMS</span>

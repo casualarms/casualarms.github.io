@@ -416,9 +416,17 @@ a.submenu-item > .sub-text {
 	margin: 5pt 0;
 }
 
+.mode:hover {
+	background-color: #888;
+}
+
 .mode.active-mode {
 	background-color: yellow;
 	color: black;
+}
+
+.mode.active-mode-kart {
+	background-color: #f92473;
 }
 
 .split-mode {
@@ -430,7 +438,7 @@ a.submenu-item > .sub-text {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 	margin-right: 0;
-	border-right: 1pt solid yellow;
+	border-right: 1pt solid white;
 }
 
 .split-mode .mode:nth-child(1).active {
