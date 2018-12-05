@@ -93,9 +93,118 @@ permalink: /staff/prizes/index.html
 		$("result").value = text;
 	}
 	
+	var rawSeasonHistory = { arms: null, kart: null };
+	var seasonHistory    = { arms: null, kart: null };
+	
+	function storeSeasons(rawBoards)
+	{
+		var games = ["arms", "kart"];
+		for (var gi = 0; gi < games.length; ++gi)
+		{
+			rawSeasonHistory[games[gi]] = [];
+			seasonHistory[games[gi]] = [];
+			for (var i = 0; i < rawBoards[games[gi]].length; ++i)
+			{
+				var season = {};
+				season.title = monthNames[rawBoards[games[gi]][i].month-1] + " " + rawBoards[games[gi]][i].year;
+				season.data = reorganizeLeaderboards(rawBoards[games[gi]][i].leaderboard);
+				seasonHistory[games[gi]].push(season);
+				
+				var copyboard = season.data.slice().sort(function(a, b) { return b.monthly - a.monthly; });
+				var rawSeason = {};
+				var previous = -1;
+				var duplicates = 0;
+				
+				for (var si = 0; si < copyboard.length && copyboard[si].monthly > 0; ++si)
+				{
+					duplicates = (copyboard[si].monthly == previous) ? duplicates + 1 : 0;
+					previous = copyboard[si].monthly;
+					rawSeason[copyboard[si].id] = si + 1 - duplicates;
+				}
+				rawSeasonHistory[games[gi]].push(rawSeason);
+			}
+		}
+		
+		console.log(seasonHistory);
+		console.log(rawSeasonHistory);
+	}
+	
+	function processMonthly(useBoard)
+	{
+		var activeSeasonIndex = 1;//$("season").selectedIndex;
+		
+	//	var useBoard = reorganizeLeaderboards(rawLeaderboard[game]);
+		if (activeSeasonIndex > 0)
+			useBoard = seasonHistory["arms"][activeSeasonIndex-1].data;
+			
+		var copyboard = useBoard.slice().filter(function (item) { return item.monthly > 0; }).sort(function(a, b) { return b.monthly - a.monthly; });
+		
+		var scores = [];
+		var sumscores = 0;
+		
+		var previous = -1;
+		var duplicates = 0;
+		for (var i = 0; i < copyboard.length && copyboard[i].monthly > 0; ++i)
+		{
+			duplicates = (copyboard[i].monthly == previous) ? duplicates + 1 : 0;
+			previous = copyboard[i].monthly;
+			var useIndex = i + 1 - duplicates;
+			
+		
+		/*	var pid = "monthly-" + i;
+			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic" + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
+			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
+			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin_arms.png'/><img class='armscoin coin-dark' src='coin_arms_dark.png'/></span></p>";
+			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>"
+			*/
+			
+			var score = copyboard.length - useIndex + 1;
+			scores.push({name:copyboard[i].name, score:score, wins:0});
+			sumscores += score;
+		}
+		
+		
+	/*	for (var line in lines)
+		{
+			var split = lines[line].split(/\s/g).filter(function(item) { return item != "" && item != "-"; });
+			var offset = (split[2][0] == "(") ? 1 : 0;
+			var score = parseFloat(split[7+offset]);
+			scores.push([split[1], score, 0]);
+			sumscores += score;
+		}*/
+		
+		var raffle = [];
+		for (var p = 0; p < scores.length; ++p)
+			for (var i = 0; i < scores[p].score; ++i)
+				raffle.push(scores[p].name);
+		
+		var rolls = parseInt($("rolls").value);
+		for (var r = 0; r < rolls; ++r)
+		{
+			var winner = raffle[Math.floor(Math.random() * raffle.length)];
+			for (var p = 0; p < scores.length; ++p)
+				if (scores[p].name == winner)
+					scores[p].wins++;
+		}
+		
+		var text = "";
+		for (var p = 0; p < scores.length; ++p)
+		{
+			var expected = scores[p].score / sumscores * rolls;
+			text += padString(scores[p].score, "   ") + padString(scores[p].name, "                        ") + scores[p].wins + " (expected " + expected +  ")\n";
+		}
+		
+		$("result-monthly").value = text;
+	}
+	
+	function load()
+	{
+		fetchSeasonHistory(storeSeasons);
+	}
+	
 	</script>
 </head>
-<body>
+<body onload="load()">
 	<div id="wrapper">
 		<h1>Casual ARMS Prize Randomizer</h1>
 		
@@ -107,6 +216,11 @@ permalink: /staff/prizes/index.html
 		
 		<h3>Results</h3>
 		<textarea id="result" rows="30"></textarea>
+		
+		
+		<h3>Monthly Giveaway</h3>
+		<button onCLick="processMonthly()">Process Monthly</button>
+		<textarea id="result-monthly" rows="30"></textarea>
 		
 	</div>
 </body>
