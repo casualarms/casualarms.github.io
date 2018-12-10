@@ -34,7 +34,7 @@
 	,{"titleText":"Tidal Tuesday","type":0,"theme":"teambuilding","date":"2018-12-12T02:00:00.000Z","duration":120,"timeZone":"PST","hosts":[{"name":"Sora","tag":"","code":"0499-4528-8293","tier":0},{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":["sorafirestorm"]}
 	,{"titleText":"Wildcard Wednesday","type":0,"theme":"corner-chaos","date":"2018-12-12T23:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":[]}
 	,{"titleText":"Thumpin' Thursday","type":0,"theme":"fights-only","date":"2018-12-13T19:00:00.000Z","duration":120,"timeZone":"GMT","hosts":[{"name":"GV-97","tag":"","code":"5861-0816-5793","tier":0},{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":[]}
-	,{"titleText":"Mario Kart 8 DX Battle Event","type":6,"theme":"undefined","date":"2018-12-21T22:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"5153-6594-0779","tier":0}],"streamers":[]}
+	,{"titleText":"Mario Kart 8 DX Battles","type":6,"theme":"undefined","date":"2018-12-21T22:00:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"","tag":"","code":"5153-6594-0779","tier":0}],"streamers":[]}
 	,{"titleText":"Sunday Showdown","type":0,"theme":"everything","date":"2018-12-16T20:45:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"Literary","tag":"","code":"4704-7597-7783","tier":0}],"streamers":[]}
 	
 	
