@@ -48,7 +48,8 @@
 	,{"titleText":"Sunday Showdown","type":0,"theme":"everything","date":"2018-12-23T20:45:00.000Z","duration":120,"timeZone":"EST","hosts":[{"name":"To Be Announced","tag":"","code":"-","tier":0}],"streamers":[]}
 	
 	
-	,{"titleText":"Casual Clash 6","type":2,"theme":"clash","date":"2018-10-20T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[]}
+	,{"titleText":"Casual Clash Warmup","type":1,"theme":"clash","date":"2018-12-15T20:15:00.000Z","duration":60,"timeZone":"EST","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423","tier":0}],"streamers":[]}
+	,{"titleText":"Casual Clash 8","type":2,"theme":"clash","date":"2018-12-15T21:30:00.000Z","duration":90,"timeZone":"EST","hosts":[],"streamers":[]}
 	,{"titleText":"Casual Scramble 3","type":5,"theme":"scramble","date":"2018-11-03T20:30:00.000Z","duration":90,"timeZone":"EDT","hosts":[],"streamers":[],"sponsor":"mindgames"}
 	
 	
