@@ -58,12 +58,12 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		
 		if (!nativeTime)
 		{
-			var diff = timeZoneOffset(eventdata.timeZone);
+			var diff = timeZoneOffset(eventdata.tz);
 			startDate.setUTCHours(startDate.getUTCHours() + diff);
 			endDate.setUTCHours(endDate.getUTCHours() + diff);
 			
 			dateText = (dayNames[startDate.getUTCDay()] + " " + monthNames[startDate.getUTCMonth()].slice(0, 3) + ". " + startDate.getUTCDate()).toUpperCase();
-			timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.timeZone).toUpperCase();
+			timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.tz).toUpperCase();
 		}
 		
 		var isWarmup = ["mlm_warmup", "era_warmup"].includes(eventdata.type) || eventdata.game == "kart";
@@ -94,51 +94,57 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		colors = ["#29fb2f", "#efed34", "#fc5935"];
 		tiers = ["easy", "medium", "hard"];
 		
+		ctx.fillStyle = bgColor;
+		ctx.fillRect(0, 0, width, height);
+		ctx.fillStyle = logoBgColor;
+		ctx.fillRect(0, 0, width, 115);
+		
 		// Backgrounds
-		if (eventdata.game == "arms")
+		switch (eventdata.game)
 		{
-			ctx.fillStyle = bgColor;
-			ctx.fillRect(0, 0, width, height);
-			ctx.fillStyle = logoBgColor;
-			ctx.fillRect(0, 0, width, 115);
+		case "arms":
 			var params = [
 				[ 100, 40, 0.6 * Math.PI, 3, 0.4, 0, "rgba(0,0,0,0.09)"],
 				[-100, 50, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,255,0.12)"],
 			];
 			renderSwirls(ctx.canvas, params);
-		}
-		else if (eventdata.game == "kart")
-		{
+			break;
+		
+		case "kart":
 			titleColor = websiteBgColor = "#f92473";
-			
 			var grd = ctx.createLinearGradient(0, 0, 520, 0);
 			grd.addColorStop(0.0, "#39cdf6");
 			grd.addColorStop(0.8, "#39cdf6");
 			grd.addColorStop(1.0, "#f92473");
 			stripeBgColor = grd;
-			
 			renderCheckerboard(ctx, (height-115-40) / 3, 24, 132, 226, "#0991ff", 0, 115, width, height-115-40);
 			renderCheckerboard(ctx, 115 / 3, 50,  50,  50, "#555", 0, 0, width, 115);
-		}
-		else if (eventdata.game == "splat")
-		{
-			titleColor = websiteBgColor = stripeBgColor = "#00cc00";// "#f92473";
-			
-			ctx.fillStyle = bgColor;// "#00cc00";
-			ctx.fillRect(0, 0, width, height);
-		}
-		else if (eventdata.game == "smash")
-		{
+			break;
+		
+		case "splat":
+			stripeBgColor = bgColor
+			titleColor = websiteBgColor = "#00dd00";
+			ctx.fillStyle = "#00dd00";
+			ctx.fillRect(0, 0, width, 115);
+			break;
+		
+		case "smash":
 			titleColor = websiteBgColor = "white";
 			stripeBgColor = "black";
-			
 			ctx.fillStyle = "#ff0000";
 			ctx.fillRect(0, 0, width, height);
-			ctx.fillStyle = "#ff9999";
+			ctx.fillStyle = "rgba(0,0,0,0.2)";
 			ctx.beginPath();
-			ctx.arc(300, height/2 - 50, 200, 0, 2 * Math.PI, false);
+			ctx.arc(300, height/2 + 50, 200, 0, 2 * Math.PI, false);
 			ctx.fill();
+			ctx.fillStyle = "#ff0000";
+			ctx.fillRect(200, 0, 70, height);
+			ctx.fillRect(0, 370, width, 15);
+			ctx.fillStyle = "white";
+			ctx.fillRect(0, 0, width, 115);
+			break;
 		}
+		
 		
 		ctx.fillStyle = boxBgColor;
 		ctx.fillRect(0, 122, 600, 40);
@@ -215,6 +221,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		
 		if ("theme" in eventdata)
 		{
+			ctx.fillStyle = (eventdata.game != "kart") ? websiteColor : "white";
 			ctx.font = "12pt ARMS";
 			ctx.fillText("www.casualarms.net".toUpperCase(), 716, 18);
 		}
@@ -237,7 +244,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 				vOffset = 348 + (3 - eventdata.hosts.length)*15 + spacing * i;
 				hOffset = 150; if (isWarmup) { hOffset += 130; };
 				
-				if (eventdata.hosts[i].tag != "")
+				if ("tag" in eventdata.hosts[i])
 				{
 					ctx.font = teamTagFont;
 					ctx.fillStyle = hostsColor;
@@ -251,25 +258,20 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 				ctx.textAlign = "left";
 				ctx.fillText((unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code)).toUpperCase(), hOffset, vOffset);
 				
-				if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts.length > 1)
-				{
-					ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
-					roundRect(ctx, 15, vOffset - 21, 120, 25, 10).fill();
-					
-					ctx.fillStyle = tierColor;
-					ctx.font = tierFont;
-					ctx.textAlign = "center";
-					ctx.fillText(tiers[eventdata.hosts[i].tier-1].toUpperCase(), 75, vOffset - 1);
-				}
-				
-				if (!isWarmup && eventdata.hosts[i].tier != 0)
+				if (!isWarmup && "tier" in eventdata.hosts[i])
 				{
 					ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
 					roundRect(ctx, 790, vOffset - 21, 75, 25, 10).fill();
 					
+					if (eventdata.hosts.length > 1)
+						roundRect(ctx,  15, vOffset - 21, 120, 25, 10).fill();
+					
 					ctx.fillStyle = tierColor;
 					ctx.font = tierFont;
 					ctx.textAlign = "center";
+					if (eventdata.hosts.length > 1)
+						ctx.fillText(tiers[eventdata.hosts[i].tier-1].toUpperCase(), 75, vOffset - 1);
+					
 					ctx.fillText("" + (eventdata.hosts[i].tier) + " " + (eventdata.hosts[i].tier) + " " +(eventdata.hosts[i].tier), 827, vOffset - 1);
 					didDrawCodes = true;
 				}
@@ -294,17 +296,17 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		
 		if (!nativeTime)
 		{
-			var diff = timeZoneOffset(eventdata.timeZone);
+			var diff = timeZoneOffset(eventdata.tz);
 			startDate.setUTCHours(startDate.getUTCHours() + diff);
 			
 			dateText = (monthNames[startDate.getUTCMonth()].slice(0, 3) + ". " + startDate.getUTCDate()).toUpperCase();
-			timeText = (formatTimeUTC(startDate, diff) + " " + eventdata.timeZone).toUpperCase();
+			timeText = (formatTimeUTC(startDate, diff) + " " + eventdata.tz).toUpperCase();
 		}
 		
 		dateFont = "58pt ARMS";
-		timeFont = "32pt ARMS";
+		timeFont = "28pt ARMS";
 		sponsorFont = "12pt ARMS";
-		timeDateColor = (eventdata.type == 2) ? "white" : "yellow";
+		timeDateColor = (eventdata.type == "clash") ? "white" : "yellow";
 		
 		ctx.fillStyle = timeDateColor;
 		ctx.textAlign = "center";
@@ -312,15 +314,14 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.shadowColor = "black";
 		ctx.shadowBlur = 8;
 		
-		var clashOffsetX = (eventdata.type == 2) ? -50 : 0;
-		var clashOffsetY = (eventdata.type == 2) ?  20 : 0;
+		var clashOffsetX = (eventdata.type == "clash") ? -150 : 0;
 		
 		ctx.font = dateFont;
 		for (var r = 0; r < 3; ++r)
 			ctx.fillText(dateText, 220, 405);
 		ctx.font = timeFont;
 		for (var r = 0; r < 3; ++r)
-			ctx.fillText(timeText, 700 + clashOffsetX, 400 + clashOffsetY);
+			ctx.fillText(timeText, 700 + clashOffsetX, 410);
 		
 		if (eventdata.sponsor == "mindgames")
 		{

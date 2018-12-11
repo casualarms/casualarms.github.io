@@ -383,17 +383,6 @@ function printTheme(game, ev, concise)
 	}
 	else if (game == "kart")
 	{
-		/*	key             : "150_cc",
-			name            : "150cc Racing",
-			description     : "",
-			mode            : "150cc Grand Prix",
-			teams           : false,
-			items           : "Normal Items",
-			round_length    : "",
-			cpu             : "Normal",
-			vehicles        : "All",
-			smart_steering  : true,*/
-		
 		html += printMode(ev, "mode", "Mode");
 		html += printBinaryMode(ev, "teams", "Teams");
 		html += printMode(ev, "items", "Items");
@@ -409,8 +398,8 @@ function printTheme(game, ev, concise)
 	}
 	
 	var myid = Math.random().toString(36).substring(7);
-	html += "<div class='stage-container' id='" + myid + "'>";
-	html += "<div class='stage-container-header'>" + ev.stages.length + "/" + eventStages[game].length + " stages <a onclick=\"expandStages('" + myid + "');\">[EXPAND]</a></div>";
+	html += "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
+	html += "<div class='stage-container-header'>" + ev.stages.length + "/" + eventStages[game].length + " stages (click to expand)</div>";
 	for (s = 0; s < ev.stages.length; ++s)
 	{
 		html += "<div class='stage active' style='display: none;'>" + eventStages[game][ev.stages[s]] + "</div>";
@@ -520,9 +509,9 @@ function countsForLederboards(event)
 		case "kart":
 			return ["race", "battle"].includes(event.type);
 		case "splat":
-			return [].includes(event.type);
+			return ["friends", "salmon"].includes(event.type);
 		case "smash":
-			return [].includes(event.type);
+			return ["arena"].includes(event.type);
 	}
 }
 

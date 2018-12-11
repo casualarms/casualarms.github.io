@@ -1,4 +1,11 @@
 
+var eventGames = {
+	arms:  "ARMS",
+	kart:  "Mario Kart 8 Deluxe",
+	splat: "Splatoon 2",
+	smash: "Super Smash Bros. Ultimate",
+}
+
 var leaderboardTiers = {
 	arms : [
 		{ start :        0, name : "Test Subject", color : "white"},
@@ -116,6 +123,8 @@ var eventStages = {
 		"DS Tick-Tock Clock",    "3DS Piranha Plant Pipeway", "Wii Grumble Volcano",  "N64 Rainbow Road",    // 36 to 39
 		"Wii Wario's Gold Mine", "SNES Rainbow Road",         "Ice Ice Outpost",      "Hyrule Circuit",      // 40 to 41
 		"3DS Koopa City",        "GBA Ribbon Road",           "Super Bell Subway",    "Big Blue",            // 44 to 47
+		"Battle Stadium",        "Sweet Sweet Kingdowm",      "Dragon Palace",        "Lunar Colony",        // 48 to 51
+		"3DS Wuhu Town",         "GCN Luigi's Mansion",       "SNES Battle Course 1", "Urchin Underpass",    // 52 to 55
 	],
 	splat: [
 		"The Reef",           "Musselforge Fitness",  "Starfish Mainstage", "Humpback Pumptrack", "Inkblot Art Academy",   //  0 to  4
@@ -147,7 +156,8 @@ var eventTypes = {
 		impromptu:   "Impromptu Lobby",
 	},
 	smash: {
-		arena: "Battle Arena",
+		arena:       "Battle Arena",
+		impromptu:   "Impromptu Lobby",
 	}
 };
 
@@ -339,7 +349,7 @@ var eventThemes = {
 	],
 	kart : [
 		{
-			key             : "150_cc",
+			key             : "150cc",
 			name            : "150cc Racing",
 			description     : "",
 			mode            : "150cc Grand Prix",
@@ -351,9 +361,22 @@ var eventThemes = {
 			smart_steering  : true,
 			stages          : range(48),
 		},
+		{
+			key             : "mk_battle",
+			name            : "Mixed Battles",
+			description     : "",
+			mode            : "Battle",
+			teams           : false,
+			items           : "Normal Items",
+			round_length    : 0,
+			cpu             : "Normal",
+			vehicles        : "All",
+			smart_steering  : true,
+			stages          : [48, 49, 50, 51, 52, 53, 54, 55],
+		},
 	],
 	splat : [
-		{
+	/*	{
 			key             : "turf-war",
 			name            : "Casual Turfing",
 			description     : "",
@@ -395,7 +418,7 @@ var eventThemes = {
 			mode            : "Salmon Run",
 			abilities       : false,
 			stages          : [],
-		},
+		},*/
 	],
 	smash : [],
 };

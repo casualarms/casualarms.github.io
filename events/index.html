@@ -29,6 +29,10 @@ redirect_from: "/lobbies/"
 		box-shadow: 0px 0px 8px rgba(85, 85, 0, 0.5);
 	}
 	
+	#next-game {
+		background-color: #1d94fc;
+	}
+	
 	.next-box {
 		display: none;
 		width: 95%;
@@ -42,6 +46,7 @@ redirect_from: "/lobbies/"
 		font-family: ARMS;
 		text-decoration: none;
 		color: white;
+		border: 1px solid rgba(0,0,0,0.3);
 	}
 	
 	.nx-big {
@@ -51,8 +56,7 @@ redirect_from: "/lobbies/"
 	#next-streamer { background-color: #4b367c; }
 	#next-theme { background-color: black; }
 	#next-link { background-color: grey; }
-	#next-leaderboards { background-color: #1d94fc; }
-	#next-leaderboards-mariokart { background-color: #f92473; }
+	#next-leaderboards { background-color: #444; }
 	
 	
 	p#next-theme-info {
@@ -286,6 +290,10 @@ redirect_from: "/lobbies/"
 		focusEvent = i;
 		generateBanner(880, 480, eventData[i], "next-lobby", true);
 		
+		// Game
+		$("next-game").style.display = "block";
+		$("nx-game-field").innerHTML = eventGames[ev.game];
+		
 		var themeData = getTheme(ev.game, ev.theme);
 		
 		$("next-theme").style.display = "none";
@@ -298,21 +306,12 @@ redirect_from: "/lobbies/"
 		
 		$("next-link").style.display = "block";
 		$("next-link").href = "https://www.casualarms.net/events/?id=" + getEventID(ev);
-		$("nx-link-field").innerHTML = "events/?id=" + getEventID(ev);
+		if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
+			$("next-link").href = "https://www.casualarms.net/" + ev.type;
 		
-		if (ev.game == "arms" && ev.type == "clash")
-		{
-			$("next-link").href = "https://www.casualarms.net/clash";
-			$("nx-link-field").innerHTML = "clash";
-		}
-		else if (ev.game == "arms" && ev.type == "scramble")
-		{
-			$("next-link").href = "https://www.casualarms.net/scramble";
-			$("nx-link-field").innerHTML = "scramble";
-		}
-		
-		$("next-leaderboards").style.display = (ev.game == "arms" && ["leaderboard"].includes(ev.type)) ? "block" : "none";
-		$("next-leaderboards-mariokart").style.display = (ev.game == "kart" && ["race", "battle"].includes(ev.type)) ? "block" : "none";
+		$("next-leaderboards").style.display = countsForLederboards(ev) ? "block" : "none";
+		$("next-leaderboards").href = "/leaderboards/#" + ev.game;
+		$("nx-leaderboards-field").innerHTML = eventGames[ev.game];
 		
 		if ("streamers" in ev)
 		{
@@ -441,11 +440,11 @@ redirect_from: "/lobbies/"
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
 				<button onClick="changeBanner(1)" id="banner-next">&gt;</button>
 			</p>
-			<a href="" class="next-box" id="next-streamer">twitch.tv/ <span class="nx-big" id="nx-stream-field"></span></a>
-			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big">ARMS</span></a>
-			<a href="/leaderboards/#mariokart" class="next-box" id="next-leaderboards-mariokart">leaderboards: <span class="nx-big">Mario Kart</span></a>
+			<span class="next-box" id="next-game">Game: <span class="nx-big" id="nx-game-field"></span></span>
+			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big" id="nx-leaderboards-field">ARMS</span></a>
 			<a href="" class="next-box" id="next-theme">theme: <span class="nx-big" id="nx-theme-field"></span></a>
-			<a href="" class="next-box" id="next-link">www.casualarms.net/<span class="nx-big" id="nx-link-field"></span></a>
+			<a href="" class="next-box" id="next-streamer">twitch.tv/ <span class="nx-big" id="nx-stream-field"></span></a>
+			<a href="" class="next-box" id="next-link"><span class="nx-big" id="nx-link-field">Direct Link</span></a>
 			<p id="next-info"></p>
 		</div>
 		
