@@ -66,7 +66,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.timeZone).toUpperCase();
 		}
 		
-		var isWarmup = eventdata.type == 3 || eventdata.type == 4 || eventdata.type == 6;
+		var isWarmup = ["mlm_warmup", "era_warmup"].includes(eventdata.type) || eventdata.game == "kart";
 		
 		// Style presets
 		bgColor = "#1d94fc";
@@ -91,25 +91,11 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		hostsFont = "20pt ARMS";
 		websiteFont = "20pt ARMS";
 		
-		if (eventdata.type == 6)
-		{
-			titleColor = "#f92473";
-			websiteBgColor = "#f92473";
-			
-			var grd = ctx.createLinearGradient(0, 0, 520, 0);
-			grd.addColorStop(0.0, "#39cdf6");
-			grd.addColorStop(0.8, "#39cdf6");
-			grd.addColorStop(1.0, "#f92473");
-			stripeBgColor = grd;
-		}
-		
 		colors = ["#29fb2f", "#efed34", "#fc5935"];
 		tiers = ["easy", "medium", "hard"];
 		
-		var pluralHosts = (eventdata.hosts.length > 1) ? "s" : "";
-		
 		// Backgrounds
-		if (eventdata.type != 6)
+		if (eventdata.game == "arms")
 		{
 			ctx.fillStyle = bgColor;
 			ctx.fillRect(0, 0, width, height);
@@ -121,10 +107,37 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			];
 			renderSwirls(ctx.canvas, params);
 		}
-		else
+		else if (eventdata.game == "kart")
 		{
+			titleColor = websiteBgColor = "#f92473";
+			
+			var grd = ctx.createLinearGradient(0, 0, 520, 0);
+			grd.addColorStop(0.0, "#39cdf6");
+			grd.addColorStop(0.8, "#39cdf6");
+			grd.addColorStop(1.0, "#f92473");
+			stripeBgColor = grd;
+			
 			renderCheckerboard(ctx, (height-115-40) / 3, 24, 132, 226, "#0991ff", 0, 115, width, height-115-40);
 			renderCheckerboard(ctx, 115 / 3, 50,  50,  50, "#555", 0, 0, width, 115);
+		}
+		else if (eventdata.game == "splat")
+		{
+			titleColor = websiteBgColor = stripeBgColor = "#00cc00";// "#f92473";
+			
+			ctx.fillStyle = bgColor;// "#00cc00";
+			ctx.fillRect(0, 0, width, height);
+		}
+		else if (eventdata.game == "smash")
+		{
+			titleColor = websiteBgColor = "white";
+			stripeBgColor = "black";
+			
+			ctx.fillStyle = "#ff0000";
+			ctx.fillRect(0, 0, width, height);
+			ctx.fillStyle = "#ff9999";
+			ctx.beginPath();
+			ctx.arc(300, height/2 - 50, 200, 0, 2 * Math.PI, false);
+			ctx.fill();
 		}
 		
 		ctx.fillStyle = boxBgColor;
@@ -150,7 +163,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.font = logoFont;
 		ctx.fillStyle = logoColor;
 		ctx.textAlign = "left";
-		if (eventdata.type == 6)
+		if (eventdata.game == "kart")
 		{
 			ctx.shadowColor = "white";
 			ctx.shadowBlur = 8;
@@ -168,20 +181,22 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			ctx.drawImage(discordLogo, 10, 320);
 		
 		// Warmup logo
-		if (eventdata.type == 3)
+		if (eventdata.game == "arms" && eventdata.type == "mlm_warmup")
 			ctx.drawImage(mlmLogo, 630, 120);
-		else if (eventdata.type == 4)
+		else if (eventdata.game == "arms" && eventdata.type == "era_warmup")
 			ctx.drawImage(coteLogo, 630, 120);
-		else if (eventdata.type == 6)
+		else if (eventdata.game == "kart")
 			ctx.drawImage(mk8dLogo, 590, 150);
+		
+		var pluralHosts = ("hosts" in eventdata && eventdata.hosts.length > 1) ? "s" : "";
 		
 		// Lobby title
 		var lobbyTitle = ("Lobby Host" + pluralHosts).toUpperCase();
-		if (eventdata.type == 6) lobbyTitle = "TOURNAMENT CODE";
+		if (eventdata.game == "kart") lobbyTitle = "TOURNAMENT CODE";
 		ctx.font = titleFont;
 		ctx.textAlign = "center";
 		ctx.fillStyle = titleColor;
-		ctx.fillText(unEscapeHTML(eventdata.titleText).toUpperCase(), 280, 152);
+		ctx.fillText(unEscapeHTML(eventdata.title).toUpperCase(), 280, 152);
 		ctx.fillText(lobbyTitle, 290 + (isWarmup ? 250 : 0), 302);
 		
 		// Time and date
@@ -195,73 +210,78 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.font = websiteFont;
 		ctx.textAlign = "center";
 		ctx.fillStyle = websiteColor;
-		var websiteText = (eventdata.theme != "undefined") ? "\"" + getTheme(eventdata.theme).name + "\"" : "www.casualarms.net";
+		var websiteText = ("theme" in eventdata) ? "\"" + getTheme(eventdata.game, eventdata.theme).name + "\"" : "www.casualarms.net";
 		ctx.fillText(websiteText.toUpperCase(), 440, 470);
 		
-		if (eventdata.theme != "undefined") 
+		if ("theme" in eventdata)
 		{
 			ctx.font = "12pt ARMS";
 			ctx.fillText("www.casualarms.net".toUpperCase(), 716, 18);
 		}
 		
-		if (eventdata.type == 0 || eventdata.type == 6)
+		// Leaderboards
+		if (countsForLederboards(eventdata))
 			ctx.drawImage(leaderboardsIcon, width - 139, height - 40);
 		
-		if (eventdata.streamers.length > 0)
+		// Streamed
+		if ("streamers" in eventdata)
 			ctx.drawImage(streamIcon, 0, height - 40);
 		
 		// Hosts
 		var didDrawCodes = false;
-		spacing = 35 + (3 - eventdata.hosts.length) * 10;
-		for (i = 0; i < eventdata.hosts.length; i++)
+		if ("hosts" in eventdata)
 		{
-			vOffset = 348 + (3 - eventdata.hosts.length)*15 + spacing * i;
-			hOffset = 150; if (isWarmup) { hOffset += 130; };
-			
-			if (eventdata.hosts[i].tag != "")
+			spacing = 35 + (3 - eventdata.hosts.length) * 10;
+			for (i = 0; i < eventdata.hosts.length; i++)
 			{
-				ctx.font = teamTagFont;
+				vOffset = 348 + (3 - eventdata.hosts.length)*15 + spacing * i;
+				hOffset = 150; if (isWarmup) { hOffset += 130; };
+				
+				if (eventdata.hosts[i].tag != "")
+				{
+					ctx.font = teamTagFont;
+					ctx.fillStyle = hostsColor;
+					ctx.textAlign = "left";
+					ctx.fillText(eventdata.hosts[i].tag.toUpperCase(), hOffset, vOffset);
+					hOffset += 40;
+				}
+				
+				ctx.font = hostsFont;
 				ctx.fillStyle = hostsColor;
 				ctx.textAlign = "left";
-				ctx.fillText(eventdata.hosts[i].tag.toUpperCase(), hOffset, vOffset);
-				hOffset += 40;
-			}
-			
-			ctx.font = hostsFont;
-			ctx.fillStyle = hostsColor;
-			ctx.textAlign = "left";
-			ctx.fillText((unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code)).toUpperCase(), hOffset, vOffset);
-			
-			if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts.length > 1)
-			{
-				ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
-				roundRect(ctx, 15, vOffset - 21, 120, 25, 10).fill();
+				ctx.fillText((unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code)).toUpperCase(), hOffset, vOffset);
 				
-				ctx.fillStyle = tierColor;
-				ctx.font = tierFont;
-				ctx.textAlign = "center";
-				ctx.fillText(tiers[eventdata.hosts[i].tier-1].toUpperCase(), 75, vOffset - 1);
+				if (!isWarmup && eventdata.hosts[i].tier != 0 && eventdata.hosts.length > 1)
+				{
+					ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
+					roundRect(ctx, 15, vOffset - 21, 120, 25, 10).fill();
+					
+					ctx.fillStyle = tierColor;
+					ctx.font = tierFont;
+					ctx.textAlign = "center";
+					ctx.fillText(tiers[eventdata.hosts[i].tier-1].toUpperCase(), 75, vOffset - 1);
+				}
+				
+				if (!isWarmup && eventdata.hosts[i].tier != 0)
+				{
+					ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
+					roundRect(ctx, 790, vOffset - 21, 75, 25, 10).fill();
+					
+					ctx.fillStyle = tierColor;
+					ctx.font = tierFont;
+					ctx.textAlign = "center";
+					ctx.fillText("" + (eventdata.hosts[i].tier) + " " + (eventdata.hosts[i].tier) + " " +(eventdata.hosts[i].tier), 827, vOffset - 1);
+					didDrawCodes = true;
+				}
 			}
 			
-			if (!isWarmup && eventdata.hosts[i].tier != 0)
+			if (didDrawCodes)
 			{
-				ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
-				roundRect(ctx, 790, vOffset - 21, 75, 25, 10).fill();
-				
-				ctx.fillStyle = tierColor;
-				ctx.font = tierFont;
+				ctx.font = titleFont;
 				ctx.textAlign = "center";
-				ctx.fillText("" + (eventdata.hosts[i].tier) + " " + (eventdata.hosts[i].tier) + " " +(eventdata.hosts[i].tier), 827, vOffset - 1);
-				didDrawCodes = true;
+				ctx.fillStyle = titleColor;
+				ctx.fillText(("Lobby Code" + pluralHosts).toUpperCase(), 720, 302);
 			}
-		}
-		
-		if (didDrawCodes)
-		{
-			ctx.font = titleFont;
-			ctx.textAlign = "center";
-			ctx.fillStyle = titleColor;
-			ctx.fillText(("Lobby Code" + pluralHosts).toUpperCase(), 720, 302);
 		}
 	}
 	
@@ -319,12 +339,12 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	imageURLs.push("/assets/banners/logo-casualarms.png");
 	imageURLs.push("/assets/banners/logo-discord.png");
 	
-	if (eventdata.type == 2)
+	if (eventdata.game == "arms" && eventdata.type == "clash")
 	{
 		imageURLs.push("/assets/banners/template-clash.jpg");
 		imageURLs.push("/assets/banners/sponsor-mind-games.png");
 	}
-	else if (eventdata.type == 5)
+	else if (eventdata.game == "arms" && eventdata.type == "scramble")
 	{
 		imageURLs.push("/assets/banners/template-scramble.jpg");
 		imageURLs.push("/assets/banners/sponsor-mind-games.png");
@@ -377,7 +397,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			c.height = height;
 			ctx = c.getContext("2d");
 			
-			if (eventdata.type == 2 || eventdata.type == 5)
+			if (eventdata.game == "arms" && ["clash", "scramble"].includes(eventdata.type))
 				handleTournamentBanner(ctx);
 			else
 				performBannerRendering(ctx);

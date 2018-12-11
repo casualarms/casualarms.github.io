@@ -67,13 +67,23 @@ permalink: /staff/banners/index.html
 	
 	var eventsHistory = null;
 	
-	function load()
+	function fillGameOptions()
 	{
+		var game = $("game").options[$("game").selectedIndex].value;
+		
 		var options = "<option value='undefined' selected>---</option>";
-		for (var i = 0; i < eventThemes.length; ++i)
-			options += "<option value='" + eventThemes[i].key + "'>" + eventThemes[i].name + "</option>";
+		for (var i = 0; i < eventThemes[game].length; ++i)
+			options += "<option value='" + eventThemes[game][i].key + "'>" + eventThemes[game][i].name + "</option>";
 		$("theme").innerHTML = options;
 		
+		options = "";
+		for (var type in eventTypes[game])
+			options += "<option value='" + type + "'>" + eventTypes[game][type] + "</option>";
+		$("type").innerHTML = options;
+	}
+	
+	function load()
+	{
 		// Read old events
 		fetchEvents(function(events)
 		{
@@ -82,7 +92,7 @@ permalink: /staff/banners/index.html
 			for (var i = 0; i < events.length; ++i)
 			{
 				var dateString = dayNames[events[i].date.getUTCDay()] + " " + monthNames[events[i].date.getUTCMonth()] + ' ' + events[i].date.getUTCDate();
-				options += "<option>" + dateString + ": " + events[i].titleText + "</option>";
+				options += "<option>" + dateString + ": " + events[i].title + "</option>";
 			}
 			var eventDataIndex = $("event-history").innerHTML = options;
 		});
@@ -97,6 +107,7 @@ permalink: /staff/banners/index.html
 				$("quickEntry" + hostsList[i]).innerHTML += html;
 			}
 		}
+		fillGameOptions();
 		readAndGenerate();
 	}
 	
@@ -122,7 +133,7 @@ permalink: /staff/banners/index.html
 		
 		for (var i = 0; i < hostsList.length; ++i)
 		{
-			var active = (i < eventData.hosts.length);
+			var active = ("hosts" in eventData && i < eventData.hosts.length);
 			$("name" + hostsList[i]).value         = (active ? unEscapeHTML(eventData.hosts[i].name) : "");
 			$("tag"  + hostsList[i]).selectedIndex = (active ? ((eventData.hosts[i].tag == "CC") ? 1: 0) : 0);
 			$("code" + hostsList[i]).value         = (active ? unEscapeHTML(eventData.hosts[i].code) : "");
@@ -136,20 +147,12 @@ permalink: /staff/banners/index.html
 			for (var i = 0; i < eventData["streamers"].length; ++i)
 				$("streamer" + streamersList[i]).value = eventData["streamers"][i];
 		
-		var themeIndex = 0;
-		for (var i = 0; i < eventThemes.length; ++i)
-		{
-			if (eventData.theme == eventThemes[i].key)
-			{
-				themeIndex = i+1;
-				break;
-			}
-		}
-		
-		$("theme").selectedIndex = themeIndex;
-		$("title").value = unEscapeHTML(eventData.titleText);
-		$("type").selectedIndex = eventData.type;
-		$("sponsor").selectedIndex = (eventData.sponsor == "mindgames") ? 1 : 0;
+		$("title").value = unEscapeHTML(eventData.title);
+		selectOptionWithValue($("game"), eventData.game);
+		fillGameOptions();
+		selectOptionWithValue($("type"), eventData.type);
+		selectOptionWithValue($("theme"), eventData.theme, true);
+		selectOptionWithValue($("sponsor"), eventData.sponsor, true);
 		
 		readAndGenerate();
 	}
@@ -173,6 +176,8 @@ permalink: /staff/banners/index.html
 		var eventdata = {};
 		
 		// Read input from the forms
+		var game = $("game").options[$("game").selectedIndex].value;
+		
 		var month = $("month").selectedIndex;
 		var day = parseInt($("day").value);
 		var year = parseInt($("year").value);
@@ -208,20 +213,24 @@ permalink: /staff/banners/index.html
 			if (streamID != "") streamers.push(streamID);
 		}
 		
-		var themeIndex = $("theme").selectedIndex;
-		
-		eventdata.titleText = escapeHTML($("title").value);
-		eventdata.type = $("type").selectedIndex;
-		eventdata.theme = (themeIndex != 0) ? eventThemes[themeIndex-1].key : "undefined";
-		
+		eventdata.title = escapeHTML($("title").value);
+		eventdata.game = game;
+		eventdata.type = $("type").options[$("type").selectedIndex].value;
 		eventdata.date = startDate;
 		eventdata.duration = durationMinutes;
 		eventdata.timeZone = zoneString;
-		eventdata.hosts = hosts;
-		eventdata.streamers = streamers;
+		
+		if ($("theme").selectedIndex > 0)
+			eventdata.theme = $("theme").options[$("theme").selectedIndex].value;
+		
+		if (hosts.length > 0)
+			eventdata.hosts = hosts;
+		
+		if (streamers.length > 0)
+			eventdata.streamers = streamers;
 		
 		if ($("sponsor").selectedIndex > 0)
-			eventdata.sponsor = "mindgames";
+			eventdata.sponsor = $("sponsor").options[$("sponsor").selectedIndex].value;
 		
 		$("text-output").value = "," + JSON.stringify(eventdata);
 		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
@@ -240,8 +249,14 @@ permalink: /staff/banners/index.html
 			$("code" + id).value         = useHost.code;
 		//	$("host" + id).selectedIndex = useHost.tier;
 		}
+		else {
+			$("name" + id).value = $("code" + id).value = "";
+			$("tag"  + id).selectedIndex = 0;
+		}
 		readAndGenerate();
 	}
+	
+	
 	
 	
 </script>
@@ -256,15 +271,13 @@ permalink: /staff/banners/index.html
 			<hr/>
 			<p>
 				Title: <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
-				Type: <select id="type" onChange="readAndGenerate()">
-					<option value="0">Leaderboard Lobby</option>
-					<option value="1">Impromptu Lobby</option>
-					<option value="2">Casual Clash</option>
-					<option value="3">MLM Warmup Lobby</option>
-					<option value="4">Era Warmup Lobby</option>
-					<option value="5">Casual Scramble</option>
-					<option value="6">Mario Kart</option>
+				Game:  <select id="game" onChange="fillGameOptions(); readAndGenerate()">
+					<option value="arms">ARMS</option>
+					<option value="kart">Mario Kart</option>
+					<option value="splat">Splatoon</option>
+					<option value="smash">Super Smash Bros. Ultimate</option>
 				</select>
+				Type:  <select id="type" onChange="readAndGenerate()"></select>
 				Theme: <select id="theme" onChange="readAndGenerate()"></select>
 			</p>
 			
@@ -339,8 +352,8 @@ permalink: /staff/banners/index.html
 				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerC" placeholder="twitchID" onChange="readAndGenerate()"/>
 				
 				Sponsor: <select id="sponsor" onChange="readAndGenerate()">
-					<option value="0" selected>---</option>
-					<option value="1">MindGames</option>
+					<option value="undefined" selected>---</option>
+					<option value="mindgames">MindGames</option>
 				</select>
 			</p>
 			

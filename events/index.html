@@ -77,16 +77,6 @@ redirect_from: "/lobbies/"
 		transition: 0.2s transform;
 	}
 	
-	.indicator-type-2, .indicator-type-5 {
-		background-color: #1d94fc;
-		border: none;
-	}
-	
-	.indicator-type-6 {
-		background-color: #f92473;
-		border: none;
-	}
-	
 	#calendar {
 		width: 95%;
 		max-width: 500pt;
@@ -169,20 +159,13 @@ redirect_from: "/lobbies/"
 		background-color: #f92473;
 	}
 	
-	.cal-event-current-time {
-		background-color: black;
-		color: white;
-	}
+	.bgcolor-type-current-time { background-color: black; color: white; }
 	
-	.cal-event-2, #calendar .cal-event-5 {
-		background-color: #1d94fc;
-		color: white;
-	}
+	.bgcolor-game-arms { background-color: yellow; }
+	.bgcolor-game-kart { background-color: #f92473; border: none; color: white; }
+	.bgcolor-type-clash, .bgcolor-type-scramble { background-color: #1d94fc;  border: none; color: white; }
 	
-	.cal-event-6 {
-		background-color: #f92473;
-		color: white;
-	}
+	
 	
 	.cal-event .info {
 		display: none;
@@ -257,7 +240,7 @@ redirect_from: "/lobbies/"
 	</style>
 	<script>
 	
-	function createEntry(start, end, anchor, index, evtype, description)
+	function createEntry(start, end, anchor, index, game, evtype, description)
 	{
 		var result = "";
 		if (start.getDate() != end.getDate() && !(end.getHours() == 0 && end.getMinutes() == 0))
@@ -279,7 +262,7 @@ redirect_from: "/lobbies/"
 				newEnd.setDay(1);
 			}
 			
-			result = createEntry(newStart, newEnd, anchor, index, evtype, description);
+			result = createEntry(newStart, newEnd, anchor, index, game, evtype, description);
 			end = updatedEnd;
 		}
 		
@@ -292,7 +275,7 @@ redirect_from: "/lobbies/"
 		var dateOffset = (start.getDay() + 6) % 7 + 1;
 		
 		var onclick = (index != -1) ? "onclick='previewEvent(" + index + ");'" : "";
-		return result + "<a href='" + anchor + "' " + onclick +" class='cal-event cal-event-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
+		return result + "<a href='" + anchor + "' " + onclick +" class='cal-event bgcolor-game-" + game + " bgcolor-type-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
 	}
 	
 	var eventData;
@@ -303,7 +286,7 @@ redirect_from: "/lobbies/"
 		focusEvent = i;
 		generateBanner(880, 480, eventData[i], "next-lobby", true);
 		
-		var themeData = getTheme(ev.theme);
+		var themeData = getTheme(ev.game, ev.theme);
 		
 		$("next-theme").style.display = "none";
 		if (themeData != null)
@@ -317,19 +300,19 @@ redirect_from: "/lobbies/"
 		$("next-link").href = "https://www.casualarms.net/events/?id=" + getEventID(ev);
 		$("nx-link-field").innerHTML = "events/?id=" + getEventID(ev);
 		
-		if (ev["type"] == 2)
+		if (ev.game == "arms" && ev.type == "clash")
 		{
 			$("next-link").href = "https://www.casualarms.net/clash";
 			$("nx-link-field").innerHTML = "clash";
 		}
-		else if (ev["type"] == 5)
+		else if (ev.game == "arms" && ev.type == "scramble")
 		{
 			$("next-link").href = "https://www.casualarms.net/scramble";
 			$("nx-link-field").innerHTML = "scramble";
 		}
 		
-		$("next-leaderboards").style.display = (ev.type == 0) ? "block" : "none";
-		$("next-leaderboards-mariokart").style.display = (ev.type == 6) ? "block" : "none";
+		$("next-leaderboards").style.display = (ev.game == "arms" && ["leaderboard"].includes(ev.type)) ? "block" : "none";
+		$("next-leaderboards-mariokart").style.display = (ev.game == "kart" && ["race", "battle"].includes(ev.type)) ? "block" : "none";
 		
 		if ("streamers" in ev)
 		{
@@ -385,7 +368,7 @@ redirect_from: "/lobbies/"
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
 			$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
 			$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
-			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, "slot-" + eventSlots[i].game, eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
+			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].game, "slot-" + eventSlots[i].game, eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 		}
 		
 		// Add upcoming events for one week
@@ -399,9 +382,9 @@ redirect_from: "/lobbies/"
 			for (var i = 0; i < nextEventData.length; ++i)
 			{
 				var ev = nextEventData[i];
-				indicator_html += "<span class='banner-indicator indicator-type-" + ev.type + "' id='banner-indicator-" + i + "' onclick='previewEvent(" + i + ");'></span>";
+				indicator_html += "<span class='banner-indicator bgcolor-game-" + ev.game + " bgcolor-type-" + ev.type + "' id='banner-indicator-" + i + "' onclick='previewEvent(" + i + ");'></span>";
 				
-				if (first == undefined && ev.type != 2 && ev.type != 5) // No Clash or Scramble
+				if (first == undefined && !(ev.game == "arms" && ["clash", "scramble"].includes(ev.type))) // No Clash or Scramble
 					first = i;
 				
 				if (getEventID(ev) == targetEvent)
@@ -414,8 +397,8 @@ redirect_from: "/lobbies/"
 				{
 					var evStart = new Date(ev.date);
 					var evEnd = getEventEnd(ev);
-					var anchor = (ev.type == 2) ? "/clash/" : ((ev.type == 5) ? "/scramble/" : "#next");
-					html += createEntry(evStart, evEnd, anchor, i, ev.type, ev.titleText + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
+					var anchor = (ev.game == "arms" && ev.type == "clash") ? "/clash/" : ((ev.game == "arms" && ev.type == "scramble") ? "/scramble/" : "#next");
+					html += createEntry(evStart, evEnd, anchor, i, ev.game, ev.type, ev.titleText + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
 				}
 			}
 			$("calendar").innerHTML += html;
@@ -431,7 +414,7 @@ redirect_from: "/lobbies/"
 		// Add current time indicator
 		var rightNow = new Date();
 		var rightSoon = new Date(rightNow.getTime() + 20 * 60000);
-		events += createEntry(rightNow, rightSoon, "", -1, "current-time", "Your Local Time: " + formatTime(rightNow));
+		events += createEntry(rightNow, rightSoon, "", -1, "none", "current-time", "Your Local Time: " + formatTime(rightNow));
 		
 		$("calendar").innerHTML += events;
 	}

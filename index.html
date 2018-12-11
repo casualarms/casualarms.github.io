@@ -36,8 +36,8 @@
 			{
 				$("featured").className = "";
 				generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
-				if (nextEventData[0].type == 2 || nextEventData[0].type == 5)
-					$("featured-link").href = "/" + ((nextEventData[0].type == 2) ? "clash" : "scramble") + "/";
+				if (nextEventData[0].game == "arms" && ["clash", "scramble"].includes(nextEventData[0].type))
+					$("featured-link").href = "/" + nextEventData[0].type + "/";
 			}
 		});
 		

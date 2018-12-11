@@ -22,20 +22,30 @@ redirect_from: "/lobbies/themes/"
 	function load()
 	{
 		var scrolltoid = null;
-		var menu_html = "<div class='menu-container'>";
-		var event_html = "";
+		var game_menu_html = "<div class='menu-container'>";
+		var html = "";
 		
-		for (i = 0; i < eventThemes.length; ++i)
+		var games = {arms : "ARMS", kart : "Mario Kart 8 Deluxe", splat : "Splatoon 2"};
+		
+		for (var game in games)
 		{
-			ev = eventThemes[i];
-			menu_html += "<a class='menu-item m5' href='#" + ev.key + "'>" + ev.name + "</a>";
-			event_html += printTheme(ev);
+			game_menu_html += "<a class='menu-item m5' href='#" + game + "'>" + games[game] + "</a>";
+			var menu_html = "<div class='menu-container'>";
+			var event_html = "";
 			
-			if (window.location.hash.substring(1) == ev.key)
-				scrolltoid = ev.key;
+			for (i = 0; i < eventThemes[game].length; ++i)
+			{
+				ev = eventThemes[game][i];
+				menu_html += "<a class='menu-item m5' href='#" + ev.key + "'>" + ev.name + "</a>";
+				event_html += printTheme(game, ev);
+				
+				if (window.location.hash.substring(1) == ev.key)
+					scrolltoid = ev.key;
+			}
+			html += "<h2 id='" + game + "'>" + games[game] + "</h2>" + menu_html + "</div>" + event_html;
 		}
 		
-		$("themes").innerHTML = menu_html + "</div>" + event_html;
+		$("themes").innerHTML = game_menu_html + "</div>" + html;
 		
 		if (scrolltoid != null)
 			$(scrolltoid).scrollIntoView();

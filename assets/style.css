@@ -282,6 +282,12 @@ a.submenu-item > .sub-text {
 	box-shadow: 0 0 3pt #36393f;
 }
 
+.stage-container-header
+{
+	color: white;
+	font-weight: bold;
+}
+
 .stage {
 	background-color: black;
 	color: white;

@@ -332,17 +332,28 @@ function getTierID(tier)
 	return tier.name.toLowerCase().replace(" ", "-");
 }
 
-function getTheme(themeID)
+function getTheme(gameID, themeID)
 {
-	for (var t = 0; t < eventThemes.length; ++t)
-		if (eventThemes[t].key == themeID)
-			return eventThemes[t];
+	for (var t = 0; t < eventThemes[gameID].length; ++t)
+		if (eventThemes[gameID][t].key == themeID)
+			return eventThemes[gameID][t];
 	return null;
 }
 
-function printTheme(ev, concise)
+function printTheme(game, ev, concise)
 {
 	function printMode(ev, key, name)
+	{
+		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  " + ev[key] + "  </span></p>";
+	}
+	
+	function printBinaryMode(ev, key, name)
+	{
+		console.log(key, ev[key]);
+		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options option-" + (ev[key] ? "on" : "off") + "'>  " + (ev[key] ? "On" : "Off") + "  </span></p>";
+	}
+	
+	function printMultiMode(ev, key, name)
 	{
 		var html = "";
 		if (ev[key].length > 0)
@@ -358,26 +369,64 @@ function printTheme(ev, concise)
 	var html = "<h3 id='" + ev.key + "'>" + ev.name + "</h3>";
 	if (!concise) html += "<p>" + ev.description + "</p>";
 	
-	html += printMode(ev, "solo-fight", "Solo Fight");
-	html += printMode(ev, "team-fight", "Team Fight");
-	html += printMode(ev, "vs-hedlok", "VS Hedlok");
-	html += printMode(ev, "hedlok-scramble", "Hedlok Scramble");
-	html += printMode(ev, "hoops", "Hoops");
-	html += printMode(ev, "skillshot", "Skillshot");
-	html += printMode(ev, "v-ball", "V-ball");
+	if (game == "arms")
+	{
+		html += printMultiMode(ev, "solo_fight", "Solo Fight");
+		html += printMultiMode(ev, "team_fight", "Team Fight");
+		html += printMultiMode(ev, "vs_hedlok", "VS Hedlok");
+		html += printMultiMode(ev, "hedlok_scramble", "Hedlok Scramble");
+		html += printMultiMode(ev, "hoops", "Hoops");
+		html += printMultiMode(ev, "skillshot", "Skillshot");
+		html += printMultiMode(ev, "v_ball", "V-ball");
+		html += printBinaryMode(ev, "items", "Items");
+		html += printBinaryMode(ev, "streak_bonuses", "Streak Bonuses");
+	}
+	else if (game == "kart")
+	{
+		/*	key             : "150_cc",
+			name            : "150cc Racing",
+			description     : "",
+			mode            : "150cc Grand Prix",
+			teams           : false,
+			items           : "Normal Items",
+			round_length    : "",
+			cpu             : "Normal",
+			vehicles        : "All",
+			smart_steering  : true,*/
+		
+		html += printMode(ev, "mode", "Mode");
+		html += printBinaryMode(ev, "teams", "Teams");
+		html += printMode(ev, "items", "Items");
+		html += printMode(ev, "round_length", "Round Length");
+		html += printMode(ev, "cpu", "CPU");
+		html += printMode(ev, "vehicles", "Vehicles");
+		html += printBinaryMode(ev, "smart_steering", "Smart Steering");
+	}
+	else if (game == "splat")
+	{
+		html += printMode(ev, "mode", "Mode");
+		html += printBinaryMode(ev, "abilities", "Sub Abilities");
+	}
 	
-	html += "<p><span class='mode-name'>Items</span> <span class='mode-options option-" + (ev.items ? "on" : "off") + "'>  " + (ev.items ? "On" : "Off") + "  </span></p>";
-	html += "<p><span class='mode-name'>Streak Bonuses</span> <span class='mode-options option-" + (ev["streak-bonuses"] ? "on" : "off") + "'>  " + (ev["streak-bonuses"] ? "On" : "Off") + "  </span></p>";
-	
-	html += "<div class='stage-container'>";
+	var myid = Math.random().toString(36).substring(7);
+	html += "<div class='stage-container' id='" + myid + "'>";
+	html += "<div class='stage-container-header'>" + ev.stages.length + "/" + eventStages[game].length + " stages <a onclick=\"expandStages('" + myid + "');\">[EXPAND]</a></div>";
 	for (s = 0; s < ev.stages.length; ++s)
 	{
-		html += "<div class='stage active'>";
-		html += eventStages[ev.stages[s]];
-		html += "</div>";
+		html += "<div class='stage active' style='display: none;'>" + eventStages[game][ev.stages[s]] + "</div>";
 	}
 	html += "</div>";
 	return html;
+}
+
+function expandStages(myid)
+{
+	var container = $(myid);
+	var stages = container.childNodes;
+	for (var s = 1; s < stages.length; ++s)
+	{
+		stages[s].style.display = "block";
+	}
 }
 
 function copyToClipboard(tid)
@@ -444,4 +493,40 @@ function renderSwirls(canvas, lines)
 	
 	for (var l = 0; l < lines.length; l++)
 		drawSwirlComponents(canvas, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
+}
+
+function selectOptionWithValue(elem, value, defaultToZero=false)
+{
+	for (var i = 0; i < elem.options.length; ++i)
+	{
+		if (elem.options[i].value == value)
+		{
+			elem.selectedIndex = i;
+			return true;
+		}
+	}
+	if (defaultToZero)
+		elem.selectedIndex = 0;
+	else
+		return false;
+}
+
+function countsForLederboards(event)
+{
+	switch (event.game)
+	{
+		case "arms":
+			return ["leaderboard"].includes(event.type);
+		case "kart":
+			return ["race", "battle"].includes(event.type);
+		case "splat":
+			return [].includes(event.type);
+		case "smash":
+			return [].includes(event.type);
+	}
+}
+
+function range(size, startAt = 0)
+{
+	return Array.apply(null, Array(size)).map(function (_, i) {return i + startAt;});
 }
