@@ -397,7 +397,7 @@ redirect_from: "/lobbies/"
 					var evStart = new Date(ev.date);
 					var evEnd = getEventEnd(ev);
 					var anchor = (ev.game == "arms" && ev.type == "clash") ? "/clash/" : ((ev.game == "arms" && ev.type == "scramble") ? "/scramble/" : "#next");
-					html += createEntry(evStart, evEnd, anchor, i, ev.game, ev.type, ev.titleText + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
+					html += createEntry(evStart, evEnd, anchor, i, ev.game, ev.type, ev.title + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
 				}
 			}
 			$("calendar").innerHTML += html;
