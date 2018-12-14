@@ -45,7 +45,7 @@ function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, h
 
 function generateBanner(width, height, eventdata, canvasid, nativeTime)
 {
-	var caLogo, mlmLogo, mk8dLogo, coteLogo, discordLogo, streamIcon, leaderboardsIcon;
+	var caLogo, mlmLogo, gameLogo, coteLogo, discordLogo, streamIcon, leaderboardsIcon;
 	var template, sponsor;
 	
 	var performBannerRendering = function()
@@ -66,7 +66,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.tz).toUpperCase();
 		}
 		
-		var isWarmup = ["mlm_warmup", "era_warmup"].includes(eventdata.type) || eventdata.game == "kart";
+		var isWarmup = ["mlm_warmup", "era_warmup"].includes(eventdata.type) || eventdata.game == "kart" || eventdata.game == "splat" || eventdata.game == "smash";
 		
 		// Style presets
 		bgColor = "#1d94fc";
@@ -135,10 +135,10 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			ctx.fillRect(0, 0, width, height);
 			ctx.fillStyle = "rgba(0,0,0,0.2)";
 			ctx.beginPath();
-			ctx.arc(300, height/2 + 50, 200, 0, 2 * Math.PI, false);
+			ctx.arc(450, height/2 + 50, 200, 0, 2 * Math.PI, false);
 			ctx.fill();
 			ctx.fillStyle = "#ff0000";
-			ctx.fillRect(200, 0, 70, height);
+			ctx.fillRect(350, 0, 70, height);
 			ctx.fillRect(0, 370, width, 15);
 			ctx.fillStyle = "white";
 			ctx.fillRect(0, 0, width, 115);
@@ -182,9 +182,15 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		
 		// Discord link
 		if (!isWarmup)
+		{
+			ctx.fillRect  (615, 122, 255, 110);
 			ctx.drawImage(discordLogo, 615, 122);
+		}
 		else
-			ctx.drawImage(discordLogo, 10, 320);
+		{
+			ctx.fillRect  (10, 320, 255, 110);
+			ctx.drawImage(discordLogo, 10, 325);
+		}
 		
 		// Warmup logo
 		if (eventdata.game == "arms" && eventdata.type == "mlm_warmup")
@@ -192,7 +198,9 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		else if (eventdata.game == "arms" && eventdata.type == "era_warmup")
 			ctx.drawImage(coteLogo, 630, 120);
 		else if (eventdata.game == "kart")
-			ctx.drawImage(mk8dLogo, 590, 150);
+			ctx.drawImage(gameLogo, 590, 150);
+		else if (eventdata.game == "splat" || eventdata.game == "smash")
+			ctx.drawImage(gameLogo, 610, 115);
 		
 		var pluralHosts = ("hosts" in eventdata && eventdata.hosts.length > 1) ? "s" : "";
 		
@@ -354,7 +362,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 	{
 		imageURLs.push("/assets/banners/logo-mlm.png");
 		imageURLs.push("/assets/banners/logo-cote.jpg");
-		imageURLs.push("/assets/banners/logo-mk8d.png");
+		imageURLs.push("/assets/banners/logo-" + eventdata.game + ".png");
 		imageURLs.push("/assets/banners/icon-livestream.png");
 		imageURLs.push("/assets/banners/icon-leaderboards.png");
 	}
@@ -386,7 +394,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			{
 				mlmLogo = imgs[2];
 				coteLogo = imgs[3];
-				mk8dLogo = imgs[4];
+				gameLogo = imgs[4];
 				streamIcon = imgs[5];
 				leaderboardsIcon = imgs[6];
 			}

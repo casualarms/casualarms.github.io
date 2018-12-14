@@ -12,6 +12,10 @@ redirect_from: "/lobbies/"
 	<script src="/script/banner-gen.js"></script>
 	<script src="/data/support.js"></script>
 	<style>
+	#container {
+		background-color: #c7d7e7;
+	}
+	
 	.timeslot {
 		text-align: center;
 		font-weight: bold;
@@ -29,10 +33,6 @@ redirect_from: "/lobbies/"
 		box-shadow: 0px 0px 8px rgba(85, 85, 0, 0.5);
 	}
 	
-	#next-game {
-		background-color: #1d94fc;
-	}
-	
 	.next-box {
 		display: none;
 		width: 95%;
@@ -46,7 +46,7 @@ redirect_from: "/lobbies/"
 		font-family: ARMS;
 		text-decoration: none;
 		color: white;
-		border: 1px solid rgba(0,0,0,0.3);
+		border: 1pt solid rgba(0,0,0,0.4);
 	}
 	
 	.nx-big {
@@ -57,7 +57,6 @@ redirect_from: "/lobbies/"
 	#next-theme { background-color: black; }
 	#next-link { background-color: grey; }
 	#next-leaderboards { background-color: #444; }
-	
 	
 	p#next-theme-info {
 		text-align: center;
@@ -71,13 +70,13 @@ redirect_from: "/lobbies/"
 	.banner-indicator {
 		cursor: pointer;
 		display: inline-block;
-		height: 10pt;
-		width: 10pt;
+		height: 12pt;
+		width: 12pt;
 		border-radius: 100%;
 		background-color: yellow;
 		box-sizing: border-box;
-		border: 1pt solid black;
-		margin: -2pt 5pt;
+		margin: 0pt 5pt;
+		border: 1pt solid rgba(0,0,0,0.4);
 		transition: 0.2s transform;
 	}
 	
@@ -155,21 +154,19 @@ redirect_from: "/lobbies/"
 		opacity: 0.15;
 	}
 	
-	.cal-event-slot-arms {
-		background-color: yellow;
-	}
-	
-	.cal-event-slot-kart {
-		background-color: #f92473;
-	}
+	.cal-event-slot-arms  { background-color: yellow; }
+	.cal-event-slot-kart  { background-color: #f92473; }
+	.cal-event-slot-splat { background-color: #00dd00; }
+	.cal-event-slot-smash { background-color: #dd0000; }
 	
 	.bgcolor-type-current-time { background-color: black; color: white; }
 	
-	.bgcolor-game-arms { background-color: yellow; }
-	.bgcolor-game-kart { background-color: #f92473; border: none; color: white; }
-	.bgcolor-type-clash, .bgcolor-type-scramble { background-color: #1d94fc;  border: none; color: white; }
+	.bgcolor-game-arms  { background-color: yellow;  color: black; }
+	.bgcolor-game-kart  { background-color: #f92473; color: black; }
+	.bgcolor-game-splat { background-color: #00dd00; color: black; }
+	.bgcolor-game-smash { background-color: #dd0000; color: white; }
 	
-	
+	.bgcolor-type-clash, .bgcolor-type-scramble { background-color: #1d94fc; color: white; }
 	
 	.cal-event .info {
 		display: none;
@@ -216,22 +213,22 @@ redirect_from: "/lobbies/"
 	
 	#legend {
 		color: white;
-		font-weight: bold;
+	//	font-weight: bold;
 	}
 	
 	#legend > span {
 		font-size: 0.8em;
-		padding: 0pt 8pt;
+		padding: 2pt 6pt;
 		line-height: 2.2em;
 		white-space: nowrap;
-		border: 2pt solid rgba(0, 0, 0, 0.4);
+		border: 1pt solid rgba(0, 0, 0, 0.4);
 		margin: 2pt;
 	}
 	
 	#legend > span#legend-slot {
 		background-color: rgb(240, 240, 240);
 		color: black;
-		border: 2pt dotted rgba(0, 0, 0, 0.15);
+		border: 1pt dotted rgba(0, 0, 0, 0.15);
 	}
 	
 	@media only screen and (max-width: 700px)
@@ -292,6 +289,7 @@ redirect_from: "/lobbies/"
 		
 		// Game
 		$("next-game").style.display = "block";
+		$("next-game").className = "next-box bgcolor-game-" + ev.game;
 		$("nx-game-field").innerHTML = eventGames[ev.game];
 		
 		var themeData = getTheme(ev.game, ev.theme);
@@ -428,7 +426,7 @@ redirect_from: "/lobbies/"
 		
 		<p>The Casual ARMS events are for all players to join in! We run <em>ARMS</em> custom party lobbies in the "friend lobby" mode, so you just need to add one of the lobby hosts as a Switch friend to participate. The hosts are shown on the promotional banner for each event, which is always found on the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> as well as on <a href="https://twitter.com/casualARMS"><em>Twitter</em></a>.
 		
-		<p>Casual ARMS is currently expanding to other games, as well! Look out for <em style="background-color: #f92473;">Mario Kart 8 Deluxe</em> events in the schedule.</p>
+		<p>Casual ARMS is expanding to more games! In addition to <em class="bgcolor-game-arms">ARMS</em>, look out for <em class="bgcolor-game-kart">Mario Kart 8 Deluxe</em> and <em class="bgcolor-game-splat">Splatoon 2</em>events in the schedule.</p>
 		
 		<p>There are two types of events: <em>Leaderboard events</em> where the player's <img class='armscoin-text' src='/leaderboards/coin_arms_dark.png'/>  coins are counted and added to the <a href="/leaderboards/"><em>leaderboards</em></a>. <em>Warmup events</em> are just for fun and/or to let players get in shape for community tournaments.</p>
 		
@@ -464,9 +462,10 @@ redirect_from: "/lobbies/"
 		<p style="text-align: center;">
 			<span id="legend">
 				<span id="legend-slot">Regular Slot</span>
-				<span style="background-color: yellow; color: black;">ARMS Lobby</span>
-				<span style="background-color: #1d94fc;">ARMS Tournament</span>
-				<span style="background-color: #f92473;">Mario Kart</span>
+				<span class="bgcolor-game-arms">ARMS</span>
+				<span class="bgcolor-game-kart">Mario Kart</span>
+				<span class="bgcolor-game-splat">Splatoon</span>
+				<span style="background-color: #1d94fc;">Tournament</span>
 			</span>
 			<br/> All times are in your local time zone.
 		</p>
