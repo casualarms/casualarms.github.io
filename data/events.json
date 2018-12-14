@@ -8,7 +8,7 @@
 	,{"title":"Mario Kart 8 DX Event","game":"kart","type":"race","theme":"150cc","date":"2018-12-16T00:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"","code":"4412-5645-5723"}]}
 	
 	,{"title":"Mario Kart 8 DX Event","game":"kart","type":"race","theme":"150cc","date":"2018-12-17T19:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"","code":"1077-9421-4443"}]}
-	,{"title":"MLM Warmup","game":"arms","type":3,"theme":"mlm","date":"2018-12-17T21:45:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Turf War Testing","game":"splat","type":"impromptu","date":"2018-12-17T21:45:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Rashiko","code":"6822-5055-2423"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","theme":"fights-only","date":"2018-12-19T02:00:00.000Z","duration":120,"tz":"PST","hosts":[{"name":"To Be Announced","code":"-"}]}
 	,{"title":"Mario Kart 8 DX Event","game":"kart","type":"race","theme":"150cc","date":"2018-12-19T19:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"","code":"4621-2901-6363"}]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","theme":"breakable-bits","date":"2018-12-19T23:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
