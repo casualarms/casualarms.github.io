@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Splash Generator – Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/script/general.js"></script>
+	<link rel="stylesheet" href="/assets/style.css">
+	<style>
+	body {
+		background: #cccccc;
+	}
+	
+	#canvas, #imgres, button {
+		display: block;
+		margin: 10px auto;
+		//    background: white;
+	}
+	
+	#canvas {
+		width: 500px;
+		height: 500px;
+	}
+	
+	label {
+		width: 100px;
+		display: inline-block;
+		text-align: right;
+	}
+	
+	#imgres {
+		height: 100px;
+	}
+	</style>
+	<script>
+	
+	
+	function getParams()
+	{
+		return [
+			[0, +25, 0.6 * Math.PI, 3,   0.6, 0, "red"],
+			[0, -25, 1.7 * Math.PI, 2.5, 0.4, 1, "blue"],
+			[
+				parseFloat($("anchorX").value),
+				parseFloat($("anchorY").value),
+			/*	parseFloat($("rotation").value),
+				parseFloat($("curvature").value),
+				parseFloat($("width").value),*/
+				parseFloat($("streaks").value),
+				"rgba("+$("colorR").value+","+$("colorG").value+","+$("colorB").value+","+$("colorAlpha").value+")"
+			]
+		];
+	}
+	
+	function drawPoint(ctx, x, y, color)
+	{
+		ctx.save();
+		ctx.fillStyle = color;
+		ctx.translate(x, y);
+		ctx.beginPath();
+		ctx.arc(0, 0, 20, 0, 2.0 * Math.PI, false);
+		ctx.fill();
+		ctx.restore();
+	}
+	
+	function renderSplash(canvas)
+	{
+		var ctx = canvas.getContext('2d');
+		var width = canvas.width;
+		var height = canvas.height;
+		
+		ctx.translate(width / 2, height / 2);
+		
+		var mainSize = 300 + Math.random() * 200;
+		ctx.beginPath();
+		ctx.arc(0, 0, mainSize, 0, 2 * Math.PI, false);
+		ctx.fill();
+		
+		ctx.rotate(Math.random() * 2 * Math.PI);
+		
+		var blots = Math.floor(Math.random() * 18);
+		for (var i = 0; i < blots; ++i)
+		{
+			var size   = 70 + Math.random() * 100;
+			var length = size + 100 + Math.random() * 500;
+			ctx.save();
+			ctx.rotate(i / blots * 2 * Math.PI);
+			ctx.translate(0, mainSize + length);
+			
+			ctx.beginPath();
+			ctx.arc(0, 0, size, 0.0 * Math.PI, 2.0 * Math.PI, false);
+			ctx.fill();
+				
+			if (Math.random() < 0.7)
+			{
+				ctx.translate(0, -mainSize - length);
+				
+				var inset = size / 10;
+				var streak = 0.1;
+				
+				ctx.beginPath();
+				ctx.translate(0, mainSize);
+				ctx.moveTo(-mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
+				ctx.bezierCurveTo(inset, 0,   inset, length-200,   -size * Math.sin(-1/8 * 2 * Math.PI), length - size * Math.cos(-1/8 * 2 * Math.PI));
+				ctx.lineTo(-size * Math.sin(1/8 * 2 * Math.PI), length - size * Math.cos(1/8 * 2 * Math.PI));
+				ctx.bezierCurveTo(-inset, length-200,   -inset, 0,    mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
+				ctx.closePath();
+				ctx.fill();
+			}
+			
+			ctx.restore();
+		}
+	}
+	
+	function load()
+	{
+		renderSplash($("canvas"));
+		
+		$("swirl1").addEventListener('input', function() {
+			$("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
+			renderSwirls($("canvas"), getParams());
+		});
+	}
+	
+	function genImg()
+	{
+		$("imgres").src = $("canvas").toDataURL("image/png");
+	}
+	
+	</script>
+</head>
+<body onLoad="load()">
+	<form id="swirl1">
+	<!--	<label for="anchorX"/>Anchor X</label> <input id="anchorX"  type="range" min="-500" max="500" step="1" value="0">
+		<label for="anchorY"/>Anchor Y</label> <input id="anchorY"  type="range" min="-500" max="500" step="1" value="0"><br/>
+   
+		<label for="rotation"/>Rotation</label>   <input id="rotation"  type="range" min="0"   max="6.283" step="0.001"  value="1">
+		<label for="curvature"/>Curvature</label> <input id="curvature" type="range" min="-20"   max="20"  step="0.1"  value="1"><br/>
+		<label for="width"/>Width</label>         <input id="width"     type="range" min="0.1" max="6.283" step="0.001" value="0.5">
+		<label for="streaks"/>Streaks</label>           <input id="streaks"      type="range" min="0"   max="10"  step="1"    value="0"><br/>
+  
+		<label for="colorR"/>Red</label>       <input id="colorR"     type="range" min="0" max="255" step="1"    value="0">
+		<label for="colorG"/>Green</label>     <input id="colorG"     type="range" min="0" max="255" step="1"    value="0"><br/>
+		<label for="colorB"/>Blue</label>      <input id="colorB"     type="range" min="0" max="255" step="1"    value="0">
+		<label for="colorAlpha"/>Alpha</label> <input id="colorAlpha" type="range" min="0" max="1"   step="0.01" value="0.5"><br/>-->
+	</form>
+
+	<canvas id="canvas" width="3000" height="3000">
+		<p>No canvas.</p>
+	</canvas>
+	<button onclick="genImg()">Generate Image</button>
+	<img src="" id="imgres"/>
+</body>
+</html>
