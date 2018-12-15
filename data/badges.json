@@ -108,11 +108,14 @@
 	,"381626947119218699": {"name": "Beamer",              "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	
 	
-	,"196380470177562625": {"name": "Gote",               "badges": ["scramble"] }
+	,"196380470177562625": {"name": "Gote",               "badges": ["clash", "scramble"] }
 	,"163427256264425472": {"name": "Xelor41023",         "badges": ["scramble"] }
 	,"164685995583733760": {"name": "AntheM",             "badges": ["scramble", "scramble_win"] }
 	,"266330502439370752": {"name": "kilian_smt",         "badges": ["scramble"] }
 	,"518513221561352213": {"name": "creamerpm",          "badges": ["scramble"] }
 	
+	,"443737601904476160": {"name": "Buch",               "badges": ["clash"] }
+	,"243190204771336192": {"name": "Hennessey",          "badges": ["clash"] }
+	,"263368462745862144": {"name": "Fireshark",          "badges": ["clash"] }
 	
 }
