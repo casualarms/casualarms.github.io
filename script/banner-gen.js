@@ -124,6 +124,8 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		case "splat":
 			stripeBgColor = bgColor
 			titleColor = websiteBgColor = "#00dd00";
+			renderSplash(ctx.canvas, -200, 100, 1.0, "rgb(0,0,0)",       0.10, Math.seed("ec7O63".hashCode()));
+			renderSplash(ctx.canvas,  200,   0, 1.4, "rgb(255,255,255)", 0.15, Math.seed("pGvubT".hashCode()));
 			ctx.fillStyle = "#00dd00";
 			ctx.fillRect(0, 0, width, 115);
 			break;

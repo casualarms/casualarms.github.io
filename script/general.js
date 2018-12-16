@@ -484,6 +484,70 @@ function renderSwirls(canvas, lines)
 		drawSwirlComponents(canvas, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
 }
 
+function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
+{
+	var mainctx = canvas.getContext('2d');
+	var width = canvas.width;
+	var height = canvas.height;
+	
+	var scratch = document.createElement('canvas');
+	scratch.width = width;
+	scratch.height = height;
+	var ctx = scratch.getContext("2d");
+	
+	ctx.fillStyle = color;
+	ctx.translate(width / 2 + x, height / 2 + y);
+	
+	var dim = Math.min(width, height) / 3000 * scale;
+	ctx.scale(dim, dim);
+	
+	var mainSize = 300 + PRNG() * 200;
+	ctx.beginPath();
+	ctx.arc(0, 0, mainSize, 0, 2 * Math.PI, false);
+	ctx.fill();
+	
+	ctx.rotate(PRNG() * 2 * Math.PI);
+	
+	var blots = Math.floor(PRNG() * 18);
+	for (var i = 0; i < blots; ++i)
+	{
+		var size   = 70 + PRNG() * 100;
+		var length = size + 100 + PRNG() * 500;
+		ctx.save();
+		ctx.rotate(i / blots * 2 * Math.PI);
+		ctx.translate(0, mainSize + length);
+		
+		ctx.beginPath();
+		ctx.arc(0, 0, size, 0.0 * Math.PI, 2.0 * Math.PI, false);
+		ctx.fill();
+			
+		if (PRNG() < 0.7)
+		{
+			ctx.translate(0, -mainSize - length);
+			
+			var inset = size / 10;
+			var streak = 0.1;
+			
+			ctx.beginPath();
+			ctx.translate(0, mainSize);
+			ctx.moveTo(-mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
+			ctx.bezierCurveTo(inset, 0,   inset, length-200,   -size * Math.sin(-1/8 * 2 * Math.PI), length - size * Math.cos(-1/8 * 2 * Math.PI));
+			ctx.lineTo(-size * Math.sin(1/8 * 2 * Math.PI), length - size * Math.cos(1/8 * 2 * Math.PI));
+			ctx.bezierCurveTo(-inset, length-200,   -inset, 0,    mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
+			ctx.closePath();
+			ctx.fill();
+		}
+		
+		ctx.restore();
+	}
+	
+	mainctx.save();
+	mainctx.globalCompositeOperation = "source-over";
+	mainctx.globalAlpha = alpha;
+	mainctx.drawImage(scratch, 0, 0);
+	mainctx.restore();
+}
+
 function selectOptionWithValue(elem, value, defaultToZero=false)
 {
 	for (var i = 0; i < elem.options.length; ++i)

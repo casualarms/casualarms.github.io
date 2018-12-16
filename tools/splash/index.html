@@ -62,58 +62,26 @@
 		ctx.restore();
 	}
 	
-	function renderSplash(canvas)
+	
+	
+	function generateNewID(length)
 	{
-		var ctx = canvas.getContext('2d');
-		var width = canvas.width;
-		var height = canvas.height;
-		
-		ctx.translate(width / 2, height / 2);
-		
-		var mainSize = 300 + Math.random() * 200;
-		ctx.beginPath();
-		ctx.arc(0, 0, mainSize, 0, 2 * Math.PI, false);
-		ctx.fill();
-		
-		ctx.rotate(Math.random() * 2 * Math.PI);
-		
-		var blots = Math.floor(Math.random() * 18);
-		for (var i = 0; i < blots; ++i)
-		{
-			var size   = 70 + Math.random() * 100;
-			var length = size + 100 + Math.random() * 500;
-			ctx.save();
-			ctx.rotate(i / blots * 2 * Math.PI);
-			ctx.translate(0, mainSize + length);
-			
-			ctx.beginPath();
-			ctx.arc(0, 0, size, 0.0 * Math.PI, 2.0 * Math.PI, false);
-			ctx.fill();
-				
-			if (Math.random() < 0.7)
-			{
-				ctx.translate(0, -mainSize - length);
-				
-				var inset = size / 10;
-				var streak = 0.1;
-				
-				ctx.beginPath();
-				ctx.translate(0, mainSize);
-				ctx.moveTo(-mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
-				ctx.bezierCurveTo(inset, 0,   inset, length-200,   -size * Math.sin(-1/8 * 2 * Math.PI), length - size * Math.cos(-1/8 * 2 * Math.PI));
-				ctx.lineTo(-size * Math.sin(1/8 * 2 * Math.PI), length - size * Math.cos(1/8 * 2 * Math.PI));
-				ctx.bezierCurveTo(-inset, length-200,   -inset, 0,    mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
-				ctx.closePath();
-				ctx.fill();
-			}
-			
-			ctx.restore();
-		}
+		var characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		var id = "";
+		for (var i = 0; i < length; ++i)
+			id += characters[Math.floor(Math.random() * characters.length)];
+		return id;
 	}
 	
 	function load()
 	{
-		renderSplash($("canvas"));
+		
+		var seedVar = getQueryVariable("seed");
+		qID = ((seedVar != undefined) ? seedVar : generateNewID(6));
+		$("seed").innerHTML = qID;
+		PRNG = Math.seed(qID.hashCode());
+		
+		renderSplash($("canvas"), 0, 0, 1, "black", 1, PRNG);
 		
 		$("swirl1").addEventListener('input', function() {
 			$("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
@@ -129,6 +97,7 @@
 	</script>
 </head>
 <body onLoad="load()">
+	<p>Seed: <span id="seed"></span></p>
 	<form id="swirl1">
 	<!--	<label for="anchorX"/>Anchor X</label> <input id="anchorX"  type="range" min="-500" max="500" step="1" value="0">
 		<label for="anchorY"/>Anchor Y</label> <input id="anchorY"  type="range" min="-500" max="500" step="1" value="0"><br/>
