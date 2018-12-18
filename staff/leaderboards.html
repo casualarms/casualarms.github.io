@@ -180,7 +180,7 @@ permalink: /staff/leaderboards/index.html
 	{
 		var dataNew = parseData(reader.result);
 		$("formatted-for-web").value = JSON.stringify(dataNew);
-		var mode = ["arms", "kart"][$("mode").selectedIndex];
+		var mode = $("mode").value;
 		fetchLeaderboards(mode, function(dataOld) { compare(mode, dataNew, dataOld); });
 	}
 	
@@ -199,8 +199,10 @@ permalink: /staff/leaderboards/index.html
 		
 		<p>Mode:
 			<select id="mode">
-				<option value="0">ARMS</option>
-				<option value="1">Mario Kart</option>
+				<option value="arms">ARMS</option>
+				<option value="kart">Mario Kart</option>
+				<option value="splat">Splatoon</option>
+				<option value="smash">Super Smash Bros.</option>
 			</select>
 		</p>
 		
