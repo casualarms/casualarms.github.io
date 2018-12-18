@@ -63,6 +63,13 @@
 		transition: 0.2s;
 	}
 	
+	.entry.splat .index {
+		transform: rotate(5deg);
+	}
+	p.entry.splat:hover .index {
+		transform: scale(1.5) rotate(5deg);
+	}
+	
 	.small .index {
 		font-size: 1em;
 	}
@@ -84,10 +91,6 @@
 		padding-right: 24pt;
 	}
 	
-	.entry.basic-kart .coins {
-		color: #f92473;
-	}
-	
 	.armscoin {
 		position: absolute;
 		width: 17pt;
@@ -100,9 +103,9 @@
 		color: black !important;
 	}
 	
-	p.entry.basic-kart:hover {
-		background-color: #f92473;
-	}
+	p.entry.basic.kart:hover  { background-color: #f92473; }
+	p.entry.basic.splat:hover { background-color: #00dd00; }
+	p.entry.basic.smash:hover { background-color: #ff0000; }
 	
 	p.entry:hover .coins {
 		color: black;
@@ -121,15 +124,12 @@
 		transform: scale(1.5);
 	}
 	
-	p.entry.basic-arms .index {
-		background-image: url(placement-basic-arms.png);
-		color: black;
-	}
+	.index { color: black; }
 	
-	p.entry.basic-kart .index {
-		background-image: url(placement-basic-kart.png);
-		color: black;
-	}
+	p.entry.basic.arms .index  { background-image: url(placement-arms-basic.png); }
+	p.entry.basic.kart .index  { background-image: url(placement-kart-basic.png); }
+	p.entry.basic.splat .index { background-image: url(placement-splat-basic.png); }
+	p.entry.basic.smash .index { background-image: url(placement-smash-basic.png); }
 	
 	#sponsor {
 		background-color: black;
@@ -259,7 +259,7 @@
 		}
 		
 		// Leaderboard badges
-		var games = ["arms", "kart"];
+		var games = ["arms", "kart", "splat", "smash"];
 		
 		for (var gi = 0; gi < games.length; ++gi)
 			if (rawLeaderboard[games[gi]].hasOwnProperty(uid))
@@ -289,24 +289,28 @@
 		stash.style.height = "auto";
 	}
 	
-	var rawLeaderboard = { arms: null, kart: null };
-	var rawSeasonHistory = { arms: null, kart: null };
-	var seasonHistory = { arms: null, kart: null };
+	var rawLeaderboard   = { arms: null, kart: null, splat: null, smash: null };
+	var rawSeasonHistory = { arms: null, kart: null, splat: null, smash: null };
+	var seasonHistory    = { arms: null, kart: null, splat: null, smash: null };
 	var badges = null;
 	var rawPatrons = null;
 	
 	function finalizeLoading()
 	{
-		if (rawLeaderboard.arms && rawLeaderboard.kart && badges && rawPatrons && seasonHistory.arms)
+		if (rawLeaderboard.arms && rawLeaderboard.kart && rawLeaderboard.splat && rawLeaderboard.smash && badges && rawPatrons && seasonHistory.arms)
 		{
 			switch (window.location.hash.substring(1))
 			{
-			case "arms":        changeMode(0); break;
-			case "monthly":     changeMode(1); break;
-			case "kart":        changeMode(2); break;
-			case "monthlykart": changeMode(3); break;
-			case "patrons":     changeMode(4); break;
-			default:            changeMode(0);
+			case "arms":          changeMode('arms',    false, false); break;
+			case "arms-monthly":  changeMode('arms',    true,  false); break;
+			case "kart":          changeMode('kart',    false, false); break;
+			case "kart-monthly":  changeMode('kart',    true,  false); break;
+			case "splat":         changeMode('splat',   false, false); break;
+			case "splat-monthly": changeMode('splat',   true,  false); break;
+			case "smash":         changeMode('smash',   false, false); break;
+			case "smash-monthly": changeMode('smash',   true,  false); break;
+			case "patrons":       changeMode('patreon', false, true ); break;
+			default:              changeMode('arms',    false, false);
 			}
 		}
 	}
@@ -323,9 +327,21 @@
 		finalizeLoading();
 	}
 	
+	function storeLeaderboardsSplat(rawBoards)
+	{
+		rawLeaderboard.splat = rawBoards;
+		finalizeLoading();
+	}
+	
+	function storeLeaderboardsSmash(rawBoards)
+	{
+		rawLeaderboard.smash = rawBoards;
+		finalizeLoading();
+	}
+	
 	function storeSeasons(rawBoards)
 	{
-		var games = ["arms", "kart"];
+		var games = ["arms", "kart", "splat", "smash"];
 		for (var gi = 0; gi < games.length; ++gi)
 		{
 			rawSeasonHistory[games[gi]] = [];
@@ -366,9 +382,9 @@
 		finalizeLoading();
 	}
 	
-	function displayRolePlayers(players, tc, mode, showIndex)
+	function displayRolePlayers(players, tc, game, showIndex)
 	{
-		var tier = leaderboardTiers[mode][tc];
+		var tier = leaderboardTiers[game][tc];
 		if (globalShuffle) shuffle(players);
 		
 		var html = "<div class='tier tier-" + getTierID(tier) + "'>";
@@ -381,32 +397,32 @@
 			var useIndex = pi + 1 - duplicates;
 			
 			var pid = "leaderboard-" + tc + "-" + pi;
-			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry " + ((useIndex > 99) ? " small" : "") + "' style='color: " + tier.color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry " + game + " " + ((useIndex > 99) ? " small" : "") + "' style='color: " + tier.color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
 			html += "<span class='player'>" + players[pi].name + "</span>";
-			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin_" + mode +".png'/><img class='armscoin coin-dark' src='coin_" + mode +"_dark.png'/></span></p>";
+			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin_" + game +".png'/><img class='armscoin coin-dark' src='coin_" + game +"_dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		return html + "</div>";
 	}
 	
-	function displayRoleMeta(tc, mode)
+	function displayRoleMeta(tc, game)
 	{
-		var tierID = getTierID(leaderboardTiers[mode][tc]);
-		var tier = leaderboardTiers[mode][tc];
-		var title = (mode == "arms") ? "ARMS Labs " + tier.name : tier.name + " Cup Racer";
+		var tierID = getTierID(leaderboardTiers[game][tc]);
+		var tier = leaderboardTiers[game][tc];
+		var title = leaderboardTitles[game].prefix + tier.name + leaderboardTitles[game].suffix;
 		
 		var html = "<h3 id='tier-" + getTierID(tier) + "' style='color: " + tier.color + ";'>" + title + "</h3>";
-		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin_" + mode +".png'/>";
-		if (tc == leaderboardTiers[mode].length-2)
+		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin_" + game +".png'/>";
+		if (tc == leaderboardTiers[game].length-2)
 			html += " +";
 		else if (tc != 0)
-			html += " &#8211; " + (leaderboardTiers[mode][tc+1].start-1) + " <img class='armscoin-text' src='coin_" + mode +".png'/></p>";
+			html += " &#8211; " + (leaderboardTiers[game][tc+1].start-1) + " <img class='armscoin-text' src='coin_" + game +".png'/></p>";
 		
 		var menu_html = "<a class='menu-item m5 tier-" + tierID + "' href='#tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</a>";
 		
 		var css  = ".tier-" + tierID + " p.entry:hover, a.menu-item.tier-" + tierID + ":hover ";
 		css += "{ background-color: " + tier.color + " !important; color: black !important; }";
-		css += ".tier-" + tierID + " .index " + "{ background-image: url(placement-" + tierID + ".png); color: black; }";
+		css += ".tier-" + tierID + " .index " + "{ background-image: url(placement-" + game + "-" + tierID + ".png); }";
 		
 		return {css: css, menu: menu_html, body: html};
 	}
@@ -512,7 +528,7 @@
 			}
 		
 			var pid = "monthly-" + i;
-			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic-" + game + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic " + game + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
 			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
 			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
@@ -558,7 +574,7 @@
 				// Generate CSS
 				css += ".tier-" + tierID + " p.entry:hover, a.menu-item.tier-" + tierID + ":hover ";
 				css += "{ background-color: " + patreonTiers[tc].color + " !important; color: black !important; }";
-				css += ".tier-" + tierID + " p.entry .index { background-image: url(placement-" + tierID + ".png); color: black; }";
+				css += ".tier-" + tierID + " p.entry .index { background-image: url(placement-patreon-" + tierID + ".png); color: black; }";
 			}
 			
 			var pid = "patron-" + (index++);
@@ -578,34 +594,33 @@
 	
 	var activeGame;
 	
-	function changeMode(mode)
+	function changeMode(game, monthly, patreon)
 	{
-		activeGame = (mode == 2 || mode == 3) ? "kart" : "arms";
+		activeGame = game;
 		
-		$("md0").className = $("md1").className = $("md2").className = $("md3").className = $("md4").className = "mode";
-		$("md" + mode).className += " active-mode active-mode-" + activeGame;
+		var buttons = document.getElementsByClassName("mode");
+		for (var b = 0; b < buttons.length; ++b)
+			buttons[b].className = "mode";
+		$("md-" + game + (monthly ? "-monthly" : "")).className += " active-mode active-mode-" + activeGame;
 		$("season").selectedIndex = 0;
-		$("season-nav").style.display = (mode == 1 || mode == 3) ? "block" : "none";
+		$("season-nav").style.display = monthly ? "block" : "none";
 		
-		document.getElementsByTagName("H1")[0].className = (mode == 2 || mode == 3) ? "kart" : "";
-		document.getElementsByTagName("H1")[0].children[0].innerHTML = (mode == 2 || mode == 3) ? "Casual Kart" : "Casual ARMS";
+		document.getElementsByTagName("H1")[0].className = "title-" + game;
+		document.getElementsByTagName("H1")[0].children[0].innerHTML = { patreon:"Casual ARMS", arms:"Casual ARMS", kart:"Casual Kart", splat:"Casual Splat", smash :"Casual Smash" }[game];
 		
-		
-		var today = new Date();
-		var options = "<option value='0'>" + monthNames[today.getMonth()] + " " + today.getFullYear() + " (Current)</option>";
-		
-		for (var i = 0; i < seasonHistory[activeGame].length; ++i)
-			options += "<option value='" + (i+1) +"'>" + seasonHistory[activeGame][i].title + "</option>";
-		$("season").innerHTML = options;
-		
-		switch (mode)
+		if (patreon)
+			displayPatreon();
+		else if (monthly)
 		{
-		case 0: displayLeaderboards("arms"); break;
-		case 1: selectSeason("arms"); break;
-		case 2: displayLeaderboards("kart"); break;
-		case 3: selectSeason("kart"); break;
-		case 4: displayPatreon(); break;
+			var today = new Date();
+			var options = "<option value='0'>" + monthNames[today.getMonth()] + " " + today.getFullYear() + " (Current)</option>";
+			for (var i = 0; i < seasonHistory[activeGame].length; ++i)
+				options += "<option value='" + (i+1) +"'>" + seasonHistory[activeGame][i].title + "</option>";
+			$("season").innerHTML = options;
+			selectSeason(game);
 		}
+		else
+			displayLeaderboards(game);
 	}
 	
 	function selectSeason(game)
@@ -636,6 +651,8 @@
 		
 		fetchLeaderboards("arms", storeLeaderboards);
 		fetchLeaderboards("kart", storeLeaderboardsMarioKart);
+		fetchLeaderboards("splat", storeLeaderboardsSplat);
+		fetchLeaderboards("smash", storeLeaderboardsSmash);
 		fetchSeasonHistory(storeSeasons);
 		fetchPatrons(storePatrons);
 		fetchBadges(storeBadges);
@@ -649,7 +666,7 @@
 		
 		<h2>Leaderboards</h2>
 		
-		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin_arms.png'/> coins throughout every major <a href="/lobbies/"><em>lobby event</em></a> we hold! At the moment, this means the <a href="/lobbies/#tuesday">Tuesday</a>, <a href="/lobbies/#wednesday">Wednesday</a>, <a href="/lobbies/#thursday">Thursday</a>, and <a href="/lobbies/#saturday">Saturday</a> lobbies. As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin_arms.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
+		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin_arms.png'/> coins throughout every major <a href="/events/"><em>lobby event</em></a> we hold! At the moment, this means the <a href="/events/#tuesday">Tuesday</a>, <a href="/events/#wednesday">Wednesday</a>, <a href="/events/#thursday">Thursday</a>, and <a href="/events/#sunday">Sunday</a> lobbies. As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin_arms.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
 		
 		<h3>Badges</h3>
 		
@@ -666,12 +683,18 @@
 		
 		<p id="mode-selector">
 			<span class="split-mode">
-				<em class="mode active-mode" id="md0" onClick="changeMode(0);">ARMS</em><em class="mode" id="md1" onClick="changeMode(1);">Monthly</em>
+				<em class="mode active-mode" id="md-arms" onClick="changeMode('arms', false, false);">ARMS</em><em class="mode" id="md-arms-monthly" onClick="changeMode('arms', true, false);">Monthly</em>
 			</span>
 			<span class="split-mode">
-				<em class="mode" id="md2" onClick="changeMode(2);">Kart</em><em class="mode" id="md3" onClick="changeMode(3);">Monthly</em>
+				<em class="mode" id="md-kart" onClick="changeMode('kart', false, false);">Kart</em><em class="mode" id="md-kart-monthly" onClick="changeMode('kart', true, false);">Monthly</em>
 			</span>
-			<em class="mode" id="md4" onClick="changeMode(4);">Patrons</em>
+		<!--	<span class="split-mode">
+				<em class="mode" id="md-splat" onClick="changeMode('splat', false, false);">Splatoon</em><em class="mode" id="md-splat-monthly" onClick="changeMode('splat', true, false);">Monthly</em>
+			</span>-->
+		<!--	<span class="split-mode">
+				<em class="mode" id="md-smash" onClick="changeMode('smash', false, false);">Smash</em><em class="mode" id="md-smash-monthly" onClick="changeMode('smash', true, false);">Monthly</em>
+			</span>-->
+			<em class="mode" id="md-patreon" onClick="changeMode('patreon', false, true);">Patrons</em>
 		</p>
 		
 		<p id="season-nav">

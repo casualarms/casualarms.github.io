@@ -22,7 +22,7 @@ var leaderboardTiers = {
 		{ start : 10000000, name : "[Dummy]",      color : "white"},
 	],
 	kart : [
-		{ start :        0, name : "Racing Mascot", color : "white"},
+		{ start :        0, name : "[Dummy]",       color : "white"},
 		{ start :        1, name : "Shell",         color : "#bfffff"},
 		{ start :      300, name : "Mushroom",      color : "#00ffff"},
 		{ start :      700, name : "Banana",        color : "#00ff00"},
@@ -35,9 +35,29 @@ var leaderboardTiers = {
 		{ start :    30000, name : "Special",       color : "#b700ff"},
 		{ start : 10000000, name : "[Dummy]",       color : "white"},
 	],
-	splat : [],
+	splat : [
+		{ start :        0, name : "[Dummy]",       color : "white"},
+		{ start :        1, name : "Intern",        color : "#bfffff"},
+		{ start :      100, name : "Trainee",       color : "#00ffff"},
+		{ start :      250, name : "Apprentice",    color : "#00ff00"},
+		{ start :      500, name : "Temp Worker",   color : "#aaff00"},
+		{ start :     1000, name : "Part-Timer",    color : "#ffae00"},
+		{ start :     2000, name : "Full-Timer",    color : "#ff6000"},
+		{ start :     3000, name : "Go-Getter",     color : "#ff0004"},
+		{ start :     5000, name : "Supervisor",    color : "#ff006f"},
+		{ start :     7000, name : "Overachiever",  color : "#ff00e6"},
+		{ start :    10000, name : "Profreshional", color : "#b700ff"},
+		{ start : 10000000, name : "[Dummy]",       color : "white"},
+	],
 	smash : [],
 };
+
+var leaderboardTitles = {
+	arms  : { prefix: "ARMS Labs ", suffix: ""},
+	kart  : { prefix: "", suffix: " Cup Racer"},
+	splat : { prefix: "Grizzco ", suffix: ""},
+	smash : { prefix: "Smashing ", suffix: ""},
+}
 
 var patreonTiers = [
 	{ start :  1, name : "Casual Contributor", color : "#2E666B"},
@@ -67,6 +87,17 @@ var badgeList = {
 	kart_ldb7 : { caption : "Bell Cup Racer",      style : "light", criterion: "Earn at least 15000 points in Mario Kart events" },
 	kart_ldb8 : { caption : "Lightning Cup Racer", style : "light", criterion: "Earn at least 21000 points in Mario Kart events" },
 	kart_ldb9 : { caption : "Special Cup Racer",   style : "light", criterion: "Earn at least 30000 points in Mario Kart events" },
+	
+	splat_ldb0 : { caption : "Grizzco Intern",        style : "light", criterion: "Earn at least 1 point in Splatoon events"},
+	splat_ldb1 : { caption : "Grizzco Trainee",       style : "light", criterion: "Earn at least 300 points in Splatoon events" },
+	splat_ldb2 : { caption : "Grizzco Apprentice",    style : "light", criterion: "Earn at least 700 points in Splatoon events" },
+	splat_ldb3 : { caption : "Grizzco Temp Worker",   style : "light", criterion: "Earn at least 1500 points in Splatoon events" },
+	splat_ldb4 : { caption : "Grizzco Part-Timer",    style : "light", criterion: "Earn at least 3000 points in Splatoon events" },
+	splat_ldb5 : { caption : "Grizzco Full-Timer",    style : "light", criterion: "Earn at least 6000 points in Splatoon events" },
+	splat_ldb6 : { caption : "Grizzco Go-Getter",     style : "light", criterion: "Earn at least 9000 points in Splatoon events" },
+	splat_ldb7 : { caption : "Grizzco Supervisor",    style : "light", criterion: "Earn at least 15000 points in Splatoon events" },
+	splat_ldb8 : { caption : "Grizzco Overachiever",  style : "light", criterion: "Earn at least 21000 points in Splatoon events" },
+	splat_ldb9 : { caption : "Grizzco Profreshional", style : "light", criterion: "Earn at least 30000 points in Splatoon events" },
 	
 	p0 : { caption : "Patreon: Casual Contributor", style : "light", criterion: "Contribute more than $1 on the Patreon for at least one month" },
 	p1 : { caption : "Patreon: Committed Casual",   style : "light", criterion: "Contribute more than $5 on the Patreon for at least one month" },

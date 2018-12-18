@@ -129,14 +129,9 @@ h1 > a {
 	transition: color 0.2s, background-color 0.2s;
 }
 
-h1.title-kart > a {
-	background-color: #f92473 !important;
-}
-
-h1.title-splat > a {
-	background-color: #00dd00 !important;
-}
-
+h1.title-kart  > a { background-color: #f92473 !important; }
+h1.title-splat > a { background-color: #00dd00 !important; }
+h1.title-smash > a { background-color: #ff0000 !important; }
 
 h1 > a:hover {
 	color: white;
@@ -434,17 +429,10 @@ a.submenu-item > .sub-text {
 	color: black;
 }
 
-.mode.active-mode-kart {
-	background-color: #f92473;
-}
-
-.mode.active-mode-splat {
-	background-color: #00dd00;
-}
-
-.mode.active-mode-patreon {
-	background-color: #f36b61;
-}
+.mode.active-mode-kart    { background-color: #f92473; }
+.mode.active-mode-splat   { background-color: #00dd00; }
+.mode.active-mode-smash   { background-color: #ff0000; }
+.mode.active-mode-patreon { background-color: #f36b61; }
 
 .split-mode {
 	white-space: nowrap;
