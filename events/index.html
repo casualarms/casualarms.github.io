@@ -30,7 +30,7 @@ redirect_from: "/lobbies/"
 	#next-lobby {
 		width: 95%;
 		max-width: 500pt;
-		box-shadow: 0px 0px 8px rgba(85, 85, 0, 0.5);
+		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 	}
 	
 	.next-box {
@@ -87,7 +87,7 @@ redirect_from: "/lobbies/"
 		margin: 1em auto;
 		position: relative;
 		background-color: white;
-		box-shadow: 0px 0px 8px rgba(85, 85, 0, 0.5);
+		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 	}
 	
 	#calendar div {
@@ -147,24 +147,19 @@ redirect_from: "/lobbies/"
 		box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
 	}
 	
-	.cal-event-slot-arms, .cal-event-slot-kart {
+	.cal-event.bgcolor-type-slot {
 		color: rgba(0, 0, 0, 0.4);
 		border: 2pt dotted rgba(0, 0, 0, 0.7);
 		box-shadow: none;
 		opacity: 0.15;
 	}
 	
-	.cal-event-slot-arms  { background-color: yellow; }
-	.cal-event-slot-kart  { background-color: #f92473; }
-	.cal-event-slot-splat { background-color: #00dd00; }
-	.cal-event-slot-smash { background-color: #dd0000; }
-	
 	.bgcolor-type-current-time { background-color: black; color: white; }
 	
 	.bgcolor-game-arms  { background-color: yellow;  color: black; }
 	.bgcolor-game-kart  { background-color: #f92473; color: black; }
 	.bgcolor-game-splat { background-color: #00dd00; color: black; }
-	.bgcolor-game-smash { background-color: #dd0000; color: white; }
+	.bgcolor-game-smash { background-color: #ff0000; color: white; }
 	
 	.bgcolor-type-clash, .bgcolor-type-scramble { background-color: #1d94fc; color: white; }
 	
@@ -213,7 +208,6 @@ redirect_from: "/lobbies/"
 	
 	#legend {
 		color: white;
-	//	font-weight: bold;
 	}
 	
 	#legend > span {
@@ -365,7 +359,7 @@ redirect_from: "/lobbies/"
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
 			$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
 			$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
-			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].game, "slot-" + eventSlots[i].game, eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
+			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 		}
 		
 		// Add upcoming events for one week
