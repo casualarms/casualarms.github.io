@@ -3,7 +3,7 @@
 	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season_arms", "season_kart", "clash", "scramble", "cgc", "host"] }
 	
 	,"398284103541063690": {"name": "Simango",             "badges": ["clash", "clash_win"] }
-	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "season_arms"] }
+	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "scramble_win", "season_arms"] }
 	,"192081577306488842": {"name": "SerperiorFan",        "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	,"180917649444700160": {"name": "Piper",               "badges": ["clash", "scramble", "scramble_win", "cgc"] }
 	
@@ -14,7 +14,7 @@
 	,"327864229673697290": {"name": "Cosmos",              "badges": ["casualcrew", "clash", "scramble"] }
 	,"412681834493640705": {"name": "Ackus",               "badges": ["casualcrew", "clash", "host"] }
 	,"186543180114690048": {"name": "Eevee",               "badges": ["casualcrew", "clash", "host"] }
-	,"426780718639611905": {"name": "Fang",                "badges": ["casualcrew", "clash", "host"] }
+	,"426780718639611905": {"name": "Fang",                "badges": ["casualcrew", "clash", "scramble", "scramble_win", "host"] }
 	,"340340760698159115": {"name": "Horrible",            "badges": ["casualcrew", "host"] }
 	,"164371048093974528": {"name": "GV-97",               "badges": ["host"] }
 	
@@ -56,10 +56,10 @@
 	,"415266965788295168": {"name": "Dendrimer",           "badges": ["clash"] }
 	,"333469682952830976": {"name": "ai-chan",             "badges": ["clash"] }
 	,"353673806008549377": {"name": "Hamma",               "badges": ["clash"] }
-	,"221495328497467392": {"name": "Cocovet",             "badges": ["clash", "season_arms"] }
+	,"221495328497467392": {"name": "Cocovet",             "badges": ["clash", "scramble", "season_arms"] }
 	,"213547862523379712": {"name": "KegMinami",           "badges": ["clash"] }
 	,"339645959610826752": {"name": "Comet",               "badges": ["clash"] }
-	,"109484254517293056": {"name": "Drift",               "badges": ["clash"] }
+	,"109484254517293056": {"name": "Drift",               "badges": ["clash", "scramble"] }
 	,"272505335812456449": {"name": "Raffa",               "badges": ["clash"] }
 	,"366185416581447690": {"name": "Ripha",               "badges": ["clash"] }
 	,"322774612712620033": {"name": "Spronch",             "badges": ["clash"] }
@@ -117,5 +117,9 @@
 	,"443737601904476160": {"name": "Buch",               "badges": ["clash"] }
 	,"243190204771336192": {"name": "Hennessey",          "badges": ["clash"] }
 	,"263368462745862144": {"name": "Fireshark",          "badges": ["clash"] }
+	
+	,"491050652978511873": {"name": "9nineLives",         "badges": ["scramble"] }
+	,"272037378749628428": {"name": "yver20",             "badges": ["scramble"] }
+	,"207244940667781120": {"name": "Nathan",             "badges": ["scramble"] }
 	
 }
