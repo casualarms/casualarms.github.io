@@ -15,6 +15,8 @@
 	,{"title":"Mario Kart 8 DX Event","game":"kart","type":"race","date":"2019-01-02T19:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","hosts":[{"name":"","code":"4621-2901-6363"}]}
 	,{"title":"Mario Kart 8 DX Battles","game":"kart","type":"impromptu","date":"2019-01-04T22:00:00.000Z","duration":120,"tz":"EST","theme":"mk_battle","hosts":[{"name":"","code":"5153-6594-0779"}]}
 	,{"title":"Mario Kart 8 DX Event","game":"kart","type":"race","date":"2018-12-30T00:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","hosts":[{"name":"","code":"4412-5645-5723"}]}
+	,{"title":"Splatoon Thursday","game":"splat","type":"impromptu","date":"2019-01-04T02:00:00.000Z","duration":120,"tz":"PST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Saturday Splashdown","game":"splat","type":"impromptu","date":"2019-01-05T17:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
 	
 	
 	
