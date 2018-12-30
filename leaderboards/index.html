@@ -280,6 +280,12 @@
 				}
 			}
 		
+		// Stable order of badge display
+		var badgeIndex = {};
+		for (var i = 0; i < Object.keys(badgeList).length; ++i)
+			badgeIndex[Object.keys(badgeList)[i]] = i;
+		user_badges.sort(function (a, b) { return badgeIndex[a] - badgeIndex[b]; });
+		
 		if (user_badges.length > 0)
 		{
 			html = "";
