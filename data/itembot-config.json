@@ -1,0 +1,38 @@
+[
+	{
+		"commands" : ["website"],
+		"response" : "https://www.casualarms.net/"
+	},
+	{
+		"commands" : ["schedule"],
+		"response" : "View upcoming events and regular time slots here: https://www.casualarms.net/events/#schedule"
+	},
+	{
+		"commands" : ["quiz"],
+		"response" : "ARMS quiz with thousands of questions: https://www.casualarms.net/quiz/"
+	},
+	{
+		"commands" : ["twitter"],
+		"response" : "Casual ARMS Twitter account: <https://twitter.com/casualARMS>"
+	},
+	{
+		"commands" : ["patreon"],
+		"response" : "Contribute to Casual ARMS on Patreon: <https://www.patreon.com/CasualARMS/>"
+	},
+	{
+		"commands" : ["movienight"],
+		"response" : "Casual ARMS movie nights: https://www.casualarms.net/events/movienight/"
+	},
+	{
+		"commands" : ["snakepark"],
+		"response" : "<http://neednintendo.com/index.php/2018/04/15/in-defense-of-snake-park/>"
+	},
+	{
+		"commands" : ["randomizers", "randomizer"],
+		"response" : "https://www.casualarms.net/tools/fighter-randomizer/\nhttps://www.casualarms.net/tools/stage-randomizer/"
+	},
+	{
+		"commands" : ["anniversary", "birthday", "wristbands"],
+		"response" : "**Happy birthday, Casual ARMS!**\nWe are making a limited run of Casual ARMS wristbands to celebrate one year of community and excitement! https://www.casualarms.net/wristbands/"
+	}
+]
