@@ -32,7 +32,7 @@
 		"response" : "https://www.casualarms.net/tools/fighter-randomizer/\nhttps://www.casualarms.net/tools/stage-randomizer/"
 	},
 	{
-		"commands" : ["anniversary", "birthday", "wristbands"],
+		"commands" : ["anniversary", "birthday", "wristband", "wristbands"],
 		"response" : "**Happy birthday, Casual ARMS!**\nWe are making a limited run of Casual ARMS wristbands to celebrate one year of community and excitement! https://www.casualarms.net/wristbands/"
 	}
 ]
