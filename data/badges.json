@@ -74,7 +74,7 @@
 	,"308818549655339008": {"name": "E.P.Silon",           "badges": ["cgc"] }
 	,"398013985619968010": {"name": "idkhonestly",         "badges": ["cgc"] }
 	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_kart", "scramble"] }
-	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "season_arms", "clash", "scramble"] }
+	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "season_arms", "season_kart", "clash", "scramble"] }
 	
 	,"196169851788591104": {"name": "Jiko",                "badges": ["clash", "scramble"] }
 	,"327106519785275392": {"name": "SirRacha",            "badges": ["clash", "scramble"] }
@@ -99,7 +99,7 @@
 	,"219155908830298132": {"name": "Uran",                "badges": ["season_kart", "clash", "clash_win"] }
 	,"265719610681065472": {"name": "CheezLuigi",          "badges": ["season_arms", "clash"] }
 	,"508809343597281305": {"name": "GlitchWork",          "badges": ["season_arms"] }
-	,"464467971574595585": {"name": "Goomba",              "badges": ["season_kart", "scramble"] }
+	,"464467971574595585": {"name": "Goomba",              "badges": ["season_arms", "season_kart", "scramble"] }
 	,"207741284050403328": {"name": "Geeligan",            "badges": ["season_kart"] }
 	
 	
@@ -108,7 +108,7 @@
 	,"381626947119218699": {"name": "Beamer",              "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	
 	
-	,"196380470177562625": {"name": "Gote",               "badges": ["clash", "scramble"] }
+	,"196380470177562625": {"name": "Gote",               "badges": ["clash", "scramble", "season_arms", "season_kart", "season_kart_win",] }
 	,"163427256264425472": {"name": "Xelor41023",         "badges": ["scramble"] }
 	,"164685995583733760": {"name": "AntheM",             "badges": ["scramble", "scramble_win"] }
 	,"266330502439370752": {"name": "kilian_smt",         "badges": ["scramble"] }
@@ -121,5 +121,8 @@
 	,"491050652978511873": {"name": "9nineLives",         "badges": ["scramble"] }
 	,"272037378749628428": {"name": "yver20",             "badges": ["scramble"] }
 	,"207244940667781120": {"name": "Nathan",             "badges": ["scramble"] }
-	
+	,"277470404166287371": {"name": "Paradox",            "badges": ["season_kart"] } 
+	,"165048408518819840": {"name": "Nowi",	            "badges": ["season_kart"] } 
+	,"347435736598970369": {"name": "Nylis",            "badges": ["season_kart"] }
+	,"411789586495438858": {"name": "LesFleur",           "badges": ["season_arms"] }
 }
