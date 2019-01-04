@@ -8,7 +8,7 @@
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-01-02T23:00:00.000Z","duration":120,"tz":"EST","theme":"teambuilding-near-far","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","date":"2019-01-03T19:00:00.000Z","duration":120,"tz":"GMT","theme":"fights-only","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Splatoon Thursday","game":"splat","type":"impromptu","date":"2019-01-04T02:00:00.000Z","duration":120,"tz":"PST","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Fang","code":"8434-0819-1597","tag":"CC"},{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Saturday Splashdown","game":"splat","type":"impromptu","date":"2019-01-05T17:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Pawl S. Lax","code":"0656-1636-5890"},{"name":"idkhonestly","code":"6190-4188-6425"}]}
+	,{"title":"Saturday Splashdown","game":"splat","type":"impromptu","date":"2019-01-05T17:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Pawl S. Lax","code":"0656-1636-5890"}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","date":"2019-01-06T20:45:00.000Z","duration":120,"tz":"EST","theme":"everything","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"The Oddity","code":"4303-5678-5601"}]}
 
 
