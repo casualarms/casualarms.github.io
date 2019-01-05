@@ -122,7 +122,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			break;
 		
 		case "splat":
-			stripeBgColor = bgColor
+			stripeBgColor = bgColor;
 			titleColor = websiteBgColor = "#00dd00";
 			renderSplash(ctx.canvas, -200, 100, 1.0, "rgb(0,0,0)",       0.10, Math.seed("ec7O63".hashCode()));
 			renderSplash(ctx.canvas,  200,   0, 1.4, "rgb(255,255,255)", 0.15, Math.seed("pGvubT".hashCode()));
@@ -133,13 +133,11 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		case "smash":
 			titleColor = websiteBgColor = "white";
 			stripeBgColor = "black";
-			ctx.fillStyle = "#ff0000";
-			ctx.fillRect(0, 0, width, height);
-			ctx.fillStyle = "rgba(0,0,0,0.2)";
+			ctx.fillStyle = "rgba(0,0,0,0.1)";
 			ctx.beginPath();
 			ctx.arc(450, height/2 + 50, 200, 0, 2 * Math.PI, false);
 			ctx.fill();
-			ctx.fillStyle = "#ff0000";
+			ctx.fillStyle = bgColor;
 			ctx.fillRect(350, 0, 70, height);
 			ctx.fillRect(0, 370, width, 15);
 			ctx.fillStyle = "white";
