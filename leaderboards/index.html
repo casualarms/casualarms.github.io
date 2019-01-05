@@ -402,7 +402,7 @@
 		var tier = leaderboardTiers[game][tc];
 		if (globalShuffle) shuffle(players);
 		
-		var html = "<div class='tier tier-" + getTierID(tier) + "'>";
+		var html = "<div class='tier tier-" + game + "-" + (tc-1) + "'>";
 		var previous = -1;
 		var duplicates = 0;
 		for (var pi = 0; pi < players.length; pi++)
@@ -422,11 +422,11 @@
 	
 	function displayRoleMeta(tc, game)
 	{
-		var tierID = getTierID(leaderboardTiers[game][tc]);
+		var tierID = game + "-" + (tc-1);
 		var tier = leaderboardTiers[game][tc];
 		var title = leaderboardTitles[game].prefix + tier.name + leaderboardTitles[game].suffix;
 		
-		var html = "<h3 id='tier-" + getTierID(tier) + "' style='color: " + tier.color + ";'>" + title + "</h3>";
+		var html = "<h3 id='tier-" + tierID + "' style='color: " + tier.color + ";'>" + title + "</h3>";
 		html += "<p class='limits'>" + tier.start + " <img class='armscoin-text' src='coin_" + game +".png'/>";
 		if (tc == leaderboardTiers[game].length-2)
 			html += " +";
@@ -437,21 +437,21 @@
 		
 		var css  = ".tier-" + tierID + " p.entry:hover, a.menu-item.tier-" + tierID + ":hover ";
 		css += "{ background-color: " + tier.color + " !important; color: black !important; }";
-		css += ".tier-" + tierID + " .index " + "{ background-image: url(placement-" + game + "-" + tierID + ".png); }";
+		css += ".tier-" + tierID + " .index " + "{ background-image: url(placement-" + tierID + ".png); }";
 		
 		return {css: css, menu: menu_html, body: html};
 	}
 	
-	function displayLeaderboards(mode)
+	function displayLeaderboards(game)
 	{
-		var leaderboard = reorganizeLeaderboards(rawLeaderboard[mode]);
+		var leaderboard = reorganizeLeaderboards(rawLeaderboard[game]);
 		
 		var menu_html = "<div class='menu-container'>";
 		var body_html = "<div>";
 		var css = "";
 		
 		var scrolltoid = null;
-		var useTiers = leaderboardTiers[mode];
+		var useTiers = leaderboardTiers[game];
 		var tc = useTiers.length-2;
 		
 		var players = [];
@@ -465,17 +465,17 @@
 			{
 				if (players.length > 0 || !first)
 				{
-					var result = displayRoleMeta(tc, mode);
+					var result = displayRoleMeta(tc, game);
 					body_html += result.body;
 					menu_html += result.menu;
 					css += result.css;
 					first = false;
 				}
 				
-				body_html += displayRolePlayers(players, tc, mode, true);
+				body_html += displayRolePlayers(players, tc, game, true);
 				
-				if (window.location.hash.substring(1) == getTierID(useTiers[tc]))
-					scrolltoid = getTierID(useTiers[tc]);
+				if (window.location.hash.substring(1) == game + "-" + (tc-1))
+					scrolltoid = game + "-" + (tc-1);
 				
 				tc--;
 				players = [];
@@ -485,15 +485,15 @@
 			players.push(leaderboard[i]);
 		}
 		
-		var result = displayRoleMeta(tc, mode);
+		var result = displayRoleMeta(tc, game);
 		menu_html += result.menu;
 		css += result.css;
-		body_html += result.body + displayRolePlayers(players, tc, mode, true);
+		body_html += result.body + displayRolePlayers(players, tc, game, true);
 		
-		if (mode == "arms")
+		if (game == "arms")
 		{
 			// Players not in leaderboard but still with badges
-			var result = displayRoleMeta(0, mode);
+			var result = displayRoleMeta(0, game);
 			menu_html += result.menu;
 			css += result.css;
 			
@@ -505,7 +505,7 @@
 				if (!ldbPLayers.hasOwnProperty(key))
 					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
 			
-			body_html += result.body + displayRolePlayers(zeroes, 0, mode, false);
+			body_html += result.body + displayRolePlayers(zeroes, 0, game, false);
 		}
 		
 		$("leaderboard").innerHTML = menu_html + "</div>" + body_html + "</div>";
