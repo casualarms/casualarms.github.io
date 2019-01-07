@@ -30,7 +30,7 @@
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","theme":"clash","date":"2018-12-15T20:15:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"Rashiko","tag":"CC","code":"6822-5055-2423"}]}
 	,{"title":"Casual Clash 8","game":"arms","type":"clash","theme":"clash","date":"2018-12-15T21:30:00.000Z","duration":90,"tz":"EST"}
 
-	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","date":"2018-12-29T20:15:00.000Z","duration":60,"tz":"EST","theme":"scramble","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-	,{"title":"Casual Scramble 5","game":"arms","type":"scramble","date":"2018-12-29T21:30:00.000Z","duration":90,"tz":"EST","theme":"scramble","sponsor":"mindgames"}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","date":"2019-01-12T20:15:00.000Z","duration":60,"tz":"EST","theme":"clash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Casual Clash 9","game":"arms","type":"clash","date":"2019-01-12T21:30:00.000Z","duration":90,"tz":"EST","theme":"clash"}	
 	
 ]
