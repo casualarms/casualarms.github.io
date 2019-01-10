@@ -349,8 +349,23 @@ function printTheme(game, ev, concise)
 	
 	function printBinaryMode(ev, key, name)
 	{
-		console.log(key, ev[key]);
 		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options option-" + (ev[key] ? "on" : "off") + "'>  " + (ev[key] ? "On" : "Off") + "  </span></p>";
+	}
+	
+	function getEventStagesList(ev)
+	{
+		var stages = [];
+		for (s = 0; s < ev.stages.length; ++s)
+		{
+			var stage = ev.stages[s];
+			if (typeof stage === 'object')
+			{
+				for (var b = stage.start; b <= stage.end; ++b)
+					stages.push(b);
+			}
+			else stages.push(ev.stages[s]);
+		}
+		return stages;
 	}
 	
 	function printMultiMode(ev, key, name)
@@ -397,13 +412,12 @@ function printTheme(game, ev, concise)
 		html += printBinaryMode(ev, "abilities", "Sub Abilities");
 	}
 	
+	var stages = getEventStagesList(ev);
 	var myid = Math.random().toString(36).substring(7);
 	html += "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
-	html += "<div class='stage-container-header'>" + ev.stages.length + "/" + eventStages[game].length + " stages (click to expand)</div>";
-	for (s = 0; s < ev.stages.length; ++s)
-	{
-		html += "<div class='stage active' style='display: none;'>" + eventStages[game][ev.stages[s]] + "</div>";
-	}
+	html += "<div class='stage-container-header'>" + stages.length + "/" + eventStages[game].length + " stages (click to expand)</div>";
+	for (var s = 0; s < stages.length; ++s)
+		html += "<div class='stage active' style='display: none;'>" + eventStages[game][stages[s]] + "</div>";
 	html += "</div>";
 	return html;
 }
@@ -571,7 +585,7 @@ function countsForLederboards(event)
 		case "arms":
 			return ["leaderboard"].includes(event.type);
 		case "kart":
-			return ["race", "battle"].includes(event.type);
+			return ["race"].includes(event.type);
 		case "splat":
 			return ["friends", "salmon"].includes(event.type);
 		case "smash":

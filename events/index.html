@@ -16,6 +16,8 @@ redirect_from: "/lobbies/"
 		background-color: #c7d7e7;
 	}
 	
+	.menu-container { background-color: black; }
+	
 	.timeslot {
 		text-align: center;
 		font-weight: bold;
@@ -191,6 +193,11 @@ redirect_from: "/lobbies/"
 	#cal-saturday  { left: 75.0%; }
 	#cal-sunday    { left: 87.5%; }
 	
+	#announced-slots, #regular-slots {
+		height: 100% !important;
+		width: 100% !important;
+	}
+	
 	#calendar .cal-title {
 		display: block;
 		text-align: center;
@@ -224,6 +231,31 @@ redirect_from: "/lobbies/"
 		color: black;
 		border: 1pt dotted rgba(0, 0, 0, 0.15);
 	}
+	
+	.event-block {
+		padding-bottom: 1.5em;
+	}
+	
+	.event-block > p {
+		padding: 0 10%;
+		line-height: 1.4em;
+	}
+	
+	#events-arms  { background-color: yellow; }
+	#events-kart  { background-color: #f92473; }
+	#events-splat { background-color: #00dd00; }
+	#events-smash { background-color: white; }
+	
+	#menu-arms  { color: yellow; }
+	#menu-kart  { color: #f92473; }
+	#menu-splat { color: #00dd00; }
+	#menu-smash { color: white; }
+	
+	
+	#menu-arms:hover  { color: black; background-color: yellow; }
+	#menu-kart:hover  { color: black; background-color: #f92473; }
+	#menu-splat:hover { color: black; background-color: #00dd00; }
+	#menu-smash:hover { color: black; background-color: white; }
 	
 	@media only screen and (max-width: 700px)
 	{
@@ -297,9 +329,9 @@ redirect_from: "/lobbies/"
 		}
 		
 		$("next-link").style.display = "block";
-		$("next-link").href = "https://www.casualarms.net/events/?id=" + getEventID(ev);
+		$("next-link").href = "/events/?id=" + getEventID(ev);
 		if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
-			$("next-link").href = "https://www.casualarms.net/" + ev.type;
+			$("next-link").href = "/" + ev.type;
 		
 		$("next-leaderboards").style.display = countsForLederboards(ev) ? "block" : "none";
 		$("next-leaderboards").href = "/leaderboards/#" + ev.game;
@@ -330,15 +362,21 @@ redirect_from: "/lobbies/"
 	}
 	
 	var eventSlots = [
-		{ id : "monday",         game : "arms", start : getNextWeekday(1, 21, 45), duration :  60, title : "Mega League Monday warmup"},
-		{ id : "tuesday",        game : "arms", start : getNextWeekday(3, 02, 00), duration : 120, title : "Tidal Tuesday"},
-		{ id : "wednesday",      game : "arms", start : getNextWeekday(3, 23, 00), duration : 120, title : "Wildcard Wednesday"},
-		{ id : "thursday",       game : "arms", start : getNextWeekday(4, 19, 00), duration : 120, title : "Thumpin' Thursday"},
+	//	{ id : "monday",         game : "arms", start : getNextWeekday(1, 21, 45), duration :  60, title : "Mega League Monday warmup"},
 	//	{ id : "saturday",       game : "arms", start : getNextWeekday(6, 19, 00), duration : 120, title : "Saturday Party Lobby"},
-		{ id : "sunday",         game : "arms", start : getNextWeekday(0, 20, 45), duration : 120, title : "Sunday Showdown"},
-		{ id : "saturday-kart",  game : "kart", start : getNextWeekday(0, 00, 00), duration : 120, title : "Mario Kart 8 DX 150cc"},
-		{ id : "wednesday-kart", game : "kart", start : getNextWeekday(3, 19, 00), duration : 120, title : "Mario Kart 8 DX 150cc"},
-		{ id : "monday-kart",    game : "kart", start : getNextWeekday(1, 19, 00), duration : 120, title : "Mario Kart 8 DX 150cc"},
+		{ id : "arms-tue",     game : "arms",  start : getNextWeekday(3, 02, 00), duration : 120, title : "Tidal Tuesday"},
+		{ id : "arms-wed",     game : "arms",  start : getNextWeekday(3, 23, 00), duration : 120, title : "Wildcard Wednesday"},
+		{ id : "arms-thu",     game : "arms",  start : getNextWeekday(4, 19, 00), duration : 120, title : "Thumpin' Thursday"},
+		{ id : "arms-sun",     game : "arms",  start : getNextWeekday(0, 20, 45), duration : 120, title : "Sunday Showdown"},
+		
+		{ id : "kart-mon",     game : "kart",  start : getNextWeekday(1, 19, 00), duration : 120, title : "Monday Motorway"},
+		{ id : "kart-wed",     game : "kart",  start : getNextWeekday(3, 19, 00), duration : 120, title : "Wonky Wednesday"},
+		{ id : "kart-fri",     game : "kart",  start : getNextWeekday(5, 22, 00), duration : 120, title : "Frantic Friday"},
+		{ id : "kart-sat",     game : "kart",  start : getNextWeekday(0, 00, 00), duration : 120, title : "Saturday Speedway"},
+		
+		{ id : "splat-mon",    game : "splat", start : getNextWeekday(1, 22, 00), duration : 120, title : "Messy Monday"},
+		{ id : "splat-thu",    game : "splat", start : getNextWeekday(5, 02, 00), duration : 120, title : "Turfsday"},
+		{ id : "splat-sat",    game : "splat", start : getNextWeekday(6, 17, 00), duration : 120, title : "Splaturday"},
 	];
 	
 	function load()
@@ -352,22 +390,24 @@ redirect_from: "/lobbies/"
 		$("calendar").innerHTML += timemarks;
 		
 		// Add standard slots
-		var events = "";
+		var events = "<div id='regular-slots'>";
 		for (var i = 0; i < eventSlots.length; ++i)
 		{
 			var evStart = eventSlots[i].start;
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
+			$(eventSlots[i].id).innerHTML = eventSlots[i].title;
 			$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
 			$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
 			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 		}
+		events += "</div>";
 		
 		// Add upcoming events for one week
 		nextEvents(function(nextEventData)
 		{
 			eventData = nextEventData;
 			var targetEvent = getQueryVariable("id");
-			var html = "", indicator_html = "";
+			var html = "<div id='announced-slots'>", indicator_html = "";
 			var first = undefined, target = undefined;
 			
 			for (var i = 0; i < nextEventData.length; ++i)
@@ -392,7 +432,8 @@ redirect_from: "/lobbies/"
 					html += createEntry(evStart, evEnd, anchor, i, ev.game, ev.type, ev.title + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
 				}
 			}
-			$("calendar").innerHTML += html;
+			
+			$("calendar").innerHTML += html + "</div>";
 			$("banner-indicators").innerHTML = indicator_html;
 			
 			var preview = (target != undefined) ? target : first;
@@ -401,6 +442,7 @@ redirect_from: "/lobbies/"
 			if (window.location.hash.substring(1) == "next")
 				$("next").scrollIntoView();
 		});
+		events += "</div>";
 		
 		// Add current time indicator
 		var rightNow = new Date();
@@ -408,6 +450,12 @@ redirect_from: "/lobbies/"
 		events += createEntry(rightNow, rightSoon, "", -1, "none", "current-time", "Your Local Time: " + formatTime(rightNow));
 		
 		$("calendar").innerHTML += events;
+	}
+	
+	function toggleEventVisibility()
+	{
+		$("announced-slots").style.display = $("announced-checkbox").checked ? "block" : "none";
+		$("regular-slots").style.display   = $("regular-checkbox").checked   ? "block" : "none";
 	}
 	</script>
 </head>
@@ -418,11 +466,16 @@ redirect_from: "/lobbies/"
 		
 		<h2>Community Events</h2>
 		
-		<p>The Casual ARMS events are for all players to join in! We run <em>ARMS</em> custom party lobbies in the "friend lobby" mode, so you just need to add one of the lobby hosts as a Switch friend to participate. The hosts are shown on the promotional banner for each event, which is always found on the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> as well as on <a href="https://twitter.com/casualARMS"><em>Twitter</em></a>.
-		
-		<p>Casual ARMS is expanding to more games! In addition to <em class="bgcolor-game-arms">ARMS</em>, look out for <em class="bgcolor-game-kart">Mario Kart 8 Deluxe</em> and <em class="bgcolor-game-splat">Splatoon 2</em>events in the schedule.</p>
-		
-		<p>There are two types of events: <em>Leaderboard events</em> where the player's <img class='armscoin-text' src='/leaderboards/coin_arms_dark.png'/>  coins are counted and added to the <a href="/leaderboards/"><em>leaderboards</em></a>. <em>Warmup events</em> are just for fun and/or to let players get in shape for community tournaments.</p>
+		<p>The Casual ARMS events are for all players to join in! The hosts are shown on the promotional banner for each event, which is always found on the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> as well as on <a href="https://twitter.com/casualARMS"><em>Twitter</em></a>.<br/>
+		<em>Leaderboard events</em> are where the players' <img class='armscoin-text' src='/leaderboards/coin_arms_dark.png'/> coins or score are counted and added to the <a href="/leaderboards/"><em>leaderboards</em></a>. Some events do not count for the leaderboards, check the banner for the icon in the bottom right.<br/>
+		Casual ARMS hosts events in the following games:</p>
+	
+		<div class="menu-container">
+			<a class="menu-item m4" id="menu-arms"  href="#events-arms">ARMS</a>
+			<a class="menu-item m4" id="menu-kart"  href="#events-kart">Mario Kart 8 Deluxe</a>
+			<a class="menu-item m4" id="menu-splat" href="#events-splat">Splatoon 2</a>
+			<a class="menu-item m4" id="menu-smash" href="#events-smash">Super Smash Bros. Ultimate</a>
+		</div>
 		
 		<div id="next-section">
 			<h3 id="next">Next Event</h3>
@@ -454,6 +507,8 @@ redirect_from: "/lobbies/"
 		</div>
 		
 		<p style="text-align: center;">
+			All times are in your local time zone.
+			<br/>
 			<span id="legend">
 				<span id="legend-slot">Regular Slot</span>
 				<span class="bgcolor-game-arms">ARMS</span>
@@ -461,7 +516,9 @@ redirect_from: "/lobbies/"
 				<span class="bgcolor-game-splat">Splatoon</span>
 				<span style="background-color: #1d94fc;">Tournament</span>
 			</span>
-			<br/> All times are in your local time zone.
+			<br/>
+			<span style="white-space: nowrap;"><input type="checkbox" id="announced-checkbox" checked="checked" onchange="toggleEventVisibility()"/> Show announced</span>
+			<span style="white-space: nowrap;"><input type="checkbox" id="regular-checkbox"   checked="checked" onchange="toggleEventVisibility()"/> Show slots</span>
 		</p>
 		
 		<!--<div class="menu-container">
@@ -473,39 +530,40 @@ redirect_from: "/lobbies/"
 			<a class="menu-item m5" href="#sunday">Champions of the Era Warmup</a>
 		</div>-->
 		
-		<h2>Leaderboard Lobby Events</h2>
+		<div class="event-block" id="events-arms"> 
+		<h2>ARMS Events</h2>
 		
-		<p>The following three weekly events all count for the Casual ARMS leaderboards! All dates and times are in <em>your local time zone</em> unless otherwise specified.</p>
+		<p>The following three weekly events all count for the Casual ARMS leaderboards! We run <em>ARMS</em> custom party lobbies in the "friend lobby" mode, so you just need to add one of the lobby hosts as a Switch friend to participate. All dates and times are in <em>your local time zone</em> unless otherwise specified.</p>
 		
-		<h3 id="tuesday">Tidal Tuesday</h3>
-		<p class="timeslot"><span id="tuesday-start">9:00 PM EST</span> to <span id="tuesday-end">11:00 PM EST</span></p>
+		<h3 id="arms-tue">Tidal Tuesday</h3>
+		<p class="timeslot"><span id="arms-tue-start">9:00 PM EST</span> to <span id="arms-tue-end">11:00 PM EST</span></p>
 		
 		<p>The <em>Tidal Tuesday</em> event is a later event aimed at our Pacific Time players! We feature a <a href="themes/#everything">standard party lobby</a> experience so anyone can get the full casual experience outside of our other events.</p>
 		
-		<h3 id="wednesday">Wildcard Wednesday</h3>
-		<p class="timeslot"><span id="wednesday-start">6:00 PM EST</span> to <span id="wednesday-end">8:00 PM EST</span></p>
+		<h3 id="arms-wed">Wildcard Wednesday</h3>
+		<p class="timeslot"><span id="arms-wed-start">6:00 PM EST</span> to <span id="arms-wed-end">8:00 PM EST</span></p>
 		
-		<p>The <em>Wildcard Wednesday</em> event has a unique theme each week! Each theme has a unique mix of active modes and stages. Settings for each theme can be found in the <a href="themes/"><em>theme list</em></a>.</p>
+		<p>The <em>Wildcard Wednesday</em> event has a unique theme each week! Each theme has a unique mix of active modes and stages. Settings for each theme can be found in the <a href="themes/">theme list</a>.</p>
 		
 		
-		<h3 id="thursday">Thumpin' Thursday</h3>
-		<p class="timeslot"><span id="thursday-start">2:00 PM EST</span> to <span id="thursday-end">4:00 PM EST</span></p>
+		<h3 id="arms-thu">Thumpin' Thursday</h3>
+		<p class="timeslot"><span id="arms-thu-start">2:00 PM EST</span> to <span id="arms-thu-end">4:00 PM EST</span></p>
 		
-		<p>The <em>Thumpin' Thursday</em> event is perfect for European players. The event features a rotating stage set, swtiching out every 20 coin lobby!</p>
+		<p>The <em>Thumpin' Thursday</em> event is perfect for European players. The event features a rotating stage set, switching out every 20 coin lobby!</p>
 				
 		
-		<h3 id="sunday">Sunday Showdown</h3>
-		<p class="timeslot"><span id="sunday-start">3:45 PM EST</span> to <span id="sunday-end">5:45 PM EST</span></p>
+		<h3 id="arms-sun">Sunday Showdown</h3>
+		<p class="timeslot"><span id="arms-sun-start">3:45 PM EST</span> to <span id="arms-sun-end">5:45 PM EST</span></p>
 		
 		<p>The <em>Sunday Showdown</em> event is our newest addition, featuring <a href="themes/#everything">standard party lobbies</a> with everything you can expect from ARMS' Party Mode!</p>
-
+		</div>
 		
 	<!--	<h3 id="saturday">Saturday Party Lobby</h3>
 		<p class="timeslot"><span id="saturday-start">2:00 PM EST</span> to <span id="saturday-end">4:00 PM EST</span></p>
 		
 		<p>The <em>Saturday Party Lobby</em> event features <a href="themes/#everything">standard party lobbies</a> with VS fights, minigames and items always on!</p>-->
 		
-		<h2>Community Warmup Events</h2>
+<!--		<h2>Community Warmup Events</h2>
 		
 		<p>Warmup events are scheduled before external community events such as tournaments. Everyone can join the warmup lobby regardless of tournament participation! These do not count for Casual ARMS leaderboards.
 			All dates and times are in <em>your local time zone</em> unless otherwise specified.</p>
@@ -514,35 +572,72 @@ redirect_from: "/lobbies/"
 		<p class="timeslot"><span id="monday-start">4:45 PM EST</span> to <span id="monday-end">5:45 PM EST</span></p>
 		
 		<p>The <em>Mega League Monday Warmup Lobby</em> event prepares ARMS players for Mega League Monday, hosted by Schkrimps!</p>
-		
+		-->
 		
 	<!--	<h3 id="sunday">Champions of the Era Warmup Lobby</h3>
 		<p class="timeslot"><span id="sunday-start">4:45 PM EST</span> to <span id="sunday-end">5:45 PM EST</span></p>
 		
 		<p>The <em>Champions of the Era Warmup Lobby</em> event prepares ARMS players for Champions of the Era, hosted by Era Wolf!</p>-->
 		
-		
-		<h2>Mario Kart Events</h2>
+		<div class="event-block" id="events-kart"> 
+		<h2>Mario Kart 8 Deluxe Events</h2>
 		
 		<p>Tournaments hosted in Mario Kart 8 Deluxe!</p>
 		
-		<h3 id="monday-kart">Monday Kart</h3>
-		<p class="timeslot"><span id="monday-kart-start">2:00 PM EST</span> to <span id="monday-kart-end">4:00 PM EST</span></p>
+		<h3 id="kart-mon">Monday Motorway</h3>
+		<p class="timeslot"><span id="kart-mon-start">2:00 PM EST</span> to <span id="kart-mon-end">4:00 PM EST</span></p>
 		
 		<p>Standard all-track <em>150 cc</em> races!</p>
 		
 		
-		<h3 id="wednesday-kart">Wednesday Kart</h3>
-		<p class="timeslot"><span id="wednesday-kart-start">2:00 PM EST</span> to <span id="wednesday-kart-end">4:00 PM EST</span></p>
+		<h3 id="kart-wed">Wonky Wednesday</h3>
+		<p class="timeslot"><span id="kart-wed-start">2:00 PM EST</span> to <span id="kart-wed-end">4:00 PM EST</span></p>
 		
-		<p>Standard all-track <em>150 cc</em> races!</p>
+		<p>There is no time to reflect on each race in this topsy-turvy <em>mirrored 150 cc</em> race lobby!</p>
 		
 		
-		<h3 id="saturday-kart">Saturday Kart</h3>
-		<p class="timeslot"><span id="saturday-kart-start">7:00 PM EST</span> to <span id="saturday-kart-end">9:00 PM EST</span></p>
+		<h3 id="kart-fri">Frantic Friday</h3>
+		<p class="timeslot"><span id="kart-fri-start">7:00 PM EST</span> to <span id="kart-fri-end">9:00 PM EST</span></p>
 		
-		<p>Standard all-track <em>150 cc</em> races!</p>
-	
+		<p>Random <em>battles</em> on all of the available battle stages. This event does not count for the leaderboards.</p>
+		
+		
+		<h3 id="kart-sat">Saturday Speedway</h3>
+		<p class="timeslot"><span id="kart-sat-start">7:00 PM EST</span> to <span id="kart-sat-end">9:00 PM EST</span></p>
+		
+		<p>Remember to bring a spare B button as it is time to brake! This event has <em>200cc</em> races for everyone.</p>
+		</div>
+		
+		
+		<div class="event-block" id="events-splat"> 
+		<h2>Splatoon 2 Events</h2>
+		
+		<p>The Splatoon events are hosted in private lobbies. Make sure to add the host as a Nintendo Switch friend, ideally before the event starts, and join in though the central tower lobby and the <em>Friends</em> option.</p>
+		
+		<h3 id="splat-mon">Messy Monday</h3>
+		<p class="timeslot"><span id="splat-mon-start">5:00 PM EST</span> to <span id="splat-mon-end">7:00 PM EST</span></p>
+		
+		<p>Join the inklings and octolings of Casual ARMS in playing modes from the Ranked Battles in Splatoon 2! <em>Rainmaker</em>, <em>Splat Zones</em>, <em>Tower Control</em>, and <em>Clam Blitz</em> rotate each week, as does the selection of four stages each time.</p>
+		
+		
+		<h3 id="splat-thu">Turf War Thursday</h3>
+		<p class="timeslot"><span id="splat-thu-start">2:00 PM EST</span> to <span id="splat-thu-end">4:00 PM EST</span></p>
+		
+		<p><em>Turf War</em> is the name of the game! Join a team and play fun and intense three-minute matches. May the team with the most turf win! A selection of <em>four stages</em> rotate each week. Check the <a href="themes/">theme</a> in advance and come prepared!</p>
+		
+		
+		<h3 id="splat-sat">Saturday Splashdown</h3>
+		<p class="timeslot"><span id="splat-sat-start">7:00 PM EST</span> to <span id="splat-sat-end">9:00 PM EST</span></p>
+		
+		<p>Enjoy the weekend time by joining in to this Splatoon lobby. Bring your Booyahs!</p>
+		</div>
+		
+		<div class="event-block" id="events-smash"> 
+		<h2>Super Smash Bros. Ultimate Events</h2>
+		
+		<p>Coming soon!</p>
+		
+		</div>
 	</div>
 </body>
 </html>
