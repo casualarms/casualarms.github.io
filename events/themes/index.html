@@ -49,11 +49,17 @@ redirect_from: "/lobbies/themes/"
 		
 		if (scrolltoid != null)
 			$(scrolltoid).scrollIntoView();
+		
+		var options = "";
+		for (var game in eventGames)
+			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
+		$("game").innerHTML = options;
 	}
 	
 	function randomizeTheme()
 	{
-		var theme = eventThemes[Math.floor(Math.random() * eventThemes.length)];
+		var game = $("game").options[$("game").selectedIndex].value;
+		var theme = eventThemes[game][Math.floor(Math.random() * eventThemes[game].length)];
 		$("random-result").innerHTML = "Random theme: <a href='#" + theme.key + "'>" + theme.name + "</a>!";
 	}
 	
@@ -66,7 +72,7 @@ redirect_from: "/lobbies/themes/"
 		<h2>Lobby Themes</h2>
 		<p>These are the themes we use in our <a href="/lobbies/"><em>lobby events</em></a>! We have a focus on <em>casual play</em> with items on and a varied selection of stages. The competitive themes are reserved for our tournament warm-up lobbies.</p>
 		<p style="text-align: center;">
-			<button onclick="randomizeTheme()">Random Theme</button><br/>
+			<button onclick="randomizeTheme()">Random Theme</button> from <select id="game"></select><br/>
 			<span id="random-result"></span>
 		</p>
 		<div id="themes">Loading...</div>
