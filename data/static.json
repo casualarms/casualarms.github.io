@@ -35,17 +35,17 @@
 			{ "start" : 10000000, "name" : "[Dummy]",       "color" : "white"}
 		],
 		"splat" : [
-			{ "start" :        0, "name" : "[Dummy]",       "color" : "white"},
+			{ "start" :        0, "name" : "Chum",       "color" : "white"},
 			{ "start" :        1, "name" : "Intern",        "color" : "#bfffff"},
-			{ "start" :      100, "name" : "Trainee",       "color" : "#00ffff"},
-			{ "start" :      250, "name" : "Apprentice",    "color" : "#00ff00"},
-			{ "start" :      500, "name" : "Temp Worker",   "color" : "#aaff00"},
-			{ "start" :     1000, "name" : "Part-Timer",    "color" : "#ffae00"},
-			{ "start" :     2000, "name" : "Full-Timer",    "color" : "#ff6000"},
-			{ "start" :     3000, "name" : "Go-Getter",     "color" : "#ff0004"},
-			{ "start" :     5000, "name" : "Supervisor",    "color" : "#ff006f"},
-			{ "start" :     7000, "name" : "Overachiever",  "color" : "#ff00e6"},
-			{ "start" :    10000, "name" : "Profreshional", "color" : "#b700ff"},
+			{ "start" :       50, "name" : "Trainee",       "color" : "#00ffff"},
+			{ "start" :      125, "name" : "Apprentice",    "color" : "#00ff00"},
+			{ "start" :      250, "name" : "Temp Worker",   "color" : "#aaff00"},
+			{ "start" :      500, "name" : "Part-Timer",    "color" : "#ffae00"},
+			{ "start" :     1000, "name" : "Full-Timer",    "color" : "#ff6000"},
+			{ "start" :     1500, "name" : "Go-Getter",     "color" : "#ff0004"},
+			{ "start" :     2500, "name" : "Supervisor",    "color" : "#ff006f"},
+			{ "start" :     3500, "name" : "Overachiever",  "color" : "#ff00e6"},
+			{ "start" :     5000, "name" : "Profreshional", "color" : "#b700ff"},
 			{ "start" : 10000000, "name" : "[Dummy]",       "color" : "white"}
 		],
 		"smash" : []
