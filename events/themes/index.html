@@ -12,10 +12,29 @@ redirect_from: "/lobbies/themes/"
 	<script src="/data/support.js"></script>
 	<style>
 	
+	#container {
+		background-color: #c7d7e7;
+	}
+	
 	.stage.active {
 		color: yellow;
 		background-color: black;
 	}
+	
+	.themes-block {
+		padding-bottom: 1.5em;
+	}
+	
+	.themes-block > p {
+		padding: 0 10%;
+		line-height: 1.4em;
+	}
+	
+	#themes-arms  { background-color: yellow; }
+	#themes-kart  { background-color: #f92473; }
+	#themes-splat { background-color: #00dd00; }
+	#themes-smash { background-color: white; }
+	
 	</style>
 	<script>
 	
@@ -25,11 +44,9 @@ redirect_from: "/lobbies/themes/"
 		var game_menu_html = "<div class='menu-container'>";
 		var html = "";
 		
-		var games = {arms : "ARMS", kart : "Mario Kart 8 Deluxe" /*, splat : "Splatoon 2"*/};
-		
-		for (var game in games)
+		for (var game in eventGames)
 		{
-			game_menu_html += "<a class='menu-item m5' href='#" + game + "'>" + games[game] + "</a>";
+			game_menu_html += "<a class='menu-item m5' href='#" + game + "'>" + eventGames[game] + "</a>";
 			var menu_html = "<div class='menu-container'>";
 			var event_html = "";
 			
@@ -42,7 +59,7 @@ redirect_from: "/lobbies/themes/"
 				if (window.location.hash.substring(1) == ev.key)
 					scrolltoid = ev.key;
 			}
-			html += "<h2 id='" + game + "'>" + games[game] + "</h2>" + menu_html + "</div>" + event_html;
+			html += "<div class='themes-block' id='themes-" + game + "'><h2 id='" + game + "'>" + eventGames[game] + "</h2>" + menu_html + "</div>" + event_html + "</div>";
 		}
 		
 		$("themes").innerHTML = game_menu_html + "</div>" + html;
@@ -76,6 +93,7 @@ redirect_from: "/lobbies/themes/"
 			<span id="random-result"></span>
 		</p>
 		<div id="themes">Loading...</div>
+		{% include footer.html %}
 	</div>
 </body>
 </html>

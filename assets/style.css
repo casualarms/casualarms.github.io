@@ -17,7 +17,6 @@ body {
 #container {
 	margin: 0 auto;
 	max-width: 700pt;
-	padding-bottom: 2em;
 	background-color: yellow;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	position: relative;
@@ -273,7 +272,7 @@ a.submenu-item > .sub-text {
 	background-color: #36393f;
 	width: 80%;
 	max-width: 250pt;
-	margin: 0 auto;
+	margin: 1em auto;
 	padding: 0.4em 1em;
 	border: 3pt solid #595d69;
 	border-radius: 1em;
@@ -404,6 +403,22 @@ a.submenu-item > .sub-text {
 	background-color: #738bd7;
 }
 
+.switch-bg {
+	background-color: #e60012;
+	color: white;
+}
+
+.switch-bg::before {
+	content:"";
+	background-image: url(/assets/switch-logo.png);
+	background-size: 1em 1em;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	vertical-align: text-top;
+	margin: 0 3px 0 -2px;
+}
+
 
 #mode-selector {
 	text-align: center;
@@ -461,6 +476,17 @@ a.submenu-item > .sub-text {
 	padding: 0 10%;
 	line-height: 1.4em;
 }
+
+#footer {
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 0.7em;
+	padding: 0.5em;
+	margin: 0;
+}
+
+#footer a { color: inherit; }
 
 
 @media only screen and (max-width: 600px)

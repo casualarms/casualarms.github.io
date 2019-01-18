@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +140,7 @@
 	
 	#logo, #shield {
 		position: absolute;
-		top: 4%;
+		top: 12%;
 		width: 18%;
 		z-index: 0;
 	}
@@ -193,7 +195,7 @@
 		height: 90pt;
 		position: absolute;
 		left: -35pt;
-		top: 200pt;
+		top: 230pt;
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 		transform: rotate(-2deg);
 		z-index: 10;
@@ -310,6 +312,11 @@
 	
 	a > em.subselect {
 		display: none;
+	}
+	
+	#footer {
+		background-color: transparent;
+		color: rgb(197, 215, 255);
 	}
 	
 	@media only screen and (min-width: 800px)
@@ -454,5 +461,6 @@
 	</div>
 	
 	<p class="bottom"><a href="quiz/" id="random-fact"></a></p>
+	{% include footer.html %}
 </body>
 </html>
