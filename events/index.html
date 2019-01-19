@@ -55,10 +55,11 @@ redirect_from: "/lobbies/"
 		font-size: 1.3em;
 	}
 	
-	#next-streamer { background-color: #4b367c; }
-	#next-theme { background-color: black; }
-	#next-link { background-color: grey; }
+	#next-streamer     { background-color: #4b367c; }
+	#next-theme        { background-color: black; }
+	#next-link         { background-color: grey; }
 	#next-leaderboards { background-color: #444; }
+	#next-sponsor      { background-color: pink; color: black; }
 	
 	p#next-theme-info {
 		text-align: center;
@@ -344,6 +345,13 @@ redirect_from: "/lobbies/"
 		}
 		$("next-streamer").style.display = ("streamers" in ev && ev["streamers"].length > 0) ? "block" : "none";
 		
+		if ("sponsor" in ev)
+		{
+			$("nx-sponsor-field").innerHTML = eventSponsors[ev["sponsor"]].title;
+			$("next-sponsor").href = eventSponsors[ev["sponsor"]].url;
+		}
+		$("next-sponsor").style.display = ("sponsor" in ev) ? "block" : "none";
+		
 		$("next-section").style.display = "block";
 		
 		$("banner-previous").disabled = (i == 0);
@@ -485,9 +493,10 @@ redirect_from: "/lobbies/"
 			</p>
 			<span class="next-box" id="next-game">Game: <span class="nx-big" id="nx-game-field"></span></span>
 			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big" id="nx-leaderboards-field">ARMS</span></a>
-			<a href="" class="next-box" id="next-theme">theme: <span class="nx-big" id="nx-theme-field"></span></a>
+			<a href="" class="next-box" id="next-theme">Theme: <span class="nx-big" id="nx-theme-field"></span></a>
 			<a href="" class="next-box" id="next-streamer">twitch.tv/ <span class="nx-big" id="nx-stream-field"></span></a>
 			<a href="" class="next-box" id="next-link"><span class="nx-big" id="nx-link-field">Direct Link</span></a>
+			<a href="" class="next-box" id="next-sponsor">Sponsor: <span class="nx-big" id="nx-sponsor-field">Direct Link</span></a>
 			<p id="next-info"></p>
 		</div>
 		

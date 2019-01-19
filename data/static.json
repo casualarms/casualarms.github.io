@@ -1,7 +1,7 @@
 {
 	"eventGames" : {
-		"arms"  :  "ARMS",
-		"kart"  :  "Mario Kart 8 Deluxe",
+		"arms"  : "ARMS",
+		"kart"  : "Mario Kart 8 Deluxe",
 		"splat" : "Splatoon 2",
 		"smash" : "Super Smash Bros. Ultimate"
 	},
@@ -35,7 +35,7 @@
 			{ "start" : 10000000, "name" : "[Dummy]",       "color" : "white"}
 		],
 		"splat" : [
-			{ "start" :        0, "name" : "Chum",       "color" : "white"},
+			{ "start" :        0, "name" : "Chum",          "color" : "white"},
 			{ "start" :        1, "name" : "Intern",        "color" : "#bfffff"},
 			{ "start" :       50, "name" : "Trainee",       "color" : "#00ffff"},
 			{ "start" :      125, "name" : "Apprentice",    "color" : "#00ff00"},
@@ -79,6 +79,86 @@
 			"arena"         : "Battle Arena",
 			"impromptu"     : "Impromptu Lobby"
 		}
+	},
+	"badgeList" : {
+		"casualcouple" : {
+			"caption"   : "Casual ARMS Founder",
+			"style"     : "light",
+			"criterion" : "This is a special badge for the two founders of Casual ARMS"
+		},
+		"casualcrew"   : {
+			"caption"   : "Casual Crew Member",
+			"style"     : "dark",
+			"criterion" : "Be a current or former member of the Casual Crew"
+		},
+		"host"         : {
+			"caption"   : "Official Lobby Host",
+			"style"     : "dark",
+			"criterion" : "Volunteer as a host of Casual ARMS lobby events"
+		},
+		"cgc"          : {
+			"caption"   : "Cobra Gloves Club",
+			"style"     : "light",
+			"criterion" : "Join the CGC and the Cobra hive mind by playing gloves-only Kid Cobra with a CGC member"
+		},
+		"clash"        : {
+			"caption"   : "Casual Clash Participant",
+			"style"     : "light",
+			"criterion" : "Play in a Casual Clash"
+		},
+		"clash_win"    : {
+			"caption"   : "Casual Clash Champion",
+			"style"     : "hololight",
+			"criterion" : "Achieve victory in a Casual Clash"
+		},
+		"scramble"     : {
+			"caption"   : "Casual Scramble Participant",
+			"style"     : "dark",
+			"criterion" : "Play in a Casual Scramble"
+		},
+		"scramble_win" : {
+			"caption"   : "Casual Scramble Sovereign",
+			"style"     : "holodark",
+			"criterion" : "Achieve victory in a Casual Scramble"
+		},
+		"season_arms"  : {
+			"caption"   : "Monthly ARMS Leaderboards",
+			"style"     : "light",
+			"criterion" : "Finish top 10 in the monthly ARMS leaderboards"
+		},
+		"season_arms_win" : {
+			"caption"   : "Monthly ARMS Leaderboards Win",
+			"style"     : "hololight",
+			"criterion" : "Finish as the winner in the monthly ARMS leaderboards"
+		},
+		"season_kart"  : {
+			"caption"   : "Monthly Mario Kart Leaderboards",
+			"style"     : "light",
+			"criterion" : "Finish top 10 in the monthly Mario Kart leaderboards"
+		},
+		"season_kart_win" : {
+			"caption"   : "Monthly Mario Kart Leaderboards Win",
+			"style"     : "hololight",
+			"criterion" : "Finish as the winner in the monthly Mario Kart leaderboards"
+		},
+		"p0"           : {
+			"caption"   : "Patreon: Casual Contributor",
+			"style"     : "light",
+			"criterion" : "Contribute more than $1 on the Patreon for at least one month"
+		},
+		"p1"           : {
+			"caption"   : "Patreon: Committed Casual",
+			"style"     : "light",
+			"criterion" : "Contribute more than $5 on the Patreon for at least one month"
+		},
+		"p2"           : {
+			"caption"   : "Patreon: True Casual",
+			"style"     : "dark",
+			"criterion" : "Contribute more than $25 on the Patreon for at least one month"
+		}
+	},
+	"eventSponsors" : {
+		"mindgames" : {"title" : "Mind Games podcast", "url" : "http://www.anchor.fm/mind-games/"}
 	},
 	"eventStages" : {
 		"arms" : [
@@ -357,34 +437,6 @@
 				"items"           : true,
 				"streak_bonuses"  : false,
 				"stages"          : [{ "start" : 0, "end" : 14 }]
-			}, {
-				"key"             : "mlm",
-				"name"            : "Competitive (MLM Warmup)",
-				"description"     : "This theme is used for the Mega League Mondays warmup lobbies.",
-				"solo_fight"      : [2],
-				"team_fight"      : [],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [3, 7, 9, 12, 13]
-			}, {
-				"key"             : "cote",
-				"name"            : "Competitive (Era Warmup)",
-				"description"     : "This theme is used for the Champions of the Era warmup lobbies.",
-				"solo_fight"      : [2],
-				"team_fight"      : [],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [0, 1, 3, 5, 7, 9, 11, 12, 13]
 			}, {
 				"key"             : "clash",
 				"name"            : "Casual Clash",
