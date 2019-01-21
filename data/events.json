@@ -1,9 +1,9 @@
 [
 
-	{"title":"Monday Motorway","game":"kart","type":"race","date":"2019-01-14T19:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","hosts":[{"name":"","code":"1077-9421-4443"}]}
-	,{"title":"Wonky Wednesday","game":"kart","type":"race","date":"2019-01-16T19:00:00.000Z","duration":120,"tz":"EST","theme":"mirror","hosts":[{"name":"","code":"4621-2901-6363"}]}
-	,{"title":"Frantic Friday","game":"kart","type":"battle","date":"2019-01-18T22:00:00.000Z","duration":120,"tz":"EST","theme":"mk_battle","hosts":[{"name":"","code":"5153-6594-0779"}]}
-	,{"title":"Saturday Speedway","game":"kart","type":"race","date":"2019-01-20T00:00:00.000Z","duration":120,"tz":"EST","theme":"200cc","hosts":[{"name":"","code":"4412-5645-5723"}]}
+	,{"title":"Monday Motorway","game":"kart","type":"race","date":"2019-01-21T19:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","hosts":[{"name":"","code":"1077-9421-4443"}]}
+	,{"title":"Wonky Wednesday","game":"kart","type":"race","date":"2019-01-23T19:00:00.000Z","duration":120,"tz":"EST","theme":"mirror","hosts":[{"name":"","code":"4621-2901-6363"}]}
+	,{"title":"Frantic Friday","game":"kart","type":"battle","date":"2019-01-25T22:00:00.000Z","duration":120,"tz":"EST","theme":"mk_battle","hosts":[{"name":"","code":"5153-6594-0779"}]}
+	,{"title":"Saturday Speedway","game":"kart","type":"race","date":"2019-01-27T00:00:00.000Z","duration":120,"tz":"EST","theme":"200cc","hosts":[{"name":"","code":"4412-5645-5723"}]}
 	,{"title":"Messy Monday","game":"splat","type":"friends","date":"2019-01-21T22:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Pikscast","code":"5246-0388-8018"}],"streamers":["pikscast"]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","date":"2019-01-23T02:00:00.000Z","duration":120,"tz":"PST","theme":"fights-only","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"streamers":["sorafirestorm"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-01-23T23:00:00.000Z","duration":120,"tz":"EST","theme":"teambuilding","hosts":[{"name":"Marie","code":"5693-4645-2698","tag":"CC"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
