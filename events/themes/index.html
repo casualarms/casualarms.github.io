@@ -48,18 +48,32 @@ redirect_from: "/lobbies/themes/"
 		{
 			game_menu_html += "<a class='menu-item m5' href='#" + game + "'>" + eventGames[game] + "</a>";
 			var menu_html = "<div class='menu-container'>";
-			var event_html = "";
+			var theme_html = "";
 			
-			for (i = 0; i < eventThemes[game].length; ++i)
+			for (var i = 0; i < eventThemes[game].length; ++i)
 			{
-				ev = eventThemes[game][i];
-				menu_html += "<a class='menu-item m5' href='#" + ev.key + "'>" + ev.name + "</a>";
-				event_html += printTheme(game, ev);
+				var theme = eventThemes[game][i];
+				menu_html += "<a class='menu-item m5' href='#" + theme.key + "'>" + theme.name + "</a>";
+				theme_html += printTheme(game, theme);
 				
-				if (window.location.hash.substring(1) == ev.key)
-					scrolltoid = ev.key;
+				if (window.location.hash.substring(1) == theme.key)
+					scrolltoid = theme.key;
 			}
-			html += "<div class='themes-block' id='themes-" + game + "'><h2 id='" + game + "'>" + eventGames[game] + "</h2>" + menu_html + "</div>" + event_html + "</div>";
+			
+			menu_html += "</div><h3>Stage Sets</h3><div class='menu-container'>";
+			
+			for (var i = 0; i < stageSets[game].length; ++i)
+			{
+				var stageset = stageSets[game][i];
+				menu_html += "<a class='menu-item m5' href='#" + stageset.key + "'>" + stageset.name + "</a>";
+				theme_html += "<h3 id='" + stageset.key + "'>" + stageset.name + "</h3>";
+				theme_html += printStageSet(game, stageset);
+				
+				if (window.location.hash.substring(1) == stageset.key)
+					scrolltoid = stageset.key;
+			}
+			
+			html += "<div class='themes-block' id='themes-" + game + "'><h2 id='" + game + "'>" + eventGames[game] + "</h2>" + menu_html + "</div>" + theme_html + "</div>";
 		}
 		
 		$("themes").innerHTML = game_menu_html + "</div>" + html;
@@ -73,11 +87,12 @@ redirect_from: "/lobbies/themes/"
 		$("game").innerHTML = options;
 	}
 	
-	function randomizeTheme()
+	function randomTheme()
 	{
-		var game = $("game").options[$("game").selectedIndex].value;
+		var game = $("game").value;
 		var theme = eventThemes[game][Math.floor(Math.random() * eventThemes[game].length)];
-		$("random-result").innerHTML = "Random theme: <a href='#" + theme.key + "'>" + theme.name + "</a>!";
+		var stages = stageSets[game][Math.floor(Math.random() * stageSets[game].length)];
+		$("random-result").innerHTML = "Random theme: <a href='#" + theme.key + "'>" + theme.name + "</a> with <a href='#" + stages.key + "'>" + stages.name + "</a> stages!";
 	}
 	
 	</script>
@@ -89,7 +104,7 @@ redirect_from: "/lobbies/themes/"
 		<h2>Lobby Themes</h2>
 		<p>These are the themes we use in our <a href="/lobbies/"><em>lobby events</em></a>! We have a focus on <em>casual play</em> with items on and a varied selection of stages. The competitive themes are reserved for our tournament warm-up lobbies.</p>
 		<p style="text-align: center;">
-			<button onclick="randomizeTheme()">Random Theme</button> from <select id="game"></select><br/>
+			<button onclick="randomTheme()">Random Theme</button> from <select id="game"></select><br/>
 			<span id="random-result"></span>
 		</p>
 		<div id="themes">Loading...</div>

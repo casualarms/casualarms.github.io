@@ -61,8 +61,6 @@
 			"leaderboard"   : "Leaderboard Lobby",
 			"clash"         : "Casual Clash",
 			"scramble"      : "Casual Scramble",
-			"mlm_warmup"    : "MLM Warmup Lobby",
-			"era_warmup"    : "Era Warmup Lobby",
 			"impromptu"     : "Impromptu Lobby"
 		},
 		"kart" : {
@@ -314,7 +312,7 @@
 			{
 				"key"             : "everything",
 				"name"            : "Anything Goes",
-				"description"     : "",
+				"description"     : "All modes possible in a Friend Lobby.",
 				"solo_fight"      : [2, 3, 4],
 				"team_fight"      : [4],
 				"vs_hedlok"       : [2, 3],
@@ -323,8 +321,7 @@
 				"skillshot"       : [2, 4],
 				"v_ball"          : [2, 4],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [{ "start" : 0, "end" : 14 }]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "breakable-bits",
 				"name"            : "Breakable Bits",
@@ -337,12 +334,11 @@
 				"skillshot"       : [2, 4],
 				"v_ball"          : [],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [1, 3, 5, 9, 11, 12, 14]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "teambuilding",
 				"name"            : "Teambuilding",
-				"description"     : "",
+				"description"     : "All (and only) modes where each player is partnered with teammates.",
 				"solo_fight"      : [],
 				"team_fight"      : [4],
 				"vs_hedlok"       : [2, 3],
@@ -351,8 +347,7 @@
 				"skillshot"       : [4],
 				"v_ball"          : [4],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [0, 1, 3, 4, 8, 9, 10, 12]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "bane-of-ranked",
 				"name"            : "Bane of Ranked",
@@ -365,22 +360,7 @@
 				"skillshot"       : [2, 4],
 				"v_ball"          : [2, 4],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [2, 4, 6, 8, 14]
-			}, {
-				"key"             : "teambuilding-near-far",
-				"name"            : "Teambuilding: Near & Far",
-				"description"     : "",
-				"solo_fight"      : [],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [2, 3],
-				"hedlok_scramble" : [],
-				"hoops"           : [],
-				"skillshot"       : [4],
-				"v_ball"          : [4],
-				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [0, 1, 2, 4, 8, 11, 13]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "barrier-bonanza",
 				"name"            : "Barrier Bonanza",
@@ -393,8 +373,7 @@
 				"skillshot"       : [],
 				"v_ball"          : [2, 4],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [1, 5, 6, 7, 8, 9, 12, 14]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "corner-chaos",
 				"name"            : "Corner Chaos",
@@ -407,12 +386,11 @@
 				"skillshot"       : [],
 				"v_ball"          : [],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [0, 1, 7, 10, 11, 13, 14]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "hedlok-havok",
 				"name"            : "Hedlok Havok",
-				"description"     : "",
+				"description"     : "All (and only) modes which involve Hedlok.",
 				"solo_fight"      : [],
 				"team_fight"      : [],
 				"vs_hedlok"       : [2, 3],
@@ -421,12 +399,11 @@
 				"skillshot"       : [],
 				"v_ball"          : [],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [{ "start" : 0, "end" : 14 }]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "fights-only",
 				"name"            : "Fights Only",
-				"description"     : "All standard fight modes and no minigames, on all stages! Hedlok is welcome, though.",
+				"description"     : "All standard fight modes and no minigames! Hedlok is welcome, though.",
 				"solo_fight"      : [2, 3, 4],
 				"team_fight"      : [4],
 				"vs_hedlok"       : [2, 3],
@@ -435,8 +412,7 @@
 				"skillshot"       : [],
 				"v_ball"          : [],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [{ "start" : 0, "end" : 14 }]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "clash",
 				"name"            : "Casual Clash",
@@ -449,8 +425,7 @@
 				"skillshot"       : [],
 				"v_ball"          : [],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [{ "start" : 0, "end" : 14 }]
+				"streak_bonuses"  : false
 			}, {
 				"key"             : "scramble",
 				"name"            : "Casual Scramble",
@@ -463,8 +438,7 @@
 				"skillshot"       : [],
 				"v_ball"          : [],
 				"items"           : true,
-				"streak_bonuses"  : false,
-				"stages"          : [{ "start" : 0, "end" : 14 }]
+				"streak_bonuses"  : false
 			}
 		],
 		"kart" : [
@@ -478,8 +452,7 @@
 				"round_length"    : 0,
 				"cpu"             : "Normal",
 				"vehicles"        : "All",
-				"smart_steering"  : true,
-				"stages"          : [{ "start" : 0, "end" : 47 }]
+				"smart_steering"  : true
 			}, {
 				"key"             : "200cc",
 				"name"            : "200cc Racing",
@@ -490,8 +463,7 @@
 				"round_length"    : 0,
 				"cpu"             : "Normal",
 				"vehicles"        : "All",
-				"smart_steering"  : true,
-				"stages"          : [{ "start" : 0, "end" : 47 }]
+				"smart_steering"  : true
 			}, {
 				"key"             : "mirror",
 				"name"            : "Mirrored Racing",
@@ -502,8 +474,7 @@
 				"round_length"    : 0,
 				"cpu"             : "Normal",
 				"vehicles"        : "All",
-				"smart_steering"  : true,
-				"stages"          : [{ "start" : 0, "end" : 47 }]
+				"smart_steering"  : true
 			}, {
 				"key"             : "mk_battle",
 				"name"            : "Random Battles",
@@ -514,11 +485,103 @@
 				"round_length"    : 5,
 				"cpu"             : "Normal",
 				"vehicles"        : "All",
-				"smart_steering"  : true,
-				"stages"          : [48, 49, 50, 51, 52, 53, 54, 55]
+				"smart_steering"  : true
 			}
 		],
-		"splat" : [],
+		"splat" : [
+			{
+				"key"             : "turf-zones",
+				"name"            : "Turf War and Splat Zones",
+				"description"     : "Turf War first half, Splat Zones second half.",
+				"mode-1"          : "Turf War",
+				"mode-2"          : "Splat Zones",
+				"abilities"       : true
+			}, {
+				"key"             : "turf-tower",
+				"name"            : "Turf War and Tower Control",
+				"description"     : "Turf War first half, Tower Control second half.",
+				"mode-1"          : "Turf War",
+				"mode-2"          : "Tower Control",
+				"abilities"       : true
+			}, {
+				"key"             : "turf-rainmaker",
+				"name"            : "Turf War and Rainmaker",
+				"description"     : "Turf War first half, Rainmaker second half.",
+				"mode-1"          : "Turf War",
+				"mode-2"          : "Rainmaker",
+				"abilities"       : true
+			}, {
+				"key"             : "turf-clams",
+				"name"            : "Turf War and Clam Blitz",
+				"description"     : "Turf War first half, Clam Blitz second half.",
+				"mode-1"          : "Turf War",
+				"mode-2"          : "Clam Blitz",
+				"abilities"       : true
+			}
+		],
+		"smash" : []
+	},
+	"stageSets" : {
+		"arms"  : [
+			{
+				"key"    : "all-arms",
+				"name"   : "All",
+				"stages" : [{ "start" : 0, "end" : 14 }]
+			}, {
+				"key"    : "breakable",
+				"name"   : "Breakable",
+				"stages" : [1, 3, 5, 9, 11, 12, 14] 
+			}, {
+				"key"    : "teams",
+				"name"   : "For Teams",
+				"stages" : [0, 1, 3, 4, 8, 9, 10, 12]
+			}, {
+				"key"    : "bane-ranked",
+				"name"   : "Bane of Ranked",
+				"stages" : [2, 4, 6, 8, 14]
+			},
+			{
+				"key"    : "near-far",
+				"name"   : "Near & Far",
+				"stages" : [0, 1, 2, 4, 8, 11, 13]
+			},
+			{
+				"key"    : "barriers",
+				"name"   : "Barriers",
+				"stages" : [1, 5, 6, 7, 8, 9, 12, 14]
+			},
+			{
+				"key"    : "corners",
+				"name"   : "Corners",
+				"stages" : [0, 1, 7, 10, 11, 13, 14]
+			}
+		],
+		"kart"  : [
+			{
+				"key"    : "all-race",
+				"name"   : "Race Tracks",
+				"stages" : [{ "start" : 0, "end" : 47 }]
+			}, {
+				"key"    : "all-battle",
+				"name"   : "Battle Stages",
+				"stages" : [48, 49, 50, 51, 52, 53, 54, 55]
+			}
+		],
+		"splat" : [
+			{
+				"key"    : "all-splat",
+				"name"   : "All",
+				"stages" : [{ "start" : 0, "end" : 22 }]
+			}, {
+				"key"    : "indoor",
+				"name"   : "Indoor Fighting",
+				"stages" : [1, 3, 12, 14, 16]
+			}, {
+				"key"    : "living",
+				"name"   : "Urban Living",
+				"stages" : [0, 4, 6, 8, 20]
+			}
+		],
 		"smash" : []
 	}
 }

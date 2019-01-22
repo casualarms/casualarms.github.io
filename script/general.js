@@ -332,93 +332,101 @@ function getTierID(tier)
 	return tier.name.toLowerCase().replace(" ", "-");
 }
 
-function getTheme(gameID, themeID)
+function getTheme(game, themeID)
 {
-	for (var t = 0; t < eventThemes[gameID].length; ++t)
-		if (eventThemes[gameID][t].key == themeID)
-			return eventThemes[gameID][t];
+	for (var t = 0; t < eventThemes[game].length; ++t)
+		if (eventThemes[game][t].key == themeID)
+			return eventThemes[game][t];
 	return null;
 }
 
-function printTheme(game, ev, concise)
+function getStageSet(game, stageID)
 {
-	function printMode(ev, key, name)
+	for (var t = 0; t < stageSets[game].length; ++t)
+		if (stageSets[game][t].key == stageID)
+			return stageSets[game][t];
+	return null;
+}
+
+function printStageSet(game, stageset)
+{
+	var html = "";
+	var stages = [];
+	for (s = 0; s < stageset.stages.length; ++s)
 	{
-		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  " + ev[key] + "  </span></p>";
-	}
-	
-	function printBinaryMode(ev, key, name)
-	{
-		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options option-" + (ev[key] ? "on" : "off") + "'>  " + (ev[key] ? "On" : "Off") + "  </span></p>";
-	}
-	
-	function getEventStagesList(ev)
-	{
-		var stages = [];
-		for (s = 0; s < ev.stages.length; ++s)
+		var stage = stageset.stages[s];
+		if (typeof stage === 'object')
 		{
-			var stage = ev.stages[s];
-			if (typeof stage === 'object')
-			{
-				for (var b = stage.start; b <= stage.end; ++b)
-					stages.push(b);
-			}
-			else stages.push(ev.stages[s]);
+			for (var b = stage.start; b <= stage.end; ++b)
+				stages.push(b);
 		}
-		return stages;
+		else stages.push(stageset.stages[s]);
 	}
 	
-	function printMultiMode(ev, key, name)
-	{
-		var html = "";
-		if (ev[key].length > 0)
-		{
-			html += "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  ";
-			for (s = 0; s < ev[key].length; ++s)
-				html += ev[key][s] + "P  ";
-			html += "</span></p>"
-		}
-		return html;
-	}
-	
-	var html = "<h3 id='" + ev.key + "'>" + ev.name + "</h3>";
-	if (!concise) html += "<p>" + ev.description + "</p>";
-	
-	if (game == "arms")
-	{
-		html += printMultiMode(ev, "solo_fight", "Solo Fight");
-		html += printMultiMode(ev, "team_fight", "Team Fight");
-		html += printMultiMode(ev, "vs_hedlok", "VS Hedlok");
-		html += printMultiMode(ev, "hedlok_scramble", "Hedlok Scramble");
-		html += printMultiMode(ev, "hoops", "Hoops");
-		html += printMultiMode(ev, "skillshot", "Skillshot");
-		html += printMultiMode(ev, "v_ball", "V-ball");
-		html += printBinaryMode(ev, "items", "Items");
-		html += printBinaryMode(ev, "streak_bonuses", "Streak Bonuses");
-	}
-	else if (game == "kart")
-	{
-		html += printMode(ev, "mode", "Mode");
-		html += printBinaryMode(ev, "teams", "Teams");
-		html += printMode(ev, "items", "Items");
-		html += printMode(ev, "round_length", "Round Length");
-		html += printMode(ev, "cpu", "CPU");
-		html += printMode(ev, "vehicles", "Vehicles");
-		html += printBinaryMode(ev, "smart_steering", "Smart Steering");
-	}
-	else if (game == "splat")
-	{
-		html += printMode(ev, "mode", "Mode");
-		html += printBinaryMode(ev, "abilities", "Sub Abilities");
-	}
-	
-	var stages = getEventStagesList(ev);
 	var myid = Math.random().toString(36).substring(7);
 	html += "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
 	html += "<div class='stage-container-header'>" + stages.length + "/" + eventStages[game].length + " stages (click to expand)</div>";
 	for (var s = 0; s < stages.length; ++s)
 		html += "<div class='stage active' style='display: none;'>" + eventStages[game][stages[s]] + "</div>";
-	html += "</div>";
+	return html + "</div>";
+}
+
+function printTheme(game, theme, concise)
+{
+	function printMode(theme, key, name)
+	{
+		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  " + theme[key] + "  </span></p>";
+	}
+	
+	function printBinaryMode(theme, key, name)
+	{
+		return "<p><span class='mode-name'>" + name + "</span> <span class='mode-options option-" + (theme[key] ? "on" : "off") + "'>  " + (theme[key] ? "On" : "Off") + "  </span></p>";
+	}
+	
+	function printMultiMode(theme, key, name)
+	{
+		var html = "";
+		if (theme[key].length > 0)
+		{
+			html += "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  ";
+			for (s = 0; s < theme[key].length; ++s)
+				html += theme[key][s] + "P  ";
+			html += "</span></p>"
+		}
+		return html;
+	}
+	
+	var html = "<h3 id='" + theme.key + "'>" + theme.name + "</h3>";
+	if (!concise) html += "<p>" + theme.description + "</p>";
+	
+	if (game == "arms")
+	{
+		html += printMultiMode(theme, "solo_fight", "Solo Fight");
+		html += printMultiMode(theme, "team_fight", "Team Fight");
+		html += printMultiMode(theme, "vs_hedlok", "VS Hedlok");
+		html += printMultiMode(theme, "hedlok_scramble", "Hedlok Scramble");
+		html += printMultiMode(theme, "hoops", "Hoops");
+		html += printMultiMode(theme, "skillshot", "Skillshot");
+		html += printMultiMode(theme, "v_ball", "V-ball");
+		html += printBinaryMode(theme, "items", "Items");
+		html += printBinaryMode(theme, "streak_bonuses", "Streak Bonuses");
+	}
+	else if (game == "kart")
+	{
+		html += printMode(theme, "mode", "Mode");
+		html += printBinaryMode(theme, "teams", "Teams");
+		html += printMode(theme, "items", "Items");
+		html += printMode(theme, "round_length", "Round Length");
+		html += printMode(theme, "cpu", "CPU");
+		html += printMode(theme, "vehicles", "Vehicles");
+		html += printBinaryMode(theme, "smart_steering", "Smart Steering");
+	}
+	else if (game == "splat")
+	{
+		html += printMode(theme, "mode-1", "Mode 1");
+		html += printMode(theme, "mode-2", "Mode 2");
+		html += printBinaryMode(theme, "abilities", "Sub Abilities");
+	}
 	return html;
 }
 

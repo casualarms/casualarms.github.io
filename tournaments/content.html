@@ -64,7 +64,9 @@
 			generateBanner(880, 480, events[0], "next-banner", true);
 			$("next-section").style.display = "block";
 			
-			$("settings").innerHTML = printTheme(events[0].game, getTheme(events[0].game, events[0].theme), true);
+			var theme = getTheme(events[0].game, events[0].theme);
+			var stages = getStageSet(events[0].game, events[0].stages);
+			$("settings").innerHTML = printTheme(events[0].game, theme, true) + printStageSet(events[0].game, stages);
 		}
 	}
 	

@@ -10,6 +10,7 @@ var leaderboardTitles    = staticDataJSON["leaderboardTitles"];
 var eventTypes           = staticDataJSON["eventTypes"];
 var eventStages          = staticDataJSON["eventStages"];
 var eventThemes          = staticDataJSON["eventThemes"];
+var stageSets            = staticDataJSON["stageSets"];
 var eventSponsors        = staticDataJSON["eventSponsors"];
 var badgeList            = staticDataJSON["badgeList"];
 
@@ -46,52 +47,18 @@ var hostDatabase = [
 //	{ "tag" : "",   "name" : "Program",      "code" : "4898-5196-4000", tier : 3},
 ]
 
-/*
-	"splat" : [
-	/*	{
-			"key"             : "turf-war",
-			"name"            : "Casual Turfing",
-			"description"     : "",
-			"mode"            : "Turf War",
-			"abilities"       : true,
-			"stages"          : range(23),
-		}, {
-			"key"             : "rainmaker",
-			"name"            : "Casual Rainmaking",
-			"description"     : "",
-			"mode"            : "Rainmaker",
-			"abilities"       : true,
-			"stages"          : range(23),
-		}, {
-			"key"             : "splat-zones",
-			"name"            : "Casual Zones",
-			"description"     : "",
-			"mode"            : "Splat Zones",
-			abilities       : true,
-			"stages"          : range(23),
-		}, {
-			"key"             : "tower-control",
-			"name"            : "Casual Towers",
-			"description"     : "",
-			"mode"            : "Tower Control",
-			"abilities"       : true,
-			"stages"          : range(23),
-		}, {
-			"key"             : "clam-blitz",
-			"name"            : "Casual Clams",
-			"description"     : "",
-			"mode"            : "Clam Blitz",
-			"abilities"       : true,
-			"stages"          : range(23),
-		}, {
-			"key"             : "salmon-run",
-			"name"            : "Casual Salmonid Cooking",
-			"description"     : "",
-			"mode"            : "Salmon Run",
-			"abilities"       : false,
-			"stages"          : [],
-		},
-	],
-	"smash" : [],
-};
-*/
+var eventSlots = [
+	{ "id" : "arms-tue",     "game" : "arms",  "start" : getNextWeekday(3, 02, 00), "duration" : 120, "title" : "Tidal Tuesday"},
+	{ "id" : "arms-wed",     "game" : "arms",  "start" : getNextWeekday(3, 23, 00), "duration" : 120, "title" : "Wildcard Wednesday"},
+	{ "id" : "arms-thu",     "game" : "arms",  "start" : getNextWeekday(4, 19, 00), "duration" : 120, "title" : "Thumpin' Thursday"},
+	{ "id" : "arms-sun",     "game" : "arms",  "start" : getNextWeekday(0, 20, 45), "duration" : 120, "title" : "Sunday Showdown"},
+	
+	{ "id" : "kart-mon",     "game" : "kart",  "start" : getNextWeekday(1, 19, 00), "duration" : 120, "title" : "Monday Motorway"},
+	{ "id" : "kart-wed",     "game" : "kart",  "start" : getNextWeekday(3, 19, 00), "duration" : 120, "title" : "Wonky Wednesday"},
+	{ "id" : "kart-fri",     "game" : "kart",  "start" : getNextWeekday(5, 22, 00), "duration" : 120, "title" : "Frantic Friday"},
+	{ "id" : "kart-sat",     "game" : "kart",  "start" : getNextWeekday(0, 00, 00), "duration" : 120, "title" : "Saturday Speedway"},
+	
+	{ "id" : "splat-mon",    "game" : "splat", "start" : getNextWeekday(1, 22, 00), "duration" : 120, "title" : "Messy Monday"},
+	{ "id" : "splat-thu",    "game" : "splat", "start" : getNextWeekday(5, 02, 00), "duration" : 120, "title" : "Turfsday"},
+	{ "id" : "splat-sat",    "game" : "splat", "start" : getNextWeekday(6, 17, 00), "duration" : 120, "title" : "Splaturday"},
+];

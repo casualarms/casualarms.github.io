@@ -76,6 +76,11 @@ permalink: /staff/banners/index.html
 			options += "<option value='" + eventThemes[game][i].key + "'>" + eventThemes[game][i].name + "</option>";
 		$("theme").innerHTML = options;
 		
+		options = "<option value='undefined' selected>---</option>";
+		for (var i = 0; i < stageSets[game].length; ++i)
+			options += "<option value='" + stageSets[game][i].key + "'>" + stageSets[game][i].name + "</option>";
+		$("stages").innerHTML = options;
+		
 		options = "";
 		for (var type in eventTypes[game])
 			options += "<option value='" + type + "'>" + eventTypes[game][type] + "</option>";
@@ -88,14 +93,20 @@ permalink: /staff/banners/index.html
 		fetchEvents(function(events)
 		{
 			eventsHistory = events;
-			var options = "";
+			var options = "<option value='undefined' selected>---</option>";
 			for (var i = 0; i < events.length; ++i)
 			{
 				var dateString = dayNames[events[i].date.getUTCDay()] + " " + monthNames[events[i].date.getUTCMonth()] + ' ' + events[i].date.getUTCDate();
 				options += "<option>" + dateString + ": " + events[i].title + "</option>";
 			}
-			var eventDataIndex = $("event-history").innerHTML = options;
+			$("event-history").innerHTML = options;
 		});
+		
+		// Fill event slot selector
+		var options = "<option value='undefined' selected>---</option>";
+		for (var i = 0; i < eventSlots.length; ++i)
+			options += "<option>" + eventGames[eventSlots[i].game] + ": " + eventSlots[i].title + "</option>";
+		$("event-slots").innerHTML = options;
 		
 		// Fill quick entry lists
 		var hostsList = ["A", "B", "C"];
@@ -159,6 +170,7 @@ permalink: /staff/banners/index.html
 		fillGameOptions();
 		selectOptionWithValue($("type"), eventData.type);
 		selectOptionWithValue($("theme"), eventData.theme, true);
+		selectOptionWithValue($("stages"), eventData.stages, true);
 		selectOptionWithValue($("sponsor"), eventData.sponsor, true);
 		
 		readAndGenerate();
@@ -167,7 +179,28 @@ permalink: /staff/banners/index.html
 	function fillFromEventDataHistory()
 	{
 		var eventDataIndex = $("event-history").selectedIndex;
-		fillFromEventData(eventsHistory[eventDataIndex]);
+		if (eventDataIndex > 0)
+			fillFromEventData(eventsHistory[eventDataIndex - 1]);
+	}
+	
+	function fillFromEventSlot()
+	{
+		var eventDataIndex = $("event-slots").selectedIndex;
+		if (eventDataIndex > 0)
+		{
+			var slot = eventSlots[eventDataIndex - 1];
+			fillFromEventData({
+				"title"    : slot.title,
+				"game"     : slot.game,
+				"type"     : "",
+				"date"     : slot.start,
+				"duration" : slot.duration,
+				"tz"       : "EST",
+				"theme"    : "",
+				"stages"   : "",
+				"hosts"    : [{"name" : "To Be Announced", "code" : "-"}]
+			});
+		}
 	}
 	
 	function fillFromEventDataJSON()
@@ -181,23 +214,17 @@ permalink: /staff/banners/index.html
 	function readAndGenerate()
 	{
 		var eventdata = {};
-		
-		// Read input from the forms
 		var game = $("game").options[$("game").selectedIndex].value;
 		
-		var month = $("month").selectedIndex;
-		var day = parseInt($("day").value);
-		var year = parseInt($("year").value);
-		
-		var startHours   = parseInt($("start-hours").value);
-		var startMinutes = parseInt($("start-minutes").value);
-		
+		var month           = $("month").selectedIndex;
+		var day             = parseInt($("day").value);
+		var year            = parseInt($("year").value);
+		var startHours      = parseInt($("start-hours").value);
+		var startMinutes    = parseInt($("start-minutes").value);
 		var durationMinutes = parseInt($("duration-minutes").value);
-		
-		var zoneString  = $("timezone").value;
-		var offset = timeZoneOffset(zoneString);
-		
-		var startDate = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
+		var zoneString      = $("timezone").value;
+		var offset          = timeZoneOffset(zoneString);
+		var startDate       = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
 		
 		var hostsList = ["A", "B", "C"];
 		var hosts = [];
@@ -223,27 +250,24 @@ permalink: /staff/banners/index.html
 		
 		eventdata.title = escapeHTML($("title").value);
 		eventdata.game = game;
-		eventdata.type = $("type").options[$("type").selectedIndex].value;
+		eventdata.type = $("type").value;
 		eventdata.date = startDate;
 		eventdata.duration = durationMinutes;
 		eventdata.tz = zoneString;
 		
-		if ($("theme").selectedIndex > 0)
-			eventdata.theme = $("theme").options[$("theme").selectedIndex].value;
+		if ($("theme")  .selectedIndex > 0) eventdata.theme   = $("theme")  .value;
+		if ($("stages") .selectedIndex > 0) eventdata.stages  = $("stages") .value;
+		if ($("sponsor").selectedIndex > 0) eventdata.sponsor = $("sponsor").value;
 		
-		if (hosts.length > 0)
-			eventdata.hosts = hosts;
-		
-		if (streamers.length > 0)
-			eventdata.streamers = streamers;
-		
-		if ($("sponsor").selectedIndex > 0)
-			eventdata.sponsor = $("sponsor").options[$("sponsor").selectedIndex].value;
+		if (hosts.length > 0)     eventdata.hosts     = hosts;
+		if (streamers.length > 0) eventdata.streamers = streamers;
 		
 		$("text-output").value = "," + JSON.stringify(eventdata);
 		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
 		
 		generateBanner(880, 480, eventdata, "result", false);
+		
+		return eventdata;
 	}
 	
 	function quickEntry(id)
@@ -264,7 +288,33 @@ permalink: /staff/banners/index.html
 		readAndGenerate();
 	}
 	
+	function fillTBAHost()
+	{
+		var hostsList = ["A", "B", "C"];
+		for (var i = 0; i < hostsList.length; ++i)
+		{
+			$("name" + hostsList[i]).value         = (i == 0) ? "To Be Announced" : "";
+			$("tag"  + hostsList[i]).selectedIndex = 0;
+			$("code" + hostsList[i]).value         = (i == 0) ? "-" : "";
+			$("host" + hostsList[i]).selectedIndex = 0;
+		}
+		readAndGenerate();
+	}
 	
+	function addOneWeek()
+	{
+		var eventdata = readAndGenerate();
+		eventdata.date.setDate(eventdata.date.getDate() + 7);
+		fillFromEventData(eventdata);
+	}
+	
+	function randomTheme()
+	{
+		var game = $("game").options[$("game").selectedIndex].value;
+		$("theme") .selectedIndex = Math.floor(Math.random() * eventThemes[game].length) + 1;
+		$("stages").selectedIndex = Math.floor(Math.random() *   stageSets[game].length) + 1;
+		readAndGenerate();
+	}
 	
 	
 </script>
@@ -272,16 +322,20 @@ permalink: /staff/banners/index.html
 	<body onLoad="load()">
 		<div id="wrapper">
 			<h1>Casual ARMS Banner Generator</h1>
-			<p>Start from previous event: 
-				<select id="event-history" onChange="fillFromEventDataHistory()"></select>
-				<!--<input type="button" value="Fill form from previous event" onClick="fillFromEventDataHistory()"/>-->
+			<p>
+				Start from previous event: <select id="event-history" onChange="fillFromEventDataHistory()"></select><br/>
+				Start from event slot:     <select id="event-slots"   onChange="fillFromEventSlot()"></select>
 			</p>
 			<hr/>
 			<p>
-				Title: <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
-				Game:  <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
-				Type:  <select id="type" onChange="readAndGenerate()"></select>
-				Theme: <select id="theme" onChange="readAndGenerate()"></select>
+				Title:  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
+				Game:   <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
+				Type:   <select id="type" onChange="readAndGenerate()"></select><br/>
+			</p>
+			<p>
+				Modes:  <select id="theme" onChange="readAndGenerate()"></select>
+				Stages: <select id="stages" onChange="readAndGenerate()"></select>
+				<input type="button" value="Randomize" onClick="randomTheme()"/>
 			</p>
 			
 			<p>Date: <select id="month" onChange="readAndGenerate()">
@@ -303,6 +357,7 @@ permalink: /staff/banners/index.html
 				Start: <input type="number" id="start-hours" value="14" min="0" max="23" onChange="readAndGenerate()"/> : <input type="number" id="start-minutes" value="00" min="0" max="59" onChange="readAndGenerate()">
 				in time zone: <input type="text" id="timezone" value="EDT" size="5" onChange="readAndGenerate()"/>
 				Duration: <input type="number" id="duration-minutes" value="120" min="0" onChange="readAndGenerate()"/> min.
+				<input type="button" value="+ 1 week" onClick="addOneWeek()"/>
 			</p>
 			
 			<p>
@@ -358,6 +413,8 @@ permalink: /staff/banners/index.html
 					<option value="undefined" selected>---</option>
 					<option value="mindgames">MindGames</option>
 				</select>
+				
+				<input type="button" value="Make Pre-announcement" onClick="fillTBAHost()"/>
 			</p>
 			
 			<!--<input type="button" value="Generate" onClick="readAndGenerate()"/>-->

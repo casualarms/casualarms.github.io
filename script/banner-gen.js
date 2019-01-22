@@ -367,19 +367,14 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		imageURLs.push("/assets/banners/icon-leaderboards.png");
 	}
 	
-	loadAllImages();
-
-	function loadAllImages()
+	for (var i = 0; i < imageURLs.length; i++)
 	{
-		for (var i = 0; i < imageURLs.length; i++)
-		{
-			var img = new Image();
-			imgs.push(img);
-			img.onload = function() { imagesOK++; imagesAllLoaded(); };
-			img.src = imageURLs[i];
-		}      
+		var img = new Image();
+		imgs.push(img);
+		img.onload = function() { imagesOK++; imagesAllLoaded(); };
+		img.src = imageURLs[i];
 	}
-
+	
 	var imagesAllLoaded = function()
 	{
 		if (imagesOK == imageURLs.length)
