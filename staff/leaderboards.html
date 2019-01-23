@@ -96,7 +96,7 @@ permalink: /staff/leaderboards/index.html
 			{
 				if (newCoins >= useTiers[t].start && oldCoins < useTiers[t].start)
 				{
-					newroles[useTiers[t].name].push(dataNew[key].name);
+					newroles[useTiers[t].name].push([dataNew[key].name, dataNew[key].id]);
 					break;
 				}
 			}
@@ -112,7 +112,7 @@ permalink: /staff/leaderboards/index.html
 			{
 				if (player[1] >= useTiers[t].start && player[0] < useTiers[t].start)
 				{
-					newroles[useTiers[t].name].push(name);
+					newroles[useTiers[t].name].push([name, "unknown"]);
 					break;
 				}
 			}
@@ -125,8 +125,8 @@ permalink: /staff/leaderboards/index.html
 		{
 			var tierName = useTiers[t].name;
 			output += "<h4 style='color: " + useTiers[t].color + ";'>" + tierName + "</h4><ul>";
-			for (name in newroles[tierName])
-				output += "<li>" + newroles[tierName][name] + "</li>";
+			for (newrole in newroles[tierName])
+				output += "<li>" + newroles[tierName][newrole][0] + " <span style='font-size: 0.7em; color: yellow;'>(" + newroles[tierName][newrole][1] + ")</span></li>";
 			
 			output += "</ul>";
 		}
@@ -165,7 +165,7 @@ permalink: /staff/leaderboards/index.html
 			{
 				if (userID in data)
 					error("Duplicate ID (" + userID + ")");
-				data[userID] = {"name" : userName, "coins" : parseInt(row[2]), "monthly" : monthly};
+				data[userID] = {"id" : userID, "name" : userName, "coins" : parseInt(row[2]), "monthly" : monthly};
 			}
 		}
 		
