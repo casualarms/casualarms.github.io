@@ -156,16 +156,21 @@ permalink: /staff/leaderboards/index.html
 			if (userName == "" || userID == "")
 				error("Found empty name and/or ID");
 			
+			var coins = parseInt(row[2]);
+			if (!coins)
+				error("Invalid total points field for " + userName + " (" + userID + ")");
+			
 			var monthly = parseInt(row[3]);
 			if (!monthly) monthly = 0;
 			
 			if (userID == "UNKNOWN")
-				unknowns.push([userName, parseInt(row[2]), monthly]);
+				unknowns.push([userName, coins, monthly]);
 			else
 			{
 				if (userID in data)
-					error("Duplicate ID (" + userID + ")");
-				data[userID] = {"id" : userID, "name" : userName, "coins" : parseInt(row[2]), "monthly" : monthly};
+					error("Duplicate ID for " + userName + " (" + userID + ")");
+				
+				data[userID] = {"id" : userID, "name" : userName, "coins" : coins, "monthly" : monthly};
 			}
 		}
 		
@@ -210,7 +215,7 @@ permalink: /staff/leaderboards/index.html
 		<input type="file" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
 		<br/>
 		
-		<p id="error"></p>
+		<p id="error" style="color: yellow;"></p>
 		
 		<h3>JSON Leaderboard</h3>
 		<button onCLick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
