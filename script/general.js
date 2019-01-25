@@ -506,6 +506,37 @@ function renderSwirls(canvas, lines)
 		drawSwirlComponents(canvas, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
 }
 
+function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, height, fade)
+{
+	var scratch = document.createElement('canvas');
+	scratch.width = width;
+	scratch.height = height;
+	var scratchctx = scratch.getContext("2d");
+	
+	for (var i = 0; i < width / size; i++)
+		for (var j = 0; j < height / size; j++)
+			if ((i+j) % 2 == 0)
+				scratchctx.fillRect(i*size, j*size, size, size);
+	
+	var grd = scratchctx.createLinearGradient(0, 0 + height, 0, 0);
+	grd.addColorStop(0, "rgba(" + r + "," + g + "," + b + ",1)");
+	grd.addColorStop(1, "rgba(" + r + "," + g + "," + b + ",0)");
+	
+	if (!fade) grd = "rgba(" + r + "," + g + "," + b + ",1)";
+	scratchctx.globalCompositeOperation = "source-in";
+	scratchctx.fillStyle = grd;
+	scratchctx.fillRect(0, 0, width, height);
+	
+	scratchctx.globalCompositeOperation = "destination-over";
+	scratchctx.fillStyle = bg;
+	scratchctx.fillRect(0, 0, width, height);
+	
+	mainctx.save();
+	mainctx.globalCompositeOperation = "source-over";
+	mainctx.drawImage(scratch, startX, startY);
+	mainctx.restore();
+}
+
 function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
 {
 	var mainctx = canvas.getContext('2d');

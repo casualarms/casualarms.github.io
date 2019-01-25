@@ -37,7 +37,7 @@
 	}
 	
 	p.entry {
-		background-color: black;
+		background-color: rgba(0,0,0,0.4);
 		line-height: 0.9em;
 		padding: 0 8pt 0pt 4pt;
 		margin: 12pt 2pt 12pt 40pt;
@@ -161,15 +161,16 @@
 	
 	.badge-stash {
 		width: 100%;
-		background-color: #222;
+		background-color: rgba(0,0,0,0.4);
 		padding: 5pt;
-		box-shadow: 0px 2px 3px #000 inset;
+		box-shadow: 0px 2px 3px rgba(0,0,0,0.6) inset;
 		box-sizing: border-box;
 		text-align: center;
 		display: none;
 		transition: height 0.3s;
 		overflow: hidden;
 		height: 0;
+		border-radius: 0.5em;
 	}
 	
 	.badge-container {
@@ -614,6 +615,31 @@
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
+	function setBackgroundPattern(game)
+	{
+		var canvas = document.createElement("canvas");
+		var ctx = canvas.getContext("2d");
+		canvas.width = canvas.height = 500;
+		if (game == "arms")
+		{
+			var params = [
+				[+50, +20, 0.6 * Math.PI, 3, 0.50, 0, "rgba(0,0,0,0.18)"],
+				[-50, -20, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,255,0.06)"],
+			];
+			renderSwirls(canvas, params);
+		}
+		else if (game == "kart")
+		{
+			renderCheckerboard(ctx, canvas.height / 8, 60, 60, 60, "#444", 0, 0, canvas.width, canvas.height, false);
+		}
+		else if (game == "splat")
+		{
+			renderSplash(canvas, -180, 50, 0.8, "rgb(0,0,0)",       0.18, Math.seed("ec7O63".hashCode()));
+			renderSplash(canvas,  140,  0, 1.0, "rgb(255,255,255)", 0.06, Math.seed("pGvubT".hashCode()));
+		}
+		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
+	}
+	
 	var activeGame;
 	
 	function changeMode(game, monthly, patreon)
@@ -643,6 +669,8 @@
 		}
 		else
 			displayLeaderboards(game);
+		
+		setBackgroundPattern(game);
 	}
 	
 	function selectSeason(game)
@@ -660,17 +688,6 @@
 	
 	function load()
 	{
-		var params = [
-			[+50, +20, 0.6 * Math.PI, 3, 0.5, 0, "rgba(0,0,0,0.1)"],
-			[-50, -20, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,200,0.05)"],
-		];
-		var canvas = document.createElement("canvas");
-		canvas.width = 500;
-		canvas.height = 500;
-		renderSwirls(canvas, params);
-		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
-		
-		
 		fetchLeaderboards("arms", storeLeaderboards);
 		fetchLeaderboards("kart", storeLeaderboardsMarioKart);
 		fetchLeaderboards("splat", storeLeaderboardsSplat);

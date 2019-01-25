@@ -12,37 +12,6 @@ function roundRect(ctx, x, y, w, h, r)
 	return ctx;
 }
 
-function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, height)
-{
-	var scratch = document.createElement('canvas');
-	scratch.width = width;
-	scratch.height = height;
-	var scratchctx = scratch.getContext("2d");
-	
-	for (var i = 0; i < width / size; i++)
-		for (var j = 0; j < height / size; j++)
-			if ((i+j) % 2 == 0)
-				scratchctx.fillRect(i*size, j*size, size, size);
-	
-	var grd = scratchctx.createLinearGradient(0, 0 + height, 0, 0);
-	grd.addColorStop(0, "rgba(" + r + "," + g + "," + b + ",1)");
-	grd.addColorStop(1, "rgba(" + r + "," + g + "," + b + ",0)");
-	
-	scratchctx.globalCompositeOperation = "source-in";
-	scratchctx.fillStyle = grd;
-	scratchctx.fillRect(0, 0, width, height);
-	
-	scratchctx.globalCompositeOperation = "destination-over";
-	scratchctx.fillStyle = bg;
-	scratchctx.fillRect(0, 0, width, height);
-	
-	mainctx.save();
-	mainctx.globalCompositeOperation = "source-over";
-	mainctx.drawImage(scratch, startX, startY);
-	mainctx.restore();
-}
-
-
 function generateBanner(width, height, eventdata, canvasid, nativeTime)
 {
 	var caLogo, mlmLogo, gameLogo, coteLogo, discordLogo, streamIcon, leaderboardsIcon;
@@ -117,8 +86,8 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			grd.addColorStop(0.8, "#39cdf6");
 			grd.addColorStop(1.0, "#f92473");
 			stripeBgColor = grd;
-			renderCheckerboard(ctx, (height-115-40) / 3, 24, 132, 226, "#0991ff", 0, 115, width, height-115-40);
-			renderCheckerboard(ctx, 115 / 3, 50,  50,  50, "#555", 0, 0, width, 115);
+			renderCheckerboard(ctx, (height-115-40) / 3, 24, 132, 226, "#0991ff", 0, 115, width, height-115-40, true);
+			renderCheckerboard(ctx, 115 / 3, 50,  50,  50, "#555", 0, 0, width, 115, false);
 			break;
 		
 		case "splat":
