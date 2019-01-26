@@ -9,7 +9,7 @@
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-01-23T23:00:00.000Z","duration":120,"tz":"EST","theme":"teambuilding","stages":"teams","hosts":[{"name":"Marie","code":"5693-4645-2698","tag":"CC"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","date":"2019-01-24T19:00:00.000Z","duration":120,"tz":"GMT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Splatoon Thursday","game":"splat","type":"friends","date":"2019-01-25T02:00:00.000Z","duration":120,"tz":"PST","theme":"turf-tower","stages":"living","hosts":[{"name":"Pikscast","code":"5246-0388-8018"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"streamers":["pikscast"]}
-	,{"title":"Saturday Splashdown","game":"splat","type":"friends","date":"2019-01-26T17:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"Pawl S. Lax","code":"0656-1636-5890"},{"name":"Taste","code":"4535-5139-5505"}],"streamers":["pikscast"]}
+	,{"title":"Saturday Splashdown","game":"splat","type":"friends","date":"2019-01-26T17:00:00.000Z","duration":120,"tz":"EST","theme":"turf-rainmaker","stages":"travel-transport","hosts":[{"name":"Pawl S. Lax","code":"0656-1636-5890"},{"name":"Taste","code":"4535-5139-5505"}],"streamers":["pikscast"]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","date":"2019-01-27T20:45:00.000Z","duration":120,"tz":"EST","theme":"everything","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Marie","code":"5693-4645-2698","tag":"CC"}]}
 	
 	
