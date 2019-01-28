@@ -584,6 +584,10 @@
 				"key"    : "travel-transport",
 				"name"   : "Travel & Transport",
 				"stages" : [3, 5, 6, 7, 8]
+			}, {
+				"key"    : "tourist-trap",
+				"name"   : "Tourist Trap",
+				"stages" : [4, 19, 20, 22]
 			}
 		],
 		"smash" : []
