@@ -389,7 +389,7 @@ function printTheme(game, theme, concise)
 		if (theme[key].length > 0)
 		{
 			html += "<p><span class='mode-name'>" + name + "</span> <span class='mode-options'>  ";
-			for (s = 0; s < theme[key].length; ++s)
+			for (var s = 0; s < theme[key].length; ++s)
 				html += theme[key][s] + "P  ";
 			html += "</span></p>"
 		}
@@ -426,6 +426,29 @@ function printTheme(game, theme, concise)
 		html += printMode(theme, "mode-1", "Mode 1");
 		html += printMode(theme, "mode-2", "Mode 2");
 		html += printBinaryMode(theme, "abilities", "Sub Abilities");
+	}
+	else if (game == "smash")
+	{
+		html +=        printMode(theme, "type",          "Type");
+		html +=        printMode(theme, "visibility",    "Visibility");
+		html +=        printMode(theme, "format",        "Format");
+		html +=        printMode(theme, "style",         "Style");
+		html +=        printMode(theme, "stamina",       "Rules > Stamina");
+		html +=        printMode(theme, "stock",         "Rules > Stock");
+		html +=        printMode(theme, "time",          "Rules > Time Limit");
+		html +=  printBinaryMode(theme, "fs-meter",      "Rules > FS Meter");
+		html +=  printBinaryMode(theme, "handicap",      "Rules > Damage Handicap");
+		html +=        printMode(theme, "stamina",       "Rules > Items > Intensity");
+		html +=  printBinaryMode(theme, "hazards",       "Rules > Stage Hazards");
+		html +=  printBinaryMode(theme, "team-attack",   "Rules > Team Attack");
+		html +=        printMode(theme, "launch-rate",   "Rules > Launch Rate");
+		html +=  printBinaryMode(theme, "score-display", "Rules > Score Display");
+		html +=  printBinaryMode(theme, "show-damage",   "Rules > Show Damage");
+		html +=        printMode(theme, "rotation",      "Rotation");
+		html +=        printMode(theme, "max-players",   "Max Players");
+		html +=        printMode(theme, "stage",         "Stage");
+		html +=  printBinaryMode(theme, "spirits",       "Spirits");
+		html +=  printBinaryMode(theme, "voice-chat",    "Voice Chat");
 	}
 	return html;
 }
@@ -573,7 +596,7 @@ function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
 		ctx.beginPath();
 		ctx.arc(0, 0, size, 0.0 * Math.PI, 2.0 * Math.PI, false);
 		ctx.fill();
-			
+		
 		if (PRNG() < 0.7)
 		{
 			ctx.translate(0, -mainSize - length);
@@ -583,10 +606,10 @@ function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
 			
 			ctx.beginPath();
 			ctx.translate(0, mainSize);
-			ctx.moveTo(-mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
-			ctx.bezierCurveTo(inset, 0,   inset, length-200,   -size * Math.sin(-1/8 * 2 * Math.PI), length - size * Math.cos(-1/8 * 2 * Math.PI));
+			ctx.moveTo(-mainSize * Math.sin(-streak/2 * 2 * Math.PI), mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
+			ctx.bezierCurveTo(inset, 0,   inset, length-200, -size * Math.sin(-1/8 * 2 * Math.PI), length - size * Math.cos(-1/8 * 2 * Math.PI));
 			ctx.lineTo(-size * Math.sin(1/8 * 2 * Math.PI), length - size * Math.cos(1/8 * 2 * Math.PI));
-			ctx.bezierCurveTo(-inset, length-200,   -inset, 0,    mainSize * Math.sin(-streak/2 * 2 * Math.PI) , mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
+			ctx.bezierCurveTo(-inset, length-200, -inset, 0, mainSize * Math.sin(-streak/2 * 2 * Math.PI), mainSize * (Math.cos(-streak/2 * 2 * Math.PI) - 1));
 			ctx.closePath();
 			ctx.fill();
 		}
