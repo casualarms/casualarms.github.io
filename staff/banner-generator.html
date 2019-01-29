@@ -62,6 +62,93 @@ permalink: /staff/banners/index.html
 		background-color: yellow;
 	}
 	
+	
+	
+	
+	.stage-container {
+		text-align: center;
+		background-color: #36393f;
+		width: 80%;
+		max-width: 250pt;
+		margin: 1em auto;
+		padding: 0.4em 1em;
+		border: 3pt solid #595d69;
+		border-radius: 1em;
+		box-shadow: 0 0 3pt #36393f;
+	}
+	
+	.stage-container-header
+	{
+		color: white;
+		font-weight: bold;
+	}
+	
+	.stage {
+		background-color: black;
+		color: white;
+		font: 0.8em Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		font-style: italic;
+		padding: 0.3em 0.2em;
+		margin: 0.5em;
+		border-radius: 0.5em;
+		transition: background-color 0.3s;
+		
+		margin: 0.5em auto;
+	}
+	
+	.stage:hover {
+		background-color: white;
+		color: black;
+	}
+	
+	.stage.active {
+		background-color: yellow;
+		color: black;
+		font-weight: bold;
+	}
+	
+	.stage.active:after
+	{
+		content: " ●";
+		text-align: left;
+	}
+	
+	.stage.inactive {
+		background-color: black;
+		opacity: 0.4;
+	}
+	
+	
+	/* Lobby settings */
+	
+	.mode-name {
+		width: 50%;
+		text-align: right;
+		display: inline-block;
+		font-weight: bold;
+	}
+	
+	.mode-options {
+		background-color: #36393f;
+		color: yellow;
+		font-weight: bold;
+		font-style: italic;
+		white-space: pre;
+		padding: 2pt 4pt;
+		margin-left: 0.5em;
+		border: 2pt solid #595d69;
+		border-radius: 4pt;
+	}
+	
+	.mode-options.option-off {
+		color: lightgray;
+	}
+	.mode-options.option-on {
+		color: yellow;
+	}
+	
+	
 	</style>
 	<script>
 	
@@ -265,6 +352,9 @@ permalink: /staff/banners/index.html
 		$("text-output").value = "," + JSON.stringify(eventdata);
 		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
 		
+		$("preview-theme") .innerHTML = ($("theme") .selectedIndex > 0) ?    printTheme(game,    getTheme(game, $("theme") .value), false) : "";
+		$("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
+		
 		generateBanner(880, 480, eventdata, "result", false);
 		
 		return eventdata;
@@ -426,6 +516,10 @@ permalink: /staff/banners/index.html
 			
 			<p>Direct link (valid only after publishing): <a id="direct-link"></a></p>
 			<div><img id="result"/></div>
+			
+			<div id="preview-theme"></div>
+			<div id="preview-stages"></div>
+			<div id="preview-items"></div>
 			<p>Have a nice day :)</p>
 		</div>
 	</body>
