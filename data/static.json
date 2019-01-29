@@ -139,6 +139,16 @@
 			"style"     : "hololight",
 			"criterion" : "Finish as the winner in the monthly Mario Kart leaderboards"
 		},
+		"season_splat"  : {
+			"caption"   : "Monthly Splatoon Leaderboards",
+			"style"     : "light",
+			"criterion" : "Finish top 10 in the monthly Splatoon leaderboards"
+		},
+		"season_splat_win" : {
+			"caption"   : "Monthly Splatoon Leaderboards Win",
+			"style"     : "hololight",
+			"criterion" : "Finish as the winner in the monthly Splatoon leaderboards"
+		},
 		"p0"           : {
 			"caption"   : "Patreon: Casual Contributor",
 			"style"     : "light",
