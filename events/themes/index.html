@@ -73,6 +73,22 @@ redirect_from: "/lobbies/themes/"
 					scrolltoid = stageset.key;
 			}
 			
+			if (game == "smash")
+			{
+				menu_html += "</div><h3>Item Sets</h3><div class='menu-container'>";
+				
+				for (var i = 0; i < itemSets[game].length; ++i)
+				{
+					var itemset = itemSets[game][i];
+					menu_html += "<a class='menu-item m5' href='#" + itemset.key + "'>" + itemset.name + "</a>";
+					theme_html += "<h3 id='" + itemset.key + "'>" + itemset.name + "</h3>";
+					theme_html += printItemSet(game, itemset);
+					
+					if (window.location.hash.substring(1) == itemset.key)
+						scrolltoid = itemset.key;
+				}
+			}
+			
 			html += "<div class='themes-block' id='themes-" + game + "'><h2 id='" + game + "'>" + eventGames[game] + "</h2>" + menu_html + "</div>" + theme_html + "</div>";
 		}
 		
@@ -90,9 +106,12 @@ redirect_from: "/lobbies/themes/"
 	function randomTheme()
 	{
 		var game = $("game").value;
-		var theme = eventThemes[game][Math.floor(Math.random() * eventThemes[game].length)];
-		var stages = stageSets[game][Math.floor(Math.random() * stageSets[game].length)];
-		$("random-result").innerHTML = "Random theme: <a href='#" + theme.key + "'>" + theme.name + "</a> with <a href='#" + stages.key + "'>" + stages.name + "</a> stages!";
+		var theme  = eventThemes[game][Math.floor(Math.random() * eventThemes[game].length)];
+		var stages =   stageSets[game][Math.floor(Math.random() *   stageSets[game].length)];
+		var items  =    itemSets[game][Math.floor(Math.random() *    itemSets[game].length)];
+		$("random-result").innerHTML = "Random theme: <a href='#" + theme.key + "'>" + theme.name + "</a> with <a href='#" + stages.key + "'>" + stages.name + "</a> stages"
+		if (game == "smash")
+			$("random-result").innerHTML += " and <a href='#" + items.key + "'>" + items.name + "</a> items";
 	}
 	
 	</script>

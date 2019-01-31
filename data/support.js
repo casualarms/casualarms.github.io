@@ -9,8 +9,10 @@ var patreonTiers         = staticDataJSON["patreonTiers"];
 var leaderboardTitles    = staticDataJSON["leaderboardTitles"];
 var eventTypes           = staticDataJSON["eventTypes"];
 var eventStages          = staticDataJSON["eventStages"];
+var eventItems           = staticDataJSON["eventItems"];
 var eventThemes          = staticDataJSON["eventThemes"];
 var stageSets            = staticDataJSON["stageSets"];
+var itemSets             = staticDataJSON["itemSets"];
 var eventSponsors        = staticDataJSON["eventSponsors"];
 var badgeList            = staticDataJSON["badgeList"];
 

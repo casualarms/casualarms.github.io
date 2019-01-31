@@ -158,16 +158,25 @@ permalink: /staff/banners/index.html
 	{
 		var game = $("game").options[$("game").selectedIndex].value;
 		
+		// Themes
 		var options = "<option value='undefined' selected>---</option>";
 		for (var i = 0; i < eventThemes[game].length; ++i)
 			options += "<option value='" + eventThemes[game][i].key + "'>" + eventThemes[game][i].name + "</option>";
 		$("theme").innerHTML = options;
 		
+		// Stage sets
 		options = "<option value='undefined' selected>---</option>";
 		for (var i = 0; i < stageSets[game].length; ++i)
 			options += "<option value='" + stageSets[game][i].key + "'>" + stageSets[game][i].name + "</option>";
 		$("stages").innerHTML = options;
 		
+		// Item sets
+		options = "<option value='undefined' selected>---</option>";
+		for (var i = 0; i < itemSets[game].length; ++i)
+			options += "<option value='" + itemSets[game][i].key + "'>" + itemSets[game][i].name + "</option>";
+		$("items").innerHTML = options;
+		
+		// Event types
 		options = "";
 		for (var type in eventTypes[game])
 			options += "<option value='" + type + "'>" + eventTypes[game][type] + "</option>";
@@ -253,11 +262,12 @@ permalink: /staff/banners/index.html
 				$("streamer" + streamersList[i]).value = eventData["streamers"][i];
 		
 		$("title").value = unEscapeHTML(eventData.title);
-		selectOptionWithValue($("game"), eventData.game);
+		selectOptionWithValue($("game"),    eventData.game);
 		fillGameOptions();
-		selectOptionWithValue($("type"), eventData.type);
-		selectOptionWithValue($("theme"), eventData.theme, true);
-		selectOptionWithValue($("stages"), eventData.stages, true);
+		selectOptionWithValue($("type"),    eventData.type);
+		selectOptionWithValue($("theme"),   eventData.theme, true);
+		selectOptionWithValue($("stages"),  eventData.stages, true);
+		selectOptionWithValue($("items"),   eventData.items, true);
 		selectOptionWithValue($("sponsor"), eventData.sponsor, true);
 		
 		readAndGenerate();
@@ -285,6 +295,7 @@ permalink: /staff/banners/index.html
 				"tz"       : "EST",
 				"theme"    : "",
 				"stages"   : "",
+				"items"    : "",
 				"hosts"    : [{"name" : "To Be Announced", "code" : "-"}]
 			});
 		}
@@ -344,6 +355,7 @@ permalink: /staff/banners/index.html
 		
 		if ($("theme")  .selectedIndex > 0) eventdata.theme   = $("theme")  .value;
 		if ($("stages") .selectedIndex > 0) eventdata.stages  = $("stages") .value;
+		if ($("items")  .selectedIndex > 0) eventdata.items   = $("items")  .value;
 		if ($("sponsor").selectedIndex > 0) eventdata.sponsor = $("sponsor").value;
 		
 		if (hosts.length > 0)     eventdata.hosts     = hosts;
@@ -354,6 +366,7 @@ permalink: /staff/banners/index.html
 		
 		$("preview-theme") .innerHTML = ($("theme") .selectedIndex > 0) ?    printTheme(game,    getTheme(game, $("theme") .value), false) : "";
 		$("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
+		$("preview-items") .innerHTML = ($("items") .selectedIndex > 0) ?  printItemSet(game,  getItemSet(game, $("items").value))         : "";
 		
 		generateBanner(880, 480, eventdata, "result", false);
 		
@@ -403,6 +416,8 @@ permalink: /staff/banners/index.html
 		var game = $("game").options[$("game").selectedIndex].value;
 		$("theme") .selectedIndex = Math.floor(Math.random() * eventThemes[game].length) + 1;
 		$("stages").selectedIndex = Math.floor(Math.random() *   stageSets[game].length) + 1;
+		if (game == "smash")
+			$("items").selectedIndex = Math.floor(Math.random() * itemSets[game].length) + 1;
 		readAndGenerate();
 	}
 	
@@ -425,6 +440,7 @@ permalink: /staff/banners/index.html
 			<p>
 				Modes:  <select id="theme" onChange="readAndGenerate()"></select>
 				Stages: <select id="stages" onChange="readAndGenerate()"></select>
+				Items: <select id="items" onChange="readAndGenerate()"></select>
 				<input type="button" value="Randomize" onClick="randomTheme()"/>
 			</p>
 			

@@ -312,6 +312,36 @@
 			"Dracula's Castle"
 		]
 	},
+	"eventItems" : {
+		"arms"  : [],
+		"kart"  : [],
+		"splat" : [],
+		"smash" : [
+			"Smash Ball", "Assist Trophy", "Poké Ball", "Master Ball",
+			"Dragoon Parts", "Daybreak Parts", "Container", "Bomber", "Blast Box",
+			"Fake Smash Ball", "Sandbag", "Food", "Maxim Tomato",
+			
+			"Heart Container", "Fairy Bottle", "Healing Sprout", "Healing Field", "Super Mushroom",
+			"Poison Mushroom", "Super Star", "Warp Star", "Metal Box", "Bunny Hood",
+			"Superspicy Curry", "Timer", "Lightning", "Bullet Bill",
+			
+			"Beam Sword", "Star Rod", "Home-Run Bat", "Hammer", "Golden Hammer",
+			"Lip's Stick", "Fire Bar", "Ore Club", "Killing Edge", "Death's Scythe",
+			"Ray Gun", "Fire Flower", "Nintendo Scope", "Gust Bellows",
+			
+			"Steel Diver", "Drill", "Banana Gun", "Rage Blaster", "Ramblin' Evil Mushroom",
+			"Staff", "Bob-omb", "Motion-Sensor Bomb", "Green Shell", "Bumper",
+			"Freezie", "Mr. Saturn", "Gooey Bomb", "Smart Bomb",
+			
+			"Deku Nut", "Smoke Ball", "Pitfall", "Hothead", "Banana Peel",
+			"Unira", "Soccer Ball", "Bombchu", "X Bomb", "Hocotate Bomb",
+			"POW Block", "Spiny Shell", "Boomerang", "Beetle",
+			
+			"Cucco", "Beehive", "Killer Eye", "Boss Galaga", "Beastball",
+			"Black Hole", "Franklin Badge", "Screw Attack", "Back Shield", "Super Leaf",
+			"Rocket Belt", "Super Launch Star", "Special Flag"
+		]
+	},
 	"patreonTiers" : [
 		{ "start" :  1, "name" : "Casual Contributor", "color" : "#2E666B"},
 		{ "start" :  5, "name" : "Committed Casual",   "color" : "#0A680D"},
@@ -529,77 +559,48 @@
 				"abilities"       : true
 			}
 		],
-		"smash" : []
+		"smash" : [
+			 {"key":"basic-smash","name":"Basic Settings","description":"","type":"Playground","visibility":"Friends","format":"4-Player Smash","style":"Time","stamina":"10","stock":1,"time":"3:00","fs-meter":false,"handicap":false,"items":"Med","hazards":true,"team-attack":false,"launch-rate":1,"score-display":true,"show-damage":true,"rotation":"Winner Leaves","max-players":8,"stage":"Random","spirits":false,"voice-chat":false}
+		]
 	},
 	"stageSets" : {
 		"arms"  : [
-			{
-				"key"    : "all-arms",
-				"name"   : "All",
-				"stages" : [{ "start" : 0, "end" : 14 }]
-			}, {
-				"key"    : "breakable",
-				"name"   : "Breakable",
-				"stages" : [1, 3, 5, 9, 11, 12, 14] 
-			}, {
-				"key"    : "teams",
-				"name"   : "For Teams",
-				"stages" : [0, 1, 3, 4, 8, 9, 10, 12]
-			}, {
-				"key"    : "bane-ranked",
-				"name"   : "Bane of Ranked",
-				"stages" : [2, 4, 6, 8, 14]
-			},
-			{
-				"key"    : "near-far",
-				"name"   : "Near & Far",
-				"stages" : [0, 1, 2, 4, 8, 11, 13]
-			},
-			{
-				"key"    : "barriers",
-				"name"   : "Barriers",
-				"stages" : [1, 5, 6, 7, 8, 9, 12, 14]
-			},
-			{
-				"key"    : "corners",
-				"name"   : "Corners",
-				"stages" : [0, 1, 7, 10, 11, 13, 14]
-			}
+			 { "key" : "all-arms",       "name" : "All",              "stages" : [{ "start" : 0, "end" : 14 }]}
+			,{ "key" : "breakable",      "name" : "Breakable",        "stages" : [1, 3, 5, 9, 11, 12, 14] }
+			,{ "key" : "teams",          "name" : "For Teams",        "stages" : [0, 1, 3, 4, 8, 9, 10, 12]}
+			,{ "key" : "bane-ranked",    "name" : "Bane of Ranked",   "stages" : [2, 4, 6, 8, 14]}
+			,{ "key" : "near-far",       "name" : "Near & Far",       "stages" : [0, 1, 2, 4, 8, 11, 13]}
+			,{ "key" : "barriers",       "name" : "Barriers",         "stages" : [1, 5, 6, 7, 8, 9, 12, 14]}
+			,{ "key" : "corners",        "name" : "Corners",          "stages" : [0, 1, 7, 10, 11, 13, 14]}
 		],
 		"kart"  : [
-			{
-				"key"    : "all-race",
-				"name"   : "Race Tracks",
-				"stages" : [{ "start" : 0, "end" : 47 }]
-			}, {
-				"key"    : "all-battle",
-				"name"   : "Battle Stages",
-				"stages" : [48, 49, 50, 51, 52, 53, 54, 55]
-			}
+			 { "key" : "all-race",       "name" : "Race Tracks",      "stages" : [{ "start" : 0, "end" : 47 }]}
+			,{ "key" : "all-battle",     "name" : "Battle Stages",    "stages" : [48, 49, 50, 51, 52, 53, 54, 55]}
 		],
 		"splat" : [
-			{
-				"key"    : "all-splat",
-				"name"   : "All",
-				"stages" : [{ "start" : 0, "end" : 22 }]
-			}, {
-				"key"    : "indoor",
-				"name"   : "Indoor Fighting",
-				"stages" : [1, 3, 12, 14, 16]
-			}, {
-				"key"    : "living",
-				"name"   : "Urban Living",
-				"stages" : [0, 4, 6, 8, 20]
-			}, {
-				"key"    : "travel-transport",
-				"name"   : "Travel & Transport",
-				"stages" : [3, 5, 6, 7, 8]
-			}, {
-				"key"    : "tourist-trap",
-				"name"   : "Tourist Trap",
-				"stages" : [4, 19, 20, 22]
-			}
+			 { "key" : "all-splat",      "name" : "All",              "stages" : [{ "start" : 0, "end" : 22}]}
+			,{ "key" : "tourist-splat",  "name" : "Tourist Trap",     "stages" : [2, 14, 19, 22]}
+			,{ "key" : "sports-splat",   "name" : "SPORTS!",          "stages" : [1, 3, 11, 16]}
+			,{ "key" : "grates-splat",   "name" : "Great Grates",     "stages" : [2, 8, 9, 18]}
+			,{ "key" : "high-splat",     "name" : "High Ground",      "stages" : [4, 6, 8, 11, 14]}
+			,{ "key" : "waters-splat",   "name" : "Dangerous Waters", "stages" : [10, 15, 18, 20]}
+			,{ "key" : "moving-splat",   "name" : "Moving Parts",     "stages" : [5, 17, 19, 21]}
+			,{ "key" : "industry-splat", "name" : "Industrial Ink",   "stages" : [5, 7, 13, 17, 21]}
+			,{ "key" : "wide-splat",     "name" : "Going Wide",       "stages" : [0, 3, 10, 12]}
+			,{ "key" : "close-splat",    "name" : "Close Quarters",   "stages" : [7, 9, 13, 22]}
+			,{ "key" : "urban-splat",    "name" : "Urban Living",     "stages" : [0, 4, 6, 15]}
+			,{ "key" : "indoor-splat",   "name" : "Indoor Fighting",  "stages" : [1, 12, 14, 16]}
 		],
-		"smash" : []
+		"smash" : [
+			 { "key" : "all-smash",      "name" : "All",              "stages" : [{ "start" : 0, "end" : 102 }]}
+		]
+	},
+	"itemSets" : {
+		"arms"  : [],
+		"kart"  : [],
+		"splat" : [],
+		"smash" : [
+			 { "key" : "all-items",      "name" : "All",              "items" : [{ "start" : 0, "end" : 81 }]}
+		]
 	}
 }

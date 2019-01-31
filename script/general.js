@@ -348,6 +348,14 @@ function getStageSet(game, stageID)
 	return null;
 }
 
+function getItemSet(game, itemID)
+{
+	for (var t = 0; t < itemSets[game].length; ++t)
+		if (itemSets[game][t].key == itemID)
+			return itemSets[game][t];
+	return null;
+}
+
 function printStageSet(game, stageset)
 {
 	var html = "";
@@ -368,6 +376,29 @@ function printStageSet(game, stageset)
 	html += "<div class='stage-container-header'>" + stages.length + "/" + eventStages[game].length + " stages (click to expand)</div>";
 	for (var s = 0; s < stages.length; ++s)
 		html += "<div class='stage active' style='display: none;'>" + eventStages[game][stages[s]] + "</div>";
+	return html + "</div>";
+}
+
+function printItemSet(game, stageset)
+{
+	var html = "";
+	var stages = [];
+	for (s = 0; s < stageset.items.length; ++s)
+	{
+		var stage = stageset.items[s];
+		if (typeof stage === 'object')
+		{
+			for (var b = stage.start; b <= stage.end; ++b)
+				stages.push(b);
+		}
+		else stages.push(stageset.items[s]);
+	}
+	
+	var myid = Math.random().toString(36).substring(7);
+	html += "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
+	html += "<div class='stage-container-header'>" + stages.length + "/" + eventItems[game].length + " items (click to expand)</div>";
+	for (var s = 0; s < stages.length; ++s)
+		html += "<div class='stage active' style='display: none;'>" + eventItems[game][stages[s]] + "</div>";
 	return html + "</div>";
 }
 
@@ -438,7 +469,7 @@ function printTheme(game, theme, concise)
 		html +=        printMode(theme, "time",          "Rules > Time Limit");
 		html +=  printBinaryMode(theme, "fs-meter",      "Rules > FS Meter");
 		html +=  printBinaryMode(theme, "handicap",      "Rules > Damage Handicap");
-		html +=        printMode(theme, "stamina",       "Rules > Items > Intensity");
+		html +=        printMode(theme, "items",         "Rules > Items > Intensity");
 		html +=  printBinaryMode(theme, "hazards",       "Rules > Stage Hazards");
 		html +=  printBinaryMode(theme, "team-attack",   "Rules > Team Attack");
 		html +=        printMode(theme, "launch-rate",   "Rules > Launch Rate");
