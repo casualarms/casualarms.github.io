@@ -6,6 +6,7 @@ permalink: /staff/prizes/index.html
 <head>
 	<title>Prize Randomizer - Casual ARMS</title>
 	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
 	<style>
 	
 	@font-face {
@@ -93,12 +94,12 @@ permalink: /staff/prizes/index.html
 		$("result").value = text;
 	}
 	
-	var rawSeasonHistory = { arms: null, kart: null };
-	var seasonHistory    = { arms: null, kart: null };
+	var rawSeasonHistory = { arms: null, kart: null, splat: null, smash: null };
+	var seasonHistory    = { arms: null, kart: null, splat: null, smash: null };
 	
 	function storeSeasons(rawBoards)
 	{
-		var games = ["arms", "kart"];
+		var games = ["arms", "kart", "splat", "smash"];
 		for (var gi = 0; gi < games.length; ++gi)
 		{
 			rawSeasonHistory[games[gi]] = [];
@@ -127,16 +128,22 @@ permalink: /staff/prizes/index.html
 		
 		console.log(seasonHistory);
 		console.log(rawSeasonHistory);
+		
+		var options = "";
+		for (var game in eventGames)
+			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
+		$("game").innerHTML = options;
+		
+		changeGame();
 	}
 	
 	function processMonthly(useBoard)
 	{
-		var activeSeasonIndex = 1;//$("season").selectedIndex;
+		var game = $("game").value;
+		var activeSeasonIndex = $("season").selectedIndex;
 		
-	//	var useBoard = reorganizeLeaderboards(rawLeaderboard[game]);
-		if (activeSeasonIndex > 0)
-			useBoard = seasonHistory["arms"][activeSeasonIndex-1].data;
-			
+		useBoard = seasonHistory[game][activeSeasonIndex].data;
+		
 		var copyboard = useBoard.slice().filter(function (item) { return item.monthly > 0; }).sort(function(a, b) { return b.monthly - a.monthly; });
 		
 		var scores = [];
@@ -202,6 +209,17 @@ permalink: /staff/prizes/index.html
 		fetchSeasonHistory(storeSeasons);
 	}
 	
+	function changeGame()
+	{
+		var game = $("game").value;
+	
+		var today = new Date();
+		var options = "";
+		for (var i = 0; i < seasonHistory[game].length; ++i)
+			options += "<option value='" + (i+1) +"'>" + seasonHistory[game][i].title + "</option>";
+		$("season").innerHTML = options;
+	}
+	
 	</script>
 </head>
 <body onload="load()">
@@ -219,7 +237,12 @@ permalink: /staff/prizes/index.html
 		
 		
 		<h3>Monthly Giveaway</h3>
-		<button onCLick="processMonthly()">Process Monthly</button>
+		
+		<p>
+			<select id="game" onChange="changeGame()"></select>
+			<select id="season"></select>
+			<button onCLick="processMonthly()">Process Monthly</button>
+		</p>
 		<textarea id="result-monthly" rows="30"></textarea>
 		
 	</div>
