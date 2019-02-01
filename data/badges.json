@@ -1,24 +1,24 @@
 {
-	 "339592807104643083": {"name": "Rashiko",             "badges": ["casualcouple", "casualcrew", "season_arms", "season_kart", "season_kart_win", "cgc", "host"] }
-	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season_arms", "season_kart", "clash", "scramble", "cgc", "host"] }
+	 "339592807104643083": {"name": "Rashiko",             "badges": ["casualcouple", "casualcrew", "season_arms", "season_kart", "season_splat", "season_arms_win", "season_splat_win", "season_kart_win", "cgc", "host"] }
+	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season_arms", "season_kart", "season_splat", "clash", "scramble", "cgc", "host"] }
 	
 	,"398284103541063690": {"name": "River",               "badges": ["clash", "clash_win"] }
 	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "scramble_win", "season_arms"] }
 	,"192081577306488842": {"name": "Serperiorfan",        "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	,"180917649444700160": {"name": "Piper",               "badges": ["clash", "scramble", "scramble_win", "cgc"] }
 	
-	,"378970992095264769": {"name": "Program",             "badges": ["casualcrew", "clash", "scramble", "season_arms", "season_kart", "cgc", "host"] }
+	,"378970992095264769": {"name": "Program",             "badges": ["casualcrew", "clash", "scramble", "season_arms", "season_kart", "season_splat", "cgc", "host"] }
 	,"403932918466215948": {"name": "Main Main",           "badges": ["casualcrew", "clash", "scramble", "cgc", "host", "season_arms"] }
 	,"215215084090294274": {"name": "Marie",               "badges": ["casualcrew", "clash", "scramble", "host", "season_arms"] }
 	,"223927575053991936": {"name": "LandFrog",            "badges": ["casualcrew", "season_kart", "clash", "scramble"] }
 	,"327864229673697290": {"name": "Cosmos",              "badges": ["casualcrew", "clash", "scramble"] }
 	,"412681834493640705": {"name": "Ackus",               "badges": ["casualcrew", "clash", "host"] }
 	,"186543180114690048": {"name": "Eevee",               "badges": ["casualcrew", "clash", "host"] }
-	,"426780718639611905": {"name": "Fang",                "badges": ["casualcrew", "clash", "scramble", "scramble_win", "host"] }
+	,"426780718639611905": {"name": "Fang",                "badges": ["casualcrew", "clash", "scramble", "scramble_win", "host", "season_arms", "season_splat"] }
 	,"340340760698159115": {"name": "Horrible",            "badges": ["casualcrew", "host"] }
 	,"164371048093974528": {"name": "GV-97",               "badges": ["host"] }
 	
-	,"450773792588038144": {"name": "Becca",               "badges": ["clash", "scramble"] }
+	,"450773792588038144": {"name": "Becca",               "badges": ["clash", "scramble", "season_splat"] }
 	,"303693190932987905": {"name": "Bogalizard",          "badges": ["clash", "scramble", "season_arms", "season_arms_win", "host"] }
 	,"427587118030651393": {"name": "Reis",                "badges": ["clash", "scramble", "cgc", "host", "season_arms"] }
 	,"118794402561785857": {"name": "Toxic",               "badges": ["clash", "scramble", "season_arms", "cgc"] }
@@ -77,7 +77,7 @@
 	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "season_arms", "season_kart", "clash", "scramble"] }
 	
 	,"196169851788591104": {"name": "Jiko",                "badges": ["clash", "scramble"] }
-	,"327106519785275392": {"name": "SirRacha",            "badges": ["clash", "scramble"] }
+	,"327106519785275392": {"name": "SirRacha",            "badges": ["cgc", "clash", "scramble", "season_arms"] }
 	,"136779908910153728": {"name": "IncredibleMeh",       "badges": ["scramble"] }
 	,"140236006380142592": {"name": "ShinySP",             "badges": ["scramble"] }
 	,"430764831927304193": {"name": "Mr.MGamer",           "badges": ["season_arms", "clash", "scramble"] }
@@ -106,7 +106,7 @@
 	,"196399844988813312": {"name": "Boop",                "badges": ["scramble"] }
 	,"381626947119218699": {"name": "Beamer",              "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	
-	,"196380470177562625": {"name": "Gote",                "badges": ["clash", "scramble", "season_arms", "season_kart", "season_kart_win", "cgc"] }
+	,"196380470177562625": {"name": "Gote",                "badges": ["clash", "scramble", "season_arms", "season_kart", "season_splat", "season_kart_win", "cgc"] }
 	,"163427256264425472": {"name": "Xelor41023",          "badges": ["scramble"] }
 	,"164685995583733760": {"name": "AntheM",              "badges": ["scramble", "scramble_win"] }
 	,"266330502439370752": {"name": "kilian_smt",          "badges": ["scramble"] }
@@ -115,7 +115,7 @@
 	,"443737601904476160": {"name": "Buch",                "badges": ["clash"] }
 	,"243190204771336192": {"name": "Hennessey",           "badges": ["clash"] }
 	,"263368462745862144": {"name": "Fireshark",           "badges": ["clash"] }
-	,"294963125591998466": {"name": "Sintha",              "badges": ["clash"] }
+	,"294963125591998466": {"name": "Sintha",              "badges": ["clash", "season_kart"] }
 	,"329034278803472394": {"name": "Fish",                "badges": ["clash"] }
 	,"523864053542682624": {"name": "5after12",            "badges": ["clash", "scramble"] }
 	,"458379136621084673": {"name": "James B",             "badges": ["clash"] }
@@ -133,4 +133,11 @@
 	,"409578580209827841": {"name": "Dory",                "badges": ["scramble"] }
 	,"257959389594386433": {"name": "HKGamer13",           "badges": ["scramble"] }
 	
+	,"330563262141825024": {"name": "Sadaly",              "badges": ["season_arms", "season_kart", "season_kart_win", "season_splat"] }
+	,"81084716635131904":  {"name": "Pikscast",            "badges": ["host", "season_kart", "season_splat"] }
+	,"422156668411838465": {"name": "Sarahy",              "badges": ["season_kart", "season_splat"] }
+	,"134117027802644490": {"name": "Abrams",              "badges": ["season_kart"] }
+	,"292535803262009346": {"name": "Gabstriel",           "badges": ["season_splat"] }
+	,"142716556340756481": {"name": "Pawl",                "badges": ["host"] }
+	,"400479213817298946": {"name": "The Oddity",          "badges": ["host"] }
 }
