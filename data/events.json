@@ -1,34 +1,29 @@
 [
-	{"title":"Monday Motorway","game":"kart","type":"race","date":"2019-01-28T19:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
-	,{"title":"Wonky Wednesday","game":"kart","type":"race","date":"2019-01-30T19:00:00.000Z","duration":120,"tz":"EST","theme":"mirror","stages":"all-race","hosts":[{"name":"","code":"4621-2901-6363"}]}
-	,{"title":"Frantic Friday","game":"kart","type":"battle","date":"2019-02-01T22:00:00.000Z","duration":120,"tz":"EST","theme":"mk_battle","stages":"all-battle","hosts":[{"name":"","code":"5153-6594-0779"}]}
-	,{"title":"Saturday Speedway","game":"kart","type":"race","date":"2019-02-03T00:00:00.000Z","duration":120,"tz":"EST","theme":"200cc","stages":"all-race","hosts":[{"name":"","code":"4412-5645-5723"}]}
-	
-	,{"title":"Messy Monday","game":"splat","type":"friends","date":"2019-01-28T22:00:00.000Z","duration":120,"tz":"EST","theme":"turf-clams","stages":"tourist-trap","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Pikscast","code":"5246-0388-8018"}],"streamers":["pikscast"]}
-	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","date":"2019-01-30T02:00:00.000Z","duration":120,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Marie","code":"5693-4645-2698","tag":"CC"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-01-30T23:00:00.000Z","duration":120,"tz":"EST","theme":"breakable-bits","stages":"breakable","hosts":[{"name":"Marie","code":"5693-4645-2698","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","date":"2019-01-31T19:00:00.000Z","duration":120,"tz":"EST","theme":"fights-only","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-	,{"title":"Turfsday","game":"splat","type":"friends","date":"2019-02-01T02:00:00.000Z","duration":120,"tz":"EST","theme":"turf-rainmaker","stages":"grates-splat","hosts":[{"name":"Pikscast","code":"5246-0388-8018"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"streamers":["pikscast"]}
-	,{"title":"Splaturday","game":"splat","type":"friends","date":"2019-02-02T17:00:00.000Z","duration":120,"tz":"EST","theme":"turf-zones","stages":"high-splat","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Pikscast","code":"5246-0388-8018"}],"streamers":["pikscast"]}
-	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","date":"2019-02-03T20:45:00.000Z","duration":120,"tz":"EST","theme":"everything","stages":"all-arms","hosts":[{"name":"Taste","code":"4535-5139-5505"},{"name":"The Oddity","code":"4303-5678-5601"}]}
+	{"title":"Monday Motorway","game":"kart","type":"race","date":"2019-02-04T19:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
+	,{"title":"Wonky Wednesday","game":"kart","type":"race","date":"2019-02-06T19:00:00.000Z","duration":120,"tz":"EST","theme":"mirror","stages":"all-race","hosts":[{"name":"","code":"4621-2901-6363"}]}
+	,{"title":"Saturday Speedway","game":"kart","type":"race","date":"2019-02-10T00:00:00.000Z","duration":120,"tz":"EST","theme":"200cc","stages":"all-race","hosts":[{"name":"","code":"4412-5645-5723"}]}
+	,{"title":"Messy Monday","game":"splat","type":"friends","date":"2019-02-04T22:00:00.000Z","duration":120,"tz":"EST","theme":"turf-zones","stages":"close-splat","hosts":[{"name":"Spenjo","code":"0725-4824-1895"},{"name":"Pikscast","code":"5246-0388-8018"}],"streamers":["pikscast"]}
+	,{"title":"Turfsday","game":"splat","type":"friends","date":"2019-02-08T02:00:00.000Z","duration":120,"tz":"EST","theme":"turf-rainmaker","stages":"tourist-splat","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Pikscast","code":"5246-0388-8018"}],"streamers":["pikscast"]}
+	,{"title":"Splaturday","game":"splat","type":"friends","date":"2019-02-09T17:00:00.000Z","duration":120,"tz":"EST","theme":"turf-tower","stages":"all-splat","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Spenjo","code":"0725-4824-1895"}],"streamers":["pikscast"]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","date":"2019-02-06T02:00:00.000Z","duration":120,"tz":"EST","theme":"barrier-bonanza","stages":"barriers","hosts":[{"name":"Marie","code":"5693-4645-2698","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-01-30T23:00:00.000Z","duration":120,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Marie","code":"5693-4645-2698","tag":"CC"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","date":"2019-02-07T19:00:00.000Z","duration":120,"tz":"EST","theme":"fights-only","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","date":"2019-02-10T20:45:00.000Z","duration":120,"tz":"EST","theme":"hedlok-havok","stages":"near-far","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Spenjo","code":"0725-4824-1895"}]}
 
-
-	,{"title":"Monday Motorway","game":"kart","type":"race","date":"2019-02-04T19:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Wonky Wednesday","game":"kart","type":"race","date":"2019-02-06T19:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Frantic Friday","game":"kart","type":"race","date":"2019-02-08T22:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Saturday Speedway","game":"kart","type":"race","date":"2019-02-10T00:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Messy Monday","game":"splat","type":"friends","date":"2019-02-04T22:00:00.000Z","duration":120,"tz":"EST","theme":"turf-zones","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","date":"2019-02-06T02:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-02-06T23:00:00.000Z","duration":120,"tz":"EST","theme":"teambuilding","stages":"corners","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","date":"2019-02-07T19:00:00.000Z","duration":120,"tz":"EST","theme":"fights-only","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Turfsday","game":"splat","type":"friends","date":"2019-02-08T02:00:00.000Z","duration":120,"tz":"EST","theme":"turf-rainmaker","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Splaturday","game":"splat","type":"friends","date":"2019-02-09T17:00:00.000Z","duration":120,"tz":"EST","theme":"turf-tower","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","date":"2019-02-10T20:45:00.000Z","duration":120,"tz":"EST","theme":"corner-chaos","stages":"corners","hosts":[{"name":"To Be Announced","code":"-"}]}
-
+	,{"title":"Monday Motorway","game":"kart","type":"race","date":"2019-02-11T19:00:00.000Z","duration":120,"tz":"EST","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
+	,{"title":"Wonky Wednesday","game":"kart","type":"race","date":"2019-02-13T19:00:00.000Z","duration":120,"tz":"EST","theme":"mirror","stages":"all-race","hosts":[{"name":"","code":"4621-2901-6363"}]}
+	,{"title":"Saturday Speedway","game":"kart","type":"race","date":"2019-02-17T00:00:00.000Z","duration":120,"tz":"EST","theme":"200cc","stages":"all-race","hosts":[{"name":"","code":"4412-5645-5723"}]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","date":"2019-02-13T02:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","date":"2019-02-13T23:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","date":"2019-02-14T19:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","date":"2019-02-17T20:45:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Messy Monday","game":"splat","type":"friends","date":"2019-02-11T22:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Turfsday","game":"splat","type":"friends","date":"2019-02-15T02:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
+	,{"title":"Splaturday","game":"splat","type":"friends","date":"2019-02-16T17:00:00.000Z","duration":120,"tz":"EST","hosts":[{"name":"To Be Announced","code":"-"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","date":"2019-01-26T20:15:00.000Z","duration":60,"tz":"EST","theme":"scramble","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Casual Scramble 6","game":"arms","type":"scramble","date":"2019-01-26T21:30:00.000Z","duration":90,"tz":"EST","theme":"scramble","stages":"all-arms"}
 	
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","date":"2019-01-12T20:15:00.000Z","duration":60,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-	,{"title":"Casual Clash 9","game":"arms","type":"clash","date":"2019-01-12T21:30:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","date":"2019-02-09T20:15:00.000Z","duration":60,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Casual Clash 10","game":"arms","type":"clash","date":"2019-02-09T21:30:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
 ]
