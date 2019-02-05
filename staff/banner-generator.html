@@ -194,8 +194,32 @@ permalink: /staff/banners/index.html
 			{
 				var dateString = dayNames[events[i].date.getUTCDay()] + " " + monthNames[events[i].date.getUTCMonth()] + ' ' + events[i].date.getUTCDate();
 				options += "<option>" + dateString + ": " + events[i].title + "</option>";
+				
+				// Add prior hosts to database
+				if ("hosts" in events[i])
+				{
+					outer: 
+					for (var eh = 0; eh < events[i].hosts.length; eh++)
+					{
+						for (var h = 0; h < hostDatabase.length; ++h)
+							if (events[i].hosts[eh].code == hostDatabase[h].code || events[i].hosts[eh].name == "")
+								continue outer;
+						hostDatabase.push(events[i].hosts[eh]);
+					}
 			}
-			$("event-history").innerHTML = options;
+			$("event-history").innerHTML = options;}
+			
+			// Fill quick entry lists
+			hostDatabase.sort(function(a, b){ return a.name > b.name; });
+			var hostsList = ["A", "B", "C"];
+			for (var i = 0; i < hostsList.length; ++i)
+			{
+				for (var h = 0; h < hostDatabase.length; ++h)
+				{
+					var html = "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
+					$("quickEntry" + hostsList[i]).innerHTML += html;
+				}
+			}
 		});
 		
 		// Fill event slot selector
@@ -203,17 +227,6 @@ permalink: /staff/banners/index.html
 		for (var i = 0; i < eventSlots.length; ++i)
 			options += "<option>" + eventGames[eventSlots[i].game] + ": " + eventSlots[i].title + "</option>";
 		$("event-slots").innerHTML = options;
-		
-		// Fill quick entry lists
-		var hostsList = ["A", "B", "C"];
-		for (var i = 0; i < hostsList.length; ++i)
-		{
-			for (var h = 0; h < hostDatabase.length; ++h)
-			{
-				var html = "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
-				$("quickEntry" + hostsList[i]).innerHTML += html;
-			}
-		}
 		
 		// Fill game options
 		var options = "";
