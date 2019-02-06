@@ -302,14 +302,14 @@ permalink: /staff/banners/index.html
 			fillFromEventData({
 				"title"    : slot.title,
 				"game"     : slot.game,
-				"type"     : "",
+				"type"     : slot.type,
 				"date"     : slot.start,
 				"duration" : slot.duration,
-				"tz"       : "EST",
-				"theme"    : "",
-				"stages"   : "",
-				"items"    : "",
-				"hosts"    : [{"name" : "To Be Announced", "code" : "-"}]
+				"tz"       : slot.tz,
+				"theme"    : slot.theme,
+				"stages"   : slot.stages,
+				"items"    : slot.items,
+				"hosts"    : ("hosts" in slot) ? slot.hosts : [{"name" : "To Be Announced", "code" : "-"}]
 			});
 		}
 	}

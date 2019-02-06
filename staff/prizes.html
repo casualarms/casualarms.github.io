@@ -126,9 +126,6 @@ permalink: /staff/prizes/index.html
 			}
 		}
 		
-		console.log(seasonHistory);
-		console.log(rawSeasonHistory);
-		
 		var options = "";
 		for (var game in eventGames)
 			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
@@ -141,14 +138,11 @@ permalink: /staff/prizes/index.html
 	{
 		var game = $("game").value;
 		var activeSeasonIndex = $("season").selectedIndex;
-		
 		useBoard = seasonHistory[game][activeSeasonIndex].data;
-		
 		var copyboard = useBoard.slice().filter(function (item) { return item.monthly > 0; }).sort(function(a, b) { return b.monthly - a.monthly; });
 		
 		var scores = [];
 		var sumscores = 0;
-		
 		var previous = -1;
 		var duplicates = 0;
 		for (var i = 0; i < copyboard.length && copyboard[i].monthly > 0; ++i)
@@ -156,29 +150,10 @@ permalink: /staff/prizes/index.html
 			duplicates = (copyboard[i].monthly == previous) ? duplicates + 1 : 0;
 			previous = copyboard[i].monthly;
 			var useIndex = i + 1 - duplicates;
-			
-		
-		/*	var pid = "monthly-" + i;
-			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic" + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
-			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
-			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin_arms.png'/><img class='armscoin coin-dark' src='coin_arms_dark.png'/></span></p>";
-			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>"
-			*/
-			
 			var score = copyboard.length - useIndex + 1;
 			scores.push({name:copyboard[i].name, score:score, wins:0});
 			sumscores += score;
 		}
-		
-		
-	/*	for (var line in lines)
-		{
-			var split = lines[line].split(/\s/g).filter(function(item) { return item != "" && item != "-"; });
-			var offset = (split[2][0] == "(") ? 1 : 0;
-			var score = parseFloat(split[7+offset]);
-			scores.push([split[1], score, 0]);
-			sumscores += score;
-		}*/
 		
 		var raffle = [];
 		for (var p = 0; p < scores.length; ++p)
@@ -212,7 +187,6 @@ permalink: /staff/prizes/index.html
 	function changeGame()
 	{
 		var game = $("game").value;
-	
 		var today = new Date();
 		var options = "";
 		for (var i = 0; i < seasonHistory[game].length; ++i)
