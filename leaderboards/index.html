@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/assets/style.css">
 	<script src="/script/general.js"></script>
+	<script src="/script/fuzzy.js"></script>
 	<script src="/data/support.js"></script>
 	<style>
 	
@@ -81,6 +82,10 @@
 		display: inline-block;
 		margin-top: 5pt;
 	}
+	
+	.player.faded                { color: #777; }
+	.unfaded                     { color: white; transition: 0.2s color; }
+	p.entry:hover .unfaded       { color: black; }
 	
 	.coins {
 		display: inline-block;
@@ -232,6 +237,21 @@
 		color: black !important;
 	}
 	
+	p#search-entry {
+		text-align: center;
+	}
+	
+	input#search-text {
+		font-size: 1.5em;
+		padding: 0.2em;
+		margin-bottom: 0.5em;
+		display: inline-block;
+		width: 100%;
+		max-width: 330pt;
+		text-align: center;
+		font-family: ARMS;
+	}
+	
 	</style>
 	<script>
 	var globalShuffle = false;
@@ -328,6 +348,7 @@
 			case "smash":         changeMode('smash',   false, false); break;
 			case "smash-monthly": changeMode('smash',   true,  false); break;
 			case "patrons":       changeMode('patreon', false, true ); break;
+			case "search":        changeMode('search',  false, false); break;
 			default:              changeMode('arms',    false, false);
 			}
 		}
@@ -640,6 +661,52 @@
 		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
 	}
 	
+	var searchDB = {};
+	
+	function updateSearchResults()
+	{
+		var search = $("search-text").value;
+		if (search.length < 3) return;
+		
+		var list = [];
+		for (var game in eventGames)
+			for (var i = 0; i < searchDB[game].length; ++i)
+			{
+				var item = searchDB[game][i];
+				item["game"] = game;
+				list.push(item);
+			}
+		
+		var options = { pre: "<span class='unfaded'>", post: "</span>", extract: function(el) { return el.name; }};
+		var results = fuzzy.filter(search, list, options);
+		results.sort(function(e1,e2) { return e1.original.name < e2.original.name; });
+		results.sort(function(e1,e2) { return e1.score < e2.score; });
+		
+		var html = "<div class='tier'>"
+		for (var i = 0 ; i < results.length; ++i)
+		{
+			var game = results[i].original.game;
+			var useIndex = i+1;
+			var pid = "monthly-" + i;
+			html += "<p onclick=\"showBadges('" + pid + "','" + results[i].original.id + "');\" id='player-" + pid + "' class='entry basic " + game + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'> </span></span>";
+			html += "<span class='player faded'>" + results[i].string + "</span> ";
+			html += "<span class='coins'>" + results[i].original.coins + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span></p>";
+			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
+		}
+		html += "</div>";
+		
+		$("search-results").innerHTML = html;
+	}
+	
+	function displaySearch()
+	{
+		var html = "<p id='search-entry'>Enter text to search:</br><input type='text' id='search-text' placeholder='Player name' oninput='updateSearchResults();'/></p><div id='search-results'></div>";
+		$("leaderboard").innerHTML = html;
+		
+		for (var game in eventGames)
+			searchDB[game] = reorganizeLeaderboards(rawLeaderboard[game]);
+	}
+	
 	var activeGame;
 	
 	function changeMode(game, monthly, patreon)
@@ -654,10 +721,12 @@
 		$("season-nav").style.display = monthly ? "block" : "none";
 		
 		document.getElementsByTagName("H1")[0].className = "title-" + game;
-		document.getElementsByTagName("H1")[0].children[0].innerHTML = { patreon:"Casual ARMS", arms:"Casual ARMS", kart:"Casual Kart", splat:"Casual Splat", smash :"Casual Smash" }[game];
+		document.getElementsByTagName("H1")[0].children[0].innerHTML = { patreon:"Casual ARMS", search:"Casual ARMS", arms:"Casual ARMS", kart:"Casual Kart", splat:"Casual Splat", smash :"Casual Smash" }[game];
 		
 		if (patreon)
 			displayPatreon();
+		else if (game == "search")
+			displaySearch();
 		else if (monthly)
 		{
 			var today = new Date();
@@ -734,6 +803,7 @@
 				<em class="mode" id="md-smash" onClick="changeMode('smash', false, false);">Smash</em><em class="mode" id="md-smash-monthly" onClick="changeMode('smash', true, false);">Monthly</em>
 			</span>-->
 			<em class="mode" id="md-patreon" onClick="changeMode('patreon', false, true);">Patrons</em>
+			<em class="mode" id="md-search"  onClick="changeMode('search', false, false);">Search</em>
 		</p>
 		
 		<p id="season-nav">
