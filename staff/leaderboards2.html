@@ -1,0 +1,413 @@
+---
+permalink: /staff/new-leaderboards/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Leaderboard Tools - Casual ARMS</title>
+	<script src="/script/general.js"></script>
+	<script src="/script/fuzzy.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("/assets/ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+	
+	#wrapper {
+		width: 40em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+	
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+	
+	#formatted {
+		background-color: black;
+		color: white;
+	}
+	
+	#input, #previous, #format-text-button, #compare-text-button {
+		display: none;
+	}
+	
+	.btn-cpy {
+		background-color: yellow;
+	}
+	
+	.suggestion-container {
+		max-height: 200px;
+		overflow-y: scroll;
+	}
+	
+	.suggestion {
+		display: block;
+		background-color: #ddd;
+		border-radius: 0.2em;
+		color: black;
+		margin: 0.2em auto;
+		width: 90%;
+		padding: 0.2em 0.5em;
+		box-sizing: border-box;
+	}
+	
+	.suggestion.mode-new      { background-color: #39dc5d; }
+	.suggestion.mode-changed  { background-color: #e4d856; }
+	.suggestion.mode-committed  { background-color: white; }
+	.suggestion.mode-committed-new  { background-color: #cdffc3; }
+	
+	.suggestion-points {
+		float: right;
+	}
+	
+	.suggestion-id {
+		font-size: 0.6em;
+		color: gray;
+	}
+	
+	.suggestion button.large {
+		width: 7em;
+		margin-left: 0.6em;
+	}
+	
+	.match { color: red; }
+	.mode-kart  .match { color: white; }
+	.mode-splat .match { color: yellow; }
+	
+	</style>
+	<script>
+	
+	var searchDB;
+	var dataOld;
+	
+	// Merges entries with unknown ID
+	function mergeData(d_old, d_new)
+	{
+		var result = {};
+		for (var i = 0; i <  d_old.length; ++i)
+		{
+			var name = d_old[i][0];
+			if (result[name] == undefined) result[name] = [-1,-1];
+			result[name][0] = d_old[i][1];
+		}
+		for (var i = 0; i <  d_new.length; ++i)
+		{
+			var name = d_new[i][0];
+			if (result[name] == undefined) result[name] = [-1,-1];
+			result[name][1] = d_new[i][1];
+		}
+		return result;
+	}
+	
+	function compare(mode, dataNew, dataOld)
+	{
+		var useTiers = leaderboardTiers[mode];
+		
+		// Prepare result
+		var newroles = {};
+		for (var t = useTiers.length-1; t >= 0; --t)
+			newroles[useTiers[t].name] = [];
+		
+		// Handle players with known IDs
+		for (key in dataNew)
+		{
+			if (key == "UNKNOWN") continue;
+			
+			var newCoins = dataNew[key].coins;
+			var oldCoins = (dataOld[key] != undefined) ? dataOld[key].coins : 0;
+			
+			for (var t = useTiers.length-1; t >= 0; --t)
+			{
+				if (newCoins >= useTiers[t].start && oldCoins < useTiers[t].start)
+				{
+					newroles[useTiers[t].name].push([dataNew[key].name, dataNew[key].id]);
+					break;
+				}
+			}
+		}
+		
+		
+		// Handle players with unknown IDs
+		var merged = mergeData(dataOld.UNKNOWN, dataNew.UNKNOWN);
+		for (var name in merged)
+		{
+			var player = merged[name];
+			for (var t = useTiers.length-1; t >= 0; --t)
+			{
+				if (player[1] >= useTiers[t].start && player[0] < useTiers[t].start)
+				{
+					newroles[useTiers[t].name].push([name, "unknown"]);
+					break;
+				}
+			}
+		}
+		
+		// Output result
+		var output = "";
+		for (var t = useTiers.length-2; t > 0; --t)
+		{
+			var tierName = useTiers[t].name;
+			output += "<h4 style='color: " + useTiers[t].color + ";'>" + tierName + "</h4><ul>";
+			for (newrole in newroles[tierName])
+				output += "<li>" + newroles[tierName][newrole][0] + " <span style='font-size: 0.7em; color: yellow;'>(" + newroles[tierName][newrole][1] + ")</span></li>";
+			
+			output += "</ul>";
+		}
+		
+		$("newroles").innerHTML = output;
+	}
+	
+	function error(message)
+	{
+		$("error").innerHTML = "Fatal Error: " + message;
+		throw new Error(message);
+	}
+	
+	
+	
+	var patch = {"UNKNOWN" : [], "NEW" : []};
+	
+	function addPoints(id, name, points)
+	{
+		console.log("Add points ", id, name);
+		if (id != "UNKNOWN")
+		{
+			if (id in patch) patch[id] += points;
+			else             patch[id]  = points;
+		}
+		else
+		{
+			var found = false;
+			for (var i = 0; i < patch["UNKNOWN"].length; ++i)
+				if (patch["UNKNOWN"][i].name == name)
+				{
+					patch["UNKNOWN"][i].coins += points;
+					found = true;
+				}
+			
+			if (!found)
+				patch["UNKNOWN"].push({"name" : name, "coins" : points});
+		}
+		
+		
+		updatePatchDisplay();
+	}
+	
+	function createEntry(name, points)
+	{
+		var found = false;
+		for (var i = 0; i < patch["NEW"].length; ++i)
+			if (patch["NEW"][i].name == name)
+			{
+				patch["NEW"][i].coins += points;
+				found = true;
+			}
+		
+		if (!found)
+			patch["NEW"].push({"name" : name, "coins" : points});
+		
+		updatePatchDisplay();
+	}
+	
+	function deletePatch(id)
+	{
+		delete patch[id];
+		updatePatchDisplay();
+	}
+	
+	function deletePatchNoID(id)
+	{
+		for (var i = 0; i < patch["NEW"].length; ++i)
+			if (patch["NEW"][i].name == name)
+				delete patch["NEW"][i];
+		
+		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
+			if (patch["UNKNOWN"][i].name == name)
+				delete patch["UNKNOWN"][i];
+		updatePatchDisplay();
+	}
+	
+	function updatePatchDisplay()
+	{
+		var html = "<div class='suggestion-container'>";
+		for (var id in patch)
+		{
+			if (id == "UNKNOWN" || id == "NEW") continue;
+			
+			var player = dataOld[id];
+			html += "<p class='suggestion mode-committed'>";
+			html += player.name;
+			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + player.coins + " + " + patch[id];
+			html += " <button onclick=\"deletePatch('" + id + "')\">Delete</button></span></p>";
+		}
+		
+		for (var i = 0; i < patch["NEW"].length; ++i)
+		{
+			html += "<p class='suggestion mode-committed-new'>";
+			html += patch["NEW"][i].name;
+			html += " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>" + patch["NEW"][i].coins;
+			html += " <button onclick=\"deletePatchNoID('" + patch["NEW"][i].name + "')\">Delete</button></span></p>";
+		}
+		
+		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
+		{
+			html += "<p class='suggestion mode-committed'>";
+			html += patch["UNKNOWN"][i].name;
+			html += " <span class='suggestion-id'>UNKNOWN</span> <span class='suggestion-points'>" + patch["UNKNOWN"][i].coins;
+			html += " <button onclick=\"deletePatchNoID('" + patch["UNKNOWN"][i].name + "')\">Delete</button></span></p>";
+		}
+		
+		html += "</div>";
+		$("patch-display").innerHTML = html;
+		updateSearchResults();
+	}
+	
+	function mergeInPatch()
+	{
+		var dataNew = {};
+		for(var key in dataOld)
+		{
+			if (key != dataOld[key].id) console.log(key);
+			dataNew[key] = JSON.parse(JSON.stringify(dataOld[key]));
+		}
+		
+		for (var id in patch)
+		{
+			if (id == "UNKNOWN" || id == "NEW") continue;
+			
+			dataNew[id].coins   += patch[id];
+			dataNew[id].monthly += patch[id];
+		}
+		
+		for (var i = 0; i < patch["NEW"].length; ++i)
+		{
+			dataNew["UNKNOWN"].push([patch["NEW"][i].name, patch["NEW"][i].coins, patch["NEW"][i].coins]);
+		}
+		
+		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
+		{
+			var found = false;
+			for (var j = 0; j < dataNew["UNKNOWN"].length; ++j)
+			{
+				console.log(dataNew["UNKNOWN"][j], patch["UNKNOWN"][i]);
+				if (patch["UNKNOWN"][i].name == dataNew["UNKNOWN"][j][0])
+				{
+					found = true;
+					dataNew["UNKNOWN"][j][1] += patch["UNKNOWN"][i].coins;
+					dataNew["UNKNOWN"][j][2] += patch["UNKNOWN"][i].coins;
+				}
+			}
+			
+			if (!found) console.log("ERRRORR", patch["UNKNOWN"][i]);
+		}
+		
+		$("formatted-for-web").value = JSON.stringify(dataNew);
+		var mode = $("mode").value;
+		compare(mode, dataNew, dataOld);
+	}
+	
+	
+	
+	function updateSearchResults()
+	{
+		var points = parseInt($("points-entry").value);
+		if (!points) points = 0;
+		var search = $("search-text").value;
+		
+		var options = { pre: "<span class='match'>", post: "</span>", extract: function(el) { return el.name; }};
+		var results = fuzzy.filter(search, searchDB, options);
+		results.sort(function(e1,e2) { return e1.original.name < e2.original.name; });
+		results.sort(function(e1,e2) { return e1.score < e2.score; });
+		
+		var html = "<div class='suggestion-container'><p class='suggestion mode-new'>" + search + " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>";
+		html += "<button onclick=\"createEntry('" + search + "', 1)\">+ 1</button>";
+		html += "<button onclick=\"createEntry('" + search + "', 5)\">+ 5</button>";
+		html += "<button onclick=\"createEntry('" + search + "', 10)\">+ 10</button>";
+		html += "<button class='large' onclick=\"createEntry('" + search + "', " + points + ")\">+ " + points + "</button></span></p><br/>";
+		
+		for (var i = 0 ; i < results.length; ++i)
+		{
+			var mode = (results[i].original.id in patch) ? "changed" : "unchanged";
+			html += "<p class='suggestion mode-" + mode + "'>"
+			html += results[i].string;
+			var id = results[i].original.id ? results[i].original.id : "UNKNOWN";
+			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + results[i].original.coins;
+			html += "<button onclick=\"addPoints('" + id + "','" + results[i].original.name + "', 1)\">+ 1</button>";
+			html += "<button onclick=\"addPoints('" + id + "','" + results[i].original.name + "', 5)\">+ 5</button>";
+			html += "<button onclick=\"addPoints('" + id + "','" + results[i].original.name + "', 10)\">+ 10</button>";
+			html += "<button class='large' onclick=\"addPoints('" + id + "','" + results[i].original.name + "', " + points + ")\">+ " + points + "</button>";
+			html += "</span></p>";
+		}
+		html += "</div>";
+		
+		$("search-results").innerHTML = html;
+	}
+	
+	
+	function load()
+	{
+		var mode = $("mode").value;
+		fetchLeaderboards(mode, function(rawLeaderboard)
+		{
+			dataOld = rawLeaderboard;
+			searchDB = reorganizeLeaderboards(rawLeaderboard);
+		});
+	}
+	
+	</script>
+</head>
+<body onload="load();">
+	<div id="wrapper">
+		<h1>Casual ARMS Leaderboard Tools</h1>
+		
+		<p>Mode:
+			<select id="mode" onchange="load();">
+				<option value="arms">ARMS</option>
+				<option value="kart">Mario Kart</option>
+				<option value="splat">Splatoon</option>
+				<option value="smash">Super Smash Bros.</option>
+			</select>
+		</p>
+		
+		<p id="search-entry">
+			Points change: <input type="text" id="points-entry" placeholder="0" oninput="updateSearchResults();"/><br/>
+			Player name:   <input type="text" id="search-text" placeholder="Player name" oninput="updateSearchResults();"/>
+		</p>
+		<div id='search-results'></div>
+		<hr/>
+		
+		<div id='patch-display'></div>
+		
+		<button onclick="mergeInPatch();5/0">Finalize</button>
+		
+		<hr/>
+		
+		<p id="error" style="color: yellow;"></p>
+		
+		<h3>JSON Leaderboard</h3>
+		<button onCLick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
+		<textarea id="formatted-for-web" rows="15"></textarea>
+		
+		<h3>New Roles</h3>
+		<div id="newroles"></div>
+	</div>
+</body>
+</html>
