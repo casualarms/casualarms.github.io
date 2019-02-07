@@ -255,6 +255,8 @@ permalink: /staff/banners/index.html
 		
 		$("timezone").value = eventData.tz;
 		
+		$("alert").checked = eventData.alert;
+		
 		var hostsList = ["A", "B", "C"];
 		var streamersList = ["C"];
 		
@@ -303,6 +305,7 @@ permalink: /staff/banners/index.html
 				"title"    : slot.title,
 				"game"     : slot.game,
 				"type"     : slot.type,
+				"alert"    : true,
 				"date"     : slot.start,
 				"duration" : slot.duration,
 				"tz"       : slot.tz,
@@ -362,6 +365,7 @@ permalink: /staff/banners/index.html
 		eventdata.title = escapeHTML($("title").value);
 		eventdata.game = game;
 		eventdata.type = $("type").value;
+		eventdata.alert = $("alert").checked;
 		eventdata.date = startDate;
 		eventdata.duration = durationMinutes;
 		eventdata.tz = zoneString;
@@ -446,14 +450,15 @@ permalink: /staff/banners/index.html
 			</p>
 			<hr/>
 			<p>
-				Title:  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
-				Game:   <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
-				Type:   <select id="type" onChange="readAndGenerate()"></select><br/>
+				<label for="title">Title:</label>  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
+				<label for="game">Game:</label>   <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
+				<label for="type">Type:</label>   <select id="type" onChange="readAndGenerate()"></select>
+				<label for="alert">Auto live-alert:</label> <input type="checkbox" checked id="alert" onChange="readAndGenerate()"/>
 			</p>
 			<p>
-				Modes:  <select id="theme" onChange="readAndGenerate()"></select>
-				Stages: <select id="stages" onChange="readAndGenerate()"></select>
-				Items: <select id="items" onChange="readAndGenerate()"></select>
+				<label for="theme">Modes:</label>  <select id="theme" onChange="readAndGenerate()"></select>
+				<label for="stages">Stages:</label> <select id="stages" onChange="readAndGenerate()"></select>
+				<label for="items">Items:</label> <select id="items" onChange="readAndGenerate()"></select>
 				<input type="button" value="Randomize" onClick="randomTheme()"/>
 			</p>
 			
@@ -473,9 +478,9 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="number" id="day" value="1" min="1" max="31" onChange="readAndGenerate()"/>
 				<input type="number" id="year" value="2018" onChange="readAndGenerate()"/>
-				Start: <input type="number" id="start-hours" value="14" min="0" max="23" onChange="readAndGenerate()"/> : <input type="number" id="start-minutes" value="00" min="0" max="59" onChange="readAndGenerate()">
-				in time zone: <input type="text" id="timezone" value="EDT" size="5" onChange="readAndGenerate()"/>
-				Duration: <input type="number" id="duration-minutes" value="120" min="0" onChange="readAndGenerate()"/> min.
+				<label for="start-hours">Start:</label> <input type="number" id="start-hours" value="14" min="0" max="23" onChange="readAndGenerate()"/> : <input type="number" id="start-minutes" value="00" min="0" max="59" onChange="readAndGenerate()">
+				<label for="timezone">in time zone:</label> <input type="text" id="timezone" value="EDT" size="5" onChange="readAndGenerate()"/>
+				<label for="duration-minutes">Duration:</label> <input type="number" id="duration-minutes" value="120" min="0" onChange="readAndGenerate()"/> min.
 				<input type="button" value="+ 1 week" onClick="addOneWeek()"/>
 			</p>
 			
