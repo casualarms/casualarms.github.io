@@ -233,16 +233,22 @@ permalink: /staff/new-leaderboards/index.html
 		updatePatchDisplay();
 	}
 	
-	function deletePatchNoID(id)
+	function deletePatchNoID(name)
 	{
+		patch["NEW"]     = patch["NEW"]    .filter(function(a) { return a.name != name });
+		patch["UNKNOWN"] = patch["UNKNOWN"].filter(function(a) { return a.name != name });
+		updatePatchDisplay();
+	}
+	
+	function setNewID(event, name)
+	{
+		var id = event.target.value;
 		for (var i = 0; i < patch["NEW"].length; ++i)
 			if (patch["NEW"][i].name == name)
-				delete patch["NEW"][i];
-		
-		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
-			if (patch["UNKNOWN"][i].name == name)
-				delete patch["UNKNOWN"][i];
-		updatePatchDisplay();
+			{
+				if (id != "") patch["NEW"][i].id = id;
+				else delete   patch["NEW"][i].id;
+			}
 	}
 	
 	function updatePatchDisplay()
@@ -263,7 +269,8 @@ permalink: /staff/new-leaderboards/index.html
 		{
 			html += "<p class='suggestion mode-committed-new'>";
 			html += patch["NEW"][i].name;
-			html += " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>" + patch["NEW"][i].coins;
+			html += " <span class='suggestion-id'><input type='text' oninput=\"setNewID(event, '" + patch["NEW"][i].name + "')\" placeholder='UNKNOWN'/></span>";
+			html += "<span class='suggestion-points'>" + patch["NEW"][i].coins;
 			html += " <button onclick=\"deletePatchNoID('" + patch["NEW"][i].name + "')\">Delete</button></span></p>";
 		}
 		
@@ -299,7 +306,14 @@ permalink: /staff/new-leaderboards/index.html
 		
 		for (var i = 0; i < patch["NEW"].length; ++i)
 		{
-			dataNew["UNKNOWN"].push([patch["NEW"][i].name, patch["NEW"][i].coins, patch["NEW"][i].coins]);
+			var entry = patch["NEW"][i];
+			if ("id" in entry)
+			{
+				if (entry.id in dataNew) error("ID already exist: " + entry.id);
+				else dataNew[entry.id] = { "id" : entry.id, "name" : entry.name, "coins" : entry.coins, "monthly" : entry.coins };
+			}
+			else
+				dataNew["UNKNOWN"].push([ entry.name, entry.coins, entry.coins ]);
 		}
 		
 		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
@@ -307,7 +321,6 @@ permalink: /staff/new-leaderboards/index.html
 			var found = false;
 			for (var j = 0; j < dataNew["UNKNOWN"].length; ++j)
 			{
-				console.log(dataNew["UNKNOWN"][j], patch["UNKNOWN"][i]);
 				if (patch["UNKNOWN"][i].name == dataNew["UNKNOWN"][j][0])
 				{
 					found = true;
@@ -388,8 +401,8 @@ permalink: /staff/new-leaderboards/index.html
 		</p>
 		
 		<p id="search-entry">
-			Points change: <input type="text" id="points-entry" placeholder="0" oninput="updateSearchResults();"/><br/>
-			Player name:   <input type="text" id="search-text" placeholder="Player name" oninput="updateSearchResults();"/>
+			Points change: <input type="text" id="points-entry" placeholder="0" autocomplete="off" oninput="updateSearchResults();"/><br/>
+			Player name:   <input type="text" id="search-text" placeholder="Player name" autocomplete="off" oninput="updateSearchResults();"/>
 		</p>
 		<div id='search-results'></div>
 		<hr/>
