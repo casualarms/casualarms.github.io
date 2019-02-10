@@ -224,7 +224,7 @@
 			
 			"Princess Peach's Castle",
 			"Rainbow Cruise",
-			"Kongo Jungle",
+			"Kongo Falls",
 			"Jungle Japes",
 			"Great Bay",
 			"Temple",
@@ -266,7 +266,7 @@
 			"Luigi's Mansion",
 			"Pirate Ship",
 			"Spear Pillar",
-			"75m",
+			"75 m",
 			"Mario Bros.",
 			"Hanenbow",
 			
@@ -287,7 +287,7 @@
 			"Tortimer Island",
 			"Balloon Fight",
 			"Living Room",
-			"Find Mii",
+			"Find Mii (StreetPass Quest)",
 			"Tomodachi Life",
 			"PictoChat 2",
 			"Mushroom Kingdom U",
@@ -313,7 +313,7 @@
 			"Wuhu Island",
 			"Windy Hill Zone",
 			"Wily Castle",
-			"Pac-Land",
+			"PAC-LAND",
 			"Super Mario Maker",
 			"Suzaku Castle",
 			"Midgar",
@@ -578,34 +578,44 @@
 	},
 	"stageSets" : {
 		"arms"  : [
-			 { "key" : "all-arms",       "name" : "All",              "stages" : [{ "start" : 0, "end" : 14 }]}
-			,{ "key" : "breakable",      "name" : "Breakable",        "stages" : [1, 3, 5, 9, 11, 12, 14] }
-			,{ "key" : "teams",          "name" : "For Teams",        "stages" : [0, 1, 3, 4, 8, 9, 10, 12]}
-			,{ "key" : "bane-ranked",    "name" : "Bane of Ranked",   "stages" : [2, 4, 6, 8, 14]}
-			,{ "key" : "near-far",       "name" : "Near & Far",       "stages" : [0, 1, 2, 4, 8, 11, 13]}
-			,{ "key" : "barriers",       "name" : "Barriers",         "stages" : [1, 5, 6, 7, 8, 9, 12, 14]}
-			,{ "key" : "corners",        "name" : "Corners",          "stages" : [0, 1, 7, 10, 11, 13, 14]}
+			 { "key" : "all-arms",           "name" : "All",                    "stages" : [{ "start" : 0, "end" : 14 }]}
+			,{ "key" : "breakable",          "name" : "Breakable",              "stages" : [1, 3, 5, 9, 11, 12, 14] }
+			,{ "key" : "teams",              "name" : "For Teams",              "stages" : [0, 1, 3, 4, 8, 9, 10, 12]}
+			,{ "key" : "bane-ranked",        "name" : "Bane of Ranked",         "stages" : [2, 4, 6, 8, 14]}
+			,{ "key" : "near-far",           "name" : "Near & Far",             "stages" : [0, 1, 2, 4, 8, 11, 13]}
+			,{ "key" : "barriers",           "name" : "Barriers",               "stages" : [1, 5, 6, 7, 8, 9, 12, 14]}
+			,{ "key" : "corners",            "name" : "Corners",                "stages" : [0, 1, 7, 10, 11, 13, 14]}
 		],
 		"kart"  : [
-			 { "key" : "all-race",       "name" : "Race Tracks",      "stages" : [{ "start" : 0, "end" : 47 }]}
-			,{ "key" : "all-battle",     "name" : "Battle Stages",    "stages" : [48, 49, 50, 51, 52, 53, 54, 55]}
+			 { "key" : "all-race",           "name" : "Race Tracks",            "stages" : [{ "start" : 0, "end" : 47 }]}
+			,{ "key" : "all-battle",         "name" : "Battle Stages",          "stages" : [48, 49, 50, 51, 52, 53, 54, 55]}
 		],
 		"splat" : [
-			 { "key" : "all-splat",      "name" : "All",              "stages" : [{ "start" : 0, "end" : 22}]}
-			,{ "key" : "tourist-splat",  "name" : "Tourist Trap",     "stages" : [2, 14, 19, 22]}
-			,{ "key" : "sports-splat",   "name" : "SPORTS!",          "stages" : [1, 3, 11, 16]}
-			,{ "key" : "grates-splat",   "name" : "Great Grates",     "stages" : [2, 8, 9, 18]}
-			,{ "key" : "high-splat",     "name" : "High Ground",      "stages" : [4, 6, 8, 11, 14]}
-			,{ "key" : "waters-splat",   "name" : "Dangerous Waters", "stages" : [10, 15, 18, 20]}
-			,{ "key" : "moving-splat",   "name" : "Moving Parts",     "stages" : [5, 17, 19, 21]}
-			,{ "key" : "industry-splat", "name" : "Industrial Ink",   "stages" : [5, 7, 13, 17, 21]}
-			,{ "key" : "wide-splat",     "name" : "Going Wide",       "stages" : [0, 3, 10, 12]}
-			,{ "key" : "close-splat",    "name" : "Close Quarters",   "stages" : [7, 9, 13, 22]}
-			,{ "key" : "urban-splat",    "name" : "Urban Living",     "stages" : [0, 4, 6, 15]}
-			,{ "key" : "indoor-splat",   "name" : "Indoor Fighting",  "stages" : [1, 12, 14, 16]}
+			 { "key" : "all-splat",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 22}]}
+			,{ "key" : "tourist-splat",      "name" : "Tourist Trap",           "stages" : [2, 14, 19, 22]}
+			,{ "key" : "sports-splat",       "name" : "SPORTS!",                "stages" : [1, 3, 11, 16]}
+			,{ "key" : "grates-splat",       "name" : "Great Grates",           "stages" : [2, 8, 9, 18]}
+			,{ "key" : "high-splat",         "name" : "High Ground",            "stages" : [4, 6, 8, 11, 14]}
+			,{ "key" : "waters-splat",       "name" : "Dangerous Waters",       "stages" : [10, 15, 18, 20]}
+			,{ "key" : "moving-splat",       "name" : "Moving Parts",           "stages" : [5, 17, 19, 21]}
+			,{ "key" : "industry-splat",     "name" : "Industrial Ink",         "stages" : [5, 7, 13, 17, 21]}
+			,{ "key" : "wide-splat",         "name" : "Going Wide",             "stages" : [0, 3, 10, 12]}
+			,{ "key" : "close-splat",        "name" : "Close Quarters",         "stages" : [7, 9, 13, 22]}
+			,{ "key" : "urban-splat",        "name" : "Urban Living",           "stages" : [0, 4, 6, 15]}
+			,{ "key" : "indoor-splat",       "name" : "Indoor Fighting",        "stages" : [1, 12, 14, 16]}
 		],
 		"smash" : [
-			 { "key" : "all-smash",      "name" : "All",              "stages" : [{ "start" : 0, "end" : 102 }]}
+			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 102 }]}
+			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84]}
+			,{ "key" : "transform-smash",    "name" : "Trippy Transformations", "stages" : [23,39,41,57,65,66,73,79]}
+			,{ "key" : "journey-smash",      "name" : "On a Journey",           "stages" : [37,40,45,62,63,75,76,90,98,99]}
+			,{ "key" : "scrolling-smash",    "name" : "They See Me Scrollin'",  "stages" : [11,27,30,55,56,59,60,94]}
+			,{ "key" : "walkoff-smash",      "name" : "Walk It Off",            "stages" : [9,25,33,54,58,68,69,74,80,85,86,96]}
+			,{ "key" : "challenger-smash",   "name" : "A New Challenger!",      "stages" : [10,42,52,61,64,70,78,83,93,97]}
+			,{ "key" : "vertical-smash",     "name" : "Going Vertical",         "stages" : [12,26,47,48,51,53,71,87,89,101]}
+			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82]}
+			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
+			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102]}
 		]
 	},
 	"itemSets" : {
@@ -613,7 +623,19 @@
 		"kart"  : [],
 		"splat" : [],
 		"smash" : [
-			 { "key" : "all-items",      "name" : "All",              "items" : [{ "start" : 0, "end" : 81 }]}
+			 { "key" : "all-items",          "name" : "All",                    "items" : [{ "start" : 0, "end" : 81 }]}
+			,{ "key" : "allies-smash",       "name" : "Surprise Allies",        "items" : [1,2,3,6,10,69,70,72]}
+			,{ "key" : "parts-smash",        "name" : "Assembled Parts",        "items" : [4,5,10]}
+			,{ "key" : "firearms-smash",     "name" : "Guns and Stuff",         "items" : [5,10,26,37,38,39,41,42,43,44,46]}
+			,{ "key" : "tossables-smash",    "name" : "Thrown Items",           "items" : [2,3,6,10,49,50,51,52,55,56,57,58,59,60,67]}
+			,{ "key" : "explosives-smash",   "name" : "BOOM!",                  "items" : [6,7,8,10,20,41,47,48,53,54,62,63,64,65,66]}
+			,{ "key" : "melee-smash",        "name" : "Bash 'n Slash",          "items" : [10,27,28,29,30,31,32,33,34,35,36]}
+			,{ "key" : "upgrades-smash",     "name" : "Straight Up Powerups",   "items" : [10,17,18,19,21,22,23,24,25,75,76,77,78,79]}
+			,{ "key" : "healing-smash",      "name" : "Health and Wellness",    "items" : [10,11,12,13,14,15,16]}
+			,{ "key" : "deployables-smash",  "name" : "Deployables",            "items" : [10,16,48,50,53,56,57,58,60,68,69,70,71,74,80]}
+			,{ "key" : "sports-smash",       "name" : "SPORTS!",                "items" : [10,29,61,73]}
+			,{ "key" : "better-worse-smash", "name" : "For Better or Worse",    "items" : [0,9,17,18]}
+			,{ "key" : "wanderers-smash",    "name" : "Wandering Items",        "items" : [0,9,10,17,18,45,47,51,52,69]}
 		]
 	}
 }
