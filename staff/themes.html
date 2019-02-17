@@ -394,7 +394,9 @@ permalink: /staff/themes/index.html
 		for (var i = 0; i < eventStages[game].length; ++i)
 			if ($(game + i).checked) stageset.stages.push(i);
 		$("output-stages").value = "," + JSON.stringify(stageset);
-		$("preview-stages").innerHTML = printStageSet(game, stageset);
+		$("preview-stages").innerHTML = printStageSet(game, stageset.stages);
+		$("stages-graphic").style.display = (game == "smash") ? "inline" : "none";
+		if (game == "smash") drawStagesItems("stages", "stages-graphic", stageset.stages);
 		
 		// ITEM SET
 		var itemset = {};
@@ -405,14 +407,15 @@ permalink: /staff/themes/index.html
 		for (var i = 0; i < eventItems[game].length; ++i)
 			if ($("item-" + game + i).checked) itemset.items.push(i);
 		$("output-items").value = "," + JSON.stringify(itemset);
-		$("preview-items").innerHTML = printItemSet(game, itemset);
+		$("preview-items").innerHTML = printItemSet(game, itemset.items);
+		$("items-graphic").style.display = (game == "smash") ? "inline" : "none";
+		if (game == "smash") drawStagesItems("items", "items-graphic", itemset.items);
 	}
 	
 	function load()
 	{
 		changeGame();
 	}
-	
 	
 	</script>
 </head>
@@ -429,11 +432,10 @@ permalink: /staff/themes/index.html
 			</select>
 		</p>
 		
-		
 		<h2>Theme</h2>
 		<form id="controls-theme" onchange="updateOutput()"></form>
 		<h3>Theme JSON</h3>
-		<textarea id="output-theme" rows="15"></textarea>
+		<textarea id="output-theme" rows="3"></textarea>
 		<button onCLick="copyToClipboard('output-theme')" class="btn-cpy">Copy to Clipboard</button>
 		<h3>Theme Preview</h3>
 		<div id="preview-theme"></div>
@@ -441,18 +443,20 @@ permalink: /staff/themes/index.html
 		<h2>Stage Set</h2>
 		<form id="controls-stages" onchange="updateOutput()"></form>
 		<h3>Stage Set JSON</h3>
-		<textarea id="output-stages" rows="15"></textarea>
+		<textarea id="output-stages" rows="3"></textarea>
 		<button onCLick="copyToClipboard('output-stages')" class="btn-cpy">Copy to Clipboard</button>
 		<h3>Stage Set Preview</h3>
 		<div id="preview-stages"></div>
+		<p style="text-align: center;"><canvas id="stages-graphic" style="display: none;"></canvas></p>
 		
 		<h2>Item Set</h2>
 		<form id="controls-items" onchange="updateOutput()"></form>
 		<h3>Item Set JSON</h3>
-		<textarea id="output-items" rows="15"></textarea>
+		<textarea id="output-items" rows="3"></textarea>
 		<button onCLick="copyToClipboard('output-items')" class="btn-cpy">Copy to Clipboard</button>
 		<h3>Item Set Preview</h3>
 		<div id="preview-items"></div>
+		<p style="text-align: center;"><canvas id="items-graphic" style="display: none;"></canvas></p>
 		
 	</div>
 </body>

@@ -356,7 +356,20 @@ function getStageSet(game, stageID)
 {
 	for (var t = 0; t < stageSets[game].length; ++t)
 		if (stageSets[game][t].key == stageID)
-			return stageSets[game][t];
+		{
+			var stages = [];
+			for (var s = 0; s < stageSets[game][t].stages.length; ++s)
+			{
+				var stage = stageSets[game][t].stages[s];
+				if (typeof stage === 'object')
+				{
+					for (var b = stage.start; b <= stage.end; ++b)
+						stages.push(b);
+				}
+				else stages.push(stageSets[game][t].stages[s]);
+			}
+			return stages;
+		}
 	return null;
 }
 
@@ -364,53 +377,105 @@ function getItemSet(game, itemID)
 {
 	for (var t = 0; t < itemSets[game].length; ++t)
 		if (itemSets[game][t].key == itemID)
-			return itemSets[game][t];
+		{
+			var items = [];
+			for (var i = 0; i < itemSets[game][t].items.length; ++i)
+			{
+				var item = itemSets[game][t].items[i];
+				if (typeof item === 'object')
+				{
+					for (var b = item.start; b <= item.end; ++b)
+						items.push(b);
+				}
+				else items.push(itemSets[game][t].items[i]);
+			}
+			return items;
+		}
 	return null;
 }
 
-function printStageSet(game, stageset)
+function drawStagesItems(mode, canvasid, activeIndexes)
 {
-	var html = "";
-	var stages = [];
-	for (s = 0; s < stageset.stages.length; ++s)
-	{
-		var stage = stageset.stages[s];
-		if (typeof stage === 'object')
-		{
-			for (var b = stage.start; b <= stage.end; ++b)
-				stages.push(b);
-		}
-		else stages.push(stageset.stages[s]);
-	}
+	var imageData = {
+		"stages" : "/assets/stages.jpg",
+		"items"  : "/assets/items.jpg",
+	};
 	
+	var config = {
+		items : {
+			width        : 548,
+			height       : 230,
+			offset_x     : 1,
+			offset_y     : 1,
+			box_width    : 39,
+			box_height   : 38,
+			count        : 82,
+			row_count    : 14,
+			start_index  : 1,
+		},
+		stages : {
+			width        : 410,
+			height       : 313,
+			offset_x     : 1,
+			offset_y     : 0,
+			box_width    : 37.2,
+			box_height   : 31.2,
+			count        : 103,
+			row_count    : 11,
+			start_index  : 1,
+		}
+	}[mode];
+	
+	withImagesLoaded(imageData, function(images)
+	{
+		var canvasMode = $(canvasid).tagName == "CANVAS";
+		var c = canvasMode ? $(canvasid) : document.createElement("canvas");
+		var ctx = c.getContext("2d");
+		
+		c.width  = config.width;
+		c.height = config.height;
+		ctx.drawImage(images[mode], 0, 0);
+		
+		for (var i = 0; i < config.count; ++i)
+		{
+			if (!activeIndexes.includes(i))
+			{
+				var index = config.start_index + i;
+				var x = index % config.row_count;
+				var y = Math.floor(index / config.row_count);
+				var width = config.box_width;
+				var height = config.box_height;
+				
+				ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+				ctx.fillRect(x * config.box_width + config.offset_x, y * config.box_height + config.offset_y, config.box_width, config.box_height);
+				ctx.font = "30px sans-serif";
+				ctx.fillStyle = "rgba(255, 0, 0, 0.3)";
+				ctx.textAlign = "center"; 
+				ctx.fillText("⊘", (x+0.5) * config.box_width + config.offset_x, (y+0.5) * config.box_height + config.offset_y + 9);
+			}
+		}
+		
+		if (!canvasMode) $(canvasid).src = c.toDataURL("image/jpg");
+	});
+}
+
+function printStageSet(game, stages)
+{
 	var myid = Math.random().toString(36).substring(7);
-	html += "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
+	var html = "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
 	html += "<div class='stage-container-header'>" + stages.length + "/" + eventStages[game].length + " stages (click to expand)</div>";
 	for (var s = 0; s < stages.length; ++s)
 		html += "<div class='stage active' style='display: none;'>" + eventStages[game][stages[s]] + "</div>";
 	return html + "</div>";
 }
 
-function printItemSet(game, stageset)
+function printItemSet(game, items)
 {
-	var html = "";
-	var stages = [];
-	for (s = 0; s < stageset.items.length; ++s)
-	{
-		var stage = stageset.items[s];
-		if (typeof stage === 'object')
-		{
-			for (var b = stage.start; b <= stage.end; ++b)
-				stages.push(b);
-		}
-		else stages.push(stageset.items[s]);
-	}
-	
 	var myid = Math.random().toString(36).substring(7);
-	html += "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
-	html += "<div class='stage-container-header'>" + stages.length + "/" + eventItems[game].length + " items (click to expand)</div>";
-	for (var s = 0; s < stages.length; ++s)
-		html += "<div class='stage active' style='display: none;'>" + eventItems[game][stages[s]] + "</div>";
+	var html = "<div class='stage-container' id='" + myid + "' onclick=\"expandStages('" + myid + "');\">";
+	html += "<div class='stage-container-header'>" + items.length + "/" + eventItems[game].length + " items (click to expand)</div>";
+	for (var i = 0; i < items.length; ++i)
+		html += "<div class='stage active' style='display: none;'>" + eventItems[game][items[i]] + "</div>";
 	return html + "</div>";
 }
 

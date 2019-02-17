@@ -119,6 +119,11 @@ permalink: /staff/banners/index.html
 		opacity: 0.4;
 	}
 	
+	#stages-graphic, #items-graphic {
+		border: 4pt solid rgba(255, 255, 255, 0.16);
+		border-radius: 8pt;
+	}
+	
 	
 	/* Lobby settings */
 	
@@ -385,8 +390,19 @@ permalink: /staff/banners/index.html
 		$("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
 		$("preview-items") .innerHTML = ($("items") .selectedIndex > 0) ?  printItemSet(game,  getItemSet(game, $("items").value))         : "";
 		
-		generateBanner(880, 480, eventdata, "result", false);
+		if (game == "smash" && $("stages").selectedIndex > 0)
+		{
+			$("preview-stages").innerHTML += "<p style='text-align: center;'><canvas id='stages-graphic'></canvas></p>";
+			drawStagesItems("stages", "stages-graphic", getStageSet(game, $("stages").value));
+		}
 		
+		if (game == "smash" && $("items").selectedIndex > 0)
+		{
+			$("preview-items").innerHTML += "<p style='text-align: center;'><canvas id='items-graphic'></canvas></p>";
+			drawStagesItems("items", "items-graphic", getItemSet(game, $("items").value));
+		}
+		
+		generateBanner(880, 480, eventdata, "result", false);
 		return eventdata;
 	}
 	

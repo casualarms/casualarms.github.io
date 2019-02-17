@@ -67,7 +67,9 @@ redirect_from: "/lobbies/themes/"
 				var stageset = stageSets[game][i];
 				menu_html += "<a class='menu-item m5' href='#" + stageset.key + "'>" + stageset.name + "</a>";
 				theme_html += "<h3 id='" + stageset.key + "'>" + stageset.name + "</h3>";
-				theme_html += printStageSet(game, stageset);
+				theme_html += printStageSet(game, getStageSet(game, stageset.key));
+				if (game == "smash")
+					theme_html += "<p style='text-align: center;'><canvas id='stages-graphic-" + stageset.key + "'></canvas></p>";
 				
 				if (window.location.hash.substring(1) == stageset.key)
 					scrolltoid = stageset.key;
@@ -82,7 +84,9 @@ redirect_from: "/lobbies/themes/"
 					var itemset = itemSets[game][i];
 					menu_html += "<a class='menu-item m5' href='#" + itemset.key + "'>" + itemset.name + "</a>";
 					theme_html += "<h3 id='" + itemset.key + "'>" + itemset.name + "</h3>";
-					theme_html += printItemSet(game, itemset);
+					theme_html += printItemSet(game, getItemSet(game, itemset.key));
+					if (game == "smash")
+						theme_html += "<p style='text-align: center;'><canvas id='items-graphic-" + itemset.key + "'></canvas></p>";
 					
 					if (window.location.hash.substring(1) == itemset.key)
 						scrolltoid = itemset.key;
@@ -93,6 +97,18 @@ redirect_from: "/lobbies/themes/"
 		}
 		
 		$("themes").innerHTML = game_menu_html + "</div>" + html;
+		
+		if (game == "smash")
+		{
+			for (var game in eventGames)
+			{
+				for (var i = 0; i < stageSets[game].length; ++i)
+					drawStagesItems("stages", "stages-graphic-" + stageSets[game][i].key, getStageSet(game, stageSets[game][i].key));
+				
+				for (var i = 0; i < itemSets[game].length; ++i)
+					drawStagesItems("items", "items-graphic-" + itemSets[game][i].key, getItemSet(game, itemSets[game][i].key));
+			}
+		}
 		
 		if (scrolltoid != null)
 			$(scrolltoid).scrollIntoView();
