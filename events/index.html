@@ -29,19 +29,47 @@ redirect_from: "/lobbies/"
 		text-align: center;
 	}
 	
-	#next-lobby {
+	#canvas-nav-box {
 		width: 95%;
 		max-width: 500pt;
+		margin: 0 auto;
+		position: relative;
+	}
+	
+	#next-lobby {
+		width: 100%;
 		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 	}
 	
+	#overlay-previous, #overlay-next {
+		width: 50%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font: 5em monospace;
+		color: white;
+		line-height: 50%;
+		opacity: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	
+	#overlay-previous:hover, #overlay-next:hover {
+		opacity: 1;
+	}
+	
+	#overlay-previous { left: 0%; }
+	#overlay-next { left: 50%; }
+	
 	.next-box {
 		display: none;
-		width: 95%;
+		width: 97%;
 		height: 25pt;
 		font-size: 0.9em;
 		line-height: 25pt;
-		max-width: 400pt;
+		max-width: 450pt;
 		margin: 0.6em auto;
 		border-top-left-radius: 1.2em 100%;
 		border-bottom-right-radius: 1.2em 100%;
@@ -89,7 +117,7 @@ redirect_from: "/lobbies/"
 		height: 350px;
 		margin: 1em auto;
 		position: relative;
-		background-color: white;
+		background-color: #333;
 		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 	}
 	
@@ -97,10 +125,6 @@ redirect_from: "/lobbies/"
 		position: absolute;
 		width: 12.5%;
 		height: 100%;
-	}
-	
-	#calendar div:nth-child(even) {
-		background-color: rgba(0,0,0,0.025);
 	}
 	
 	.cal-time {
@@ -113,7 +137,6 @@ redirect_from: "/lobbies/"
 		z-index: 0;
 		display: inline-block;
 		text-align: right;
-		color: #ccc;
 		right: 87.5%;
 		box-sizing: border-box;
 	}
@@ -129,13 +152,9 @@ redirect_from: "/lobbies/"
 		box-sizing: border-box;
 	}
 	
-	.cal-time:nth-child(even) {
-		background-color: rgba(255,255,255,0.2);
-	}
-	
-	.cal-divider:nth-child(odd) {
-		background-color: rgba(0,0,0,0.025);
-	}
+	#calendar div:nth-child(even) { background-color: rgba(255, 255, 255, 0.1 ); }
+	.cal-time:nth-child(odd)      { background-color: rgba(0,   0,   0,   0.07); }
+	.cal-divider:nth-child(even)  { background-color: rgba(255, 255, 255, 0.2 ); }
 	
 	.cal-event {
 		text-align: center;
@@ -154,7 +173,7 @@ redirect_from: "/lobbies/"
 		color: rgba(0, 0, 0, 0.4);
 		border: 2pt dotted rgba(0, 0, 0, 0.7);
 		box-shadow: none;
-		opacity: 0.15;
+		opacity: 0.5;
 	}
 	
 	.bgcolor-type-current-time { background-color: black; color: white; }
@@ -186,7 +205,7 @@ redirect_from: "/lobbies/"
 		display: inline;
 	}
 	
-	#cal-times     { left:  0.0%; background-color: black; }
+	#cal-times     { left:  0.0%; background-color: #eee; color: black; }
 	#cal-monday    { left: 12.5%; }
 	#cal-tuesday   { left: 25.0%; }
 	#cal-wednesday { left: 37.5%; }
@@ -205,8 +224,8 @@ redirect_from: "/lobbies/"
 		text-align: center;
 		width: 100%;
 		height: 4%;
-		background-color: black;
-		color: #ccc;
+		background-color: #eee;
+		color: black;
 		font-size: 0.8em;
 		text-transform: uppercase;
 	}
@@ -253,7 +272,6 @@ redirect_from: "/lobbies/"
 	#menu-splat { color: #00dd00; }
 	#menu-smash { color: white; }
 	
-	
 	#menu-arms:hover  { color: black; background-color: yellow; }
 	#menu-kart:hover  { color: black; background-color: #f92473; }
 	#menu-splat:hover { color: black; background-color: #00dd00; }
@@ -261,7 +279,7 @@ redirect_from: "/lobbies/"
 	
 	@media only screen and (max-width: 700px)
 	{
-		.next-box { font-size: 0.6em; }
+		.next-box { font-size: 0.6em; height: 17pt; line-height: 17pt; }
 		#calendar .cal-short { display: block; }
 		#calendar .cal-long { display: none; }
 	}
@@ -474,11 +492,15 @@ redirect_from: "/lobbies/"
 		
 		<div id="next-section">
 			<h3 id="next">Next Event</h3>
-			<canvas width="880" height="480" id="next-lobby">There is no announced event right now.</canvas>
+			<div id="canvas-nav-box">
+				<div id="overlay-previous" onclick="changeBanner(-1)" >&lt;</div>
+				<div id="overlay-next" onclick="changeBanner(1)" >&gt;</div>
+				<canvas width="880" height="480" id="next-lobby">There is no announced event right now.</canvas>
+			</div>
 			<p id="banner-nav">
-				<button onClick="changeBanner(-1)" id="banner-previous">&lt;</button>
+				<button onclick="changeBanner(-1)" id="banner-previous">&lt;</button>
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
-				<button onClick="changeBanner(1)" id="banner-next">&gt;</button>
+				<button onclick="changeBanner(1)" id="banner-next">&gt;</button>
 			</p>
 			<span class="next-box" id="next-game">Game: <span class="nx-big" id="nx-game-field"></span></span>
 			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big" id="nx-leaderboards-field">ARMS</span></a>
