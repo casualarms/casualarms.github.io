@@ -13,15 +13,14 @@
 	,"329777372863660032": {"name": "Devinus Prime", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"136343819829510145": {"name": "tehbs", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"158902691542597632": {"name": "taste!", "tier": 1, "max": 1, "active": true, "months": 1}
-
 	
 	
+	,"164371048093974528": {"name": "GV-97", "tier": 2, "max": 2, "active": false, "months": 1}
+	,"519448634631127040": {"name": "Leonardo de Carlo", "tier": 1, "max": 1, "active": false, "months": 1}
 	
 	,"UNKNOWN": [
 		 {"name": "DatoldMan", "tier": 3, "max": 3, "active": true, "months": 1}
-		
 		,{"name": "Vanmuundegar", "tier": 2, "max": 2, "active": true, "months": 1}
-		
 		
 	]
 }

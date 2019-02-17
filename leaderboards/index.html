@@ -592,14 +592,15 @@
 		var patrons = [];
 		for (var key in rawPatrons)
 		{
-			if (rawPatrons.hasOwnProperty(key) && key != "UNKNOWN")
+			if (rawPatrons.hasOwnProperty(key) && key != "UNKNOWN" && rawPatrons[key].active)
 			{
 				var user = rawPatrons[key];
 				patrons.push([user.name, user.tier, key]);
 			}
 		}
 		for (var i = 0; i < rawPatrons.UNKNOWN.length; ++i)
-			patrons.push([rawPatrons.UNKNOWN[i].name, rawPatrons.UNKNOWN[i].tier, null]);
+			if (rawPatrons.UNKNOWN[i].active)
+				patrons.push([rawPatrons.UNKNOWN[i].name, rawPatrons.UNKNOWN[i].tier, null]);
 		
 		patrons.sort(function(a, b) { return b[1] - a[1]; });
 		

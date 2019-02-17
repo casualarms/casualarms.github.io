@@ -55,11 +55,12 @@
 					for (var u = 0; u < unknowns.length; ++u)
 					{
 						var user = unknowns[u];
-						for (var i = 0; i < user.tier; ++i)
-							raffle.push(user.name);
+						if (user.active)
+							for (var i = 0; i < user.tier; ++i)
+								raffle.push(user.name);
 					}
 				}
-				else if (patrons.hasOwnProperty(key))
+				else if (patrons.hasOwnProperty(key) && patrons[key].active)
 				{
 					var user = patrons[key];
 					for (var i = 0; i < user.tier; ++i)
