@@ -573,7 +573,57 @@
 			}
 		],
 		"smash" : [
-			 {"key":"basic-smash","name":"Basic Settings","description":"","type":"Playground","visibility":"Friends","format":"4-Player Smash","style":"Time","stamina":"10","stock":1,"time":"3:00","fs-meter":false,"handicap":false,"items":"Med","hazards":true,"team-attack":false,"launch-rate":1,"score-display":true,"show-damage":true,"rotation":"Winner Leaves","max-players":8,"stage":"Random","spirits":false,"voice-chat":false}
+			 {
+			 	"key"           : "ca-2v2-smash",
+			 	"name"          : "Team Smash",
+			 	"description"   : "",
+			 	"Arena Title"   : "Casual ARMS",
+			 	"type"          : "All Skill Levels",
+			 	"visibility"    : "Public",
+			 	"format"        : "Team Battle",
+			 	"style"         : "Time",
+			 	"stamina"       : 10,
+			 	"stock"         : 1,
+			 	"time"          : "3:00",
+			 	"fs-meter"      : true,
+			 	"handicap"      : false,
+			 	"items"         : "Med",
+			 	"hazards"       : true,
+			 	"team-attack"   : true,
+			 	"launch-rate"   : 1,
+			 	"score-display" : true,
+			 	"show-damage"   : true,
+			 	"rotation"      : "Top Two Leave",
+			 	"max-players"   : 8,
+			 	"stage"         : "Random",
+			 	"spirits"       : false,
+			 	"voice-chat"    : false
+			 } ,{
+				"key"           : "ca-1v1v1v1-smash",
+				"name"          : "Free for All",
+				"description"   : "",
+			 	"Arena Title"   : "Casual ARMS",
+				"type"          : "All Skill Levels",
+				"visibility"    : "Public",
+				"format"        : "4-Player Smash",
+				"style"         : "Time",
+				"stamina"       : 10,
+				"stock"         : 1,
+				"time"          : "3:00",
+				"fs-meter"      : true,
+				"handicap"      : false,
+				"items"         : "Med",
+				"hazards"       : true,
+				"team-attack"   : true,
+				"launch-rate"   : 1,
+				"score-display" : true,
+				"show-damage"   : true,
+				"rotation"      : "Top Two Leave",
+				"max-players"   : 8,
+				"stage"         : "Random",
+				"spirits"       : false,
+				"voice-chat"    : false
+			}
 		]
 	},
 	"stageSets" : {

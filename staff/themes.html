@@ -239,6 +239,7 @@ permalink: /staff/themes/index.html
 		}
 		else if (game == "smash")
 		{
+			html +=        printMode("title",         "Arena Title");
 			html +=  printOptionMode("type",          "Type",                      ["All Skill Levels", "Veteran Players", "Glorious Smashers", "Anything Goes", "Playground"]);
 			html +=  printOptionMode("visibility",    "Visibility",                ["Public", "Friends"]);
 			html +=  printOptionMode("format",        "Format",                    ["4-Player Smash", "3-Player Smash", "1-on-1", "Team Battle"]);
@@ -254,7 +255,7 @@ permalink: /staff/themes/index.html
 			html +=  printOptionMode("launch-rate",   "Rules > Launch Rate",       [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]);
 			html +=  printBinaryMode("score-display", "Rules > Score Display");
 			html +=  printBinaryMode("show-damage",   "Rules > Show Damage");
-			html +=  printOptionMode("rotation",      "Rotation",                  ["Winner Leaves", "Loser Leaves"]);
+			html +=  printOptionMode("rotation",      "Rotation",                  ["Top Two Leave", "Top One Leaves", "Bottom Two Leave", "Bottom One Leaves", "Winner Leaves", "Loser Leaves"]);
 			html +=  printOptionMode("max-players",   "Max Players",               [2, 3, 4, 5, 6, 7, 8]);
 			html +=  printOptionMode("stage",         "Stage",                     ["Choice", "Random", "Random Battlefield", "Random Ω Form"]);
 			html +=  printBinaryMode("spirits",       "Spirits");
@@ -357,6 +358,7 @@ permalink: /staff/themes/index.html
 		}
 		else if (game == "smash")
 		{
+			       processMode(theme, "title",         "Arena Title");
 			 processOptionMode(theme, "type",          "Type");
 			 processOptionMode(theme, "visibility",    "Visibility");
 			 processOptionMode(theme, "format",        "Format");

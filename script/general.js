@@ -460,6 +460,7 @@ function printTheme(game, theme, concise)
 	}
 	else if (game == "smash")
 	{
+		html +=        printMode(theme, "title",         "Arena Title");
 		html +=        printMode(theme, "type",          "Type");
 		html +=        printMode(theme, "visibility",    "Visibility");
 		html +=        printMode(theme, "format",        "Format");
