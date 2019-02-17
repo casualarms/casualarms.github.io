@@ -177,6 +177,18 @@ function getNextWeekday(weekday, hours, minutes)
 	return d;
 }
 
+function withImagesLoaded(imageData, callback)
+{
+	var imagesOK = 0;
+	var images = {};
+	for (var key in imageData)
+	{
+		images[key] = new Image();
+		images[key].onload = function() { if (++imagesOK == Object.keys(imageData).length) callback(images); };
+		images[key].src = imageData[key];
+	}
+}
+
 function reorganizeLeaderboards(rawBoards)
 {
 	var leaderboards = [];

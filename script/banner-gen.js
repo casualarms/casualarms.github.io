@@ -14,10 +14,7 @@ function roundRect(ctx, x, y, w, h, r)
 
 function generateBanner(width, height, eventdata, canvasid, nativeTime)
 {
-	var caLogo, mlmLogo, gameLogo, coteLogo, discordLogo, streamIcon, leaderboardsIcon;
-	var template, sponsor;
-	
-	var performBannerRendering = function()
+	var performBannerRendering = function(ctx, images)
 	{
 		var startDate = new Date(eventdata.date);
 		var endDate = getEventEnd(eventdata);
@@ -132,7 +129,7 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		ctx.fillRect(0, 440, width, 40);
 		
 		// Logo
-		ctx.drawImage(caLogo, 22, 0, 114, 114);
+		ctx.drawImage(images["casualarms"], 22, 0, 114, 114);
 		
 		ctx.save();
 		ctx.font = logoFont;
@@ -153,23 +150,23 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		if (!isWarmup)
 		{
 			ctx.fillRect  (615, 122, 255, 110);
-			ctx.drawImage(discordLogo, 615, 122);
+			ctx.drawImage(images["discord"], 615, 122);
 		}
 		else
 		{
 			ctx.fillRect  (10, 320, 255, 110);
-			ctx.drawImage(discordLogo, 10, 325);
+			ctx.drawImage(images["discord"], 10, 325);
 		}
 		
 		// Warmup logo
 		if (eventdata.game == "arms" && eventdata.type == "mlm_warmup")
-			ctx.drawImage(mlmLogo, 630, 120);
+			ctx.drawImage(images["mlm"], 630, 120);
 		else if (eventdata.game == "arms" && eventdata.type == "era_warmup")
-			ctx.drawImage(coteLogo, 630, 120);
+			ctx.drawImage(images["cote"], 630, 120);
 		else if (eventdata.game == "kart")
-			ctx.drawImage(gameLogo, 590, 150);
+			ctx.drawImage(images["game"], 590, 150);
 		else if (eventdata.game == "splat" || eventdata.game == "smash")
-			ctx.drawImage(gameLogo, 610, 115);
+			ctx.drawImage(images["game"], 610, 115);
 		
 		var pluralHosts = ("hosts" in eventdata && eventdata.hosts.length > 1) ? "s" : "";
 		
@@ -205,11 +202,11 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		
 		// Leaderboards
 		if (countsForLederboards(eventdata))
-			ctx.drawImage(leaderboardsIcon, width - 139, height - 40);
+			ctx.drawImage(images["leaderboards"], width - 139, height - 40);
 		
 		// Streamed
 		if ("streamers" in eventdata)
-			ctx.drawImage(streamIcon, 0, height - 40);
+			ctx.drawImage(images["livestream"], 0, height - 40);
 		
 		// Hosts
 		var didDrawCodes = false;
@@ -264,9 +261,9 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 		}
 	}
 	
-	var handleTournamentBanner = function()
+	var handleTournamentBanner = function(ctx, images)
 	{
-		ctx.drawImage(template, 0, 0);
+		ctx.drawImage(images["template"], 0, 0);
 		var startDate = new Date(eventdata.date);
 		var dateText = (monthNames[startDate.getMonth()].slice(0, 3) + ". " + startDate.getDate()).toUpperCase();
 		var timeText = formatTime(startDate).toUpperCase();
@@ -306,80 +303,46 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 			for (var r = 0; r < 3; ++r)
 				ctx.fillText("SPONSORED BY", 100, 30);
 			
-			ctx.drawImage(sponsor, 30, 30);
+			ctx.drawImage(images["sponsor"], 30, 30);
 		}
 	}
 	
-	var imagesOK = 0;
-	var imgs = [];
+	var imageData = {
+		"casualarms" : "/assets/banners/logo-casualarms.png",
+		"discord"  : "/assets/banners/logo-discord.png",
+	};
 	
-	var imageURLs = [];
-	imageURLs.push("/assets/banners/logo-casualarms.png");
-	imageURLs.push("/assets/banners/logo-discord.png");
-	
-	if (eventdata.game == "arms" && eventdata.type == "clash")
+	if (eventdata.game == "arms" && ["clash", "scramble"].includes(eventdata.type))
 	{
-		imageURLs.push("/assets/banners/template-clash.jpg");
-		imageURLs.push("/assets/banners/sponsor-mind-games.png");
-	}
-	else if (eventdata.game == "arms" && eventdata.type == "scramble")
-	{
-		imageURLs.push("/assets/banners/template-scramble.jpg");
-		imageURLs.push("/assets/banners/sponsor-mind-games.png");
+		imageData["template"]     = "/assets/banners/template-" + eventdata.type + ".jpg";
+		imageData["sponsor"]      = "/assets/banners/sponsor-mind-games.png";
 	}
 	else
 	{
-		imageURLs.push("/assets/banners/logo-mlm.png");
-		imageURLs.push("/assets/banners/logo-cote.jpg");
-		imageURLs.push("/assets/banners/logo-" + eventdata.game + ".png");
-		imageURLs.push("/assets/banners/icon-livestream.png");
-		imageURLs.push("/assets/banners/icon-leaderboards.png");
+		imageData["mlm"]          = "/assets/banners/logo-mlm.png";
+		imageData["cote"]         = "/assets/banners/logo-cote.jpg";
+		imageData["game"]         = "/assets/banners/logo-" + eventdata.game + ".png";
+		imageData["livestream"]   = "/assets/banners/icon-livestream.png";
+		imageData["leaderboards"] = "/assets/banners/icon-leaderboards.png";
 	}
 	
-	for (var i = 0; i < imageURLs.length; i++)
+	withImagesLoaded(imageData, function(images)
 	{
-		var img = new Image();
-		imgs.push(img);
-		img.onload = function() { imagesOK++; imagesAllLoaded(); };
-		img.src = imageURLs[i];
-	}
-	
-	var imagesAllLoaded = function()
-	{
-		if (imagesOK == imageURLs.length)
-		{
-			// All images are fully loaded an ready to use
-			caLogo = imgs[0];
-			discordLogo = imgs[1];
-			template = imgs[2];
-			sponsor = imgs[3];
-			
-			if (imgs.length > 4)
-			{
-				mlmLogo = imgs[2];
-				coteLogo = imgs[3];
-				gameLogo = imgs[4];
-				streamIcon = imgs[5];
-				leaderboardsIcon = imgs[6];
-			}
-			
-			// Initialization
-			var canvasMode = $(canvasid).tagName == "CANVAS";
-			var c = canvasMode ? $(canvasid) : document.createElement("canvas");
-			c.width = width;
-			c.height = height;
-			ctx = c.getContext("2d");
-			
-			if (eventdata.game == "arms" && ["clash", "scramble"].includes(eventdata.type))
-				handleTournamentBanner(ctx);
-			else
-				performBannerRendering(ctx);
-			
-			// Generate image
-			if (!canvasMode)
-				$(canvasid).src = c.toDataURL("image/png");
-		}
-	};
+		var canvasMode = $(canvasid).tagName == "CANVAS";
+		var c = canvasMode ? $(canvasid) : document.createElement("canvas");
+		c.width = width;
+		c.height = height;
+		ctx = c.getContext("2d");
+		
+		if (eventdata.game == "arms" && ["clash", "scramble"].includes(eventdata.type))
+			handleTournamentBanner(ctx, images);
+		else
+			performBannerRendering(ctx, images);
+		
+		// Generate image
+		if (!canvasMode)
+			$(canvasid).src = c.toDataURL("image/png");
+	});
 }
 
 
