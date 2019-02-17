@@ -159,6 +159,7 @@ redirect_from: "/lobbies/"
 	
 	.bgcolor-type-current-time { background-color: black; color: white; }
 	
+	.bgcolor-game-flex  { background-color: #e2e2e2;  color: black; }
 	.bgcolor-game-arms  { background-color: yellow;  color: black; }
 	.bgcolor-game-kart  { background-color: #f92473; color: black; }
 	.bgcolor-game-splat { background-color: #00dd00; color: black; }
@@ -385,10 +386,14 @@ redirect_from: "/lobbies/"
 		{
 			var evStart = eventSlots[i].start;
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
-			$(eventSlots[i].id).innerHTML = eventSlots[i].title;
-			$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
-			$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
 			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
+			
+			if (eventSlots[i].game == "arms")
+			{
+				$(eventSlots[i].id).innerHTML = eventSlots[i].title;
+				$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
+				$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
+			}
 		}
 		events += "</div>";
 		
@@ -539,7 +544,7 @@ redirect_from: "/lobbies/"
 		
 		<p>The <em>Sunday Showdown</em> event is our newest addition, featuring <a href="themes/#everything">standard party lobbies</a> with everything you can expect from ARMS' Party Mode!</p>
 		</div>
-		
+		<!--
 		<div class="event-block" id="events-kart"> 
 		<h2>Mario Kart 8 Deluxe Events</h2>
 		
@@ -599,6 +604,7 @@ redirect_from: "/lobbies/"
 		<p>Coming soon!</p>
 		
 		</div>
+		-->
 		{% include footer.html %}
 	</div>
 </body>
