@@ -35,6 +35,15 @@ redirect_from: "/lobbies/themes/"
 	#themes-splat { background-color: #00dd00; }
 	#themes-smash { background-color: white; }
 	
+	.graphics-wrapper {
+		display: block; 
+		text-align: center;
+	}
+	
+	canvas.rule-graphic {
+		max-width: 100%;
+	}
+	
 	</style>
 	<script>
 	
@@ -69,7 +78,7 @@ redirect_from: "/lobbies/themes/"
 				theme_html += "<h3 id='" + stageset.key + "'>" + stageset.name + "</h3>";
 				theme_html += printStageSet(game, getStageSet(game, stageset.key));
 				if (game == "smash")
-					theme_html += "<p style='text-align: center;'><canvas id='stages-graphic-" + stageset.key + "'></canvas></p>";
+					theme_html += "<span class='graphics-wrapper'><canvas class='rule-graphic' id='stages-graphic-" + stageset.key + "'></canvas></span>";
 				
 				if (window.location.hash.substring(1) == stageset.key)
 					scrolltoid = stageset.key;
@@ -86,7 +95,7 @@ redirect_from: "/lobbies/themes/"
 					theme_html += "<h3 id='" + itemset.key + "'>" + itemset.name + "</h3>";
 					theme_html += printItemSet(game, getItemSet(game, itemset.key));
 					if (game == "smash")
-						theme_html += "<p style='text-align: center;'><canvas id='items-graphic-" + itemset.key + "'></canvas></p>";
+						theme_html += "<span class='graphics-wrapper'><canvas class='rule-graphic' id='items-graphic-" + itemset.key + "'></canvas></span>";
 					
 					if (window.location.hash.substring(1) == itemset.key)
 						scrolltoid = itemset.key;
@@ -98,25 +107,19 @@ redirect_from: "/lobbies/themes/"
 		
 		$("themes").innerHTML = game_menu_html + "</div>" + html;
 		
-		if (game == "smash")
-		{
-			for (var game in eventGames)
-			{
-				for (var i = 0; i < stageSets[game].length; ++i)
-					drawStagesItems("stages", "stages-graphic-" + stageSets[game][i].key, getStageSet(game, stageSets[game][i].key));
-				
-				for (var i = 0; i < itemSets[game].length; ++i)
-					drawStagesItems("items", "items-graphic-" + itemSets[game][i].key, getItemSet(game, itemSets[game][i].key));
-			}
-		}
+		for (var i = 0; i < stageSets["smash"].length; ++i)
+			drawStagesItems("stages", "stages-graphic-" + stageSets["smash"][i].key, getStageSet(game, stageSets["smash"][i].key));
 		
-		if (scrolltoid != null)
-			$(scrolltoid).scrollIntoView();
+		for (var i = 0; i < itemSets[game].length; ++i)
+			drawStagesItems("items", "items-graphic-" + itemSets["smash"][i].key, getItemSet(game, itemSets["smash"][i].key));
 		
 		var options = "";
 		for (var game in eventGames)
 			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
 		$("game").innerHTML = options;
+		
+		if (scrolltoid != null)
+			window.setTimeout(function() { $(scrolltoid).scrollIntoView(); }, 100);
 	}
 	
 	function randomTheme()

@@ -350,6 +350,26 @@ a.submenu-item > .sub-text {
 	color: yellow;
 }
 
+.mode-group {
+	background-color: #ddd;
+	border-radius: 1em;
+	max-width: 400pt;
+	margin: 1em auto;
+	padding: 0.5em;
+	position: relative;
+}
+
+.mode-group-heading {
+	position: absolute;
+	top: 0.6em;
+	left: 1em;
+	font-weight: bold;
+}
+
+@media only screen and (max-width: 600px)
+{
+	.mode-name, .mode-options { font-size: 0.8em; }
+}
 
 /* Event mode */
 

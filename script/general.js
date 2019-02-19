@@ -541,23 +541,30 @@ function printTheme(game, theme, concise)
 		html +=        printMode(theme, "type",          "Type");
 		html +=        printMode(theme, "visibility",    "Visibility");
 		html +=        printMode(theme, "format",        "Format");
-		html +=        printMode(theme, "style",         "Style");
-		html +=        printMode(theme, "stamina",       "Rules > Stamina");
-		html +=        printMode(theme, "stock",         "Rules > Stock");
-		html +=        printMode(theme, "time",          "Rules > Time Limit");
-		html +=  printBinaryMode(theme, "fs-meter",      "Rules > FS Meter");
-		html +=  printBinaryMode(theme, "handicap",      "Rules > Damage Handicap");
-		html +=        printMode(theme, "items",         "Rules > Items > Intensity");
-		html +=  printBinaryMode(theme, "hazards",       "Rules > Stage Hazards");
-		html +=  printBinaryMode(theme, "team-attack",   "Rules > Team Attack");
-		html +=        printMode(theme, "launch-rate",   "Rules > Launch Rate");
-		html +=  printBinaryMode(theme, "score-display", "Rules > Score Display");
-		html +=  printBinaryMode(theme, "show-damage",   "Rules > Show Damage");
 		html +=        printMode(theme, "rotation",      "Rotation");
-		html +=        printMode(theme, "max-players",   "Max Players");
-		html +=        printMode(theme, "stage",         "Stage");
-		html +=  printBinaryMode(theme, "spirits",       "Spirits");
-		html +=  printBinaryMode(theme, "voice-chat",    "Voice Chat");
+		
+		html += "<div class='mode-group'><span class='mode-group-heading'>Rules</span>";
+		html +=        printMode(theme["rules"], "style",         "Style");
+		if (theme["rules"]["style"] == "Stamina")
+			html +=     printMode(theme["rules"], "stamina",       "Stamina");
+		if (theme["rules"]["style"] != "Time")
+			html +=     printMode(theme["rules"], "stock",         "Stock");
+		html +=        printMode(theme["rules"], "time",          "Time Limit");
+		html +=  printBinaryMode(theme["rules"], "fs-meter",      "FS Meter");
+		html +=  printBinaryMode(theme["rules"], "handicap",      "Damage Handicap");
+		html +=        printMode(theme["rules"], "items",         "Items > Intensity");
+		html +=  printBinaryMode(theme["rules"], "hazards",       "Stage Hazards");
+		html +=  printBinaryMode(theme["rules"], "team-attack",   "Team Attack");
+		html +=        printMode(theme["rules"], "launch-rate",   "Launch Rate");
+		html +=  printBinaryMode(theme["rules"], "score-display", "Score Display");
+		html +=  printBinaryMode(theme["rules"], "show-damage",   "Show Damage");
+		
+		html += "</div><div class='mode-group'><span class='mode-group-heading'>More</span>";
+		html +=        printMode(theme["more"], "max-players",   "Max Players");
+		html +=        printMode(theme["more"], "stage",         "Stage");
+		html +=  printBinaryMode(theme["more"], "spirits",       "Spirits");
+		html +=  printBinaryMode(theme["more"], "voice-chat",    "Voice Chat");
+		html += "</div>";
 	}
 	return html;
 }

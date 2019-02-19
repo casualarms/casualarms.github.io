@@ -71,6 +71,20 @@ permalink: /staff/themes/index.html
 		padding-right: 1em;
 	}
 	
+	.setting-group {
+		margin: 1em;
+		border: 2pt solid #c3c4c6;
+		border-radius: 1em;
+		position: relative;
+	}
+	
+	.group-heading {
+		color: yellow;
+		position: absolute;
+		top: 1em;
+		left: 1em;
+	}
+	
 	
 	
 	.stage-container {
@@ -156,6 +170,22 @@ permalink: /staff/themes/index.html
 		color: yellow;
 	}
 	
+	.mode-group {
+		background-color: #555;
+		border-radius: 1em;
+		max-width: 400pt;
+		margin: 1em auto;
+		padding: 0.5em;
+		position: relative;
+	}
+	
+	.mode-group-heading {
+		position: absolute;
+		top: 0.6em;
+		left: 1em;
+		font-weight: bold;
+	}
+	
 	</style>
 	<script>
 	
@@ -222,44 +252,49 @@ permalink: /staff/themes/index.html
 		}
 		else if (game == "kart")
 		{
-			html +=  printOptionMode("mode",           "Mode",                     ["50cc Grand Prix", "100cc Grand Prix", "150cc Grand Prix", "Mirror Grand Prix", "200cc Grand Prix",
-			                                                                        "Balloon Battle", "Renegade Roundup", "Bob-omb Blast", "Coin Runners", "Shine Thief", "Random Battle"]);
+			html +=  printOptionMode("mode",           "Mode",             ["50cc Grand Prix", "100cc Grand Prix", "150cc Grand Prix", "Mirror Grand Prix", "200cc Grand Prix",
+			                                                                "Balloon Battle", "Renegade Roundup", "Bob-omb Blast", "Coin Runners", "Shine Thief", "Random Battle"]);
 			html +=  printBinaryMode("teams",          "Teams");
-			html +=  printOptionMode("items",          "Items",                    ["Normal Items", "Frantic Items", "Skilled Items"]);
-			html +=  printOptionMode("round_length",   "Round Length",             [1, 2, 3, 4, 5]); 
-			html +=  printOptionMode("cpu",            "CPU",                      ["Normal", "Hard", "Easy"]);
-			html +=  printOptionMode("vehicles",       "Vehicles",                 ["All Vehicles", "Karts Only", "Bikes Only"]);
+			html +=  printOptionMode("items",          "Items",            ["Normal Items", "Frantic Items", "Skilled Items"]);
+			html +=  printOptionMode("round_length",   "Round Length",     [1, 2, 3, 4, 5]); 
+			html +=  printOptionMode("cpu",            "CPU",              ["Normal", "Hard", "Easy"]);
+			html +=  printOptionMode("vehicles",       "Vehicles",         ["All Vehicles", "Karts Only", "Bikes Only"]);
 			html +=  printBinaryMode("smart_steering", "Smart Steering");
 		}
 		else if (game == "splat")
 		{
-			html +=  printOptionMode("mode-1", "Mode 1",                           ["Turf War", "Splat Zones", "Rainmaker", "Tower Control", "Clam Blitz"]);
-			html +=  printOptionMode("mode-2", "Mode 2",                           ["Turf War", "Splat Zones", "Rainmaker", "Tower Control", "Clam Blitz"]);
+			html +=  printOptionMode("mode-1", "Mode 1",                   ["Turf War", "Splat Zones", "Rainmaker", "Tower Control", "Clam Blitz"]);
+			html +=  printOptionMode("mode-2", "Mode 2",                   ["Turf War", "Splat Zones", "Rainmaker", "Tower Control", "Clam Blitz"]);
 			html +=  printBinaryMode("abilities", "Sub Abilities");
 		}
 		else if (game == "smash")
 		{
 			html +=        printMode("title",         "Arena Title");
-			html +=  printOptionMode("type",          "Type",                      ["All Skill Levels", "Veteran Players", "Glorious Smashers", "Anything Goes", "Playground"]);
-			html +=  printOptionMode("visibility",    "Visibility",                ["Public", "Friends"]);
-			html +=  printOptionMode("format",        "Format",                    ["4-Player Smash", "3-Player Smash", "1-on-1", "Team Battle"]);
-			html +=  printOptionMode("style",         "Style",                     ["Time", "Stock", "Stamina"]);
-			html +=  printOptionMode("stamina",       "Rules > Stamina",           [10, 30, 50, 80, 100, 150, 200, 250, 300]);
-			html +=  printOptionMode("stock",         "Rules > Stock",             [1, 2, 3, 4, 5, 6, 7]);
-			html +=  printOptionMode("time",          "Rules > Time Limit",        ["1:00", "1:30", "2:00", "2:30", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00"]);
-			html +=  printBinaryMode("fs-meter",      "Rules > FS Meter");
-			html +=  printBinaryMode("handicap",      "Rules > Damage Handicap");
-			html +=  printOptionMode("items",         "Rules > Items > Intensity", ["None", "Low", "Med", "High"]);
-			html +=  printBinaryMode("hazards",       "Rules > Stage Hazards");
-			html +=  printBinaryMode("team-attack",   "Rules > Team Attack");
-			html +=  printOptionMode("launch-rate",   "Rules > Launch Rate",       [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]);
-			html +=  printBinaryMode("score-display", "Rules > Score Display");
-			html +=  printBinaryMode("show-damage",   "Rules > Show Damage");
-			html +=  printOptionMode("rotation",      "Rotation",                  ["Top Two Leave", "Top One Leaves", "Bottom Two Leave", "Bottom One Leaves", "Winner Leaves", "Loser Leaves"]);
-			html +=  printOptionMode("max-players",   "Max Players",               [2, 3, 4, 5, 6, 7, 8]);
-			html +=  printOptionMode("stage",         "Stage",                     ["Choice", "Random", "Random Battlefield", "Random Ω Form"]);
+			html +=  printOptionMode("type",          "Type",              ["All Skill Levels", "Veteran Players", "Glorious Smashers", "Anything Goes", "Playground"]);
+			html +=  printOptionMode("visibility",    "Visibility",        ["Public", "Friends"]);
+			html +=  printOptionMode("format",        "Format",            ["4-Player Smash", "3-Player Smash", "1-on-1", "Team Battle"]);
+			html +=  printOptionMode("rotation",      "Rotation",          ["Top Two Leave", "Top One Leaves", "Bottom Two Leave", "Bottom One Leaves", "Winner Leaves", "Loser Leaves"]);
+			
+			html += "<div class='setting-group'><span class='group-heading'>Rules</span>";
+			html +=  printOptionMode("style",         "Style",             ["Time", "Stock", "Stamina"]);
+			html +=  printOptionMode("stamina",       "Stamina",           [10, 30, 50, 80, 100, 150, 200, 250, 300]);
+			html +=  printOptionMode("stock",         "Stock",             [1, 2, 3, 4, 5, 6, 7]);
+			html +=  printOptionMode("time",          "Time Limit",        ["1:00", "1:30", "2:00", "2:30", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00"]);
+			html +=  printBinaryMode("fs-meter",      "FS Meter");
+			html +=  printBinaryMode("handicap",      "Damage Handicap");
+			html +=  printOptionMode("items",         "Items > Intensity", ["None", "Low", "Med", "High"]);
+			html +=  printBinaryMode("hazards",       "Stage Hazards");
+			html +=  printBinaryMode("team-attack",   "Team Attack");
+			html +=  printOptionMode("launch-rate",   "Launch Rate",       [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]);
+			html +=  printBinaryMode("score-display", "Score Display");
+			html +=  printBinaryMode("show-damage",   "Show Damage");
+			
+			html += "</div><div class='setting-group'><span class='group-heading'>More</span>";
+			html +=  printOptionMode("max-players",   "Max Players",       [2, 3, 4, 5, 6, 7, 8]);
+			html +=  printOptionMode("stage",         "Stage",             ["Choice", "Random", "Random Battlefield", "Random Ω Form"]);
 			html +=  printBinaryMode("spirits",       "Spirits");
 			html +=  printBinaryMode("voice-chat",    "Voice Chat");
+			html += "</div>";
 		}
 		
 		$("controls-theme").innerHTML = html;
@@ -313,7 +348,7 @@ permalink: /staff/themes/index.html
 		theme[key] = settings;
 	}
 	
-	function processOptionMode(theme, key, options)
+	function processOptionMode(theme, key)
 	{
 		theme[key] = optionLookup[key][$(key).selectedIndex];
 	}
@@ -337,48 +372,52 @@ permalink: /staff/themes/index.html
 			 processMultiMode(theme, "hoops");
 			 processMultiMode(theme, "skillshot");
 			 processMultiMode(theme, "v_ball");
-			processBinaryMode(theme, "items", "Items");
-			processBinaryMode(theme, "streak_bonuses", "Streak Bonuses");
+			processBinaryMode(theme, "items");
+			processBinaryMode(theme, "streak_bonuses");
 		}
 		else if (game == "kart")
 		{
 			processOptionMode(theme, "mode");
 			processBinaryMode(theme, "teams");
-			processOptionMode(theme, "items", "Items");
+			processOptionMode(theme, "items");
 			processOptionMode(theme, "round_length");
 			processOptionMode(theme, "cpu");
 			processOptionMode(theme, "vehicles");
-			processBinaryMode(theme, "smart_steering", "Smart Steering");
+			processBinaryMode(theme, "smart_steering");
 		}
 		else if (game == "splat")
 		{
 			processOptionMode(theme, "mode-1");
 			processOptionMode(theme, "mode-2");
-			processBinaryMode(theme, "abilities", "Sub Abilities");
+			processBinaryMode(theme, "abilities");
 		}
 		else if (game == "smash")
 		{
-			       processMode(theme, "title",         "Arena Title");
-			 processOptionMode(theme, "type",          "Type");
-			 processOptionMode(theme, "visibility",    "Visibility");
-			 processOptionMode(theme, "format",        "Format");
-			 processOptionMode(theme, "style",         "Style");
-			 processOptionMode(theme, "stamina",       "Rules > Stamina");
-			 processOptionMode(theme, "stock",         "Rules > Stock");
-			 processOptionMode(theme, "time",          "Rules > Time Limit");
-			 processBinaryMode(theme, "fs-meter",      "Rules > FS Meter");
-			 processBinaryMode(theme, "handicap",      "Rules > Damage Handicap");
-			 processOptionMode(theme, "items",         "Rules > Items > Intensity");
-			 processBinaryMode(theme, "hazards",       "Rules > Stage Hazards");
-			 processBinaryMode(theme, "team-attack",   "Rules > Team Attack");
-			 processOptionMode(theme, "launch-rate",   "Rules > Launch Rate");
-			 processBinaryMode(theme, "score-display", "Rules > Score Display");
-			 processBinaryMode(theme, "show-damage",   "Rules > Show Damage");
-			 processOptionMode(theme, "rotation",      "Rotation");
-			 processOptionMode(theme, "max-players",   "Max Players");
-			 processOptionMode(theme, "stage",         "Stage");
-			 processBinaryMode(theme, "spirits",       "Spirits");
-			 processBinaryMode(theme, "voice-chat",    "Voice Chat");
+			       processMode(theme, "title");
+			 processOptionMode(theme, "type");
+			 processOptionMode(theme, "visibility");
+			 processOptionMode(theme, "format");
+			 processOptionMode(theme, "rotation");
+			 
+			 theme["rules"] = {};
+			 processOptionMode(theme["rules"], "style");
+			 processOptionMode(theme["rules"], "stamina");
+			 processOptionMode(theme["rules"], "stock");
+			 processOptionMode(theme["rules"], "time");
+			 processBinaryMode(theme["rules"], "fs-meter");
+			 processBinaryMode(theme["rules"], "handicap");
+			 processOptionMode(theme["rules"], "items");
+			 processBinaryMode(theme["rules"], "hazards");
+			 processBinaryMode(theme["rules"], "team-attack");
+			 processOptionMode(theme["rules"], "launch-rate");
+			 processBinaryMode(theme["rules"], "score-display");
+			 processBinaryMode(theme["rules"], "show-damage");
+			 
+			 theme["more"] = {};
+			 processOptionMode(theme["more"],  "max-players");
+			 processOptionMode(theme["more"],  "stage");
+			 processBinaryMode(theme["more"],  "spirits");
+			 processBinaryMode(theme["more"],  "voice-chat");
 		}
 		
 		$("output-theme").value = "," + JSON.stringify(theme);
