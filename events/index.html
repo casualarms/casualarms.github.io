@@ -64,7 +64,7 @@ redirect_from: "/lobbies/"
 	#overlay-next { left: 50%; }
 	
 	.next-box {
-		display: none;
+		display: block;
 		width: 97%;
 		height: 25pt;
 		font-size: 0.9em;
@@ -83,11 +83,13 @@ redirect_from: "/lobbies/"
 		font-size: 1.3em;
 	}
 	
-	#next-streamer     { background-color: #4b367c; }
-	#next-theme        { background-color: black; }
 	#next-link         { background-color: grey; }
-	#next-leaderboards { background-color: #444; }
-	#next-sponsor      { background-color: pink; color: black; }
+	.next-streamer     { background-color: #4b367c; }
+	.next-theme,
+	.next-stages,
+	.next-items        { background-color: black; }
+	.next-leaderboards { background-color: #444; }
+	.next-sponsor      { background-color: pink; color: black; }
 	
 	p#next-theme-info {
 		text-align: center;
@@ -333,53 +335,62 @@ redirect_from: "/lobbies/"
 		focusEvent = i;
 		generateBanner(880, 480, eventData[i], "next-lobby", true);
 		
-		// Game
-		$("next-game").style.display = "block";
-		$("next-game").className = "next-box bgcolor-game-" + ev.game;
-		$("nx-game-field").innerHTML = eventGames[ev.game];
+		var tags = "";
 		
+		// Game or leaderboard tag
+		if (countsForLederboards(ev))
+			tags += "<a href='/leaderboards/#" + ev.game + "' class='next-box next-game bgcolor-game-" + ev.game + "'>leaderboards: <span class='nx-big'>" + eventGames[ev.game] + "</span></a>";
+		else
+			tags += "<span class='next-box next-game bgcolor-game-" + ev.game + "'>Game: <span class='nx-big'>" + eventGames[ev.game] + "</span></span>";
+		
+		// Event theme
 		var themeData = getTheme(ev.game, ev.theme);
-		
-		$("next-theme").style.display = "none";
 		if (themeData != null)
+			tags += "<a href='themes/#" + themeData.key + "' class='next-box next-theme'>Theme: <span class='nx-big'>" + themeData.name + "</span></a>";
+		
+		if ("stages" in ev)
 		{
-			$("next-theme").style.display = "block";
-			$("next-theme").href = "themes/#" + themeData.key;
-			$("nx-theme-field").innerHTML = themeData.name;
+			var name = "";
+			for (var t = 0; t < stageSets[ev.game].length; ++t)
+				if (stageSets[ev.game][t].key == ev.stages)
+					name = stageSets[ev.game][t].name;
+			tags += "<a href='themes/#" + ev.stages + "' class='next-box next-stages'>Stages: <span class='nx-big'>" + name + "</span></a>";
 		}
 		
-		$("next-link").style.display = "block";
+		if ("items" in ev)
+		{
+			var name = "";
+			for (var t = 0; t < itemSets[ev.game].length; ++t)
+				if (itemSets[ev.game][t].key == ev.items)
+					name = itemSets[ev.game][t].name;
+			tags += "<a href='themes/#" + ev.items + "' class='next-box next-items'>Items: <span class='nx-big'>" + name + "</span></a>";
+		}
+		
+		// Streamer tags
+		if ("streamers" in ev)
+			for (var s = 0; s < ev["streamers"].length; ++s)
+				tags += "<a href='https://www.twitch.tv/" + ev["streamers"][s] + "' class='next-box next-streamer'>twitch.tv/ <span class='nx-big'>" + ev["streamers"][s] + "</span></a>";
+		
+		// Sponsor tags
+		if ("sponsor" in ev)
+			tags += "<a href='" + eventSponsors[ev["sponsor"]].url + "' class='next-box next-sponsor'>Sponsor: <span class='nx-big'>" + eventSponsors[ev["sponsor"]].title + "</span></a>";
+		
+		// Direct link
 		$("next-link").href = "/events/?id=" + getEventID(ev);
 		if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
 			$("next-link").href = "/" + ev.type;
 		
-		$("next-leaderboards").style.display = countsForLederboards(ev) ? "block" : "none";
-		$("next-leaderboards").href = "/leaderboards/#" + ev.game;
-		$("nx-leaderboards-field").innerHTML = eventGames[ev.game];
+	//	$("banner-previous").disabled = (i == 0);
+	//	$("banner-next").disabled = (i == eventData.length-1);
 		
-		if ("streamers" in ev)
-		{
-			$("nx-stream-field").innerHTML = ev["streamers"][0];
-			$("next-streamer").href = "https://www.twitch.tv/" + ev["streamers"][0];
-		}
-		$("next-streamer").style.display = ("streamers" in ev && ev["streamers"].length > 0) ? "block" : "none";
-		
-		if ("sponsor" in ev)
-		{
-			$("nx-sponsor-field").innerHTML = eventSponsors[ev["sponsor"]].title;
-			$("next-sponsor").href = eventSponsors[ev["sponsor"]].url;
-		}
-		$("next-sponsor").style.display = ("sponsor" in ev) ? "block" : "none";
-		
-		$("next-section").style.display = "block";
-		
-		$("banner-previous").disabled = (i == 0);
-		$("banner-next").disabled = (i == eventData.length-1);
-		
+		// Event navigation indicators
 		var indicators = document.getElementsByClassName("banner-indicator");
 		for (var ind = 0; ind < indicators.length; ++ind)
 			indicators[ind].style.transform = "";
 		$("banner-indicator-" + i).style.transform = "scale(1.6)";
+		
+		$("event-tags").innerHTML = tags;
+		$("next-section").style.display = "block";
 	}
 	
 	function changeBanner(dir)
@@ -502,13 +513,8 @@ redirect_from: "/lobbies/"
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
 				<button onclick="changeBanner(1)" id="banner-next">&gt;</button>
 			</p>
-			<span class="next-box" id="next-game">Game: <span class="nx-big" id="nx-game-field"></span></span>
-			<a href="/leaderboards/#arms" class="next-box" id="next-leaderboards">leaderboards: <span class="nx-big" id="nx-leaderboards-field">ARMS</span></a>
-			<a href="" class="next-box" id="next-theme">Theme: <span class="nx-big" id="nx-theme-field"></span></a>
-			<a href="" class="next-box" id="next-streamer">twitch.tv/ <span class="nx-big" id="nx-stream-field"></span></a>
+			<div id="event-tags"></div>
 			<a href="" class="next-box" id="next-link"><span class="nx-big" id="nx-link-field">Direct Link</span></a>
-			<a href="" class="next-box" id="next-sponsor">Sponsor: <span class="nx-big" id="nx-sponsor-field">Direct Link</span></a>
-			<p id="next-info"></p>
 		</div>
 		
 		<h3 id="schedule">Upcoming Events</h3>
