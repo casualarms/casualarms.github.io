@@ -30,6 +30,9 @@ for (var game in eventGames)
 	}
 }
 
+
+var tournamentsLog = {% include_relative champions.json %};
+
 var hostDatabase = [
 	{ "tag" : "CC", "name" : "Rashiko",      "code" : "6822-5055-2423", tier : 2},
 	{ "tag" : "",   "name" : "Literary",     "code" : "4704-7597-7783", tier : 2},

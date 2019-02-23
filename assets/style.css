@@ -45,7 +45,7 @@ body {
 	text-align: center;
 }
 
-#container > p {
+#container > p, .padded {
 	padding: 0 10%;
 	line-height: 1.4em;
 }
@@ -511,7 +511,7 @@ a.submenu-item > .sub-text {
 
 @media only screen and (max-width: 600px)
 {
-	#container > p {
+	#container > p, .padded {
 		padding: 0 5%;
 	}
 	

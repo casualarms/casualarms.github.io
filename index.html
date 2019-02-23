@@ -43,6 +43,20 @@
 			}
 		});
 		
+		// Display last tournament winner
+		var images = { "clash" : "/assets/main/logo-champion.png", "scramble" : "/assets/main/logo-sovereign.png" };
+		var titles = { "clash" : "Clash Champion", "scramble" : "Scramble Sovereign" };
+		var names = { "clash" : "Casual Clash", "scramble" : "Casual Scramble" };
+		var entry = tournamentsLog[tournamentsLog.length - 1];
+		var ordinal = tournamentsLog.filter(function(item) { return item.type == entry.type; }).length;
+		var challongeURL = "https://challonge.com/" + (names[entry.type] + " " + ordinal).replace(/\s/g, "");
+		
+		$("champ-name").innerHTML = entry.winner[0].name;
+		$("champ-title").innerHTML = titles[entry.type];
+		$("champ-img").src = images[entry.type];
+		$("champ-name").href = challongeURL;
+		$("champ-url").href = challongeURL;
+		
 		// Patreon feature display
 		fetchPatrons(function(patrons)
 		{
@@ -443,8 +457,8 @@
 			<a class="submenu-item" href="https://armswiki.org/" target="_blank"><img src="/assets/main/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
 			<a class="submenu-item" href="https://twitch.tv/schkrimps/" target="_blank"><img src="/assets/main/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
 			<span class="submenu-group">
-				<a class="submenu-item long" href=""><img src="/assets/main/logo-champion.png"/><span class="sub-text">Clash Champion</span></a>
-				<a class="submenu-item extra" href="">Chyro</a>
+				<a class="submenu-item long" id="champ-url"><img src="" id="champ-img"/><span class="sub-text" id="champ-title"></span></a>
+				<a class="submenu-item extra" id="champ-name"></a>
 			</span>
 		</div>
 		
