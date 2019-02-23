@@ -692,7 +692,7 @@
 			,{ "key" : "healing-smash",      "name" : "Health and Wellness",    "items" : [10,11,12,13,14,15,16]}
 			,{ "key" : "deployables-smash",  "name" : "Deployables",            "items" : [10,16,48,50,53,56,57,58,60,68,69,70,71,74,80]}
 			,{ "key" : "sports-smash",       "name" : "SPORTS!",                "items" : [10,29,61,73]}
-			,{ "key" : "better-worse-smash", "name" : "For Better or Worse",    "items" : [0,9,17,18]}
+			,{ "key" : "better-worse-smash", "name" : "For Better or Worse",    "items" : [0,9,17,18,25]}
 			,{ "key" : "wanderers-smash",    "name" : "Wandering Items",        "items" : [0,9,10,17,18,45,47,51,52,69]}
 		]
 	}
