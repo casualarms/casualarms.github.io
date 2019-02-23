@@ -29,7 +29,7 @@
 	,"391448715103043584": {"name": "Luis",                "badges": ["clash"] }
 	,"206008979430572033": {"name": "Solaris",             "badges": ["clash"] }
 	,"422305824837468170": {"name": "MJLIU",               "badges": ["clash"] }
-	,"429783916342280203": {"name": "nin10taku",           "badges": ["clash"] }
+	,"429783916342280203": {"name": "nin10taku",           "badges": ["clash", "scramble"] }
 	,"272708868251844609": {"name": "Spinning",            "badges": ["clash", "host"] }
 	,"347698413321584641": {"name": "Mellax",              "badges": ["clash"] }
 	,"226011628389269504": {"name": "Bonlino",             "badges": ["season_kart", "clash"] }
@@ -116,7 +116,7 @@
 	,"243190204771336192": {"name": "Hennessey",           "badges": ["clash"] }
 	,"263368462745862144": {"name": "Fireshark",           "badges": ["clash"] }
 	,"294963125591998466": {"name": "Sintha",              "badges": ["clash", "season_kart"] }
-	,"329034278803472394": {"name": "Fish",                "badges": ["clash"] }
+	,"329034278803472394": {"name": "Fish",                "badges": ["clash", "scramble"] }
 	,"523864053542682624": {"name": "5after12",            "badges": ["clash", "scramble"] }
 	,"458379136621084673": {"name": "James B",             "badges": ["clash"] }
 	
@@ -142,10 +142,10 @@
 	,"400479213817298946": {"name": "The Oddity",          "badges": ["host"] }
 
 	,"111446699360202752": {"name": "Chyro",               "badges": ["clash", "clash_win"] }
-	,"145375063724654592": {"name": "Mig",                 "badges": ["clash"] }
+	,"145375063724654592": {"name": "Mig",                 "badges": ["clash", "scramble"] }
 	,"220859634737610752": {"name": "BackpackTV",          "badges": ["clash"] }
 	,"454438240708067328": {"name": "Patita",              "badges": ["clash"] }
 	,"431095641226215434": {"name": "Claro0602",           "badges": ["clash"] }
-	
+	,"530944778867572737": {"name": "MrWLG",               "badges": ["scramble"] }
 	
   }
