@@ -683,7 +683,7 @@
 		"smash" : [
 			 { "key" : "all-items",          "name" : "All",                    "items" : [{ "start" : 0, "end" : 81 }]}
 			,{ "key" : "allies-smash",       "name" : "Surprise Allies",        "items" : [1,2,3,6,10,69,70,72]}
-			,{ "key" : "parts-smash",        "name" : "Assembled Parts",        "items" : [4,5,10]}
+			,{ "key" : "parts-smash",        "name" : "Assembled Parts",        "items" : [4,5]}
 			,{ "key" : "firearms-smash",     "name" : "Guns and Stuff",         "items" : [5,10,26,37,38,39,41,42,43,44,46]}
 			,{ "key" : "tossables-smash",    "name" : "Thrown Items",           "items" : [2,3,6,10,49,50,51,52,55,56,57,58,59,60,67]}
 			,{ "key" : "explosives-smash",   "name" : "BOOM!",                  "items" : [6,7,8,10,20,41,47,48,53,54,62,63,64,65,66]}
