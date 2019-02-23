@@ -1,17 +1,17 @@
 [
-	{ "date" : "2018-05-12", "type" : "clash", "players" : 24, "winner" : [
+	{ "date" : "2018-05-12", "type" : "clash", "players" : 24, "winner" : [
 		{ "id" : "398284103541063690", "name" : "River" }
 	]}
-	,{ "date" : "2018-06-23", "type" : "clash", "players" : 27, "winner" : [
+	,{ "date" : "2018-06-23", "type" : "clash", "players" : 27, "winner" : [
 		{ "id" : "187272277220392960", "name" : "SlosherWailord" }
 	]}
-	,{ "date" : "2018-07-28", "type" : "clash", "players" : 13, "winner" : [
+	,{ "date" : "2018-07-28", "type" : "clash", "players" : 13, "winner" : [
 		{ "id" : "187272277220392960", "name" : "SlosherWailord" }
 	]}
-	,{ "date" : "2018-08-25", "type" : "clash", "players" : 15, "winner" : [
+	,{ "date" : "2018-08-25", "type" : "clash", "players" : 15, "winner" : [
 		{ "id" : "187272277220392960", "name" : "SlosherWailord" }
 	]}
-	,{ "date" : "2018-09-08", "type" : "scramble", "players" : 13, "winner" : [
+	,{ "date" : "2018-09-08", "type" : "scramble", "players" : 13, "winner" : [
 		{ "id" : "180917649444700160", "name" : "MrPiedPiper" }
 	]}
 	,{ "date" : "2018-09-22", "type" : "clash", "players" : 20, "winner" : [
