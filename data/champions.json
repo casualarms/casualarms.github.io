@@ -14,38 +14,38 @@
 	,{ "date" : "2018-09-08", "type" : "scramble", "players" : 13, "winner" : [
 		{ "id" : "180917649444700160", "name" : "MrPiedPiper" }
 	]}
-	,{ "date" : "2018-09-22", "type" : "clash", "players" : 20, "winner" : [
+	,{ "date" : "2018-09-22", "type" : "clash", "players" : 20, "winner" : [
 		{ "id" : "192081577306488842", "name" : "Serperiorfan" }
 	]}
-	,{ "date" : "2018-10-06", "type" : "scramble", "players" : 18, "winner" : [
+	,{ "date" : "2018-10-06", "type" : "scramble", "players" : 18, "winner" : [
 		{ "id" : "192081577306488842", "name" : "Serperiorfan" }
 	]}
-	,{ "date" : "2018-10-20", "type" : "clash", "players" : 24, "winner" : [
+	,{ "date" : "2018-10-20", "type" : "clash", "players" : 24, "winner" : [
 		{ "id" : "249430453751250945", "name" : "Asqew" }
 	]}
-	,{ "date" : "2018-11-03", "type" : "scramble", "players" : 18, "winner" : [
+	,{ "date" : "2018-11-03", "type" : "scramble", "players" : 18, "winner" : [
 		{ "id" : "381626947119218699", "name" : "Beamer" }
 	]}
-	,{ "date" : "2018-11-17", "type" : "clash", "players" : 14, "winner" : [
+	,{ "date" : "2018-11-17", "type" : "clash", "players" : 14, "winner" : [
 		{ "id" : "381626947119218699", "name" : "Beamer" }
 	]}
-	,{ "date" : "2018-12-01", "type" : "scramble", "players" : 20, "winner" : [
+	,{ "date" : "2018-12-01", "type" : "scramble", "players" : 20, "winner" : [
 		{ "id" : "164685995583733760", "name" : "AntheM" }
 	]}
-	,{ "date" : "2018-12-15", "type" : "clash", "players" : 16, "winner" : [
+	,{ "date" : "2018-12-15", "type" : "clash", "players" : 16, "winner" : [
 		{ "id" : "219155908830298132", "name" : "uran10" }
 	]}
-	,{ "date" : "2018-12-29", "type" : "scramble", "players" : 16, "winner" : [
+	,{ "date" : "2018-12-29", "type" : "scramble", "players" : 16, "winner" : [
 		{ "id" : "187272277220392960", "name" : "SlosherWailord" },
 		{ "id" : "426780718639611905", "name" : "Fang" }
 	]}
-	,{ "date" : "2019-01-12", "type" : "clash", "players" : 14, "winner" : [
+	,{ "date" : "2019-01-12", "type" : "clash", "players" : 14, "winner" : [
 		{ "id" : "187272277220392960", "name" : "SlosherWailord" }
 	]}
-	,{ "date" : "2018-01-26", "type" : "scramble", "players" : 16, "winner" : [
+	,{ "date" : "2018-01-26", "type" : "scramble", "players" : 16, "winner" : [
 		{ "id" : "219155908830298132", "name" : "uran10" }
 	]}
-	,{ "date" : "2019-02-09", "type" : "clash", "players" : 22, "winner" : [
+	,{ "date" : "2019-02-09", "type" : "clash", "players" : 22, "winner" : [
 		{ "id" : "111446699360202752", "name" : "Chyro" }
 	]}
 	,{ "date" : "2019-02-23", "type" : "scramble", "players" : 18, "winner" : [
