@@ -659,6 +659,12 @@
 			renderSplash(canvas, -180, 50, 0.8, "rgb(0,0,0)",       0.18, Math.seed("ec7O63".hashCode()));
 			renderSplash(canvas,  140,  0, 1.0, "rgb(255,255,255)", 0.06, Math.seed("pGvubT".hashCode()));
 		}
+		else if (game == "smash")
+		{
+			renderSmashBall(ctx.canvas, "rgba(  0,   0,   0, 0.25)",  50, -0.3, -0.3);
+			renderSmashBall(ctx.canvas, "rgba(255, 255, 255, 0.10)", 110,  0.2,  0.2);
+		}
+		
 		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
 	}
 	

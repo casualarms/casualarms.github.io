@@ -138,14 +138,18 @@ permalink: /staff/advertising/index.html
 		return text;
 	}
 	
+	nextEventList = null;
+	
 	function load()
 	{
-	
-	// Add upcoming events for one week
+		// Add upcoming events for one week
 		nextEvents(function(nextEventData)
 		{
 			var targetEvent = getQueryVariable("id");
 			var first = undefined, target = undefined;
+			
+			nextEventList = nextEventData;
+			var options = "<option value='undefined' selected>---</option>";
 			
 			for (var i = 0; i < nextEventData.length; ++i)
 			{
@@ -166,7 +170,12 @@ permalink: /staff/advertising/index.html
 				$("calendar").innerHTML += html;
 				
 				generateBanner(880, 480, ev, "result-" + i, false);
+				
+				var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
+				options += "<option>" + dateString + ": " + ev.title + "</option>";
 			}
+			
+			$("event-history-U").innerHTML = $("event-history-D").innerHTML = $("event-history-L").innerHTML = $("event-history-R").innerHTML = options;;
 			
 		});
 	}
@@ -193,11 +202,57 @@ permalink: /staff/advertising/index.html
 			elems[i].style.display = "inline";
 	}
 	
+	function createMultiBanner(mode)
+	{
+		var eventDataIndex1 = $("event-history-" + (mode == "UD" ? "U" : "L")).selectedIndex;
+		var eventDataIndex2 = $("event-history-" + (mode == "UD" ? "D" : "R")).selectedIndex;
+		if (eventDataIndex1 > 0 && eventDataIndex2 > 0)
+		{
+			var c = document.createElement("canvas");
+			c.width = mode == "UD" ? 880 : 1760;
+			c.height = mode == "UD" ? 960 : 480;
+			ctx = c.getContext("2d");
+			
+			var ev1 = nextEventList[eventDataIndex1 - 1];
+			var ev2 = nextEventList[eventDataIndex2 - 1];
+			
+			withImagesLoaded(bannerImageData(ev1), function(images)
+			{
+				ctx.save();
+				performBannerRendering(ctx, ev1, false, images);
+				ctx.restore();
+			});
+			
+			withImagesLoaded(bannerImageData(ev2), function(images)
+			{
+				ctx.save();
+				ctx.translate(mode == "UD" ? 0 : 880, mode == "UD" ? 480 : 0);
+				performBannerRendering(ctx, ev2, false, images);
+				ctx.restore();
+				
+				
+				$("multi-banner").src = c.toDataURL("image/png");
+			});
+		}
+	}
+	
 	</script>
 </head>
 <body onLoad="load()">
 	<div id="wrapper">
 		<h1>Casual ARMS Advertising</h1>
+		
+		<h2>Multi-banner</h2>
+		
+		↑ <select id="event-history-U" onChange="createMultiBanner('UD')"></select><br/>
+		↓ <select id="event-history-D" onChange="createMultiBanner('UD')"></select><br/>
+		<hr/>
+		← <select id="event-history-L" onChange="createMultiBanner('LR')"></select><br/>
+		→ <select id="event-history-R" onChange="createMultiBanner('LR')"></select><br/>
+		<br/>
+		<img id="multi-banner" style="width: 30%"/>
+		
+		<h2>Banner images and advertising text</h2>
 		
 		<input type="button" value="Preannouncements" onClick="showAnnouncements()"/>
 		<input type="button" value="Live alerts" onClick="showLiveAlerts()"/>

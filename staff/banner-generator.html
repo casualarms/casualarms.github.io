@@ -211,8 +211,9 @@ permalink: /staff/banners/index.html
 								continue outer;
 						hostDatabase.push(events[i].hosts[eh]);
 					}
+				}
+				$("event-history").innerHTML = options;
 			}
-			$("event-history").innerHTML = options;}
 			
 			// Fill quick entry lists
 			hostDatabase.sort(function(a, b){ return a.name > b.name; });

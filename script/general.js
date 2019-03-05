@@ -740,6 +740,27 @@ function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
 	mainctx.restore();
 }
 
+function renderSmashBall(canvas, color, size, offset_x, offset_y)
+{
+	var mainctx = canvas.getContext('2d');
+	var width = canvas.width;
+	var height = canvas.height;
+	
+	var scratch = document.createElement('canvas');
+	scratch.width = width;
+	scratch.height = height;
+	var ctx = scratch.getContext("2d");
+	
+	ctx.fillStyle = color;
+	ctx.beginPath();
+	ctx.arc((0.5 + offset_x) * width, (0.5 + offset_y) * height, size, 0, 2 * Math.PI, false);
+	ctx.fill();
+	ctx.clearRect((0.5 + offset_x) * width - 0.6 * size, 0, size * 0.42, height);
+	ctx.clearRect(0, (0.5 + offset_y) * height + 0.28 * size, width, size * 0.17);
+	
+	mainctx.drawImage(scratch, 0, 0);
+}
+
 function selectOptionWithValue(elem, value, defaultToZero=false)
 {
 	for (var i = 0; i < elem.options.length; ++i)
