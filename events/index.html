@@ -380,9 +380,6 @@ redirect_from: "/lobbies/"
 		if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
 			$("next-link").href = "/" + ev.type;
 		
-	//	$("banner-previous").disabled = (i == 0);
-	//	$("banner-next").disabled = (i == eventData.length-1);
-		
 		// Event navigation indicators
 		var indicators = document.getElementsByClassName("banner-indicator");
 		for (var ind = 0; ind < indicators.length; ++ind)
@@ -413,9 +410,9 @@ redirect_from: "/lobbies/"
 		var events = "<div id='regular-slots'>";
 		for (var i = 0; i < eventSlots.length; ++i)
 		{
-			var evStart = eventSlots[i].start;
+			var evStart = eventSlots[i].date;
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
-			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
+			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].slot_game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 			
 			if (eventSlots[i].game == "arms")
 			{
@@ -509,9 +506,9 @@ redirect_from: "/lobbies/"
 				<canvas width="880" height="480" id="next-lobby">There is no announced event right now.</canvas>
 			</div>
 			<p id="banner-nav">
-				<button onclick="changeBanner(-1)" id="banner-previous">&lt;</button>
+			<!--	<button onclick="changeBanner(-1)" id="banner-previous">&lt;</button>-->
 				<span id="banner-indicators"><span class="banner-indicator">&#9679;</span> <span class="indicator">&#9679;</span></span>
-				<button onclick="changeBanner(1)" id="banner-next">&gt;</button>
+			<!--	<button onclick="changeBanner(1)" id="banner-next">&gt;</button>-->
 			</p>
 			<div id="event-tags"></div>
 			<a href="" class="next-box" id="next-link"><span class="nx-big" id="nx-link-field">Direct Link</span></a>
@@ -542,8 +539,8 @@ redirect_from: "/lobbies/"
 				<span style="background-color: #1d94fc;">Tournament</span>
 			</span>
 			<br/>
-			<span style="white-space: nowrap;"><input type="checkbox" id="announced-checkbox" checked="checked" onchange="toggleEventVisibility()"/> Show announced</span>
-			<span style="white-space: nowrap;"><input type="checkbox" id="regular-checkbox"   checked="checked" onchange="toggleEventVisibility()"/> Show slots</span>
+			<span style="white-space: nowrap;"><input type="checkbox" id="announced-checkbox" checked="checked" onchange="toggleEventVisibility()"/> <label for="announced-checkbox">Show announced</label></span>
+			<span style="white-space: nowrap;"><input type="checkbox" id="regular-checkbox"   checked="checked" onchange="toggleEventVisibility()"/> <label for="regular-checkbox">Show slots</label></span>
 		</p>
 		
 		<div class="event-block" id="events-arms"> 

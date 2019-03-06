@@ -158,6 +158,8 @@ permalink: /staff/banners/index.html
 	<script>
 	
 	var eventsHistory = null;
+	var hostsList = ["A", "B", "C"];
+	var streamersList = ["A", "B", "C"];
 	
 	function fillGameOptions()
 	{
@@ -217,7 +219,6 @@ permalink: /staff/banners/index.html
 			
 			// Fill quick entry lists
 			hostDatabase.sort(function(a, b){ return a.name > b.name; });
-			var hostsList = ["A", "B", "C"];
 			for (var i = 0; i < hostsList.length; ++i)
 			{
 				for (var h = 0; h < hostDatabase.length; ++h)
@@ -244,7 +245,6 @@ permalink: /staff/banners/index.html
 		readAndGenerate();
 	}
 	
-	
 	function fillFromEventData(eventData)
 	{
 		var date = new Date(eventData.date);
@@ -253,18 +253,11 @@ permalink: /staff/banners/index.html
 		$("month").selectedIndex = date.getUTCMonth();
 		$("day").value = date.getUTCDate();
 		$("year").value = date.getFullYear();
-		
 		$("start-hours").value = date.getUTCHours();
 		$("start-minutes").value = date.getUTCMinutes();
-		
 		$("duration-minutes").value = eventData.duration;
-		
 		$("timezone").value = eventData.tz;
-		
 		$("alert").checked = eventData.alert;
-		
-		var hostsList = ["A", "B", "C"];
-		var streamersList = ["C"];
 		
 		for (var i = 0; i < hostsList.length; ++i)
 		{
@@ -312,7 +305,7 @@ permalink: /staff/banners/index.html
 				"game"     : slot.game,
 				"type"     : slot.type,
 				"alert"    : true,
-				"date"     : slot.start,
+				"date"     : slot.date,
 				"duration" : slot.duration,
 				"tz"       : slot.tz,
 				"theme"    : slot.theme,
@@ -346,9 +339,7 @@ permalink: /staff/banners/index.html
 		var offset          = timeZoneOffset(zoneString);
 		var startDate       = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
 		
-		var hostsList = ["A", "B", "C"];
 		var hosts = [];
-		
 		for (var i = 0; i < hostsList.length; ++i)
 		{
 			var host = {
@@ -360,7 +351,6 @@ permalink: /staff/banners/index.html
 			if (host.code != "") hosts.push(host);
 		}
 		
-		var streamersList = ["A", "B", "C"];
 		var streamers = [];
 		for (var i = 0; i < streamersList.length; ++i)
 		{
@@ -407,6 +397,13 @@ permalink: /staff/banners/index.html
 		return eventdata;
 	}
 	
+	function clearHost(id)
+	{
+		$("name" + id).value = $("code" + id).value = "";
+		$("tag"  + id).selectedIndex = 0;
+		readAndGenerate();
+	}
+	
 	function quickEntry(id)
 	{
 		var index = $("quickEntry" + id).selectedIndex;
@@ -418,16 +415,15 @@ permalink: /staff/banners/index.html
 			$("code" + id).value         = useHost.code;
 		//	$("host" + id).selectedIndex = useHost.tier;
 		}
-		else {
-			$("name" + id).value = $("code" + id).value = "";
-			$("tag"  + id).selectedIndex = 0;
-		}
+		else clearHost(id);
 		readAndGenerate();
+		
+		for (var i = 0; i < hostsList.length; ++i)
+			$("quickEntry" + hostsList[i]).selectedIndex = 0;
 	}
 	
 	function fillTBAHost()
 	{
-		var hostsList = ["A", "B", "C"];
 		for (var i = 0; i < hostsList.length; ++i)
 		{
 			$("name" + hostsList[i]).value         = (i == 0) ? "To Be Announced" : "";
@@ -441,7 +437,7 @@ permalink: /staff/banners/index.html
 	function addOneWeek()
 	{
 		var eventdata = readAndGenerate();
-		eventdata.date.setDate(eventdata.date.getDate() + 7);
+		eventdata.date.setUTCDate(eventdata.date.getUTCDate() + 7);
 		fillFromEventData(eventdata);
 	}
 	
@@ -514,7 +510,8 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameA" placeholder="Player name" onChange="readAndGenerate()"/>
 				code: <input type="text" id="codeA" placeholder="0000-1111-2222" onChange="readAndGenerate()"/>
-				[ Quick Entry <select id="quickEntryA" onchange="quickEntry('A');"><option value="0" selected>---</option></select> ]
+				<button onclick="clearHost('A');" style="background-color: red;">Clear</button>
+				Fill: <select id="quickEntryA" onchange="quickEntry('A');"><option value="0" selected>---</option></select>
 				<br/>
 				<select id="hostB" onChange="readAndGenerate()">
 					<option value="0" selected>No Tier</option>
@@ -528,7 +525,8 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameB" placeholder="Player name" onChange="readAndGenerate()"/>
 				code: <input type="text" id="codeB" placeholder="0000-1111-2222" onChange="readAndGenerate()"/>
-				[ Quick Entry <select id="quickEntryB" onchange="quickEntry('B');"><option value="0" selected>---</option></select> ]
+				<button onclick="clearHost('B');" style="background-color: red;">Clear</button>
+				Fill: <select id="quickEntryB" onchange="quickEntry('B');"><option value="0" selected>---</option></select>
 				<br/>
 				<select id="hostC" onChange="readAndGenerate()">
 					<option value="0" selected>No Tier</option>
@@ -542,7 +540,8 @@ permalink: /staff/banners/index.html
 				</select>
 				<input type="text" id="nameC" placeholder="Player name" onChange="readAndGenerate()"/>
 				code: <input type="text" id="codeC" placeholder="0000-1111-2222" onChange="readAndGenerate()"/>
-				[ Quick Entry <select id="quickEntryC" onchange="quickEntry('C');"><option value="0" selected>---</option></select> ]
+				<button onclick="clearHost('C');" style="background-color: red;">Clear</button>
+				Fill: <select id="quickEntryC" onchange="quickEntry('C');"><option value="0" selected>---</option></select>
 			</p>
 			
 			<p>
