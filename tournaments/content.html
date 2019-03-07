@@ -24,19 +24,17 @@
 		{% endif %}
 		
 		// Display next event feature
-		nextEvents(function(nextEventData)
+		var nextEventData = upcomingEvents();
+		for (var i = 0; i < nextEventData.length; ++i)
 		{
-			for (var i = 0; i < nextEventData.length; ++i)
-			{
-				var ev = nextEventData[i];
-				if (ev.game == "arms" && ev.type == "clash")
-					clashes.push(ev);
-				else if (ev.game == "arms" && ev.type == "scramble")
-					scrambles.push(ev);
-			}
-			
-			displayEvent(type);
-		});
+			var ev = nextEventData[i];
+			if (ev.game == "arms" && ev.type == "clash")
+				clashes.push(ev);
+			else if (ev.game == "arms" && ev.type == "scramble")
+				scrambles.push(ev);
+		}
+		
+		displayEvent(type);
 		
 		var history_html = "";
 		var names = { "clash" : "Casual Clash", "scramble" : "Casual Scramble" };

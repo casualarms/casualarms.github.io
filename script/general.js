@@ -253,65 +253,10 @@ function fetchPatrons(callback)
 	return fetchJSON("/data/patreon.json", callback);
 }
 
-function fetchEvents(callback)
+function upcomingEvents()
 {
-	var interceptCallback = function(events)
-	{
-		for (var i = 0; i < events.length; i++)
-		{
-			var eventdata = events[i];
-			eventdata.date = new Date(eventdata.date);
-			events[i] = eventdata;
-		}
-		events.sort(function(a, b) { return a.date - b.date; });
-		callback(events);
-	};
-	
-	return fetchJSON("/data/events.json", interceptCallback);
-}
-
-
-function eventOngoingNow(callback)
-{
-	fetchEvents(function(lobbySchedule)
-	{
-		var classes = ["lobby", "lobby", "clash", "lobby", "lobby"];
-		var now = new Date();
-		
-		for (i = 0; i < lobbySchedule.length; ++i)
-		{
-			var start = lobbySchedule[i].date;
-			var end = getEventEnd(lobbySchedule[i]);
-			
-			if (now > start && now < end)
-			{
-				callback([classes[lobbySchedule[i].type]]);
-				return;
-			}
-		}
-		callback(["none"]);
-		return;
-	});
-}
-
-function nextEvents(callback)
-{
-	fetchEvents(function(lobbySchedule)
-	{
-		var applicables = [];
-		var now = new Date();
-		
-		for (i = 0; i < lobbySchedule.length; ++i)
-		{
-			var start = lobbySchedule[i].date;
-			var end = getEventEnd(lobbySchedule[i]);
-			
-			if (now < end)
-				applicables.push(lobbySchedule[i]);
-		}
-		
-		callback(applicables);
-	});
+	var now = new Date();
+	return eventDataJSON.filter(function(ev) { return now < getEventEnd(ev); });
 }
 
 function getEventID(eventdata)

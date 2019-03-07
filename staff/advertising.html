@@ -143,41 +143,37 @@ permalink: /staff/advertising/index.html
 	function load()
 	{
 		// Add upcoming events for one week
-		nextEvents(function(nextEventData)
+		var targetEvent = getQueryVariable("id");
+		var first = undefined, target = undefined;
+		
+		nextEventList = upcomingEvents();
+		var options = "<option value='undefined' selected>---</option>";
+		
+		for (var i = 0; i < nextEventList.length; ++i)
 		{
-			var targetEvent = getQueryVariable("id");
-			var first = undefined, target = undefined;
+			var html = "";
+			var ev = nextEventList[i];
 			
-			nextEventList = nextEventData;
-			var options = "<option value='undefined' selected>---</option>";
+			html += "<h2>" + ev.titleText + "</h2>";
+			html += "<img id='result-" + i + "'/>";
 			
-			for (var i = 0; i < nextEventData.length; ++i)
-			{
-				var html = "";
-				var ev = nextEventData[i];
-				
-				html += "<h2>" + ev.titleText + "</h2>";
-				html += "<img id='result-" + i + "'/>";
-				
-				var id1 = "text-preview-" + getEventID(ev);
-				html += "<textarea rows='12' id='" + id1 + "' class='text-preview'>" + textBlurb(ev, 0) + "</textarea>";
-				html += "<button onCLick=\"copyToClipboard('" + id1 + "')\" class='btn-cpy text-preview'>Copy Text to Clipboard</button>";
-				
-				var id2 = "text-live-" + getEventID(ev);
-				html += "<textarea rows='12'  id='" + id2 + "' class='text-live'>" + textBlurb(ev, 1) + "</textarea>";
-				html += "<button onCLick=\"copyToClipboard('" + id2 + "')\" class='btn-cpy text-live'>Copy Text to Clipboard</button>";
-				
-				$("calendar").innerHTML += html;
-				
-				generateBanner(880, 480, ev, "result-" + i, false);
-				
-				var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
-				options += "<option>" + dateString + ": " + ev.title + "</option>";
-			}
+			var id1 = "text-preview-" + getEventID(ev);
+			html += "<textarea rows='12' id='" + id1 + "' class='text-preview'>" + textBlurb(ev, 0) + "</textarea>";
+			html += "<button onCLick=\"copyToClipboard('" + id1 + "')\" class='btn-cpy text-preview'>Copy Text to Clipboard</button>";
 			
-			$("event-history-U").innerHTML = $("event-history-D").innerHTML = $("event-history-L").innerHTML = $("event-history-R").innerHTML = options;;
+			var id2 = "text-live-" + getEventID(ev);
+			html += "<textarea rows='12'  id='" + id2 + "' class='text-live'>" + textBlurb(ev, 1) + "</textarea>";
+			html += "<button onCLick=\"copyToClipboard('" + id2 + "')\" class='btn-cpy text-live'>Copy Text to Clipboard</button>";
 			
-		});
+			$("calendar").innerHTML += html;
+			
+			generateBanner(880, 480, ev, "result-" + i, false);
+			
+			var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
+			options += "<option>" + dateString + ": " + ev.title + "</option>";
+		}
+		
+		$("event-history-U").innerHTML = $("event-history-D").innerHTML = $("event-history-L").innerHTML = $("event-history-R").innerHTML = options;;
 	}
 	
 	function showAnnouncements()

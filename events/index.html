@@ -407,12 +407,12 @@ redirect_from: "/lobbies/"
 		$("calendar").innerHTML += timemarks;
 		
 		// Add standard slots
-		var events = "<div id='regular-slots'>";
+		var html = "<div id='regular-slots'>";
 		for (var i = 0; i < eventSlots.length; ++i)
 		{
 			var evStart = eventSlots[i].date;
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
-			events += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].slot_game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
+			html += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].slot_game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 			
 			if (eventSlots[i].game == "arms")
 			{
@@ -421,56 +421,52 @@ redirect_from: "/lobbies/"
 				$(eventSlots[i].id + "-end")  .innerHTML = formatTime(evEnd);
 			}
 		}
-		events += "</div>";
+		html += "</div>";
 		
 		// Add upcoming events for one week
-		nextEvents(function(nextEventData)
+		eventData = upcomingEvents();
+		var targetEvent = getQueryVariable("id");
+		var indicator_html = "";
+		var first = undefined, target = undefined;
+		
+		html += "<div id='announced-slots'>";
+		for (var i = 0; i < eventData.length; ++i)
 		{
-			eventData = nextEventData;
-			var targetEvent = getQueryVariable("id");
-			var html = "<div id='announced-slots'>", indicator_html = "";
-			var first = undefined, target = undefined;
+			var ev = eventData[i];
+			indicator_html += "<span class='banner-indicator bgcolor-game-" + ev.game + " bgcolor-type-" + ev.type + "' id='banner-indicator-" + i + "' onclick='previewEvent(" + i + ");'></span>";
 			
-			for (var i = 0; i < nextEventData.length; ++i)
+			if (first == undefined && !(ev.game == "arms" && ["clash", "scramble"].includes(ev.type))) // No Clash or Scramble
+				first = i;
+			
+			if (getEventID(ev) == targetEvent)
+				target = i;
+			
+			var weekAhead = new Date();
+			weekAhead.setDate(weekAhead.getDate() + 7);
+			
+			if (ev.date < weekAhead)
 			{
-				var ev = nextEventData[i];
-				indicator_html += "<span class='banner-indicator bgcolor-game-" + ev.game + " bgcolor-type-" + ev.type + "' id='banner-indicator-" + i + "' onclick='previewEvent(" + i + ");'></span>";
-				
-				if (first == undefined && !(ev.game == "arms" && ["clash", "scramble"].includes(ev.type))) // No Clash or Scramble
-					first = i;
-				
-				if (getEventID(ev) == targetEvent)
-					target = i;
-				
-				var weekAhead = new Date();
-				weekAhead.setDate(weekAhead.getDate() + 7);
-				
-				if (ev.date < weekAhead)
-				{
-					var evStart = new Date(ev.date);
-					var evEnd = getEventEnd(ev);
-					var anchor = (ev.game == "arms" && ev.type == "clash") ? "/clash/" : ((ev.game == "arms" && ev.type == "scramble") ? "/scramble/" : "#next");
-					html += createEntry(evStart, evEnd, anchor, i, ev.game, ev.type, ev.title + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
-				}
+				var evStart = new Date(ev.date);
+				var evEnd = getEventEnd(ev);
+				var anchor = (ev.game == "arms" && ev.type == "clash") ? "/clash/" : ((ev.game == "arms" && ev.type == "scramble") ? "/scramble/" : "#next");
+				html += createEntry(evStart, evEnd, anchor, i, ev.game, ev.type, ev.title + "<br/>"  + formatTime(evStart) + " to " + formatTime(evEnd));
 			}
-			
-			$("calendar").innerHTML += html + "</div>";
-			$("banner-indicators").innerHTML = indicator_html;
-			
-			var preview = (target != undefined) ? target : first;
-			previewEvent(preview);
-			
-			if (window.location.hash.substring(1) == "next")
-				$("next").scrollIntoView();
-		});
-		events += "</div>";
+		}
+		html += "</div>";
 		
 		// Add current time indicator
 		var rightNow = new Date();
 		var rightSoon = new Date(rightNow.getTime() + 20 * 60000);
-		events += createEntry(rightNow, rightSoon, "", -1, "none", "current-time", "Your Local Time: " + formatTime(rightNow));
+		html += createEntry(rightNow, rightSoon, "", -1, "none", "current-time", "Your Local Time: " + formatTime(rightNow));
 		
-		$("calendar").innerHTML += events;
+		$("calendar").innerHTML += html;
+		$("banner-indicators").innerHTML = indicator_html;
+		
+		var preview = (target != undefined) ? target : first;
+		previewEvent(preview);
+		
+		if (window.location.hash.substring(1) == "next")
+			$("next").scrollIntoView();
 	}
 	
 	function toggleEventVisibility()

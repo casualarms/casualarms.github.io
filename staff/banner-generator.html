@@ -157,7 +157,7 @@ permalink: /staff/banners/index.html
 	</style>
 	<script>
 	
-	var eventsHistory = null;
+	var eventsHistory = eventDataJSON;
 	var hostsList = ["A", "B", "C"];
 	var streamersList = ["A", "B", "C"];
 	
@@ -193,41 +193,38 @@ permalink: /staff/banners/index.html
 	function load()
 	{
 		// Read old events
-		fetchEvents(function(events)
+		var options = "<option value='undefined' selected>---</option>";
+		for (var i = 0; i < eventsHistory.length; ++i)
 		{
-			eventsHistory = events;
-			var options = "<option value='undefined' selected>---</option>";
-			for (var i = 0; i < events.length; ++i)
-			{
-				var dateString = dayNames[events[i].date.getUTCDay()] + " " + monthNames[events[i].date.getUTCMonth()] + ' ' + events[i].date.getUTCDate();
-				options += "<option>" + dateString + ": " + events[i].title + "</option>";
-				
-				// Add prior hosts to database
-				if ("hosts" in events[i])
-				{
-					outer: 
-					for (var eh = 0; eh < events[i].hosts.length; eh++)
-					{
-						for (var h = 0; h < hostDatabase.length; ++h)
-							if (events[i].hosts[eh].code == hostDatabase[h].code || events[i].hosts[eh].name == "")
-								continue outer;
-						hostDatabase.push(events[i].hosts[eh]);
-					}
-				}
-				$("event-history").innerHTML = options;
-			}
+			var ev = eventsHistory[i];
+			var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
+			options += "<option>" + dateString + ": " + ev.title + "</option>";
 			
-			// Fill quick entry lists
-			hostDatabase.sort(function(a, b){ return a.name > b.name; });
-			for (var i = 0; i < hostsList.length; ++i)
+			// Add prior hosts to database
+			if ("hosts" in ev)
 			{
-				for (var h = 0; h < hostDatabase.length; ++h)
+				outer: 
+				for (var eh = 0; eh < ev.hosts.length; eh++)
 				{
-					var html = "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
-					$("quickEntry" + hostsList[i]).innerHTML += html;
+					for (var h = 0; h < hostDatabase.length; ++h)
+						if (ev.hosts[eh].code == hostDatabase[h].code || ev.hosts[eh].name == "")
+							continue outer;
+					hostDatabase.push(ev.hosts[eh]);
 				}
 			}
-		});
+			$("event-history").innerHTML = options;
+		}
+		
+		// Fill quick entry lists
+		hostDatabase.sort(function(a, b){ return a.name > b.name; });
+		for (var i = 0; i < hostsList.length; ++i)
+		{
+			for (var h = 0; h < hostDatabase.length; ++h)
+			{
+				var html = "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
+				$("quickEntry" + hostsList[i]).innerHTML += html;
+			}
+		}
 		
 		// Fill event slot selector
 		var options = "<option value='undefined' selected>---</option>";
@@ -545,9 +542,9 @@ permalink: /staff/banners/index.html
 			</p>
 			
 			<p>
-				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerA" placeholder="twitchID" onChange="readAndGenerate()"/><br/>
-				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerB" placeholder="twitchID" onChange="readAndGenerate()"/><br/>
-				Streamer: <a href=" https://www.twitch.tv">https://www.twitch.tv/</a> <input type="text" id="streamerC" placeholder="twitchID" onChange="readAndGenerate()"/>
+				Streamer: <a href="https://www.twitch.tv">twitch.tv/</a> <input type="text" id="streamerA" placeholder="twitchID" onChange="readAndGenerate()"/><br/>
+				Streamer: <a href="https://www.twitch.tv">twitch.tv/</a> <input type="text" id="streamerB" placeholder="twitchID" onChange="readAndGenerate()"/><br/>
+				Streamer: <a href="https://www.twitch.tv">twitch.tv/</a> <input type="text" id="streamerC" placeholder="twitchID" onChange="readAndGenerate()"/>
 				
 				Sponsor: <select id="sponsor" onChange="readAndGenerate()">
 					<option value="undefined" selected>---</option>

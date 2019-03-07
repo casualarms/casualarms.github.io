@@ -30,9 +30,22 @@ for (var game in eventGames)
 	}
 }
 
+// Event database
+var eventDataJSON = {% include_relative events.json %};
+for (var i = 0; i < eventDataJSON.length; i++)
+{
+	var eventdata = eventDataJSON[i];
+	eventdata.date = new Date(eventdata.date);
+	eventDataJSON[i] = eventdata;
+}
+eventDataJSON.sort(function(a, b) { return a.date - b.date; });
 
+
+// Tournament history
 var tournamentsLog = {% include_relative champions.json %};
 
+
+// Host database
 var hostDatabase = [
 	{ "tag" : "CC", "name" : "Rashiko",      "code" : "6822-5055-2423", tier : 2},
 	{ "tag" : "",   "name" : "Literary",     "code" : "4704-7597-7783", tier : 2},

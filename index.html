@@ -20,28 +20,29 @@
 	
 	function load()
 	{
-		// Change to event mode
-		eventOngoingNow(function(currentEvent)
-		{
-			if (currentEvent[0] != "none" || getQueryVariable("event") == "on")
-				$("event-id").className += " event " + currentEvent[0] + "-event";
-		});
-		
 		// Add random trivia
 		var PRNG = Math.seed(Math.random()*10000);
 		$("random-fact").innerHTML = generateQuestion(PRNG).trivia;
 		
 		// Display next event feature
-		nextEvents(function(nextEventData)
+		var nextEventData = upcomingEvents();
+		if (nextEventData.length > 0)
 		{
-			if (nextEventData.length > 0)
+			var ev = nextEventData[0];
+			generateBanner(880, 480, ev, "featured-canvas", true);
+			
+			$("featured").className = "";
+			if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
+				$("featured-link").href = "/" + ev.type + "/";
+			
+			// Change to event mode
+			var now = new Date();
+			if (now > ev.date && now < getEventEnd(ev) || getQueryVariable("event") == "on")
 			{
-				$("featured").className = "";
-				generateBanner(880, 480, nextEventData[0], "featured-canvas", true);
-				if (nextEventData[0].game == "arms" && ["clash", "scramble"].includes(nextEventData[0].type))
-					$("featured-link").href = "/" + nextEventData[0].type + "/";
+				$("event-id").className += " event ";
+				$("blurb").innerHTML = "Event happening now!";
 			}
-		});
+		}
 		
 		// Display last tournament winner
 		var images = { "clash" : "/assets/main/logo-champion.png", "scramble" : "/assets/main/logo-sovereign.png" };
