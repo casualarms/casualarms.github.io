@@ -42,6 +42,24 @@
 				$("event-id").className += " event ";
 				$("blurb").innerHTML = "Event happening now!";
 			}
+			else
+			{
+				var updateCountdown = function()
+				{
+					var diff = nextEventData[0].date.getTime() - new Date().getTime();
+					var msec = diff;
+					var hh = Math.floor(msec / 1000 / 60 / 60);
+					msec -= hh * 1000 * 60 * 60;
+					var mm = Math.floor(msec / 1000 / 60);
+					msec -= mm * 1000 * 60;
+					var ss = Math.floor(msec / 1000);
+					msec -= ss * 1000;
+					$("blurb").innerHTML = "Event starting in " + padZero(hh) + ":" + padZero(mm) + ":" + padZero(ss) + "";
+				}
+				
+				updateCountdown();
+				setInterval(updateCountdown, 1000);
+			}
 		}
 		
 		// Display last tournament winner
@@ -425,7 +443,8 @@
 <body id="event-id" onload="load()" ontouchstart="">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div class="main-menu" id="container">
-		<h2>&gt;&gt;&nbsp;<a href="/wristbands/">1&nbsp;Year&nbsp;ARMSiversary Wristband&nbsp;Sale</a>&nbsp;&lt;&lt;</h2>
+		<!--<h2>&gt;&gt;&nbsp;<a href="/wristbands/">1&nbsp;Year&nbsp;ARMSiversary Wristband&nbsp;Sale</a>&nbsp;&lt;&lt;</h2>-->
+		<h2 id="blurb">Event starting in 00:00:00!</h2>
 		
 		<img src="assets/main/rank-shield.png" id="shield"/>
 		<img src="assets/main/logo.png" id="logo"/>

@@ -79,6 +79,13 @@ function unEscapeHTML(str)
 	return str.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
 }
 
+function padZero(a)
+{
+	var text = String(a);
+	if (text.length == 1) text = '0' + text;
+	return text;
+}
+
 function getTimeZoneDiff()
 {
 	var now = new Date();
