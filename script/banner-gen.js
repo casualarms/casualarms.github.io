@@ -122,7 +122,7 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 			[ 100, 40, 0.6 * Math.PI, 3, 0.4, 0, "rgba(0,0,0,0.09)"],
 			[-100, 50, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,255,0.12)"],
 		];
-		renderSwirls(ctx.canvas, params);
+		renderSwirls(ctx, width / 2, height / 2, width * 2, params);
 		break;
 	
 	case "kart":
@@ -139,8 +139,8 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	case "splat":
 		stripeBgColor = bgColor;
 		titleColor = websiteBgColor = "#00dd00";
-		renderSplash(ctx.canvas, -200, 100, 1.0, "rgb(0,0,0)",       0.10, Math.seed("ec7O63".hashCode()));
-		renderSplash(ctx.canvas,  200,   0, 1.4, "rgb(255,255,255)", 0.15, Math.seed("pGvubT".hashCode()));
+		renderSplash(ctx, width, height, -200, 100, 1.0, "rgb(0,0,0)",       0.10, Math.seed("ec7O63".hashCode()));
+		renderSplash(ctx, width, height,  200,   0, 1.4, "rgb(255,255,255)", 0.15, Math.seed("pGvubT".hashCode()));
 		ctx.fillStyle = "#00dd00";
 		ctx.fillRect(0, 0, width, 115);
 		break;
@@ -148,8 +148,8 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	case "smash":
 		titleColor = websiteBgColor = "white";
 		stripeBgColor = "black";
-		renderSmashBall(ctx.canvas, "rgba(0, 0, 0,       0.12)",  70, -0.2, -0.07);
-		renderSmashBall(ctx.canvas, "rgba(255, 255, 255, 0.2)", 180, 0.15, 0.07);
+		renderSmashBall(ctx, width, height, "rgba(0, 0, 0,       0.12)",  70, -0.2, -0.07);
+		renderSmashBall(ctx, width, height, "rgba(255, 255, 255, 0.2)", 180, 0.15, 0.07);
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, width, 115);
 		break;

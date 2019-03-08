@@ -645,10 +645,10 @@
 		if (game == "arms")
 		{
 			var params = [
-				[+50, +20, 0.6 * Math.PI, 3, 0.50, 0, "rgba(0,0,0,0.18)"],
-				[-50, -20, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,255,0.06)"],
+				[+50, +20, 0.6 * Math.PI, 3, 0.50, 0, "rgba(  0,   0,   0, 0.18)"],
+				[-50, -20, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255, 255, 255, 0.06)"],
 			];
-			renderSwirls(canvas, params);
+			renderSwirls(ctx, canvas.width / 2, canvas.height / 2, canvas.width * 2, params);
 		}
 		else if (game == "kart")
 		{
@@ -656,13 +656,13 @@
 		}
 		else if (game == "splat")
 		{
-			renderSplash(canvas, -180, 50, 0.8, "rgb(0,0,0)",       0.18, Math.seed("ec7O63".hashCode()));
-			renderSplash(canvas,  140,  0, 1.0, "rgb(255,255,255)", 0.06, Math.seed("pGvubT".hashCode()));
+			renderSplash(ctx, canvas.width, canvas.height, -180, 50, 0.8, "rgb(  0,   0,   0)", 0.18, Math.seed("ec7O63".hashCode()));
+			renderSplash(ctx, canvas.width, canvas.height,  140,  0, 1.0, "rgb(255, 255, 255)", 0.06, Math.seed("pGvubT".hashCode()));
 		}
 		else if (game == "smash")
 		{
-			renderSmashBall(ctx.canvas, "rgba(  0,   0,   0, 0.25)",  50, -0.3, -0.3);
-			renderSmashBall(ctx.canvas, "rgba(255, 255, 255, 0.10)", 110,  0.2,  0.2);
+			renderSmashBall(ctx, canvas.width, canvas.height, "rgba(  0,   0,   0, 0.25)",  50, -0.3, -0.3);
+			renderSmashBall(ctx, canvas.width, canvas.height, "rgba(255, 255, 255, 0.10)", 110,  0.2,  0.2);
 		}
 		
 		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";

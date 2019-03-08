@@ -102,22 +102,16 @@ permalink: /staff/advertising/index.html
 		if (ev.type == 6)
 			key = "kart";
 		
-		console.log(ev.titleText + " " + ev.date.getDay());
-		
-		if (ev.type == 0 && ev.date.getDay() == 4)
+		if (ev.type == "leaderboard" && ev.date.getDay() == 4)
 			key = "arms-thursday";
-		else if (ev.type == 0 && ev.date.getDay() == 3)
+		else if (ev.type == "leaderboard" && ev.date.getDay() == 3)
 			key = "arms-tuesday";
-		else if (ev.type == 4)
-			key = "arms-cote";
-		else if (ev.type == 3)
-			key = "arms-mlm";
 		
 		if (key == "")
 			return ""
 		
 		var text = templates[key][variant];
-		var theme = getTheme(ev.theme);
+		var theme = getTheme(ev.game, ev.theme);
 		var themeText = theme ? theme.name + ": " + "https://www.casualarms.net/events/themes/#" + theme.key : "";
 		
 		var hosttext = "";
@@ -132,7 +126,7 @@ permalink: /staff/advertising/index.html
 		text = text.replace("{code}", ev.hosts[0].code);
 		text = text.replace("{theme}", themeText);
 		
-		if (ev.streamers.length > 0)
+		if ("streamers" in ev)
 			text += "\n\nWatch the event on stream! http://twitch.tv/" + ev.streamers[0];
 		
 		return text;
@@ -154,7 +148,7 @@ permalink: /staff/advertising/index.html
 			var html = "";
 			var ev = nextEventList[i];
 			
-			html += "<h2>" + ev.titleText + "</h2>";
+			html += "<h2>" + ev.title + "</h2>";
 			html += "<img id='result-" + i + "'/>";
 			
 			var id1 = "text-preview-" + getEventID(ev);
@@ -215,6 +209,8 @@ permalink: /staff/advertising/index.html
 			withImagesLoaded(bannerImageData(ev1), function(images)
 			{
 				ctx.save();
+				ctx.rect(0, 0, 880, 480);
+				ctx.clip();
 				performBannerRendering(ctx, ev1, false, images);
 				ctx.restore();
 			});
@@ -223,6 +219,8 @@ permalink: /staff/advertising/index.html
 			{
 				ctx.save();
 				ctx.translate(mode == "UD" ? 0 : 880, mode == "UD" ? 480 : 0);
+				ctx.rect(0, 0, 880, 480);
+				ctx.clip();
 				performBannerRendering(ctx, ev2, false, images);
 				ctx.restore();
 				

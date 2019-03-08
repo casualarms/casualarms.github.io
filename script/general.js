@@ -546,9 +546,8 @@ function copyToClipboard(tid)
 }
 
 
-function drawSwirl(canvas, startX, startY, maxRadius, rotation, curvature, width, color)
+function drawSwirl(ctx, startX, startY, maxRadius, rotation, curvature, width, color)
 {
-	var ctx = canvas.getContext('2d');
 	ctx.fillStyle = color;
 	ctx.moveTo(startX, startY);
 	ctx.beginPath();
@@ -576,25 +575,21 @@ function drawSwirl(canvas, startX, startY, maxRadius, rotation, curvature, width
 	ctx.fill();
 }
 
-function drawSwirlComponents(canvas, startX, startY, maxRadius, rotation, curvature, width, gaps, color)
+function drawSwirlComponents(ctx, startX, startY, maxRadius, rotation, curvature, width, gaps, color)
 {
 	var components = gaps * 2 + 1;
 	var width_s = width / components;
 	for (var i = 0; i < components; i += 2)
 	{
 		var m_rotation = rotation + i * width_s;
-		drawSwirl(canvas, startX, startY, maxRadius, m_rotation, curvature, width_s, color);
+		drawSwirl(ctx, startX, startY, maxRadius, m_rotation, curvature, width_s, color);
 	}
 }
 
-function renderSwirls(canvas, lines)
+function renderSwirls(ctx, midX, midY, radius, lines)
 {
-	var midX = canvas.width / 2;
-	var midY = canvas.height / 2;
-	var radius = Math.max(canvas.width, canvas.height) * 2;
-	
 	for (var l = 0; l < lines.length; l++)
-		drawSwirlComponents(canvas, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
+		drawSwirlComponents(ctx, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
 }
 
 function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, height, fade)
@@ -628,12 +623,8 @@ function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, h
 	mainctx.restore();
 }
 
-function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
+function renderSplash(mainctx, width, height, x, y, scale, color, alpha, PRNG)
 {
-	var mainctx = canvas.getContext('2d');
-	var width = canvas.width;
-	var height = canvas.height;
-	
 	var scratch = document.createElement('canvas');
 	scratch.width = width;
 	scratch.height = height;
@@ -692,12 +683,8 @@ function renderSplash(canvas, x, y, scale, color, alpha, PRNG)
 	mainctx.restore();
 }
 
-function renderSmashBall(canvas, color, size, offset_x, offset_y)
+function renderSmashBall(mainctx, width, height, color, size, offset_x, offset_y)
 {
-	var mainctx = canvas.getContext('2d');
-	var width = canvas.width;
-	var height = canvas.height;
-	
 	var scratch = document.createElement('canvas');
 	scratch.width = width;
 	scratch.height = height;
