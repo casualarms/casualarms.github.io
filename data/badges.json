@@ -130,7 +130,7 @@
 	
 	,"131597700884856832": {"name": "noahlot",             "badges": ["scramble"] }
 	,"183043875580018688": {"name": "Kon",                 "badges": ["scramble"] }
-	,"409578580209827841": {"name": "Dory",                "badges": ["scramble"] }
+	,"409578580209827841": {"name": "Dory",                "badges": ["scramble", "clash"] }
 	,"257959389594386433": {"name": "HKGamer13",           "badges": ["scramble"] }
 	
 	,"330563262141825024": {"name": "Sadaly",              "badges": ["season_arms", "season_kart", "season_kart_win", "season_splat"] }
@@ -151,4 +151,7 @@
 	,"340257118298832945": {"name": "Mindy (WhisperingShadow)", "badges": ["season_arms"] }
 	,"238976648471511041": {"name": "VerteX",              "badges": ["season_kart", "season_kart_win"] }
 	
+	,"410828670874419211": {"name": "wa",                  "badges": ["clash"] }
+	,"553998647994482731": {"name": "MD",                  "badges": ["clash"] }
+	,"124936014044069891": {"name": "Penzo",               "badges": ["clash"] }
   }
