@@ -1,5 +1,5 @@
 [
-	{"title":"Monday Motorway","game":"kart","type":"race","alert":true,"date":"2019-03-11T18:30:00.000Z","duration":60,"tz":"GMT","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
+	{"title":"Monday Motorway","game":"kart","type":"race","alert":true,"date":"2019-03-11T19:30:00.000Z","duration":60,"tz":"GMT","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-03-11T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","stages":"walkoff-smash","items":"explosives-smash","hosts":[{"name":"Pikscast","code":"5246-0388-8018"},{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-03-13T01:00:00.000Z","duration":120,"tz":"PDT","theme":"corner-chaos","stages":"corners","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"streamers":["sorafirestorm"]}
 	,{"title":"Wonky Wednesday","game":"kart","type":"race","alert":true,"date":"2019-03-13T18:30:00.000Z","duration":60,"tz":"GMT","theme":"mirror","stages":"all-race","hosts":[{"name":"","code":"4621-2901-6363"}]}
