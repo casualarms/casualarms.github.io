@@ -75,18 +75,11 @@
 	
 	function load()
 	{
-		
 		var seedVar = getQueryVariable("seed");
-		qID = ((seedVar != undefined) ? seedVar : generateNewID(6));
+		var qID = ((seedVar != undefined) ? seedVar : generateNewID(6));
 		$("seed").innerHTML = qID;
-		PRNG = Math.seed(qID.hashCode());
-		
-		renderSplash($("canvas"), 0, 0, 1, "black", 1, PRNG);
-		
-		$("swirl1").addEventListener('input', function() {
-			$("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
-			renderSwirls($("canvas"), getParams());
-		});
+		var PRNG = Math.seed(qID.hashCode());
+		renderSplash($("canvas").getContext('2d'), $("canvas").width, $("canvas").height, 0, 0, 1, "black", 1, PRNG);
 	}
 	
 	function genImg()

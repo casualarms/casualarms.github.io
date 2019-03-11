@@ -34,30 +34,31 @@
 	<script>
 	
 	
-	function getParams()
+	function renderSwirls(canvas)
 	{
-		return [
-			[0, +25, 0.6 * Math.PI, 3,   0.6, 0, "red"],
-			[0, -25, 1.7 * Math.PI, 2.5, 0.4, 1, "blue"],
-			[
-				parseFloat($("anchorX").value),
-				parseFloat($("anchorY").value),
-				parseFloat($("rotation").value),
-				parseFloat($("curvature").value),
-				parseFloat($("width").value),
-				parseFloat($("gaps").value),
-				"rgba("+$("colorR").value+","+$("colorG").value+","+$("colorB").value+","+$("colorAlpha").value+")"
-			]
-		];
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		
+		renderSwirl(ctx, canvas.width / 2, canvas.height / 2 + 25, canvas.width * 2, 0.6 * Math.PI, 3.0, 0.6, 0, "red");
+		renderSwirl(ctx, canvas.width / 2, canvas.height / 2 - 25, canvas.width * 2, 1.7 * Math.PI, 2.5, 0.4, 1, "blue");
+		
+		renderSwirl(ctx,
+			canvas.width / 2 + parseFloat($("anchorX").value),
+			canvas.height / 2 + parseFloat($("anchorY").value),
+			canvas.width * 2,
+			parseFloat($("rotation").value),
+			parseFloat($("curvature").value),
+			parseFloat($("width").value),
+			parseFloat($("gaps").value),
+			"rgba("+$("colorR").value+","+$("colorG").value+","+$("colorB").value+","+$("colorAlpha").value+")"
+		);
 	}
 	
 	function load()
 	{
-		renderSwirls($("canvas"), getParams());
-		
+		renderSwirls($("canvas"));
 		$("swirl1").addEventListener('input', function() {
-			$("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
-			renderSwirls($("canvas"), getParams());
+			renderSwirls($("canvas"));
 		});
 	}
 	

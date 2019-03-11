@@ -531,7 +531,7 @@
 			
 			var zeroes = [];
 			for (var key in badges)
-				if (!ldbPLayers.hasOwnProperty(key))
+				if (!ldbPLayers.hasOwnProperty(key) && (badges[key].badges.includes("clash") || badges[key].badges.includes("scramble")))
 					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
 			
 			body_html += result.body + displayRolePlayers(zeroes, 0, game, false);
@@ -642,27 +642,23 @@
 		var canvas = document.createElement("canvas");
 		var ctx = canvas.getContext("2d");
 		canvas.width = canvas.height = 500;
-		if (game == "arms")
+		switch (game)
 		{
-			var params = [
-				[+50, +20, 0.6 * Math.PI, 3, 0.50, 0, "rgba(  0,   0,   0, 0.18)"],
-				[-50, -20, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255, 255, 255, 0.06)"],
-			];
-			renderSwirls(ctx, canvas.width / 2, canvas.height / 2, canvas.width * 2, params);
-		}
-		else if (game == "kart")
-		{
+		case "arms":
+			renderSwirl(ctx, canvas.width / 2 + 50, canvas.height / 2 + 20, canvas.width * 2, 0.6 * Math.PI, 3, 0.50, 0, "rgba(  0,   0,   0, 0.18)");
+			renderSwirl(ctx, canvas.width / 2 - 50, canvas.height / 2 - 20, canvas.width * 2, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255, 255, 255, 0.06)");
+			break;
+		case "kart":
 			renderCheckerboard(ctx, canvas.height / 8, 60, 60, 60, "#444", 0, 0, canvas.width, canvas.height, false);
-		}
-		else if (game == "splat")
-		{
+			break;
+		case "splat":
 			renderSplash(ctx, canvas.width, canvas.height, -180, 50, 0.8, "rgb(  0,   0,   0)", 0.18, Math.seed("ec7O63".hashCode()));
 			renderSplash(ctx, canvas.width, canvas.height,  140,  0, 1.0, "rgb(255, 255, 255)", 0.06, Math.seed("pGvubT".hashCode()));
-		}
-		else if (game == "smash")
-		{
+			break;
+		case "smash":
 			renderSmashBall(ctx, canvas.width, canvas.height, "rgba(  0,   0,   0, 0.25)",  50, -0.3, -0.3);
 			renderSmashBall(ctx, canvas.width, canvas.height, "rgba(255, 255, 255, 0.10)", 110,  0.2,  0.2);
+			break;
 		}
 		
 		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";

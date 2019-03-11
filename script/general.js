@@ -545,51 +545,39 @@ function copyToClipboard(tid)
 	}
 }
 
-
-function drawSwirl(ctx, startX, startY, maxRadius, rotation, curvature, width, color)
-{
-	ctx.fillStyle = color;
-	ctx.moveTo(startX, startY);
-	ctx.beginPath();
-	
-	var steps = 300;
-	function calcStep(i, angle)
-	{
-		var radius = i / steps * maxRadius;
-		var phi = angle + i / steps * curvature;
-		var x = startX + radius * Math.cos(phi);
-		var y = startY + radius * Math.sin(phi);
-		ctx.lineTo(x, y);
-	}
-	
-	for (var i = 0; i < steps; ++i)
-		calcStep(i, rotation);
-	
-	var phiSteps = 50;
-	for (var phi = 0; phi < phiSteps; ++phi)
-		calcStep(steps-1, rotation + (phi / phiSteps) * width);
-	
-	for (var i = steps-1; i >= 0; --i)
-		calcStep(i, rotation + width);
-	
-	ctx.fill();
-}
-
-function drawSwirlComponents(ctx, startX, startY, maxRadius, rotation, curvature, width, gaps, color)
+function renderSwirl(ctx, startX, startY, maxRadius, total_rotation, curvature, total_width, gaps, color)
 {
 	var components = gaps * 2 + 1;
-	var width_s = width / components;
-	for (var i = 0; i < components; i += 2)
+	var width = total_width / components;
+	for (var c = 0; c < components; c += 2)
 	{
-		var m_rotation = rotation + i * width_s;
-		drawSwirl(ctx, startX, startY, maxRadius, m_rotation, curvature, width_s, color);
+		var rotation = total_rotation + c * width;
+		ctx.fillStyle = color;
+		ctx.moveTo(startX, startY);
+		ctx.beginPath();
+		
+		var steps = 300;
+		function calcStep(step, angle)
+		{
+			var radius = step / steps * maxRadius;
+			var phi = angle + step / steps * curvature;
+			var x = startX + radius * Math.cos(phi);
+			var y = startY + radius * Math.sin(phi);
+			ctx.lineTo(x, y);
+		}
+		
+		for (var i = 0; i < steps; ++i)
+			calcStep(i, rotation);
+		
+		var phiSteps = 50;
+		for (var phi = 0; phi < phiSteps; ++phi)
+			calcStep(steps-1, rotation + (phi / phiSteps) * width);
+		
+		for (var i = steps-1; i >= 0; --i)
+			calcStep(i, rotation + width);
+		
+		ctx.fill();
 	}
-}
-
-function renderSwirls(ctx, midX, midY, radius, lines)
-{
-	for (var l = 0; l < lines.length; l++)
-		drawSwirlComponents(ctx, midX + lines[l][0], midY + lines[l][1], radius, lines[l][2], lines[l][3],lines[l][4], lines[l][5], lines[l][6]);
 }
 
 function renderCheckerboard(mainctx, size, r, g, b, bg, startX, startY, width, height, fade)

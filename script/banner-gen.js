@@ -118,11 +118,8 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	switch (eventdata.game)
 	{
 	case "arms":
-		var params = [
-			[ 100, 40, 0.6 * Math.PI, 3, 0.4, 0, "rgba(0,0,0,0.09)"],
-			[-100, 50, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255,255,255,0.12)"],
-		];
-		renderSwirls(ctx, width / 2, height / 2, width * 2, params);
+		renderSwirl(ctx, width / 2 + 100, height / 2 + 40, width * 2, 0.6 * Math.PI, 3, 0.40, 0, "rgba(  0,   0,   0, 0.09)");
+		renderSwirl(ctx, width / 2 - 100, height / 2 + 50, width * 2, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255, 255, 255, 0.12)");
 		break;
 	
 	case "kart":
