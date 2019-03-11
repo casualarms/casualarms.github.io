@@ -22,6 +22,8 @@
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-03-24T19:45:00.000Z","duration":120,"tz":"EDT","theme":"hedlok-havok","stages":"all-arms","hosts":[{"name":"To Be Announced","code":"-"}]}
 
 
+	,{"title":"Unofficial Tournament","game":"smash","type":"impromptu","alert":false,"date":"2019-03-15T21:00:00.000Z","duration":120,"tz":"EDT","hosts":[{"name":"- Round Robin Opponents","code":"-"},{"name":"challonge.com/unofficialarms","code":"-"}]}
+	
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-03-09T20:15:00.000Z","duration":60,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Casual Clash 11","game":"arms","type":"clash","alert":false,"date":"2019-03-09T21:30:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
 
