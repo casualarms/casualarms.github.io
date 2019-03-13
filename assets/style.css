@@ -18,10 +18,9 @@ body {
 	margin: 0 auto;
 	max-width: 700pt;
 	background-color: yellow;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5), 0 0 100px rgba(0,0,0,0.3) inset;
 	position: relative;
 	overflow: hidden;
-	box-shadow: 0 0 100px rgba(0,0,0,0.3) inset;
 }
 
 
