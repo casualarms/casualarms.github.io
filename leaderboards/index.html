@@ -105,6 +105,14 @@
 		top: 3pt;
 	}
 	
+	.progress {
+		display: inline-block;
+		height: 1pt;
+		position: absolute;
+		left: 0; bottom: 0;
+		transition: background-color 0.2s;
+	}
+	
 	p.entry:hover {
 		background-color: yellow;
 		color: black !important;
@@ -129,6 +137,10 @@
 	
 	p.entry:hover .index {
 		transform: scale(1.5);
+	}
+	
+	p.entry:hover .progress {
+		background-color: black !important;
 	}
 	
 	.index { color: black; }
@@ -421,6 +433,16 @@
 		finalizeLoading();
 	}
 	
+	function playerProgress(player, game)
+	{
+		var tiers = leaderboardTiers[game];
+		var tc = tiers.length - 1;
+		while (tiers[tc].start > player.coins) tc--;
+		var min = (tc == 1 ? 0 : tiers[tc].start);
+		var max = (tc == tiers.length - 2) ? player.coins : tiers[tc + 1].start;
+		return (player.coins - min) / (max - min);
+	}
+	
 	function displayRolePlayers(players, tc, game, showIndex)
 	{
 		var tier = leaderboardTiers[game][tc];
@@ -434,11 +456,13 @@
 			duplicates = (players[pi].coins == previous) ? duplicates + 1 : 0;
 			previous = players[pi].coins;
 			var useIndex = pi + 1 - duplicates;
+			var quota = playerProgress(players[pi], game) * 95;
 			
 			var pid = "leaderboard-" + tc + "-" + pi;
 			html += "<p onclick=\"showBadges('" + pid + "','" + players[pi].id + "');\" id='player-" + pid + "' class='entry " + game + " " + ((useIndex > 99) ? " small" : "") + "' style='color: " + tier.color + ";'><span class='index'><span class='index-number'>" + (showIndex ? useIndex : "&nbsp;") + "</span></span>";
 			html += "<span class='player'>" + players[pi].name + "</span>";
-			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin_" + game +".png'/><img class='armscoin coin-dark' src='coin_" + game +"_dark.png'/></span></p>";
+			html += "<span class='coins'>" + players[pi].coins + "<img class='armscoin coin-yellow' src='coin_" + game +".png'/><img class='armscoin coin-dark' src='coin_" + game +"_dark.png'/></span>";
+			html += "<span class='progress' style='width: " + quota +"%; background-color: " + tier.color + ";'></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		return html + "</div>";
@@ -665,6 +689,7 @@
 	}
 	
 	var searchDB = {};
+	var gameColors = { "arms" : "#ffff00", "kart" : "#f92473" , "splat" : "#00dd00", "smash" : "#ffffff" };
 	
 	function updateSearchResults()
 	{
@@ -691,9 +716,12 @@
 			var game = results[i].original.game;
 			var useIndex = i+1;
 			var pid = "monthly-" + i;
+			var quota = playerProgress(results[i].original, game) * 95;
+			
 			html += "<p onclick=\"showBadges('" + pid + "','" + results[i].original.id + "');\" id='player-" + pid + "' class='entry basic " + game + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'> </span></span>";
 			html += "<span class='player faded'>" + results[i].string + "</span> ";
-			html += "<span class='coins'>" + results[i].original.coins + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span></p>";
+			html += "<span class='coins'>" + results[i].original.coins + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span>";
+			html += "<span class='progress' style='width: " + quota +"%; background-color: " + gameColors[game] + ";'></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 		}
 		html += "</div>";
