@@ -10,6 +10,7 @@
 	<script src="/script/general.js"></script>
 	<script src="/script/fuzzy.js"></script>
 	<script src="/data/support.js"></script>
+	<script src="/data/history-adapter.js"></script>
 	<style>
 	
 	h3 { background-color: black; }
@@ -290,27 +291,27 @@
 		user_badges = [];
 		
 		// Manual badges
-		if (badges.hasOwnProperty(uid))
-			for (var i = 0; i < badges[uid]["badges"].length; ++i)
-				user_badges.push(badges[uid]["badges"][i]);
+		if (badgeDatabaseJSON.hasOwnProperty(uid))
+			for (var i = 0; i < badgeDatabaseJSON[uid]["badges"].length; ++i)
+				user_badges.push(badgeDatabaseJSON[uid]["badges"][i]);
 		
 		// Patreon badges
-		if (rawPatrons.hasOwnProperty(uid))
+		if (patronsJSON.hasOwnProperty(uid))
 		{
-			if (rawPatrons[uid].max >= 1) user_badges.push("p0");
-			if (rawPatrons[uid].max >= 2) user_badges.push("p1");
-			if (rawPatrons[uid].max >= 3) user_badges.push("p2");
+			if (patronsJSON[uid].max >= 1) user_badges.push("p0");
+			if (patronsJSON[uid].max >= 2) user_badges.push("p1");
+			if (patronsJSON[uid].max >= 3) user_badges.push("p2");
 		}
 		
 		// Leaderboard badges
 		var games = ["arms", "kart", "splat", "smash"];
 		
 		for (var gi = 0; gi < games.length; ++gi)
-			if (rawLeaderboard[games[gi]].hasOwnProperty(uid))
+			if (leaderboardsJSON[games[gi]].hasOwnProperty(uid))
 			{
 				for (var i = 1; i < leaderboardTiers[games[gi]].length-1; ++i)
 				{
-					if (rawLeaderboard[games[gi]][uid].coins >= leaderboardTiers[games[gi]][i].start)
+					if (leaderboardsJSON[games[gi]][uid].coins >= leaderboardTiers[games[gi]][i].start)
 						user_badges.push(games[gi] + "_ldb" + (i-1));
 				}
 			}
@@ -339,56 +340,8 @@
 		stash.style.height = "auto";
 	}
 	
-	var rawLeaderboard   = { arms: null, kart: null, splat: null, smash: null };
 	var rawSeasonHistory = { arms: null, kart: null, splat: null, smash: null };
 	var seasonHistory    = { arms: null, kart: null, splat: null, smash: null };
-	var badges = null;
-	var rawPatrons = null;
-	
-	function finalizeLoading()
-	{
-		if (rawLeaderboard.arms && rawLeaderboard.kart && rawLeaderboard.splat && rawLeaderboard.smash && badges && rawPatrons && seasonHistory.arms)
-		{
-			switch (window.location.hash.substring(1))
-			{
-			case "arms":          changeMode('arms',    false, false); break;
-			case "arms-monthly":  changeMode('arms',    true,  false); break;
-			case "kart":          changeMode('kart',    false, false); break;
-			case "kart-monthly":  changeMode('kart',    true,  false); break;
-			case "splat":         changeMode('splat',   false, false); break;
-			case "splat-monthly": changeMode('splat',   true,  false); break;
-			case "smash":         changeMode('smash',   false, false); break;
-			case "smash-monthly": changeMode('smash',   true,  false); break;
-			case "patrons":       changeMode('patreon', false, true ); break;
-			case "search":        changeMode('search',  false, false); break;
-			default:              changeMode('arms',    false, false);
-			}
-		}
-	}
-	
-	function storeLeaderboards(rawBoards)
-	{
-		rawLeaderboard.arms = rawBoards;
-		finalizeLoading();
-	}
-	
-	function storeLeaderboardsMarioKart(rawBoards)
-	{
-		rawLeaderboard.kart = rawBoards;
-		finalizeLoading();
-	}
-	
-	function storeLeaderboardsSplat(rawBoards)
-	{
-		rawLeaderboard.splat = rawBoards;
-		finalizeLoading();
-	}
-	
-	function storeLeaderboardsSmash(rawBoards)
-	{
-		rawLeaderboard.smash = rawBoards;
-		finalizeLoading();
-	}
 	
 	function storeSeasons(rawBoards)
 	{
@@ -418,19 +371,6 @@
 				rawSeasonHistory[games[gi]].push(rawSeason);
 			}
 		}
-		finalizeLoading();
-	}
-	
-	function storePatrons(getPatrons)
-	{
-		rawPatrons = getPatrons;
-		finalizeLoading();
-	}
-	
-	function storeBadges(getBadges)
-	{
-		badges = getBadges;
-		finalizeLoading();
 	}
 	
 	function playerProgress(player, game)
@@ -492,7 +432,7 @@
 	
 	function displayLeaderboards(game)
 	{
-		var leaderboard = reorganizeLeaderboards(rawLeaderboard[game]);
+		var leaderboard = reorganizeLeaderboards(leaderboardsJSON[game]);
 		if (leaderboard.length == 0)
 		{
 			$("leaderboard").innerHTML = "";
@@ -554,9 +494,9 @@
 				scrolltoid = tierName;
 			
 			var zeroes = [];
-			for (var key in badges)
-				if (!ldbPLayers.hasOwnProperty(key) && (badges[key].badges.includes("clash") || badges[key].badges.includes("scramble")))
-					zeroes.push({name: badges[key].name, coins: 0, monthly: 0, id: key});
+			for (var key in badgeDatabaseJSON)
+				if (!ldbPLayers.hasOwnProperty(key) && (badgeDatabaseJSON[key].badges.includes("clash") || badgeDatabaseJSON[key].badges.includes("scramble")))
+					zeroes.push({name: badgeDatabaseJSON[key].name, coins: 0, monthly: 0, id: key});
 			
 			body_html += result.body + displayRolePlayers(zeroes, 0, game, false);
 		}
@@ -614,17 +554,17 @@
 		
 		// Reformat database
 		var patrons = [];
-		for (var key in rawPatrons)
+		for (var key in patronsJSON)
 		{
-			if (rawPatrons.hasOwnProperty(key) && key != "UNKNOWN" && rawPatrons[key].active)
+			if (patronsJSON.hasOwnProperty(key) && key != "UNKNOWN" && patronsJSON[key].active)
 			{
-				var user = rawPatrons[key];
+				var user = patronsJSON[key];
 				patrons.push([user.name, user.tier, key]);
 			}
 		}
-		for (var i = 0; i < rawPatrons.UNKNOWN.length; ++i)
-			if (rawPatrons.UNKNOWN[i].active)
-				patrons.push([rawPatrons.UNKNOWN[i].name, rawPatrons.UNKNOWN[i].tier, null]);
+		for (var i = 0; i < patronsJSON.UNKNOWN.length; ++i)
+			if (patronsJSON.UNKNOWN[i].active)
+				patrons.push([patronsJSON.UNKNOWN[i].name, patronsJSON.UNKNOWN[i].tier, null]);
 		
 		patrons.sort(function(a, b) { return b[1] - a[1]; });
 		
@@ -735,7 +675,7 @@
 		$("leaderboard").innerHTML = html;
 		
 		for (var game in eventGames)
-			searchDB[game] = reorganizeLeaderboards(rawLeaderboard[game]);
+			searchDB[game] = reorganizeLeaderboards(leaderboardsJSON[game]);
 	}
 	
 	var activeGame;
@@ -777,7 +717,7 @@
 	{
 		var activeSeasonIndex = $("season").selectedIndex;
 		
-		var useBoard = reorganizeLeaderboards(rawLeaderboard[game]);
+		var useBoard = reorganizeLeaderboards(leaderboardsJSON[game]);
 		if (activeSeasonIndex > 0)
 			useBoard = seasonHistory[game][activeSeasonIndex-1].data;
 		
@@ -788,13 +728,22 @@
 	
 	function load()
 	{
-		fetchLeaderboards("arms", storeLeaderboards);
-		fetchLeaderboards("kart", storeLeaderboardsMarioKart);
-		fetchLeaderboards("splat", storeLeaderboardsSplat);
-		fetchLeaderboards("smash", storeLeaderboardsSmash);
-		fetchSeasonHistory(storeSeasons);
-		fetchPatrons(storePatrons);
-		fetchBadges(storeBadges);
+		storeSeasons(seasonHistoryJSON);
+		
+		switch (window.location.hash.substring(1))
+		{
+		case "arms":          changeMode("arms",    false, false); break;
+		case "arms-monthly":  changeMode("arms",    true,  false); break;
+		case "kart":          changeMode("kart",    false, false); break;
+		case "kart-monthly":  changeMode("kart",    true,  false); break;
+		case "splat":         changeMode("splat",   false, false); break;
+		case "splat-monthly": changeMode("splat",   true,  false); break;
+		case "smash":         changeMode("smash",   false, false); break;
+		case "smash-monthly": changeMode("smash",   true,  false); break;
+		case "patrons":       changeMode("patreon", false, true ); break;
+		case "search":        changeMode("search",  false, false); break;
+		default:              changeMode("arms",    false, false);
+		}
 	}
 	</script>
 </head>

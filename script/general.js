@@ -31,12 +31,27 @@ function $(id)
 Math.seed = function(s)
 {
 	var hiddenState = s;
-	return function()
+	var prng = function()
 	{
 		hiddenState = (hiddenState + "").hashCode();
 		s = hiddenState / (Math.pow(2, 32));
 		return s - Math.floor(s);
 	};
+	
+	prng.randomInt = function(low, high)
+	{
+		var rand1 = prng();
+		var rand = low + Math.floor(rand1 * high);
+		return rand;
+	}
+	
+	prng.randomItem = function(options)
+	{
+		var val = options[prng.randomInt(0, options.length)];
+		return val;
+	}
+	
+	return prng;
 };
 
 String.prototype.hashCode = function()

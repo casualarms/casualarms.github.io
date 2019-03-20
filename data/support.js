@@ -40,6 +40,11 @@ for (var i = 0; i < eventDataJSON.length; i++)
 }
 eventDataJSON.sort(function(a, b) { return a.date - b.date; });
 
+// Leaderboards etc
+var leaderboardsJSON  = {% include_relative leaderboards.json %};
+var badgeDatabaseJSON = {% include_relative badges.json %};
+var patronsJSON       = {% include_relative patreon.json %};
+
 
 // Tournament history
 var tournamentsLog = {% include_relative champions.json %};
