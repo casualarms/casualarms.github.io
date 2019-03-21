@@ -90,6 +90,7 @@ redirect_from: "/lobbies/"
 	.next-items        { background-color: black; }
 	.next-leaderboards { background-color: #444; }
 	.next-sponsor      { background-color: pink; color: black; }
+	.next-external     { background-color: red; color: white; }
 	
 	p#next-theme-info {
 		text-align: center;
@@ -381,6 +382,9 @@ redirect_from: "/lobbies/"
 		$("next-link").href = "/events/?id=" + getEventID(ev);
 		if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
 			$("next-link").href = "/" + ev.type;
+		
+		if ("url" in ev)
+			tags += "<a href='" + ev.url + "' class='next-box next-external'><span class='nx-big'>External Link</span></a>";
 		
 		// Event navigation indicators
 		var indicators = document.getElementsByClassName("banner-indicator");

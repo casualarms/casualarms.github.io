@@ -81,8 +81,6 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		timeText = (formatTimeUTC(startDate, diff) + " to " + formatTimeUTC(endDate, diff) + " " + eventdata.tz).toUpperCase();
 	}
 	
-	var isWarmup = ["mlm_warmup", "era_warmup"].includes(eventdata.type) || eventdata.game == "kart" || eventdata.game == "splat" || eventdata.game == "smash";
-	
 	// Style presets
 	var bgColor = "#1d94fc";
 	var logoBgColor = "yellow";
@@ -91,23 +89,24 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	var stripeStrokeColor = "black";
 	var websiteBgColor = "yellow";
 	
-	logoColor = "black";
-	titleColor = "yellow";
-	timeDateColor = "white";
-	hostsColor = "white";
-	tierColor = "black";
-	websiteColor = "black";
+	var logoColor = "black";
+	var titleColor = "yellow";
+	var timeDateColor = "white";
+	var hostsColor = "white";
+	var tierColor = "black";
+	var websiteColor = "black";
 	
-	logoFont = "57pt ARMS";
-	titleFont = "22pt ARMS";
-	timeDateFont = "28pt ARMS";
-	tierFont = "15pt ARMS";
-	teamTagFont = "14pt ARMS";
-	hostsFont = "20pt ARMS";
-	websiteFont = "20pt ARMS";
+	var logoFont = "57pt ARMS";
+	var titleFont = "22pt ARMS";
+	var timeDateFont = "28pt ARMS";
+	var tierFont = "15pt ARMS";
+	var teamTagFont = "14pt ARMS";
+	var hostsFont = "20pt ARMS";
+	var websiteFont = "20pt ARMS";
+	var discordFont = "bold 17pt sans-serif";
 	
-	colors = ["#29fb2f", "#efed34", "#fc5935"];
-	tiers = ["easy", "medium", "hard"];
+	var colors = ["#29fb2f", "#efed34", "#fc5935"];
+	var tiers = ["easy", "medium", "hard"];
 	
 	ctx.fillStyle = bgColor;
 	ctx.fillRect(0, 0, width, height);
@@ -152,10 +151,9 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		break;
 	}
 	
-	
 	ctx.fillStyle = boxBgColor;
 	ctx.fillRect(0, 122, 600, 40);
-	ctx.fillRect(!isWarmup ? 76 : 300, 271, 900, 40);
+	ctx.fillRect(320, 271, 900, 40);
 	
 	ctx.fillStyle = stripeBgColor;
 	ctx.strokeStyle = stripeStrokeColor;
@@ -188,37 +186,29 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	ctx.restore();
 	
 	// Discord link
-	if (!isWarmup)
-	{
-		ctx.fillRect  (615, 122, 255, 110);
-		ctx.drawImage(images["discord"], 615, 122);
-	}
-	else
-	{
-		ctx.fillRect  (10, 320, 255, 110);
-		ctx.drawImage(images["discord"], 10, 325);
-	}
+	ctx.fillRect(0, 271, 280, 40);
+	ctx.fillStyle = "black";
+	ctx.font = discordFont;
+	ctx.fillText("discord.gg/u6cfeN9", 53, 300);
+	ctx.drawImage(images["discord"], 0, 271);
 	
 	// Warmup logo
-	if (eventdata.game == "arms" && eventdata.type == "mlm_warmup")
-		ctx.drawImage(images["mlm"], 630, 120);
-	else if (eventdata.game == "arms" && eventdata.type == "era_warmup")
-		ctx.drawImage(images["cote"], 630, 120);
-	else if (eventdata.game == "kart")
+	if (eventdata.game == "kart")
 		ctx.drawImage(images["game"], 590, 150);
-	else if (eventdata.game == "splat" || eventdata.game == "smash")
+	else
 		ctx.drawImage(images["game"], 610, 115);
 	
-	var pluralHosts = ("hosts" in eventdata && eventdata.hosts.length > 1) ? "s" : "";
+	var pluralHosts = ("hosts" in eventdata && eventdata.hosts.length > 1) ? "S" : "";
 	
 	// Lobby title
-	var lobbyTitle = ("Lobby Host" + pluralHosts).toUpperCase();
+	var lobbyTitle = ("LOBBY HOST" + pluralHosts).toUpperCase();
 	if (eventdata.game == "kart") lobbyTitle = "TOURNAMENT CODE";
+	else if (eventdata.type == "tournament") lobbyTitle = "TOURNAMENT INFO";
 	ctx.font = titleFont;
 	ctx.textAlign = "center";
 	ctx.fillStyle = titleColor;
-	ctx.fillText(unEscapeHTML(eventdata.title).toUpperCase(), 280, 152);
-	ctx.fillText(lobbyTitle, 290 + (isWarmup ? 250 : 0), 302);
+	ctx.fillText(unEscapeHTML(eventdata.title).toUpperCase(), 290, 152);
+	ctx.fillText(lobbyTitle, 600, 302);
 	
 	// Time and date
 	ctx.font = timeDateFont;
@@ -249,15 +239,24 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	if ("streamers" in eventdata)
 		ctx.drawImage(images["livestream"], 0, height - 40);
 	
+	if (eventdata.type == "tournament")
+	{
+		ctx.font = hostsFont;
+		ctx.fillStyle = hostsColor;
+		ctx.textAlign = "center";
+		ctx.fillText(eventdata.description.toUpperCase(), 440, 360);
+		ctx.fillText(eventdata.url.toUpperCase(), 440, 405);
+	}
+	
 	// Hosts
 	var didDrawCodes = false;
 	if ("hosts" in eventdata)
 	{
-		spacing = 35 + (3 - eventdata.hosts.length) * 10;
+		var spacing = 35 + (3 - eventdata.hosts.length) * 10;
 		for (i = 0; i < eventdata.hosts.length; i++)
 		{
-			vOffset = 348 + (3 - eventdata.hosts.length)*15 + spacing * i;
-			hOffset = 150; if (isWarmup) { hOffset += 130; };
+			var vOffset = 348 + (3 - eventdata.hosts.length)*15 + spacing * i;
+			var hOffset = 150;
 			
 			if ("tag" in eventdata.hosts[i])
 			{
@@ -273,7 +272,7 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 			ctx.textAlign = "left";
 			ctx.fillText((unEscapeHTML(eventdata.hosts[i].name) + "  " + unEscapeHTML(eventdata.hosts[i].code)).toUpperCase(), hOffset, vOffset);
 			
-			if (!isWarmup && "tier" in eventdata.hosts[i])
+			if ("tier" in eventdata.hosts[i])
 			{
 				ctx.fillStyle = colors[eventdata.hosts[i].tier-1];
 				roundRect(ctx, 790, vOffset - 21, 75, 25, 10).fill();
@@ -309,7 +308,7 @@ function bannerImageData(eventdata)
 		"discord"  : "/assets/banners/logo-discord.png",
 	};
 	
-	if (eventdata.game == "arms" && ["clash", "scramble"].includes(eventdata.type))
+	if (["clash", "scramble"].includes(eventdata.type))
 	{
 		imageData["template"]     = "/assets/banners/template-" + eventdata.type + ".jpg";
 		imageData["sponsor"]      = "/assets/banners/sponsor-mind-games.png";

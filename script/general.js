@@ -119,6 +119,8 @@ function timeZoneOffset(timeZoneString)
 	var timeZoneOffsets = {
 		"PST"  : -8,
 		"PDT"  : -7,
+		"CST"  : -6,
+		"CDT"  : -5,
 		"EST"  : -5,
 		"EDT"  : -4,
 		"GMT"  :  0,

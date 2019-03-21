@@ -74,21 +74,25 @@
 			"leaderboard"   : "Leaderboard Lobby",
 			"clash"         : "Casual Clash",
 			"scramble"      : "Casual Scramble",
-			"impromptu"     : "Impromptu Lobby"
+			"impromptu"     : "Impromptu Lobby",
+			"tournament"    : "Tournament"
 		},
 		"kart" : {
 			"race"          : "Race Lobby",
 			"battle"        : "Battle Lobby",
-			"impromptu"     : "Impromptu Lobby"
+			"impromptu"     : "Impromptu Lobby",
+			"tournament"    : "Tournament"
 		},
 		"splat" : {
 			"friends"       : "Friends Lobby",
 			"salmon"        : "Salmon Run Lobby",
-			"impromptu"     : "Impromptu Lobby"
+			"impromptu"     : "Impromptu Lobby",
+			"tournament"    : "Tournament"
 		},
 		"smash" : {
 			"arena"         : "Battle Arena",
-			"impromptu"     : "Impromptu Lobby"
+			"impromptu"     : "Impromptu Lobby",
+			"tournament"    : "Tournament"
 		}
 	},
 	"badgeList" : {
