@@ -595,7 +595,7 @@
 				 	"handicap"      : false,
 				 	"items"         : "Med",
 				 	"hazards"       : true,
-				 	"team-attack"   : true,
+				 	"team-attack"   : false,
 				 	"launch-rate"   : 1,
 				 	"score-display" : true,
 				 	"show-damage"   : true
@@ -624,7 +624,7 @@
 					"handicap"      : false,
 					"items"         : "Med",
 					"hazards"       : true,
-					"team-attack"   : true,
+					"team-attack"   : false,
 					"launch-rate"   : 1,
 					"score-display" : true,
 					"show-damage"   : true
