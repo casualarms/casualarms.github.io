@@ -8,8 +8,8 @@
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2019-03-29T01:30:00.000Z","duration":60,"tz":"PDT","theme":"turf-clams","stages":"urban-splat","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"ABowlOfCake","code":"7677-0583-7008"}]}
 	,{"title":"Splaturday","game":"splat","type":"friends","alert":true,"date":"2019-03-30T16:30:00.000Z","duration":60,"tz":"EDT","theme":"turf-zones","stages":"moving-splat","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-03-30T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","stages":"walkoff-smash","items":"firearms-smash","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"The Oddity","code":"4303-5678-5601"}],"streamers":["sorafirestorm"]}
-	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-03-31T19:45:00.000Z","duration":120,"tz":"EDT","theme":"hedlok-havok","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Spenjo","code":"0725-4824-1895"}]}
-
+	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-03-31T19:45:00.000Z","duration":120,"tz":"EDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Spenjo","code":"0725-4824-1895"}]}
+	
 
 	,{"title":"Monday Motorway","game":"kart","type":"race","alert":true,"date":"2019-04-01T18:30:00.000Z","duration":60,"tz":"GMT","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-04-01T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","stages":"vanilla-smash","items":"tossables-smash","hosts":[{"name":"To Be Announced","code":"-"}]}
