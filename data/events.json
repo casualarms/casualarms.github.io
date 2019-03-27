@@ -11,10 +11,8 @@
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-03-31T19:45:00.000Z","duration":120,"tz":"EDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Marie","code":"5693-4645-2698","tag":"CC"}]}
 	
 
-	,{"title":"Monday Motorway","game":"kart","type":"race","alert":true,"date":"2019-04-01T18:30:00.000Z","duration":60,"tz":"GMT","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"1077-9421-4443"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-04-01T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","stages":"vanilla-smash","items":"tossables-smash","hosts":[{"name":"To Be Announced","code":"-"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-04-03T01:00:00.000Z","duration":120,"tz":"PDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"To Be Announced","code":"-"}]}
-	,{"title":"Wonky Wednesday","game":"kart","type":"race","alert":true,"date":"2019-04-03T18:30:00.000Z","duration":60,"tz":"GMT","theme":"mirror","stages":"all-race","hosts":[{"name":"","code":"4621-2901-6363"}]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-04-03T22:00:00.000Z","duration":120,"tz":"EDT","theme":"bane-of-ranked","stages":"bane-ranked","hosts":[{"name":"To Be Announced","code":"-"}]}
 	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","alert":true,"date":"2019-04-04T18:00:00.000Z","duration":120,"tz":"GMT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"To Be Announced","code":"-"}]}
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2019-04-05T01:30:00.000Z","duration":60,"tz":"PDT","theme":"turf-tower","stages":"high-splat","hosts":[{"name":"To Be Announced","code":"-"}]}
