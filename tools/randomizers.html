@@ -1,0 +1,347 @@
+---
+permalink: "/tools/randomizers/index.html"
+redirect_from: "/tools/fighter-randomizer/"
+redirect_from: "/tools/stage-randomizer/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Fighter + ARMS Randomizer – Casual ARMS</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/script/arms-data.js"></script>
+	<style>
+	
+	#container {
+		text-align: center;
+	}
+	
+	.stage-container {
+		display: inline-block;
+		width: 35%;
+		vertical-align: top;
+		margin: 1em 0.1em;
+	}
+	
+	.controls {
+		margin: 0 auto;
+		width: 25em;
+	}
+	
+	</style>
+	<script type="text/javascript">
+	
+	var DEFAULT = 0;
+	var ACTIVE = 1;
+	var INACTIVE = 2;
+	
+	var classes = ["", "active", "inactive"];
+	var warning = "";
+	
+	var state_fighters = [];
+	for (var f = 0; f < fighterStats.length; f++)
+		state_fighters[f] = DEFAULT;
+	var savedstate_fighters = state_fighters.slice();
+	
+	var state_arms = [];
+	for (var a = 0; a < armsStats.length; a++)
+		state_arms[a] = DEFAULT;
+	var savedstate_arms = state_arms.slice();
+	
+	var state_stages = [];
+	for (var s = 0; s < homeStages.length; s++)
+		state_stages[s] = DEFAULT;
+	var savedstate_stages = state_stages.slice();
+	
+	function makeID(text)
+	{
+		return text.replace(/[\[\]\&\s\.]/g, '').toLowerCase();
+	}
+	
+	function toggleFighter(event)
+	{
+		var fighterID = event.target.id;
+		var selected_fighter = 0;
+		for (var f = 0; f < fighterStats.length; f++)
+		if (makeID(fighterStats[f][0]) == fighterID)
+			selected_fighter = f;
+		
+		state_fighters[selected_fighter] = (state_fighters[selected_fighter] + 1) % 3;
+		updateView();
+	}
+	
+	function toggleArms(event)
+	{
+		var armID = event.target.id;
+		var selected_arm = 0;
+		for (var a = 0; a < armsStats.length; a++)
+		if (makeID(armsStats[a][0]) == armID)
+			selected_arm = a;
+		
+		state_arms[selected_arm] = (state_arms[selected_arm] + 1) % 3;
+		updateView();
+	}
+	
+	function toggleStage(event)
+	{
+		var stageID = event.target.id;
+		var stage = 0;
+		for (var s = 0; s < homeStages.length; s++)
+			if (makeID(homeStages[s]) == stageID)
+				stage = s;
+		
+		state_stages[stage] = (state_stages[stage] + 1) % 3;
+		updateView();
+	}
+	
+	function updateView()
+	{
+		for (var a = 0; a < armsStats.length; a++)
+			$(makeID(armsStats[a][0])).className = "stage " + classes[state_arms[a]];
+		
+		for (var f = 0; f < fighterStats.length; f++)
+			$(makeID(fighterStats[f][0])).className = "stage " + classes[state_fighters[f]];
+			
+		for (var s = 0; s < homeStages.length; s++)
+			$(makeID(homeStages[s])).className = "stage " + classes[state_stages[s]];
+		
+		$("warning").innerHTML = warning;
+	}
+	
+	function randomizeFighterArms()
+	{
+		// Deactivate
+		for (var f = 0; f < fighterStats.length; f++)
+			if (state_fighters[f] == ACTIVE)
+				state_fighters[f] = INACTIVE;
+		
+		for (var a = 0; a < armsStats.length; a++)
+			if (state_arms[a] == ACTIVE)
+				state_arms[a] = INACTIVE;
+		
+		var text = "Rolled <b>";
+		
+		var freecount_fighters = 0;
+		for (var f = 0; f < fighterStats.length; f++)
+		{
+			if (state_fighters[f] == DEFAULT)
+			freecount_fighters++;
+		}
+		
+		var freecount_arms = 0;
+		for (var a = 0; a < armsStats.length; a++)
+		{
+			if (state_arms[a] == DEFAULT)
+			freecount_arms++;
+		}
+		
+		var max_fighters = 1; // $("randomcount").value;
+		var max_arms = 3; // $("randomcount").value;
+		var count_fighters = 0;
+		var count_arms = 0;
+		
+		if (freecount_fighters < max_fighters || freecount_arms < max_arms)
+		{
+			warning = "Not enough free fighters or ARMS left!";
+			updateView();
+			return;
+		}
+		else
+		{
+			warning = "";
+			while (count_fighters < max_fighters)
+			{
+				var fighter = Math.floor(Math.random() * fighterStats.length);
+				if (state_fighters[fighter] == DEFAULT)
+				{
+					state_fighters[fighter] = ACTIVE;
+					count_fighters++;
+					text += fighterStats[fighter][0];
+				}
+			}
+			text += "</b> with <b>";
+			
+			while (count_arms < max_arms)
+			{
+				var arm = Math.floor(Math.random() * armsStats.length);
+				if (state_arms[arm] == DEFAULT)
+				{
+					state_arms[arm] = ACTIVE;
+					count_arms++;
+					text += armsStats[arm][0] + " ";
+				}
+			}
+			updateView();
+			text += "</b>"
+			document.getElementById("text").innerHTML = text;
+		}
+	}
+	
+	function randomizeStage()
+	{
+		// Deactivate
+		for (var s = 0; s < homeStages.length; s++)
+			if (state_stages[s] == ACTIVE)
+				state_stages[s] = INACTIVE;
+		
+		var freecount = 0;
+		for (var s = 0; s < homeStages.length; s++)
+			if (state_stages[s] == DEFAULT)
+				freecount++;
+		
+		var max = $("randomcount").value;
+		var count = 0;
+		
+		if (freecount < max)
+		{
+			warning = "Not enough free stages left!";
+			updateView();
+			return;
+		}
+		else
+		{
+			while (count < max)
+			{
+				var stage = Math.floor(Math.random() * homeStages.length);
+				if (state_stages[stage] == DEFAULT)
+				{
+					state_stages[stage] = ACTIVE;
+					count++;
+				}
+			}
+			updateView();
+		}
+	}
+	
+	function resetFighterArms()
+	{
+		warning = "";
+		for (var f = 0; f < fighterStats.length; f++)
+			state_fighters[f] = DEFAULT;
+		for (var a = 0; a < armsStats.length; a++)
+			state_arms[a] = DEFAULT;
+		
+		updateView();
+	}
+	
+	function resetStage()
+	{
+		warning = "";
+		for (var s = 0; s < homeStages.length; s++)
+			state_stages[s] = DEFAULT;
+		
+		updateView();
+	}
+
+	function saveStateFighterArms()
+	{
+		savedstate_fighters = state_fighters.slice();
+		savedstate_arms = state_arms.slice();
+	}
+
+	function restoreStateFighterArms()
+	{
+		state_fighters = savedstate_fighters.slice();
+		state_arms = savedstate_arms.slice();
+		updateView();
+	}
+	
+	function saveStateStage()
+	{
+		savedstate_stages = state_stages.slice();
+	}
+
+	function restoreStateStage()
+	{
+		state_stages = savedstate_stages.slice();
+		updateView();
+	}
+	
+	function changeMode(mode)
+	{
+		$("fighterarms-mode").style.display = "none";
+		$("stage-mode").style.display = "none";
+		
+		var buttons = document.getElementsByClassName("mode");
+		for (var b = 0; b < buttons.length; ++b)
+			buttons[b].className = "mode";
+		$("md-" + mode).className += " active-mode";
+		
+		$(mode + "-mode").style.display = "block";
+	}
+	
+	function load()
+	{
+		var fighters_html = "";
+		for (var f = 0; f < fighterStats.length; f++)
+			fighters_html += "<div class='stage' id='" + makeID(fighterStats[f][0]) + "' onclick='toggleFighter(event)'>" + fighterStats[f][0] + "</div>";
+		$("fighters").innerHTML = fighters_html;
+		
+		var arms_html = "";
+		for (var a = 0; a < armsStats.length; a++)
+		{
+			if (a % 3 == 0) arms_html += "<div>";
+			arms_html += "<div class='stage' id='" + makeID(armsStats[a][0]) + "' onclick='toggleArms(event)'>" + armsStats[a][0] + "</div>";
+			if (a % 3 == 2) arms_html += "</div>";
+		}
+		$("arms").innerHTML = arms_html;
+		
+		var stages_html = "";
+		for (var s = 0; s < homeStages.length; s++)
+			stages_html += "<div class='stage' id='" + makeID(homeStages[s]) + "' onclick='toggleStage(event)'>" + homeStages[s] + "</div>";
+		$("stages").innerHTML = stages_html;
+		
+		switch (window.location.hash.substring(1))
+		{
+		case "stage": changeMode("stage"); break;
+		default:      changeMode("fighterarms"); break;
+		}
+	}
+	
+	</script>
+</head>
+
+<body onLoad="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<h2>ARMS Randomizers</h2>
+		
+		<p id="mode-selector">
+			<em class="mode" id="md-fighterarms" onclick="changeMode('fighterarms');">Fighter+ARMS</em>
+			<em class="mode" id="md-stage"      onclick="changeMode('stage');">Stage</em>
+		</p>
+		
+		<div id="fighterarms-mode">
+			<h3>Fighter + ARMS Randomizer</h3>
+			<div class="controls">
+				<button onclick="randomizeFighterArms();">Randomize</button>
+				<button onclick="resetFighterArms();">Reset</button>
+				<button onclick="saveStateFighterArms();">Save</button>
+				<button onclick="restoreStateFighterArms();">Restore</button>
+			</div>
+			<p id="text">Click to randomize!</p>
+			<p id="warning"></p>
+		
+			<div id="fighters" class="stage-container"></div>
+			<div id="arms" class="stage-container"></div>
+		</div>
+		
+		<div id="stage-mode">
+			<h3>Stage Randomizer</h3>
+			<div class="controls">
+				<input id="randomcount" type="number" name="Count" min="1" max="15" value="3">
+				<button onclick="randomizeStage();">Randomize</button>
+				<button onclick="resetStage();">Reset</button>
+				<button onclick="saveStateStage();">Save</button>
+				<button onclick="restoreStateStage();">Restore</button>
+			</div>
+			<p id="warning"></p>
+			<div id="stages" class="stage-container"></div>
+		</div>
+		
+		{% include footer.html %}
+	</div>
+</body>
+</html>
