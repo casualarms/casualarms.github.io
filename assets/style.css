@@ -61,9 +61,10 @@ body {
 }
 
 
-ul {
+ul, ol {
 	text-align: left;
 	padding: 0 10%;
+	line-height: 1.4em;
 }
 
 em {
@@ -216,7 +217,7 @@ a.submenu-item {
 	position: relative;
 	font-size: 0.8em;
 	width: 6em;
-	margin-top: 2.5em;
+	margin-top: 1.8em;
 	font-style: italic;
 	color: black;
 	border: 1pt solid black;

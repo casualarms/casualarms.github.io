@@ -1,0 +1,92 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Casual Crew – Casual ARMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<style>
+	
+	.stats {
+		width: 30%;
+		border-radius: 0.5em;
+		box-shadow: 1px 2px 12px -4px rgba(0,0,0,0.75);
+		transform: rotate(2deg);
+		display: inline-block;
+	}
+	
+	.member-text {
+		width: 60%;
+		display: inline-block;
+		margin: 0.5em 0 0 2em;
+		vertical-align: top;
+	}
+	
+	@media only screen and (max-width: 600px)
+	{
+		.stats {
+			width: 80%;
+			display: block;
+			margin: 1em auto;
+		}
+		
+		.member-text {
+			width: auto;
+			display: block;
+			margin: auto;
+		}
+	}
+	
+	</style>
+	<script>
+	
+	function loader()
+	{
+		var members = {% include_relative casualcrew.json %};
+		
+		var html = "";
+		for (var m = 0; m < members.length; ++m)
+		{
+			html += "<h3>" + members[m].name + "</h3>";
+			html += "<div class='padded'>";
+			html += "<canvas class='stats' id='member-card-" + m + "' width='800' height='600'></canvas>";
+			html += "<p class='member-text'>" + members[m].description + "</p>";
+			html += "</div>";
+		}
+		$("member-list").innerHTML = html;
+		
+		for (var m = 0; m < members.length; ++m)
+		{
+			var c = document.getElementById("member-card-" + m);
+			renderStats(c.getContext("2d"), c.width / 2, c.height / 2 + 40, members[m]);
+		}
+	}
+	
+	</script>
+</head>
+<body onLoad="loader()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<h2>Casual Crew</h2>
+		<p>Casual ARMS officially has a team to represent itself out in the competitive scene. You've all seen them during the lobby events, but please give your love to the members of the Casual ARMS' official team: The <em>CASUAL CREW!</em></p>
+		
+		<h3>Requirements</h3>
+		<p> Casual ARMS events are open to all and we want all skill levels to enjoy what we have to offer, but the Casual Crew is meant for those seeking to represent us out in the competitive scene, so there is a skill requirement involved. The official qualifications for joining the Casual Crew are as follows:</p>
+		<ol>
+			<li>Must have acquired a rank of at least <em>ARMS Lab Coder</em> on the server through participation in our regular events.</li>
+			<li>Placement in the upper ranks of a <a href="/clash/">Casual Clash</a> or <a  href="/clash/">Scramble</a>: Though exact placement will vary based on number of participants, approx. the top 20% of all Clash or Scramble participants will qualify.</li>
+		</ol>
+		<p>If you meet these criteria, and are a person who considers themselves to be pleasant and hospitable, able to show good sportsmanship wherever you go, the Casual Crew would love to have you in! Contact <span class="command">@Rashiko</span> via DM on the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> with your application.</p>
+		
+		<h2>Members</h2>
+		
+		<div id="member-list"></div>
+		
+		<!--<h2>Events</h2>-->
+		
+		{% include footer.html %}
+	</div>
+</body>
+</html>

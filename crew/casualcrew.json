@@ -1,0 +1,39 @@
+[
+	{
+		"name"  : "CC Rashiko",
+		"caps"  : true,
+		"steps" : 5,
+		"stats" : [
+			["Speed", 3],
+			["Friendship Man", 15],
+			["Accuracy", 4],
+			["Jump", 2],
+			["Size", 5],
+			["Rush", 3]
+		],
+		"description" : "Casual ARMS co-founder and Casual Crew leader, Rashiko is a US ARMS player and community manager. Although his primary role in the Crew is one of management and event organization, he does not shy away from jumping into the ring himself.",
+		"bg_color"        : "rgb(50,50,50)",
+		"name_color"      : "yellow",
+		"highlight_color" : "rgba(255, 255, 0, 0.8)",
+		"attr_color"      : "rgba(255, 255, 255, 1)",
+		"grid_color"      : "rgba(255, 255, 255, 0.5)"
+	}, {
+		"name"  : "CC Main",
+		"caps" : true,
+		"steps" : 5,
+		"stats" : [
+			["Speed", 3],
+			["Accuracy", 4],
+			["tbird", 15],
+			["Jump", 2],
+			["Beard???", 4],
+			["Rush", 3]
+		],
+		"description" : "Casual Crew's own anime champion, Main is a US ARMS player and streamer.",
+		"bg_color"        : "skyblue",
+		"name_color"      : "beige",
+		"highlight_color" : "rgba(255, 192, 203, 0.8)",
+		"attr_color"      : "rgba(255, 255, 255, 1)",
+		"grid_color"      : "rgba(255, 255, 255, 0.5)"
+	}
+]
