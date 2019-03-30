@@ -153,6 +153,10 @@ permalink: /staff/banners/index.html
 		color: yellow;
 	}
 	
+	#error {
+		background-color: red;
+		color: white;
+	}
 	
 	</style>
 	<script>
@@ -317,8 +321,16 @@ permalink: /staff/banners/index.html
 		fillFromEventData(eventdata);
 	}
 	
+	function reportError(text)
+	{
+		$("error").innerHTML = "ERROR: " + text;
+		$("error").style.display = "block";
+	}
+	
 	function readAndGenerate()
 	{
+		$("error").style.display = "none";
+		
 		var eventdata = {};
 		var game = $("game").options[$("game").selectedIndex].value;
 		
@@ -332,6 +344,9 @@ permalink: /staff/banners/index.html
 		var offset          = timeZoneOffset(zoneString);
 		var startDate       = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
 		
+		if (offset == undefined)
+			return reportError("Unsupported time zone");
+		
 		var hosts = [];
 		for (var i = 0; i < $("hosts-form").childNodes.length; ++i)
 		{
@@ -341,7 +356,7 @@ permalink: /staff/banners/index.html
 			};
 			if ($("tag-" + i).selectedIndex == 1) host.tag = "CC";
 			if ($("host-" + i).selectedIndex > 0) host.tier = $("host-" + i).selectedIndex;
-			if (host.code != "") hosts.push(host);
+			if (host.name != "" || host.code != "") hosts.push(host);
 		}
 		
 		var streamers = [];
@@ -397,7 +412,6 @@ permalink: /staff/banners/index.html
 	{
 		$("name-" + id).value = $("code-" + id).value = "";
 		$("tag-"  + id).selectedIndex = $("host-" + id).selectedIndex = 0;
-		readAndGenerate();
 	}
 	
 	function quickEntry(id)
@@ -446,13 +460,13 @@ permalink: /staff/banners/index.html
 	
 	function generateHostForm(idx)
 	{
-		var html = "<div><select id='host-##ID##' onChange='readAndGenerate()''>";
+		var html = "<div><select id='host-##ID##'>";
 		html += "<option value='0' selected>No Tier</option><option value='1'>Easy</option><option value='2'>Medium</option><option value='3'>Hard</option>";
 		html += "</select>";
-		html += "host: <select id='tag-##ID##' onChange='readAndGenerate()'><option value='0'>--</option><option value='1'>CC</option></select>";
-		html += "<input type='text' id='name-##ID##' placeholder='Player name' onChange='readAndGenerate()'/>";
-		html += "code: <input type='text' id='code-##ID##' placeholder='XXXX-XXXX-XXXX' onChange='readAndGenerate()'/>";
-		html += "<button onclick='clearHost(\"##ID##\");' style='background-color: red;'>Clear</button>";
+		html += "host: <select id='tag-##ID##'><option value='0'>--</option><option value='1'>CC</option></select>";
+		html += "<input type='text' id='name-##ID##' placeholder='Player name'/>";
+		html += "code: <input type='text' id='code-##ID##' placeholder='XXXX-XXXX-XXXX'/>";
+//		html += "<button onclick='clearHost(\"##ID##\");' style='background-color: red;'>Clear</button>";
 		
 		html += "Fill: <select id='quickEntry-##ID##' onchange='quickEntry(\"##ID##\");'><option value='0' selected>---</option>";
 		for (var h = 0; h < hostDatabase.length; ++h)
@@ -483,7 +497,7 @@ permalink: /staff/banners/index.html
 	
 	function generateStreamerForm(idx)
 	{
-		var html = "Streamer: <a href='https://www.twitch.tv'>twitch.tv/</a> <input type='text' id='streamer-##ID##' placeholder='twitchID' onChange='readAndGenerate()'/>";
+		var html = "Streamer: <a href='https://www.twitch.tv'>twitch.tv/</a> <input type='text' id='streamer-##ID##' placeholder='twitchID'/>";
 		var streamer = document.createElement("div");
 		streamer.innerHTML = html.replace(/##ID##/g, idx);
 		return streamer;
@@ -508,7 +522,7 @@ permalink: /staff/banners/index.html
 	
 </script>
 </head>
-	<body onLoad="load()">
+	<body onload="load()">
 		<div id="wrapper">
 			<h1>Casual ARMS Banner Generator</h1>
 			<p>
@@ -516,43 +530,48 @@ permalink: /staff/banners/index.html
 				Event slot:     <select id="event-slots"   onChange="fillFromEventSlot()"></select>
 			</p>
 			<hr/>
-			<p>
-				<label for="title">Title:</label>  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby" onChange="readAndGenerate()"/>
-				<label for="game">Game:</label>   <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
-				<label for="type">Type:</label>   <select id="type" onChange="readAndGenerate()"></select>
-				<label for="alert">Auto live-alert:</label> <input type="checkbox" checked id="alert" onChange="readAndGenerate()"/>
-				<br/>
-				<label for="description">Description:</label>  <input type="text" id="description" size="30" placeholder="Hoops-only Swiss Tournament" onChange="readAndGenerate()"/>
-				<label for="url">External Link:</label>  <input type="text" id="url"  size="35" placeholder="https://challonge.com/HoopsOnlyTournament" onChange="readAndGenerate()"/>
-				Sponsor: <select id="sponsor" onChange="readAndGenerate()">
-					<option value="undefined" selected>---</option>
-					<option value="mindgames">MindGames</option>
-				</select>
-			</p>
-			<p>
-				<label for="theme">Modes:</label>  <select id="theme" onChange="readAndGenerate()"></select>
-				<label for="stages">Stages:</label> <select id="stages" onChange="readAndGenerate()"></select>
-				<label for="items">Items:</label> <select id="items" onChange="readAndGenerate()"></select>
-				<input type="button" value="Randomize" onClick="randomTheme()"/>
-			</p>
+			<form oninput="readAndGenerate()">
+				<p>
+					<label for="title">Title:</label>  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
+					<label for="game">Game:</label>   <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
+					<label for="type">Type:</label>   <select id="type"></select>
+					<label for="alert">Auto live-alert:</label> <input type="checkbox" checked id="alert" onchange="readAndGenerate()"/>
+					<br/>
+					<label for="description">Description:</label>  <input type="text" id="description" size="30" placeholder="Hoops-only Swiss Tournament"/>
+					<label for="url">External Link:</label>  <input type="text" id="url"  size="35" placeholder="https://challonge.com/HoopsOnlyTournament"/>
+					Sponsor: <select id="sponsor">
+						<option value="undefined" selected>---</option>
+						<option value="mindgames">MindGames</option>
+					</select>
+				</p>
+				<p>
+					<label for="theme">Modes:</label>  <select id="theme"></select>
+					<label for="stages">Stages:</label> <select id="stages"></select>
+					<label for="items">Items:</label> <select id="items"></select>
+					<input type="button" value="Randomize" onClick="randomTheme()"/>
+				</p>
+				
+				<p>Date: <select id="month"></select>
+					<input type="number" id="day" value="1" min="1" max="31"/>
+					<input type="number" id="year" value="2018"/>
+					<label for="start-hours">Start:</label> <input type="number" id="start-hours" value="14" min="0" max="23"/> :
+					<input type="number" id="start-minutes" value="00" min="0" max="59">
+					<label for="timezone">in time zone:</label> <input type="text" id="timezone" value="EDT" size="5"/>
+					<label for="duration-minutes">Duration:</label> <input type="number" id="duration-minutes" value="120" min="0"/> min.
+					<input type="button" value="+ 1 week" onClick="addOneWeek()"/>
+				</p>
+				
+				<p>
+					<input type="button" value="Add Host Form" onclick="addHost()"/> <input type="button" value="Remove Host Form" onclick="removeHost(); readAndGenerate();"/>
+					<input type="button" value="Add Streamer Form" onclick="addStreamer()"/> <input type="button" value="Remove Streamer Form" onclick="removeStreamer(); readAndGenerate();"/>
+					<input type="button" value="Make Pre-announcement" onclick="fillTBAHost()"/>
+				</p>
+				
+				<p id="hosts-form"></p>
+				<p id="streamers-form"></p>
+			</form>
 			
-			<p>Date: <select id="month" onchange="readAndGenerate()"></select>
-				<input type="number" id="day" value="1" min="1" max="31" onChange="readAndGenerate()"/>
-				<input type="number" id="year" value="2018" onChange="readAndGenerate()"/>
-				<label for="start-hours">Start:</label> <input type="number" id="start-hours" value="14" min="0" max="23" onChange="readAndGenerate()"/> : <input type="number" id="start-minutes" value="00" min="0" max="59" onChange="readAndGenerate()">
-				<label for="timezone">in time zone:</label> <input type="text" id="timezone" value="EDT" size="5" onChange="readAndGenerate()"/>
-				<label for="duration-minutes">Duration:</label> <input type="number" id="duration-minutes" value="120" min="0" onChange="readAndGenerate()"/> min.
-				<input type="button" value="+ 1 week" onClick="addOneWeek()"/>
-			</p>
-			
-			<p>
-				<input type="button" value="Add Host Form" onclick="addHost()"/> <input type="button" value="Remove Host Form" onclick="removeHost(); readAndGenerate();"/>
-				<input type="button" value="Add Streamer Form" onclick="addStreamer()"/> <input type="button" value="Remove Streamer Form" onclick="removeStreamer(); readAndGenerate();"/>
-				<input type="button" value="Make Pre-announcement" onClick="fillTBAHost()"/>
-			</p>
-			
-			<p id="hosts-form"></p>
-			<p id="streamers-form"></p>
+			<p id="error"></p>
 			
 			<p>
 				<textarea id="text-output" rows="4"></textarea>

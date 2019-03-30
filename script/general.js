@@ -130,6 +130,8 @@ function timeZoneOffset(timeZoneString)
 		"CEST" :  2,
 	};
 	
+	if (!(timeZoneString in timeZoneOffsets))
+		return undefined;
 	return timeZoneOffsets[timeZoneString];
 }
 

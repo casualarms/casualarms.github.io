@@ -265,6 +265,13 @@
 		font-family: ARMS;
 	}
 	
+	.top-ten-divider {
+		border: none;
+		height: 1px;
+		background-color: rgba(255,255,255,0.3);
+		margin: 1.2em;
+	}
+	
 	</style>
 	<script>
 	var globalShuffle = false;
@@ -513,6 +520,7 @@
 		if (globalShuffle) shuffle(copyboard);
 		var previous = -1;
 		var duplicates = 0;
+		var didDivide = false;
 		var html = "<div class='tier'>";
 		
 		for (var i = 0; i < copyboard.length && copyboard[i].monthly > 0; ++i)
@@ -540,6 +548,12 @@
 			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
 			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
+			
+			if (useIndex >= 10 && !didDivide)
+			{
+				html += "<hr class='top-ten-divider'/>";
+				didDivide = true;
+			}
 		}
 		
 		$("leaderboard").innerHTML = html + "</div>";
@@ -777,7 +791,7 @@
 				<em class="mode" id="md-kart" onClick="changeMode('kart', false, false);">Kart</em><em class="mode" id="md-kart-monthly" onClick="changeMode('kart', true, false);">Monthly</em>
 			</span>
 			<span class="split-mode">
-				<em class="mode" id="md-splat" onClick="changeMode('splat', false, false);">Splatoon</em><em class="mode" id="md-splat-monthly" onClick="changeMode('splat', true, false);">Monthly</em>
+				<em class="mode" id="md-splat" onClick="changeMode('splat', false, false);">Splat</em><em class="mode" id="md-splat-monthly" onClick="changeMode('splat', true, false);">Monthly</em>
 			</span>
 			<span class="split-mode">
 				<em class="mode" id="md-smash" onClick="changeMode('smash', false, false);">Smash</em><em class="mode" id="md-smash-monthly" onClick="changeMode('smash', true, false);">Monthly</em>
