@@ -1,165 +1,130 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Fighter Stats Generator – Casual ARMS</title>
+	<title>Stats Card Generator – Casual ARMS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<style>
+	
+	#container { text-align: center; }
+	canvas { display: none; }
+	
+	.stats {
+		height: 100%;
+		width: 100%;
+	}
+	
+	input[type="range"] {
+		width: 6em;
+	}
+	
+	</style>
 	<script>
 	
 	function loader()
 	{
-		//
-		// ARMS stats generator
-		// By Programmability
-		//
-	
-		// Usage: Edit stats and style below
-		// Click "Run" button at the very top left to update the graphic.
-		// Make a manual screen capture to save the image.
-	
-		// Fill in your stats here
-		var fighterName = "MR. YABUKI";
-		var scoreSteps = 5;
-		var myStats = [
-		// [ "Attribute name" , value ]
-		["SPEED", 3],
-		["ACCURACY", 4],
-		["JUMP", 5],
-		["RUSH", 15],
-		["SIZE", 3],
-		["DASH", 2],
-		];
-	
-		// Fill in style settings here
-		// You can use names colors from here:
-		// https://www.w3schools.com/colors/colors_names.asp
-		backgroundColor = "LightSeaGreen";
-		nameColor = "DarkSlateGrey";
-		attributeColor = "rgba(255, 255, 255, 1)";
-		gridColor = "rgba(255, 255, 255, 0.5)";
-		highlightColor = "rgba(255, 255, 0, 0.8)";
-	
-		nameFont = "40pt Arial";
-		attributeFont = "20pt Arial";
-	
-	
-		// End of user settings
-		// (But you can experiment with the code below)
-	
-		// Initialization
-		c = document.getElementById("myCanvas");
-		ctx = c.getContext("2d");
-		ctx.lineCap = "round";
-	
-		midX = c.width / 2;
-		midY = c.height / 2 + 60;
-	
-		// Background
-		ctx.fillStyle = backgroundColor;
-		ctx.fillRect(0, 0, c.width, c.height);
-		numLines = 30;
-		ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
-		ctx.lineWidth = c.width / numLines / 3;
-		for (i = -numLines; i < numLines; i++)
-		{
-			x = (i + 0.5) * c.width / numLines;
-			ctx.beginPath();
-			ctx.moveTo(x, 0);
-			ctx.lineTo(x + 500, c.height);
-			ctx.stroke();
-		}
-	
-		// Name
-		ctx.font = nameFont;
-		ctx.textAlign = "center";
-		ctx.fillStyle = ctx.fillStyle = nameColor;
-		ctx.fillText(fighterName, midX, 80);
-	
-		// Circumferences
-		thickness = 200 / scoreSteps;
-		ctx.strokeStyle = gridColor;
-		ctx.lineWidth = 3;
-		for (r = 1; r <= scoreSteps; r++)
-		{
-			ctx.beginPath();
-			ctx.moveTo(midX + r * thickness, midY);
-			for (i = 0; i < myStats.length; i++)
-			{
-				angle = Math.PI * 2 * i / myStats.length;
-			
-				x = midX + Math.cos(angle) * r * thickness;
-				y = midY + Math.sin(angle) * r * thickness;
-			
-				ctx.lineTo(x, y);
-			}
-		
-			ctx.lineTo(midX + r * thickness, midY);
-			ctx.stroke();
-		}
-	
-		// Center lines
-		ctx.lineWidth = 5;
-		for (i = 0; i < myStats.length; i++)
-		{
-			ctx.beginPath();
-			angle = Math.PI * 2 * i / myStats.length;
-		
-			ctx.lineTo(midX, midY);
-			x = midX + Math.cos(angle) * scoreSteps * thickness;
-			y = midY + Math.sin(angle) * scoreSteps * thickness;
-			ctx.lineTo(x, y);
-			ctx.stroke();
-		}
-	
-		// Highlight area
-		ctx.fillStyle = highlightColor;
-		ctx.beginPath();
-		ctx.moveTo(midX + myStats[0][1] * thickness, midY);
-		for (i = 0; i < myStats.length; i++)
-		{
-			angle = Math.PI * 2 * i / myStats.length;
-		
-			x = midX + Math.cos(angle) * myStats[i][1] * thickness;
-			y = midY + Math.sin(angle) * myStats[i][1] * thickness;
-			ctx.lineTo(x, y);
-		}
-		ctx.fill();
-	
-	
-		// Attribute names
-		ctx.font = attributeFont;
-		ctx.textAlign = "center";
-		ctx.fillStyle = ctx.fillStyle = attributeColor;
-	
-		for (i = 0; i < myStats.length; i++)
-		{
-			angle = Math.PI * 2 * i / myStats.length;
-			offset = 35;
-		
-			x = midX + Math.cos(angle) * (scoreSteps * thickness + offset*2.5);
-			y = midY + Math.sin(angle) * (scoreSteps * thickness + offset) + 10;
-		
-			ctx.fillText(myStats[i][0], x, y);
-		}
-	
-		var img    = c.toDataURL("image/png");
-		document.getElementById('result').innerHTML = '<img src="'+img+'"/>';
-	
+		generateAttributes(5);
+		readAndGenerate();
 	}
+	
+	function readAndGenerate()
+	{
+		var info = {
+			name            : $("name").value,
+			steps           : $("steps").value,
+			caps            : $("caps").checked,
+			bg_color        : "rgba(" + $("colorR-b").value + "," + $("colorG-b").value + "," + $("colorB-b").value + ", 1.0)",
+			name_color      : "rgba(" + $("colorR-n").value + "," + $("colorG-n").value + "," + $("colorB-n").value + ", 1.0)",
+			highlight_color : "rgba(" + $("colorR-h").value + "," + $("colorG-h").value + "," + $("colorB-h").value + ", 0.5)",
+			attr_color      : "rgba(255, 255, 255, 1)",
+			grid_color      : "rgba(255, 255, 255, 0.5)"
+		};
+		
+		info.stats = [];
+		for (var i = 0; i < $("attribute-form").childNodes.length; ++i)
+			info.stats.push([$("attr-" + i).value, parseInt($("value-" + i).value)]);
+		
+		$("json").value = JSON.stringify(info);
+		
+		var c = document.getElementById("card");
+		ctx = c.getContext("2d");
+		renderStats(ctx, c.width / 2, c.height / 2 + 40, info);
+		
+		$("result").src = c.toDataURL("image/png");
+	}
+	
+	
+	
+	function generateAttributeForm(idx)
+	{
+		var html = "<input type='text' id='attr-##ID##' value='Stat ##ID##' onchange='readAndGenerate()'/>";
+		html += "<input type='number' id='value-##ID##' value='3' min='0' onChange='readAndGenerate()'/>"
+		var streamer = document.createElement("div");
+		streamer.innerHTML = html.replace(/##ID##/g, idx);
+		return streamer;
+	}
+	
+	function addAttribute()
+	{
+		$("attribute-form").appendChild(generateAttributeForm($("attribute-form").childNodes.length));
+	}
+	
+	function removeAttri()
+	{
+		if ($("attribute-form").childNodes.length > 3)
+			$("attribute-form").removeChild($("attribute-form").lastChild);
+	}
+	
+	function generateAttributes(count)
+	{
+		$("attribute-form").innerHTML = "";
+		for (var i = 0; i < count; ++i)
+			$("attribute-form").appendChild(generateAttributeForm(i));
+	}
+	
 	</script>
-	<style>
-	#container { text-align: center;}
-	canvas { display: none; }
-	</style>
 </head>
 <body onLoad="loader()">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div id="container">
-		<h2>Preview, coming soon!</h2>
-		<div>
-			<canvas id="myCanvas" width="800" height="600"/>
-		</div>
-		<div id="result"></div>
+		<h2>Stats Card Generator</h2>
+		
+		<form oninput="readAndGenerate()">
+		<p>
+			<label for="name">Name:</label>  <input type="text" id="name" placeholder="Mr. Yabuki" value="Mr. Yabuki"/><br/>
+			<label for="steps">Steps:</label> <input type="number" id="steps" value="5" min="1"/><br/>
+			<label for="caps">Capitalize:</label> <input type="checkbox" checked id="caps" onchange="readAndGenerate()"/>
+		</p>
+		
+		<p>
+			<label for="colorR-b"/>R</label> <input id="colorR-b" type="range" min="0" max="175" step="1" value="0">
+			<label for="colorG-b"/>G</label> <input id="colorG-b" type="range" min="0" max="175" step="1" value="125">
+			<label for="colorB-b"/>B</label> <input id="colorB-b" type="range" min="0" max="175" step="1" value="70"><br/>
+			
+			<label for="colorR-n"/>R</label> <input id="colorR-n" type="range" min="125" max="255" step="1" value="255">
+			<label for="colorG-n"/>G</label> <input id="colorG-n" type="range" min="125" max="255" step="1" value="255">
+			<label for="colorB-n"/>B</label> <input id="colorB-n" type="range" min="125" max="255" step="1" value="0"><br/>
+			
+			<label for="colorR-h"/>R</label> <input id="colorR-h" type="range" min="0" max="255" step="1" value="255">
+			<label for="colorG-h"/>G</label> <input id="colorG-h" type="range" min="0" max="255" step="1" value="125">
+			<label for="colorB-h"/>B</label> <input id="colorB-h" type="range" min="0" max="255" step="1" value="0">
+		</p>
+		
+		<p>
+			<input type="button" value="+ Stat" onclick="addAttribute(); readAndGenerate();"/>
+			<input type="button" value="- Stat" onclick="removeAttri(); readAndGenerate();"/><br/>
+			<span id="attribute-form"></span>
+		</p>
+		</form>
+		
+		<img class="stats" id="result"/>
+		<canvas class="stats" id="card" width="800" height="600"></canvas>
+		<p>Save the above image and share wherever you like!</p>
+		<textarea id="json" rows="5" style="width: 30em;"></textarea>
+		{% include footer.html %}
 	</div>
 </body>
 </html>

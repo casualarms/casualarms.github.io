@@ -705,6 +705,95 @@ function renderSmashBall(mainctx, width, height, color, size, offset_x, offset_y
 	mainctx.drawImage(scratch, 0, 0);
 }
 
+function renderStats(ctx, midX, midY, info)
+{
+	// Initialization
+	var nameFont = "40pt Arial";
+	var attributeFont = "20pt Arial";
+	ctx.lineCap = "round";
+	
+	// Background
+	ctx.fillStyle = info.bg_color;
+	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+	var numLines = 30;
+	ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+	ctx.lineWidth = ctx.canvas.width / numLines / 3;
+	for (var i = -numLines; i < numLines; i++)
+	{
+		var x = (i + 0.5) * ctx.canvas.width / numLines;
+		ctx.beginPath();
+		ctx.moveTo(x, 0);
+		ctx.lineTo(x + 500, ctx.canvas.height);
+		ctx.stroke();
+	}
+	
+	// Name
+	ctx.font = nameFont;
+	ctx.textAlign = "center";
+	ctx.fillStyle = ctx.fillStyle = info.name_color;
+	ctx.fillText(info.caps ? info.name.toUpperCase() : info.name, midX, 80);
+	
+	// Circumferences
+	var thickness = ctx.canvas.height * 0.3 / info.steps;
+	ctx.strokeStyle = info.grid_color;
+	ctx.lineWidth = 3;
+	for (var r = 1; r <= info.steps; r++)
+	{
+		ctx.beginPath();
+		ctx.moveTo(midX, midY - r * thickness);
+		for (var i = 0; i < info.stats.length; i++)
+		{
+			var angle = Math.PI * 2 * i / info.stats.length - Math.PI / 2;
+			var x = midX + Math.cos(angle) * r * thickness;
+			var y = midY + Math.sin(angle) * r * thickness;
+			ctx.lineTo(x, y);
+		}
+		
+		ctx.lineTo(midX, midY - r * thickness);
+		ctx.stroke();
+	}
+	
+	// Center lines
+	ctx.lineWidth = 5;
+	for (var i = 0; i < info.stats.length; i++)
+	{
+		ctx.beginPath();
+		var angle = Math.PI * 2 * i / info.stats.length - Math.PI / 2;
+		ctx.lineTo(midX, midY);
+		x = midX + Math.cos(angle) * info.steps * thickness;
+		y = midY + Math.sin(angle) * info.steps * thickness;
+		ctx.lineTo(x, y);
+		ctx.stroke();
+	}
+
+	// Highlight area
+	ctx.fillStyle = info.highlight_color;
+	ctx.beginPath();
+	ctx.moveTo(midX, midY - info.stats[0][1] * thickness);
+	for (var i = 0; i < info.stats.length; i++)
+	{
+		var angle = Math.PI * 2 * i / info.stats.length - Math.PI / 2;
+		var x = midX + Math.cos(angle) * info.stats[i][1] * thickness;
+		var y = midY + Math.sin(angle) * info.stats[i][1] * thickness;
+		ctx.lineTo(x, y);
+	}
+	ctx.fill();
+	
+	// Attribute names
+	ctx.font = attributeFont;
+	ctx.textAlign = "center";
+	ctx.fillStyle = ctx.fillStyle = info.attr_color;
+	
+	for (var i = 0; i < info.stats.length; i++)
+	{
+		var angle = Math.PI * 2 * i / info.stats.length - Math.PI / 2;
+		var offset = 35;
+		var x = midX + Math.cos(angle) * (info.steps * thickness + offset*2.5);
+		var y = midY + Math.sin(angle) * (info.steps * thickness + offset) + 10;
+		ctx.fillText(info.caps ? info.stats[i][0].toUpperCase() : info.stats[i][0], x, y);
+	}
+}
+
 function selectOptionWithValue(elem, value, defaultToZero=false)
 {
 	for (var i = 0; i < elem.options.length; ++i)
