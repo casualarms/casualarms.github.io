@@ -158,7 +158,6 @@
 	}
 	
 	#container.main-menu {
-	/*	padding-top: 1em;*/
 		padding-bottom: 0;
 	}
 	
@@ -191,12 +190,11 @@
 	
 	#arms-text {
 		position: absolute;
-		top: -100pt;
-		left: -150pt;
+		top: -120pt;
+		left: -90pt;
 		color: black;
 		opacity: 0.03;
-		z-index: -1;
-		font-size: 310pt;
+		font-size: 490pt;
 		font-family: 'ARMS';
 	}
 	
@@ -229,7 +227,7 @@
 		height: 90pt;
 		position: absolute;
 		left: -35pt;
-		top: 230pt;
+		top: 200pt;
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 		transform: rotate(-2deg);
 		z-index: 10;
@@ -448,20 +446,20 @@
 		
 		<img src="assets/main/rank-shield.png" id="shield"/>
 		<img src="assets/main/logo.png" id="logo"/>
-		<span id="arms-text">ARMS</span>
+		<span id="arms-text">CA</span>
 		
 		<div class="menu-container">
 			<a class="menu-item m1" id="m-lobby"        href="events/"><img src="/assets/main/lobby-logo.png"/>Community Events</a>
-			<a class="menu-item m2" id="m-clash"        href="clash/"><img src="/assets/main/clash-logo.png"/>
+			<a class="menu-item m2" id="m-leaderboards" href="leaderboards/"><img src="/assets/main/leaderboards-logo.png"/>Leaderboards</a>
+			<a class="menu-item m3" id="m-clash"        href="clash/"><img src="/assets/main/clash-logo.png"/>
 				Tournaments <em class="subselect">Clash</em><em class="subselect" onclick="goScramble(event);">Scramble</em>
 			</a>
-			<a class="menu-item m3" id="m-leaderboards" href="leaderboards/"><img src="/assets/main/leaderboards-logo.png"/>Leaderboards</a>
-			<a class="menu-item m3" id="m-quiz" href="quiz/"><img src="/assets/main/quiz-logo.png"/>Quiz</a>
+			<a class="menu-item m4" href="/">?????? ????</a>
 
-			<a class="menu-item m4" id="m-screenshot"   href="screenshots/"><img src="/assets/main/screenshot-logo.png"/>Screenshot Gallery</a>
-			<a class="menu-item m5" href="tools/fighter-randomizer/">Fighter + ARMS Randomizer</a>
-			<a class="menu-item m5" href="tools/stage-randomizer/">Stage Randomizer</a>
-			<!--<a class="menu-item m5" href="tools/stats-generator/">Fighter Stats Generator</a>-->
+		<!--	<a class="menu-item m4" id="m-screenshot"   href="screenshots/"><img src="/assets/main/screenshot-logo.png"/>Screenshot Gallery</a>-->
+			<a class="menu-item m5" href="tools/randomizers/">Randomizers</a>
+			<a class="menu-item m5" href="tools/stats-generator/">Stats Card</a>
+			<a class="menu-item m5" id="m-quiz" href="quiz/"><img src="/assets/main/quiz-logo.png"/>Quiz</a>
 		</div>
 		
 		<div id="featured-aligner">
@@ -475,7 +473,7 @@
 			<a class="submenu-item" href="https://twitter.com/casualARMS" target="_blank"><img src="/assets/main/logo-twitter.png"/><span class="sub-text">Twitter</span></a>
 			<a class="submenu-item" href="https://reddit.com/r/arms/" target="_blank"><img src="/assets/main/logo-reddit.png"/><span class="sub-text">Reddit</span></a>
 			<a class="submenu-item" href="https://armswiki.org/" target="_blank"><img src="/assets/main/logo-wiki.png"/><span class="sub-text">Wiki</span></a>
-			<a class="submenu-item" href="https://twitch.tv/schkrimps/" target="_blank"><img src="/assets/main/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>
+		<!--	<a class="submenu-item" href="https://twitch.tv/schkrimps/" target="_blank"><img src="/assets/main/logo-schkrimps.png"/><span class="sub-text">Schkrimps</span></a>-->
 			<span class="submenu-group">
 				<a class="submenu-item long" id="champ-url"><img src="" id="champ-img"/><span class="sub-text" id="champ-title"></span></a>
 				<a class="submenu-item extra" id="champ-name"></a>
