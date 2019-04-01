@@ -157,14 +157,24 @@
 			"criterion" : "Finish as the winner in the monthly Mario Kart leaderboards"
 		},
 		"season_splat"  : {
-			"caption"   : "Monthly Splatoon Leaderboards",
+			"caption"   : "Monthly Splatoon 2 Leaderboards",
 			"style"     : "light",
-			"criterion" : "Finish top 10 in the monthly Splatoon leaderboards"
+			"criterion" : "Finish top 10 in the monthly Splatoon 2 leaderboards"
 		},
 		"season_splat_win" : {
-			"caption"   : "Monthly Splatoon Leaderboards Win",
+			"caption"   : "Monthly Splatoon 2 Leaderboards Win",
 			"style"     : "hololight",
-			"criterion" : "Finish as the winner in the monthly Splatoon leaderboards"
+			"criterion" : "Finish as the winner in the monthly Splatoon 2 leaderboards"
+		},
+		"season_smash"  : {
+			"caption"   : "Monthly Super Smash Bros. Ultimate Leaderboards",
+			"style"     : "light",
+			"criterion" : "Finish top 10 in the monthly Super Smash Bros. Ultimate leaderboards"
+		},
+		"season_smash_win" : {
+			"caption"   : "Monthly Super Smash Bros. Ultimate Leaderboards Win",
+			"style"     : "hololight",
+			"criterion" : "Finish as the winner in the monthly Super Smash Bros. Ultimate leaderboards"
 		},
 		"p0"           : {
 			"caption"   : "Patreon: Casual Contributor",
