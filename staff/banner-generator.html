@@ -308,7 +308,7 @@ permalink: /staff/banners/index.html
 				"theme"    : slot.theme,
 				"stages"   : slot.stages,
 				"items"    : slot.items,
-				"hosts"    : ("hosts" in slot) ? slot.hosts : [{"name" : "To Be Announced", "code" : "-"}]
+				"hosts"    : ("hosts" in slot) ? slot.hosts : [{"name" : "To Be Announced", "code" : ""}]
 			});
 		}
 	}
@@ -436,7 +436,7 @@ permalink: /staff/banners/index.html
 	{
 		generateHosts(1);
 		$("name-0").value = "To Be Announced";
-		$("code-0").value = "-";
+		$("code-0").value = "";
 		$("tag-0").selectedIndex = $("host-0").selectedIndex = 0;
 		readAndGenerate();
 	}

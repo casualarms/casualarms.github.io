@@ -21,11 +21,30 @@
 		width: 6em;
 	}
 	
+	.clabel {
+		display: inline-block;
+		width: 8em;
+		text-align: right;
+	}
+	
 	</style>
 	<script>
 	
 	function loader()
 	{
+		if (getQueryVariable("hex") != null)
+		{
+			$("rgba").style.display = "none";
+			$("hex").style.display = "block";
+		}
+		
+		var sliders = ["colorR-b", "colorG-b", "colorB-b", "colorR-n", "colorG-n", "colorB-n"];
+		for (var i = 0; i < sliders.length; ++i)
+		{
+			var e = $(sliders[i]);
+			e.value = Math.random() * (parseInt(e.max) - parseInt(e.min)) + parseInt(e.min);
+		}
+		
 		generateAttributes(5);
 		readAndGenerate();
 	}
@@ -38,10 +57,17 @@
 			caps            : $("caps").checked,
 			bg_color        : "rgba(" + $("colorR-b").value + "," + $("colorG-b").value + "," + $("colorB-b").value + ", 1.0)",
 			name_color      : "rgba(" + $("colorR-n").value + "," + $("colorG-n").value + "," + $("colorB-n").value + ", 1.0)",
-			highlight_color : "rgba(" + $("colorR-h").value + "," + $("colorG-h").value + "," + $("colorB-h").value + ", 0.5)",
+			highlight_color : "rgba(" + $("colorR-n").value + "," + $("colorG-n").value + "," + $("colorB-n").value + ", 0.6)",
 			attr_color      : "rgba(255, 255, 255, 1)",
 			grid_color      : "rgba(255, 255, 255, 0.5)"
 		};
+		
+		if (getQueryVariable("hex") != null)
+		{
+			info.bg_color        = "#" + $("hex-b").value;
+			info.name_color      = "#" + $("hex-n").value;
+			info.highlight_color = "#" + $("hex-n").value + "90";
+		}
 		
 		info.stats = [];
 		for (var i = 0; i < $("attribute-form").childNodes.length; ++i)
@@ -99,7 +125,7 @@
 			<label for="caps">Capitalize:</label> <input type="checkbox" checked id="caps" onchange="readAndGenerate()"/>
 		</p>
 		
-		<p>
+		<p id="rgba">
 			<label for="colorR-b"/>R</label> <input id="colorR-b" type="range" min="0" max="175" step="1" value="0">
 			<label for="colorG-b"/>G</label> <input id="colorG-b" type="range" min="0" max="175" step="1" value="125">
 			<label for="colorB-b"/>B</label> <input id="colorB-b" type="range" min="0" max="175" step="1" value="70"><br/>
@@ -107,10 +133,11 @@
 			<label for="colorR-n"/>R</label> <input id="colorR-n" type="range" min="125" max="255" step="1" value="255">
 			<label for="colorG-n"/>G</label> <input id="colorG-n" type="range" min="125" max="255" step="1" value="255">
 			<label for="colorB-n"/>B</label> <input id="colorB-n" type="range" min="125" max="255" step="1" value="0"><br/>
-			
-			<label for="colorR-h"/>R</label> <input id="colorR-h" type="range" min="0" max="255" step="1" value="255">
-			<label for="colorG-h"/>G</label> <input id="colorG-h" type="range" min="0" max="255" step="1" value="125">
-			<label for="colorB-h"/>B</label> <input id="colorB-h" type="range" min="0" max="255" step="1" value="0">
+		</p>
+		
+		<p id="hex" style="display: none;">
+			<label for="hex-b" class="clabel"/>Background: </label> #<input id="hex-b" type="text" value="FF5500"><br/>
+			<label for="hex-n" class="clabel"/>Name: </label>       #<input id="hex-n" type="text" value="335500"><br/>
 		</p>
 		
 		<p>
