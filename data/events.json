@@ -19,8 +19,8 @@
 
 	,{"title":"Racha's Gambit","game":"arms","type":"tournament","alert":false,"date":"2019-03-26T00:00:00.000Z","duration":120,"tz":"CDT","stages":"all-arms","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit1"}
 	
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-04-06T20:15:00.000Z","duration":60,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Casual Clash 12","game":"arms","type":"clash","alert":false,"date":"2019-04-06T21:30:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-04-06T20:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Casual Clash 12","game":"arms","type":"clash","alert":false,"date":"2019-04-06T21:30:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
 
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-04-20T19:15:00.000Z","duration":60,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 9","game":"arms","type":"scramble","alert":false,"date":"2019-04-20T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms","sponsor":"mindgames"}
