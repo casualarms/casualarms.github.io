@@ -32,6 +32,8 @@ permalink: /staff/leaderboards/index.html
 		padding-bottom: 0.25em;
 	}
 	
+	a { color: white; }
+	
 	textarea {
 		background-color: #484b52;
 		color: white;
@@ -55,26 +57,6 @@ permalink: /staff/leaderboards/index.html
 	</style>
 	<script>
 	
-	// Merges entries with unknown ID
-	function mergeData(d_old, d_new)
-	{
-		var result = {};
-		for (var i = 0; i <  d_old.length; ++i)
-		{
-			var name = d_old[i][0];
-			if (result[name] == undefined) result[name] = [-1,-1];
-			result[name][0] = d_old[i][1];
-		}
-		for (var i = 0; i <  d_new.length; ++i)
-		{
-			var name = d_new[i][0];
-			if (result[name] == undefined) result[name] = [-1,-1];
-			result[name][1] = d_new[i][1];
-		}
-		return result;
-	}
-
-	
 	function compare(mode, dataNew, dataOld)
 	{
 		var useTiers = leaderboardTiers[mode];
@@ -85,39 +67,27 @@ permalink: /staff/leaderboards/index.html
 			newroles[useTiers[t].name] = [];
 		
 		// Handle players with known IDs
-		for (key in dataNew)
+		for (var np = 0; np < dataNew.length; ++np)
 		{
-			if (key == "UNKNOWN") continue;
-			
-			var newCoins = dataNew[key].coins;
-			var oldCoins = (dataOld[key] != undefined) ? dataOld[key].coins : 0;
-			
-			for (var t = useTiers.length-1; t >= 0; --t)
+			var player = dataNew[np];
+			if ("id" in player)
 			{
-				if (newCoins >= useTiers[t].start && oldCoins < useTiers[t].start)
+				var newCoins = player.coins;
+				var oldCoins = 0;
+				for (var op = 0; op < dataOld.length; ++op)
+					if ("id" in dataOld[op] && dataOld[op].id == player.id)
+						oldCoins = dataOld[op].coins;
+				
+				for (var t = useTiers.length-1; t >= 0; --t)
 				{
-					newroles[useTiers[t].name].push([dataNew[key].name, dataNew[key].id]);
-					break;
+					if (newCoins >= useTiers[t].start && oldCoins < useTiers[t].start)
+					{
+						newroles[useTiers[t].name].push([player.name, player.id]);
+						break;
+					}
 				}
 			}
 		}
-		
-		
-		// Handle players with unknown IDs
-		var merged = mergeData(dataOld.UNKNOWN, dataNew.UNKNOWN);
-		for (var name in merged)
-		{
-			var player = merged[name];
-			for (var t = useTiers.length-1; t >= 0; --t)
-			{
-				if (player[1] >= useTiers[t].start && player[0] < useTiers[t].start)
-				{
-					newroles[useTiers[t].name].push([name, "unknown"]);
-					break;
-				}
-			}
-		}
-		
 		
 		// Output result
 		var output = "";
@@ -140,70 +110,84 @@ permalink: /staff/leaderboards/index.html
 		throw new Error(message);
 	}
 	
-	
 	function parseData(text)
 	{
 		var rows = text.split(/[\r\n]+/);
-		var data = {};
-		var unknowns = [];
+		var data = [];
+		var seenIDs = {};
 		
 		for (var i = 1; i < rows.length; ++i)
 		{
 			var row = rows[i].split(",");
-			var userName = row[1];
 			var userID = row[0];
+			var userName = row[1];
+			var coins = parseInt(row[2]);
+			var monthly = parseInt(row[3]);
+			if (!monthly) monthly = 0;
+			
+			if (userID in seenIDs)
+				error("Duplicate ID for " + userName + " (" + userID + ")");
 			
 			if (userName == "" || userID == "")
 				error("Found empty name and/or ID");
 			
-			var coins = parseInt(row[2]);
 			if (!coins)
 				error("Invalid total points field for " + userName + " (" + userID + ")");
 			
-			var monthly = parseInt(row[3]);
-			if (!monthly) monthly = 0;
+			var newEntry = { name : userName, coins : coins, monthly : monthly };
 			
-			if (userID == "UNKNOWN")
-				unknowns.push([userName, coins, monthly]);
-			else
+			if (userID != "UNKNOWN")
 			{
-				if (userID in data)
-					error("Duplicate ID for " + userName + " (" + userID + ")");
-				
-				data[userID] = {"id" : userID, "name" : userName, "coins" : coins, "monthly" : monthly};
+				seenIDs[userID] = userName;
+				newEntry.id = userID;
 			}
+			data.push(newEntry);
 		}
 		
-		data["UNKNOWN"] = unknowns;
-		return data;
-	}
-	
-	
-	var reader = new FileReader();
-	
-	reader.onloadend = function(event)
-	{
-		var dataNew = parseData(reader.result);
-		$("formatted-for-web").value = JSON.stringify(dataNew);
-		var mode = $("mode").value;
-		fetchLeaderboards(mode, function(dataOld) { compare(mode, dataNew, dataOld); });
+		return data.sort(function(a,b) { return b.coins - a.coins; });
 	}
 	
 	function formatFile()
 	{
 		$("error").innerHTML = "";
-		var selectedFile = $("file-new").files[0];
-		reader.readAsText(selectedFile);
+		var reader = new FileReader();
+		reader.onloadend = function(event)
+		{
+			var dataNew = parseData(reader.result);
+			$("formatted-for-web").value = JSON.stringify(dataNew) + ",";
+			var mode = $("mode").value;
+			compare(mode, dataNew, leaderboardsJSON[mode]);
+		}
+		reader.readAsText($("file-new").files[0]);
+	}
+	
+	// Season
+	function update()
+	{
+		addCurrentSeason();
+		var mode = $("mode").value;
+		seasonHistoryJSON[mode][0].year = parseInt($("year").value);
+		seasonHistoryJSON[mode][0].month = parseInt($("month").value);
+		$("output").value = JSON.stringify(seasonHistoryJSON[mode][0]) + ",";
+	}
+	
+	function load()
+	{
+		addCurrentSeason();
+		var today = new Date();
+		$("year").value  = today.getFullYear();
+		$("month").value = today.getMonth() + 1;
+		update();
 	}
 	
 	</script>
 </head>
-<body>
+<body onload="load()">
 	<div id="wrapper">
 		<h1>Casual ARMS Leaderboard Tools</h1>
 		
 		<p>Mode:
-			<select id="mode">
+			<select id="mode" onchange="update()">
 				<option value="arms">ARMS</option>
 				<option value="kart">Mario Kart</option>
 				<option value="splat">Splatoon</option>
@@ -211,18 +195,32 @@ permalink: /staff/leaderboards/index.html
 			</select>
 		</p>
 		
-		<h2>Input</h2>
-		<input type="file" id="file-new"/><button onCLick="formatFile()">Read and Format File</button>
+		<hr/>
+		
+		<h2>Leaderboard Coins Update</h2>
+		<input type="file" id="file-new"/><button onclick="formatFile()">Read and Format File</button>
 		<br/>
 		
 		<p id="error" style="color: yellow;"></p>
 		
-		<h3>JSON Leaderboard</h3>
-		<button onCLick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
-		<textarea id="formatted-for-web" rows="15"></textarea>
+		<button onclick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
+		<textarea id="formatted-for-web" rows="12"></textarea>
 		
 		<h3>New Roles</h3>
 		<div id="newroles"></div>
+		
+		<hr/>
+		<h2>Season Report</h2>
+		<p>Make sure all coin updates for the month are <em>submitted</em> and appear on the regular <a href="/leaderboards/">leaderboard website</a> before you do this step.</p>
+		
+		<p>
+			Year:  <input type="number" id="year" min="2018" oninput="update();"/>
+			Month: <input type="number" id="month" min="1" max="12" oninput="update();"/>
+		</p>
+		
+		<button onclick="copyToClipboard('output')" class="btn-cpy">Copy to Clipboard</button>
+		<textarea id="output" rows="12"></textarea>
+		
 	</div>
 </body>
 </html>

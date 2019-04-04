@@ -10,7 +10,6 @@
 	<script src="/script/general.js"></script>
 	<script src="/script/fuzzy.js"></script>
 	<script src="/data/support.js"></script>
-	<script src="/data/history-adapter.js"></script>
 	<style>
 	
 	h3 { background-color: black; }
@@ -274,7 +273,6 @@
 	
 	</style>
 	<script>
-	var globalShuffle = false;
 	
 	function badgeDetail(badgeKey, pid)
 	{
@@ -347,39 +345,6 @@
 		stash.style.height = "auto";
 	}
 	
-	var rawSeasonHistory = { arms: null, kart: null, splat: null, smash: null };
-	var seasonHistory    = { arms: null, kart: null, splat: null, smash: null };
-	
-	function storeSeasons(rawBoards)
-	{
-		var games = ["arms", "kart", "splat", "smash"];
-		for (var gi = 0; gi < games.length; ++gi)
-		{
-			rawSeasonHistory[games[gi]] = [];
-			seasonHistory[games[gi]] = [];
-			for (var i = 0; i < rawBoards[games[gi]].length; ++i)
-			{
-				var season = {};
-				season.title = monthNames[rawBoards[games[gi]][i].month-1] + " " + rawBoards[games[gi]][i].year;
-				season.data = reorganizeLeaderboards(rawBoards[games[gi]][i].leaderboard);
-				seasonHistory[games[gi]].push(season);
-				
-				var copyboard = season.data.slice().sort(function(a, b) { return b.monthly - a.monthly; });
-				var rawSeason = {};
-				var previous = -1;
-				var duplicates = 0;
-				
-				for (var si = 0; si < copyboard.length && copyboard[si].monthly > 0; ++si)
-				{
-					duplicates = (copyboard[si].monthly == previous) ? duplicates + 1 : 0;
-					previous = copyboard[si].monthly;
-					rawSeason[copyboard[si].id] = si + 1 - duplicates;
-				}
-				rawSeasonHistory[games[gi]].push(rawSeason);
-			}
-		}
-	}
-	
 	function playerProgress(player, game)
 	{
 		var tiers = leaderboardTiers[game];
@@ -393,8 +358,6 @@
 	function displayRolePlayers(players, tc, game, showIndex)
 	{
 		var tier = leaderboardTiers[game][tc];
-		if (globalShuffle) shuffle(players);
-		
 		var html = "<div class='tier tier-" + game + "-" + (tc-1) + "'>";
 		var previous = -1;
 		var duplicates = 0;
@@ -439,13 +402,7 @@
 	
 	function displayLeaderboards(game)
 	{
-		var leaderboard = reorganizeLeaderboards(leaderboardsJSON[game]);
-		if (leaderboard.length == 0)
-		{
-			$("leaderboard").innerHTML = "";
-			return;
-		}
-		
+		var leaderboard = leaderboardsJSON[game];
 		var menu_html = "<div class='menu-container'>";
 		var body_html = "<div>";
 		var css = "";
@@ -514,39 +471,36 @@
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
 	
-	function displayMonthly(game, useBoard, prevRawBoard)
+	function displayMonthly(game, seasonIndex)
 	{
-		var copyboard = useBoard.slice().filter(function (item) { return item.monthly > 0; }).sort(function(a, b) { return b.monthly - a.monthly; });
-		if (globalShuffle) shuffle(copyboard);
 		var previous = -1;
 		var duplicates = 0;
 		var didDivide = false;
 		var html = "<div class='tier'>";
 		
-		for (var i = 0; i < copyboard.length && copyboard[i].monthly > 0; ++i)
+		var board = seasonHistoryJSON[game][seasonIndex].data;
+		
+		for (var i = 0; i < board.length; ++i)
 		{
-			duplicates = (copyboard[i].monthly == previous) ? duplicates + 1 : 0;
-			previous = copyboard[i].monthly;
+			duplicates = (board[i].monthly == previous) ? duplicates + 1 : 0;
+			previous = board[i].monthly;
 			var useIndex = i + 1 - duplicates;
-			var changetext = "<span class='change change-unknown'>" + ((prevRawBoard != null) ? "???" : "new") + "</span>";
 			
-			if (prevRawBoard != null && copyboard[i].id != null)
+			var changetext = "";
+			if (seasonIndex + 1 < seasonHistoryJSON[game].length && "id" in board[i])
 			{
-				var change = prevRawBoard.hasOwnProperty(copyboard[i].id) ? (prevRawBoard[copyboard[i].id] - useIndex) : undefined;
-				if (change == 0)
-					changetext = "<span class='change change-neutral'>&nbsp;&nbsp;➡︎"  + "</span>";
-				else if (change > 0)
-					changetext = "<span class='change change-positive'>⬆︎" +   change  + "</span>";
-				else if (change < 0)
-					changetext = "<span class='change change-negative'>⬇︎" + (-change) + "</span>";
-				else
-					changetext = "<span class='change change-new'>new</span>";
+				var prevBoard = seasonHistoryJSON[game][seasonIndex + 1].data;
+				var change = getIndexInLeaderboard(board[i].id, prevBoard, true, true) - getIndexInLeaderboard(board[i].id, board, true, true);
+				if      (change == 0) changetext = "<span class='change change-neutral'>&nbsp;&nbsp;➡︎"  + "</span>";
+				else if (change >  0) changetext = "<span class='change change-positive'>⬆︎" +   change  + "</span>";
+				else if (change <  0) changetext = "<span class='change change-negative'>⬇︎" + (-change) + "</span>";
+				else                  changetext = "<span class='change change-new'>new</span>";
 			}
 		
 			var pid = "monthly-" + i;
-			html += "<p onclick=\"showBadges('" + pid + "','" + copyboard[i].id + "');\" id='player-" + pid + "' class='entry basic " + game + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
-			html += "<span class='player'>" + copyboard[i].name + "</span> " + changetext;
-			html += "<span class='coins'>" + copyboard[i].monthly + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span></p>";
+			html += "<p onclick=\"showBadges('" + pid + "','" + board[i].id + "');\" id='player-" + pid + "' class='entry basic " + game + ((useIndex > 99) ? " small" : "") + "' style='color: white;'><span class='index'><span class='index-number'>" + useIndex + "</span></span>";
+			html += "<span class='player'>" + board[i].name + "</span> " + changetext;
+			html += "<span class='coins'>" + board[i].monthly + "<img class='armscoin coin-yellow' src='coin_" + game + ".png'/><img class='armscoin coin-dark' src='coin_" + game + "_dark.png'/></span></p>";
 			html += "<div class='badge-stash' id='badges-" + pid + "'>A Discord connection is required for badge collection!</div>";
 			
 			if (useIndex >= 10 && !didDivide)
@@ -642,7 +596,6 @@
 		$("container").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
 	}
 	
-	var searchDB = {};
 	var gameColors = { "arms" : "#ffff00", "kart" : "#f92473" , "splat" : "#00dd00", "smash" : "#ffffff" };
 	
 	function updateSearchResults()
@@ -652,9 +605,9 @@
 		
 		var list = [];
 		for (var game in eventGames)
-			for (var i = 0; i < searchDB[game].length; ++i)
+			for (var i = 0; i < leaderboardsJSON[game].length; ++i)
 			{
-				var item = searchDB[game][i];
+				var item = leaderboardsJSON[game][i];
 				item["game"] = game;
 				list.push(item);
 			}
@@ -687,9 +640,6 @@
 	{
 		var html = "<p id='search-entry'>Enter text to search:</br><input type='text' id='search-text' placeholder='Player name' oninput='updateSearchResults();'/></p><div id='search-results'></div>";
 		$("leaderboard").innerHTML = html;
-		
-		for (var game in eventGames)
-			searchDB[game] = reorganizeLeaderboards(leaderboardsJSON[game]);
 	}
 	
 	var activeGame;
@@ -714,12 +664,11 @@
 			displaySearch();
 		else if (monthly)
 		{
-			var today = new Date();
-			var options = "<option value='0'>" + monthNames[today.getMonth()] + " " + today.getFullYear() + " (Current)</option>";
-			for (var i = 0; i < seasonHistory[activeGame].length; ++i)
-				options += "<option value='" + (i+1) +"'>" + seasonHistory[activeGame][i].title + "</option>";
+			var options = "";
+			for (var i = 0; i < seasonHistoryJSON[activeGame].length; ++i)
+				options += "<option value='" + i +"'>" + monthNames[seasonHistoryJSON[activeGame][i].month-1] + " " + seasonHistoryJSON[activeGame][i].year + "</option>";
 			$("season").innerHTML = options;
-			selectSeason(game);
+			displayMonthly(game, $("season").selectedIndex);
 		}
 		else
 			displayLeaderboards(game);
@@ -727,22 +676,9 @@
 		setBackgroundPattern(game);
 	}
 	
-	function selectSeason(game)
-	{
-		var activeSeasonIndex = $("season").selectedIndex;
-		
-		var useBoard = reorganizeLeaderboards(leaderboardsJSON[game]);
-		if (activeSeasonIndex > 0)
-			useBoard = seasonHistory[game][activeSeasonIndex-1].data;
-		
-		var prevRawBoard = (activeSeasonIndex < rawSeasonHistory[game].length) ? rawSeasonHistory[game][activeSeasonIndex] : null;
-		
-		displayMonthly(game, useBoard, prevRawBoard);
-	}
-	
 	function load()
 	{
-		storeSeasons(seasonHistoryJSON);
+		addCurrentSeason();
 		
 		switch (window.location.hash.substring(1))
 		{
@@ -767,11 +703,9 @@
 	<div id="container" class="container-dark">
 		
 		<h2>Leaderboards</h2>
-		
 		<p>Casual ARMS are officially tracking your <img class='armscoin-text' src='coin_arms.png'/> coins throughout every major <a href="/events/"><em>lobby event</em></a> we hold! At the moment, this means the <a href="/events/#tuesday">Tuesday</a>, <a href="/events/#wednesday">Wednesday</a>, <a href="/events/#thursday">Thursday</a>, and <a href="/events/#sunday">Sunday</a> lobbies. As every 20 coin lobby <em>finishes</em>, a screenshot of the <img class='armscoin-text' src='coin_arms.png'/> coins acquired will be logged and the totals recorded. Those coins will add to your totals for the server leaderboard, displayed here! (New roles will be revealed as they are acquired.)</p>
 		
 		<h3>Badges</h3>
-		
 		<p>Members of the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> can now collect badges from different activities! Badges are awarded for leaderboard progression and <a href='https://www.patreon.com/CasualARMS'><em style="background-color: #f36b61;">Patreon</em></a> support, among other things, and new badges will be unveiled regularly! Click on an entry in the leaderboard listings to view their badge stash.</p>
 		
 		<div id="badge-feature" style="display: none;">
@@ -802,7 +736,7 @@
 		</p>
 		
 		<p id="season-nav">
-			<select id="season" onChange="selectSeason(activeGame)">
+			<select id="season" onChange="displayMonthly(activeGame, event.target.selectedIndex)">
 			</select>
 		</p>
 		

@@ -215,24 +215,40 @@ function withImagesLoaded(imageData, callback)
 	}
 }
 
-function reorganizeLeaderboards(rawBoards)
+function monthifyLeaderboards(boards)
 {
 	var leaderboards = [];
-	
-	for (var key in rawBoards)
+	for (var i = 0; i < boards.length; ++i)
 	{
-		if (rawBoards.hasOwnProperty(key) && key != "UNKNOWN")
-		{
-			var user = rawBoards[key];
-			leaderboards.push({ name: user.name, coins: user.coins, monthly: user.monthly, id: key});
-		}
+		var entry = { name: boards[i].name, monthly: boards[i].monthly };
+		if ("id" in boards[i]) entry.id = boards[i].id;
+		leaderboards.push(entry);
 	}
-	
-	for (var i = 0; i < rawBoards.UNKNOWN.length; ++i)
-		leaderboards.push({ name: rawBoards.UNKNOWN[i][0], coins: rawBoards.UNKNOWN[i][1], monthly: rawBoards.UNKNOWN[i][2], id: null});
-	
-	leaderboards.sort(function(a, b) { return b.coins - a.coins; });
-	return leaderboards;
+	return leaderboards.filter(function(item) { return item.monthly > 0; }).sort(function(a, b) { return b.monthly - a.monthly; });
+}
+
+function addCurrentSeason()
+{
+	// Add current leaderboard data to history object
+	for (var game in eventGames)
+	{
+		var today = new Date();
+		seasonHistoryJSON[game].splice(0, 0, {
+			year  : today.getFullYear(),
+			month : today.getMonth() + 1,
+			data  : monthifyLeaderboards(leaderboardsJSON[game])
+		});
+	}
+}
+
+function getIndexInLeaderboard(pid, board, withTies=false, monthly=false)
+{
+	var prop = monthly ? "monthly" : "coins";
+	for (var i = 0; i < board.length; ++i)
+		if ("id" in board[i] && board[i].id == pid)
+			if (!withTies) return i + 1;
+			else { var j = i; while (j > 0 && board[i][prop] == board[j - 1][prop]) --j; return j + 1; }
+	return undefined;
 }
 
 function fetchJSON(url, callback)
@@ -262,21 +278,6 @@ function fetchLeaderboards(game, callback)
 			cachedLeaderboardsJSON = rawJSON
 			callback(cachedLeaderboardsJSON[game]);
 		});
-}
-
-function fetchSeasonHistory(callback)
-{
-	return fetchJSON("/data/season-history.json", callback);
-}
-
-function fetchBadges(callback)
-{
-	return fetchJSON("/data/badges.json", callback);
-}
-
-function fetchPatrons(callback)
-{
-	return fetchJSON("/data/patreon.json", callback);
 }
 
 function upcomingEvents()

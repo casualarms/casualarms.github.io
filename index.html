@@ -13,11 +13,6 @@
 	<script src="/data/support.js"></script>
 	<script>
 	
-	function loadWidgetData(data)
-	{
-		$("footer-discord-text").innerHTML = data.members.length + " members online on <u>Discord</u>!";
-	}
-	
 	function load()
 	{
 		// Add random trivia
@@ -77,47 +72,35 @@
 		$("champ-url").href = challongeURL;
 		
 		// Patreon feature display
-		fetchPatrons(function(patrons)
+		var raffle = [];
+		for (var key in patronsJSON)
 		{
-			raffle = [];
-			for (var key in patrons)
+			if (patronsJSON.hasOwnProperty(key) && key == "UNKNOWN")
 			{
-				if (patrons.hasOwnProperty(key) && key == "UNKNOWN")
+				var unknowns = patronsJSON[key];
+				for (var u = 0; u < unknowns.length; ++u)
 				{
-					var unknowns = patrons[key];
-					for (var u = 0; u < unknowns.length; ++u)
-					{
-						var user = unknowns[u];
-						if (user.active)
-							for (var i = 0; i < user.tier; ++i)
-								raffle.push(user.name);
-					}
-				}
-				else if (patrons.hasOwnProperty(key) && patrons[key].active)
-				{
-					var user = patrons[key];
-					for (var i = 0; i < user.tier; ++i)
-						raffle.push(user.name);
+					var user = unknowns[u];
+					if (user.active)
+						for (var i = 0; i < user.tier; ++i)
+							raffle.push(user.name);
 				}
 			}
-			var winner = raffle[Math.floor(Math.random() * raffle.length)];
-			$("patron-feature").innerHTML = winner;
-		});
+			else if (patronsJSON.hasOwnProperty(key) && patronsJSON[key].active)
+			{
+				var user = patronsJSON[key];
+				for (var i = 0; i < user.tier; ++i)
+					raffle.push(user.name);
+			}
+		}
+		var winner = raffle[Math.floor(Math.random() * raffle.length)];
+		$("patron-feature").innerHTML = winner;
 		
 		// Discord widget display
-		var xmlhttp = new XMLHttpRequest();
-		var url = "https://discordapp.com/api/guilds/396373087278465038/widget.json";
-		
-		xmlhttp.onreadystatechange = function()
+		fetchJSON("https://discordapp.com/api/guilds/396373087278465038/widget.json", function(discordData)
 		{
-			if (this.readyState == 4 && this.status == 200)
-			{
-				var myArr = JSON.parse(this.responseText);
-				loadWidgetData(myArr);
-			}
-		};
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
+			$("footer-discord-text").innerHTML = "<span id='discord-number'>" + discordData.members.length + "</span> members online on <u>Discord</u>";
+		});
 	}
 	
 	function checkKey(e)
@@ -311,6 +294,10 @@
 		color: white !important;
 	}
 	
+	#patron-feature, #discord-number {
+		font-weight: bold;
+	}
+	
 	#discord-footer:hover {
 		background-color: #5c70ae;
 	}
@@ -487,7 +474,7 @@
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
 					<polygon points="100 0 100 10 0 10 6 0" fill="#f36b61"/>
 				</svg>
-				<span id="footer-patreon-text"><u>Patreon</u> spotlight: <span id="patron-feature">tehbs</span>!</span>
+				<span id="footer-patreon-text"><u>Patreon</u> spotlight: <span id="patron-feature">tehbs</span></span>
 			</a>
 			<img id="patreon-logo" src="/assets/main/patreon-logo.png"/>
 		</div>

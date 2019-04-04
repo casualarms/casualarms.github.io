@@ -94,64 +94,19 @@ permalink: /staff/prizes/index.html
 		$("result").value = text;
 	}
 	
-	var rawSeasonHistory = { arms: null, kart: null, splat: null, smash: null };
-	var seasonHistory    = { arms: null, kart: null, splat: null, smash: null };
-	
-	function storeSeasons(rawBoards)
-	{
-		var games = ["arms", "kart", "splat", "smash"];
-		for (var gi = 0; gi < games.length; ++gi)
-		{
-			rawSeasonHistory[games[gi]] = [];
-			seasonHistory[games[gi]] = [];
-			for (var i = 0; i < rawBoards[games[gi]].length; ++i)
-			{
-				var season = {};
-				season.title = monthNames[rawBoards[games[gi]][i].month-1] + " " + rawBoards[games[gi]][i].year;
-				season.data = reorganizeLeaderboards(rawBoards[games[gi]][i].leaderboard);
-				seasonHistory[games[gi]].push(season);
-				
-				var copyboard = season.data.slice().sort(function(a, b) { return b.monthly - a.monthly; });
-				var rawSeason = {};
-				var previous = -1;
-				var duplicates = 0;
-				
-				for (var si = 0; si < copyboard.length && copyboard[si].monthly > 0; ++si)
-				{
-					duplicates = (copyboard[si].monthly == previous) ? duplicates + 1 : 0;
-					previous = copyboard[si].monthly;
-					rawSeason[copyboard[si].id] = si + 1 - duplicates;
-				}
-				rawSeasonHistory[games[gi]].push(rawSeason);
-			}
-		}
-		
-		var options = "";
-		for (var game in eventGames)
-			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
-		$("game").innerHTML = options;
-		
-		changeGame();
-	}
-	
 	function processMonthly(useBoard)
 	{
 		var game = $("game").value;
 		var activeSeasonIndex = $("season").selectedIndex;
-		useBoard = seasonHistory[game][activeSeasonIndex].data;
-		var copyboard = useBoard.slice().filter(function (item) { return item.monthly > 0; }).sort(function(a, b) { return b.monthly - a.monthly; });
+		var board = seasonHistoryJSON[game][activeSeasonIndex].data.filter(function(item) { return "id" in item; });
 		
 		var scores = [];
 		var sumscores = 0;
-		var previous = -1;
-		var duplicates = 0;
-		for (var i = 0; i < copyboard.length && copyboard[i].monthly > 0; ++i)
+		
+		for (var i = 0; i < board.length; ++i)
 		{
-			duplicates = (copyboard[i].monthly == previous) ? duplicates + 1 : 0;
-			previous = copyboard[i].monthly;
-			var useIndex = i + 1 - duplicates;
-			var score = copyboard.length - useIndex + 1;
-			scores.push({name:copyboard[i].name, score:score, wins:0});
+			var score = board.length + 1 - getIndexInLeaderboard(board[i].id, board, true, true);
+			scores.push({ name : board[i].name, score : score, wins : 0 });
 			sumscores += score;
 		}
 		
@@ -181,17 +136,24 @@ permalink: /staff/prizes/index.html
 	
 	function load()
 	{
-		fetchSeasonHistory(storeSeasons);
+		addCurrentSeason();
+		
+		var options = "";
+		for (var game in eventGames)
+			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
+		$("game").innerHTML = options;
+		
+		changeGame();
 	}
 	
 	function changeGame()
 	{
 		var game = $("game").value;
-		var today = new Date();
 		var options = "";
-		for (var i = 0; i < seasonHistory[game].length; ++i)
-			options += "<option value='" + (i+1) +"'>" + seasonHistory[game][i].title + "</option>";
+		for (var i = 0; i < seasonHistoryJSON[game].length; ++i)
+			options += "<option value='" + i +"'>" + monthNames[seasonHistoryJSON[game][i].month-1] + " " + seasonHistoryJSON[game][i].year + "</option>";
 		$("season").innerHTML = options;
+		processMonthly();
 	}
 	
 	</script>
@@ -203,19 +165,18 @@ permalink: /staff/prizes/index.html
 		<h2>Input</h2>
 		<p>Rolls: <input type="number" value="1" id="rolls"/></p>
 		<textarea id="input" rows="10"></textarea>
-		<button onCLick="process()">Process </button>
+		<button onclick="process()">Process</button>
 		<br/>
 		
 		<h3>Results</h3>
 		<textarea id="result" rows="30"></textarea>
 		
-		
 		<h3>Monthly Giveaway</h3>
-		
+		<p>Note: Excludes entries without a set Discord ID from the raffle.</p>
 		<p>
-			<select id="game" onChange="changeGame()"></select>
-			<select id="season"></select>
-			<button onCLick="processMonthly()">Process Monthly</button>
+			<select id="game" onchange="changeGame()"></select>
+			<select id="season" onchange="processMonthly()"></select>
+		<button onclick="processMonthly()">Process</button>
 		</p>
 		<textarea id="result-monthly" rows="30"></textarea>
 		
