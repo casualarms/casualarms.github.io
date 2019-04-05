@@ -22,7 +22,8 @@ permalink: /staff/new-leaderboards/index.html
 	}
 	
 	#wrapper {
-		width: 40em;
+		width: 60em;
+		max-width: 95%;
 		margin: 0 auto;
 		padding: 1em 2em;
 		background-color: #36393f;
@@ -45,6 +46,15 @@ permalink: /staff/new-leaderboards/index.html
 		color: white;
 	}
 	
+	#search-text {
+		font-size: 2em;
+		text-align: center;
+		width: 90%;
+		display: inline-block;
+		margin: auto;
+		text-transform: uppercase;
+	}
+	
 	#input, #previous, #format-text-button, #compare-text-button {
 		display: none;
 	}
@@ -63,9 +73,9 @@ permalink: /staff/new-leaderboards/index.html
 		background-color: #ddd;
 		border-radius: 0.2em;
 		color: black;
-		margin: 0.2em auto;
+		margin: 0.3em auto;
 		width: 90%;
-		padding: 0.2em 0.5em;
+		padding: 0.3em 0.5em 0.5em 0.5em;
 		box-sizing: border-box;
 	}
 	
@@ -95,26 +105,13 @@ permalink: /staff/new-leaderboards/index.html
 	</style>
 	<script>
 	
-	var searchDB;
-	var dataOld;
+	var workingBoard;
+	var patchIDStore;
+	var patch;
 	
-	// Merges entries with unknown ID
-	function mergeData(d_old, d_new)
+	function clone(obj)
 	{
-		var result = {};
-		for (var i = 0; i <  d_old.length; ++i)
-		{
-			var name = d_old[i][0];
-			if (result[name] == undefined) result[name] = [-1,-1];
-			result[name][0] = d_old[i][1];
-		}
-		for (var i = 0; i <  d_new.length; ++i)
-		{
-			var name = d_new[i][0];
-			if (result[name] == undefined) result[name] = [-1,-1];
-			result[name][1] = d_new[i][1];
-		}
-		return result;
+		return JSON.parse(JSON.stringify(obj));
 	}
 	
 	function compare(mode, dataNew, dataOld)
@@ -127,35 +124,24 @@ permalink: /staff/new-leaderboards/index.html
 			newroles[useTiers[t].name] = [];
 		
 		// Handle players with known IDs
-		for (key in dataNew)
+		for (var np = 0; np < dataNew.length; ++np)
 		{
-			if (key == "UNKNOWN") continue;
-			
-			var newCoins = dataNew[key].coins;
-			var oldCoins = (dataOld[key] != undefined) ? dataOld[key].coins : 0;
-			
-			for (var t = useTiers.length-1; t >= 0; --t)
+			var player = dataNew[np];
+			if ("id" in player)
 			{
-				if (newCoins >= useTiers[t].start && oldCoins < useTiers[t].start)
+				var newCoins = player.coins;
+				var oldCoins = 0;
+				for (var op = 0; op < dataOld.length; ++op)
+					if ("id" in dataOld[op] && dataOld[op].id == player.id)
+						oldCoins = dataOld[op].coins;
+				
+				for (var t = useTiers.length-1; t >= 0; --t)
 				{
-					newroles[useTiers[t].name].push([dataNew[key].name, dataNew[key].id]);
-					break;
-				}
-			}
-		}
-		
-		
-		// Handle players with unknown IDs
-		var merged = mergeData(dataOld.UNKNOWN, dataNew.UNKNOWN);
-		for (var name in merged)
-		{
-			var player = merged[name];
-			for (var t = useTiers.length-1; t >= 0; --t)
-			{
-				if (player[1] >= useTiers[t].start && player[0] < useTiers[t].start)
-				{
-					newroles[useTiers[t].name].push([name, "unknown"]);
-					break;
+					if (newCoins >= useTiers[t].start && oldCoins < useTiers[t].start)
+					{
+						newroles[useTiers[t].name].push([player.name, player.id]);
+						break;
+					}
 				}
 			}
 		}
@@ -168,11 +154,39 @@ permalink: /staff/new-leaderboards/index.html
 			output += "<h4 style='color: " + useTiers[t].color + ";'>" + tierName + "</h4><ul>";
 			for (newrole in newroles[tierName])
 				output += "<li>" + newroles[tierName][newrole][0] + " <span style='font-size: 0.7em; color: yellow;'>(" + newroles[tierName][newrole][1] + ")</span></li>";
-			
 			output += "</ul>";
 		}
 		
 		$("newroles").innerHTML = output;
+	}
+	
+	function mergeInPatch()
+	{
+		var game = $("mode").value;
+		var dataNew = clone(leaderboardsJSON[game]);
+		
+		for (var patchID in patch)
+		{
+			var sum = 0;
+			for (var i = 0; i < patch[patchID].points.length; ++i)
+				sum += patch[patchID].points[i];
+			
+			if (patchID < leaderboardsJSON[game].length)
+			{
+				dataNew[patchID].coins   += sum;
+				dataNew[patchID].monthly += sum;
+				if (  "id" in patch[patchID] && patch[patchID].id   != "") dataNew[patchID].id   = patch[patchID].id;
+				if ("name" in patch[patchID] && patch[patchID].name != "") dataNew[patchID].name = patch[patchID].name;
+			}
+			else {
+				var item = { name : patch[patchID].name, coins : sum, monthly : sum };
+				if ("id" in patch[patchID]) item.id = patch[patchID].id;
+				dataNew.push(item);
+			}
+		}
+		
+		$("formatted-for-web").value = JSON.stringify(dataNew);
+		compare(game, dataNew, leaderboardsJSON[game]);
 	}
 	
 	function error(message)
@@ -182,193 +196,146 @@ permalink: /staff/new-leaderboards/index.html
 	}
 	
 	
-	
-	var patch = {"UNKNOWN" : [], "NEW" : []};
-	
-	function addPoints(id, name, points)
+	function addPoints(patchID, points)
 	{
-		console.log("Add points ", id, name);
-		if (id != "UNKNOWN")
-		{
-			if (id in patch) patch[id] += points;
-			else             patch[id]  = points;
-		}
-		else
-		{
-			var found = false;
-			for (var i = 0; i < patch["UNKNOWN"].length; ++i)
-				if (patch["UNKNOWN"][i].name == name)
-				{
-					patch["UNKNOWN"][i].coins += points;
-					found = true;
-				}
-			
-			if (!found)
-				patch["UNKNOWN"].push({"name" : name, "coins" : points});
-		}
+		console.log("Add points", patchID, points);
 		
+		if (patchID in patch)
+			for (var i = 0; i < points.length; ++i)
+				patch[patchID].points.push(points[i]);
+		else
+			patch[patchID] = { points : points };
 		
 		updatePatchDisplay();
 	}
 	
 	function createEntry(name, points)
 	{
-		var found = false;
-		for (var i = 0; i < patch["NEW"].length; ++i)
-			if (patch["NEW"][i].name == name)
-			{
-				patch["NEW"][i].coins += points;
-				found = true;
-			}
-		
-		if (!found)
-			patch["NEW"].push({"name" : name, "coins" : points});
-		
+		patch[patchIDStore++] = { name : name, points : points };
 		updatePatchDisplay();
 	}
 	
-	function deletePatch(id)
+	function deletePatch(patchID)
 	{
-		delete patch[id];
+		delete patch[patchID];
 		updatePatchDisplay();
 	}
 	
-	function deletePatchNoID(name)
-	{
-		patch["NEW"]     = patch["NEW"]    .filter(function(a) { return a.name != name });
-		patch["UNKNOWN"] = patch["UNKNOWN"].filter(function(a) { return a.name != name });
-		updatePatchDisplay();
-	}
-	
-	function setNewID(event, name)
+	function updateID(patchID, event)
 	{
 		var id = event.target.value;
-		for (var i = 0; i < patch["NEW"].length; ++i)
-			if (patch["NEW"][i].name == name)
-			{
-				if (id != "") patch["NEW"][i].id = id;
-				else delete   patch["NEW"][i].id;
-			}
+		patch[patchID].id = id;
+		updatePatchDisplay();
+	}
+	
+	function updateName(patchID, event)
+	{
+		var name = event.target.value;
+		patch[patchID].name = name;
+		updatePatchDisplay();
 	}
 	
 	function updatePatchDisplay()
 	{
 		var html = "<div class='suggestion-container'>";
-		for (var id in patch)
+		for (var patchID in patch)
 		{
-			if (id == "UNKNOWN" || id == "NEW") continue;
+			var coins = 0;
+			var id = "";
+			var name = "";
+			var type = "mode-committed";
 			
-			var player = dataOld[id];
+			if (patchID < workingBoard.length)
+			{
+				var player = workingBoard[patchID];
+				coins = player.coins;
+				name = player.name;
+				if ("id" in player) id = player.id;
+				type = "mode-committed-new";
+			}
+			
+			if ("id"   in patch[patchID])   id = patch[patchID].id;
+			if ("name" in patch[patchID]) name = patch[patchID].name;
+			
+			var sum = 0;
+			for (var i = 0; i < patch[patchID].points.length; ++i)
+				sum += patch[patchID].points[i];
+			
+			
 			html += "<p class='suggestion mode-committed'>";
-			html += player.name;
-			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + player.coins + " + " + patch[id];
-			html += " <button onclick=\"deletePatch('" + id + "')\">Delete</button></span></p>";
-		}
-		
-		for (var i = 0; i < patch["NEW"].length; ++i)
-		{
-			html += "<p class='suggestion mode-committed-new'>";
-			html += patch["NEW"][i].name;
-			html += " <span class='suggestion-id'><input type='text' oninput=\"setNewID(event, '" + patch["NEW"][i].name + "')\" placeholder='UNKNOWN'/></span>";
-			html += "<span class='suggestion-points'>" + patch["NEW"][i].coins;
-			html += " <button onclick=\"deletePatchNoID('" + patch["NEW"][i].name + "')\">Delete</button></span></p>";
-		}
-		
-		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
-		{
-			html += "<p class='suggestion mode-committed'>";
-			html += patch["UNKNOWN"][i].name;
-			html += " <span class='suggestion-id'>UNKNOWN</span> <span class='suggestion-points'>" + patch["UNKNOWN"][i].coins;
-			html += " <button onclick=\"deletePatchNoID('" + patch["UNKNOWN"][i].name + "')\">Delete</button></span></p>";
+			if (patchID >= workingBoard.length)
+				html += "<span class='icon-new'>🆕</span> ";
+			if (patchID < workingBoard.length && "id" in patch[patchID] && patch[patchID].id != "")
+				html += "<span class='icon-newid' title='Original ID was " + workingBoard[patchID].id + "'>🆔</span> ";
+			if (patchID < workingBoard.length && "name" in patch[patchID] && patch[patchID].name != "")
+				html += "<span class='icon-newname'title='Original name was " + workingBoard[patchID].name + "'>🏠</span> ";
+			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
+		//	html += " <span class='suggestion-id'>" + id + "</span>";
+			html += " <span class='suggestion-id'><input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='UNKNOWN' value='" + id + "'/></span>";
+			html += " <span class='suggestion-points'>" + coins + " + " + sum;
+			html += " <button onclick=\"deletePatch('" + patchID + "')\">Delete</button></span></p>";
 		}
 		
 		html += "</div>";
 		$("patch-display").innerHTML = html;
-		updateSearchResults();
+		mergeInPatch();
 	}
 	
-	function mergeInPatch()
+	
+	
+	function list2num(elem)
 	{
-		var dataNew = {};
-		for(var key in dataOld)
-		{
-			if (key != dataOld[key].id) console.log(key);
-			dataNew[key] = JSON.parse(JSON.stringify(dataOld[key]));
-		}
-		
-		for (var id in patch)
-		{
-			if (id == "UNKNOWN" || id == "NEW") continue;
-			
-			dataNew[id].coins   += patch[id];
-			dataNew[id].monthly += patch[id];
-		}
-		
-		for (var i = 0; i < patch["NEW"].length; ++i)
-		{
-			var entry = patch["NEW"][i];
-			if ("id" in entry)
-			{
-				if (entry.id in dataNew) error("ID already exist: " + entry.id);
-				else dataNew[entry.id] = { "id" : entry.id, "name" : entry.name, "coins" : entry.coins, "monthly" : entry.coins };
-			}
-			else
-				dataNew["UNKNOWN"].push([ entry.name, entry.coins, entry.coins ]);
-		}
-		
-		for (var i = 0; i < patch["UNKNOWN"].length; ++i)
-		{
-			var found = false;
-			for (var j = 0; j < dataNew["UNKNOWN"].length; ++j)
-			{
-				if (patch["UNKNOWN"][i].name == dataNew["UNKNOWN"][j][0])
-				{
-					found = true;
-					dataNew["UNKNOWN"][j][1] += patch["UNKNOWN"][i].coins;
-					dataNew["UNKNOWN"][j][2] += patch["UNKNOWN"][i].coins;
-				}
-			}
-			
-			if (!found) console.log("ERRRORR", patch["UNKNOWN"][i]);
-		}
-		
-		$("formatted-for-web").value = JSON.stringify(dataNew);
-		var mode = $("mode").value;
-		compare(mode, dataNew, dataOld);
+		var str = $(elem).value;
+		var list = str.split(/\s+/);
+		var res = [];
+		for (var i = 0; i < list.length; ++i)
+			if (list[i] != "")
+				res.push(parseInt(list[i]));
+		return res;
 	}
-	
-	
 	
 	function updateSearchResults()
 	{
-		var points = parseInt($("points-entry").value);
+		var game = $("mode").value;
+		var points = 0;//parseInt($("points-entry").value);
 		if (!points) points = 0;
 		var search = $("search-text").value;
 		
 		var options = { pre: "<span class='match'>", post: "</span>", extract: function(el) { return el.name; }};
-		var results = fuzzy.filter(search, searchDB, options);
+		var results = fuzzy.filter(search, workingBoard, options);
+		for (var i = 0; i < results.length; ++i)
+		{
+			if (results[i].original.name.toLowerCase().lastIndexOf(search.toLowerCase(), 0) === 0)
+				results[i].score += 10;
+		}
 		results.sort(function(e1,e2) { return e1.original.name < e2.original.name; });
 		results.sort(function(e1,e2) { return e1.score < e2.score; });
 		
-		var html = "<div class='suggestion-container'><p class='suggestion mode-new'>" + search + " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>";
-		html += "<button onclick=\"createEntry('" + search + "', 1)\">+ 1</button>";
-		html += "<button onclick=\"createEntry('" + search + "', 5)\">+ 5</button>";
-		html += "<button onclick=\"createEntry('" + search + "', 10)\">+ 10</button>";
-		html += "<button class='large' onclick=\"createEntry('" + search + "', " + points + ")\">+ " + points + "</button></span></p><br/>";
+		var html = "<div class='suggestion-container'>";
 		
 		for (var i = 0 ; i < results.length; ++i)
 		{
-			var mode = (results[i].original.id in patch) ? "changed" : "unchanged";
+			var mode = (results[i].original.patch_id in patch) ? "changed" : "unchanged";
 			html += "<p class='suggestion mode-" + mode + "'>"
 			html += results[i].string;
-			var id = results[i].original.id ? results[i].original.id : "UNKNOWN";
+			var id = "id" in results[i].original ? results[i].original.id : "UNKNOWN";
+			var key = results[i].original.patch_id;
 			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + results[i].original.coins;
-			html += "<button onclick=\"addPoints('" + id + "','" + results[i].original.name + "', 1)\">+ 1</button>";
-			html += "<button onclick=\"addPoints('" + id + "','" + results[i].original.name + "', 5)\">+ 5</button>";
-			html += "<button onclick=\"addPoints('" + id + "','" + results[i].original.name + "', 10)\">+ 10</button>";
-			html += "<button class='large' onclick=\"addPoints('" + id + "','" + results[i].original.name + "', " + points + ")\">+ " + points + "</button>";
+			html += "<button onclick=\"addPoints(" + key + ", [ 1])\">+1</button>";
+			html += "<button onclick=\"addPoints(" + key + ", [ 5])\">+5</button>";
+			html += "<button onclick=\"addPoints(" + key + ", [10])\">+10</button>";
+			html += "<input type='text' id='input-" + key + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { addPoints('" + key + "', list2num('input-" + key + "')) }\"/>";
+			html += "<button onclick=\"addPoints('" + key + "', list2num('input-" + key + "'))\">Add</button>";
 			html += "</span></p>";
 		}
+		html += "<p class='suggestion mode-new'>" + search + " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>";
+		html += "<button onclick=\"createEntry('" + search + "', 1)\">+1</button>";
+		html += "<button onclick=\"createEntry('" + search + "', 5)\">+5</button>";
+		html += "<button onclick=\"createEntry('" + search + "', 10)\">+10</button>";
+		html += "<input type='text' id='input-new' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { createEntry('" + search + "', list2num('input-new')) }\"/>";
+		html += "<button onclick=\"createEntry('" + search + "', list2num('input-new'))\">Add</button>";
+		html += "</span></p>";
+		
 		html += "</div>";
 		
 		$("search-results").innerHTML = html;
@@ -377,12 +344,20 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function load()
 	{
-		var mode = $("mode").value;
-		fetchLeaderboards(mode, function(rawLeaderboard)
+		var game = $("mode").value;
+		
+		workingBoard = [];
+		patchIDStore = 0;
+		patch = {};
+		
+		for (; patchIDStore < leaderboardsJSON[game].length; ++patchIDStore)
 		{
-			dataOld = rawLeaderboard;
-			searchDB = reorganizeLeaderboards(rawLeaderboard);
-		});
+			var item = clone(leaderboardsJSON[game][patchIDStore]);
+			item.patch_id = patchIDStore;
+			workingBoard.push(item);
+		}
+		updateSearchResults();
+		updatePatchDisplay();
 	}
 	
 	</script>
@@ -400,16 +375,14 @@ permalink: /staff/new-leaderboards/index.html
 			</select>
 		</p>
 		
-		<p id="search-entry">
-			Points change: <input type="text" id="points-entry" placeholder="0" autocomplete="off" oninput="updateSearchResults();"/><br/>
-			Player name:   <input type="text" id="search-text" placeholder="Player name" autocomplete="off" oninput="updateSearchResults();"/>
-		</p>
+		<p style="text-align: center;"><input type="text" id="search-text" placeholder="Search" autocomplete="off" oninput="updateSearchResults();"/></p>
+		
 		<div id='search-results'></div>
 		<hr/>
 		
 		<div id='patch-display'></div>
 		
-		<button onclick="mergeInPatch();5/0">Finalize</button>
+	<!--	<button onclick="mergeInPatch();">Finalize</button>-->
 		
 		<hr/>
 		
