@@ -57,4 +57,7 @@
 	,{ "date" : "2019-03-23", "type" : "scramble", "players" : 14, "winner" : [
  		{ "id" : "450773792588038144", "name" : "Becca" }
 	]}
+	,{ "date" : "2018-04-06", "type" : "clash", "players" : 14, "winner" : [
+		{ "id" : "192081577306488842", "name" : "Serperiorfan" }
+	]}
 ]
