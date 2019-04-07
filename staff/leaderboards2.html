@@ -102,6 +102,20 @@ permalink: /staff/new-leaderboards/index.html
 	.mode-kart  .match { color: white; }
 	.mode-splat .match { color: yellow; }
 	
+	.lobby-score {
+		background-color: rgb(239, 223, 174);
+		border-radius: 0.2em;
+		display: inline-block;
+		padding: 1pt 3pt;
+		text-align: center;
+		font-size: 0.8em;
+	}
+	
+	.lobby-score:hover {
+		background-color: red;
+		color: white;
+	}
+	
 	</style>
 	<script>
 	
@@ -162,6 +176,7 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function mergeInPatch()
 	{
+		$("error").innerHTML = "";
 		var game = $("mode").value;
 		var dataNew = clone(leaderboardsJSON[game]);
 		
@@ -175,12 +190,22 @@ permalink: /staff/new-leaderboards/index.html
 			{
 				dataNew[patchID].coins   += sum;
 				dataNew[patchID].monthly += sum;
-				if (  "id" in patch[patchID] && patch[patchID].id   != "") dataNew[patchID].id   = patch[patchID].id;
-				if ("name" in patch[patchID] && patch[patchID].name != "") dataNew[patchID].name = patch[patchID].name;
+				if ("id" in patch[patchID] && patch[patchID].id != "")
+				{
+					if (typeof getIndexInLeaderboard(patch[patchID].id, dataNew) !== "undefined") error("Duplicate ID found: " + patch[patchID].id);
+					dataNew[patchID].id   = patch[patchID].id;
+				}
+				if ("name" in patch[patchID] && patch[patchID].name != "")
+					dataNew[patchID].name = patch[patchID].name;
 			}
 			else {
+				if (patch[patchID].name == "") error("New player with unset name");
 				var item = { name : patch[patchID].name, coins : sum, monthly : sum };
-				if ("id" in patch[patchID]) item.id = patch[patchID].id;
+				if ("id" in patch[patchID] && patch[patchID].id != "")
+				{
+					if (typeof getIndexInLeaderboard(patch[patchID].id, dataNew) !== "undefined") error("Duplicate ID found: " + patch[patchID].id);
+					item.id = patch[patchID].id;
+				}
 				dataNew.push(item);
 			}
 		}
@@ -191,8 +216,7 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function error(message)
 	{
-		$("error").innerHTML = "Fatal Error: " + message;
-		throw new Error(message);
+		$("error").innerHTML += "<br/>Warning: " + message;
 	}
 	
 	
@@ -235,6 +259,12 @@ permalink: /staff/new-leaderboards/index.html
 		updatePatchDisplay();
 	}
 	
+	function removePoint(patchID, index)
+	{
+		patch[patchID].points.splice(index, 1);
+		updatePatchDisplay();
+	}
+	
 	function updatePatchDisplay()
 	{
 		var html = "<div class='suggestion-container'>";
@@ -258,22 +288,29 @@ permalink: /staff/new-leaderboards/index.html
 			if ("name" in patch[patchID]) name = patch[patchID].name;
 			
 			var sum = 0;
+			var scorelist = "";
 			for (var i = 0; i < patch[patchID].points.length; ++i)
+			{
 				sum += patch[patchID].points[i];
-			
+				scorelist += "<span class='lobby-score' onclick='removePoint(" + patchID + ", " + i + ")'>" + patch[patchID].points[i] + "</span> ";
+			}
 			
 			html += "<p class='suggestion mode-committed'>";
+			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
+			html += " <input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='UNKNOWN' value='" + id + "'/>";
+			html += " <button onclick=\"deletePatch(" + patchID + ")\">Delete</button> ";
+			
 			if (patchID >= workingBoard.length)
 				html += "<span class='icon-new'>🆕</span> ";
 			if (patchID < workingBoard.length && "id" in patch[patchID] && patch[patchID].id != "")
 				html += "<span class='icon-newid' title='Original ID was " + workingBoard[patchID].id + "'>🆔</span> ";
 			if (patchID < workingBoard.length && "name" in patch[patchID] && patch[patchID].name != "")
 				html += "<span class='icon-newname'title='Original name was " + workingBoard[patchID].name + "'>🏠</span> ";
-			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
-		//	html += " <span class='suggestion-id'>" + id + "</span>";
-			html += " <span class='suggestion-id'><input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='UNKNOWN' value='" + id + "'/></span>";
-			html += " <span class='suggestion-points'>" + coins + " + " + sum;
-			html += " <button onclick=\"deletePatch('" + patchID + "')\">Delete</button></span></p>";
+			
+			html += " <span class='suggestion-points'>" + scorelist;// + coins + " + " + sum;
+			html += " <input type='text' id='input-patch-" + patchID + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' size='10' onkeyup=\"if (event.keyCode == 13) { addPoints(" + patchID + ", list2num('input-patch-" + patchID + "')); event.target.value = ''; }\"/>";
+			html += "<button onclick=\"addPoints(" + patchID + ", list2num('input-patch-" + patchID + "'))\">Add</button></span>";
+			html += "</p>";
 		}
 		
 		html += "</div>";
@@ -321,24 +358,19 @@ permalink: /staff/new-leaderboards/index.html
 			var id = "id" in results[i].original ? results[i].original.id : "UNKNOWN";
 			var key = results[i].original.patch_id;
 			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + results[i].original.coins;
-			html += "<button onclick=\"addPoints(" + key + ", [ 1])\">+1</button>";
-			html += "<button onclick=\"addPoints(" + key + ", [ 5])\">+5</button>";
-			html += "<button onclick=\"addPoints(" + key + ", [10])\">+10</button>";
-			html += "<input type='text' id='input-" + key + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { addPoints('" + key + "', list2num('input-" + key + "')) }\"/>";
-			html += "<button onclick=\"addPoints('" + key + "', list2num('input-" + key + "'))\">Add</button>";
+			html += " <input type='text' id='input-" + key + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { addPoints(" + key + ", list2num('input-" + key + "')); event.target.value = '';  }\"/>";
+			html += "<button onclick=\"addPoints(" + key + ", list2num('input-" + key + "'))\">Add</button>";
 			html += "</span></p>";
 		}
-		html += "<p class='suggestion mode-new'>" + search + " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>";
-		html += "<button onclick=\"createEntry('" + search + "', 1)\">+1</button>";
-		html += "<button onclick=\"createEntry('" + search + "', 5)\">+5</button>";
-		html += "<button onclick=\"createEntry('" + search + "', 10)\">+10</button>";
-		html += "<input type='text' id='input-new' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { createEntry('" + search + "', list2num('input-new')) }\"/>";
-		html += "<button onclick=\"createEntry('" + search + "', list2num('input-new'))\">Add</button>";
-		html += "</span></p>";
-		
 		html += "</div>";
 		
+		var html2 = "<p class='suggestion mode-new'>" + search + " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>";
+		html2 += "<input type='text' id='input-new' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { createEntry('" + search + "', list2num('input-new')); event.target.value = '';  }\"/>";
+		html2 += "<button onclick=\"createEntry('" + search + "', list2num('input-new'))\">Add</button>";
+		html2 += "</span></p>";
+		
 		$("search-results").innerHTML = html;
+		$("new-player-results").innerHTML = html2;
 	}
 	
 	
@@ -375,16 +407,14 @@ permalink: /staff/new-leaderboards/index.html
 			</select>
 		</p>
 		
+		<div id='new-player-results'></div>
 		<p style="text-align: center;"><input type="text" id="search-text" placeholder="Search" autocomplete="off" oninput="updateSearchResults();"/></p>
 		
 		<div id='search-results'></div>
 		<hr/>
-		
 		<div id='patch-display'></div>
 		
 	<!--	<button onclick="mergeInPatch();">Finalize</button>-->
-		
-		<hr/>
 		
 		<p id="error" style="color: yellow;"></p>
 		
