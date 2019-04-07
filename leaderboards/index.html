@@ -312,14 +312,17 @@
 		var games = ["arms", "kart", "splat", "smash"];
 		
 		for (var gi = 0; gi < games.length; ++gi)
-			if (leaderboardsJSON[games[gi]].hasOwnProperty(uid))
+		{
+			var index = getIndexInLeaderboard(uid, leaderboardsJSON[games[gi]]);
+			if (index !== undefined)
 			{
 				for (var i = 1; i < leaderboardTiers[games[gi]].length-1; ++i)
 				{
-					if (leaderboardsJSON[games[gi]][uid].coins >= leaderboardTiers[games[gi]][i].start)
+					if (leaderboardsJSON[games[gi]][index - 1].coins >= leaderboardTiers[games[gi]][i].start)
 						user_badges.push(games[gi] + "_ldb" + (i-1));
 				}
 			}
+		}
 		
 		// Stable order of badge display
 		var badgeIndex = {};

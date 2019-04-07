@@ -61,11 +61,13 @@ permalink: /staff/prizes/index.html
 		var scores = [];
 		var sumscores = 0;
 		
+		var scoreCol = parseInt($("score-col").value) - 1;
+		
 		for (var line in lines)
 		{
 			var split = lines[line].split(/\s/g).filter(function(item) { return item != "" && item != "-"; });
 			var offset = (split[2][0] == "(") ? 1 : 0;
-			var score = parseFloat(split[7+offset]);
+			var score = parseFloat(split[scoreCol + offset]);
 			scores.push([split[1], score, 0]);
 			sumscores += score;
 		}
@@ -88,7 +90,7 @@ permalink: /staff/prizes/index.html
 		for (var p = 0; p < scores.length; ++p)
 		{
 			var expected = scores[p][1] / sumscores * rolls;
-			text += padString(scores[p][0], "                        ") + scores[p][2] + " (expected " + expected +  ")\n";
+			text += padString(scores[p][1], "         ") + padString(scores[p][0], "                           ") + scores[p][2] + " (expected " + expected +  ")\n";
 		}
 		
 		$("result").value = text;
@@ -162,16 +164,19 @@ permalink: /staff/prizes/index.html
 	<div id="wrapper">
 		<h1>Casual ARMS Prize Randomizer</h1>
 		
-		<h2>Input</h2>
+		<h2>Challonge Results Prize Raffle</h2>
 		<p>Rolls: <input type="number" value="1" id="rolls"/></p>
+		<p>Score Column: <input type="number" min="1" value="9" id="score-col"/></p>
+		<P><button onclick="process()">Process</button> (Please remove spaces from player names before processing.)</p>
+		
 		<textarea id="input" rows="10"></textarea>
-		<button onclick="process()">Process</button>
+		
 		<br/>
 		
 		<h3>Results</h3>
-		<textarea id="result" rows="30"></textarea>
+		<textarea id="result" rows="25"></textarea>
 		
-		<h3>Monthly Giveaway</h3>
+		<h2>Monthly Giveaway</h2>
 		<p>Note: Excludes entries without a set Discord ID from the raffle.</p>
 		<p>
 			<select id="game" onchange="changeGame()"></select>

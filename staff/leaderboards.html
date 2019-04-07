@@ -154,7 +154,7 @@ permalink: /staff/leaderboards/index.html
 		reader.onloadend = function(event)
 		{
 			var dataNew = parseData(reader.result);
-			$("formatted-for-web").value = JSON.stringify(dataNew) + ",";
+			$("formatted-for-web").value = JSON.stringify(dataNew);
 			var mode = $("mode").value;
 			compare(mode, dataNew, leaderboardsJSON[mode]);
 		}
