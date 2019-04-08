@@ -100,7 +100,7 @@ permalink: /staff/prizes/index.html
 	{
 		var game = $("game").value;
 		var activeSeasonIndex = $("season").selectedIndex;
-		var board = seasonHistoryJSON[game][activeSeasonIndex].data.filter(function(item) { return "id" in item; });
+		var board = seasonHistoryJSON[game][activeSeasonIndex].data.filter(function(item) { return "id" in item && !["339592807104643083", "241565548318687232"].includes(item.id); });
 		
 		var scores = [];
 		var sumscores = 0;

@@ -251,6 +251,15 @@ function getIndexInLeaderboard(pid, board, withTies=false, monthly=false)
 	return undefined;
 }
 
+function playerTier(player, game)
+{
+	var useTiers = leaderboardTiers[game];
+	for (var t = useTiers.length-1; t >= 0; --t)
+		if (player.coins >= useTiers[t].start)
+			return t;
+	return undefined;
+}
+
 function fetchJSON(url, callback)
 {
 	var xmlhttp = new XMLHttpRequest();
@@ -264,20 +273,6 @@ function fetchJSON(url, callback)
 	};
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
-}
-
-
-var cachedLeaderboardsJSON = undefined;
-function fetchLeaderboards(game, callback)
-{
-	if (cachedLeaderboardsJSON)
-		callback(cachedLeaderboardsJSON[game]);
-	else
-		fetchJSON("/data/leaderboards.json", function(rawJSON)
-		{
-			cachedLeaderboardsJSON = rawJSON
-			callback(cachedLeaderboardsJSON[game]);
-		});
 }
 
 function upcomingEvents()

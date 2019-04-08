@@ -46,6 +46,9 @@ var seasonHistoryJSON = {% include_relative season-history.json %};
 var badgeDatabaseJSON = {% include_relative badges.json %};
 var patronsJSON       = {% include_relative patreon.json %};
 
+for (var game in eventGames)
+	leaderboardsJSON[game].sort(function(a, b) { return b.coins - a.coins; });
+
 // Tournament history
 var tournamentsLog = {% include_relative champions.json %};
 

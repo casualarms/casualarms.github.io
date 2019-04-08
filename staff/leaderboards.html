@@ -154,6 +154,7 @@ permalink: /staff/leaderboards/index.html
 		reader.onloadend = function(event)
 		{
 			var dataNew = parseData(reader.result);
+			dataNew.sort(function(a, b) { return b.coins - a.coins; });
 			$("formatted-for-web").value = JSON.stringify(dataNew);
 			var mode = $("mode").value;
 			compare(mode, dataNew, leaderboardsJSON[mode]);

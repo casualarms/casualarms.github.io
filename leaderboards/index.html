@@ -481,7 +481,9 @@
 		var didDivide = false;
 		var html = "<div class='tier'>";
 		
-		var board = seasonHistoryJSON[game][seasonIndex].data;
+		var board = seasonHistoryJSON[game][seasonIndex].data
+			.filter(function(item) { return !("id" in item && ["339592807104643083", "241565548318687232"].includes(item.id)); })
+			.sort(function(a, b) { return b.monthly - a.monthly; });
 		
 		for (var i = 0; i < board.length; ++i)
 		{

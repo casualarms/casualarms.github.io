@@ -210,6 +210,7 @@ permalink: /staff/new-leaderboards/index.html
 			}
 		}
 		
+		dataNew.sort(function(a, b) { return b.coins - a.coins; });
 		$("formatted-for-web").value = JSON.stringify(dataNew);
 		compare(game, dataNew, leaderboardsJSON[game]);
 	}
@@ -353,7 +354,8 @@ permalink: /staff/new-leaderboards/index.html
 		for (var i = 0 ; i < results.length; ++i)
 		{
 			var mode = (results[i].original.patch_id in patch) ? "changed" : "unchanged";
-			html += "<p class='suggestion mode-" + mode + "'>"
+			var color = leaderboardTiers[game][playerTier(results[i].original, game)].color;
+			html += "<p class='suggestion mode-" + mode + "' style='border-left: 1em solid " + color + "'>";
 			html += results[i].string;
 			var id = "id" in results[i].original ? results[i].original.id : "UNKNOWN";
 			var key = results[i].original.patch_id;
