@@ -17,7 +17,7 @@
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-04-20T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","stages":"vertical-smash","items":"melee-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-04-21T19:45:00.000Z","duration":120,"tz":"EDT","theme":"breakable-bits","stages":"breakable","hosts":[{"name":"To Be Announced","code":""}]}
 
-	,{"title":"Racha's Gambit","game":"arms","type":"tournament","alert":false,"date":"2019-04-09T00:00:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit2","stages":"all-arms"}
+	,{"title":"Racha's Gambit","game":"arms","type":"tournament","alert":false,"date":"2019-04-02T00:00:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit2","stages":"all-arms"}
 	
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-04-06T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 12","game":"arms","type":"clash","alert":false,"date":"2019-04-06T20:30:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
