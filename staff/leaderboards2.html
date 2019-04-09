@@ -77,12 +77,13 @@ permalink: /staff/new-leaderboards/index.html
 		width: 90%;
 		padding: 0.3em 0.5em 0.5em 0.5em;
 		box-sizing: border-box;
+		position: relative;
+		overflow: hidden;
 	}
 	
 	.suggestion.mode-new      { background-color: #39dc5d; }
 	.suggestion.mode-changed  { background-color: #e4d856; }
-	.suggestion.mode-committed  { background-color: white; }
-	.suggestion.mode-committed-new  { background-color: #cdffc3; }
+	.suggestion.mode-committed  { background-color: white; padding-right: 2em; }
 	
 	.suggestion-points {
 		float: right;
@@ -114,6 +115,39 @@ permalink: /staff/new-leaderboards/index.html
 	.lobby-score:hover {
 		background-color: red;
 		color: white;
+	}
+	
+	.patch-new {
+		background-color: rgb(187, 245, 187) !important;
+	}
+	
+	.reset-link {
+		border-radius: 5pt;
+		display: inline-block;
+		width: 1.2em;
+		text-align: center;
+		margin-top: 2pt;
+	}
+	
+	.reset-link:hover {
+		background-color: red;
+		color: white;
+	}
+	
+	.delete-link {
+		background-color: red;
+		color: white;
+		display: inline-block;
+		width: 1.5em;
+		text-align: center;
+		position: absolute;
+		top: 0; right: 0;
+		height: 100%;
+		line-height: 2.3em;
+	}
+	
+	.delete-link:hover {
+		background-color: darkred;
 	}
 	
 	</style>
@@ -190,16 +224,17 @@ permalink: /staff/new-leaderboards/index.html
 			{
 				dataNew[patchID].coins   += sum;
 				dataNew[patchID].monthly += sum;
-				if ("id" in patch[patchID] && patch[patchID].id != "")
+				if ("id" in patch[patchID])
 				{
 					if (typeof getIndexInLeaderboard(patch[patchID].id, dataNew) !== "undefined") error("Duplicate ID found: " + patch[patchID].id);
 					dataNew[patchID].id   = patch[patchID].id;
+					if (patch[patchID].id == "") delete dataNew[patchID].id;
 				}
-				if ("name" in patch[patchID] && patch[patchID].name != "")
+				if ("name" in patch[patchID])
 					dataNew[patchID].name = patch[patchID].name;
 			}
 			else {
-				if (patch[patchID].name == "") error("New player with unset name");
+			//	if (patch[patchID].name == "") error("New player with unset name");
 				var item = { name : patch[patchID].name, coins : sum, monthly : sum };
 				if ("id" in patch[patchID] && patch[patchID].id != "")
 				{
@@ -260,6 +295,18 @@ permalink: /staff/new-leaderboards/index.html
 		updatePatchDisplay();
 	}
 	
+	function resetID(patchID, event)
+	{
+		delete patch[patchID].id;
+		updatePatchDisplay();
+	}
+	
+	function resetName(patchID, event)
+	{
+		delete patch[patchID].name;
+		updatePatchDisplay();
+	}
+	
 	function removePoint(patchID, index)
 	{
 		patch[patchID].points.splice(index, 1);
@@ -268,7 +315,8 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function updatePatchDisplay()
 	{
-		var html = "<div class='suggestion-container'>";
+		var focusID = document.activeElement.id;
+		var html = "<div class='patch-container'>";
 		for (var patchID in patch)
 		{
 			var coins = 0;
@@ -296,26 +344,34 @@ permalink: /staff/new-leaderboards/index.html
 				scorelist += "<span class='lobby-score' onclick='removePoint(" + patchID + ", " + i + ")'>" + patch[patchID].points[i] + "</span> ";
 			}
 			
-			html += "<p class='suggestion mode-committed'>";
-			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
-			html += " <input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='UNKNOWN' value='" + id + "'/>";
-			html += " <button onclick=\"deletePatch(" + patchID + ")\">Delete</button> ";
-			
+			var className = "patch";
+			var nameBg = "";
+			var idBg = "";
 			if (patchID >= workingBoard.length)
-				html += "<span class='icon-new'>🆕</span> ";
+				className = "patch-new";
 			if (patchID < workingBoard.length && "id" in patch[patchID] && patch[patchID].id != "")
-				html += "<span class='icon-newid' title='Original ID was " + workingBoard[patchID].id + "'>🆔</span> ";
+				idBg = "style='background-color: #cfc;'";
 			if (patchID < workingBoard.length && "name" in patch[patchID] && patch[patchID].name != "")
-				html += "<span class='icon-newname'title='Original name was " + workingBoard[patchID].name + "'>🏠</span> ";
+				nameBg = "style='background-color: #cfc;'";
+			if (name == "")
+				nameBg = "style='background-color: #fcc;'";
+			
+			html += "<p class='suggestion mode-committed " + className + "' >";
+			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" " + nameBg + " placeholder='Player Name' value='" + name + "'/>";
+			html += " <a class='reset-link' onclick=\"resetName(" + patchID + ", event)\">↺</a>";
+			html += " <input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" " + idBg + "placeholder='UNKNOWN' value='" + id + "'/>";
+			html += " <a class='reset-link' onclick=\"resetID(" + patchID + ", event)\">↺</a>";
 			
 			html += " <span class='suggestion-points'>" + scorelist;// + coins + " + " + sum;
-			html += " <input type='text' id='input-patch-" + patchID + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' size='10' onkeyup=\"if (event.keyCode == 13) { addPoints(" + patchID + ", list2num('input-patch-" + patchID + "')); event.target.value = ''; }\"/>";
+			html += " <input type='text' id='input-patch-" + patchID + "' class='points-entry'  placeholder='15 21 11 ...' autocomplete='off' size='10' onkeyup=\"if (event.keyCode == 13) { addPoints(" + patchID + ", list2num('input-patch-" + patchID + "')); event.target.value = ''; }\"/>";
 			html += "<button onclick=\"addPoints(" + patchID + ", list2num('input-patch-" + patchID + "'))\">Add</button></span>";
+			html += "<a class='delete-link' onclick=\"deletePatch(" + patchID + ")\">×</a> ";
 			html += "</p>";
 		}
 		
 		html += "</div>";
 		$("patch-display").innerHTML = html;
+		if (focusID) $(focusID).focus();
 		mergeInPatch();
 	}
 	
@@ -361,14 +417,14 @@ permalink: /staff/new-leaderboards/index.html
 			var key = results[i].original.patch_id;
 			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + results[i].original.coins;
 			html += " <input type='text' id='input-" + key + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { addPoints(" + key + ", list2num('input-" + key + "')); event.target.value = '';  }\"/>";
-			html += "<button onclick=\"addPoints(" + key + ", list2num('input-" + key + "'))\">Add</button>";
+			html += "<button onclick=\"addPoints(" + key + ", list2num('input-" + key + "')); $('input-" + key + "').value = '';\">Add</button>";
 			html += "</span></p>";
 		}
 		html += "</div>";
 		
 		var html2 = "<p class='suggestion mode-new'>" + search + " <span class='suggestion-id'>[New entry]</span> <span class='suggestion-points'>";
 		html2 += "<input type='text' id='input-new' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { createEntry('" + search + "', list2num('input-new')); event.target.value = '';  }\"/>";
-		html2 += "<button onclick=\"createEntry('" + search + "', list2num('input-new'))\">Add</button>";
+		html2 += "<button onclick=\"createEntry('" + search + "', list2num('input-new')); $('input-new').value = '';\">Add</button>";
 		html2 += "</span></p>";
 		
 		$("search-results").innerHTML = html;
