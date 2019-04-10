@@ -84,6 +84,11 @@ function shuffle(array)
 	return array;
 }
 
+function clone(obj)
+{
+	return JSON.parse(JSON.stringify(obj));
+}
+
 function escapeHTML(str)
 {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, '&quot;');

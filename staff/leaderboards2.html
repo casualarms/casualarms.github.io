@@ -34,6 +34,8 @@ permalink: /staff/new-leaderboards/index.html
 		padding-bottom: 0.25em;
 	}
 	
+	a { color: white; }
+	
 	textarea {
 		background-color: #484b52;
 		color: white;
@@ -74,7 +76,6 @@ permalink: /staff/new-leaderboards/index.html
 		border-radius: 0.2em;
 		color: black;
 		margin: 0.3em auto;
-		width: 90%;
 		padding: 0.3em 0.5em 0.5em 0.5em;
 		box-sizing: border-box;
 		position: relative;
@@ -127,6 +128,7 @@ permalink: /staff/new-leaderboards/index.html
 		width: 1.2em;
 		text-align: center;
 		margin-top: 2pt;
+		color: gray;
 	}
 	
 	.reset-link:hover {
@@ -150,6 +152,8 @@ permalink: /staff/new-leaderboards/index.html
 		background-color: darkred;
 	}
 	
+	#undo-btn { margin-left: 2em; }
+	
 	</style>
 	<script>
 	
@@ -157,10 +161,55 @@ permalink: /staff/new-leaderboards/index.html
 	var patchIDStore;
 	var patch;
 	
-	function clone(obj)
+	var undoStates = [];
+	var redoStates = [];
+	
+	function updateUndoView()
 	{
-		return JSON.parse(JSON.stringify(obj));
+		$("undo-btn").disabled = (undoStates.length == 0);
+		$("redo-btn").disabled = (redoStates.length == 0);
 	}
+	
+	function clearActionHistory()
+	{
+		undoStates = [];
+		redoStates = [];
+	}
+	
+	function prepareAction()
+	{
+		undoStates.push([clone(patch), patchIDStore]);
+		redoStates = [];
+		updateUndoView();
+	}
+	
+	function undo()
+	{
+		if (undoStates.length > 0)
+		{
+			redoStates.push([clone(patch), patchIDStore]);
+			var state = undoStates.pop();
+			patch = state[0];
+			patchIDStore = state[1];
+			updateUndoView();
+			updatePatchDisplay();
+		}
+	}
+	
+	function redo()
+	{
+		if (redoStates.length > 0)
+		{
+			undoStates.push([clone(patch), patchIDStore]);
+			var state = redoStates.pop();
+			patch = state[0];
+			patchIDStore = state[1];
+			updateUndoView();
+			updatePatchDisplay();
+		}
+	}
+	
+	
 	
 	function compare(mode, dataNew, dataOld)
 	{
@@ -245,6 +294,10 @@ permalink: /staff/new-leaderboards/index.html
 			}
 		}
 		
+		if ($("zero-monthly").checked)
+			for (var i = 0; i < dataNew.length; ++i)
+				dataNew[i].monthly = 0;
+		
 		dataNew.sort(function(a, b) { return b.coins - a.coins; });
 		$("formatted-for-web").value = JSON.stringify(dataNew);
 		compare(game, dataNew, leaderboardsJSON[game]);
@@ -258,7 +311,7 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function addPoints(patchID, points)
 	{
-		console.log("Add points", patchID, points);
+		prepareAction();
 		
 		if (patchID in patch)
 			for (var i = 0; i < points.length; ++i)
@@ -271,18 +324,21 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function createEntry(name, points)
 	{
+		prepareAction();
 		patch[patchIDStore++] = { name : name, points : points };
 		updatePatchDisplay();
 	}
 	
 	function deletePatch(patchID)
 	{
+		prepareAction();
 		delete patch[patchID];
 		updatePatchDisplay();
 	}
 	
 	function updateID(patchID, event)
 	{
+		prepareAction();
 		var id = event.target.value;
 		patch[patchID].id = id;
 		updatePatchDisplay();
@@ -290,6 +346,7 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function updateName(patchID, event)
 	{
+		prepareAction();
 		var name = event.target.value;
 		patch[patchID].name = name;
 		updatePatchDisplay();
@@ -297,24 +354,30 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function resetID(patchID, event)
 	{
+		prepareAction();
 		delete patch[patchID].id;
 		updatePatchDisplay();
 	}
 	
 	function resetName(patchID, event)
 	{
+		prepareAction();
 		delete patch[patchID].name;
 		updatePatchDisplay();
 	}
 	
 	function removePoint(patchID, index)
 	{
+		prepareAction();
 		patch[patchID].points.splice(index, 1);
 		updatePatchDisplay();
 	}
 	
 	function updatePatchDisplay()
 	{
+		$("zero-monthly").checked = $("zero-monthly").checked && (Object.keys(patch).length == 0);
+		$("zero-monthly").disabled = (Object.keys(patch).length > 0);
+		
 		var focusID = document.activeElement.id;
 		var html = "<div class='patch-container'>";
 		for (var patchID in patch)
@@ -359,7 +422,7 @@ permalink: /staff/new-leaderboards/index.html
 			html += "<p class='suggestion mode-committed " + className + "' >";
 			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" " + nameBg + " placeholder='Player Name' value='" + name + "'/>";
 			html += " <a class='reset-link' onclick=\"resetName(" + patchID + ", event)\">↺</a>";
-			html += " <input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" " + idBg + "placeholder='UNKNOWN' value='" + id + "'/>";
+			html += " <input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" " + idBg + "placeholder='Discord ID' value='" + id + "'/>";
 			html += " <a class='reset-link' onclick=\"resetID(" + patchID + ", event)\">↺</a>";
 			
 			html += " <span class='suggestion-points'>" + scorelist;// + coins + " + " + sum;
@@ -413,7 +476,7 @@ permalink: /staff/new-leaderboards/index.html
 			var color = leaderboardTiers[game][playerTier(results[i].original, game)].color;
 			html += "<p class='suggestion mode-" + mode + "' style='border-left: 1em solid " + color + "'>";
 			html += results[i].string;
-			var id = "id" in results[i].original ? results[i].original.id : "UNKNOWN";
+			var id = "id" in results[i].original ? results[i].original.id : "";
 			var key = results[i].original.patch_id;
 			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + results[i].original.coins;
 			html += " <input type='text' id='input-" + key + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { addPoints(" + key + ", list2num('input-" + key + "')); event.target.value = '';  }\"/>";
@@ -431,9 +494,21 @@ permalink: /staff/new-leaderboards/index.html
 		$("new-player-results").innerHTML = html2;
 	}
 	
+	function seasonUpdate()
+	{
+		var today = new Date();
+		$("year").value  = today.getFullYear();
+		$("month").value = today.getMonth() + 1;
+		var mode = $("mode").value;
+		seasonHistoryJSON[mode][0].year  = parseInt($("year").value);
+		seasonHistoryJSON[mode][0].month = parseInt($("month").value);
+		$("output").value = JSON.stringify(seasonHistoryJSON[mode][0]) + ",";
+	}
+	
 	
 	function load()
 	{
+		addCurrentSeason();
 		var game = $("mode").value;
 		
 		workingBoard = [];
@@ -448,6 +523,10 @@ permalink: /staff/new-leaderboards/index.html
 		}
 		updateSearchResults();
 		updatePatchDisplay();
+		clearActionHistory();
+		updateUndoView();
+		
+		seasonUpdate();
 	}
 	
 	</script>
@@ -455,6 +534,7 @@ permalink: /staff/new-leaderboards/index.html
 <body onload="load();">
 	<div id="wrapper">
 		<h1>Casual ARMS Leaderboard Tools</h1>
+		<h2>Leaderboard Coins Update</h2>
 		
 		<p>Mode:
 			<select id="mode" onchange="load();">
@@ -463,6 +543,11 @@ permalink: /staff/new-leaderboards/index.html
 				<option value="splat">Splatoon</option>
 				<option value="smash">Super Smash Bros.</option>
 			</select>
+			<span style="float: right;">
+				<label for="zero-monthly">Clear monthly coins</label> <input type="checkbox" id="zero-monthly" onchange="updatePatchDisplay()"/>
+				<button id="undo-btn" onclick="undo();">Undo</button>
+				<button id="redo-btn" onclick="redo();">Redo</button>
+			</span>
 		</p>
 		
 		<div id='new-player-results'></div>
@@ -472,16 +557,34 @@ permalink: /staff/new-leaderboards/index.html
 		<hr/>
 		<div id='patch-display'></div>
 		
-	<!--	<button onclick="mergeInPatch();">Finalize</button>-->
-		
 		<p id="error" style="color: yellow;"></p>
 		
 		<h3>JSON Leaderboard</h3>
-		<button onCLick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
+		<button onclick="copyToClipboard('formatted-for-web')" class="btn-cpy">Copy to Clipboard</button>
 		<textarea id="formatted-for-web" rows="15"></textarea>
 		
 		<h3>New Roles</h3>
 		<div id="newroles"></div>
+		<p>(Note: Roles are only tracked for players with a Discord ID.)</p>
+		
+		<hr/>
+		<h2>Season Report</h2>
+		<p>Process for archiving monthly scores is as follows (games can be reported individually or simultaneously):</p>
+		<ol>
+			<li>Make sure all coin updates for the month are <em>submitted</em> and appear on the regular <a href="/leaderboards/">leaderboard website</a>.</li>
+			<li>Make sure an update for the subsequent month has not already been submitted. (If so, the tools cannot help you.)</li>
+			<li>Enter the correct year and month in the form below and copy the JSON data in the field.</li>
+			<li>Paste the JSON data in <em>season-history.json</em> as the first item in the list for the game in question.</li>
+			<li>Go to the standard Leaderboard Tools and check the option to zero out the monthly coins. Submit the resulting JSON file as a normal leaderboard update.</li>
+		</ol>
+		
+		<p>
+			Year:  <input type="number" id="year" min="2018" oninput="seasonUpdate()"/>
+			Month: <input type="number" id="month" min="1" max="12" oninput="seasonUpdate()"/>
+		</p>
+		
+		<button onclick="copyToClipboard('output')" class="btn-cpy">Copy to Clipboard</button>
+		<textarea id="output" rows="12"></textarea>
 	</div>
 </body>
 </html>
