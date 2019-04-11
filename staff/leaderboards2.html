@@ -152,17 +152,17 @@ permalink: /staff/new-leaderboards/index.html
 		background-color: darkred;
 	}
 	
+	.text-changed { background-color: #cfc; }
+	.text-invalid { background-color: #fcc; }
+	
 	#undo-btn { margin-left: 2em; }
 	
 	</style>
 	<script>
 	
-	var workingBoard;
 	var patchIDStore;
 	var patch;
-	
-	var undoStates = [];
-	var redoStates = [];
+	var undoStates, redoStates;
 	
 	function updateUndoView()
 	{
@@ -269,27 +269,23 @@ permalink: /staff/new-leaderboards/index.html
 			for (var i = 0; i < patch[patchID].points.length; ++i)
 				sum += patch[patchID].points[i];
 			
+			if ("id" in patch[patchID] && !/^\d*$/.test(patch[patchID].id)) error("Not a proper Discord ID: " + patch[patchID].id);
+			if (getIndexInLeaderboard(patch[patchID].id, dataNew) !== null) error("Duplicate ID found: " + patch[patchID].id);
+			
+			if ("name" in patch[patchID] && patch[patchID].name == "") error("Found empty name");
+			
 			if (patchID < leaderboardsJSON[game].length)
 			{
 				dataNew[patchID].coins   += sum;
 				dataNew[patchID].monthly += sum;
-				if ("id" in patch[patchID])
-				{
-					if (typeof getIndexInLeaderboard(patch[patchID].id, dataNew) !== "undefined") error("Duplicate ID found: " + patch[patchID].id);
-					dataNew[patchID].id   = patch[patchID].id;
-					if (patch[patchID].id == "") delete dataNew[patchID].id;
-				}
-				if ("name" in patch[patchID])
-					dataNew[patchID].name = patch[patchID].name;
+				if ("name" in patch[patchID]) dataNew[patchID].name = patch[patchID].name;
+				if ("id"   in patch[patchID])
+					if (patch[patchID].id != "") dataNew[patchID].id   = patch[patchID].id;
+					else delete dataNew[patchID].id;
 			}
 			else {
-			//	if (patch[patchID].name == "") error("New player with unset name");
 				var item = { name : patch[patchID].name, coins : sum, monthly : sum };
-				if ("id" in patch[patchID] && patch[patchID].id != "")
-				{
-					if (typeof getIndexInLeaderboard(patch[patchID].id, dataNew) !== "undefined") error("Duplicate ID found: " + patch[patchID].id);
-					item.id = patch[patchID].id;
-				}
+				if ("id" in patch[patchID] && patch[patchID].id != "") item.id = patch[patchID].id;
 				dataNew.push(item);
 			}
 		}
@@ -341,6 +337,8 @@ permalink: /staff/new-leaderboards/index.html
 		prepareAction();
 		var id = event.target.value;
 		patch[patchID].id = id;
+		if (patchID < leaderboardsJSON[$("mode").value].length && id == "" && !("id" in leaderboardsJSON[$("mode").value][patchID]))
+			delete patch[patchID].id;
 		updatePatchDisplay();
 	}
 	
@@ -375,6 +373,7 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function updatePatchDisplay()
 	{
+		var game = $("mode").value;
 		$("zero-monthly").checked = $("zero-monthly").checked && (Object.keys(patch).length == 0);
 		$("zero-monthly").disabled = (Object.keys(patch).length > 0);
 		
@@ -382,50 +381,43 @@ permalink: /staff/new-leaderboards/index.html
 		var html = "<div class='patch-container'>";
 		for (var patchID in patch)
 		{
-			var coins = 0;
+			var className = (patchID < leaderboardsJSON[game].length) ? "patch" : "patch-new";
+			var type = "mode-committed";
 			var id = "";
 			var name = "";
-			var type = "mode-committed";
+			var nameClass = "";
+			var idClass = "";
 			
-			if (patchID < workingBoard.length)
+			if (patchID < leaderboardsJSON[game].length)
 			{
-				var player = workingBoard[patchID];
-				coins = player.coins;
+				type = "mode-committed-new";
+				var player = leaderboardsJSON[game][patchID];
 				name = player.name;
 				if ("id" in player) id = player.id;
-				type = "mode-committed-new";
+				if ("name" in patch[patchID] && patch[patchID].name != name) nameClass = "text-changed";
 			}
 			
-			if ("id"   in patch[patchID])   id = patch[patchID].id;
 			if ("name" in patch[patchID]) name = patch[patchID].name;
+			if (name == "") nameClass = "text-invalid";
 			
-			var sum = 0;
+			if ("id"   in patch[patchID])
+			{
+				id = patch[patchID].id;
+				if (patchID < leaderboardsJSON[game].length)    idClass = "text-changed";
+				if (!/^\d*$/.test(patch[patchID].id)) idClass = "text-invalid";
+			}
+			
 			var scorelist = "";
 			for (var i = 0; i < patch[patchID].points.length; ++i)
-			{
-				sum += patch[patchID].points[i];
 				scorelist += "<span class='lobby-score' onclick='removePoint(" + patchID + ", " + i + ")'>" + patch[patchID].points[i] + "</span> ";
-			}
-			
-			var className = "patch";
-			var nameBg = "";
-			var idBg = "";
-			if (patchID >= workingBoard.length)
-				className = "patch-new";
-			if (patchID < workingBoard.length && "id" in patch[patchID] && patch[patchID].id != "")
-				idBg = "style='background-color: #cfc;'";
-			if (patchID < workingBoard.length && "name" in patch[patchID] && patch[patchID].name != "")
-				nameBg = "style='background-color: #cfc;'";
-			if (name == "")
-				nameBg = "style='background-color: #fcc;'";
 			
 			html += "<p class='suggestion mode-committed " + className + "' >";
-			html += "<input type='text' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" " + nameBg + " placeholder='Player Name' value='" + name + "'/>";
+			html += "<input type='text' class='" + nameClass + "'' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
 			html += " <a class='reset-link' onclick=\"resetName(" + patchID + ", event)\">↺</a>";
-			html += " <input type='text' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" " + idBg + "placeholder='Discord ID' value='" + id + "'/>";
+			html += " <input type='text' class='" + idClass + "'' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='Discord ID' value='" + id + "'/>";
 			html += " <a class='reset-link' onclick=\"resetID(" + patchID + ", event)\">↺</a>";
 			
-			html += " <span class='suggestion-points'>" + scorelist;// + coins + " + " + sum;
+			html += " <span class='suggestion-points'>" + scorelist;
 			html += " <input type='text' id='input-patch-" + patchID + "' class='points-entry'  placeholder='15 21 11 ...' autocomplete='off' size='10' onkeyup=\"if (event.keyCode == 13) { addPoints(" + patchID + ", list2num('input-patch-" + patchID + "')); event.target.value = ''; }\"/>";
 			html += "<button onclick=\"addPoints(" + patchID + ", list2num('input-patch-" + patchID + "'))\">Add</button></span>";
 			html += "<a class='delete-link' onclick=\"deletePatch(" + patchID + ")\">×</a> ";
@@ -436,8 +428,8 @@ permalink: /staff/new-leaderboards/index.html
 		$("patch-display").innerHTML = html;
 		if (focusID) $(focusID).focus();
 		mergeInPatch();
+		updateSearchResults();
 	}
-	
 	
 	
 	function list2num(elem)
@@ -454,12 +446,10 @@ permalink: /staff/new-leaderboards/index.html
 	function updateSearchResults()
 	{
 		var game = $("mode").value;
-		var points = 0;//parseInt($("points-entry").value);
-		if (!points) points = 0;
 		var search = $("search-text").value;
 		
 		var options = { pre: "<span class='match'>", post: "</span>", extract: function(el) { return el.name; }};
-		var results = fuzzy.filter(search, workingBoard, options);
+		var results = fuzzy.filter(search, leaderboardsJSON[game], options);
 		for (var i = 0; i < results.length; ++i)
 		{
 			if (results[i].original.name.toLowerCase().lastIndexOf(search.toLowerCase(), 0) === 0)
@@ -472,12 +462,12 @@ permalink: /staff/new-leaderboards/index.html
 		
 		for (var i = 0 ; i < results.length; ++i)
 		{
-			var mode = (results[i].original.patch_id in patch) ? "changed" : "unchanged";
+			var key = results[i].index;
+			var mode = (key in patch) ? "changed" : "unchanged";
 			var color = leaderboardTiers[game][playerTier(results[i].original, game)].color;
 			html += "<p class='suggestion mode-" + mode + "' style='border-left: 1em solid " + color + "'>";
 			html += results[i].string;
 			var id = "id" in results[i].original ? results[i].original.id : "";
-			var key = results[i].original.patch_id;
 			html += " <span class='suggestion-id'>" + id + "</span> <span class='suggestion-points'>" + results[i].original.coins;
 			html += " <input type='text' id='input-" + key + "' class='points-entry' placeholder='15 21 11 ...' autocomplete='off' onkeyup=\"if (event.keyCode == 13) { addPoints(" + key + ", list2num('input-" + key + "')); event.target.value = '';  }\"/>";
 			html += "<button onclick=\"addPoints(" + key + ", list2num('input-" + key + "')); $('input-" + key + "').value = '';\">Add</button>";
@@ -496,37 +486,32 @@ permalink: /staff/new-leaderboards/index.html
 	
 	function seasonUpdate()
 	{
-		var today = new Date();
-		$("year").value  = today.getFullYear();
-		$("month").value = today.getMonth() + 1;
 		var mode = $("mode").value;
 		seasonHistoryJSON[mode][0].year  = parseInt($("year").value);
 		seasonHistoryJSON[mode][0].month = parseInt($("month").value);
 		$("output").value = JSON.stringify(seasonHistoryJSON[mode][0]) + ",";
 	}
 	
-	
-	function load()
+	function changeGame()
 	{
-		addCurrentSeason();
-		var game = $("mode").value;
-		
-		workingBoard = [];
-		patchIDStore = 0;
+		// Regular update
+		patchIDStore = leaderboardsJSON[$("mode").value].length;
 		patch = {};
-		
-		for (; patchIDStore < leaderboardsJSON[game].length; ++patchIDStore)
-		{
-			var item = clone(leaderboardsJSON[game][patchIDStore]);
-			item.patch_id = patchIDStore;
-			workingBoard.push(item);
-		}
-		updateSearchResults();
 		updatePatchDisplay();
 		clearActionHistory();
 		updateUndoView();
 		
+		// Season update
+		var today = new Date();
+		$("year").value  = today.getFullYear();
+		$("month").value = today.getMonth() + 1;
 		seasonUpdate();
+	}
+	
+	function load()
+	{
+		addCurrentSeason();
+		changeGame();
 	}
 	
 	</script>
@@ -537,7 +522,7 @@ permalink: /staff/new-leaderboards/index.html
 		<h2>Leaderboard Coins Update</h2>
 		
 		<p>Mode:
-			<select id="mode" onchange="load();">
+			<select id="mode" onchange="changeGame()">
 				<option value="arms">ARMS</option>
 				<option value="kart">Mario Kart</option>
 				<option value="splat">Splatoon</option>

@@ -314,7 +314,7 @@
 		for (var gi = 0; gi < games.length; ++gi)
 		{
 			var index = getIndexInLeaderboard(uid, leaderboardsJSON[games[gi]]);
-			if (typeof index !== "undefined")
+			if (index !== null)
 			{
 				for (var i = 1; i < leaderboardTiers[games[gi]].length-1; ++i)
 				{

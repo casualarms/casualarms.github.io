@@ -253,7 +253,7 @@ function getIndexInLeaderboard(pid, board, withTies=false, monthly=false)
 		if ("id" in board[i] && board[i].id == pid)
 			if (!withTies) return i + 1;
 			else { var j = i; while (j > 0 && board[i][prop] == board[j - 1][prop]) --j; return j + 1; }
-	return undefined;
+	return null;
 }
 
 function playerTier(player, game)
@@ -262,7 +262,7 @@ function playerTier(player, game)
 	for (var t = useTiers.length-1; t >= 0; --t)
 		if (player.coins >= useTiers[t].start)
 			return t;
-	return undefined;
+	return null;
 }
 
 function fetchJSON(url, callback)
