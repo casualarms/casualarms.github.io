@@ -30,7 +30,7 @@
 		},
 		{
 			"commands" : ["randomizers", "randomizer"],
-			"response" : "https://www.casualarms.net/tools/fighter-randomizer/\nhttps://www.casualarms.net/tools/stage-randomizer/"
+			"response" : "https://www.casualarms.net/tools/randomizers/"
 		},
 		{
 			"commands" : ["anniversary", "birthday", "wristband", "wristbands"],

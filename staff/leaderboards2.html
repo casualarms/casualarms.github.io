@@ -412,9 +412,9 @@ permalink: /staff/new-leaderboards/index.html
 				scorelist += "<span class='lobby-score' onclick='removePoint(" + patchID + ", " + i + ")'>" + patch[patchID].points[i] + "</span> ";
 			
 			html += "<p class='suggestion mode-committed " + className + "' >";
-			html += "<input type='text' class='" + nameClass + "'' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
+			html += "<input type='text' class='" + nameClass + "' autocomplete='off' onchange=\"updateName(" + patchID + ", event)\" placeholder='Player Name' value='" + name + "'/>";
 			html += " <a class='reset-link' onclick=\"resetName(" + patchID + ", event)\">↺</a>";
-			html += " <input type='text' class='" + idClass + "'' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='Discord ID' value='" + id + "'/>";
+			html += " <input type='text' class='" + idClass + "' autocomplete='off' onchange=\"updateID(" + patchID + ", event)\" placeholder='Discord ID' value='" + id + "'/>";
 			html += " <a class='reset-link' onclick=\"resetID(" + patchID + ", event)\">↺</a>";
 			
 			html += " <span class='suggestion-points'>" + scorelist;
