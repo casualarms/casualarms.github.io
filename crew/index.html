@@ -10,19 +10,40 @@
 	<script src="/script/general.js"></script>
 	<style>
 	
+	#container {
+		overflow: initial;
+	}
+	
+	#member-list {
+		margin-bottom: 2em;
+	}
+	
 	.stats {
-		width: 30%;
+		width: 37%;
 		border-radius: 0.5em;
 		box-shadow: 1px 2px 12px -4px rgba(0,0,0,0.75);
-		transform: rotate(2deg);
+		transform: rotate(-2deg);
+		transition: 0.3s transform;
 		display: inline-block;
 	}
 	
+	.stats:hover {
+		transform: scale(1.8) !important;
+	}
+	
 	.member-text {
-		width: 60%;
+		width: 55%;
 		display: inline-block;
 		margin: 0.5em 0 0 2em;
 		vertical-align: top;
+	}
+	
+	.member-info.odd .member-text {
+		margin: 0.5em 2em 0 0;
+	}
+	
+	.member-info.odd .stats {
+		transform: rotate(2deg);
 	}
 	
 	@media only screen and (max-width: 600px)
@@ -31,6 +52,7 @@
 			width: 80%;
 			display: block;
 			margin: 1em auto;
+			transform: none !important;
 		}
 		
 		.member-text {
@@ -48,20 +70,35 @@
 		var members = {% include_relative casualcrew.json %};
 		
 		var html = "";
+		var links = "";
 		for (var m = 0; m < members.length; ++m)
 		{
-			html += "<h3>" + members[m].name + "</h3>";
-			html += "<div class='padded'>";
-			html += "<canvas class='stats' id='member-card-" + m + "' width='800' height='600'></canvas>";
-			html += "<p class='member-text'>" + members[m].description + "</p>";
+			html += "<h3 id='" + members[m].name + "'>CC | " + members[m].name + "</h3>";
+			html += "<div class='padded member-info " + ((m % 2 == 0) ? "even" : "odd") + "'>";
+			if (m % 2 == 0)
+			{
+				html += "<canvas class='stats' id='member-card-" + m + "' width='800' height='600'></canvas>";
+				html += "<p class='member-text'>" + members[m].description + "</p>";
+			}
+			else {
+				html += "<p class='member-text'>" + members[m].description + "</p>";
+				html += "<canvas class='stats' id='member-card-" + m + "' width='800' height='600'></canvas>";
+			}
 			html += "</div>";
+			
+			links += "<a href='#" + members[m].name +"'>" + members[m].name + "</a>";
+			if (m <= members.length - 2) links += ", ";
+			if (m == members.length - 2) links += "and ";
 		}
 		$("member-list").innerHTML = html;
+		$("member-links").innerHTML = links;
 		
 		for (var m = 0; m < members.length; ++m)
 		{
+			var stats = clone(members[m]);
+			stats.name = "CC | " + stats.name;
 			var c = document.getElementById("member-card-" + m);
-			renderStats(c.getContext("2d"), c.width / 2, c.height / 2 + 40, members[m]);
+			renderStats(c.getContext("2d"), c.width / 2, c.height / 2 + 40, stats);
 		}
 	}
 	
@@ -82,6 +119,8 @@
 		<p>If you meet these criteria, and are a person who considers themselves to be pleasant and hospitable, able to show good sportsmanship wherever you go, the Casual Crew would love to have you in! Contact <span class="command">@Rashiko</span> via DM on the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> with your application.</p>
 		
 		<h2>Members</h2>
+		
+		<p>The Casual Crew consists of members <span id="member-links"></span>. You can identify them on social platforms, including the Casual ARMS <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a>, by their crew tag <em>CC</em>.</p>
 		
 		<div id="member-list"></div>
 		

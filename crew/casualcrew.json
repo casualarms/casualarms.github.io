@@ -1,39 +1,129 @@
 [
 	{
-		"name"  : "CC Rashiko",
+		"name"  : "Rashiko",
 		"caps"  : true,
 		"steps" : 5,
 		"stats" : [
 			["Speed", 3],
-			["Friendship Man", 15],
-			["Accuracy", 4],
+			["Rush", 3],
 			["Jump", 2],
-			["Size", 5],
-			["Rush", 3]
+			["Accuracy", 4],
+			["Friendship Man", 5],
+			["Size", 6],
 		],
 		"description" : "Casual ARMS co-founder and Casual Crew leader, Rashiko is a US ARMS player and community manager. Although his primary role in the Crew is one of management and event organization, he does not shy away from jumping into the ring himself.",
 		"bg_color"        : "rgb(50,50,50)",
 		"name_color"      : "yellow",
-		"highlight_color" : "rgba(255, 255, 0, 0.8)",
+		"highlight_color" : "rgba(255, 255, 0, 0.6)",
 		"attr_color"      : "rgba(255, 255, 255, 1)",
 		"grid_color"      : "rgba(255, 255, 255, 0.5)"
 	}, {
-		"name"  : "CC Main",
+		"name":"Becca",
+		"description" : "TODO",
+		"steps":"5",
+		"caps":true,
+		"bg_color":"rgba(170,38,98, 1.0)",
+		"name_color":"rgba(255,255,125, 1.0)",
+		"highlight_color":"rgba(255,255,125, 0.6)",
+		"attr_color":"rgba(255, 255, 255, 1)",
+		"grid_color":"rgba(255, 255, 255, 0.5)",
+		"stats":[
+			["Speed",2],
+			["Rush",4],
+			["Jump",1],
+			["Accuracy",4],
+			["Grabs",5],
+			["dragon jokes",6]
+		]
+	}, {
+		"name":"Cosmos",
+		"description" : "TODO",
+		"steps":"5",
+		"caps":true,
+		"bg_color":"rgba(175,162,67, 1.0)",
+		"name_color":"rgba(255,220,125, 1.0)",
+		"highlight_color":"rgba(255,220,125, 0.6)",
+		"attr_color":"rgba(255, 255, 255, 1)",
+		"grid_color":"rgba(255, 255, 255, 0.5)",
+		"stats":[
+			["Speed",1],
+			["Rush",3],
+			["Jump",2],
+			["Accuracy",4],
+			["Stealth",0],
+			["Good Taste",3]
+		]
+	}, {
+		"name":"Fang",
+		"description" : "TODO",
+		"steps":"5",
+		"caps":true,
+		"bg_color":"rgba(0,59,175, 1.0)",
+		"name_color":"rgba(255,255,255, 1.0)",
+		"highlight_color":"rgba(255,255,255, 0.6)",
+		"attr_color":"rgba(255, 255, 255, 1)",
+		"grid_color":"rgba(255, 255, 255, 0.5)",
+		"stats":[
+			["Speed",2],
+			["Rush",4],
+			["Jump",2],
+			["Accuracy",2],
+			["Grabs",3],
+			["Deflect",5]
+		]
+	}, {
+		"name":"LandFrog",
+		"description" : "TODO",
+		"steps":"5",
+		"caps":true,
+		"bg_color":"rgba(0,145,0, 1.0)",
+		"name_color":"rgba(255,255,125, 1.0)",
+		"highlight_color":"rgba(255,255,125, 0.6)",
+		"attr_color":"rgba(255, 255, 255, 1)",
+		"grid_color":"rgba(255, 255, 255, 0.5)",
+		"stats":[
+			["Speed",4],
+			["Rush",2],
+			["Jump",5],
+			["Accuracy",3],
+			["Grab Width",100000],
+			["Excitement",5]
+		]
+	}, {
+		"name"  : "Main",
 		"caps" : true,
 		"steps" : 5,
 		"stats" : [
-			["Speed", 3],
-			["Accuracy", 4],
-			["tbird", 15],
-			["Jump", 2],
-			["Beard???", 4],
-			["Rush", 3]
+			["Speed",4],
+			["Rush",1],
+			["Jump",3],
+			["Accuracy",3],
+			["Grabs",5],
+			["Tbird",5]
 		],
 		"description" : "Casual Crew's own anime champion, Main is a US ARMS player and streamer.",
 		"bg_color"        : "skyblue",
-		"name_color"      : "beige",
+		"name_color"      : "rgba(255, 192, 203, 1.0)",
 		"highlight_color" : "rgba(255, 192, 203, 0.8)",
 		"attr_color"      : "rgba(255, 255, 255, 1)",
 		"grid_color"      : "rgba(255, 255, 255, 0.5)"
+	}, {
+		"name":"Marie",
+		"description" : "TODO",
+		"steps":"5",
+		"caps":true,
+		"bg_color":"rgba(94,79,81, 1.0)",
+		"name_color":"rgba(255,138,206, 1.0)",
+		"highlight_color":"rgba(255,138,206, 0.6)",
+		"attr_color":"rgba(255, 255, 255, 1)",
+		"grid_color":"rgba(255, 255, 255, 0.5)",
+		"stats":[
+			["Speed",1],
+			["Rush",4],
+			["Jump",1],
+			["Accuracy",3],
+			["Audo Clipping",5],
+			["Recipes",0]
+		]
 	}
 ]
