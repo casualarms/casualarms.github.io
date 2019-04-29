@@ -252,7 +252,7 @@
 	#main-footer {
 		position: relative;
 		height: 40pt;
-		margin-top: 2.5em;
+		margin-top: 3.5em;
 	}
 	
 	#discord-footer {
@@ -372,7 +372,6 @@
 			display: inline-block;
 			position: relative;
 			top: 0; left: -30pt;
-			margin-top: 1em;
 			transform: none;
 		}
 		
@@ -399,6 +398,7 @@
 		#main-footer {
 			position: relative;
 			height: auto;
+			margin-top: 2em;
 		}
 		
 		#patreon-footer {
@@ -415,12 +415,16 @@
 		img#discord-logo, img#patreon-logo, #patreon-footer svg  {
 			display: none;
 		}
+		
+		a.submenu-item { margin-top: 2.8em; }
 	}
 	
 	h2 a {
 		color: white;
 		z-index: 1;
 	}
+	
+	a.menu-item.m5 { margin-top: 0.2em; }
 	
 	</style>
 </head>
@@ -441,7 +445,7 @@
 			<a class="menu-item m3" id="m-clash"        href="clash/"><img src="/assets/main/clash-logo.png"/>
 				Tournaments <em class="subselect">Clash</em><em class="subselect" onclick="goScramble(event);">Scramble</em>
 			</a>
-			<a class="menu-item m4" href="/">?????? ????</a>
+		<!--	<a class="menu-item m4" href="/">?????? ????</a>-->
 
 		<!--	<a class="menu-item m4" id="m-screenshot"   href="screenshots/"><img src="/assets/main/screenshot-logo.png"/>Screenshot Gallery</a>-->
 			<a class="menu-item m5" href="tools/randomizers/">Randomizers</a>
