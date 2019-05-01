@@ -43,6 +43,14 @@ permalink: /staff/new-leaderboards/index.html
 		font-family: monospace;
 	}
 	
+	.command {
+		font-family: monospace;
+		padding: 1pt 2pt;
+		background-color: black;
+		color: white;
+		white-space:nowrap;
+	}
+	
 	#formatted {
 		background-color: black;
 		color: white;
@@ -519,7 +527,7 @@ permalink: /staff/new-leaderboards/index.html
 <body onload="load();">
 	<div id="wrapper">
 		<h1>Casual ARMS Leaderboard Tools</h1>
-		<h2>Leaderboard Coins Update</h2>
+		<h2 id="standard">Leaderboard Coins Update</h2>
 		
 		<p>Mode:
 			<select id="mode" onchange="changeGame()">
@@ -553,14 +561,15 @@ permalink: /staff/new-leaderboards/index.html
 		<p>(Note: Roles are only tracked for players with a Discord ID.)</p>
 		
 		<hr/>
-		<h2>Season Report</h2>
+		<h2 id="season">Season Report</h2>
 		<p>Process for archiving monthly scores is as follows (games can be reported individually or simultaneously):</p>
 		<ol>
 			<li>Make sure all coin updates for the month are <em>submitted</em> and appear on the regular <a href="/leaderboards/">leaderboard website</a>.</li>
 			<li>Make sure an update for the subsequent month has not already been submitted. (If so, the tools cannot help you.)</li>
+			<li>(If you want to use the <span class="command">!admin-monthly-badges</span> bot command to help with badges, you must do it now, after the bot is caught up with the above update.)</li>
 			<li>Enter the correct year and month in the form below and copy the JSON data in the field.</li>
 			<li>Paste the JSON data in <em>season-history.json</em> as the first item in the list for the game in question.</li>
-			<li>Go to the standard Leaderboard Tools and check the option to zero out the monthly coins. Submit the resulting JSON file as a normal leaderboard update.</li>
+			<li>Go to the standard <a href="#standard">Leaderboard Coins Update</a> and check the option to zero out the monthly coins. Submit the resulting JSON file as a normal leaderboard update.</li>
 		</ol>
 		
 		<p>
