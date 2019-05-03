@@ -70,6 +70,8 @@ var hostDatabase = [
 	{ "tag" : "",   "name" : "Pawl S. Lax",  "code" : "0656-1636-5890", tier : 0},
 	{ "tag" : "CC", "name" : "Fang",         "code" : "8434-0819-1597", tier : 0},
 	
+	{ "tag" : "CC", "name" : "oh no BEES",   "code" : "1364-5571-6618", tier : 0},
+	
 //	{ "tag" : "",   "name" : "Program",      "code" : "4898-5196-4000", tier : 3},
 ]
 
