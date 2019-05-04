@@ -21,7 +21,7 @@
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-05-12T19:45:00.000Z","duration":120,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}]}
 
 
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-05-04T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-05-04T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 13","game":"arms","type":"clash","alert":false,"date":"2019-05-04T20:30:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
 
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-05-18T19:15:00.000Z","duration":60,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}]}
