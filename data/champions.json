@@ -63,4 +63,7 @@
 	,{ "date" : "2019-04-22", "type" : "scramble", "players" : 10, "winner" : [
  		{ "id" : "192081577306488842", "name" : "Serperiorfan" }
 	]}
+	,{ "date" : "2019-05-04", "type" : "scramble", "players" : 14, "winner" : [
+ 		{ "id" : "527560382987108362", "name" : "HedgieMcHogerson" }
+	]}
 ]
