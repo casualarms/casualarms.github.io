@@ -165,6 +165,11 @@
 	
 	,"220949713447288832": {"name": "Panthermon",          "badges": ["season_splat"] }
 	,"257269741817823235": {"name": "snipEZ",              "badges": ["season_splat"] }
-	,"401610413441024020": {"name": "Randowo",           "badges": ["scramble"] }
-	,"147364668359442432": {"name": "Ceipe007",              "badges": ["season_splat"] }
+	,"401610413441024020": {"name": "Randowo",             "badges": ["scramble"] }
+	,"147364668359442432": {"name": "Ceipe007",            "badges": ["season_splat"] }
+	
+	,"214222499066544138": {"name": "Gomi",                "badges": ["clash"] }
+	,"325240362237034499": {"name": "midonnay",            "badges": ["clash"] }
+	,"527560382987108362": {"name": "HedgieMcHogerson",    "badges": ["clash", "clash_win"] }
+	,"300694579563331584": {"name": "Tree",                "badges": ["clash"] }
   }
