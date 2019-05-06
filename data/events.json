@@ -28,5 +28,5 @@
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-05-18T19:15:00.000Z","duration":60,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Casual Scramble 10","game":"arms","type":"scramble","alert":false,"date":"2019-05-18T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms","sponsor":"mindgames"}
 
-	,{"title":"Racha's Gambit IV","game":"arms","type":"tournament","alert":false,"date":"2019-05-06T23:30:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit3","stages":"all-arms"}
+	,{"title":"Racha's Gambit IV","game":"arms","type":"tournament","alert":false,"date":"2019-05-06T23:30:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit4","stages":"all-arms"}
 ]
