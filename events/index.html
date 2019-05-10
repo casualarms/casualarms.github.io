@@ -85,6 +85,7 @@ redirect_from: "/lobbies/"
 	
 	#next-link         { background-color: grey; }
 	.next-streamer     { background-color: #4b367c; }
+	.next-mixer        { background-color: skyblue; }
 	.next-theme,
 	.next-stages,
 	.next-items        { background-color: black; }
@@ -372,7 +373,12 @@ redirect_from: "/lobbies/"
 		// Streamer tags
 		if ("streamers" in ev)
 			for (var s = 0; s < ev["streamers"].length; ++s)
-				tags += "<a href='https://www.twitch.tv/" + ev["streamers"][s] + "' class='next-box next-streamer'>twitch.tv/ <span class='nx-big'>" + ev["streamers"][s] + "</span></a>";
+				tags += "<a href='https://twitch.tv/" + ev["streamers"][s] + "' class='next-box next-streamer'>twitch.tv/ <span class='nx-big'>" + ev["streamers"][s] + "</span></a>";
+		
+		if ("mixers" in ev)
+			for (var s = 0; s < ev["mixers"].length; ++s)
+				tags += "<a href='https://mixer.com/" + ev["mixers"][s] + "' class='next-box next-mixer'>mixer.com/ <span class='nx-big'>" + ev["mixers"][s] + "</span></a>";
+		
 		
 		// Sponsor tags
 		if ("sponsor" in ev)

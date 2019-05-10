@@ -236,7 +236,7 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		ctx.drawImage(images["leaderboards"], width - 139, height - 40);
 	
 	// Streamed
-	if ("streamers" in eventdata)
+	if ("streamers" in eventdata || "mixers" in eventdata)
 		ctx.drawImage(images["livestream"], 0, height - 40);
 	
 	if (eventdata.type == "tournament")

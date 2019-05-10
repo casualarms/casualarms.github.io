@@ -1,0 +1,198 @@
+---
+permalink: /staff/crewbattle/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tournament Matchmaking - Casual ARMS</title>
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("../../ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+	
+	#wrapper {
+		width: 40em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+	
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+	
+	#formatted {
+		background-color: black;
+		color: white;
+	}
+	
+	.player {
+		border-radius: 3pt;
+		background-color: yellow;
+		display: inline-block;
+		margin: 2pt 2pt;
+		padding: 2pt 3pt;
+		color: black;
+	}
+	
+	.text-cc { color: yellow; }
+	.text-ca { color: lightblue; }
+	
+	.player.ca {
+		background-color: lightblue;
+	}
+	
+	.stream {
+		background-color: lightgreen;
+	}
+	
+	.result {
+		float: right;
+	}
+	
+	input.score {
+		width: 3em;
+	}
+	
+
+	</style>
+	<script>
+	
+	var matchups = [];
+	var players1 = [];
+	var players2 = [];
+	
+	function randomize()
+	{
+		matchups = [];
+		var i = 0;
+		players1 = $("input1").value.split(/\r?\n/).map(function (name) { return { name: name, index: i++ }; });
+		var j = 0;
+		players2 = /*shuffle(*/$("input2").value.split(/\r?\n/).map(function (name) { return { name: name, index: j++ }; });
+		
+		var html = "<ol>";
+		var length = Math.min(players1.length, players2.length);
+		var matchup = 0;
+		var streamed = 0;
+		
+		for (var round = 0; round < length; ++round)
+		{
+			html += "<li><ol style='list-style-type: lower-roman; margin-bottom: 1em;'>";
+			for (var i = 0; i < length; ++i)
+			{
+				html += "<li><span class='player cc'>" + players1[i].name + "</span> vs <span class='player ca'>" + players2[i].name + "</span>";
+				if (i == streamed) html += " <span class='player stream'>Streamed</span>";
+				html += "<span class='result'>Result: <input class='score' id='score-" + matchup + "-left' type='number' value='0' step='1' onchange='updateResults()'/>";
+				html += " - <input class='score' id='score-" + matchup + "-right' type='number' value='0' step='1' onchange='updateResults()'/></span></li>";
+				matchups[matchup++] = { left: players1[i].index, right: players2[i].index };
+			}
+			html += "</ol></li>";
+			
+			players2.splice(0, 0, players2.splice(players2.length-1, 1)[0]);
+			streamed = (streamed + players1.length - 1) % players1.length;
+		}
+		html += "</ol>";
+		
+		$("rounds").innerHTML = html;
+		
+	
+	}
+	
+	function updateResults()
+	{
+		var playerScores = [];
+		for (var i = 0; i < players1.length; ++i)
+			playerScores.push({ name: players1[i].name, team: "cc", score: 0 });
+		for (var i = 0; i < players2.length; ++i)
+			playerScores.push({ name: players2[i].name, team: "ca", score: 0 });
+		
+		var teamScores = [0, 0];
+		for (var i = 0; i < matchups.length; ++i)
+		{
+			var scoreLeft  = parseInt($("score-" + i + "-left").value);
+			var scoreRight = parseInt($("score-" + i + "-right").value);
+			teamScores[0] += scoreLeft;
+			teamScores[1] += scoreRight;
+			playerScores[matchups[i].left                   ].score += scoreLeft;
+			playerScores[matchups[i].right + players1.length].score += scoreRight;
+		}
+		
+		console.log(teamScores);
+		console.log(playerScores);
+		
+		playerScores.sort(function(a, b) { return b.score - a.score; });
+		
+		var html = "<ol>";
+		for (var i = 0; i < playerScores.length; ++i)
+		{
+			html += "<li><span class='player " + playerScores[i].team + "'>" + playerScores[i].name + "</span>: " + playerScores[i].score + " points</li>";
+		}
+		html += "</ol>";
+		
+		$("results").innerHTML = html;
+		
+		$("cc-total").innerHTML = teamScores[0];
+		$("ca-total").innerHTML = teamScores[1];
+	}
+	
+	function load()
+	{
+		
+	}
+	
+	</script>
+</head>
+<body onload="load()">
+	<div id="wrapper">
+		<h1>Casual ARMS Crew Battle Tool</h1>
+		
+		<h2 class="text-cc">Team 1</h2>
+		<textarea id="input1" rows="8">
+Roshika
+LiterallyFlameKnee
+newbiepound
+oh yes WASPS
+Miau Miau</textarea>
+		<h2 class="text-ca">Team 2</h2>
+		<textarea id="input2" rows="8">
+Player 1
+Member 2
+User 3
+Challenger 4
+Opponent 5</textarea>
+		<p>
+			<button id="run" onclick="randomize()">Randomize</button>
+		</p>
+		
+		<h2>Matchmaking</h2>
+		
+		<div id="rounds"></div>
+		
+		<h2>Results</h2>
+		
+		<div id="results"></div>
+		
+		<h2 class="text-cc">Team 1 Total: <span id="cc-total"></span> points</h2>
+		<h2 class="text-ca">Team 2 Total: <span id="ca-total"></span> points</h2>
+		
+	</div>
+</body>
+</html>
