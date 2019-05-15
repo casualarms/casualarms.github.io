@@ -236,7 +236,9 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		ctx.drawImage(images["leaderboards"], width - 139, height - 40);
 	
 	// Streamed
-	if ("streamers" in eventdata || "mixers" in eventdata)
+	if ("mixers" in eventdata)
+		ctx.drawImage(images["livestream-mixer"], 0, height - 40);
+	else if ("streamers" in eventdata)
 		ctx.drawImage(images["livestream"], 0, height - 40);
 	
 	if (eventdata.type == "tournament")
@@ -319,6 +321,7 @@ function bannerImageData(eventdata)
 		imageData["cote"]         = "/assets/banners/logo-cote.jpg";
 		imageData["game"]         = "/assets/banners/logo-" + eventdata.game + ".png";
 		imageData["livestream"]   = "/assets/banners/icon-livestream.png";
+		imageData["livestream-mixer"]   = "/assets/banners/icon-mixer.png";
 		imageData["leaderboards"] = "/assets/banners/icon-leaderboards.png";
 	}
 	
