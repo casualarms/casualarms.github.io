@@ -144,14 +144,14 @@
 	,"111446699360202752": {"name": "Chyro",               "badges": ["clash", "clash_win"] }
 	,"145375063724654592": {"name": "Mig",                 "badges": ["clash", "scramble"] }
 	,"220859634737610752": {"name": "BackpackTV",          "badges": ["clash"] }
-	,"454438240708067328": {"name": "Patita",              "badges": ["season_arms", "season_smash", "clash"] }
+	,"454438240708067328": {"name": "Patita",              "badges": ["season_arms", "season_smash", "clash", "scramble"] }
 	,"431095641226215434": {"name": "Claro0602",           "badges": ["clash"] }
 	,"530944778867572737": {"name": "MrWLG",               "badges": ["scramble"] }
 	
 	,"340257118298832945": {"name": "Mindy (WhisperingShadow)", "badges": ["season_arms"] }
 	,"238976648471511041": {"name": "VerteX",              "badges": ["season_kart", "season_kart_win"] }
 	
-	,"410828670874419211": {"name": "wa",                  "badges": ["clash", "scramble", "season_arms"] }
+	,"410828670874419211": {"name": "wa",                  "badges": ["clash", "scramble", "scramble_win", "season_arms"] }
 	,"553998647994482731": {"name": "MD",                  "badges": ["clash"] }
 	,"124936014044069891": {"name": "Penzo",               "badges": ["clash"] }
 	
@@ -172,4 +172,7 @@
 	,"325240362237034499": {"name": "midonnay",            "badges": ["clash"] }
 	,"527560382987108362": {"name": "HedgieMcHogerson",    "badges": ["clash", "clash_win"] }
 	,"300694579563331584": {"name": "Tree",                "badges": ["clash"] }
+
+	,"280445025437876224": {"name": "BBoverkill",          "badges": ["scramble"] }
+	,"403186564944887808": {"name": "Ash",                 "badges": ["scramble"] }
   }
