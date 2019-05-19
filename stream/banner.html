@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/script/banner-gen.js"></script>
+	<script src="/data/support.js"></script>
+	<script>
+	
+	function load()
+	{
+		// Display next event feature
+		var nextEventData = upcomingEvents();
+		if (nextEventData.length > 0)
+		{
+			var ev = nextEventData[0];
+			generateBanner(880, 480, ev, "featured-canvas", true);
+		}
+	}
+	
+	</script>
+	<style type="text/css">
+	
+	body, html {
+		margin: 0;
+		padding: 0;
+	}
+	
+	</style>
+</head>
+
+<body id="event-id" onload="load()" ontouchstart="">
+	<canvas width="880" height="480" id="featured-canvas"/></a>
+</body>
+</html>

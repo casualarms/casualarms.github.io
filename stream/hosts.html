@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style type="text/css">
+	
+	.modecolor-arms    { color: #ffff00; }
+	.modecolor-kart    { color: #f92473; }
+	.modecolor-splat   { color: #00dd00; }
+	.modecolor-smash   { color: #ffffff; }
+	
+	.modebgcolor-arms    { background-color: #ffff00; }
+	.modebgcolor-kart    { background-color: #f92473; }
+	.modebgcolor-splat   { background-color: #00dd00; }
+	.modebgcolor-smash   { background-color: #ffffff; }
+	
+	body, html {
+		margin: 0; padding: 0;
+		background: none;
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	.host-group {
+		font-size: 2em;
+		white-space: nowrap;
+		margin: 0.2em 0.5em;
+		display: inline-block;
+	}
+	
+	span.host-item {
+		display: inline-block;
+		position: relative;
+		font-style: italic;
+		border: 0.1em solid black;
+		border-top-left-radius: 1em 100%;
+		border-bottom-right-radius: 1em 100%;
+	}
+	
+	span.host-item.long {
+		margin-right: 0;
+		text-align: left;
+		padding: 0 2em 0 1em;
+	}
+	
+	span.host-item.extra {
+		margin-left: -1.2em;
+		width: auto;
+		padding: 0 1.2em;
+		font-weight: bold;
+		background-color: black;
+	}
+	
+	
+	</style>
+	<script>
+	
+	function load()
+	{
+		var eventInfo = "";
+		// Display next event feature
+		var nextEventData = upcomingEvents();
+		if (nextEventData.length > 0)
+		{
+			var ev = nextEventData[0];
+			var hosts = ev.hosts;
+			for (var h = 0; h < hosts.length; ++h)
+			{
+				eventInfo += "<span class='host-group'> <span class='host-item long modebgcolor-" + ev.game + "'>" + hosts[h].name + "</span>";
+				eventInfo += "<span class='host-item extra modecolor-" + ev.game + "'>" + hosts[h].code + "</span></span><br/>";
+			}
+		}
+		
+		$("hosts").innerHTML += eventInfo;
+	}
+	
+	</script>
+	
+</head>
+
+<body onload="load()">
+	
+	<div id="hosts"></div>
+	
+</body>
+</html>
