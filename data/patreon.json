@@ -22,7 +22,7 @@
 	,"519448634631127040": {"name": "Leonardo de Carlo", "tier": 1, "max": 1, "active": false, "months": 1}
 	
 	,"UNKNOWN": [
-		 {"name": "DatoldMan", "tier": 3, "max": 3, "active": true, "months": 1}
+		 {"name": "DatoldMan", "tier": 3, "max": 3, "active": false, "months": 1}
 		,{"name": "Vanmuundegar", "tier": 2, "max": 2, "active": true, "months": 1}
 		
 	]
