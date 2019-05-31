@@ -33,21 +33,21 @@
 		display: inline-block;
 		position: relative;
 		font-style: italic;
-		border: 0.1em solid black;
 		border-top-left-radius: 1em 100%;
 		border-bottom-right-radius: 1em 100%;
+		box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	}
 	
 	span.host-item.long {
 		margin-right: 0;
 		text-align: left;
-		padding: 0 2em 0 1em;
+		padding: 0.1em 2em 0.1em 1em;
 	}
 	
 	span.host-item.extra {
 		margin-left: -1.2em;
 		width: auto;
-		padding: 0 1.2em;
+		padding: 0.1em 1.2em;
 		font-weight: bold;
 		background-color: black;
 	}
@@ -58,6 +58,8 @@
 	
 	function load()
 	{
+		var orientation = getQueryVariable("orientation");
+		
 		var eventInfo = "";
 		// Display next event feature
 		var nextEventData = upcomingEvents();
@@ -68,7 +70,8 @@
 			for (var h = 0; h < hosts.length; ++h)
 			{
 				eventInfo += "<span class='host-group'> <span class='host-item long modebgcolor-" + ev.game + "'>" + hosts[h].name + "</span>";
-				eventInfo += "<span class='host-item extra modecolor-" + ev.game + "'>" + hosts[h].code + "</span></span><br/>";
+				eventInfo += "<span class='host-item extra modecolor-" + ev.game + "'>" + hosts[h].code + "</span></span>";
+				if (orientation != "horizontal") eventInfo += "<br/>";
 			}
 		}
 		

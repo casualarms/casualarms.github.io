@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
 	<style type="text/css">
 	
 	body, html {
@@ -11,9 +13,58 @@
 		background: none;
 	}
 	
+	#url {
+		font-size: 0.4em;
+		position: relative;
+		top: -1.3em;
+		background-color: white;
+		padding: 0 0.7em;
+		
+		border-top-left-radius: 1em 100%;
+		border-bottom-right-radius: 1em 100%;
+		box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	}
+	
 	</style>
+	<script>
+	
+	function load()
+	{
+		var align = getQueryVariable("align");
+		var color = getQueryVariable("color");
+		var link = getQueryVariable("link");
+		
+		$("title-h1").style.textAlign = align;
+		
+		if (link != "on")
+			$("url").style.display = $("url-br").style.display = "none";
+		
+		if (color == "on")
+		{
+			var colors = {
+				"arms"  : "yellow",
+				"kart"  : "#f92473",
+				"splat" : "#00dd00",
+				"smash" : "#ffffff"
+			};
+			
+			var nextEventData = upcomingEvents();
+			if (nextEventData.length > 0)
+			{
+				var ev = nextEventData[0];
+				$("title-a").style.backgroundColor = colors[ev.game];
+			}
+		}
+	}
+	
+	</script>
+	
+	
 </head>
-<body>
-	<h1><a href="/">Casual ARMS</a></h1>
+<body onload="load()">
+	<h1 id="title-h1">
+		<a id="title-a" href="/">Casual ARMS</a><br id="url-br"/>
+		<span id="url">www.casualarms.net</span>
+	</h1>
 </body>
 </html>

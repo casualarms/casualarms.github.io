@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style type="text/css">
+	
+	.modecolor-arms    { color: #ffff00; }
+	.modecolor-kart    { color: #f92473; }
+	.modecolor-splat   { color: #00dd00; }
+	.modecolor-smash   { color: #ffffff; }
+	
+	.modebgcolor-arms    { background-color: #ffff00; }
+	.modebgcolor-kart    { background-color: #f92473; }
+	.modebgcolor-splat   { background-color: #00dd00; }
+	.modebgcolor-smash   { background-color: #ffffff; }
+	
+	body, html {
+		margin: 0; padding: 0;
+		background: none;
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	.host-group {
+		font-size: 2em;
+		white-space: nowrap;
+		margin: 0.2em 0.5em;
+		display: inline-block;
+	}
+	
+	span.host-item {
+		display: inline-block;
+		position: relative;
+		font-style: italic;
+		border-top-left-radius: 1em 100%;
+		border-bottom-right-radius: 1em 100%;
+		box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	}
+	
+	span.host-item.long {
+		margin-right: 0;
+		text-align: left;
+		padding: 0.1em 2em 0.1em 1em;
+	}
+	
+	span.host-item.extra {
+		margin-left: -1.2em;
+		width: auto;
+		padding: 0.1em 1.2em;
+		font-weight: bold;
+		background-color: black;
+	}
+	
+	
+	</style>
+	<script>
+	
+	function displayItem(ev, label, text, orientation)
+	{
+		var res = "<span class='host-group'> <span class='host-item long modebgcolor-" + ev.game + "'>" + label + "</span>";
+		res += "<span class='host-item extra modecolor-" + ev.game + "'>" + text + "</span></span>";
+		if (orientation != "horizontal") res += "<br/>";
+		return res;
+	}
+	
+	function load()
+	{
+		var orientation = getQueryVariable("orientation");
+		
+		var eventInfo = "";
+		// Display next event feature
+		var nextEventData = upcomingEvents();
+		if (nextEventData.length > 0)
+		{
+			var ev = nextEventData[0];
+			
+			
+			eventInfo += displayItem(ev, "Time Left", "<span id='time-left'>00:00</span>", orientation);
+			
+			if ("theme" in ev)
+			{
+				eventInfo += displayItem(ev, "Theme", getTheme(ev.game, ev.theme).name, orientation);
+			}
+			
+			if ("stages" in ev)
+			{
+				var name = "";
+				for (var t = 0; t < stageSets[ev.game].length; ++t)
+					if (stageSets[ev.game][t].key == ev.stages)
+						name = stageSets[ev.game][t].name;
+				eventInfo += displayItem(ev, "Stages", name, orientation);
+			}
+			
+			if ("items" in ev)
+			{
+				var name = "";
+				for (var t = 0; t < itemSets[ev.game].length; ++t)
+					if (itemSets[ev.game][t].key == ev.items)
+						name = itemSets[ev.game][t].name;
+				eventInfo += displayItem(ev, "Items", name, orientation);
+			}
+			
+			// Sponsor tags
+			if ("sponsor" in ev)
+				eventInfo += displayItem(ev, "Sponsor", eventSponsors[ev["sponsor"]].title, orientation);
+			
+			$("hosts").innerHTML += eventInfo;
+			
+			var updateCountdown = function()
+			{
+				var diff = (ev.date.getTime() + ev.duration * 60000) - new Date().getTime();
+				var msec = diff;
+				var hh = Math.floor(msec / 1000 / 60 / 60);
+				msec -= hh * 1000 * 60 * 60;
+				var mm = Math.floor(msec / 1000 / 60);
+				msec -= mm * 1000 * 60;
+				var ss = Math.floor(msec / 1000);
+				msec -= ss * 1000;
+				$("time-left").innerHTML = padZero(hh) + ":" + padZero(mm);
+			}
+			
+			updateCountdown();
+			setInterval(updateCountdown, 1000);
+		}
+	}
+	
+	</script>
+	
+</head>
+
+<body onload="load()">
+	
+	<div id="hosts"></div>
+	
+</body>
+</html>

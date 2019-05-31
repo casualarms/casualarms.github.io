@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Streaming Tools - Casual ARMS</title>
+	<script src="/script/general.js"></script>
+	<script src="/script/banner-gen.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("/assets/ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+	
+	#wrapper {
+		max-width: 70em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+	
+	h1, h2, h3, h4 {
+		font-family: ARMS;
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	img {
+		width: 35%;
+		vertical-align: top;
+		margin-right: 3%;
+	}
+	
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 60%;
+		font-family: monospace;
+		margin: 0;
+	}
+	
+	.frame {
+		width: 200%;
+		transform: scale(0.5);
+		transform-origin: 0 0;
+		border: none;
+	}
+	
+	.frame-wrap {
+		background: url(backdrop.png) 10px repeat;
+		background-size: 20px;
+		overflow: hidden;
+	}
+	
+	.url-view {
+		width: 80%;
+	}
+	
+	.btn-cpy {
+		background-color: yellow;
+	}
+	
+	</style>
+	<script>
+	
+	
+	function updateHostsFrame()
+	{
+		var url = "/stream/hosts.html?";
+		url += "&orientation=" + ($("hosts-horizontal").checked ? "horizontal" : "vertical");
+		$("hosts-url").value = "https://casualarms.net" + url;
+		$("hosts").src = url;
+	}
+	
+	function updateEventFrame()
+	{
+		var url = "/stream/eventinfo.html?";
+		url += "&orientation=" + ($("event-horizontal").checked ? "horizontal" : "vertical");
+		$("event-url").value = "https://casualarms.net" + url;
+		$("event").src = url;
+	}
+	
+	function updateTitleFrame()
+	{
+		var url = "/stream/title.html?";
+		url += "&align=" + ($("title-align").checked ? "left" : "center");
+		url += "&color=" + ($("title-color").checked ? "on" : "off");
+		url += "&link=" + ($("title-url").checked ? "on" : "off");
+		$("title-url").value = "https://casualarms.net" + url;
+		$("title").src = url;
+	}
+	
+	function load()
+	{
+		updateHostsFrame();
+		updateEventFrame();
+		updateTitleFrame();
+	}
+	
+	
+	
+	</script>
+</head>
+<body onLoad="load()">
+	<div id="wrapper">
+		<h1>Casual ARMS Stream Overlays</h1>
+		
+		
+		<h2>Hosts Display</h2>
+		
+		<p><form onchange="updateHostsFrame()">
+			<input type="checkbox" id="hosts-horizontal"> <label for="hosts-horizontal">Horizontal</label>
+		</form></p>
+		<div class="frame-wrap" style="height: 150px;">
+			<iframe id="hosts" class="frame" height="300"></iframe>
+		</div>
+		<button onclick="copyToClipboard('hosts-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="hosts-url"/>
+		
+		
+		<h2>Event Display</h2>
+		
+		<p><form onchange="updateEventFrame()">
+			<input type="checkbox" id="event-horizontal"> <label for="event-horizontal">Horizontal</label>
+		</form></p>
+		<div class="frame-wrap" style="height: 150px;">
+			<iframe id="event" class="frame" height="300"></iframe>
+		</div>
+		<button onclick="copyToClipboard('event-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="event-url"/>
+		
+		
+		<h2>Casual ARMS title</h2>
+		
+		<p><form onchange="updateTitleFrame()">
+			<input type="checkbox" id="title-url"> <label for="title-url">Show Link</label><br/>
+			<input type="checkbox" id="title-align"> <label for="title-align">Left Alignment</label><br/>
+			<input type="checkbox" id="title-color"> <label for="title-color">Match Color to Game</label>
+		</form></p>
+		<div class="frame-wrap" style="height: 150px;">
+			<iframe id="title" class="frame" height="300"></iframe>
+		</div>
+		<button onclick="copyToClipboard('title-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="title-url"/>
+		
+		
+	</div>
+</body>
+</html>
