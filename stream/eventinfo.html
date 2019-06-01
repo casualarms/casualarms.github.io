@@ -141,7 +141,7 @@
 			{
 				$("time-label").innerHTML = "Time Left";
 				var diff = ev.date.getTime() + ev.duration * 60000 - new Date().getTime();
-				if (diff > 0)
+				if (ev.date.getTime() - new Date().getTime() > 0)
 				{
 					$("time-label").innerHTML = "Starting In";
 					diff = ev.date.getTime() - new Date().getTime();
