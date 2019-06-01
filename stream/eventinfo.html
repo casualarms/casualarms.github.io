@@ -21,12 +21,36 @@
 		background: none;
 		font-family: Helvetica, Arial, sans-serif;
 	}
-
+	
+	#hosts {
+		position: absolute;
+	}
+	
 	.host-group {
 		font-size: 2em;
 		white-space: nowrap;
-		margin: 0.2em 0.5em;
+		margin: 0.2em 0.4em;
 		display: inline-block;
+	}
+	
+	#hosts.vertical .host-group {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	
+	#hosts.horizontal .host-group {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	
+	.host-group:first-of-type {
+		margin-top: 0;
+		margin-left: 0;
+	}
+	
+	.host-group:last-of-type {
+		margin-bottom: 0;
+		margin-right: 0;
 	}
 	
 	span.host-item {
@@ -67,6 +91,12 @@
 	function load()
 	{
 		var orientation = getQueryVariable("orientation");
+		$("hosts").className = orientation;
+		
+		var valign = getQueryVariable("valign");
+		
+		if (valign == "bottom")
+			$("hosts").style.bottom = "0";
 		
 		var eventInfo = "";
 		// Display next event feature
@@ -76,7 +106,7 @@
 			var ev = nextEventData[0];
 			
 			
-			eventInfo += displayItem(ev, "Time Left", "<span id='time-left'>00:00</span>", orientation);
+			eventInfo += displayItem(ev, "<span id='time-label'>Time Left</span>", "<span id='time-left'>00:00</span>", orientation);
 			
 			if ("theme" in ev)
 			{
@@ -109,7 +139,14 @@
 			
 			var updateCountdown = function()
 			{
-				var diff = (ev.date.getTime() + ev.duration * 60000) - new Date().getTime();
+				$("time-label").innerHTML = "Time Left";
+				var diff = ev.date.getTime() + ev.duration * 60000 - new Date().getTime();
+				if (diff > 0)
+				{
+					$("time-label").innerHTML = "Starting In";
+					diff = ev.date.getTime() - new Date().getTime();
+				}
+				
 				var msec = diff;
 				var hh = Math.floor(msec / 1000 / 60 / 60);
 				msec -= hh * 1000 * 60 * 60;

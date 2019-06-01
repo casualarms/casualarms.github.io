@@ -1,0 +1,145 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style type="text/css">
+	
+	.modecolor-arms    { color: #ffff00; }
+	.modecolor-kart    { color: #f92473; }
+	.modecolor-splat   { color: #00dd00; }
+	.modecolor-smash   { color: #ffffff; }
+	
+	.modebgcolor-arms    { background-color: #ffff00; }
+	.modebgcolor-kart    { background-color: #f92473; }
+	.modebgcolor-splat   { background-color: #00dd00; }
+	.modebgcolor-smash   { background-color: #ffffff; }
+	
+	body, html {
+		height: 100%;
+		min-height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: none;
+	}
+	
+	.scroller {
+		display: inline-block;
+		text-align: center;
+		white-space: nowrap;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		font-weight: bold;
+		height: 2em;
+		line-height: 2em;
+	}
+	
+	#no-scroller {
+		width: 100%;
+		background-color: yellow;
+	}
+	
+	#scroller1 { animation: scroll1 80s linear infinite;}
+	#scroller2 { animation: scroll2 80s linear infinite; }
+	#scroller3 { animation: scroll3 80s linear infinite; }
+	
+	@keyframes scroll1 {
+		  0% { transform: translateX( 100%); }
+		100% { transform: translateX(-100%); }
+	}
+	
+	@keyframes scroll2 {
+		  0% { transform: translateX(0%); }
+		 50% { transform: translateX(-100%); }
+		 50.0001% { transform: translateX(200%); }
+		100% { transform: translateX(100%); }
+	}
+	
+	@keyframes scroll3 {
+		  0% { transform: translateX( 200%); }
+		100% { transform: translateX( 000%); }
+	}
+	
+	.spacer {
+		display: inline-block;
+		width: 3em;
+	}
+	
+	</style>
+	<script>
+	
+	function load()
+	{
+		var text = getQueryVariable("text");
+		var patrons = getQueryVariable("patrons");
+		var color = getQueryVariable("color");
+		
+		var patronList = [];
+		for (var key in patronsJSON)
+		{
+			if (patronsJSON.hasOwnProperty(key) && key == "UNKNOWN")
+			{
+				var unknowns = patronsJSON[key];
+				for (var u = 0; u < unknowns.length; ++u)
+				{
+					var user = unknowns[u];
+					if (user.active)
+						patronList.push(user.name);
+				}
+			}
+			else if (patronsJSON.hasOwnProperty(key) && patronsJSON[key].active)
+			{
+				var user = patronsJSON[key];
+				patronList.push(user.name);
+			}
+		}
+		
+		var scroll_html = "";
+		
+		if (text)
+			scroll_html += decodeURIComponent(text) + "<span class='spacer'></span>";
+		
+		if (patrons == "on")
+		{
+			scroll_html += "<em>Casual ARMS Patrons</em> "
+			for (var i = 0; i < patronList.length; ++i)
+			{
+				scroll_html += patronList[i];
+				if (i < patronList.length - 1) scroll_html += " — ";
+			}
+			scroll_html += "<span class='spacer'></span>";
+		}
+		
+		$("scroller1").innerHTML = scroll_html;
+		$("scroller2").innerHTML = scroll_html;
+		$("scroller3").innerHTML = scroll_html;
+		
+		if (color == "on")
+		{
+			var nextEventData = upcomingEvents();
+			if (nextEventData.length > 0)
+			{
+				var ev = nextEventData[0];
+				$("no-scroller").style.backgroundColor = gameColor(ev.game);
+			}
+		}
+		
+	}
+	
+	</script>
+	
+</head>
+
+<body onload="load()">
+	<div class="scroller" id="no-scroller"></div>
+	<div class="scroller" id="scroller1"></div>
+	<div class="scroller" id="scroller2"></div>
+	<div class="scroller" id="scroller3"></div>
+</body>
+</html>

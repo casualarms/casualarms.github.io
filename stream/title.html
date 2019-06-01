@@ -41,18 +41,11 @@
 		
 		if (color == "on")
 		{
-			var colors = {
-				"arms"  : "yellow",
-				"kart"  : "#f92473",
-				"splat" : "#00dd00",
-				"smash" : "#ffffff"
-			};
-			
 			var nextEventData = upcomingEvents();
 			if (nextEventData.length > 0)
 			{
 				var ev = nextEventData[0];
-				$("title-a").style.backgroundColor = colors[ev.game];
+				$("title-a").style.backgroundColor = gameColor(ev.game);
 			}
 		}
 	}

@@ -31,20 +31,6 @@
 		padding-bottom: 0.25em;
 	}
 	
-	img {
-		width: 35%;
-		vertical-align: top;
-		margin-right: 3%;
-	}
-	
-	textarea {
-		background-color: #484b52;
-		color: white;
-		width: 60%;
-		font-family: monospace;
-		margin: 0;
-	}
-	
 	.frame {
 		width: 200%;
 		transform: scale(0.5);
@@ -59,7 +45,7 @@
 	}
 	
 	.url-view {
-		width: 80%;
+		width: 85%;
 	}
 	
 	.btn-cpy {
@@ -69,31 +55,45 @@
 	</style>
 	<script>
 	
+	var rootURL = "https://www.casualarms.net";
 	
 	function updateHostsFrame()
 	{
 		var url = "/stream/hosts.html?";
-		url += "&orientation=" + ($("hosts-horizontal").checked ? "horizontal" : "vertical");
-		$("hosts-url").value = "https://casualarms.net" + url;
+		url += "&orientation=" + $("hosts-orientation").value;
+		url += "&valign=" + $("hosts-alignment").value;
+		$("hosts-url").value = rootURL + url;
 		$("hosts").src = url;
 	}
 	
 	function updateEventFrame()
 	{
 		var url = "/stream/eventinfo.html?";
-		url += "&orientation=" + ($("event-horizontal").checked ? "horizontal" : "vertical");
-		$("event-url").value = "https://casualarms.net" + url;
+		url += "&orientation=" + $("event-orientation").value;
+		url += "&valign=" + $("event-alignment").value;
+		$("event-url").value = rootURL + url;
 		$("event").src = url;
 	}
 	
 	function updateTitleFrame()
 	{
 		var url = "/stream/title.html?";
-		url += "&align=" + ($("title-align").checked ? "left" : "center");
+		url += "&align=" + $("title-align").value;
 		url += "&color=" + ($("title-color").checked ? "on" : "off");
-		url += "&link=" + ($("title-url").checked ? "on" : "off");
-		$("title-url").value = "https://casualarms.net" + url;
+		url += "&link=" + ($("title-link").checked ? "on" : "off");
+		$("title-url").value = rootURL + url;
 		$("title").src = url;
+	}
+	
+	function updateMarqueeFrame()
+	{
+		var url = "/stream/marquee.html?";
+		url += "&color=" + ($("marquee-color").checked ? "on" : "off");
+		url += "&patrons=" + ($("marquee-patrons").checked ? "on" : "off");
+		if ($("marquee-text").value != "")
+			url += "&text=" + encodeURIComponent($("marquee-text").value);
+		$("marquee-url").value = rootURL + url;
+		$("marquee").src = url;
 	}
 	
 	function load()
@@ -101,6 +101,7 @@
 		updateHostsFrame();
 		updateEventFrame();
 		updateTitleFrame();
+		updateMarqueeFrame();
 	}
 	
 	
@@ -111,11 +112,35 @@
 	<div id="wrapper">
 		<h1>Casual ARMS Stream Overlays</h1>
 		
+		<h2>Casual ARMS Title</h2>
+		
+		<p><form onchange="updateTitleFrame()">
+			<input type="checkbox" id="title-link"> <label for="title-link">Show Link</label><br/>
+			<input type="checkbox" id="title-color"> <label for="title-color">Match Color to Game</label><br/>
+			Alignment: <select id="title-align">
+				<option value="center">Center</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</select>
+		</form></p>
+		<div class="frame-wrap" style="height: 75px;">
+			<iframe id="title" class="frame" height="150"></iframe>
+		</div>
+		<button onclick="copyToClipboard('title-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="title-url"/>
+		
 		
 		<h2>Hosts Display</h2>
 		
 		<p><form onchange="updateHostsFrame()">
-			<input type="checkbox" id="hosts-horizontal"> <label for="hosts-horizontal">Horizontal</label>
+			Vertical Alignment: <select id="hosts-alignment">
+				<option value="top">Top</option>
+				<option value="bottom">Bottom</option>
+			</select><br/>
+			Orientation: <select id="hosts-orientation">
+				<option value="vertical">Vertical</option>
+				<option value="horizontal">Horizontal</option>
+			</select>
 		</form></p>
 		<div class="frame-wrap" style="height: 150px;">
 			<iframe id="hosts" class="frame" height="300"></iframe>
@@ -127,7 +152,14 @@
 		<h2>Event Display</h2>
 		
 		<p><form onchange="updateEventFrame()">
-			<input type="checkbox" id="event-horizontal"> <label for="event-horizontal">Horizontal</label>
+			Vertical Alignment: <select id="event-alignment">
+				<option value="top">Top</option>
+				<option value="bottom">Bottom</option>
+			</select><br/>
+			Orientation: <select id="event-orientation">
+				<option value="vertical">Vertical</option>
+				<option value="horizontal">Horizontal</option>
+			</select>
 		</form></p>
 		<div class="frame-wrap" style="height: 150px;">
 			<iframe id="event" class="frame" height="300"></iframe>
@@ -136,18 +168,38 @@
 		<input type="text" class="url-view" id="event-url"/>
 		
 		
-		<h2>Casual ARMS title</h2>
+		<h2>Casual ARMS Marquee</h2>
 		
-		<p><form onchange="updateTitleFrame()">
-			<input type="checkbox" id="title-url"> <label for="title-url">Show Link</label><br/>
-			<input type="checkbox" id="title-align"> <label for="title-align">Left Alignment</label><br/>
-			<input type="checkbox" id="title-color"> <label for="title-color">Match Color to Game</label>
+		<p><form onchange="updateMarqueeFrame()">
+			<input type="checkbox" id="marquee-color"> <label for="marquee-color">Match Color to Game</label><br/>
+			<input type="checkbox" id="marquee-patrons"> <label for="marquee-patrons">List Patrons</label><br/>
+			Custom Text: <input type="text" id="marquee-text" size="30em"/>
 		</form></p>
-		<div class="frame-wrap" style="height: 150px;">
-			<iframe id="title" class="frame" height="300"></iframe>
+		<div class="frame-wrap" style="height: 50px;">
+			<iframe id="marquee" class="frame" height="100"></iframe>
 		</div>
-		<button onclick="copyToClipboard('title-url')" class='btn-cpy text-preview'>Copy URL</button>
-		<input type="text" class="url-view" id="title-url"/>
+		<button onclick="copyToClipboard('marquee-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="marquee-url"/>
+		
+		
+		<h2>Casual ARMS Background</h2>
+		
+		<div class="frame-wrap" style="height: 150px;">
+			<iframe id="background" class="frame" height="300" src="/stream/background.html"></iframe>
+		</div>
+		<button onclick="copyToClipboard('background-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="background-url" value="https://www.casualarms.net/stream/background.html"/>
+		
+		
+		<h2>Casual ARMS Banner</h2>
+		
+		<p>Do not put the banner permanently on screen during gameplay. This overlay is for special scenes such as a "starting soon" splash screen.</p>
+		
+		<div class="frame-wrap" style="height: 240px;">
+			<iframe id="banner" class="frame" height="480" src="/stream/banner.html"></iframe>
+		</div>
+		<button onclick="copyToClipboard('banner-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="banner-url" value="https://www.casualarms.net/stream/banner.html"/>
 		
 		
 	</div>
