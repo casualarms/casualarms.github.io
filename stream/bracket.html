@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style type="text/css">
+	
+	body, html {
+		height: 100%;
+		min-height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: none;
+		font-family: sans-serif;
+	}
+	
+	.player {
+		border-radius: 3pt;
+		background-color: yellow;
+		display: inline-block;
+		margin: 2pt 2pt;
+		padding: 2pt 3pt;
+		color: black;
+	}
+	
+	.text-cc { color: yellow; }
+	.text-ca { color: lightblue; }
+	
+	.player.ca {
+		background-color: lightblue;
+	}
+	
+	.stream {
+		background-color: lightgreen;
+	}
+	
+	.vs, .score {
+		color: white;
+		background-color: black;
+	}
+	
+	ol {
+		list-style-type: none;
+		padding-left: 0;
+	}
+	
+	</style>
+	<script>
+	
+	function load()
+	{
+		var players1 = JSON.parse(decodeURIComponent(getQueryVariable("players1")));
+		var players2 = JSON.parse(decodeURIComponent(getQueryVariable("players2")));
+		var stream = getQueryVariable("stream") == "on";
+		var scores = getQueryVariable("scores") == "on";
+		var start = parseInt(getQueryVariable("start")) - 1;
+		var stop = parseInt(getQueryVariable("stop")) - 1;
+		var matchupString = getQueryVariable("matchups");
+		
+		var length = parseInt(matchupString[0], 36);
+		matchupString = matchupString.substring(1, matchupString.length);
+		
+		var matchups = [];
+		for (var i = 0; i < length; ++i)
+		{
+			var match = [];
+			for (var j = 0; j < length; ++j)
+			{
+				match.push({
+					left:       parseInt(matchupString[0], 36),
+					right:      parseInt(matchupString[1], 36),
+					scoreLeft:  parseInt(matchupString[2], 36),
+					scoreRight: parseInt(matchupString[3], 36),
+					streamed:   matchupString[4] == "s",
+				});
+				matchupString = matchupString.substring(5, matchupString.length);
+			}
+			matchups.push(match);
+		}
+		
+		var html = "<ol>";
+		
+		for (var i = start; i <= stop; ++i)
+		{
+			html += "<li><ol style='margin-bottom: 1em;'>";
+			for (var j = 0; j < matchups[i].length; ++j)
+			{
+				html += "<li><span class='player cc'>" + players1[matchups[i][j].left] + "</span> <span class='player vs'>vs</span> <span class='player ca'>" + players2[matchups[i][j].right] + "</span>";
+				if (scores) html += " <span class='player score'>" + matchups[i][j].scoreLeft + " - " + matchups[i][j].scoreRight + "</span>";
+				if (stream && matchups[i][j].streamed) html += " <span class='player stream'>Streamed</span>";
+				html += "</li>";
+			}
+			html += "</ol></li>";
+		}
+		html += "</ol>";
+		
+		$("rounds").innerHTML = html;
+		
+	}
+	
+	</script>
+	
+</head>
+
+<body onload="load()">
+	
+	<div id="rounds"></div>
+	
+</body>
+</html>

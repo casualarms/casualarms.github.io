@@ -57,20 +57,20 @@
 	
 	var rootURL = "https://www.casualarms.net";
 	
-	function updateHostsFrame()
-	{
-		var url = "/stream/hosts.html?";
-		url += "&orientation=" + $("hosts-orientation").value;
-		url += "&valign=" + $("hosts-alignment").value;
-		$("hosts-url").value = rootURL + url;
-		$("hosts").src = url;
-	}
-	
 	function updateEventFrame()
 	{
 		var url = "/stream/eventinfo.html?";
 		url += "&orientation=" + $("event-orientation").value;
-		url += "&valign=" + $("event-alignment").value;
+		url += "&valign=" + $("event-valignment").value;
+		url += "&halign=" + $("event-halignment").value;
+		
+		url += "&hosts="   + ($("event-hosts").checked   ? "on" : "off");
+		url += "&timer="   + ($("event-timer").checked   ? "on" : "off");
+		url += "&theme="   + ($("event-theme").checked   ? "on" : "off");
+		url += "&stages="  + ($("event-stages").checked  ? "on" : "off");
+		url += "&items="   + ($("event-items").checked   ? "on" : "off");
+		url += "&sponsor=" + ($("event-sponsor").checked ? "on" : "off");
+		
 		$("event-url").value = rootURL + url;
 		$("event").src = url;
 	}
@@ -89,6 +89,7 @@
 	{
 		var url = "/stream/marquee.html?";
 		url += "&color=" + ($("marquee-color").checked ? "on" : "off");
+		url += "&monthly=" + ($("marquee-monthly").checked ? "on" : "off");
 		url += "&patrons=" + ($("marquee-patrons").checked ? "on" : "off");
 		if ($("marquee-text").value != "")
 			url += "&text=" + encodeURIComponent($("marquee-text").value);
@@ -98,12 +99,10 @@
 	
 	function load()
 	{
-		updateHostsFrame();
 		updateEventFrame();
 		updateTitleFrame();
 		updateMarqueeFrame();
 	}
-	
 	
 	
 	</script>
@@ -129,40 +128,33 @@
 		<button onclick="copyToClipboard('title-url')" class='btn-cpy text-preview'>Copy URL</button>
 		<input type="text" class="url-view" id="title-url"/>
 		
+		<h2>Event Display</h2>
 		
-		<h2>Hosts Display</h2>
+		<p>Remember that you can have multiple of the same overlay on the same Scene, e.g. with different parameters set.</p>
 		
-		<p><form onchange="updateHostsFrame()">
-			Vertical Alignment: <select id="hosts-alignment">
+		<p><form onchange="updateEventFrame()">
+			<input type="checkbox" id="event-hosts" checked>   <label for="event-hosts">Show Hosts</label><br/>
+			<input type="checkbox" id="event-timer" checked>   <label for="event-timer">Show Timer</label><br/>
+			<input type="checkbox" id="event-theme" checked>   <label for="event-theme">Show Theme</label><br/>
+			<input type="checkbox" id="event-stages" checked>  <label for="event-stages">Show Stages</label><br/>
+			<input type="checkbox" id="event-items" checked>   <label for="event-items">Show Items</label><br/>
+			<input type="checkbox" id="event-sponsor" checked> <label for="event-sponsor">Show Sponsor</label><br/>
+			Vertical Alignment: <select id="event-valignment">
 				<option value="top">Top</option>
 				<option value="bottom">Bottom</option>
 			</select><br/>
-			Orientation: <select id="hosts-orientation">
-				<option value="vertical">Vertical</option>
-				<option value="horizontal">Horizontal</option>
-			</select>
-		</form></p>
-		<div class="frame-wrap" style="height: 150px;">
-			<iframe id="hosts" class="frame" height="300"></iframe>
-		</div>
-		<button onclick="copyToClipboard('hosts-url')" class='btn-cpy text-preview'>Copy URL</button>
-		<input type="text" class="url-view" id="hosts-url"/>
-		
-		
-		<h2>Event Display</h2>
-		
-		<p><form onchange="updateEventFrame()">
-			Vertical Alignment: <select id="event-alignment">
-				<option value="top">Top</option>
-				<option value="bottom">Bottom</option>
+			Horizontal Alignment: <select id="event-halignment">
+				<option value="left">Left</option>
+				<option value="center">Center</option>
+				<option value="right">Right</option>
 			</select><br/>
 			Orientation: <select id="event-orientation">
 				<option value="vertical">Vertical</option>
 				<option value="horizontal">Horizontal</option>
 			</select>
 		</form></p>
-		<div class="frame-wrap" style="height: 150px;">
-			<iframe id="event" class="frame" height="300"></iframe>
+		<div class="frame-wrap" style="height: 250px;">
+			<iframe id="event" class="frame" height="500"></iframe>
 		</div>
 		<button onclick="copyToClipboard('event-url')" class='btn-cpy text-preview'>Copy URL</button>
 		<input type="text" class="url-view" id="event-url"/>
@@ -171,8 +163,9 @@
 		<h2>Casual ARMS Marquee</h2>
 		
 		<p><form onchange="updateMarqueeFrame()">
+			<input type="checkbox" id="marquee-monthly" checked> <label for="marquee-monthly">List Monthly Top 10</label><br/>
+			<input type="checkbox" id="marquee-patrons" checked> <label for="marquee-patrons">List Patrons</label><br/>
 			<input type="checkbox" id="marquee-color"> <label for="marquee-color">Match Color to Game</label><br/>
-			<input type="checkbox" id="marquee-patrons"> <label for="marquee-patrons">List Patrons</label><br/>
 			Custom Text: <input type="text" id="marquee-text" size="30em"/>
 		</form></p>
 		<div class="frame-wrap" style="height: 50px;">

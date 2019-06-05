@@ -90,13 +90,26 @@
 	
 	function load()
 	{
+		var hosts   = getQueryVariable("hosts")   == "on";
+		var timer   = getQueryVariable("timer")   == "on";
+		var theme   = getQueryVariable("theme")   == "on";
+		var stages  = getQueryVariable("stages")  == "on";
+		var items   = getQueryVariable("items")   == "on";
+		var sponsor = getQueryVariable("sponsor") == "on";
+		
 		var orientation = getQueryVariable("orientation");
 		$("hosts").className = orientation;
 		
 		var valign = getQueryVariable("valign");
+		var halign = getQueryVariable("halign");
 		
 		if (valign == "bottom")
 			$("hosts").style.bottom = "0";
+		
+		if (halign == "right")
+			$("hosts").style.right = "0";
+		
+		$("hosts").style.textAlign = halign;
 		
 		var eventInfo = "";
 		// Display next event feature
@@ -105,15 +118,21 @@
 		{
 			var ev = nextEventData[0];
 			
+			if (hosts && "hosts" in ev)
+				for (var h = 0; h < ev.hosts.length; ++h)
+				{
+					eventInfo += "<span class='host-group'> <span class='host-item long modebgcolor-" + ev.game + "'>" + ev.hosts[h].name + "</span>";
+					eventInfo += "<span class='host-item extra modecolor-" + ev.game + "'>" + ev.hosts[h].code + "</span></span>";
+					if (orientation != "horizontal") eventInfo += "<br/>";
+				}
 			
-			eventInfo += displayItem(ev, "<span id='time-label'>Time Left</span>", "<span id='time-left'>00:00</span>", orientation);
+			if (timer)
+				eventInfo += displayItem(ev, "<span id='time-label'>Time Left</span>", "<span id='time-left'>00:00</span>", orientation);
 			
-			if ("theme" in ev)
-			{
+			if (theme && "theme" in ev)
 				eventInfo += displayItem(ev, "Theme", getTheme(ev.game, ev.theme).name, orientation);
-			}
 			
-			if ("stages" in ev)
+			if (stages && "stages" in ev)
 			{
 				var name = "";
 				for (var t = 0; t < stageSets[ev.game].length; ++t)
@@ -122,7 +141,7 @@
 				eventInfo += displayItem(ev, "Stages", name, orientation);
 			}
 			
-			if ("items" in ev)
+			if (items && "items" in ev)
 			{
 				var name = "";
 				for (var t = 0; t < itemSets[ev.game].length; ++t)
@@ -132,7 +151,7 @@
 			}
 			
 			// Sponsor tags
-			if ("sponsor" in ev)
+			if (sponsor && "sponsor" in ev)
 				eventInfo += displayItem(ev, "Sponsor", eventSponsors[ev["sponsor"]].title, orientation);
 			
 			$("hosts").innerHTML += eventInfo;
@@ -157,8 +176,11 @@
 				$("time-left").innerHTML = padZero(hh) + ":" + padZero(mm);
 			}
 			
-			updateCountdown();
-			setInterval(updateCountdown, 1000);
+			if (timer)
+			{
+				updateCountdown();
+				setInterval(updateCountdown, 1000);
+			}
 		}
 	}
 	

@@ -9,16 +9,6 @@
 	<script src="/data/support.js"></script>
 	<style type="text/css">
 	
-	.modecolor-arms    { color: #ffff00; }
-	.modecolor-kart    { color: #f92473; }
-	.modecolor-splat   { color: #00dd00; }
-	.modecolor-smash   { color: #ffffff; }
-	
-	.modebgcolor-arms    { background-color: #ffff00; }
-	.modebgcolor-kart    { background-color: #f92473; }
-	.modebgcolor-splat   { background-color: #00dd00; }
-	.modebgcolor-smash   { background-color: #ffffff; }
-	
 	body, html {
 		height: 100%;
 		min-height: 100%;
@@ -45,9 +35,9 @@
 		background-color: yellow;
 	}
 	
-	#scroller1 { animation: scroll1 80s linear infinite;}
-	#scroller2 { animation: scroll2 80s linear infinite; }
-	#scroller3 { animation: scroll3 80s linear infinite; }
+	#scroller1 { animation: scroll1 100s linear infinite;}
+	#scroller2 { animation: scroll2 100s linear infinite; }
+	#scroller3 { animation: scroll3 100s linear infinite; }
 	
 	@keyframes scroll1 {
 		  0% { transform: translateX( 100%); }
@@ -71,13 +61,29 @@
 		width: 3em;
 	}
 	
+	.armscoin {
+		width: 1em;
+		padding: 0 0 0.15em 0.15em;
+		vertical-align: sub;
+	}
+	
+	em {
+		margin-right: 1em;
+	}
+	
 	</style>
 	<script>
 	
 	function load()
 	{
+		var game = "arms";
+		var nextEventData = upcomingEvents();
+		if (nextEventData.length > 0)
+			game = nextEventData[0].game;
+		
 		var text = getQueryVariable("text");
-		var patrons = getQueryVariable("patrons");
+		var patrons = getQueryVariable("patrons") == "on";
+		var monthly = getQueryVariable("monthly") == "on";
 		var color = getQueryVariable("color");
 		
 		var patronList = [];
@@ -105,7 +111,7 @@
 		if (text)
 			scroll_html += decodeURIComponent(text) + "<span class='spacer'></span>";
 		
-		if (patrons == "on")
+		if (patrons)
 		{
 			scroll_html += "<em>Casual ARMS Patrons</em> "
 			for (var i = 0; i < patronList.length; ++i)
@@ -116,19 +122,24 @@
 			scroll_html += "<span class='spacer'></span>";
 		}
 		
+		if (monthly)
+		{
+			var board = seasonHistoryJSON[game][0].data
+				.filter(function(item) { return !("id" in item && ["339592807104643083", "241565548318687232"].includes(item.id)); })
+				.sort(function(a, b) { return b.monthly - a.monthly; });
+			
+			scroll_html += "<em>Monthly Top 10</em> ";
+			for (var i = 0; i < Math.min(board.length, 10); ++i)
+				scroll_html += board[i].name + ": " + board[i].monthly + "<img class='armscoin' src='/leaderboards/coin_" + game + "_dark.png'/>" + (i < Math.min(board.length, 10) - 1 ? " — " : "");
+			scroll_html += "<span class='spacer'></span>";
+		}
+		
 		$("scroller1").innerHTML = scroll_html;
 		$("scroller2").innerHTML = scroll_html;
 		$("scroller3").innerHTML = scroll_html;
 		
 		if (color == "on")
-		{
-			var nextEventData = upcomingEvents();
-			if (nextEventData.length > 0)
-			{
-				var ev = nextEventData[0];
-				$("no-scroller").style.backgroundColor = gameColor(ev.game);
-			}
-		}
+			$("no-scroller").style.backgroundColor = gameColor(game);
 		
 	}
 	

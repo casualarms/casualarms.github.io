@@ -72,6 +72,26 @@ permalink: /staff/crewbattle/index.html
 		width: 3em;
 	}
 	
+	.frame {
+		width: 200%;
+		transform: scale(0.5);
+		transform-origin: 0 0;
+		border: none;
+	}
+	
+	.frame-wrap {
+		background: url(/stream/backdrop.png) 10px repeat;
+		background-size: 20px;
+		overflow: hidden;
+	}
+	
+	.url-view {
+		width: 85%;
+	}
+	
+	.btn-cpy {
+		background-color: yellow;
+	}
 
 	</style>
 	<script>
@@ -90,20 +110,21 @@ permalink: /staff/crewbattle/index.html
 		
 		var html = "<ol>";
 		var length = Math.min(players1.length, players2.length);
-		var matchup = 0;
 		var streamed = 0;
 		
-		for (var round = 0; round < length; ++round)
+		for (var i = 0; i < length; ++i)
 		{
 			html += "<li><ol style='list-style-type: lower-roman; margin-bottom: 1em;'>";
-			for (var i = 0; i < length; ++i)
+			var roundMatchups = [];
+			for (var j = 0; j < length; ++j)
 			{
-				html += "<li><span class='player cc'>" + players1[i].name + "</span> vs <span class='player ca'>" + players2[i].name + "</span>";
-				if (i == streamed) html += " <span class='player stream'>Streamed</span>";
-				html += "<span class='result'>Result: <input class='score' id='score-" + matchup + "-left' type='number' value='0' step='1' onchange='updateResults()'/>";
-				html += " - <input class='score' id='score-" + matchup + "-right' type='number' value='0' step='1' onchange='updateResults()'/></span></li>";
-				matchups[matchup++] = { left: players1[i].index, right: players2[i].index };
+				html += "<li><span class='player cc'>" + players1[j].name + "</span> vs <span class='player ca'>" + players2[j].name + "</span>";
+				if (j == streamed) html += " <span class='player stream'>Streamed</span>";
+				html += "<span class='result'>Result: <input class='score' id='score-" + i + "-" + j + "-left' type='number' value='0' step='1' onchange='updateResults()'/>";
+				html += " - <input class='score' id='score-" + i + "-" + j + "-right' type='number' value='0' step='1' onchange='updateResults()'/></span></li>";
+				roundMatchups.push({ left: players1[j].index, right: players2[j].index, streamed: (j == streamed) });
 			}
+			matchups.push(roundMatchups);
 			html += "</ol></li>";
 			
 			players2.splice(0, 0, players2.splice(players2.length-1, 1)[0]);
@@ -113,7 +134,46 @@ permalink: /staff/crewbattle/index.html
 		
 		$("rounds").innerHTML = html;
 		
+		
+		$("overlay-start").value = 1;
+		$("overlay-stop").value = length;
+		$("overlay-start").max = $("overlay-stop").max = length;
+		
+		updateOverlay();
+	}
 	
+	function updateOverlay()
+	{
+		var player1send = [];
+		for (var i = 0; i < players1.length; ++i)
+			player1send.push(players1[i].name);
+		
+		var player2send = [];
+		for (var i = 0; i < players2.length; ++i)
+			player2send.push(players2[i].name);
+		
+		var length = matchups.length;
+		var matchupsSend = length.toString(36);
+		
+		for (var i = 0; i < length; ++i)
+			for (var j = 0; j < length; ++j)
+			{
+				matchupsSend += matchups[i][j].left.toString(36) + matchups[i][j].right.toString(36);
+				matchupsSend += parseInt($("score-" + i + "-" + j + "-left" ).value).toString(36);
+				matchupsSend += parseInt($("score-" + i + "-" + j + "-right").value).toString(36);
+				matchupsSend += matchups[i][j].streamed ? "s" : "n";
+			}
+		
+		var url = "/stream/bracket.html?";
+		url += "&players1=" + encodeURIComponent(JSON.stringify(player1send));
+		url += "&players2=" + encodeURIComponent(JSON.stringify(player2send));
+		url += "&matchups=" + encodeURIComponent(matchupsSend);
+		url += "&start="    + $("overlay-start").value;
+		url += "&stop="     + $("overlay-stop").value;
+		url += "&stream="   + ($("overlay-stream").checked ? "on" : "off");
+		url += "&scores="   + ($("overlay-scores").checked ? "on" : "off");
+		$("overlay").src = url;
+		$("overlay-url").value = "https://www.casualarms.net" + url;
 	}
 	
 	function updateResults()
@@ -127,30 +187,32 @@ permalink: /staff/crewbattle/index.html
 		var teamScores = [0, 0];
 		for (var i = 0; i < matchups.length; ++i)
 		{
-			var scoreLeft  = parseInt($("score-" + i + "-left").value);
-			var scoreRight = parseInt($("score-" + i + "-right").value);
-			teamScores[0] += scoreLeft;
-			teamScores[1] += scoreRight;
-			playerScores[matchups[i].left                   ].score += scoreLeft;
-			playerScores[matchups[i].right + players1.length].score += scoreRight;
+			for (var j = 0; j < matchups[i].length; ++j)
+			{
+				var scoreLeft  = parseInt($("score-" + i + "-" + j + "-left").value);
+				var scoreRight = parseInt($("score-" + i + "-" + j + "-right").value);
+				teamScores[0] += scoreLeft;
+				teamScores[1] += scoreRight;
+				playerScores[matchups[i][j].left                   ].score += scoreLeft;
+				playerScores[matchups[i][j].right + players1.length].score += scoreRight;
+			}
 		}
-		
-		console.log(teamScores);
-		console.log(playerScores);
 		
 		playerScores.sort(function(a, b) { return b.score - a.score; });
 		
 		var html = "<ol>";
 		for (var i = 0; i < playerScores.length; ++i)
-		{
 			html += "<li><span class='player " + playerScores[i].team + "'>" + playerScores[i].name + "</span>: " + playerScores[i].score + " points</li>";
-		}
 		html += "</ol>";
 		
 		$("results").innerHTML = html;
 		
 		$("cc-total").innerHTML = teamScores[0];
 		$("ca-total").innerHTML = teamScores[1];
+		
+		
+		
+		updateOverlay();
 	}
 	
 	function load()
@@ -192,6 +254,21 @@ Opponent 5</textarea>
 		
 		<h2 class="text-cc">Team 1 Total: <span id="cc-total"></span> points</h2>
 		<h2 class="text-ca">Team 2 Total: <span id="ca-total"></span> points</h2>
+		
+		<h2>Stream Overlay</h2>
+		
+		<p><form onchange="updateOverlay()">
+			<input type="checkbox" id="overlay-stream" checked> <label for="overlay-stream">Show Streamed Label</label><br/>
+			<input type="checkbox" id="overlay-scores" checked> <label for="overlay-scores">Show Scores</label><br/>
+			From Round: <input type="number" id="overlay-start" min="1" step="1"/>
+			To Round: <input type="number" id="overlay-stop" min="1" step="1"/>
+		</form></p>
+		
+		<button onclick="copyToClipboard('overlay-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="overlay-url"/>
+		<div class="frame-wrap" style="height: 300px;">
+			<iframe id="overlay" class="frame" height="600"></iframe>
+		</div>
 		
 	</div>
 </body>
