@@ -21,7 +21,7 @@ permalink: /staff/crewbattle/index.html
 	}
 	
 	#wrapper {
-		width: 40em;
+		max-width: 70em;
 		margin: 0 auto;
 		padding: 1em 2em;
 		background-color: #36393f;
@@ -176,6 +176,21 @@ permalink: /staff/crewbattle/index.html
 		$("overlay-url").value = "https://www.casualarms.net" + url;
 	}
 	
+	function updateStandingsFrame()
+	{
+		var i = parseInt($("standings-round").value) - 1;
+		var j = parseInt($("standings-game").value) - 1;
+		
+		var url = "/stream/standings.html?";
+		url += "&name1=" + encodeURIComponent(players1[matchups[i][j].left].name);
+		url += "&name2=" + encodeURIComponent(players2[matchups[i][j].right].name);
+		url += "&score1=" + $("score-" + i + "-" + j + "-left").value;
+		url += "&score2=" + $("score-" + i + "-" + j + "-right").value;
+		url += "&margin=" + $("standings-margin").value;
+		$("standings-url").value = "https://www.casualarms.net" + url;
+		$("standings").src = url;
+	}
+	
 	function updateResults()
 	{
 		var playerScores = [];
@@ -210,9 +225,8 @@ permalink: /staff/crewbattle/index.html
 		$("cc-total").innerHTML = teamScores[0];
 		$("ca-total").innerHTML = teamScores[1];
 		
-		
-		
 		updateOverlay();
+		updateStandingsFrame();
 	}
 	
 	function load()
@@ -232,7 +246,7 @@ Roshika
 LiterallyFlameKnee
 newbiepound
 oh yes WASPS
-Miau Miau</textarea>
+Meow Meow</textarea>
 		<h2 class="text-ca">Team 2</h2>
 		<textarea id="input2" rows="8">
 Player 1
@@ -258,7 +272,7 @@ Opponent 5</textarea>
 		<h2>Stream Overlay</h2>
 		
 		<p><form onchange="updateOverlay()">
-			<input type="checkbox" id="overlay-stream" checked> <label for="overlay-stream">Show Streamed Label</label><br/>
+			<input type="checkbox" id="overlay-stream"> <label for="overlay-stream">Show Streamed Label</label><br/>
 			<input type="checkbox" id="overlay-scores" checked> <label for="overlay-scores">Show Scores</label><br/>
 			From Round: <input type="number" id="overlay-start" min="1" step="1"/>
 			To Round: <input type="number" id="overlay-stop" min="1" step="1"/>
@@ -268,6 +282,20 @@ Opponent 5</textarea>
 		<input type="text" class="url-view" id="overlay-url"/>
 		<div class="frame-wrap" style="height: 300px;">
 			<iframe id="overlay" class="frame" height="600"></iframe>
+		</div>
+		
+		<h2>Casual ARMS Standings</h2>
+		
+		<p><form onchange="updateStandingsFrame()">
+			Round: <input type="number" id="standings-round" value="1" min="1" step="1"/>
+			Game: <input type="number" id="standings-game" value="1" min="1" step="1"/><br/>
+			Margin: <input type="range" id="standings-margin" value="0" step="1" min="-50" max="300"/><br/>
+		</form></p>
+		
+		<button onclick="copyToClipboard('standings-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="standings-url"/>
+		<div class="frame-wrap" style="height: 150px;">
+			<iframe id="standings" class="frame" height="300"></iframe>
 		</div>
 		
 	</div>

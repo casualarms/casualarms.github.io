@@ -91,10 +91,26 @@
 		url += "&color=" + ($("marquee-color").checked ? "on" : "off");
 		url += "&monthly=" + ($("marquee-monthly").checked ? "on" : "off");
 		url += "&patrons=" + ($("marquee-patrons").checked ? "on" : "off");
+		url += "&left=" + ($("marquee-left").checked ? "on" : "off");
+		url += "&right=" + ($("marquee-right").checked ? "on" : "off");
+		url += "&trivia=" + ($("marquee-trivia").checked ? "on" : "off");
+		url += "&speed=" + $("marquee-speed").value;
 		if ($("marquee-text").value != "")
 			url += "&text=" + encodeURIComponent($("marquee-text").value);
 		$("marquee-url").value = rootURL + url;
 		$("marquee").src = url;
+	}
+	
+	function updateStandingsFrame()
+	{
+		var url = "/stream/standings.html?";
+		url += "&name1=" + encodeURIComponent($("standings-name-left").value);
+		url += "&name2=" + encodeURIComponent($("standings-name-right").value);
+		url += "&score1=" + $("standings-score-left").value;
+		url += "&score2=" + $("standings-score-right").value;
+		url += "&margin=" + $("standings-margin").value;
+		$("standings-url").value = rootURL + url;
+		$("standings").src = url;
 	}
 	
 	function load()
@@ -102,6 +118,7 @@
 		updateEventFrame();
 		updateTitleFrame();
 		updateMarqueeFrame();
+		updateStandingsFrame();
 	}
 	
 	
@@ -165,14 +182,34 @@
 		<p><form onchange="updateMarqueeFrame()">
 			<input type="checkbox" id="marquee-monthly" checked> <label for="marquee-monthly">List Monthly Top 10</label><br/>
 			<input type="checkbox" id="marquee-patrons" checked> <label for="marquee-patrons">List Patrons</label><br/>
+			<input type="checkbox" id="marquee-trivia"> <label for="marquee-trivia">Random Trivia</label><br/>
+			<input type="checkbox" id="marquee-left"> <label for="marquee-left">Left Edge Taper</label><br/>
+			<input type="checkbox" id="marquee-right"> <label for="marquee-right">Right Edge Taper</label><br/>
 			<input type="checkbox" id="marquee-color"> <label for="marquee-color">Match Color to Game</label><br/>
-			Custom Text: <input type="text" id="marquee-text" size="30em"/>
+			Custom Text: <input type="text" id="marquee-text" size="30em"/><br/>
+			Scroll Speed: <input type="number" id="marquee-speed" value="10" step="1" min="0"/> px/s
 		</form></p>
 		<div class="frame-wrap" style="height: 50px;">
 			<iframe id="marquee" class="frame" height="100"></iframe>
 		</div>
 		<button onclick="copyToClipboard('marquee-url')" class='btn-cpy text-preview'>Copy URL</button>
 		<input type="text" class="url-view" id="marquee-url"/>
+		
+		
+		<h2>Casual ARMS Standings</h2>
+		
+		<p><form onchange="updateStandingsFrame()">
+			Left Name: <input type="text" id="standings-name-left" size="30em"/>
+			Score: <input type="number" id="standings-score-left" value="0" step="1" min="0"/><br/>
+			Right Name: <input type="text" id="standings-name-right" size="30em"/>
+			Score: <input type="number" id="standings-score-right" value="0" step="1" min="0"/><br/>
+			Margin: <input type="range" id="standings-margin" value="0" step="1" min="-50" max="300"/>
+		</form></p>
+		<div class="frame-wrap" style="height: 150px;">
+			<iframe id="standings" class="frame" height="300"></iframe>
+		</div>
+		<button onclick="copyToClipboard('standings-url')" class='btn-cpy text-preview'>Copy URL</button>
+		<input type="text" class="url-view" id="standings-url"/>
 		
 		
 		<h2>Casual ARMS Background</h2>

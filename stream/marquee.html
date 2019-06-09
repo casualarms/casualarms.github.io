@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/assets/style.css">
 	<script src="/script/general.js"></script>
 	<script src="/data/support.js"></script>
+	<script src="/script/arms-data.js"></script>
 	<style type="text/css">
 	
 	body, html {
@@ -18,40 +19,81 @@
 		background: none;
 	}
 	
-	.scroller {
-		display: inline-block;
-		text-align: center;
-		white-space: nowrap;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		font-weight: bold;
-		height: 2em;
-		line-height: 2em;
-	}
-	
-	#no-scroller {
+	#scroll-wrapper {
 		width: 100%;
 		background-color: yellow;
+		position: fixed;
+		bottom: 0; left: 0;
+		height: 2em;
+		overflow: hidden;
+		box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	}
 	
-	#scroller1 { animation: scroll1 100s linear infinite;}
-	#scroller2 { animation: scroll2 100s linear infinite; }
-	#scroller3 { animation: scroll3 100s linear infinite; }
+	#fade-in, #fade-out {
+		position: fixed;
+		bottom: 0;
+		height: 2em;
+		width: 3em;
+	}
 	
-	@keyframes scroll1 {
+	#fade-in {
+		left: 0;
+		background-image: linear-gradient(120deg, yellow 20%, rgba(255,255,0,0) 80%);
+	}
+	
+	#fade-out {
+		right: 0;
+		background-image: linear-gradient(240deg, yellow 20%, rgba(255,255,0,0) 80%);
+	}
+	
+	#scroller1, #scroller2, #scroller3 {
+		display: inline-block;
+		white-space: nowrap;
+		position: fixed;
+		bottom: 0; left: 0;
+		font-weight: bold;
+		line-height: 2em;
+		z-index: -1;
+	}
+	
+	.left-edge {
+		border-top-left-radius: 1em 100%;
+	}
+	
+	.right-edge {
+		border-top-right-radius: 1em 100%;
+	}
+	
+	@keyframes scroll1-0 {
 		  0% { transform: translateX( 100%); }
 		100% { transform: translateX(-100%); }
 	}
 	
-	@keyframes scroll2 {
+	@keyframes scroll2-0 {
 		  0% { transform: translateX(0%); }
 		 50% { transform: translateX(-100%); }
 		 50.0001% { transform: translateX(200%); }
 		100% { transform: translateX(100%); }
 	}
 	
-	@keyframes scroll3 {
+	@keyframes scroll3-0 {
+		  0% { transform: translateX( 200%); }
+		100% { transform: translateX( 000%); }
+	}
+	
+	@keyframes scroll1-1 {
+		  0% { transform: translateX( 100%); }
+		100% { transform: translateX(-100%); }
+	}
+	
+	@keyframes scroll2-1 {
+		  0% { transform: translateX(0%); }
+		 50% { transform: translateX(-100%); }
+		 50.0001% { transform: translateX(200%); }
+		100% { transform: translateX(100%); }
+	}
+	
+	@keyframes scroll3-1 {
 		  0% { transform: translateX( 200%); }
 		100% { transform: translateX( 000%); }
 	}
@@ -76,6 +118,9 @@
 	
 	function load()
 	{
+		addCurrentSeason();
+		var PRNG = Math.seed(Math.random()*10000);
+		
 		var game = "arms";
 		var nextEventData = upcomingEvents();
 		if (nextEventData.length > 0)
@@ -84,7 +129,23 @@
 		var text = getQueryVariable("text");
 		var patrons = getQueryVariable("patrons") == "on";
 		var monthly = getQueryVariable("monthly") == "on";
+		var trivia = getQueryVariable("trivia")   == "on";
+		var leftTaper = getQueryVariable("left") == "on";
+		var rightTaper = getQueryVariable("right") == "on";
 		var color = getQueryVariable("color");
+		var speed = parseInt(getQueryVariable("speed"));
+		if (isNaN(speed)) speed = 10;
+		
+		if (leftTaper)
+		{
+			$("scroll-wrapper").className += " left-edge";
+			$("fade-in").style.display = "block";
+		}
+		if (rightTaper)
+		{
+			$("scroll-wrapper").className += " right-edge";
+			$("fade-out").style.display = "block";
+		}
 		
 		var patronList = [];
 		for (var key in patronsJSON)
@@ -134,12 +195,40 @@
 			scroll_html += "<span class='spacer'></span>";
 		}
 		
-		$("scroller1").innerHTML = scroll_html;
-		$("scroller2").innerHTML = scroll_html;
-		$("scroller3").innerHTML = scroll_html;
+		// Add random trivia
+		if (trivia)
+			scroll_html += "<em>ARMS Trivia</em><span id='trivia-##ID##'>" + generateQuestion(PRNG).trivia + "</span><span class='spacer'></span>";
+		
+		for (var i = 1; i <= 3; ++i)
+			$("scroller" + i).innerHTML = scroll_html.replace(/##ID##/g, i);
+		
+		// Enable animation
+		var duration = Math.round($("scroller1").clientWidth / speed);
+		for (var i = 1; i <= 3; ++i)
+			$("scroller" + i).style.animation = "scroll" + i + "-0 " + duration + "s linear infinite";
+		
+		if (trivia)
+		{
+			var ctr = 0;
+			$("scroller1").onanimationiteration = function()
+			{
+				var trivia_html = generateQuestion(PRNG).trivia;
+				for (var i = 1; i <= 3; ++i)
+					$("trivia-" + i).innerHTML = trivia_html;
+				
+				ctr = (ctr + 1) % 2;
+				var duration = Math.round($("scroller1").clientWidth / speed);
+				for (var i = 1; i <= 3; ++i)
+					$("scroller" + i).style.animation = "scroll" + i + "-" + ctr + " " + duration + "s linear infinite";
+			};
+		}
 		
 		if (color == "on")
-			$("no-scroller").style.backgroundColor = gameColor(game);
+		{
+			$("scroll-wrapper").style.backgroundColor = gameColor(game);
+			$("fade-in").style.backgroundImage  = "linear-gradient(120deg, " + gameColor(game) + " 20%, rgba(255,255,0,0) 80%)";
+			$("fade-out").style.backgroundImage = "linear-gradient(240deg, " + gameColor(game) + " 20%, rgba(255,255,0,0) 80%)";
+		}
 		
 	}
 	
@@ -148,9 +237,12 @@
 </head>
 
 <body onload="load()">
-	<div class="scroller" id="no-scroller"></div>
-	<div class="scroller" id="scroller1"></div>
-	<div class="scroller" id="scroller2"></div>
-	<div class="scroller" id="scroller3"></div>
+	<div id="scroll-wrapper">
+		<div id="scroller1"></div>
+		<div id="scroller2"></div>
+		<div id="scroller3"></div>
+		<div id="fade-in" style="display: none;"></div>
+		<div id="fade-out" style="display: none;"></div>
+	</div>
 </body>
 </html>

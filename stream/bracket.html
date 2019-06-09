@@ -14,22 +14,31 @@
 		padding: 0;
 		background: none;
 		font-family: sans-serif;
+		font-weight: bold;
 	}
 	
 	.player {
-		border-radius: 3pt;
-		background-color: yellow;
 		display: inline-block;
-		margin: 2pt 2pt;
-		padding: 2pt 3pt;
-		color: black;
 	}
 	
-	.text-cc { color: yellow; }
-	.text-ca { color: lightblue; }
+	.game {
+		color: white;
+		background-color: black;
+		padding: 2pt 3pt;
+		border-top-left-radius: 1em 100%;
+		border-bottom-right-radius: 1em 100%;
+		box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	}
+	
+	.player.cc {
+		text-align: right;
+	}
 	
 	.player.ca {
-		background-color: lightblue;
+	}
+	
+	.player.ca, .player.cc {
+		width: 10em;
 	}
 	
 	.stream {
@@ -37,12 +46,15 @@
 	}
 	
 	.vs, .score {
-		color: white;
-		background-color: black;
+		padding: 5pt 4pt;
+		margin: 0 2pt;
+		color: black;
+		background-color: yellow;
 	}
 	
 	ol {
 		list-style-type: none;
+		margin-top: 0;
 		padding-left: 0;
 	}
 	
@@ -87,10 +99,13 @@
 			html += "<li><ol style='margin-bottom: 1em;'>";
 			for (var j = 0; j < matchups[i].length; ++j)
 			{
-				html += "<li><span class='player cc'>" + players1[matchups[i][j].left] + "</span> <span class='player vs'>vs</span> <span class='player ca'>" + players2[matchups[i][j].right] + "</span>";
-				if (scores) html += " <span class='player score'>" + matchups[i][j].scoreLeft + " - " + matchups[i][j].scoreRight + "</span>";
+				html += "<li><span class='game'><span class='player cc'>" + players1[matchups[i][j].left] + "</span>";
+				if (scores) { html += " <span class='player score'>" + matchups[i][j].scoreLeft + " - " + matchups[i][j].scoreRight + "</span> "; }
+				else { html += " <span class='player vs'>vs</span> "; }
+				html += "<span class='player ca'>" + players2[matchups[i][j].right] + "</span>";
+				
 				if (stream && matchups[i][j].streamed) html += " <span class='player stream'>Streamed</span>";
-				html += "</li>";
+				html += "</span></li>";
 			}
 			html += "</ol></li>";
 		}

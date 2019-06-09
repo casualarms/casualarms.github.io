@@ -159,7 +159,7 @@
 			var updateCountdown = function()
 			{
 				$("time-label").innerHTML = "Time Left";
-				var diff = ev.date.getTime() + ev.duration * 60000 - new Date().getTime();
+				var diff = Math.max(0, ev.date.getTime() + ev.duration * 60000 - new Date().getTime());
 				if (ev.date.getTime() - new Date().getTime() > 0)
 				{
 					$("time-label").innerHTML = "Starting In";

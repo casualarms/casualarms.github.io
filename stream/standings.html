@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style type="text/css">
+	
+	body, html {
+		margin: 0; padding: 0;
+		background: none;
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	.host-group {
+		font-size: 2em;
+		white-space: nowrap;
+		margin: 0.2em 0.5em;
+		display: inline-block;
+	}
+	
+	#left, #right {
+		display: inline-block;
+		width: 50%;
+		font-size: 2.5em;
+	}
+	
+	#left {
+		text-align: right;
+	}
+	
+	#right {
+		text-align: left;
+	}
+	
+	#label-left, #label-right {
+	}
+	
+	#label-left {
+		text-align: right;
+	}
+	
+	#label-right {
+		text-align: left;
+	}
+	
+	#name-left, #name-right {
+		position: relative;
+		background-color: black;
+		font-weight: bold;
+		color: white;
+		padding: 0.1em 1em;
+		border-top-left-radius: 1em 100%;
+		border-bottom-right-radius: 1em 100%;
+		box-shadow: 0px 0px 12px rgba(0,0,0,0.7);
+		z-index: -1;
+	}
+	
+	#score-wrap-left, #score-wrap-right {
+		font-size: 2em;
+		font-weight: bold;
+		display: inline-block;
+		width: 2em; height: 1.8em;
+		line-height: 1.75em;
+		text-align: center;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		margin-top: 0.1em;
+	}
+	
+	#score-left, #score-right {
+		display: inline-block;
+	}
+	
+	#name-left {
+		right: -2.7em;
+		padding-right: 2.5em;
+	}
+	
+	#name-right {
+		left: -2.7em;
+		padding-left: 2.5em;
+	}
+	
+	#score-wrap-left {
+		margin-right: -0.1em;
+		background-image: url("score-left.png");
+	}
+	
+	#score-wrap-right {
+		margin-left: -0.1em;
+		background-image: url("score-right.png");
+	}
+	
+	
+	</style>
+	<script>
+	
+	function displayItem(ev, label, text, orientation)
+	{
+		var res = "<span class='host-group'> <span class='host-item long modebgcolor-" + ev.game + "'>" + label + "</span>";
+		res += "<span class='host-item extra modecolor-" + ev.game + "'>" + text + "</span></span>";
+		if (orientation != "horizontal") res += "<br/>";
+		return res;
+	}
+	
+	function load()
+	{
+		var name1 = decodeURIComponent(getQueryVariable("name1"));
+		var name2 = decodeURIComponent(getQueryVariable("name2"));
+		var score1 = getQueryVariable("score1");
+		var score2 = getQueryVariable("score2");
+		var margin = getQueryVariable("margin");
+		
+		if (isNaN(score1)) score1 = 12;
+		if (isNaN(score2)) score2 = 5;
+		
+		$("name-left").innerHTML = name1.length > 0 ? name1 : "Placeholder Left";
+		$("name-right").innerHTML = name2.length > 0 ? name2 : "Placeholder Right";
+		
+		$("score-left").innerHTML = score1;
+		$("score-right").innerHTML = score2;
+		
+		if (score1 >= 10) $("score-left").style.transform = "scale(0.8)";
+		if (score2 >= 10) $("score-right").style.transform = "scale(0.8)";
+		
+		$("score-wrap-left").style.marginRight = margin + "px";
+		$("score-wrap-right").style.marginLeft = margin + "px";
+	}
+	
+	</script>
+	
+</head>
+
+<body onload="load()">
+	
+	<div id="left">
+		<div id="label-left">
+			<span id="name-left"></span>
+			<span id="score-wrap-left"><span id="score-left"></span></span>
+		</div></div><div id="right"><div id="label-right">
+			<span id="score-wrap-right"><span id="score-right"></span></span>
+			<span id="name-right"></span>
+		</div>
+	</div>
+	
+</body>
+</html>
