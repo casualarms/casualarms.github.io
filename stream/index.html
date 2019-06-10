@@ -113,12 +113,21 @@
 		$("standings").src = url;
 	}
 	
+	function updateBackgroundFrame()
+	{
+		var url = "/stream/background.html?";
+		url += "&color=" + $("background-color").value;
+		$("background-url").value = rootURL + url;
+		$("background").src = url;
+	}
+	
 	function load()
 	{
 		updateEventFrame();
 		updateTitleFrame();
 		updateMarqueeFrame();
 		updateStandingsFrame();
+		updateBackgroundFrame();
 	}
 	
 	
@@ -214,8 +223,11 @@
 		
 		<h2>Casual ARMS Background</h2>
 		
+		<p><form onchange="updateBackgroundFrame()">
+			Tint Color: #<input type="text" id="background-color" size="10em"/>
+		</form></p>
 		<div class="frame-wrap" style="height: 150px;">
-			<iframe id="background" class="frame" height="300" src="/stream/background.html"></iframe>
+			<iframe id="background" class="frame" height="300"></iframe>
 		</div>
 		<button onclick="copyToClipboard('background-url')" class='btn-cpy text-preview'>Copy URL</button>
 		<input type="text" class="url-view" id="background-url" value="https://www.casualarms.net/stream/background.html"/>

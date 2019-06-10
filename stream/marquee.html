@@ -167,7 +167,7 @@
 			}
 		}
 		
-		var scroll_html = "";
+		var scroll_html = "<span class='spacer'></span>";
 		
 		if (text)
 			scroll_html += decodeURIComponent(text) + "<span class='spacer'></span>";
@@ -202,10 +202,18 @@
 		for (var i = 1; i <= 3; ++i)
 			$("scroller" + i).innerHTML = scroll_html.replace(/##ID##/g, i);
 		
+		var enableScroll = ($("scroller1").clientWidth > $("scroll-wrapper").clientWidth);
+		
 		// Enable animation
-		var duration = Math.round($("scroller1").clientWidth / speed);
-		for (var i = 1; i <= 3; ++i)
-			$("scroller" + i).style.animation = "scroll" + i + "-0 " + duration + "s linear infinite";
+		if (enableScroll)
+		{
+			var duration = Math.round($("scroller1").clientWidth / speed);
+			for (var i = 1; i <= 3; ++i)
+				$("scroller" + i).style.animation = "scroll" + i + "-0 " + duration + "s linear infinite";
+		}
+		else {
+			$("scroller2").style.display = $("scroller3").style.display = "none";
+		}
 		
 		if (trivia)
 		{

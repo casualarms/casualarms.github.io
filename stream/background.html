@@ -3,13 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
 	<script>
 	
-	</script>
-	<style type="text/css">
+	function load()
+	{
+		var color = getQueryVariable("color");
+		if (color)
+			document.getElementsByTagName("BODY")[0].style.backgroundColor = "#" + color;
+	}
 	
-	</style>
+	</script>
 </head>
-<body>
+<body onload="load()">
 </body>
 </html>

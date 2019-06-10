@@ -50,10 +50,22 @@
 		font-weight: bold;
 		color: white;
 		padding: 0.1em 1em;
-		border-top-left-radius: 1em 100%;
-		border-bottom-right-radius: 1em 100%;
 		box-shadow: 0px 0px 12px rgba(0,0,0,0.7);
 		z-index: -1;
+		display: inline-block;
+		text-align: center;
+	}
+	
+	#name-left {
+		border-top-left-radius: 1em 100%;
+		right: -1.5em;
+		padding-right: 1.3em;
+	}
+	
+	#name-right {
+		border-bottom-right-radius: 1em 100%;
+		left: -1.5em;
+		padding-left: 1.3em;
 	}
 	
 	#score-wrap-left, #score-wrap-right {
@@ -70,16 +82,6 @@
 	
 	#score-left, #score-right {
 		display: inline-block;
-	}
-	
-	#name-left {
-		right: -2.7em;
-		padding-right: 2.5em;
-	}
-	
-	#name-right {
-		left: -2.7em;
-		padding-left: 2.5em;
 	}
 	
 	#score-wrap-left {
@@ -126,6 +128,8 @@
 		
 		$("score-wrap-left").style.marginRight = margin + "px";
 		$("score-wrap-right").style.marginLeft = margin + "px";
+		
+		$("name-left").style.width = $("name-right").style.width = (Math.max($("name-left").clientWidth, $("name-right").clientWidth) - 50) + "px";
 	}
 	
 	</script>
