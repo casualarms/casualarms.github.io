@@ -23,7 +23,7 @@
 
 
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-06-15T19:15:00.000Z","duration":60,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Casual Scramble 11","game":"arms","type":"scramble","alert":false,"date":"2019-06-15T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms","sponsor":"mindgames"}
+	,{"title":"Casual Scramble 11","game":"arms","type":"scramble","alert":false,"date":"2019-06-15T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-06-29T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 15","game":"arms","type":"clash","alert":false,"date":"2019-06-29T20:30:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
