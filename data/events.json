@@ -22,7 +22,7 @@
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-06-23T19:45:00.000Z","duration":120,"tz":"EDT","theme":"teambuilding","stages":"near-far","hosts":[{"name":"To Be Announced","code":""}]}
 
 
-	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-06-15T19:15:00.000Z","duration":60,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-06-15T19:15:00.000Z","duration":60,"tz":"EDT","theme":"everything","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Casual Scramble 11","game":"arms","type":"scramble","alert":false,"date":"2019-06-15T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-06-29T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
