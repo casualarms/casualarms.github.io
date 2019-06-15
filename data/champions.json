@@ -68,7 +68,12 @@
 	]}
 	,{ "date" : "2019-05-18", "type" : "scramble", "players" : 10, "winner" : [
  		{ "id" : "410828670874419211", "name" : "wa" },
-		{ "id" : "192081577306488842", "name" : "Serperiorfan" }
-		
+		{ "id" : "192081577306488842", "name" : "Serperiorfan" }	
+	]}
+	,{ "date" : "2019-06-01", "type" : "clash", "players" : 12, "winner" : [
+ 		{ "id" : "350643816404877322", "name" : "BunnyChamp" }
+	]}
+	,{ "date" : "2019-06-15", "type" : "scramble", "players" : 12, "winner" : [
+ 		{ "id" : "265719610681065472", "name" : "cheesyluigi" }
 	]}
 ]
