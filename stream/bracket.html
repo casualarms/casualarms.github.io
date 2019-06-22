@@ -17,6 +17,10 @@
 		font-weight: bold;
 	}
 	
+	#rounds {
+		text-align: center;
+	}
+	
 	.player {
 		display: inline-block;
 	}
@@ -35,21 +39,25 @@
 	}
 	
 	.player.ca {
+		text-align: left;
 	}
 	
 	.player.ca, .player.cc {
-		width: 10em;
+		min-width: 5em;
 	}
 	
 	.stream {
 		background-color: lightgreen;
 	}
 	
-	.vs, .score {
+	.midsection {
 		padding: 5pt 4pt;
 		margin: 0 2pt;
 		color: black;
 		background-color: yellow;
+		display: inline-block;
+		width: 3.5em;
+		text-align: center;
 	}
 	
 	ol {
@@ -65,8 +73,8 @@
 	{
 		var players1 = JSON.parse(decodeURIComponent(getQueryVariable("players1")));
 		var players2 = JSON.parse(decodeURIComponent(getQueryVariable("players2")));
-		var stream = getQueryVariable("stream") == "on";
-		var scores = getQueryVariable("scores") == "on";
+		var streamColor = "#" + getQueryVariable("stream");
+		var scores = getQueryVariable("scores");
 		var start = parseInt(getQueryVariable("start")) - 1;
 		var stop = parseInt(getQueryVariable("stop")) - 1;
 		var matchupString = getQueryVariable("matchups");
@@ -99,12 +107,15 @@
 			html += "<li><ol style='margin-bottom: 1em;'>";
 			for (var j = 0; j < matchups[i].length; ++j)
 			{
-				html += "<li><span class='game'><span class='player cc'>" + players1[matchups[i][j].left] + "</span>";
-				if (scores) { html += " <span class='player score'>" + matchups[i][j].scoreLeft + " - " + matchups[i][j].scoreRight + "</span> "; }
-				else { html += " <span class='player vs'>vs</span> "; }
+				var streamedTag = "";
+				if (matchups[i][j].streamed) streamedTag = "style='background-color: " + streamColor + "'";
+				html += "<li><span class='game' " + streamedTag + "><span class='player cc'>" + players1[matchups[i][j].left] + "</span>";
+				if (scores == "on" || (scores == "nozero" && (matchups[i][j].scoreLeft > 0 || matchups[i][j].scoreRight > 0)))
+					html += " <span class='midsection score'>" + matchups[i][j].scoreLeft + " - " + matchups[i][j].scoreRight + "</span> ";
+				else
+					html += " <span class='midsection vs'>vs</span> ";
 				html += "<span class='player ca'>" + players2[matchups[i][j].right] + "</span>";
 				
-				if (stream && matchups[i][j].streamed) html += " <span class='player stream'>Streamed</span>";
 				html += "</span></li>";
 			}
 			html += "</ol></li>";
@@ -112,6 +123,15 @@
 		html += "</ol>";
 		
 		$("rounds").innerHTML = html;
+		
+		
+		var maxWidth = 0;
+		var elems = document.getElementsByClassName("player");
+		for (var i = 0; i < elems.length; ++i)
+			maxWidth = Math.max(maxWidth, elems[i].clientWidth);
+		
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.width = (maxWidth + 10) + "px";
 		
 	}
 	
