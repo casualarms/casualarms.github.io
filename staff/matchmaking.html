@@ -1,0 +1,671 @@
+---
+permalink: /staff/matchmaking/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tournament Matchmaking - Casual ARMS</title>
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("../../ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+	
+	#wrapper {
+		max-width: 60em;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+	
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+	}
+	
+	textarea {
+		background-color: #484b52;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+	
+	.round {
+		border-radius: 0.5em;
+		background-color: #2f3136;
+		padding: 1em
+	}
+	
+	#formatted {
+		background-color: black;
+		color: white;
+	}
+	
+	.team {
+		font-family: monospace;
+	}
+	
+	.highlight {
+		color: black;
+	}
+	
+	.member {
+		display: inline-block;
+		border-radius: 3pt;
+	/*	margin: 2pt 2pt;*/
+		padding: 1pt 3pt;
+		background-color: orange;
+	}
+	
+	.input-label {
+		display: inline-block;
+		width: 10em;
+		text-align: right;
+	}
+	
+	.dropped {
+		text-decoration: line-through;
+	}
+	
+	ol {
+		list-style-type: numeric;
+	}
+	
+	table {
+		border-collapse: collapse;
+	}
+	
+	table, th, td {
+		border: 1px solid white;
+	}
+	
+	input:disabled {
+		background-color: yellow;
+	}
+
+	</style>
+	<script>
+	
+	function displayGraph(connectivity, rounds)
+	{
+		attributeColor = "rgba(255, 255, 255, 1)";
+		attributeFont = "20pt Arial";
+	
+		// Initialization
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		ctx.lineCap = "round";
+	
+		midX = c.width / 2;
+		midY = c.height / 2;
+		var radius = Math.min(c.width / 2, c.height / 2) - 40;
+		
+		ctx.clearRect(0, 0, c.width, c.height);
+		
+		// Center lines
+		for (var i = 0; i < connectivity.length; i++)
+		{
+			for (var j = i; j < connectivity.length; j++)
+			{
+				if (connectivity[i][j] > 0)
+				{
+					var intensity = connectivity[i][j] / rounds;
+				//	console.log(connectivity[i][j], intensity, "rgb(" + (intensity * 255) + ", 255, 255)");
+					
+					ctx.strokeStyle = "rgb(" + Math.floor(150 + intensity * 105) + ", 0, 0)";
+					ctx.lineWidth = intensity * 10;
+					
+					ctx.beginPath();
+					var angle = Math.PI * 2 * i / connectivity.length - Math.PI / 2;
+					var x = midX + Math.cos(angle) * radius;
+					var y = midY + Math.sin(angle) * radius;
+					ctx.moveTo(x, y);
+					
+					angle = Math.PI * 2 * j / connectivity.length - Math.PI / 2;
+					x = midX + Math.cos(angle) * radius;
+					y = midY + Math.sin(angle) * radius;
+					ctx.lineTo(x, y);
+					
+					ctx.stroke();
+				}
+			}
+		}
+		
+		// Attribute names
+		ctx.font = attributeFont;
+		ctx.textAlign = "center";
+		ctx.fillStyle = ctx.fillStyle = attributeColor;
+	
+		for (var i = 0; i < connectivity.length; i++)
+		{
+			var angle = Math.PI * 2 * i / connectivity.length - Math.PI / 2;
+			var offset = 15;
+		
+			var x = midX + Math.cos(angle) * (radius + offset);
+			var y = midY + Math.sin(angle) * (radius + offset) + 10;
+		
+			ctx.fillText(players[i].name, x, y);
+		}
+	}
+	
+	var PRNG = Math.seed("ababa");
+	
+	function connectivityScore(connectivity)
+	{
+		var max = 0;
+		var zeroes = 0;
+		var ones = 0;
+		for (var i = 0; i < connectivity.length; i++)
+			for (var j = i; j < connectivity.length; j++)
+				if (i != j)
+				{
+					max = Math.max(connectivity[i][j], max);
+					if (connectivity[i][j] == 0) zeroes++;
+					if (connectivity[i][j] == 1) ones++;
+				}
+		if (zeroes == 0) zeroes = ones;
+		var score = max * 10000 + zeroes;
+		return score;
+	}
+	
+	function list(n)
+	{
+		var res = [];
+		for (var i = 0; i < n; ++i)
+			res.push(i);
+		return res;
+	}
+	
+	function combinations(a, counts)
+	{
+		function helper(n, src, got, all)
+		{
+			if (n == 0)
+			{
+				if (got.length > 0)
+					all[all.length] = got;
+				return;
+			}
+			for (var j = 0; j < src.length; j++)
+				helper(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+			return;
+		}
+		
+		var all = [];
+		for (var i = 0; i < a.length; i++)
+			helper(i, a, [], all);
+		
+		all.push(a);
+		all = all.filter(function(b) { return counts.includes(b.length);} );
+		return all;
+	}
+	
+	function combinationsPickN(a, counts)
+	{
+		function helper(n, src, got, all)
+		{
+			if (n == 0)
+			{
+				if (got.length > 0)
+					all[all.length] = got;
+				return;
+			}
+			for (var j = 0; j < src.length; j++)
+				helper(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+			return;
+		}
+		
+		var all = [];
+		helper(counts, a, [], all);
+		return all;
+	}
+	
+	function combinationsPickNHigher(a, counts)
+	{
+		function helper(n, src, got, all)
+		{
+			if (n == 0)
+			{
+				if (got.length > 0)
+					all[all.length] = got;
+				return;
+			}
+			for (var j = 0; j < src.length; j++)
+				if (allSetsDisjoint(got, src[j]))
+					helper(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+			return;
+		}
+		
+		var all = [];
+		helper(counts, a, [], all);
+		return all;
+	}
+	
+	function setsDisjoint(a, b)
+	{
+		for (var i = 0; i < a.length; ++i)
+			if (b.includes(a[i])) return false;
+		return true;
+	}
+	
+	function allSetsDisjoint(a, b)
+	{
+		for (var i = 0; i < a.length; ++i)
+			if (!setsDisjoint(a[i], b)) return false;
+		return true;
+	}
+	
+	function setSubtract(a, b)
+	{
+		var res = a.filter(function(elem) { return !b.includes(elem); });
+		return res;
+	}
+	
+	var nameStoreCtr = 0;
+	function nameStore()
+	{
+		var ids = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		return ids[nameStoreCtr++];
+	}
+	
+	function printTeam(team, clas)
+	{
+		var html = "";
+		html += "<span class='team " + clas + "'>";
+		for (var i = 0; i < team.length; ++i)
+			html += "<span class='member'>" + players[team[i]].name + "</span> ";
+		html += "</span>";
+		return html;
+	}
+	
+	function getSkill(p)
+	{
+		return playerScores[p].score / 100 / (currentRound+1) + players[p].skill;
+	}
+	
+	function teamSkill(team)
+	{
+		var res = 0;
+		for (var i = 0; i < team.length; ++i)
+			res += getSkill(team[i]);
+		return res / team.length;
+	}
+	
+	function teamSpread(team)
+	{
+		var max = 0;
+		var min = Infinity;
+		for (var i = 0; i < team.length; ++i)
+		{
+			max = Math.max(max, getSkill(team[i]));
+			min = Math.min(min, getSkill(team[i]));
+		}
+		return max - min;
+	}
+	
+	function updateConnectivity(connectivity, team)
+	{
+		for (var ti = 0; ti < team.length; ++ti)
+			for (var tj = 0; tj < team.length; ++tj)
+				if (ti != tj)
+					connectivity[team[ti]][team[tj]] += 1;
+	}
+	
+	function cloneMat(source)
+	{
+		var res = Array.apply(null, Array(source.length)).map(function() { return Array.apply(null, Array(source.length)).map(function() { return 0; }); });
+		for (var i = 0; i < source.length; i++)
+			for (var j = i; j < source.length; j++)
+				res[i][j] = source[i][j];
+		return res;
+	}
+	
+	function updateScore(round, teamIdx)
+	{
+		var score = parseInt($("round-" + round + "-team-" + teamIdx).value);
+		scores[round][teamIdx].score = score;
+		playerScores = getScoreSummary(0, currentRound-1);
+	}
+	
+	function simulateScore(round, teamIdx, skill)
+	{
+		$("round-" + round + "-team-" + teamIdx).value = Math.floor(100 * skill);
+		updateScore(round, teamIdx);
+	}
+	
+	function viewScores()
+	{
+		for (var round = 0; round < scores.length; ++round)
+			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
+				$("round-" + round + "-team-" + teamIdx).value = scores[round][teamIdx].score;
+	}
+	
+	function playersNotInAnyTeam(playerIdxs, teams)
+	{
+		var res = clone(playerIdxs);
+		for (var t = 0; t < teams.length; ++t)
+			res = setSubtract(res, teams[t]);
+		return res;
+	}
+	
+	function findBestRound(maxTeamSize)
+	{
+		var playerIdxs = [];
+		for (var i = 0; i < players.length; ++i)
+			if (!players[i].dropped) playerIdxs.push(i);
+		
+		var teamCount = Math.ceil(playerIdxs.length / maxTeamSize);
+		var teams = [];
+		var baseTeamSize = Math.floor(playerIdxs.length / teamCount);
+		var largeTeamCount = playerIdxs.length % teamCount;
+		
+		var firstSet = (largeTeamCount > 0) ? combinationsPickNHigher(combinationsPickN(playerIdxs, baseTeamSize + 1), largeTeamCount) : [[]];
+		
+		var options = [];
+		for (var f = 0; f < firstSet.length; ++f)
+		{
+			var remainingPlayers = playersNotInAnyTeam(playerIdxs, firstSet[f]);
+			var secondSet = combinationsPickNHigher(combinationsPickN(remainingPlayers, baseTeamSize), teamCount - largeTeamCount);
+			for (var s = 0; s < secondSet.length; ++s)
+				options.push(firstSet[f].concat(secondSet[s]));
+		}
+		
+		var minScore = 10000000;
+		var minIndexes = [];
+		
+		for (var o = 0; o < options.length; ++o)
+		{
+			var tempConnectivity = cloneMat(connectivity);
+			for (var t = 0; t < teamCount; ++t)
+			{
+				var tempTeam = options[o][t];
+				updateConnectivity(tempConnectivity, tempTeam)
+			}
+			
+			var maxSpread = 0;
+			var tmax = 0;
+			var tmin = Infinity;
+			for (var t = 0; t < options[o].length; ++t)
+			{
+				tmax = Math.max(tmax, teamSkill(options[o][t]));
+				tmin = Math.min(tmin, teamSkill(options[o][t]));
+				maxSpread = Math.max(maxSpread, teamSpread(options[o][t]));
+			}
+			var tspread = tmax - tmin;
+			
+			var tempScore = parseFloat($("param-conn").value) * connectivityScore(tempConnectivity);
+			tempScore += parseFloat($("param-internal").value) * maxSpread;
+			tempScore += parseFloat($("param-external").value) * tspread;
+			
+			if (tempScore < minScore)
+			{
+				minScore = tempScore;
+				minIndexes = [o];
+			}
+			else if (tempScore == minScore)
+				minIndexes.push(o);
+		}
+		
+		var round = options[minIndexes[PRNG.randomInt(0, minIndexes.length)]];
+		return round;
+	}
+	
+	function processRound()
+	{
+		// Disable locked score inputs
+		for (var round = 0; round < scores.length; ++round)
+			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
+				$("round-" + round + "-team-" + teamIdx).disabled = true;
+		
+		
+		var html = "<h2>Round " + (currentRound + 1) + "</h2><div class='round'>";
+		// Print standings
+		if (true)
+		{
+			html += "<ol>";
+			for (var i = 0; i < playerScores.length; ++i)
+				html += "<li><span class='player'>" + playerScores[i].name + "</span>: " + playerScores[i].score + " points</li>";
+			html += "</ol>";
+		}
+		
+		
+		var maxTeamSize = parseInt($("teamsize").value);
+		
+		var teams = findBestRound(maxTeamSize);
+	//	scores.push(Array.apply(null, Array(teams.length)).map(function() { return 0; }));
+		var scoreRound = [];
+		
+		for (var i = 0; i < teams.length; ++i)
+		{
+			var team = teams[i];
+			scoreRound.push({ team: team, score: 0 });
+			updateConnectivity(connectivity, team);
+			
+			html += printTeam(team, "highlight");
+		//	html += " score[" + minScore + "]";
+			html += " skill<" + Math.round(teamSkill(team) * 100) + "%>";
+			html += " spread<" + Math.round(teamSpread(team) * 100) + "%>";
+			html += " <input type='number' id='round-" + currentRound + "-team-" + i + "' onchange='updateScore(" + currentRound + ", " + i + ")'/>";
+		//	html += "<button onclick=\"updateScore(" + currentRound + ", " + i + ")\">Save Score</button>";
+			html += "<button onclick='simulateScore(" + currentRound + ", " + i + ", " + teamSkill(team) + ")'>Simulate</button>";
+			html += "<br/>";
+			
+		}
+		
+		scores.push(scoreRound);
+		
+		var maxSpread = 0;
+		var tmax = 0;
+		var tmin = Infinity;
+		for (var i = 0; i < teams.length; ++i)
+		{
+			tmax = Math.max(tmax, teamSkill(teams[i]));
+			tmin = Math.min(tmin, teamSkill(teams[i]));
+			maxSpread = Math.max(maxSpread, teamSpread(teams[i]));
+		}
+		var tspread = tmax - tmin;
+		
+		$("log").innerHTML += html + "<div id='summary-" + currentRound + "'></div>";
+		
+		html = "<p>Team External Spread: <em>" + Math.round(tspread * 100) + " %</em>, ";
+		html += "Max Internal Spread: <em>" + Math.round(maxSpread * 100) + " %</em></p>";
+		
+		
+		
+		html += "<button onclick='processRound()'>Matchmake Next Round</button></div>";
+		
+		$("summary-" + currentRound).innerHTML = html;
+		displayGraph(connectivity, currentRound+1);
+		$("score").innerHTML = connectivityScore(connectivity);
+		
+		if (simulation)
+			for (var i = 0; i < teams.length; ++i)
+				simulateScore(currentRound, i, teamSkill(teams[i]));
+		
+		currentRound++;
+		playerScores = getScoreSummary(0, currentRound-1);
+		viewScores();
+		viewScoreTable();
+	}
+	
+	var currentRound;
+	var connectivity = [];
+	var players = [];
+	var scores = [];
+	var playerScores = [];
+	var simulation = false;
+	
+	function viewPlayers()
+	{
+		var html = "<ol>";
+		for (var p = 0; p < players.length; ++p)
+		{
+			html += "<li class='" + (players[p].dropped ? "dropped" : "") + "'><span class='player-name'>" + players[p].name + "</span> — skill: <span class='player-skill'>" + Math.round(players[p].skill * 100) + "</span> ";
+			html += "<button onclick='dropPlayer(" + p + ")'>" + (!players[p].dropped ? "Drop" : "Undrop") + "</button></li>";
+		}
+		$("player-list").innerHTML = html + "</ol>";
+		displayGraph(connectivity, currentRound+1);
+	}
+	
+	function addPlayer()
+	{
+		var name = $("input-name").value;
+		if (name == "") name = nameStore();
+		var skill = PRNG();
+		var player = { name : name, skill : skill, dropped : false };
+		players.push(player);
+		
+		for (var i = 0; i < connectivity.length; ++i)
+			connectivity[i].push(0);
+			
+		connectivity.push(Array.apply(null, Array(players.length)).map(function() { return 0; }));
+		viewPlayers();
+	}
+	
+	function dropPlayer(idx)
+	{
+		players[idx].dropped = !players[idx].dropped;
+		viewPlayers();
+	}
+	
+	function init()
+	{
+		currentRound = 0;
+		scores = [];
+		playerScores = getScoreSummary(0, -1);
+		$("log").innerHTML = "";
+		
+		connectivity = Array.apply(null, Array(players.length)).map(function() { return Array.apply(null, Array(players.length)).map(function() { return 0; }); });
+		$("button-start").disabled = true;
+		$("button-round").disabled = false;
+	}
+	
+	function multiRound()
+	{
+		simulation = true;
+		var roundCount  = parseInt($("rounds").value);
+		var playerCount = parseInt($("players").value);
+		players = [];
+		while (players.length < playerCount)
+			addPlayer();
+		init();
+		while (currentRound < roundCount)
+		{
+			processRound();
+		}
+	}
+	
+	function getScoreSummary(roundStart, roundEnd)
+	{
+		playerScores = [];
+		for (var i = 0; i < players.length; ++i)
+			playerScores.push({ name: players[i].name, score: 0 });
+		
+		for (var round = roundStart; round <= roundEnd; ++round)
+		{
+			for (var tid = 0; tid < scores[round].length; ++tid)
+			{
+			//	$("round-" + round + "-team-" + tid).value = scores[round][tid].score;
+				for (var pid = 0; pid < scores[round][tid].team.length; ++pid)
+					playerScores[scores[round][tid].team[pid]].score += scores[round][tid].score;
+			}
+		}
+		
+		playerScores.sort(function(a, b) { return b.score - a.score; });
+		
+		return playerScores;
+	}
+	
+	function viewScoreTable()
+	{/*
+		var html = "<table>";
+		html += "<thead><tr><td>Header</td></tr></thead>";
+		html += "<tbody>";
+		for (var round = 0; round < scores.length; ++round)
+		{
+			html += "<tr>";
+			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
+			{
+				html += "<td>Test</td>";
+			}
+			html += "</tr>";
+		}
+		html += "</tbody></table>";
+		$("score-table").innerHTML = html;*/
+		
+		
+	//	var playerScores = getScoreSummary(0, scores.length-1);
+		
+		html = "<ol>";
+		for (var i = 0; i < playerScores.length; ++i)
+			html += "<li><span class='player'>" + playerScores[i].name + "</span>: " + playerScores[i].score + " points</li>";
+		html += "</ol>";
+		
+		$("results").innerHTML = html;
+	}
+	
+	function load()
+	{
+		
+	}
+	
+	</script>
+</head>
+<body onload="load()">
+	<div id="wrapper">
+		<h1>Casual ARMS Matchmaking Tool</h1>
+		
+		<p>
+			<label class="input-label">Max team size:</label> <input type="number" value="4" id="teamsize"/><br/>
+			<label class="input-label">Rounds:</label>        <input type="number" value="4" id="rounds"/>
+		</p>
+		
+		<p>
+			<label class="input-label">Connectivity:</label> <input id="param-conn" type="range" min="0" max="1" step="0.1"/><br/>
+			<label class="input-label">Internal Skill Spread:</label> <input id="param-internal" type="range" min="0" max="1" step="0.1"/><br/>
+			<label class="input-label">External Skill Spread:</label> <input id="param-external" type="range" min="0" max="1" step="0.1"/>
+		</p>
+		
+		<h2>Simulate</h2>
+		
+		<p>
+			<label class="input-label">Participants:</label>  <input type="number" value="10" id="players"/>
+			<button onclick="multiRound()">Simulate Session</button>
+		</p>
+		
+		<h2>Manual Entry</h2>
+		<p>
+			<label class="input-label">Name:</label> <input type="text" id="input-name" placeholder="Player Name"/>
+			<button onclick="addPlayer()">Add Player</button>
+		</p>
+		
+		
+		<div id="player-list"></div>
+		
+		<button id="button-start" onclick="init()">Start Session</button>
+		<button id="button-round" onclick="processRound()" disabled>Matchmake Round</button>
+		<br/>
+		
+		<div id="log"></div>
+		
+		<h2>Summary and Final Scores</h2>
+		
+		<div id="results"></div>
+		
+		<h3>Connectivity</h3>
+		
+		<canvas id="myCanvas" width="500" height="500"></canvas>
+		<p>Current score: <span id="score"></span></p>
+		
+	</div>
+</body>
+</html>
