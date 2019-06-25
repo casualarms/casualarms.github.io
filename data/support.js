@@ -81,12 +81,16 @@ var eventSlots = [
 	{ "id" : "arms-thu",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(4, 18, 00), "duration" : 120, "tz" : "GMT", "type" : "leaderboard", "title" : "Thumpin' Thursday"},
 	{ "id" : "arms-sun",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(0, 19, 45), "duration" : 120, "tz" : "EDT", "type" : "leaderboard", "title" : "Sunday Showdown"},
 	
-	{ "id" : "kart-mon",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(1, 18, 30), "duration" :  60, "tz" : "GMT", "type" : "race",   "title" : "Monday Motorway",   "stages" : "all-race",   "theme" : "150cc",     "hosts" : [{"name":"","code":"1077-9421-4443"}]},
-	{ "id" : "kart-wed",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(3, 18, 30), "duration" :  60, "tz" : "GMT", "type" : "race",   "title" : "Wonky Wednesday",   "stages" : "all-race",   "theme" : "mirror",    "hosts" : [{"name":"","code":"4621-2901-6363"}]},
+//	{ "id" : "kart-mon",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(1, 18, 30), "duration" :  60, "tz" : "GMT", "type" : "race",   "title" : "Monday Motorway",   "stages" : "all-race",   "theme" : "150cc",     "hosts" : [{"name":"","code":"1077-9421-4443"}]},
+//	{ "id" : "kart-wed",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(3, 18, 30), "duration" :  60, "tz" : "GMT", "type" : "race",   "title" : "Wonky Wednesday",   "stages" : "all-race",   "theme" : "mirror",    "hosts" : [{"name":"","code":"4621-2901-6363"}]},
 //	{ "id" : "kart-fri",  "game" : "flex",  "start" : getNextWeekday(5, 22, 30), "duration" :  60, "tz" : "EST", "type" : "battle", "title" : "Frantic Friday",    "stages" : "all-battle", "theme" : "mk_battle"},
-	{ "id" : "kart-sat",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(6, 23, 30), "duration" :  60, "tz" : "EDT", "type" : "race",   "title" : "Saturday Speedway", "stages" : "all-race",   "theme" : "200cc",     "hosts" : [{"name":"","code":"4412-5645-5723"}]},
+//	{ "id" : "kart-sat",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(6, 23, 30), "duration" :  60, "tz" : "EDT", "type" : "race",   "title" : "Saturday Speedway", "stages" : "all-race",   "theme" : "200cc",     "hosts" : [{"name":"","code":"4412-5645-5723"}]},
 	
-	{ "id" : "splat-mon", "slot_game" : "flex",  "game" : "splat", "date" : getNextWeekday(1, 21, 30), "duration" :  60, "tz" : "EDT", "type" : "friends", "title" : "Messy Monday"},
-	{ "id" : "splat-thu", "slot_game" : "flex",  "game" : "splat", "date" : getNextWeekday(5, 01, 30), "duration" :  60, "tz" : "PDT", "type" : "friends", "title" : "Turfsday"},
-	{ "id" : "splat-sat", "slot_game" : "flex",  "game" : "splat", "date" : getNextWeekday(6, 16, 30), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "Splaturday"},
+	{ "id" : "splat-mon", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(1, 18, 30), "duration" :  60, "tz" : "EDT", "type" : "friends", "title" : "Messy Monday"},
+	{ "id" : "splat-thu", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(5, 01, 30), "duration" :  60, "tz" : "PDT", "type" : "friends", "title" : "Turfsday"},
+	{ "id" : "splat-sat", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(6, 16, 30), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "Splaturday"},
+	
+	{ "id" : "smash-mon", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(1, 21, 30), "duration" :  60, "tz" : "EDT", "type" : "friends", "title" : "Marthday"},
+	{ "id" : "smash-wed", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(3, 18, 30), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "WedNessDay"},
+	{ "id" : "smash-sat", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(6, 23, 30), "duration" :  60, "tz" : "PDT", "type" : "friends", "title" : "Mr. Saturnday"},
 ];

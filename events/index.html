@@ -426,7 +426,7 @@ redirect_from: "/lobbies/"
 			var evEnd = new Date(evStart.getTime() + eventSlots[i].duration * 60000);
 			html += createEntry(evStart, evEnd, "#" + eventSlots[i].id, -1, eventSlots[i].slot_game, "slot", eventSlots[i].title + "<br/>" + formatTime(evStart) + " to " + formatTime(evEnd));
 			
-			if (eventSlots[i].game == "arms")
+		//	if (eventSlots[i].game == "arms")
 			{
 				$(eventSlots[i].id).innerHTML = eventSlots[i].title;
 				$(eventSlots[i].id + "-start").innerHTML = textWeekday(evStart) + "s " + formatTime(evStart);
@@ -607,38 +607,64 @@ redirect_from: "/lobbies/"
 		
 		<p>Remember to bring a spare B button as it is time to brake! This event has <em>200cc</em> races for everyone.</p>
 		</div>
-		
+		-->
 		
 		<div class="event-block" id="events-splat"> 
 		<h2>Splatoon 2 Events</h2>
 		
 		<p>The Splatoon events are hosted in private lobbies. Make sure to add the host as a <em class="switch-bg">Switch</em> friend, ideally before the event starts, and join in though the central tower lobby and the <em>Friends</em> option.</p>
+		<p>All Casual ARMS Splatoon events are one hour long, with 30 minutes of <em>Turf War</em> preceeding an intense last 30 minutes in any one of four <em>Ranked</em> modes. <em>Rainmaker</em>, <em>Splat Zones</em>, <em>Tower Control</em>, and <em>Clam Blitz</em> all rotate in the schedule.</p>
 		
-		<h3 id="splat-mon">Messy Monday</h3>
+		<h3 id="splat-mon">Monday Splat</h3>
 		<p class="timeslot"><span id="splat-mon-start">5:00 PM EST</span> to <span id="splat-mon-end">7:00 PM EST</span></p>
 		
-		<p>Join the inklings and octolings of Casual ARMS in playing modes from the Ranked Battles in Splatoon 2! <em>Rainmaker</em>, <em>Splat Zones</em>, <em>Tower Control</em>, and <em>Clam Blitz</em> rotate each week, as does the selection of four stages each time.</p>
+		<p>This event marks the start of the Casual ARMS week! Get into proper shape with teamwork-heavy Turf War matches and do your best in the Ranked mode of the day. This slot is aimed at <em>European/African</em> time zones first and foremost.</p>
+		<p>Check the <a href="themes/">theme</a> in advance and come prepared!</p>
 		
 		
-		<h3 id="splat-thu">Turf War Thursday</h3>
+		<h3 id="splat-thu">Thursday Splat</h3>
 		<p class="timeslot"><span id="splat-thu-start">2:00 PM EST</span> to <span id="splat-thu-end">4:00 PM EST</span></p>
 		
-		<p><em>Turf War</em> is the name of the game! Join a team and play fun and intense three-minute matches. May the team with the most turf win! A selection of <em>four stages</em> rotate each week. Check the <a href="themes/">theme</a> in advance and come prepared!</p>
+		<p>This late night Splatoon event slot is perfect for <em>American night owls</em>! Enjoy the usual casual Splatoon gameplay with a mix of Turf War and today's featured Ranked mode.</p>
+		<p>Check the <a href="themes/">theme</a> in advance and come prepared!</p>
 		
 		
-		<h3 id="splat-sat">Saturday Splashdown</h3>
+		<h3 id="splat-sat">Saturday Splat</h3>
 		<p class="timeslot"><span id="splat-sat-start">7:00 PM EST</span> to <span id="splat-sat-end">9:00 PM EST</span></p>
 		
-		<p>Enjoy the weekend time by joining in to this Splatoon lobby. Bring your Booyahs!</p>
+		<p>Enjoy the weekend time by joining in to this Splatoon lobby. This slot should fit practically anyone who has a day off on Saturday. Bring your Booyahs!</p>
+		<p>Check the <a href="themes/">theme</a> in advance and come prepared!</p>
+		
 		</div>
 		
 		<div class="event-block" id="events-smash"> 
 		<h2>Super Smash Bros. Ultimate Events</h2>
 		
-		<p>Coming soon!</p>
+		<p>The Smash events are hosted in <em>Battle Arenas</em> in <em>Friend</em> mode. Make sure to add the host as a <em class="switch-bg">Switch</em> friend, ideally before the event starts, and join in though the in-game Online menu and the <em>Battle Arena > Friends</em> option.</p>
+		<p>You are welcome to play any character you enjoy, or switch it up using the random character selection. Modes, items, and stages are set by the host and varies with each event. There are both free-for-all and team games in rotation.</p>
+		
+		<h3 id="smash-mon">Monday Smash</h3>
+		<p class="timeslot"><span id="smash-mon-start">5:00 PM EST</span> to <span id="smash-mon-end">7:00 PM EST</span></p>
+		
+		<p>Start the week with some Smash! This event slot is particularly targeted to the people living on the <em>American eastern coast</em>, but anyone awake and off work is welcome to join in.</p>
+		<p>Check the <a href="themes/">theme</a> in advance and come prepared!</p>
+		
+		
+		<h3 id="smash-wed">Wednesday Smash</h3>
+		<p class="timeslot"><span id="smash-wed-start">2:00 PM EST</span> to <span id="smash-wed-end">4:00 PM EST</span></p>
+		
+		<p>Mix the week up with some casual Smash play! If you are in the <em>European or African</em> time zones, this event slot should hopefully work for you. If not, try to fit it into your schedule anyway, we welcome you with open ARMS... or uh, Smash?</p>
+		<p>Check the <a href="themes/">theme</a> in advance and come prepared!</p>
+		
+		
+		<h3 id="smash-sat">Saturday Smash</h3>
+		<p class="timeslot"><span id="smash-sat-start">7:00 PM EST</span> to <span id="smash-sat-end">9:00 PM EST</span></p>
+		
+		<p>Celebrate the weekend with Super Smash Bros. This time slot is perfect for <em>west-coast Americans</em>, but anyone staying up late on Saturdays can join in the fun.</p>
+		<p>Check the <a href="themes/">theme</a> in advance and come prepared!</p>
 		
 		</div>
-		-->
+		
 		{% include footer.html %}
 	</div>
 </body>
