@@ -129,7 +129,7 @@
 	,"411789586495438858": {"name": "LesFleur",            "badges": ["season_arms", "clash"] }
 	
 	,"131597700884856832": {"name": "noahlot",             "badges": ["scramble"] }
-	,"183043875580018688": {"name": "Kon",                 "badges": ["scramble"] }
+	,"183043875580018688": {"name": "Kon",                 "badges": ["scramble", "clash"] }
 	,"409578580209827841": {"name": "Dory",                "badges": ["scramble", "clash"] }
 	,"257959389594386433": {"name": "HKGamer13",           "badges": ["scramble"] }
 	
@@ -184,5 +184,8 @@
 	
 	,"162257115413610496": {"name": "Juice",               "badges": ["scramble"] }
 	,"342275923434930186": {"name": "Morbol",              "badges": ["scramble"] }
-	,"337665120115228674": {"name": "Jorr",                "badges": ["scramble"] }
+	,"337665120115228674": {"name": "Jorr",                "badges": ["scramble", "clash"] }
+	
+	,"284382528536838154": {"name": "Pineapple",             "badges": ["clash", "clash_win"] }
+	,"132625817351094272": {"name": "supercheese",             "badges": ["clash"] }
   }
