@@ -76,4 +76,7 @@
 	,{ "date" : "2019-06-15", "type" : "scramble", "players" : 12, "winner" : [
  		{ "id" : "265719610681065472", "name" : "cheesyluigi" }
 	]}
+	,{ "date" : "2019-06-29", "type" : "clash", "players" : 12, "winner" : [
+ 		{ "id" : "284382528536838154", "name" : "PineappleFreak" }
+	]}
 ]
