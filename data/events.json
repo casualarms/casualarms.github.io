@@ -1,5 +1,5 @@
 [
-	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-07-01T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-zones","stages":"industry-splat","hosts":[{"name":"Lilbeansie","code":"7470-0256-9618"},{"name":"Spicy-DX","code":"2453-6492-0233"}]}
+	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-07-01T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-zones","stages":"industry-splat","hosts":[{"name":"Spicy-DX","code":"2453-6492-0233"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-07-01T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","stages":"lookout-smash","items":"upgrades-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-07-03T01:00:00.000Z","duration":120,"tz":"PDT","theme":"barrier-bonanza","stages":"barriers","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2019-07-03T18:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-1v1v1v1-smash","stages":"diving-smash","items":"allies-smash","hosts":[{"name":"Jake","code":"7677-0583-7008"}]}
