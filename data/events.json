@@ -8,7 +8,7 @@
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2019-07-05T01:30:00.000Z","duration":60,"tz":"PDT","theme":"turf-clams","stages":"wide-splat","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Free Play Friday","game":"splat","type":"impromptu","alert":false,"date":"2019-07-05T19:00:00.000Z","duration":60,"tz":"EDT","theme":"turf-zones","hosts":[{"name":"Goomba","code":"6746-5064-5605"},{"name":"Era Wolf","code":"5972-7410-1228"}]}
 	,{"title":"Splaturday","game":"splat","type":"friends","alert":true,"date":"2019-07-06T16:30:00.000Z","duration":60,"tz":"EDT","theme":"turf-tower","stages":"urban-splat","hosts":[{"name":"Spicy-DX","code":"2453-6492-0233"}]}
-	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-07-06T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","stages":"diving-smash","items":"parts-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-07-06T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","stages":"diving-smash","items":"parts-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-07-07T19:45:00.000Z","duration":120,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Lilbeansie","code":"7470-0256-9618"}]}
 
 	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-07-08T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"high-splat","hosts":[{"name":"To Be Announced","code":""}]}
