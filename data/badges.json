@@ -1,6 +1,6 @@
 {
 	 "339592807104643083": {"name": "Rashiko",             "badges": ["casualcouple", "casualcrew", "season_arms", "season_kart", "season_splat", "season_smash", "season_arms_win", "season_splat_win", "season_kart_win", "season_smash_win", "cgc", "host", "scramble", "clash"] }
-	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season_arms", "season_kart", "season_splat", "clash", "scramble", "cgc", "host"] }
+	,"241565548318687232": {"name": "Literary",            "badges": ["casualcouple", "season_arms", "season_arms_win", "season_kart", "season_splat", "clash", "scramble", "cgc", "host"] }
 	
 	,"398284103541063690": {"name": "River",               "badges": ["clash", "clash_win"] }
 	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "scramble_win", "season_arms"] }
@@ -27,7 +27,7 @@
 	
 	,"113030766920785920": {"name": "it's ogre",           "badges": ["clash"] }
 	,"391448715103043584": {"name": "Luis",                "badges": ["clash"] }
-	,"206008979430572033": {"name": "Solaris",             "badges": ["clash", "scramble"] }
+	,"206008979430572033": {"name": "Solaris",             "badges": ["clash", "scramble", "season_smash"] }
 	,"422305824837468170": {"name": "MJLIU",               "badges": ["clash"] }
 	,"429783916342280203": {"name": "nin10taku",           "badges": ["clash", "scramble"] }
 	,"272708868251844609": {"name": "Spinning",            "badges": ["clash", "host"] }
@@ -46,13 +46,13 @@
 	,"267337504032555020": {"name": "FruXteN",             "badges": ["clash"] }
 	,"375503052028903434": {"name": "TameDame",            "badges": ["clash"] }
 	,"393525706816094209": {"name": "Flesheater",          "badges": ["clash"] }
-	,"233713315304439808": {"name": "Spicy DX",            "badges": ["clash", "season_splat"] }
+	,"233713315304439808": {"name": "Spicy DX",            "badges": ["clash", "season_arms", "season_splat", "season_smash"] }
 	,"208740208768843776": {"name": "Orinetta",            "badges": ["clash"] }
 	,"258098427844493316": {"name": "Sora",                "badges": ["clash", "scramble", "season_arms", "season_smash", "host"] }
 	,"269980957212147714": {"name": "Mario119",            "badges": ["clash"] }
 	,"231574706506039298": {"name": "RickHardslab",        "badges": ["clash"] }
 	,"191293552142057473": {"name": "Kat",                 "badges": ["clash", "scramble"] }
-	,"211794202370113536": {"name": "Levi",                "badges": ["clash", "scramble", "cgc", "season_kart", "season_smash", "host"] }
+	,"211794202370113536": {"name": "Levi",                "badges": ["clash", "scramble", "cgc", "season_arms", "season_kart", "season_smash", "host"] }
 	,"415266965788295168": {"name": "Dendrimer",           "badges": ["clash"] }
 	,"333469682952830976": {"name": "ai-chan",             "badges": ["clash"] }
 	,"353673806008549377": {"name": "Hamma",               "badges": ["clash"] }
@@ -69,6 +69,7 @@
 	
 	,"226824104399994881": {"name": "lilbeansie",          "badges": ["scramble"] }
 	,"208664924145188866": {"name": "Idranoid",            "badges": ["scramble"] }
+	,"576548421494898698": {"name": "Anubis",		"badges": ["season_arms"] }
 	
 	,"315301009117413376": {"name": "GM-Tom",              "badges": ["casualcrew", "season_arms", "season_arms_win", "season_splat", "season_smash", "season_smash_win", "clash", "scramble"] }
 	,"308818549655339008": {"name": "E.P.Silon",           "badges": ["cgc"] }
@@ -114,7 +115,7 @@
 	
 	,"443737601904476160": {"name": "Buch",                "badges": ["clash"] }
 	,"243190204771336192": {"name": "Hennessey",           "badges": ["clash"] }
-	,"263368462745862144": {"name": "Fireshark",           "badges": ["clash"] }
+	,"263368462745862144": {"name": "DeadBOI",           	"badges": ["clash", "season_splat"] }
 	,"294963125591998466": {"name": "Sintha",              "badges": ["clash", "season_kart"] }
 	,"329034278803472394": {"name": "Fish",                "badges": ["clash", "scramble"] }
 	,"523864053542682624": {"name": "5after12",            "badges": ["clash", "scramble", "season_arms"] }
@@ -182,7 +183,7 @@
 	
 	,"438314123399397376": {"name": "Teriaqi",             "badges": ["clash"] }
 	
-	,"162257115413610496": {"name": "Juice",               "badges": ["scramble"] }
+	,"162257115413610496": {"name": "Juice",               "badges": ["scramble", "season_splat"] }
 	,"342275923434930186": {"name": "Morbol",              "badges": ["scramble"] }
 	,"337665120115228674": {"name": "Jorr",                "badges": ["scramble", "clash"] }
 	
