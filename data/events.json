@@ -1,5 +1,5 @@
 [
-	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-07-08T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"high-splat","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-07-08T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"high-splat","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-07-08T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","stages":"scrolling-smash","items":"deployables-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-07-10T01:00:00.000Z","duration":120,"tz":"PDT","theme":"breakable-bits","stages":"breakable","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Era Wolf","code":"5972-7410-1228"}],"streamers":["sorafirestorm"]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2019-07-10T18:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-2v2-smash","stages":"scrolling-smash","items":"healing-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
