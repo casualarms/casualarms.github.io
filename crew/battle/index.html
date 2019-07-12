@@ -1,0 +1,116 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Crew Battle Rules - Casual ARMS</title>
+	{% include meta_tags.html %}
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	li {
+		margin: 0.2em 0;
+	}
+	
+	</style>
+	
+	<script>
+	
+	
+	
+	function load()
+	{
+		var game = "arms";
+		var sets = ["all-arms", "ranked", "backroom-start", "backroom-counter", "cote", "japan"];
+		
+		for (var i = 0; i < sets.length; ++i)
+		{
+			$("stages-" + sets[i]).innerHTML = printStageSet(game, getStageSet(game, sets[i]));
+		}
+	}
+	
+	</script>
+</head>
+
+<body onLoad="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		
+		<h2>Crew Battle Rules</h2>
+		
+		<h3>Player Conduct</h3>
+		<p>All players must abide by these rules with no exception. Players will receive one and only one warning for any rule violation, if they are found in violation of the rules a second time, they will be disqualified from the crew battle.</p>
+		<ol>
+			<li>Respect the opposing team, players and TOs. Any trash-talking, rude behavior, taunting, harassment or similar behavior is not allowed.</li>
+			<li>“Dancing” under any circumstance is not allowed.</li>
+			<li>Arguing with TOs after a decision will not be tolerated and may result in immediate disqualification.</li>
+			<li>If a player intentionally disconnects, they will lose the round and it will be marked as a 2-0 or 3-0 loss. If a player intentionally disconnects a second time they will be disqualified.</li>
+			<li>If a team has a player disqualified, they have 5 minutes to field a replacement before the disqualified player's remaining rounds are marked as either 2-0 or 3-0 losses.</li>
+			<li>If a player is disqualified from 2 events, they will not be allowed to participate in future crew battles until they have shown real positive change over an extended period of time.</li>
+			<li>Any player banned from either team’s home server is not allowed to participate in the crew battle.</li>
+		</ol>
+
+		<h3>Lag and connectivity Issues</h3>
+		<p>Lag and occasional connection instability are an unavoidable part of online gaming.</p>
+		<p>If player disconnects unintentionally from a game, the game will be counted as a loss, unless the opposing player agree to an alternate outcome.</p>
+		<p>If there is <em>pervasive and consistent lag</em> players may choose to contact a TO for help in troubleshooting the issue. If the match containing a lag issue is being streamed another match may replace it to avoid interruption to the stream.</p>
+		<p>The protocol for troubleshooting lag during crew battles will be as follows:</p>
+		<ol>
+			<li>Players can try to switch who the lobby host is.</li>
+			<li>Both players can restart their switches.</li>
+			<li>Both players can reboot their modems, if able.</li>
+			<li>If a player is using Wi-Fi and has a LAN adapter, they can try using the LAN adapter to see if it helps.</li>
+			<li>If the lag cannot be remedied players can either resume the match or declare it either a 1-1 or 2-2 tie.</li>
+		</ol>
+	
+		<h3>Battle Format</h3>
+		<ul>
+			<li>A <em>team round robin</em> format will be used for the crew battle.</li>
+			<li>All games will take place in <em>Arena</em> mode.
+			<li>Each team will field <em>3 to 5 players</em>.
+			<li>Each round will consist of a <em>best of 3 or best of 5 games</em> as determined by the team captains before the start of the crew battle. 
+			<li>One point will be awarded for each game won by a player in a given round. 
+			<li>Stage selection for each game will be random stage from the predetermined crew battle <a href="#stages"><em>stage list</em></a>. The default stage randomized will be the one built into ARMS. However, if both players agree an alternative stage randomizer may be used.
+			<li><em>No repeat clause</em> A stage cannot be played twice in the same round. After a stage has been played in a given round between two players it will be disabled until the end of that round.
+			<li>The team with the most points at the end of all round will be declared the winner.
+			<li>In the event of a tie after the completion of all rounds, teams have two options:
+				<ol>
+					<li>The crew battle will end in a tie.
+					<li>A best of 3 game playoff will take place. Each team will select 3 players and an order of appearance for the players. Once both teams have decided their players and player order, they will notify the TOs and opposing team. The playoff will then proceed as follows; each player will face off against the corresponding opposing player in a single game. The first team to win two games in the playoff will be declared the winner of the crew battle.</li>
+				</ol>
+			</li>
+		</ul>
+		
+		<h3 id="stages">Stage Lists</h3>
+	
+		<p>The Captains of each team will agree to used one of the stage lists below before the start of the Crew Battle.</p>
+		
+		<h4>Full stage list</h4>
+		<div id="stages-all-arms"></div>
+		
+		<h4>Ranked stages</h4>
+		<div id="stages-ranked"></div>
+		
+		<h4>Backroom Starters</h4>
+		<div id="stages-backroom-start"></div>
+	
+		<h4>Backroom Starters + Counters</h4>
+		<div id="stages-backroom-counter"></div>
+		
+		<h4>CotE Starters + Counters</h4>
+		<div id="stages-cote"></div>
+		
+		<h4>Japanese stage list</h4>
+		<div id="stages-japan"></div>
+	
+		<h4>Custom stage list</h4>
+		<p>Starts with <em>Full stage list</em>. Both teams will then discuss the number of bans each will have. Each team will then report their chosen bans to the other. If each team bans the same stage, both can if agreed to ban an additional stage or stages if applicable. The stages use in the battle will consist of all non-banned stages. The number of stages must be large enough to abide by the no repeat clause.</p>
+		
+		<h3>Have Fun!</h3>
+		{% include footer.html %}
+	</div>
+</body>
+</html>

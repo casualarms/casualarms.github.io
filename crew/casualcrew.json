@@ -107,23 +107,5 @@
 		"highlight_color" : "rgba(255, 192, 203, 0.8)",
 		"attr_color"      : "rgba(255, 255, 255, 1)",
 		"grid_color"      : "rgba(255, 255, 255, 0.5)"
-	}, {
-		"name":"Marie",
-		"description" : "TODO",
-		"steps":"5",
-		"caps":true,
-		"bg_color":"rgba(94,79,81, 1.0)",
-		"name_color":"rgba(255,138,206, 1.0)",
-		"highlight_color":"rgba(255,138,206, 0.6)",
-		"attr_color":"rgba(255, 255, 255, 1)",
-		"grid_color":"rgba(255, 255, 255, 0.5)",
-		"stats":[
-			["Speed",1],
-			["Rush",4],
-			["Jump",1],
-			["Accuracy",3],
-			["Audo Clipping",5],
-			["Recipes",0]
-		]
 	}
 ]
