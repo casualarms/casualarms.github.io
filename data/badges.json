@@ -119,7 +119,7 @@
 	,"294963125591998466": {"name": "Sintha",              "badges": ["clash", "season_kart"] }
 	,"329034278803472394": {"name": "Fish",                "badges": ["clash", "scramble"] }
 	,"523864053542682624": {"name": "5after12",            "badges": ["clash", "scramble", "season_arms"] }
-	,"458379136621084673": {"name": "James B",             "badges": ["clash"] }
+	,"458379136621084673": {"name": "JBPro",             "badges": ["clash", "clash_win"] }
 	
 	,"491050652978511873": {"name": "9nineLives",          "badges": ["scramble"] }
 	,"272037378749628428": {"name": "yver20",              "badges": ["scramble", "clash"] }
@@ -187,6 +187,9 @@
 	,"342275923434930186": {"name": "Morbol",              "badges": ["scramble"] }
 	,"337665120115228674": {"name": "Jorr",                "badges": ["scramble", "clash"] }
 	
-	,"284382528536838154": {"name": "Pineapple",             "badges": ["clash", "clash_win"] }
-	,"132625817351094272": {"name": "supercheese",             "badges": ["clash"] }
+	,"284382528536838154": {"name": "Pineapple",           "badges": ["clash", "clash_win"] }
+	,"132625817351094272": {"name": "supercheese",         "badges": ["clash"] }
+	,"320624699094597642": {"name": "MrSerket",            "badges": ["clash"] }
+	,"128611839574671360": {"name": "SpectralDynamite",    "badges": ["clash"] }
+	,"281822770395086848": {"name": "MeltyMetroid",        "badges": ["clash"] }
   }
