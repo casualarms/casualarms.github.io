@@ -79,4 +79,7 @@
 	,{ "date" : "2019-06-29", "type" : "clash", "players" : 12, "winner" : [
  		{ "id" : "284382528536838154", "name" : "PineappleFreak" }
 	]}
+		,{ "date" : "2019-07-27", "type" : "clash", "players" : 10, "winner" : [
+ 		{ "id" : "458379136621084673", "name" : "JBPro" }
+	]}
 ]
