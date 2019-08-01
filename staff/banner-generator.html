@@ -158,6 +158,20 @@ permalink: /staff/banners/index.html
 		color: white;
 	}
 	
+	#controls-stages {
+		background-color: rgba(255, 255, 255, 0.1);
+		padding: 0.4em 0.7em;
+		border-radius: 0.7em;
+		margin: 0px 1em;
+		font-size: 0.7em;
+	}
+	
+	.setting-stage {
+		display: inline-block;
+		width: 24%;
+		white-space: nowrap;
+	}
+	
 	</style>
 	<script>
 	
@@ -177,7 +191,14 @@ permalink: /staff/banners/index.html
 		options = "<option value='undefined' selected>---</option>";
 		for (var i = 0; i < stageSets[game].length; ++i)
 			options += "<option value='" + stageSets[game][i].key + "'>" + stageSets[game][i].name + "</option>";
+		options += "<option value='custom'>Custom</option>";
 		$("stages").innerHTML = options;
+		
+		// Custom Stage Sets
+		var custom_stages = "";
+		for (var i = 0; i < eventStages[game].length; ++i)
+			custom_stages += "<span class='setting-stage'><input type='checkbox' id='" + (game + i) + "'> <label for='" + (game + i) + "'>" + eventStages[game][i] + "</label></span>";
+		$("controls-stages").innerHTML = custom_stages;
 		
 		// Item sets
 		options = "<option value='undefined' selected>---</option>";
@@ -220,6 +241,12 @@ permalink: /staff/banners/index.html
 		// Month options
 		for (var m = 0; m < monthNames.length; ++m)
 			$("month").innerHTML += "<option value='" + m + "'>" + monthNames[m] + "</option>";
+		
+		// Default date
+		var now = new Date();
+		$("year").value  = now.getUTCFullYear();
+		$("month").value = now.getUTCMonth();
+		$("day").value   = now.getUTCDate();
 		
 		// Fill quick entry lists
 		hostDatabase.sort(function(a, b){ return a.name > b.name; });
@@ -287,9 +314,17 @@ permalink: /staff/banners/index.html
 		fillGameOptions();
 		selectOptionWithValue($("type"),    eventData.type);
 		selectOptionWithValue($("theme"),   eventData.theme, true);
-		selectOptionWithValue($("stages"),  eventData.stages, true);
 		selectOptionWithValue($("items"),   eventData.items, true);
 		selectOptionWithValue($("sponsor"), eventData.sponsor, true);
+		
+		if (eventData.stages.substring(0, 6) == "custom")
+		{
+			selectOptionWithValue($("stages"), "custom", true);
+			var stages = eventData.stages.substring(7, eventData.stages.length - 1).split(",");
+			for (var i = 0; i < stages.length; ++i)
+				$(eventData.game + stages[i]).checked = true;
+		}
+		else selectOptionWithValue($("stages"), eventData.stages, true);
 		
 		readAndGenerate();
 	}
@@ -341,6 +376,8 @@ permalink: /staff/banners/index.html
 	{
 		$("error").style.display = "none";
 		
+		$("controls-stages").style.display = ($("stages").value == "custom") ? "block" : "none";
+		
 		var eventdata = {};
 		var game = $("game").options[$("game").selectedIndex].value;
 		
@@ -391,9 +428,19 @@ permalink: /staff/banners/index.html
 		if ($("url").value != "") eventdata.url = escapeHTML($("url").value);
 		
 		if ($("theme")  .selectedIndex > 0) eventdata.theme   = $("theme")  .value;
-		if ($("stages") .selectedIndex > 0) eventdata.stages  = $("stages") .value;
 		if ($("items")  .selectedIndex > 0) eventdata.items   = $("items")  .value;
 		if ($("sponsor").selectedIndex > 0) eventdata.sponsor = $("sponsor").value;
+		
+		if ($("stages") .selectedIndex > 0)
+		{
+			if ($("stages").value != "custom") eventdata.stages  = $("stages").value;
+			else {
+				var stages = [];
+				for (var i = 0; i < eventStages[game].length; ++i)
+					if ($(game + i).checked) stages.push(i);
+				eventdata.stages = "custom[" + stages.toString() + "]";
+			}
+		}
 		
 		if (hosts.length > 0)     eventdata.hosts     = hosts;
 		if (twitchers.length > 0) eventdata.streamers = twitchers;
@@ -403,13 +450,28 @@ permalink: /staff/banners/index.html
 		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
 		
 		$("preview-theme") .innerHTML = ($("theme") .selectedIndex > 0) ?    printTheme(game,    getTheme(game, $("theme") .value), false) : "";
-		$("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
 		$("preview-items") .innerHTML = ($("items") .selectedIndex > 0) ?  printItemSet(game,  getItemSet(game, $("items").value))         : "";
+		
+		if ($("stages").value != "custom")
+			$("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
+		else {
+			var stages = [];
+			for (var i = 0; i < eventStages[game].length; ++i)
+				if ($(game + i).checked) stages.push(i);
+			$("preview-stages").innerHTML = printStageSet(game, stages);
+		}
 		
 		if (game == "smash" && $("stages").selectedIndex > 0)
 		{
+			var stages = [];
+			if ($("stages").value != "custom")
+				stages = getStageSet(game, $("stages").value);
+			else {
+				for (var i = 0; i < eventStages[game].length; ++i)
+					if ($(game + i).checked) stages.push(i);
+			}
 			$("preview-stages").innerHTML += "<p style='text-align: center;'><canvas id='stages-graphic'></canvas></p>";
-			drawStagesItems("stages", "stages-graphic", getStageSet(game, $("stages").value));
+			drawStagesItems("stages", "stages-graphic", stages);
 		}
 		
 		if (game == "smash" && $("items").selectedIndex > 0)
@@ -565,6 +627,8 @@ permalink: /staff/banners/index.html
 					<label for="items">Items:</label> <select id="items"></select>
 					<input type="button" value="Randomize" onClick="randomTheme()"/>
 				</p>
+				
+				<p id="controls-stages"></p>
 				
 				<p>Date: <select id="month"></select>
 					<input type="number" id="day" value="1" min="1" max="31"/>
