@@ -188,6 +188,7 @@ redirect_from: "/lobbies/"
 	.bgcolor-game-kart  { background-color: #f92473; color: black; }
 	.bgcolor-game-splat { background-color: #00dd00; color: black; }
 	.bgcolor-game-smash { background-color: #ffffff; color: black; }
+	.bgcolor-game-variety { background-color: #ccc; color: black; }
 	
 	.bgcolor-type-clash, .bgcolor-type-scramble { background-color: #1d94fc; color: white; }
 	
@@ -272,16 +273,19 @@ redirect_from: "/lobbies/"
 	#events-kart  { background-color: #f92473; }
 	#events-splat { background-color: #00dd00; }
 	#events-smash { background-color: white; }
+	#events-variety { background-color: #ccc; }
 	
 	#menu-arms  { color: yellow; }
 	#menu-kart  { color: #f92473; }
 	#menu-splat { color: #00dd00; }
 	#menu-smash { color: white; }
+	#menu-variety { color: #ccc; }
 	
 	#menu-arms:hover  { color: black; background-color: yellow; }
 	#menu-kart:hover  { color: black; background-color: #f92473; }
 	#menu-splat:hover { color: black; background-color: #00dd00; }
 	#menu-smash:hover { color: black; background-color: white; }
+	#menu-variety:hover { color: #ccc; background-color: white; }
 	
 	@media only screen and (max-width: 700px)
 	{
@@ -331,6 +335,13 @@ redirect_from: "/lobbies/"
 		return result + "<a href='" + anchor + "' " + onclick +" class='cal-event bgcolor-game-" + game + " bgcolor-type-" + evtype + "' style='top: " + offset + "%; left: " + (dateOffset*12.5) + "%; height: " + height + "%;'><span class='info'>" + description + "</span></a>";
 	}
 	
+	function getEventGame(ev)
+	{
+		if (ev.game in eventGames)
+			return eventGames[ev.game];
+		return ev.title;
+	}
+	
 	var eventData;
 	var focusEvent;
 	function previewEvent(i)
@@ -345,12 +356,15 @@ redirect_from: "/lobbies/"
 		if (countsForLederboards(ev))
 			tags += "<a href='/leaderboards/#" + ev.game + "' class='next-box next-game bgcolor-game-" + ev.game + "'>leaderboards: <span class='nx-big'>" + eventGames[ev.game] + "</span></a>";
 		else
-			tags += "<span class='next-box next-game bgcolor-game-" + ev.game + "'>Game: <span class='nx-big'>" + eventGames[ev.game] + "</span></span>";
+			tags += "<span class='next-box next-game bgcolor-game-" + ev.game + "'>Game: <span class='nx-big'>" + getEventGame(ev) + "</span></span>";
 		
 		// Event theme
-		var themeData = getTheme(ev.game, ev.theme);
-		if (themeData != null)
-			tags += "<a href='themes/#" + themeData.key + "' class='next-box next-theme'>Theme: <span class='nx-big'>" + themeData.name + "</span></a>";
+		if ("theme" in ev)
+		{
+			var themeData = getTheme(ev.game, ev.theme);
+			if (themeData != null)
+				tags += "<a href='themes/#" + themeData.key + "' class='next-box next-theme'>Theme: <span class='nx-big'>" + themeData.name + "</span></a>";
+		}
 		
 		if ("stages" in ev)
 		{

@@ -214,7 +214,8 @@ function gameColor(game)
 		"arms"  : "yellow",
 		"kart"  : "#f92473",
 		"splat" : "#00dd00",
-		"smash" : "#ffffff"
+		"smash" : "#ffffff",
+		"variety" : "#ccc"
 	};
 	
 	return colors[game];

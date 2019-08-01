@@ -1,9 +1,10 @@
 {
 	"eventGames" : {
-		"arms"  : "ARMS",
-		"kart"  : "Mario Kart 8 Deluxe",
-		"splat" : "Splatoon 2",
-		"smash" : "Super Smash Bros. Ultimate"
+		"arms"     : "ARMS",
+		"kart"     : "Mario Kart 8 Deluxe",
+		"splat"    : "Splatoon 2",
+		"smash"    : "Super Smash Bros. Ultimate",
+		"variety"  : "Variety Game"
 	},
 	"leaderboardTiers" : {
 		"arms" : [
@@ -61,13 +62,15 @@
 			{ "start" :     3500, "name" : "White Hot",       "color" : "#ff00e6"},
 			{ "start" :     5000, "name" : "Nothing Harder!", "color" : "#b700ff"},
 			{ "start" : 10000000, "name" : "[Dummy]",         "color" : "white"}
-		]
+		],
+		"variety" : []
 	},
 	"leaderboardTitles" : {
 		"arms"  : { "prefix" : "ARMS Labs ",   "suffix" : ""          },
 		"kart"  : { "prefix" : "",             "suffix" : " Cup Racer"},
 		"splat" : { "prefix" : "Grizzco ",     "suffix" : ""          },
-		"smash" : { "prefix" : "",             "suffix" : " Smasher"  }
+		"smash" : { "prefix" : "",             "suffix" : " Smasher"  },
+		"variety" : {}
 	},
 	"eventTypes" : {
 		"arms" : {
@@ -93,6 +96,9 @@
 			"arena"         : "Battle Arena",
 			"impromptu"     : "Impromptu Lobby",
 			"tournament"    : "Tournament"
+		},
+		"variety" : {
+			"impromptu"     : "Impromptu Lobby"
 		}
 	},
 	"badgeList" : {
@@ -343,7 +349,8 @@
 			"Great Plateau Tower",
 			"Moray Towers",
 			"Dracula's Castle"
-		]
+		],
+		"variety" : []
 	},
 	"eventItems" : {
 		"arms"  : [],
@@ -373,7 +380,8 @@
 			"Cucco", "Beehive", "Killer Eye", "Boss Galaga", "Beastball",
 			"Black Hole", "Franklin Badge", "Screw Attack", "Back Shield", "Super Leaf",
 			"Rocket Belt", "Super Launch Star", "Special Flag"
-		]
+		],
+		"variety" : []
 	},
 	"patreonTiers" : [
 		{ "start" :  1, "name" : "Casual Contributor", "color" : "#2E666B"},
@@ -652,7 +660,8 @@
 					"voice-chat"    : false
 				}
 			}
-		]
+		],
+		"variety" : []
 	},
 	"stageSets" : {
 		"arms"  : [
@@ -701,7 +710,8 @@
 			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82]}
 			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
 			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102]}
-		]
+		],
+		"variety" : []
 	},
 	"itemSets" : {
 		"arms"  : [],
@@ -721,6 +731,7 @@
 			,{ "key" : "sports-smash",       "name" : "SPORTS!",                "items" : [10,29,61,73]}
 			,{ "key" : "better-worse-smash", "name" : "For Better or Worse",    "items" : [0,9,17,18,25]}
 			,{ "key" : "wanderers-smash",    "name" : "Wandering Items",        "items" : [0,9,10,17,18,45,47,51,52,69]}
-		]
+		],
+		"variety" : []
 	}
 }

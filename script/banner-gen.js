@@ -149,6 +149,16 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, width, 115);
 		break;
+	
+	case "variety":
+		titleColor = "white";
+		websiteBgColor = "#ccc";
+		stripeBgColor = bgColor;
+		ctx.fillStyle = ctx.createPattern(images["pattern"], "repeat");
+		ctx.fillRect(0, 0, width, height);
+		ctx.fillStyle = "#ccc";
+		ctx.fillRect(0, 0, width, 115);
+		break;
 	}
 	
 	ctx.fillStyle = boxBgColor;
@@ -323,6 +333,7 @@ function bannerImageData(eventdata)
 		imageData["livestream"]   = "/assets/banners/icon-livestream.png";
 		imageData["livestream-mixer"]   = "/assets/banners/icon-mixer.png";
 		imageData["leaderboards"] = "/assets/banners/icon-leaderboards.png";
+		imageData["pattern"] = "/assets/backdrop.png";
 	}
 	
 	return imageData;
