@@ -250,6 +250,7 @@ function addCurrentSeason()
 	// Add current leaderboard data to history object
 	for (var game in eventGames)
 	{
+		if (game == "variety") continue;
 		var today = new Date();
 		seasonHistoryJSON[game].splice(0, 0, {
 			year  : today.getFullYear(),
