@@ -35,7 +35,7 @@
 			if (now > ev.date && now < getEventEnd(ev) || getQueryVariable("event") == "on")
 			{
 				$("event-id").className += " event ";
-				$("blurb").innerHTML = "Event happening now!";
+			//	$("blurb").innerHTML = "Event happening now!";
 			}
 			else
 			{
@@ -49,7 +49,7 @@
 					msec -= mm * 1000 * 60;
 					var ss = Math.floor(msec / 1000);
 					msec -= ss * 1000;
-					$("blurb").innerHTML = "Event starting in " + padZero(hh) + ":" + padZero(mm) + ":" + padZero(ss) + "";
+				//	$("blurb").innerHTML = "Event starting in " + padZero(hh) + ":" + padZero(mm) + ":" + padZero(ss) + "";
 				}
 				
 				updateCountdown();
@@ -179,6 +179,7 @@
 		opacity: 0.03;
 		font-size: 490pt;
 		font-family: 'ARMS';
+		z-index: -1;
 	}
 	
 	#m-discord      > img { width: 2.0em; left: 25pt; top: 10pt; }
@@ -432,8 +433,8 @@
 <body id="event-id" onload="load()" ontouchstart="">
 	<h1><a href="/">Casual ARMS</a></h1>
 	<div class="main-menu" id="container">
-		<!--<h2>&gt;&gt;&nbsp;<a href="/wristbands/">1&nbsp;Year&nbsp;ARMSiversary Wristband&nbsp;Sale</a>&nbsp;&lt;&lt;</h2>-->
-		<h2 id="blurb">Event starting in 00:00:00!</h2>
+		<h2>&gt;&gt;&nbsp;<a href="/giveaway/">Super&nbsp;Mario&nbsp;Maker&nbsp;2 Giveaway</a>&nbsp;&lt;&lt;</h2>
+	<!--	<h2 id="blurb">Event starting in 00:00:00!</h2>-->
 		
 		<img src="assets/main/rank-shield.png" id="shield"/>
 		<img src="assets/main/logo.png" id="logo"/>
