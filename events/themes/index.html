@@ -55,6 +55,8 @@ redirect_from: "/lobbies/themes/"
 		
 		for (var game in eventGames)
 		{
+			if (game == "variety") continue;
+			
 			game_menu_html += "<a class='menu-item m5' href='#" + game + "'>" + eventGames[game] + "</a>";
 			var menu_html = "<div class='menu-container'>";
 			var theme_html = "";
@@ -108,14 +110,15 @@ redirect_from: "/lobbies/themes/"
 		$("themes").innerHTML = game_menu_html + "</div>" + html;
 		
 		for (var i = 0; i < stageSets["smash"].length; ++i)
-			drawStagesItems("stages", "stages-graphic-" + stageSets["smash"][i].key, getStageSet(game, stageSets["smash"][i].key));
+			drawStagesItems("stages", "stages-graphic-" + stageSets["smash"][i].key, getStageSet("smash", stageSets["smash"][i].key));
 		
-		for (var i = 0; i < itemSets[game].length; ++i)
-			drawStagesItems("items", "items-graphic-" + itemSets["smash"][i].key, getItemSet(game, itemSets["smash"][i].key));
+		for (var i = 0; i < itemSets["smash"].length; ++i)
+			drawStagesItems("items", "items-graphic-" + itemSets["smash"][i].key, getItemSet("smash", itemSets["smash"][i].key));
 		
 		var options = "";
 		for (var game in eventGames)
-			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
+			if (game != "variety")
+				options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
 		$("game").innerHTML = options;
 		
 		if (scrolltoid != null)
