@@ -26,7 +26,7 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-08-21T01:00:00.000Z","duration":120,"tz":"PDT","theme":"fights-only","stages":"cote","hosts":[{"name":"To Be Announced","code":""}]}
 
 	
-	,{"title":"Salmon Run Tournament","game":"splat","type":"tournament","alert":false,"date":"2019-08-10T19:00:00.000Z","duration":90,"tz":"EDT"}
+	,{"title":"Salmon Run Tournament","game":"splat","type":"tournament","alert":false,"date":"2019-08-10T19:00:00.000Z","duration":90,"tz":"EDT","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-06-15T19:15:00.000Z","duration":60,"tz":"EDT","theme":"everything","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 11","game":"arms","type":"scramble","alert":false,"date":"2019-06-15T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
