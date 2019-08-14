@@ -36,6 +36,10 @@
 			"commands" : ["anniversary", "birthday", "wristband", "wristbands"],
 			"response" : "**Happy birthday, Casual ARMS!**\nWe are making a limited run of Casual ARMS wristbands to celebrate one year of community and excitement! https://www.casualarms.net/wristbands/"
 		}
+		{
+			"commands" : ["save_arms"],
+			"response" : "C0DE_BR0k3N/nENTER_SAVE_ARMS: <http://discord.gg/8mG8Uyu>"
+		}
 	],
 	"feedbackMessage" : "Thanks for participating in the tournament! If you have any feedback, please fill in the form here: https://goo.gl/forms/Qe3R0z5zwK75ZQtC3"
 }
