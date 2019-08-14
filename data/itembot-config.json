@@ -38,7 +38,7 @@
 		},
 		{
 			"commands" : ["save"],
-			"response" : "AI_COLLABORATION_DETECTED/nC0DE_BR0k3N/nENTER_SAVE_ARMS: <http://discord.gg/8mG8Uyu>"
+			"response" : "AI_COLLABORATION_DETECTED\nC0DE_BR0k3N\nENTER_SAVE_ARMS: <http://discord.gg/8mG8Uyu>"
 		}
 	],
 	"feedbackMessage" : "Thanks for participating in the tournament! If you have any feedback, please fill in the form here: https://goo.gl/forms/Qe3R0z5zwK75ZQtC3"
