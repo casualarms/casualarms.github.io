@@ -338,46 +338,76 @@ function getTheme(game, themeID)
 	return null;
 }
 
+function getStageSetName(game, stageID)
+{
+	if (stageID.substring(0, 6) != "custom")
+	{
+		for (var t = 0; t < stageSets[game].length; ++t)
+			if (stageSets[game][t].key == stageID)
+				return stageSets[game][t].name;
+	}
+	else return "Custom";
+}
+
+function getItemSetName(game, itemID)
+{
+	if (itemID.substring(0, 6) != "custom")
+	{
+		for (var t = 0; t < itemSets[game].length; ++t)
+			if (itemSets[game][t].key == itemID)
+				return itemSets[game][t].name;
+	}
+	else return "Custom";
+}
+
 function getStageSet(game, stageID)
 {
-	for (var t = 0; t < stageSets[game].length; ++t)
-		if (stageSets[game][t].key == stageID)
-		{
-			var stages = [];
-			for (var s = 0; s < stageSets[game][t].stages.length; ++s)
+	if (stageID.substring(0, 6) != "custom")
+	{
+		for (var t = 0; t < stageSets[game].length; ++t)
+			if (stageSets[game][t].key == stageID)
 			{
-				var stage = stageSets[game][t].stages[s];
-				if (typeof stage === 'object')
+				var stages = [];
+				for (var s = 0; s < stageSets[game][t].stages.length; ++s)
 				{
-					for (var b = stage.start; b <= stage.end; ++b)
-						stages.push(b);
+					var stage = stageSets[game][t].stages[s];
+					if (typeof stage === 'object')
+					{
+						for (var b = stage.start; b <= stage.end; ++b)
+							stages.push(b);
+					}
+					else stages.push(stageSets[game][t].stages[s]);
 				}
-				else stages.push(stageSets[game][t].stages[s]);
+				return stages;
 			}
-			return stages;
-		}
-	return null;
+		return null;
+	}
+	else return stageID.substring(7, stageID.length - 1).split(",");
 }
 
 function getItemSet(game, itemID)
 {
-	for (var t = 0; t < itemSets[game].length; ++t)
-		if (itemSets[game][t].key == itemID)
-		{
-			var items = [];
-			for (var i = 0; i < itemSets[game][t].items.length; ++i)
+	if (itemID.substring(0, 6) != "custom")
+	{
+		for (var t = 0; t < itemSets[game].length; ++t)
+			if (itemSets[game][t].key == itemID)
 			{
-				var item = itemSets[game][t].items[i];
-				if (typeof item === 'object')
+				var items = [];
+				for (var i = 0; i < itemSets[game][t].items.length; ++i)
 				{
-					for (var b = item.start; b <= item.end; ++b)
-						items.push(b);
+					var item = itemSets[game][t].items[i];
+					if (typeof item === 'object')
+					{
+						for (var b = item.start; b <= item.end; ++b)
+							items.push(b);
+					}
+					else items.push(itemSets[game][t].items[i]);
 				}
-				else items.push(itemSets[game][t].items[i]);
+				return items;
 			}
-			return items;
-		}
-	return null;
+		return null;
+	}
+	else return itemID.substring(7, itemID.length - 1).split(",");
 }
 
 function drawStagesItems(mode, canvasid, activeIndexes)

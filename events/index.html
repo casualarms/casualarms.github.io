@@ -368,20 +368,8 @@ redirect_from: "/lobbies/"
 		
 		if ("stages" in ev)
 		{
-			if (ev.stages.substring(0, 6) != "custom")
-			{
-				var name = "";
-				for (var t = 0; t < stageSets[ev.game].length; ++t)
-					if (stageSets[ev.game][t].key == ev.stages)
-						name = stageSets[ev.game][t].name;
-				tags += "<a href='themes/#" + ev.stages + "' class='next-box next-stages'>Stages: <span class='nx-big'>" + name + "</span></a>";
-				$("preview-stages").innerHTML = printStageSet(ev.game, getStageSet(ev.game, ev.stages));
-			}
-			else {
-				var stages = ev.stages.substring(7, ev.stages.length - 1).split(",");
-				tags += "<span class='next-box next-stages'>Stages: <span class='nx-big'>Custom</span></span>";
-				$("preview-stages").innerHTML = printStageSet(ev.game, stages);
-			}
+			tags += "<a href='themes/#" + ev.stages + "' class='next-box next-stages'>Stages: <span class='nx-big'>" + getStageSetName(ev.game, ev.stages) + "</span></a>";
+			$("preview-stages").innerHTML = printStageSet(ev.game, getStageSet(ev.game, ev.stages));
 		}
 		else {
 			$("preview-stages").innerHTML = "";
@@ -389,11 +377,7 @@ redirect_from: "/lobbies/"
 		
 		if ("items" in ev)
 		{
-			var name = "";
-			for (var t = 0; t < itemSets[ev.game].length; ++t)
-				if (itemSets[ev.game][t].key == ev.items)
-					name = itemSets[ev.game][t].name;
-			tags += "<a href='themes/#" + ev.items + "' class='next-box next-items'>Items: <span class='nx-big'>" + name + "</span></a>";
+			tags += "<a href='themes/#" + ev.items + "' class='next-box next-items'>Items: <span class='nx-big'>" + getItemSetName(ev.game, ev.items) + "</span></a>";
 			$("preview-items").innerHTML = printItemSet(ev.game, getItemSet(ev.game, ev.items));
 		}
 		else {

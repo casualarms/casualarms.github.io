@@ -61,7 +61,7 @@ permalink: /staff/advertising/index.html
 		background-color: yellow;
 	}
 	
-	.text-live {
+	.text-preview, .text-live {
 		display: none;
 	}
 	
@@ -69,50 +69,70 @@ permalink: /staff/advertising/index.html
 	<script>
 	
 	var templates = {
-		"arms-tuesday" : [
-			"Tidal Tuesday features an earlier #ARMS party lobby slot, aimed at our friends in the Pacific time zone! Just add our listed host and join when the lobby goes live.\n\nJoin us for themed party lobbies and earn coins for our Casual ARMS leaderboards: {leaderboards}",
-			"Our Tidal Tuesday #ARMS party lobby is now live!\n\nJoin our hosts to play:\n{hosts}\nAll coins earned during this event will go on our server leaderboards!\n\nTheme:{theme}",
-		],
-		"arms-wednesday" : [
-			"Thumpin' Thursday is our earlier weekday #ARMS party lobby, aimed at our friends in Europe!\n\nJoin us for fights-focused lobbies on a variety of stages! All coins earned during this event go towards our server leaderboards at {leaderboards}",
-			"Our Thumpin' Thursday #ARMS party lobby is now live!\n\nCoins you earn during this event will go towards our Casual ARMS leaderboards!\n\nJoin our hosts to play:\n{hosts}",
-		],
-		"arms-thursday" : [
-			"Thumpin' Thursday is our earlier weekday #ARMS party lobby, aimed at our friends in Europe!\n\nJoin us for fights-focused lobbies on a variety of stages! All coins earned during this event go towards our server leaderboards at {leaderboards}",
-			"Our Thumpin' Thursday #ARMS party lobby is now live!\n\nCoins you earn during this event will go towards our Casual ARMS leaderboards!\n\nJoin our hosts to play:\n{hosts}",
-		],
-		"arms-mlm" : [
-			"Monday means MEGA LEAGUE MONDAY, a weekly #ARMS tournament hosted by @Schkrimps!\n\nCasual ARMS is hosting a warm-up lobby to get fired up for the tournament!\n\nJoin us the hour before MLM to play!\n\nMore event details: {directlink}\n\nSign up for MLM: https://mlm.challonge.com/MLM59",
-			"Our Mega League Monday warm up #ARMS lobby is now live!\n\nJoin our hosts to play:\n{hosts}\nJoin MLM: https://mlm.challonge.com/MLM59",
-		],
-		"arms-cote" : [
-			"Join us in about 20 minutes to warm up for the Champions of the Era tournament, a weekly #ARMS competition hosted by @EraWolfOfficial !\n\nAll are welcome to play or do the tourney!\n\nMore Casual event details: {directlink}\n\nJoin CotE: https://challonge.com/4magbicr",
-			"Our Champions of the Era #ARMS warmup lobby is now live!\n\nJust join our hosts to play! Both CotE competitors and non-competitors are welcome!\n\nHosts:\n{hosts}\nJoin CotE: https://challonge.com/4magbicr",
-		],
-		
-		"kart" : [
-			"Have you seen our new Casual Kart events? By participating in our tournament slots, rack up points in #MarioKart to work your way up to new roles and colors, just like with ARMS!\n\n{leaderboards} We have a racing event later today! More details: {directlink}",
-			"Our Casual Kart #MarioKart event is now live! Join us with tournament code {code}!",
-		]
+		"arms" : {
+			"leaderboard" : [
+				"**Upcoming ARMS Event**\n*{title}* is the next event for our monthly leaderboards and your chance at our monthly eShop giveaway so we look forward to having you! Just send an invite to a host listed on the banner here to get involved and we'll take care of the rest so you can join for as long or as little as you like!",
+				"Tidal Tuesday features an earlier #ARMS party lobby slot, aimed at our friends in the Pacific time zone! Just add our listed host and join when the lobby goes live.\n\nJoin us for themed party lobbies and earn coins for our Casual ARMS leaderboards: {leaderboards}",
+				"Our Tidal Tuesday #ARMS party lobby is now live!\n\nJoin our hosts to play:\n{hosts}\nAll coins earned during this event will go on our server leaderboards!\n\nTheme:{theme}"
+			],
+			"impromptu" : [
+				"",
+				"",
+				""
+			],
+			"clash" : [
+				"",
+				"",
+				""
+			],
+			"scramble" : [
+				"",
+				"",
+				""
+			]
+		},
+		"splat" : {
+			"friends" : [
+				"**Upcoming Splatoon 2 Event**\nOur *{title}* event counts for leaderboards and our monthly eShop giveaway and features the *{stages}* stage set! If you like Splatoon and friendship, join us to also get your hands on some leaderboard points for more badges and ranks on the server! To get involved, just send a friend request to one of our hosts, listed on the banner, and join our private lobby when the event goes live.",
+				"",
+				""
+			],
+			"salmon" : [
+				"",
+				"",
+				""
+			]
+		},
+		"smash" : {
+			"arena" : [
+				"**Upcoming Smash Ultimate Event**\nOur *{title}* Smash event features *{theme}* fights with our *{stages}* stage set with the *{items}* item set, so join us for the good times and some leaderboard points! Just send a friend request to the host of your choice on the banner and join through the friend arena we open to get in on the good times.",
+				"",
+				""
+			],
+			"impromptu" : [
+				"**Upcoming Smash Ultimate Event**\nOur *{title}* Smash event features *{theme}* fights with our *{stages}* stage set with the *{items}* item set, so join us for the good times. Just send a friend request to the host of your choice on the banner and join through the friend arena we open to get in on the good times.\n(This event does *not* count for Casual ARMS leaderboards.)",
+				"",
+				""
+			]
+		},
+		"kart" : {
+			
+		}
 	};
 	
 	function textBlurb(ev, variant)
 	{
-		var key = "";
-		if (ev.type == 6)
-			key = "kart";
 		
-		if (ev.type == "leaderboard" && ev.date.getDay() == 4)
-			key = "arms-thursday";
-		else if (ev.type == "leaderboard" && ev.date.getDay() == 3)
-			key = "arms-tuesday";
-		
-		if (key == "")
-			return ""
-		
-		var text = templates[key][variant];
+		var text = templates[ev.game][ev.type][variant];
 		var theme = getTheme(ev.game, ev.theme);
 		var themeText = theme ? theme.name + ": " + "https://www.casualarms.net/events/themes/#" + theme.key : "";
+		
+		var stagesText = "";
+		if ("stages" in ev)
+			stagesText = getStageSetName(ev.game, ev.stages);
+		var itemsText = "";
+		if ("items" in ev)
+			itemsText = getItemSetName(ev.game, ev.items);
 		
 		var hosttext = "";
 		for (var h = 0; h < ev.hosts.length; h++)
@@ -120,11 +140,14 @@ permalink: /staff/advertising/index.html
 			
 		var leaderboards = "https://www.casualarms.net/leaderboards/";
 		
+		text = text.replace("{title}", ev.title);
 		text = text.replace("{directlink}", "http://www.casualarms.net/events/?id=" + getEventID(ev));
 		text = text.replace("{hosts}", hosttext);
 		text = text.replace("{leaderboards}", leaderboards);
 		text = text.replace("{code}", ev.hosts[0].code);
-		text = text.replace("{theme}", themeText);
+		text = text.replace("{theme}", theme.name);
+		text = text.replace("{stages}", stagesText);
+		text = text.replace("{items}", itemsText);
 		
 		if ("streamers" in ev)
 			text += "\n\nWatch the event on stream! http://twitch.tv/" + ev.streamers[0];
@@ -151,13 +174,17 @@ permalink: /staff/advertising/index.html
 			html += "<h2>" + ev.title + "</h2>";
 			html += "<img id='result-" + i + "'/>";
 			
-			var id1 = "text-preview-" + getEventID(ev);
-			html += "<textarea rows='12' id='" + id1 + "' class='text-preview'>" + textBlurb(ev, 0) + "</textarea>";
-			html += "<button onCLick=\"copyToClipboard('" + id1 + "')\" class='btn-cpy text-preview'>Copy Text to Clipboard</button>";
+			var id1 = "text-discord-" + getEventID(ev);
+			html += "<textarea rows='12' id='" + id1 + "' class='text-discord'>" + textBlurb(ev, 0) + "</textarea>";
+			html += "<button onclick=\"copyToClipboard('" + id1 + "')\" class='btn-cpy text-discord'>Copy Text to Clipboard</button>";
 			
-			var id2 = "text-live-" + getEventID(ev);
-			html += "<textarea rows='12'  id='" + id2 + "' class='text-live'>" + textBlurb(ev, 1) + "</textarea>";
-			html += "<button onCLick=\"copyToClipboard('" + id2 + "')\" class='btn-cpy text-live'>Copy Text to Clipboard</button>";
+			var id2 = "text-preview-" + getEventID(ev);
+			html += "<textarea rows='12'  id='" + id2 + "' class='text-preview'>" + textBlurb(ev, 1) + "</textarea>";
+			html += "<button onclick=\"copyToClipboard('" + id2 + "')\" class='btn-cpy text-preview'>Copy Text to Clipboard</button>";
+			
+			var id3 = "text-live-" + getEventID(ev);
+			html += "<textarea rows='12'  id='" + id3 + "' class='text-live'>" + textBlurb(ev, 2) + "</textarea>";
+			html += "<button onclick=\"copyToClipboard('" + id3 + "')\" class='btn-cpy text-live'>Copy Text to Clipboard</button>";
 			
 			$("calendar").innerHTML += html;
 			
@@ -170,8 +197,27 @@ permalink: /staff/advertising/index.html
 		$("event-history-U").innerHTML = $("event-history-D").innerHTML = $("event-history-L").innerHTML = $("event-history-R").innerHTML = options;;
 	}
 	
+	function showDiscord()
+	{
+		var elems = document.getElementsByClassName("text-discord");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "inline";
+		
+		var elems = document.getElementsByClassName("text-preview");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "none";
+		
+		var elems = document.getElementsByClassName("text-live");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "none";
+	}
+	
 	function showAnnouncements()
 	{
+		var elems = document.getElementsByClassName("text-discord");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "none";
+		
 		var elems = document.getElementsByClassName("text-preview");
 		for (var i = 0; i < elems.length; ++i)
 			elems[i].style.display = "inline";
@@ -183,6 +229,10 @@ permalink: /staff/advertising/index.html
 	
 	function showLiveAlerts()
 	{
+		var elems = document.getElementsByClassName("text-discord");
+		for (var i = 0; i < elems.length; ++i)
+			elems[i].style.display = "none";
+		
 		var elems = document.getElementsByClassName("text-preview");
 		for (var i = 0; i < elems.length; ++i)
 			elems[i].style.display = "none";
@@ -238,18 +288,19 @@ permalink: /staff/advertising/index.html
 		
 		<h2>Multi-banner</h2>
 		
-		↑ <select id="event-history-U" onChange="createMultiBanner('UD')"></select><br/>
-		↓ <select id="event-history-D" onChange="createMultiBanner('UD')"></select><br/>
+		↑ <select id="event-history-U" onchange="createMultiBanner('UD')"></select><br/>
+		↓ <select id="event-history-D" onchange="createMultiBanner('UD')"></select><br/>
 		<hr/>
-		← <select id="event-history-L" onChange="createMultiBanner('LR')"></select><br/>
-		→ <select id="event-history-R" onChange="createMultiBanner('LR')"></select><br/>
+		← <select id="event-history-L" onchange="createMultiBanner('LR')"></select><br/>
+		→ <select id="event-history-R" onchange="createMultiBanner('LR')"></select><br/>
 		<br/>
 		<img id="multi-banner" style="width: 30%"/>
 		
 		<h2>Banner images and advertising text</h2>
 		
-		<input type="button" value="Preannouncements" onClick="showAnnouncements()"/>
-		<input type="button" value="Live alerts" onClick="showLiveAlerts()"/>
+		<input type="button" value="#announcements" onclick="showDiscord()"/>
+		<input type="button" value="Twitter Preannouncements" onclick="showAnnouncements()"/>
+		<input type="button" value="Twitter Live posts" onclick="showLiveAlerts()"/>
 		<div id="calendar"></div>
 	</div>
 </body>
