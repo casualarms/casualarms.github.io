@@ -33,7 +33,7 @@
 	,"272708868251844609": {"name": "Spinning",            "badges": ["clash", "host"] }
 	,"347698413321584641": {"name": "Mellax",              "badges": ["clash"] }
 	,"226011628389269504": {"name": "Bonlino",             "badges": ["season_kart", "clash"] }
-	,"218118468401102850": {"name": "Era Wolf",            "badges": ["clash", "season_arms", "season_splat"] }
+	,"218118468401102850": {"name": "Era Wolf",            "badges": ["clash", "season_arms", "season_splat", "host"] }
 	,"182639827148079106": {"name": "Buster",              "badges": ["clash", "scramble", "season_arms", "cgc"] }
 	,"181858274910404608": {"name": "ThisIsRusko",         "badges": ["clash"] }
 	,"275680929668792331": {"name": "Archangel-Vakarian",  "badges": ["clash"] }
@@ -46,7 +46,7 @@
 	,"267337504032555020": {"name": "FruXteN",             "badges": ["clash"] }
 	,"375503052028903434": {"name": "TameDame",            "badges": ["clash"] }
 	,"393525706816094209": {"name": "Flesheater",          "badges": ["clash"] }
-	,"233713315304439808": {"name": "Spicy DX",            "badges": ["clash", "season_arms", "season_splat", "season_smash"] }
+	,"233713315304439808": {"name": "Spicy DX",            "badges": ["clash", "season_arms", "season_splat", "season_smash", "host"] }
 	,"208740208768843776": {"name": "Orinetta",            "badges": ["clash"] }
 	,"258098427844493316": {"name": "Sora",                "badges": ["clash", "scramble", "season_arms", "season_smash", "host"] }
 	,"269980957212147714": {"name": "Mario119",            "badges": ["clash"] }
@@ -74,7 +74,7 @@
 	,"315301009117413376": {"name": "GM-Tom",              "badges": ["casualcrew", "season_arms", "season_arms_win", "season_splat", "season_smash", "season_smash_win", "clash", "scramble"] }
 	,"308818549655339008": {"name": "E.P.Silon",           "badges": ["cgc"] }
 	,"398013985619968010": {"name": "idkhonestly",         "badges": ["cgc"] }
-	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_arms", "season_kart", "season_splat", "scramble"] }
+	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_arms", "season_kart", "season_splat", "scramble", "host"] }
 	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "season_arms", "season_kart", "clash", "scramble"] }
 	
 	,"196169851788591104": {"name": "Jiko",                "badges": ["clash", "scramble"] }
@@ -100,14 +100,14 @@
 	,"219155908830298132": {"name": "Uran",                "badges": ["season_kart", "season_smash", "clash", "clash_win", "scramble", "scramble_win"] }
 	,"265719610681065472": {"name": "CheezLuigi",          "badges": ["season_arms", "clash", "scramble", "scramble_win"] }
 	,"508809343597281305": {"name": "GlitchWork",          "badges": ["season_arms"] }
-	,"464467971574595585": {"name": "Goomba",              "badges": ["season_arms", "season_kart", "season_splat", "clash", "scramble"] }
+	,"464467971574595585": {"name": "Goomba",              "badges": ["season_arms", "season_kart", "season_splat", "clash", "scramble", "host"] }
 	,"207741284050403328": {"name": "Geeligan",            "badges": ["season_kart"] }
 	
 	,"138729882556301313": {"name": "Dendy",               "badges": ["scramble"] }
 	,"196399844988813312": {"name": "Boop",                "badges": ["scramble"] }
 	,"381626947119218699": {"name": "Beamer",              "badges": ["clash", "scramble", "clash_win", "scramble_win"] }
 	
-	,"196380470177562625": {"name": "Gote",                "badges": ["clash", "scramble", "season_arms", "season_kart", "season_splat", "season_kart_win", "season_smash", "cgc"] }
+	,"196380470177562625": {"name": "Gote",                "badges": ["clash", "scramble", "season_arms", "season_kart", "season_splat", "season_kart_win", "season_smash", "cgc", "host"] }
 	,"163427256264425472": {"name": "Xelor41023",          "badges": ["scramble"] }
 	,"164685995583733760": {"name": "AntheM",              "badges": ["scramble", "scramble_win"] }
 	,"266330502439370752": {"name": "kilian_smt",          "badges": ["scramble"] }
