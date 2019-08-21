@@ -15,6 +15,7 @@ var stageSets            = staticDataJSON["stageSets"];
 var itemSets             = staticDataJSON["itemSets"];
 var eventSponsors        = staticDataJSON["eventSponsors"];
 var badgeList            = staticDataJSON["badgeList"];
+var eventTypesLeaderboards = staticDataJSON["eventTypesLeaderboards"];
 
 for (var game in eventGames)
 {

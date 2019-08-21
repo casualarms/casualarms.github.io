@@ -857,19 +857,9 @@ function selectOptionWithValue(elem, value, defaultToZero=false)
 		return false;
 }
 
-function countsForLederboards(event)
+function countsForLederboards(ev)
 {
-	switch (event.game)
-	{
-		case "arms":
-			return ["leaderboard"].includes(event.type);
-		case "kart":
-			return ["race"].includes(event.type);
-		case "splat":
-			return ["friends", "salmon"].includes(event.type);
-		case "smash":
-			return ["arena"].includes(event.type);
-	}
+	return eventTypesLeaderboards[ev.game].includes(ev.type);
 }
 
 function range(size, startAt = 0)

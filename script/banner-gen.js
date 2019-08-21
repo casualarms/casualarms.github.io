@@ -212,7 +212,7 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 	
 	// Lobby title
 	var lobbyTitle = ("LOBBY HOST" + pluralHosts).toUpperCase();
-	if (eventdata.game == "kart") lobbyTitle = "TOURNAMENT CODE";
+	if (eventdata.game == "kart" && eventdata.type == "leaderboard") lobbyTitle = "TOURNAMENT CODE";
 	else if (eventdata.type == "tournament") lobbyTitle = "TOURNAMENT INFO";
 	ctx.font = titleFont;
 	ctx.textAlign = "center";

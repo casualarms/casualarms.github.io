@@ -81,10 +81,9 @@
 			"tournament"    : "Tournament"
 		},
 		"kart" : {
-			"race"          : "Race Lobby",
-			"battle"        : "Battle Lobby",
-			"impromptu"     : "Impromptu Lobby",
-			"tournament"    : "Tournament"
+			"leaderboard"   : "Tournament",
+			"friends"       : "Friend Lobby",
+			"impromptu"     : "Impromptu Lobby"
 		},
 		"splat" : {
 			"friends"       : "Friends Lobby",
@@ -100,6 +99,13 @@
 		"variety" : {
 			"impromptu"     : "Impromptu Lobby"
 		}
+	},
+	"eventTypesLeaderboards" : {
+		"arms"    : ["leaderboard"],
+		"kart"    : ["leaderboard"],
+		"splat"   : ["friends"],
+		"smash"   : ["arena"],
+		"variety" : []
 	},
 	"badgeList" : {
 		"casualcouple" : {

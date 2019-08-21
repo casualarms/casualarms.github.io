@@ -116,7 +116,21 @@ permalink: /staff/advertising/index.html
 			]
 		},
 		"kart" : {
-			
+			"leaderboard"    : [
+				"",
+				"",
+				""
+			],
+			"friends"    : [
+				"",
+				"",
+				""
+			],
+			"impromptu"  : [
+				"",
+				"",
+				""
+			]
 		}
 	};
 	
@@ -135,8 +149,9 @@ permalink: /staff/advertising/index.html
 			itemsText = getItemSetName(ev.game, ev.items);
 		
 		var hosttext = "";
-		for (var h = 0; h < ev.hosts.length; h++)
-			hosttext += ev.hosts[h].name + ": [" + ev.hosts[h].code + "]\n";
+		if ("hosts" in ev)
+			for (var h = 0; h < ev.hosts.length; h++)
+				hosttext += ev.hosts[h].name + ": [" + ev.hosts[h].code + "]\n";
 			
 		var leaderboards = "https://www.casualarms.net/leaderboards/";
 		
@@ -144,7 +159,6 @@ permalink: /staff/advertising/index.html
 		text = text.replace("{directlink}", "http://www.casualarms.net/events/?id=" + getEventID(ev));
 		text = text.replace("{hosts}", hosttext);
 		text = text.replace("{leaderboards}", leaderboards);
-		text = text.replace("{code}", ev.hosts[0].code);
 		text = text.replace("{theme}", theme.name);
 		text = text.replace("{stages}", stagesText);
 		text = text.replace("{items}", itemsText);
