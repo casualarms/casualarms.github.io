@@ -6,8 +6,8 @@
 	,{"title":"Free Play Friday","game":"kart","type":"impromptu","alert":false,"date":"2019-08-23T23:30:00.000Z","duration":60,"tz":"EDT","theme":"200cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Splaturday","game":"splat","type":"friends","alert":true,"date":"2019-08-24T16:30:00.000Z","duration":60,"tz":"EDT","theme":"turf-zones","stages":"custom[11,12,27,35,36]","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-08-24T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"firearms-smash","stages":"challenger-smash","hosts":[{"name":"Sora","code":"0499-4528-8293"}],"streamers":["sorafirestorm"]}
-	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-08-25T19:45:00.000Z","duration":120,"tz":"EDT","theme":"bane-of-ranked","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-
+	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-08-25T19:45:00.000Z","duration":120,"tz":"EDT","theme":"bane-of-ranked","stages":"all-arms","hosts":[{"name":"Goomba","code":"6746-5064-5605"}]}
+	
 	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-08-26T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-zones","stages":"custom[8,9,35,36]","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-08-26T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","items":"allies-smash","stages":"challenger-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-08-28T01:00:00.000Z","duration":120,"tz":"PDT","theme":"everything","stages":"breakable","hosts":[{"name":"To Be Announced","code":""}]}
