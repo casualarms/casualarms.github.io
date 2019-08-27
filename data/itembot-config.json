@@ -41,5 +41,18 @@
 			"response" : "`AI_COLLABORATION_DETECTED\nC0DE_BR0k3N\nENTER_SAVE_ARMS:` <http://discord.gg/8mG8Uyu>"
 		}
 	],
-	"feedbackMessage" : "Thanks for participating in the tournament! If you have any feedback, please fill in the form here: https://goo.gl/forms/Qe3R0z5zwK75ZQtC3"
+	"feedbackMessage" : "Thanks for participating in the tournament! If you have any feedback, please fill in the form here: https://goo.gl/forms/Qe3R0z5zwK75ZQtC3",
+	"vcNames" : {
+		"event"     : "{EVENT_TITLE}",
+		"event2"    : "{EVENT_GAME}",
+		"event3"    : "{EVENT_GAME}: {EVENT_TITLE}",
+		"party"     : "ARMS Party Lobby",
+		"crash"     : "ARMS Party Crash",
+		"arena"     : "ARMS Arena",
+		"kart"      : "Mario Kart",
+		"turf"      : "Splatoon Turf Wars",
+		"splatfest" : "Splatoon Splatfest",
+		"smash"     : "Smash Bros. Battle Arena",
+		"minecraft" : "Minecraft"
+	}
 }
