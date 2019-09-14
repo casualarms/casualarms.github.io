@@ -82,4 +82,10 @@
 		,{ "date" : "2019-07-27", "type" : "clash", "players" : 10, "winner" : [
  		{ "id" : "458379136621084673", "name" : "JBPro" }
 	]}
+	,{ "date" : "2019-08-24", "type" : "clash", "players" : 12, "winner" : [
+ 		{ "id" : "458379136621084673", "name" : "JBPro" }
+	]}
+	,{ "date" : "2019-09-14", "type" : "scramble", "players" : 10, "winner" : [
+ 		{ "id" : "174558464230686720", "name" : "Gryffical" }
+	]}
 ]
