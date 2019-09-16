@@ -1,14 +1,14 @@
 [
 	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-09-16T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-clams","stages":"custom[21,22,25,26]","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-09-16T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"parts-smash","stages":"walkoff-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-18T01:00:00.000Z","duration":120,"tz":"PDT","theme":"everything","stages":"teams","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Era Wolf","code":"5972-7410-1228"}]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-18T01:00:00.000Z","duration":120,"tz":"PDT","theme":"anything","stages":"large","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Era Wolf","code":"5972-7410-1228"}]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2019-09-18T18:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-2v2-smash","items":"firearms-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-18T22:00:00.000Z","duration":120,"tz":"EDT","theme":"fights-only","stages":"cote","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"}],"mixers":["CasualARMS"]}
-	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-19T18:00:00.000Z","duration":120,"tz":"GMT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-18T22:00:00.000Z","duration":120,"tz":"EDT","theme":"fights-only","stages":"dynamic","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"}],"mixers":["CasualARMS"]}
+	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-19T18:00:00.000Z","duration":120,"tz":"GMT","theme":"gimmickless","stages":"all-arms","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2019-09-20T01:30:00.000Z","duration":60,"tz":"PDT","theme":"turf-tower","stages":"custom[5,6,23,24]","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Splaturday","game":"splat","type":"friends","alert":true,"date":"2019-09-21T16:30:00.000Z","duration":60,"tz":"EDT","theme":"turf-zones","stages":"custom[0,1,45,46]","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-09-21T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"sports-smash","stages":"challenger-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-22T19:45:00.000Z","duration":120,"tz":"EDT","theme":"corner-chaos","stages":"corners","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-22T19:45:00.000Z","duration":120,"tz":"EDT","theme":"vball","stages":"corners","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 
 
 

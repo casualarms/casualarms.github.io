@@ -397,135 +397,148 @@
 	"eventThemes" : {
 		"arms" : [
 			{
-				"key"             : "everything",
-				"name"            : "Anything Goes",
-				"description"     : "All modes possible in a Friend Lobby.",
-				"solo_fight"      : [2, 3, 4],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [2, 3],
-				"hedlok_scramble" : [2, 3, 4],
-				"hoops"           : [2],
-				"skillshot"       : [2, 4],
-				"v_ball"          : [2, 4],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"anything",
+				"name":"Anything Goes",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[4],
+				"vs_hedlok":[2,3],
+				"hedlok_scramble":[2,3,4],
+				"hoops":[2],
+				"skillshot":[2,4],
+				"v_ball":[2,4],
+				"items":true,
+				"streak_bonuses":false
+			} ,{
+				"key":"fights-only",
+				"name":"Fights Only",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[4],
+				"vs_hedlok":[2,3],
+				"hedlok_scramble":[2,3,4],
+				"hoops":[],
+				"skillshot":[],
+				"v_ball":[],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "breakable-bits",
-				"name"            : "Breakable Bits",
-				"description"     : "",
-				"solo_fight"      : [2],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [2, 3, 4],
-				"hoops"           : [],
-				"skillshot"       : [2, 4],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"gimmickless",
+				"name":"No Gimmicks",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[4],
+				"vs_hedlok":[],
+				"hedlok_scramble":[],
+				"hoops":[],
+				"skillshot":[],
+				"v_ball":[],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "teambuilding",
-				"name"            : "Teambuilding",
-				"description"     : "All (and only) modes where each player is partnered with teammates.",
-				"solo_fight"      : [],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [2, 3],
-				"hedlok_scramble" : [],
-				"hoops"           : [],
-				"skillshot"       : [4],
-				"v_ball"          : [4],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"solo",
+				"name":"Going Solo",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[],
+				"vs_hedlok":[],
+				"hedlok_scramble":[2,3,4],
+				"hoops":[2],
+				"skillshot":[2],
+				"v_ball":[2],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "bane-of-ranked",
-				"name"            : "Bane of Ranked",
-				"description"     : "",
-				"solo_fight"      : [3, 4],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [3, 4],
-				"hoops"           : [2],
-				"skillshot"       : [2, 4],
-				"v_ball"          : [2, 4],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"teams",
+				"name":"Teambuilding",
+				"description":"",
+				"solo_fight":[],
+				"team_fight":[4],
+				"vs_hedlok":[2,3],
+				"hedlok_scramble":[],
+				"hoops":[],
+				"skillshot":[4],
+				"v_ball":[4],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "barrier-bonanza",
-				"name"            : "Barrier Bonanza",
-				"description"     : "",
-				"solo_fight"      : [2, 3, 4],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [2, 3, 4],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [2, 4],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"bane-ranked",
+				"name":"Bane of Ranked",
+				"description":"",
+				"solo_fight":[3,4],
+				"team_fight":[4],
+				"vs_hedlok":[],
+				"hedlok_scramble":[3,4],
+				"hoops":[2],
+				"skillshot":[2,4],
+				"v_ball":[2,4],
+				"items":true,
+				"streak_bonuses":false
+			} ,{
+				"key":"hoops",
+				"name":"Fights & Hoops",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[4],
+				"vs_hedlok":[],
+				"hedlok_scramble":[],
+				"hoops":[2],
+				"skillshot":[],
+				"v_ball":[],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "corner-chaos",
-				"name"            : "Corner Chaos",
-				"description"     : "",
-				"solo_fight"      : [2],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [3],
-				"hedlok_scramble" : [],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"skillshot",
+				"name":"Fights & Skillshot",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[4],
+				"vs_hedlok":[],
+				"hedlok_scramble":[],
+				"hoops":[],
+				"skillshot":[2,4],
+				"v_ball":[],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "hedlok-havok",
-				"name"            : "Hedlok Havok",
-				"description"     : "All (and only) modes which involve Hedlok.",
-				"solo_fight"      : [],
-				"team_fight"      : [],
-				"vs_hedlok"       : [2, 3],
-				"hedlok_scramble" : [2, 3, 4],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"vball",
+				"name":"Fights & V-ball",
+				"description":"",
+				"solo_fight":[2,3,4],
+				"team_fight":[4],
+				"vs_hedlok":[],
+				"hedlok_scramble":[],
+				"hoops":[],
+				"skillshot":[],
+				"v_ball":[2,4],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "fights-only",
-				"name"            : "Fights Only",
-				"description"     : "All standard fight modes and no minigames! Hedlok is welcome, though.",
-				"solo_fight"      : [2, 3, 4],
-				"team_fight"      : [4],
-				"vs_hedlok"       : [2, 3],
-				"hedlok_scramble" : [2, 3, 4],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"clash",
+				"name":"Casual Clash",
+				"description":"",
+				"solo_fight":[2],
+				"team_fight":[],
+				"vs_hedlok":[],
+				"hedlok_scramble":[],
+				"hoops":[],
+				"skillshot":[],
+				"v_ball":[],
+				"items":true,
+				"streak_bonuses":false
 			}, {
-				"key"             : "clash",
-				"name"            : "Casual Clash",
-				"description"     : "Used in the Casual Clash tournament and warmup lobby.",
-				"solo_fight"      : [2],
-				"team_fight"      : [],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false
-			}, {
-				"key"             : "scramble",
-				"name"            : "Casual Scramble",
-				"description"     : "Used in the Casual Scramble tournament and warmup lobby.",
-				"solo_fight"      : [],
-				"team_fight"      : [],
-				"vs_hedlok"       : [],
-				"hedlok_scramble" : [2],
-				"hoops"           : [],
-				"skillshot"       : [],
-				"v_ball"          : [],
-				"items"           : true,
-				"streak_bonuses"  : false
+				"key":"scramble",
+				"name":"Casual Scramble",
+				"description":"",
+				"solo_fight":[],
+				"team_fight":[],
+				"vs_hedlok":[],
+				"hedlok_scramble":[2],
+				"hoops":[],
+				"skillshot":[],
+				"v_ball":[],
+				"items":true,
+				"streak_bonuses":false
 			}
 		],
 		"kart" : [
@@ -672,17 +685,14 @@
 	"stageSets" : {
 		"arms"  : [
 			 { "key" : "all-arms",           "name" : "All",                    "stages" : [{ "start" : 0, "end" : 14 }]}
-			,{ "key" : "breakable",          "name" : "Breakable",              "stages" : [1, 3, 5, 9, 11, 12, 14] }
-			,{ "key" : "teams",              "name" : "For Teams",              "stages" : [0, 1, 3, 4, 8, 9, 10, 12]}
-			,{ "key" : "bane-ranked",        "name" : "Bane of Ranked",         "stages" : [2, 4, 6, 8, 14]}
-			,{ "key" : "near-far",           "name" : "Near & Far",             "stages" : [0, 1, 2, 4, 8, 11, 13]}
-			,{ "key" : "barriers",           "name" : "Barriers",               "stages" : [1, 5, 6, 7, 8, 9, 12, 14]}
-			,{ "key" : "corners",            "name" : "Corners",                "stages" : [0, 1, 7, 10, 11, 13, 14]}
-			,{ "key" : "ranked",             "name" : "Ranked",                 "stages" : [0,1,2,3,4,5,6,7,9,10,11,12,13,14]}
-			,{ "key" : "backroom-start",     "name" : "Backroom Starters",      "stages" : [3,7,9,12,13]}
-			,{ "key" : "backroom-counter",   "name" : "Backroom Full",          "stages" : [3,5,7,9,11,12,13]}
-			,{ "key" : "cote",               "name" : "CotE Full",              "stages" : [0,1,3,5,7,9,11,12,13]}
-			,{ "key" : "japan",              "name" : "Japanse",                "stages" : [0,1,2,3,4,5,9,10,11,12,13]}
+			,{ "key" : "dynamic",            "name" : "Dynamic Stages",         "stages" : [1,3,5,8,9,12,14]}
+			,{ "key" : "backroom",           "name" : "Backroom Full",          "stages" : [3,5,7,9,11,12,13]}
+			,{ "key" : "cote",               "name" : "Champions of the Era",   "stages" : [0,1,3,5,7,9,11,12,13]}
+			,{ "key" : "japan",              "name" : "Japanese Traditional",   "stages" : [0,1,2,3,4,5,9,10,11,12,13]}
+			,{ "key" : "corners",            "name" : "Getting Cornered",       "stages" : [0,1,7,10,11,13,14]}
+			,{ "key" : "barriers",           "name" : "Barrier Blockage",       "stages" : [1,5,6,8,9,12,14]}
+			,{ "key" : "large",              "name" : "Room to Maneuver",       "stages" : [1,3,4,6,8,9,10,12]}
+			,{ "key" : "mmall",              "name" : "Tight and Narrow",       "stages" : [0,5,7,11,13,14]}
 		],
 		"kart"  : [
 			 { "key" : "all-race",           "name" : "Race Tracks",            "stages" : [{ "start" : 0, "end" : 47 }]}
