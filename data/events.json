@@ -1,5 +1,8 @@
 [
-	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-09-23T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-zones","stages":"custom[19,20,25,26,27,28]","hosts":[{"name":"To Be Announced","code":""}]}
+	{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-09-21T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"sports-smash","stages":"challenger-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-22T19:45:00.000Z","duration":120,"tz":"EDT","theme":"vball","stages":"corners","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+
+	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-09-23T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-zones","stages":"custom[19,20,25,26,27,28]","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-09-23T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","items":"melee-smash","stages":"vanilla-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-25T01:00:00.000Z","duration":120,"tz":"PDT","theme":"clash","stages":"japan","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2019-09-25T18:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-1v1v1v1-smash","items":"upgrades-smash","stages":"challenger-smash","hosts":[{"name":"To Be Announced","code":""}]}
@@ -9,9 +12,9 @@
 	,{"title":"Splaturday","game":"splat","type":"friends","alert":true,"date":"2019-09-28T16:30:00.000Z","duration":60,"tz":"EDT","theme":"turf-tower","stages":"custom[21,22,43,44]","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2019-09-28T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-2v2-smash","items":"parts-smash","stages":"vertical-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2019-09-29T19:45:00.000Z","duration":120,"tz":"EDT","theme":"teams","stages":"barriers","hosts":[{"name":"To Be Announced","code":""}]}
-
 	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2019-09-30T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"custom[17,18,29,30]","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2019-09-30T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"healing-smash","stages":"journey-smash","hosts":[{"name":"To Be Announced","code":""}]}
+	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-10-02T01:00:00.000Z","duration":120,"tz":"PDT","theme":"anything","stages":"barriers","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2019-10-02T18:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-2v2-smash","items":"tossables-smash","stages":"journey-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2019-10-02T22:00:00.000Z","duration":120,"tz":"EDT","theme":"bane-ranked","stages":"dynamic","hosts":[{"name":"To Be Announced","code":""}],"mixers":["CasualARMS"]}
