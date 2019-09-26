@@ -89,7 +89,7 @@
 			"friends"       : "Friends Lobby",
 			"salmon"        : "Salmon Run Lobby",
 			"impromptu"     : "Impromptu Lobby",
-			"tournament"    : "Tournament"
+			"cookoff"       : "Casual Cookoff"
 		},
 		"smash" : {
 			"arena"         : "Battle Arena",

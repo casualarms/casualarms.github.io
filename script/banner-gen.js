@@ -64,6 +64,35 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		return;
 	}
 	
+	if (eventdata.game == "splat" && eventdata.type == "cookoff")
+	{
+		ctx.drawImage(images["template"], 0, 0);
+		var startDate = new Date(eventdata.date);
+		var dateText = (monthNames[startDate.getMonth()] + " " + startDate.getDate()).toUpperCase();
+		dateText += "    " + formatTime(startDate).toUpperCase();
+		
+		if (!nativeTime)
+		{
+			var diff = timeZoneOffset(eventdata.tz);
+			startDate.setUTCHours(startDate.getUTCHours() + diff);
+			
+			dateText = (monthNames[startDate.getUTCMonth()] + " " + startDate.getUTCDate()).toUpperCase();
+			dateText += "    " + (formatTimeUTC(startDate, diff) + " " + eventdata.tz).toUpperCase();
+		}
+		
+		
+		ctx.fillStyle = "black";
+		ctx.fillRect(0, 400, width, 80);
+		
+		ctx.fillStyle = "white";
+		ctx.textAlign = "left";
+		
+		ctx.font = "32pt ARMS";
+		ctx.fillText(dateText, 60, 456);
+		
+		return;
+	}
+	
 	
 	var startDate = new Date(eventdata.date);
 	var endDate = getEventEnd(eventdata);
@@ -133,11 +162,19 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		break;
 	
 	case "splat":
-		stripeBgColor = bgColor;
-		titleColor = websiteBgColor = "#00dd00";
+		if (eventdata.type == "salmon")
+		{
+			ctx.fillStyle = "#c03e07";
+			ctx.fillRect(0, 0, width, height);
+		//	ctx.fillStyle = logoBgColor;
+		//	ctx.fillRect(0, 0, width, 115);
+		}
+		
+		stripeBgColor = (eventdata.type == "salmon") ? "#e321cb" : bgColor;
+		titleColor = websiteBgColor = (eventdata.type == "salmon") ? "#35a054" : "#00dd00";;
 		renderSplash(ctx, width, height, -200, 100, 1.0, "rgb(0,0,0)",       0.10, Math.seed("ec7O63".hashCode()));
 		renderSplash(ctx, width, height,  200,   0, 1.4, "rgb(255,255,255)", 0.15, Math.seed("pGvubT".hashCode()));
-		ctx.fillStyle = "#00dd00";
+		ctx.fillStyle = (eventdata.type == "salmon") ? "#35a054" : "#00dd00";
 		ctx.fillRect(0, 0, width, 115);
 		break;
 	
@@ -320,7 +357,7 @@ function bannerImageData(eventdata)
 		"discord"  : "/assets/banners/logo-discord.png",
 	};
 	
-	if (["clash", "scramble"].includes(eventdata.type))
+	if (["clash", "scramble", "cookoff"].includes(eventdata.type))
 	{
 		imageData["template"]     = "/assets/banners/template-" + eventdata.type + ".jpg";
 		imageData["sponsor"]      = "/assets/banners/sponsor-mind-games.png";
@@ -329,7 +366,7 @@ function bannerImageData(eventdata)
 	{
 		imageData["mlm"]          = "/assets/banners/logo-mlm.png";
 		imageData["cote"]         = "/assets/banners/logo-cote.jpg";
-		imageData["game"]         = "/assets/banners/logo-" + eventdata.game + ".png";
+		imageData["game"]         = "/assets/banners/logo-" + eventdata.game + ((eventdata.game == "splat" && eventdata.type == "salmon") ? "-sr" : "") + ".png";
 		imageData["livestream"]   = "/assets/banners/icon-livestream.png";
 		imageData["livestream-mixer"]   = "/assets/banners/icon-mixer.png";
 		imageData["leaderboards"] = "/assets/banners/icon-leaderboards.png";

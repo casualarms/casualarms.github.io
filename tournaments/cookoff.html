@@ -1,0 +1,153 @@
+---
+permalink: /cookoff/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Casual Cookoff – Casual ARMS</title>
+	{% include meta_tags.html %}
+	<link rel="stylesheet" href="/assets/style.css">
+	<script src="/script/general.js"></script>
+	<script src="/data/support.js"></script>
+	<script src="/script/banner-gen.js"></script>
+	<script>
+	
+	var cookoffs = [];
+	
+	function load()
+	{
+		
+		// Display next event feature
+		var nextEventData = upcomingEvents();
+		for (var i = 0; i < nextEventData.length; ++i)
+		{
+			var ev = nextEventData[i];
+			if (ev.game == "splat" && ev.type == "cookoff")
+				cookoffs.push(ev);
+		}
+		
+		displayEvent("cookoff");
+	}
+	
+	function displayEvent(type)
+	{
+		$("next-section").style.display = "none";
+		
+		if (cookoffs.length > 0)
+		{
+			var event = cookoffs[0];
+			var evStart = new Date(event.date);
+			var evEnd = getEventEnd(event);
+			var evCheckIn = new Date(evStart.getTime() - 60 * 60000);
+			
+			
+			generateBanner(880, 480, event, "next-banner", true);
+			$("next-section").style.display = "block";
+			
+		}
+	}
+	
+	
+	
+	</script>
+	<style>
+		ul {
+			list-style-type: circle;
+		}
+		
+		li { line-height: 1.4em; }
+		
+		.stage.active {
+			background-color: black;
+			color: yellow;
+		}
+		
+		#next-section {
+			text-align: center;
+		}
+		
+		#next-banner {
+			width: 95%;
+			max-width: 500pt;
+			box-sizing: border-box;
+			border: 3pt solid black;
+		}
+		
+		#container.scramble {
+			background: #444;
+			color: white;
+		}
+		
+		#container.scramble .mode {
+			background-color: #999;
+			color: black;
+		}
+		
+		.mode {
+			background-color: yellow;
+			color: black;
+		}
+		
+		#container .mode.active-mode {
+			background-color: black;
+			color: white;
+		}
+		
+		body {
+			background-color: #1ec611;
+		}
+		
+		#container {
+			background-color: white;
+			font-family: Georgia, "Times New Roman", sans-serif;
+			font-size: 1.2em;
+			background: #ff9315;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+		}
+		
+		em {
+			color: #ff57eb;
+		}
+		
+	</style>
+</head>
+
+<body onload="load()">
+	<h1><a href="/">Casual ARMS</a></h1>
+	<div id="container">
+		<h2>Casual Cookoff</h2>
+		
+		<!-- BEGIN INTRO TEXT AREA -->
+		
+		<p>Thanks to your generous support through our Patreon, all major tournaments held by Casual ARMS will now feature <em>prize packages!</em> All participants will be eligible for these prizes as detailed below.</p>
+		<p>All Casual ARMS tournament prizes will be distributed via random drawing with odds of winning determined by each participant's performance. Winning a fight earns .5 points with an additional 1 point awarded for the winner of every match (.5 each for a tie). A bye awards 2 points. At the end of each tournament, all accumulated points will serve as entries in the drawing for any prizes being distributed. Each participant can win only one prize per event.</p>
+		<p>Tournaments at Casual ARMS feature a Swiss style ruleset, which means there are <em>no eliminations</em>. You will play a series of rounds against other players with similar win-loss rates to you. Your individual fights will all matter, so be sure to report your full results of each fight as detailed in the rules below. Players will be ranked at the end for points earned, and the player with the most points will be the winner!</p>
+		<p>Please <em>read all the rules</em> before participating, and be ready to have tons of fun with us at Casual ARMS!</p>
+		
+		<!-- END INTRO TEXT AREA -->
+		
+		<div id="next-section" style="display: none;">
+			<h3>Next tournament</h3>
+			<canvas id="next-banner"></canvas>
+			<p>Sign up on the <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord server</em></a> today!</p>
+			<p>Send a DM to <span class="command">@Rashiko</span> or <span class="command">@LiteraryFirearms</span>.</p>
+		</div>
+		
+		<h2 id="rules">Casual Cookoff Rules</h2>
+		
+		<p>When the tournament starts, and at the start of each round, we will send out a ping to inform participants of their teammates for the round. Then just head down to either <span class="command">#shift-1</span> or  <span class="command">#shift-2</span> to exchange friend requests and join a single Salmon Run lobby together. If your team is assigned less than four members, wait for all assigned members to join, then recruit a random online player to fill the final slot.</p>
+
+		<p>On the final results page displaying the results from each member of your team, take a screenshot and post it in your matchmaking channel while pinging <span class="command">@Casual Couple (Owner)</span> so we can retrieve your scores. You should also be able to retrieve this screenshot from the Splatnet app, if needed. The total of golden eggs retrieved by the whole team will be added to your personal score, so be sure to work together as a team as there is no need to fight for eggs with your teammates.</p>
+
+		<p>When the scores from each group have been collected, we will process them swiftly and send out the ping for the next round. At the end of the event, the player with the highest score will be declared <em>Grizzco Employee of the Month</em>! We will also raffle off a set of three <em>eShop</em> prizes with your odds of winning determined by your final score.</p>
+
+		<p>In the event of a <em>disconnection</em> during a round, simply get your group to rejoin the lobby and try again. For the sake of time, each group is only allowed one such retry in these situations and if it happens twice, the best of the two final scores will be used.</p>
+		
+		<!--<h2 id="history">Casual Tournament History</h2>
+		<div id="history-container"></div>-->
+		
+		{% include footer.html %}
+	</div>
+</body>
+</html>
