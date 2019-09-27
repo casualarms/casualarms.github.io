@@ -97,7 +97,17 @@ permalink: /staff/advertising/index.html
 				"",
 				""
 			],
+			"impromptu" : [
+				"",
+				"",
+				""
+			],
 			"salmon" : [
+				"",
+				"",
+				""
+			],
+			"cookoff" : [
 				"",
 				"",
 				""
@@ -159,7 +169,7 @@ permalink: /staff/advertising/index.html
 		text = text.replace("{directlink}", "http://www.casualarms.net/events/?id=" + getEventID(ev));
 		text = text.replace("{hosts}", hosttext);
 		text = text.replace("{leaderboards}", leaderboards);
-		text = text.replace("{theme}", theme.name);
+		if (theme) text = text.replace("{theme}", theme.name);
 		text = text.replace("{stages}", stagesText);
 		text = text.replace("{items}", itemsText);
 		

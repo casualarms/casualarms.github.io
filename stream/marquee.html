@@ -189,7 +189,7 @@
 				.filter(function(item) { return !("id" in item && ["339592807104643083", "241565548318687232"].includes(item.id)); })
 				.sort(function(a, b) { return b.monthly - a.monthly; });
 			
-			scroll_html += "<em>Monthly Top 10</em> ";
+			scroll_html += "<em>Monthly " + eventGames[game] + " Top 10</em> ";
 			for (var i = 0; i < Math.min(board.length, 10); ++i)
 				scroll_html += board[i].name + ": " + board[i].monthly + "<img class='armscoin' src='/leaderboards/coin_" + game + "_dark.png'/>" + (i < Math.min(board.length, 10) - 1 ? " — " : "");
 			scroll_html += "<span class='spacer'></span>";
