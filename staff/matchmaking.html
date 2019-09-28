@@ -21,10 +21,10 @@ permalink: /staff/matchmaking/index.html
 	}
 	
 	#wrapper {
-		max-width: 60em;
-		margin: 0 auto;
-		padding: 1em 2em;
-		background-color: #36393f;
+		width: 70%;
+		box-sizing: border-box;
+		padding: 0 1em;
+		padding-bottom: 5em;
 	}
 	
 	h1, h2, h3, h4 {
@@ -37,6 +37,10 @@ permalink: /staff/matchmaking/index.html
 		color: white;
 		width: 100%;
 		font-family: monospace;
+	}
+	
+	fieldset {
+		border: none;
 	}
 	
 	.round {
@@ -91,9 +95,152 @@ permalink: /staff/matchmaking/index.html
 	input:disabled {
 		background-color: yellow;
 	}
+	
+	#mode-selector {
+		text-align: center;
+		font-size: 1.2em;
+		text-transform: uppercase;
+	}
+	
+	.mode {
+		padding: 3pt 12pt;
+		border: 1pt solid black;
+		cursor: pointer;
+		display: inline-block;
+		margin: 5pt 0;
+	}
 
+	.mode:hover {
+		background-color: #888;
+	}
+	
+	.mode.active-mode {
+		background-color: yellow;
+		color: black;
+	}
+	
+	#footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: black;
+		color: white;
+		padding: 0.5em 1em;
+		box-sizing: border-box;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	
+	#footer p {
+		margin: 0;
+	}
+	
+	.ftr-item {
+		margin-right: 2em;
+	}
+	
+	#ftr-right {
+		float: right;
+	}
+	
+	#button-next-round, #button-finalize {
+		font-size: 0.8em;
+		font-weight: bold;
+		width: 6.5em;
+		border: none;
+		margin-left: 1em;
+		border: 3px solid black;
+	}
+	
+	#button-next-round:hover, #button-finalize:hover {
+		border: 3px solid white;
+		cursor: pointer;
+	}
+	
+	#button-next-round {
+		background-color: green;
+	}
+	
+	#button-finalize {
+		background-color: yellow;
+	}
+	
+	
+	#right-pane {
+		position: fixed;
+		right: 0;
+		top: 0;
+		width: 30%;
+		box-sizing: border-box;
+		background-color: black;
+		padding: 1em;
+		height: 100%;
+	}
+	
+	#results-table {
+		border-collapse: collapse;
+		border: none;
+		width: 100%;
+		font-size: 0.8em;
+	}
+	
+	#results-table td, #results-table th {
+		border: none;
+		padding: 4px;
+	}
+	
+	#results-table tr { background-color: #222;}
+	#results-table tr:nth-child(even) { background-color: #333; }
+	#results-table tr:hover { background-color: #444; }
+	
+	#results-table th {
+		text-align: left;
+		background-color: white;
+		color: black;
+	}
+	
+	.td-pts { text-align: right; }
+	
+	.tr-dropped { color: rgba(255,255,255,0.3); text-decoration:line-through; }
+	
+	.btn-drop, .btn-undrop {
+		font-weight: bold;
+	}
+	
+	.btn-drop { color: red; }
+	.btn-undrop { color: green; }
+	
+	#modal {
+		height: 80%;
+		width: 60%;
+		position: fixed;
+		top: 10%;
+		right: 20%;
+		background-color: white;
+		box-shadow: 0px 0px 30px white;
+		border-radius: 1.5em;
+		padding: 1.5em;
+		box-sizing: border-box;
+	}
+	
 	</style>
 	<script>
+	
+	function changeMode(mode)
+	{
+		activeGame = game;
+		
+		var buttons = document.getElementsByClassName("mode");
+		for (var b = 0; b < buttons.length; ++b)
+			buttons[b].className = "mode";
+		$("md-" + mode).className += " active-mode active-mode-" + activeGame;
+		
+		$("settings-manual").style.display = "none";
+		$("settings-simulate").style.display = "none";
+		$("settings-" + mode).style.display = "block";
+		
+	}
 	
 	function displayGraph(connectivity, rounds)
 	{
@@ -419,24 +566,38 @@ permalink: /staff/matchmaking/index.html
 		return round;
 	}
 	
+	function confirmProcessRound()
+	{
+		if (confirm("Proceed to next round? This action cannot be undone."))
+			processRound();
+	}
+	
+	function confirmFinalize()
+	{
+		if (confirm("Finalize this tournament? This action cannot be undone."))
+		{
+			playerScores = getScoreSummary(0, currentRound-1);
+			// Disable locked score inputs
+			for (var round = 0; round < scores.length; ++round)
+				for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
+					$("round-" + round + "-team-" + teamIdx).disabled = true;
+			viewScores();
+			updateLabels();
+			viewScoreTable();
+		}
+	}
+	
 	function processRound()
 	{
+		playerScores = getScoreSummary(0, currentRound-1);
+		
 		// Disable locked score inputs
 		for (var round = 0; round < scores.length; ++round)
 			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
 				$("round-" + round + "-team-" + teamIdx).disabled = true;
 		
 		
-		var html = "<h2>Round " + (currentRound + 1) + "</h2><div class='round'>";
-		// Print standings
-		if (true)
-		{
-			html += "<ol>";
-			for (var i = 0; i < playerScores.length; ++i)
-				html += "<li><span class='player'>" + playerScores[i].name + "</span>: " + playerScores[i].score + " points</li>";
-			html += "</ol>";
-		}
-		
+		var html = "<h3>Round " + (currentRound + 1) + "</h3><div class='round'>";
 		
 		var maxTeamSize = parseInt($("teamsize").value);
 		
@@ -452,9 +613,12 @@ permalink: /staff/matchmaking/index.html
 			
 			html += printTeam(team, "highlight");
 		//	html += " score[" + minScore + "]";
-			html += " skill<" + Math.round(teamSkill(team) * 100) + "%>";
-			html += " spread<" + Math.round(teamSpread(team) * 100) + "%>";
-			html += " <input type='number' id='round-" + currentRound + "-team-" + i + "' onchange='updateScore(" + currentRound + ", " + i + ")'/>";
+			if ($("debug").checked)
+			{
+				html += " skill<" + Math.round(teamSkill(team) * 100) + "%>";
+				html += " spread<" + Math.round(teamSpread(team) * 100) + "%>";
+			}
+			html += " Score: <input type='number' id='round-" + currentRound + "-team-" + i + "' onchange='updateScore(" + currentRound + ", " + i + ")'/>";
 		//	html += "<button onclick=\"updateScore(" + currentRound + ", " + i + ")\">Save Score</button>";
 			html += "<button onclick='simulateScore(" + currentRound + ", " + i + ", " + teamSkill(team) + ")'>Simulate</button>";
 			html += "<br/>";
@@ -479,10 +643,6 @@ permalink: /staff/matchmaking/index.html
 		html = "<p>Team External Spread: <em>" + Math.round(tspread * 100) + " %</em>, ";
 		html += "Max Internal Spread: <em>" + Math.round(maxSpread * 100) + " %</em></p>";
 		
-		
-		
-		html += "<button onclick='processRound()'>Matchmake Next Round</button></div>";
-		
 		$("summary-" + currentRound).innerHTML = html;
 		displayGraph(connectivity, currentRound+1);
 		$("score").innerHTML = connectivityScore(connectivity);
@@ -491,13 +651,15 @@ permalink: /staff/matchmaking/index.html
 			for (var i = 0; i < teams.length; ++i)
 				simulateScore(currentRound, i, teamSkill(teams[i]));
 		
+		playerScores = getScoreSummary(0, currentRound);
 		currentRound++;
-		playerScores = getScoreSummary(0, currentRound-1);
 		viewScores();
+		updateLabels();
 		viewScoreTable();
+		presentModal(matchupText(teams));
 	}
 	
-	var currentRound;
+	var currentRound = 0;
 	var connectivity = [];
 	var players = [];
 	var scores = [];
@@ -506,13 +668,13 @@ permalink: /staff/matchmaking/index.html
 	
 	function viewPlayers()
 	{
-		var html = "<ol>";
+	/*	var html = "<ol>";
 		for (var p = 0; p < players.length; ++p)
 		{
 			html += "<li class='" + (players[p].dropped ? "dropped" : "") + "'><span class='player-name'>" + players[p].name + "</span> — skill: <span class='player-skill'>" + Math.round(players[p].skill * 100) + "</span> ";
 			html += "<button onclick='dropPlayer(" + p + ")'>" + (!players[p].dropped ? "Drop" : "Undrop") + "</button></li>";
 		}
-		$("player-list").innerHTML = html + "</ol>";
+		$("player-list").innerHTML = html + "</ol>";*/
 		displayGraph(connectivity, currentRound+1);
 	}
 	
@@ -520,34 +682,39 @@ permalink: /staff/matchmaking/index.html
 	{
 		var name = $("input-name").value;
 		if (name == "") name = nameStore();
-		var skill = PRNG();
-		var player = { name : name, skill : skill, dropped : false };
+		
+		var skill = parseInt($("input-seed").value);
+		if (isNaN(skill)) skill = PRNG();
+		
+		var player = { name : name, skill : skill, fc : $("input-fc").value, dropped : false };
 		players.push(player);
 		
 		for (var i = 0; i < connectivity.length; ++i)
 			connectivity[i].push(0);
-			
+		
 		connectivity.push(Array.apply(null, Array(players.length)).map(function() { return 0; }));
 		viewPlayers();
+		updateLabels();
+		viewScoreTable();
 	}
 	
 	function dropPlayer(idx)
 	{
 		players[idx].dropped = !players[idx].dropped;
 		viewPlayers();
+		updateLabels();
+		viewScoreTable();
 	}
 	
-	function init()
+/*	function init()
 	{
-		currentRound = 0;
-		scores = [];
 		playerScores = getScoreSummary(0, -1);
-		$("log").innerHTML = "";
-		
 		connectivity = Array.apply(null, Array(players.length)).map(function() { return Array.apply(null, Array(players.length)).map(function() { return 0; }); });
+		
 		$("button-start").disabled = true;
-		$("button-round").disabled = false;
-	}
+		$("button-next-round").disabled = false;
+		$("button-finalize").disabled = false;
+	}*/
 	
 	function multiRound()
 	{
@@ -568,7 +735,7 @@ permalink: /staff/matchmaking/index.html
 	{
 		playerScores = [];
 		for (var i = 0; i < players.length; ++i)
-			playerScores.push({ name: players[i].name, score: 0 });
+			playerScores.push({ index: i, name: players[i].name, score: 0 });
 		
 		for (var round = roundStart; round <= roundEnd; ++round)
 		{
@@ -585,32 +752,58 @@ permalink: /staff/matchmaking/index.html
 		return playerScores;
 	}
 	
+	function updateLabels()
+	{
+		$("ftr-players-total").innerHTML = players.length;
+		$("ftr-players-active").innerHTML = players.filter(function(player) { return !player.dropped; }).length;
+		$("ftr-round").innerHTML = currentRound;
+	}
+	
 	function viewScoreTable()
-	{/*
-		var html = "<table>";
-		html += "<thead><tr><td>Header</td></tr></thead>";
-		html += "<tbody>";
-		for (var round = 0; round < scores.length; ++round)
-		{
-			html += "<tr>";
-			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
-			{
-				html += "<td>Test</td>";
-			}
-			html += "</tr>";
-		}
-		html += "</tbody></table>";
-		$("score-table").innerHTML = html;*/
-		
-		
-	//	var playerScores = getScoreSummary(0, scores.length-1);
-		
-		html = "<ol>";
+	{
+		playerScores = getScoreSummary(0, currentRound-1);
+		var html = "";
 		for (var i = 0; i < playerScores.length; ++i)
-			html += "<li><span class='player'>" + playerScores[i].name + "</span>: " + playerScores[i].score + " points</li>";
-		html += "</ol>";
-		
+		{
+			var index = playerScores[i].index;
+			if (!players[index].dropped || $("show-dropped").checked)
+			{
+				html += "<tr class='" + (players[index].dropped ? "tr-dropped" : "") + "'><td class=''>" + (i+1) +"</td>";
+				html += "<td class='player'>" + playerScores[i].name + "</td>";
+				html += "<td class='td-pts'> " + playerScores[i].score + "</td>";
+				html += "<td onclick='dropPlayer(" + i + ")'>" + (!players[index].dropped ? "<span class='btn-drop'>-</span>" : "<span class='btn-undrop'>+</span>") + "</td></tr>";
+			}
+		}
 		$("results").innerHTML = html;
+	}
+	
+	function matchupText(teams)
+	{
+		var text = "**ROUND " + currentRound + " MATCHMAKING IS A GO**\nHere are your teams:\n";
+		
+		var shiftLabels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+		
+		for (var i = 0; i < teams.length; ++i)
+		{
+			text += "\n**Shift " + shiftLabels[i] + "**\n";
+			for (var p = 0; p < teams[i].length; ++p)
+				text += "*" + players[teams[i][p]].name + "* - `" + players[teams[i][p]].fc + "`\n";
+			
+			
+		}
+		
+		return text;
+	}
+	
+	function presentModal(text)
+	{
+		$("text-output").value = text;
+		$("modal").style.display = "block";
+	}
+	
+	function dismissModal()
+	{
+		$("modal").style.display = "none";
 	}
 	
 	function load()
@@ -624,48 +817,87 @@ permalink: /staff/matchmaking/index.html
 	<div id="wrapper">
 		<h1>Casual ARMS Matchmaking Tool</h1>
 		
-		<p>
+		<form>
+			<fieldset id="general-settings">
 			<label class="input-label">Max team size:</label> <input type="number" value="4" id="teamsize"/><br/>
-			<label class="input-label">Rounds:</label>        <input type="number" value="4" id="rounds"/>
-		</p>
-		
-		<p>
 			<label class="input-label">Connectivity:</label> 0 % <input id="param-conn" type="range" min="0" max="1" step="0.1" value="0"/> 100 % <br/>
 			<label class="input-label">Internal Skill Spread:</label> 0 % <input id="param-internal" type="range" min="0" max="1" step="0.1" value="0"/> 100 %<br/>
 			<label class="input-label">External Skill Spread:</label> 0 % <input id="param-external" type="range" min="0" max="1" step="0.1" value="0"/> 100 %
+			</fieldset>
+		</form>
+		
+		<p id="mode-selector">
+			<em class="mode active-mode" id="md-manual" onclick="changeMode('manual');">Manual</em>
+			<em class="mode" id="md-simulate" onclick="changeMode('simulate');">Simulate</em>
 		</p>
 		
-		<h2>Simulate</h2>
+		<div id="settings-manual">
+			<p>
+				<label class="input-label">Name:</label> <input type="text" id="input-name" placeholder="Player Name"/><br/>
+				<label class="input-label">FC:</label> <input type="text" id="input-fc" placeholder="XXXX-XXXX-XXXX"/><br/>
+				<label class="input-label">Seed:</label> <input type="number" min="0" max="100" step="1" id="input-seed"/>
+				<button onclick="addPlayer()">Add Player</button>
+			</p>
+		</div>
 		
-		<p>
-			<label class="input-label">Participants:</label>  <input type="number" value="10" id="players"/>
-			<button onclick="multiRound()">Simulate Session</button>
-		</p>
+		<div id="settings-simulate" style="display: none;">
+			<p>
+				<label class="input-label">Participants:</label>  <input type="number" value="10" id="players"/><br/>
+				<label class="input-label">Rounds:</label>        <input type="number" value="4" id="rounds"/><br/>
+				<button onclick="multiRound()">Simulate Session</button>
+			</p>
+		</div>
 		
-		<h2>Manual Entry</h2>
-		<p>
-			<label class="input-label">Name:</label> <input type="text" id="input-name" placeholder="Player Name"/>
-			<button onclick="addPlayer()">Add Player</button>
-		</p>
-		
-		
+		<h2>Participants</h2>
 		<div id="player-list"></div>
 		
-		<button id="button-start" onclick="init()">Start Session</button>
-		<button id="button-round" onclick="processRound()" disabled>Matchmake Round</button>
-		<br/>
 		
+		<h2>Progression</h2>
 		<div id="log"></div>
 		
-		<h2>Summary and Final Scores</h2>
 		
-		<div id="results"></div>
 		
 		<h3>Connectivity</h3>
-		
 		<canvas id="myCanvas" width="500" height="500"></canvas>
 		<p>Current score: <span id="score"></span></p>
 		
+	</div>
+	
+	<div id="right-pane">
+		<p><input type="checkbox" id="debug"/> Enable Debug Info</p>
+		<p><input type="checkbox" id="show-dropped" onchange="viewScoreTable()"/> Show Dropped Players</p>
+		<h2>Standings</h2>
+		<table id="results-table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Pts</th>
+					<th scope="col">Drop</th>
+				</tr>
+			</thead>
+			<tbody id="results">
+			
+			</tbody>
+		</table>
+	</div>
+	
+	<div id="footer">
+		<p>
+			<span class="ftr-item">Players: <span id="ftr-players-active">0</span> / <span id="ftr-players-total">0</span></span>
+			<span class="ftr-item">Current Round: <span id="ftr-round">0</span></span>
+			<span id="ftr-right">
+				<button id="button-next-round" onclick="confirmProcessRound()">New Round</button>
+				<button id="button-finalize" onclick="confirmFinalize()">Finalize</button>
+			</span>
+		</p>
+	</div>
+	
+	<div id="modal" style="display: none;">
+		<h2>Announcement Text</h2>
+		<textarea id="text-output" rows="20"></textarea>
+		<button onclick="copyToClipboard('text-output')" class="btn-cpy">Copy to Clipboard</button>
+		<button onclick="dismissModal()" class="btn-cpy">Dismiss</button>
 	</div>
 </body>
 </html>
