@@ -56,7 +56,7 @@
 	,"415266965788295168": {"name": "Dendrimer",           "badges": ["clash"] }
 	,"333469682952830976": {"name": "ai-chan",             "badges": ["clash"] }
 	,"353673806008549377": {"name": "Hamma",               "badges": ["clash"] }
-	,"221495328497467392": {"name": "Cocovet",             "badges": ["clash", "casualcrew", "scramble", "season_arms", "season_smash", "season_smash_win"] }
+	,"221495328497467392": {"name": "Cocovet",             "badges": ["clash", "casualcrew", "scramble", "season_arms_win", "season_arms", "season_smash", "season_smash_win"] }
 	,"213547862523379712": {"name": "KegMinami",           "badges": ["clash"] }
 	,"339645959610826752": {"name": "Comet",               "badges": ["clash"] }
 	,"109484254517293056": {"name": "Drift",               "badges": ["clash", "scramble"] }
@@ -199,9 +199,12 @@
 	,"316387447317463041": {"name": "LAB",       	       "badges": ["clash"] }
 	,"187236610046164992": {"name": "Cosalina",            "badges": ["clash"] }
 	,"460862593616183317": {"name": "squidy",              "badges": ["clash", "scramble", "season_arms", "season_splat", "season_smash"] }
-	,"449213504537231360": {"name": "DinosaurY",		"badges": ["season_smash"] }  
+	,"449213504537231360": {"name": "DinosaurY",	       "badges": ["season_smash", "season_splat"] }  
 	
-	,"144138362226343936": {"name": "Udon",       	               "badges": ["scramble"] }
-	,"154431224939675648": {"name": "Radio",       	               "badges": ["scramble"] }
-	," 174558464230686720": {"name": "Gryffical",       	       "badges": ["scramble", "scramble_win"] }
+	,"144138362226343936": {"name": "Udon",       	        "badges": ["scramble", "season_arms", "season_splat"] }
+	,"154431224939675648": {"name": "Radio",       	        "badges": ["scramble"] }
+	," 174558464230686720": {"name": "Gryffical",       	"badges": ["scramble", "scramble_win"] }
+	
+	,"238698278290456581": {"name": "Grimwood",       	"badges": ["season_arms"] }
+	,"21422249906654413": {"name": "Gomi",           	"badges": ["season_smash"] }
 }
