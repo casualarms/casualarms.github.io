@@ -1,0 +1,280 @@
+---
+permalink: /staff/streams/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Stream Generator - Casual ARMS</title>
+	<script src="/script/general.js"></script>
+	<script src="/script/banner-gen.js"></script>
+	<script src="/data/support.js"></script>
+	<style>
+	
+	@font-face {
+		font-family: 'ARMS';
+		src: url("/assets/ARMSARMSv1.001.ttf");
+	}
+	
+	body {
+		background-color: #2f3136;
+		color: #c3c4c6;
+		font-family: sans-serif;
+	}
+
+	#wrapper {
+		width: 880px;
+		margin: 0 auto;
+		padding: 1em 2em;
+		background-color: #36393f;
+	}
+
+	h1, h2, h3, h4 {
+		border-bottom: 1pt solid #3e4147;
+		padding-bottom: 0.25em;
+		font-family: ARMS;
+	}
+	
+	a {
+		color: white;
+	}
+	
+	input {
+		background-color: #484b52;
+		color: white;
+	}
+	
+	input[type=number] {
+		width: 40px;
+	}
+	
+	input[type=number]#year {
+		width: 60px;
+	}
+	
+	textarea {
+		background-color: black;
+		color: white;
+		width: 100%;
+		font-family: monospace;
+	}
+	
+	.btn-cpy {
+		background-color: yellow;
+	}
+	
+	#error {
+		background-color: red;
+		color: white;
+	}
+	
+	</style>
+	<script>
+	
+	var eventsHistory = streamsDataJSON;
+	
+	function load()
+	{
+		// Read old events
+		var options = "<option value='undefined' selected>---</option>";
+		for (var i = 0; i < eventsHistory.length; ++i)
+		{
+			var ev = eventsHistory[i];
+			var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
+			options += "<option>" + dateString + ": " + ev.title + "</option>";
+			
+			// Add prior hosts to database
+			if ("hosts" in ev)
+			{
+				outer: 
+				for (var eh = 0; eh < ev.hosts.length; eh++)
+				{
+					for (var h = 0; h < hostDatabase.length; ++h)
+						if (ev.hosts[eh].code == hostDatabase[h].code || ev.hosts[eh].name == "")
+							continue outer;
+					hostDatabase.push(ev.hosts[eh]);
+				}
+			}
+			$("event-history").innerHTML = options;
+		}
+		
+		// Month options
+		for (var m = 0; m < monthNames.length; ++m)
+			$("month").innerHTML += "<option value='" + m + "'>" + monthNames[m] + "</option>";
+		
+		// Default date
+		var now = new Date();
+		$("year").value  = now.getUTCFullYear();
+		$("month").value = now.getUTCMonth();
+		$("day").value   = now.getUTCDate();
+		
+		// Fill quick entry lists
+		hostDatabase.sort(function(a, b){ return a.name > b.name; });
+		
+		// Fill event slot selector
+		var options = "<option value='undefined' selected>---</option>";
+		for (var i = 0; i < streamSlots.length; ++i)
+			options += "<option>" + eventGames[streamSlots[i].game] + ": " + streamSlots[i].title + "</option>";
+		$("event-slots").innerHTML = options;
+		
+		// Fill game options
+		var options = "";
+		for (var game in eventGames)
+			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
+		$("game").innerHTML = options;
+		
+		readAndGenerate();
+	}
+	
+	function fillFromEventData(eventData)
+	{
+		var date = new Date(eventData.date);
+		date.setHours(date.getHours() + timeZoneOffset(eventData.tz));
+		
+		$("month").selectedIndex = date.getUTCMonth();
+		$("day").value = date.getUTCDate();
+		$("year").value = date.getFullYear();
+		$("start-hours").value = date.getUTCHours();
+		$("start-minutes").value = date.getUTCMinutes();
+		$("duration-minutes").value = eventData.duration;
+		$("timezone").value = eventData.tz;
+		$("alert").checked = eventData.alert;
+		
+		$("title").value       = unEscapeHTML(eventData.title);
+		$("description").value = ("description" in eventData) ? unEscapeHTML(eventData.description) : "";
+		
+		selectOptionWithValue($("game"),     eventData.game);
+	//	selectOptionWithValue($("type"),     eventData.type);
+		selectOptionWithValue($("platform"), eventData.platform);
+		
+		readAndGenerate();
+	}
+	
+	function fillFromEventDataHistory()
+	{
+		var eventDataIndex = $("event-history").selectedIndex;
+		if (eventDataIndex > 0)
+			fillFromEventData(eventsHistory[eventDataIndex - 1]);
+	}
+	
+	function fillFromEventSlot()
+	{
+		var eventDataIndex = $("event-slots").selectedIndex;
+		if (eventDataIndex > 0)
+		{
+			var slot = streamSlots[eventDataIndex - 1];
+			fillFromEventData({
+				"title"    : slot.title,
+				"game"     : slot.game,
+				"alert"    : true,
+				"date"     : slot.date,
+				"duration" : slot.duration,
+				"tz"       : slot.tz,
+				"platform" : slot.platform,
+			});
+		}
+	}
+	
+	function fillFromEventDataJSON()
+	{
+		var json = $("text-output").value;
+		var eventdata = JSON.parse(json.substr(1, json.length - 1));
+		eventdata.date = new Date(eventdata.date);
+		fillFromEventData(eventdata);
+	}
+	
+	function reportError(text)
+	{
+		$("error").innerHTML = "ERROR: " + text;
+		$("error").style.display = "block";
+	}
+	
+	function readAndGenerate()
+	{
+		$("error").style.display = "none";
+		
+		var eventdata = {};
+		var game = $("game").value;
+		
+		var month           = $("month").selectedIndex;
+		var day             = parseInt($("day").value);
+		var year            = parseInt($("year").value);
+		var startHours      = parseInt($("start-hours").value);
+		var startMinutes    = parseInt($("start-minutes").value);
+		var durationMinutes = parseInt($("duration-minutes").value);
+		var zoneString      = $("timezone").value;
+		var offset          = timeZoneOffset(zoneString);
+		var startDate       = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
+		
+		if (offset == undefined)
+			return reportError("Unsupported time zone");
+		
+		eventdata.title       = escapeHTML($("title").value);
+		eventdata.game        = game;
+	//	eventdata.type        = $("type").value;
+		eventdata.alert       = $("alert").checked;
+		eventdata.date        = startDate;
+		eventdata.duration    = durationMinutes;
+		eventdata.tz          = zoneString;
+		eventdata.platform    = $("platform").value;
+		
+		if ($("description").value != "") eventdata.description = escapeHTML($("description").value);
+		
+		$("text-output").value = "," + JSON.stringify(eventdata);
+		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/streaming/?id=" + getEventID(eventdata);
+		
+		return eventdata;
+	}
+	
+	function addOneWeek()
+	{
+		var eventdata = readAndGenerate();
+		eventdata.date.setUTCDate(eventdata.date.getUTCDate() + 7);
+		fillFromEventData(eventdata);
+	}
+	
+	
+</script>
+</head>
+	<body onload="load()">
+		<div id="wrapper">
+			<h1>Casual ARMS Stream Generator</h1>
+			<p>
+				Fill, previous stream: <select id="event-history" onchange="fillFromEventDataHistory()"></select>
+				Stream slot:     <select id="event-slots"   onchange="fillFromEventSlot()"></select>
+			</p>
+			<hr/>
+			<form oninput="readAndGenerate()">
+				<p>
+					<label for="title">Title:</label>  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
+					<label for="platform">Platform:</label>   <select id="platform"><option value="mixer">Mixer</option><option value="twitch">Twitch</option></select>
+					<label for="game">Game:</label>   <select id="game"></select>
+				<!--	<label for="type">Type:</label>   <select id="type"></select>-->
+					<label for="alert">Auto live-alert:</label> <input type="checkbox" checked id="alert" onchange="readAndGenerate()"/>
+					<br/>
+					<label for="description">Description:</label>  <input type="text" id="description" size="30" placeholder="Hoops-only Swiss Tournament"/>
+				</p>
+				
+				<p>Date: <select id="month"></select>
+					<input type="number" id="day" value="1" min="1" max="31"/>
+					<input type="number" id="year" value="2019"/>
+					<label for="start-hours">Start:</label> <input type="number" id="start-hours" value="14" min="0" max="23"/> :
+					<input type="number" id="start-minutes" value="00" min="0" max="59">
+					<label for="timezone">in time zone:</label> <input type="text" id="timezone" value="EDT" size="5"/>
+					<label for="duration-minutes">Duration:</label> <input type="number" id="duration-minutes" value="120" min="0"/> min.
+					<input type="button" value="+ 1 week" onClick="addOneWeek()"/>
+				</p>
+			</form>
+			
+			<p id="error"></p>
+			
+			<p>
+				<textarea id="text-output" rows="4"></textarea>
+				<button onclick="copyToClipboard('text-output')" class="btn-cpy">Copy to Clipboard</button>
+				<input type="button" value="Fill form from text field" onclick="fillFromEventDataJSON()"/>
+				Direct link (valid only after publishing): <a id="direct-link"></a>
+			</p>
+			
+			<p>Have a nice stream :)</p>
+		</div>
+	</body>
+</html>

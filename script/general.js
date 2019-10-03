@@ -300,6 +300,12 @@ function upcomingEvents()
 	return eventDataJSON.filter(function(ev) { return now < getEventEnd(ev); });
 }
 
+function upcomingStreams()
+{
+	var now = new Date();
+	return streamsDataJSON.filter(function(ev) { return now < getEventEnd(ev); });
+}
+
 function getEventID(eventdata)
 {
 	var epochString = (eventdata.date.getTime() / 1000) + "";

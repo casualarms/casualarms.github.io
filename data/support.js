@@ -41,6 +41,16 @@ for (var i = 0; i < eventDataJSON.length; i++)
 }
 eventDataJSON.sort(function(a, b) { return a.date - b.date; });
 
+// Streams database
+var streamsDataJSON = {% include_relative streams.json %};
+for (var s = 0; s < streamsDataJSON.length; s++)
+{
+	var eventdata = streamsDataJSON[s];
+	eventdata.date = new Date(eventdata.date);
+	streamsDataJSON[s] = eventdata;
+}
+streamsDataJSON.sort(function(a, b) { return a.date - b.date; });
+
 // Leaderboards etc
 var leaderboardsJSON  = {% include_relative leaderboards.json %};
 var seasonHistoryJSON = {% include_relative season-history.json %};
@@ -95,4 +105,9 @@ var eventSlots = [
 	{ "id" : "smash-mon", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(1, 21, 30), "duration" :  60, "tz" : "EDT", "type" : "friends", "title" : "Marthday"},
 	{ "id" : "smash-wed", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(3, 18, 30), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "WedNessDay"},
 	{ "id" : "smash-sat", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(6, 23, 30), "duration" :  60, "tz" : "PDT", "type" : "friends", "title" : "Mr. Saturnday"},
+];
+
+var streamSlots = [
+//	{ "id" : "maker-mon", "slot_game" : "variety", "platform" : "mixer", "game" : "variety", "date" : getNextWeekday(1, 18, 30), "duration" :  60, "tz" : "EDT", "title" : "Maker Monday"},
+//	{ "id" : "mine-tue",  "slot_game" : "variety", "platform" : "twitch", "game" : "variety", "date" : getNextWeekday(3, 01, 00), "duration" : 120, "tz" : "EDT", "title" : "Tiled Tuesday"}
 ];
