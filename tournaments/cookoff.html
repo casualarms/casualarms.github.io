@@ -28,6 +28,26 @@ permalink: /cookoff/
 		}
 		
 		displayEvent("cookoff");
+		
+		var history_html = "";
+		var counter = 0;
+		
+		for (var i = 0; i < tournamentsLog.length; ++i)
+		{
+			var entry = tournamentsLog[i];
+			if (entry.type == "cookoff")
+			{
+				var ordinal = ++counter;
+				var html = "<h3>Casual Cookoff " + ordinal + "</h3><div class='padded'>";
+				html += "<p>Held on <em>" + entry.date + "</em> with <em>" + entry.players + "</em> participants.</p>";
+				html += "<p>Employee of the Month: ";
+				for (var c = 0; c < entry.winner.length; ++c)
+					html += "<em>" + entry.winner[c].name + "</em> ";
+				html += "</p></div>";
+				history_html = html + history_html;
+			}
+		}
+		$("history-container").innerHTML = history_html;
 	}
 	
 	function displayEvent(type)
@@ -136,7 +156,7 @@ permalink: /cookoff/
 		
 		<h2 id="rules">Casual Cookoff Rules</h2>
 		
-		<p>When the tournament starts, and at the start of each round, we will send out a ping to inform participants of their teammates for the round. Then just head down to either <span class="command">#shift-1</span> or  <span class="command">#shift-2</span> to exchange friend requests and join a single Salmon Run lobby together. If your team is assigned less than four members, wait for all assigned members to join, then recruit a random online player to fill the final slot.</p>
+		<p>When the tournament starts, and at the start of each round, we will send out a ping to inform participants of their teammates for the round. Then just head down to either <span class="command">#shift-a</span>,  <span class="command">#shift-b</span> etc. (depending on your shift assignment) to exchange friend requests and join a single Salmon Run lobby together. If your team is assigned less than four members, wait for all assigned members to join, then recruit a random online player to fill the final slot.</p>
 
 		<p>On the final results page displaying the results from each member of your team, take a screenshot and post it in your matchmaking channel while pinging <span class="command">@Casual Couple (Owner)</span> so we can retrieve your scores. You should also be able to retrieve this screenshot from the Splatnet app, if needed. The total of golden eggs retrieved by the whole team will be added to your personal score, so be sure to work together as a team as there is no need to fight for eggs with your teammates.</p>
 
@@ -144,8 +164,8 @@ permalink: /cookoff/
 
 		<p>In the event of a <em>disconnection</em> during a round, simply get your group to rejoin the lobby and try again. For the sake of time, each group is only allowed one such retry in these situations and if it happens twice, the best of the two final scores will be used.</p>
 		
-		<!--<h2 id="history">Casual Tournament History</h2>
-		<div id="history-container"></div>-->
+		<h2 id="history">Casual Cookoff History</h2>
+		<div id="history-container"></div>
 		
 		{% include footer.html %}
 	</div>

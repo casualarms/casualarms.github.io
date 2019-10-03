@@ -148,6 +148,16 @@
 			"style"     : "holodark",
 			"criterion" : "Achieve victory in a Casual Scramble"
 		},
+		"cookoff"     : {
+			"caption"   : "Casual Cookoff Participant",
+			"style"     : "dark",
+			"criterion" : "Play in a Casual Cookoff"
+		},
+		"cookoff_win" : {
+			"caption"   : "Casual Cookoff EotM (Winner)",
+			"style"     : "holodark",
+			"criterion" : "Achieve victory in a Casual Cookoff"
+		},
 		"season_arms"  : {
 			"caption"   : "Monthly ARMS Leaderboards",
 			"style"     : "light",

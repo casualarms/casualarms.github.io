@@ -58,12 +58,13 @@
 		}
 		
 		// Display last tournament winner
-		var images = { "clash" : "/assets/main/logo-champion.png", "scramble" : "/assets/main/logo-sovereign.png" };
-		var titles = { "clash" : "Clash Champion", "scramble" : "Scramble Sovereign" };
-		var names = { "clash" : "Casual Clash", "scramble" : "Casual Scramble" };
+		var images = { "clash" : "/assets/main/logo-champion.png", "scramble" : "/assets/main/logo-sovereign.png", "cookoff" : "/assets/main/logo-cookoff.png" };
+		var titles = { "clash" : "Clash Champion", "scramble" : "Scramble Sovereign", "cookoff" : "Cookoff Champion" };
+		var names = { "clash" : "Casual Clash", "scramble" : "Casual Scramble", "cookoff" : "Casual Cookoff" };
 		var entry = tournamentsLog[tournamentsLog.length - 1];
 		var ordinal = tournamentsLog.filter(function(item) { return item.type == entry.type; }).length;
 		var challongeURL = "https://challonge.com/" + (names[entry.type] + " " + ordinal).replace(/\s/g, "");
+		if (entry.type == "cookoff") challongeURL = "cookoff";
 		
 		$("champ-name").innerHTML = entry.winner[0].name;
 		$("champ-title").innerHTML = titles[entry.type];
