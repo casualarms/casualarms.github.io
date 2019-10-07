@@ -32,7 +32,7 @@
 	,{"title":"Casual Scramble 12","game":"arms","type":"scramble","alert":false,"date":"2019-09-14T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-09-14T19:15:00.000Z","duration":60,"tz":"EDT","theme":"everything","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-10-05T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-10-12T19:15:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 18","game":"arms","type":"clash","alert":false,"date":"2019-10-12T20:30:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
 	
 	,{"title":"Oddity's Oddball Brawl","game":"smash","type":"tournament","alert":false,"date":"2019-05-19T23:00:00.000Z","duration":90,"tz":"EDT","description":"Themed 1v1 Round Robin Tournament","url":"https://challonge.com/ritli2hj"}
