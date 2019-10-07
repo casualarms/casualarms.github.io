@@ -364,7 +364,11 @@
 			"New Donk City Hall",
 			"Great Plateau Tower",
 			"Moray Towers",
-			"Dracula's Castle"
+			"Dracula's Castle",
+			
+			"Mementos",
+			"Yggdrasil's Altar",
+			"Spiral Mountain"
 		],
 		"variety" : []
 	},
@@ -725,7 +729,8 @@
 			,{ "key" : "indoor-splat",       "name" : "Indoor Fighting",        "stages" : [1, 12, 14, 16]}
 		],
 		"smash" : [
-			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 102 }]}
+			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 105 }]}
+			,{ "key" : "all-no-dlc-smash",   "name" : "All (No DLC)",           "stages" : [{ "start" : 0, "end" : 102 }]}
 			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84]}
 			,{ "key" : "transform-smash",    "name" : "Trippy Transformations", "stages" : [23,39,41,57,65,66,73,79]}
 			,{ "key" : "journey-smash",      "name" : "On a Journey",           "stages" : [37,40,45,62,63,75,76,90,98,99]}
@@ -736,6 +741,7 @@
 			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82]}
 			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
 			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102]}
+			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105]}
 		],
 		"variety" : []
 	},
