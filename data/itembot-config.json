@@ -2,7 +2,7 @@
 	"textReplies" : [
 		{
 			"commands" : ["website"],
-			"response" : "https://www.casualarms.net/"
+			"response" : "Casual ARMS website: https://www.casualarms.net/"
 		},
 		{
 			"commands" : ["schedule"],
@@ -11,6 +11,10 @@
 		{
 			"commands" : ["quiz"],
 			"response" : "ARMS quiz with thousands of questions: https://www.casualarms.net/quiz/"
+		},
+		{
+			"commands" : ["discord", "invite"],
+			"response" : "Casual ARMS Discord server: <https://discord.gg/5A7QkPC>"
 		},
 		{
 			"commands" : ["twitter"],
