@@ -1,5 +1,5 @@
 {
-	"textReplies" : [
+	"replies" : [
 		{
 			"commands" : ["website"],
 			"response" : "Casual ARMS website: https://www.casualarms.net/"
@@ -43,7 +43,66 @@
 		{
 			"commands" : ["save"],
 			"response" : "`AI_COLLABORATION_DETECTED\nC0DE_BR0k3N\nENTER_SAVE_ARMS:` <http://discord.gg/8mG8Uyu>"
+		},
+		
+		
+		
+		{
+			"commands" : ["look"],
+			"response" : "I'll {{0:look}} if you {{0:look}}",
+			"timeout"  : 60,
+			"patron"   : "Reis"
+		},
+		{
+			"commands" : ["hug"],
+			"response" : "Hugs {{0:everyone}} <:SmashBallHug:528246258679283721>",
+			"timeout"  : 60,
+			"patron"   : "Goomba"
+		},
+		{
+			"commands" : ["widegrab"],
+			"response" : "<:GuardianLaugh:454638405075075072>=========================<:GuardianLaugh:454638405075075072>",
+			"timeout"  : 60,
+			"patron"   : "LandFrog"
+		},
+		{
+			"commands" : ["useless"],
+			"response" : "MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA!!!",
+			"timeout"  : 60,
+			"patron"   : "Spicy DX"
+		},
+		{
+			"commands" : ["ribmin"],
+			"response" : "Melty's Canon #6: Ribbon Girl and Min Min are dating",
+			"image"    : "https://www.casualarms.net/itembot/response/headcanon.jpg",
+			"timeout"  : 240,
+			"patron"   : ""
+		},
+		{
+			"commands" : ["tbird"],
+			"image"    : "https://www.casualarms.net/itembot/response/mainmain.gif",
+			"timeout"  : 240,
+			"patron"   : ""
+		},
+		{
+			"commands" : ["brows"],
+			"image"    : "https://www.casualarms.net/itembot/response/eeveebrows.gif",
+			"timeout"  : 240,
+			"patron"   : ""
+		},
+		{
+			"commands" : ["lit"],
+			"image"    : "https://www.casualarms.net/itembot/response/sheslit.jpg",
+			"timeout"  : 240,
+			"patron"   : ""
+		},
+		{
+			"commands" : ["program"],
+			"image"    : "https://www.casualarms.net/itembot/response/program.png",
+			"timeout"  : 240,
+			"patron"   : ""
 		}
+		
 	],
 	"feedbackMessage" : "Thanks for participating in the tournament! If you have any feedback, please fill in the form here: https://goo.gl/forms/Qe3R0z5zwK75ZQtC3",
 	"vcNames" : {
