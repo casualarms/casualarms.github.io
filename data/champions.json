@@ -94,4 +94,10 @@
 	,{ "date" : "2019-09-28", "type" : "cookoff", "players" : 10, "winner" : [
  		{ "id" : "378970992095264769", "name" : "programmability" }
 	]}
+	,{ "date" : "2019-10-12", "type" : "clash", "players" : 16, "winner" : [
+ 		{ "id" : "410828670874419211", "name" : "wa" }
+	]}
+	,{ "date" : "2019-10-26", "type" : "scramble", "players" : 14, "winner" : [
+ 		{ "id" : "339592807104643083", "name" : "CC | Rashiko" }
+	]}
 ]
