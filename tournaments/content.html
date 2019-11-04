@@ -42,6 +42,8 @@
 		for (var i = 0; i < tournamentsLog.length; ++i)
 		{
 			var entry = tournamentsLog[i];
+			if (!Object.keys(names).includes(entry.type)) continue;
+			
 			var ordinal = ++counters[entry.type];
 			var challongeURL = "https://challonge.com/" + (names[entry.type] + " " + ordinal).replace(/\s/g, "");
 			
