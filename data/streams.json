@@ -1,6 +1,13 @@
 [
-	{"title":"Mario Maker Monday","game":"variety","alert":false,"date":"2019-10-07T23:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Mario Maker Story Mode"}
-	,{"title":"Casual Craft &amp; Chill","game":"variety","alert":false,"date":"2019-10-08T18:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Relaxing on the Casual Craft Realm"}
+	{"title":"Mario Maker Monday","game":"variety","alert":false,"date":"2019-11-04T23:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Mario Maker Story Mode"}
+	,{"title":"Mario Maker Monday","game":"variety","alert":false,"date":"2019-11-11T23:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Mario Maker Story Mode"}
+	,{"title":"Mario Maker Monday","game":"variety","alert":false,"date":"2019-11-18T23:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Mario Maker Story Mode"}
+	,{"title":"Mario Maker Monday","game":"variety","alert":false,"date":"2019-11-25T23:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Mario Maker Story Mode"}
+
+	,{"title":"Casual Craft &amp; Chill","game":"variety","alert":false,"date":"2019-11-05T18:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Relaxing on the Casual Craft Realm"}
+	,{"title":"Casual Craft &amp; Chill","game":"variety","alert":false,"date":"2019-11-12T18:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Relaxing on the Casual Craft Realm"}
+	,{"title":"Casual Craft &amp; Chill","game":"variety","alert":false,"date":"2019-11-19T18:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Relaxing on the Casual Craft Realm"}
+	,{"title":"Casual Craft &amp; Chill","game":"variety","alert":false,"date":"2019-11-26T18:00:00.000Z","duration":120,"tz":"EDT","platform":"mixer","description":"Relaxing on the Casual Craft Realm"}
 	
 	
 ]
