@@ -82,13 +82,13 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		
 		
 		ctx.fillStyle = "black";
-		ctx.fillRect(0, 400, width, 80);
+		ctx.fillRect(0, 425, width, 55);
 		
 		ctx.fillStyle = "white";
-		ctx.textAlign = "left";
+		ctx.textAlign = "center";
 		
-		ctx.font = "32pt ARMS";
-		ctx.fillText(dateText, 60, 456);
+		ctx.font = "30pt ARMS";
+		ctx.fillText(dateText, 440, 467);
 		
 		return;
 	}
