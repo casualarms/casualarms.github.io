@@ -27,7 +27,7 @@
 
 
 	
-	,{"title":"Casual Cookoff","game":"splat","type":"cookoff","alert":false,"date":"2019-09-28T20:00:00.000Z","duration":90,"tz":"EDT","hosts":[{"name":"Details in #rules","code":"on Discord"}],"url":"https://www.casualarms.net/cookoff/"}
+	,{"title":"Casual Cookoff","game":"splat","type":"cookoff","alert":false,"date":"2019-11-09T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-10-26T19:15:00.000Z","duration":60,"tz":"EDT","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 13","game":"arms","type":"scramble","alert":false,"date":"2019-10-26T20:30:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
