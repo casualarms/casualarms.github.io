@@ -100,5 +100,7 @@
 	,{ "date" : "2019-10-26", "type" : "scramble", "players" : 10, "winner" : [
  		{ "id" : "339592807104643083", "name" : "CC | Rashiko" }
 	]}
-
+	,{ "date" : "2019-11-16", "type" : "cookoff", "players" : 8, "winner" : [
+ 		{ "id" : "400479213817298946", "name" : "Oddity" }
+	]}
 ]
