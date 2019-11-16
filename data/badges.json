@@ -139,7 +139,7 @@
 	,"134117027802644490": {"name": "Abrams",              "badges": ["season_kart"] }
 	,"292535803262009346": {"name": "Gabstriel",           "badges": ["season_splat", "cookoff"] }
 	,"142716556340756481": {"name": "Pawl",                "badges": ["host", "season_splat", "season_smash", "clash", "cookoff"] }
-	,"400479213817298946": {"name": "The Oddity",          "badges": ["host", "season_kart", "season_splat", "season_smash", "cookoff"] }
+	,"400479213817298946": {"name": "The Oddity",          "badges": ["host", "season_kart", "season_splat", "season_smash", "cookoff", "cookoff_win"] }
 
 	,"111446699360202752": {"name": "Chyro",               "badges": ["clash", "clash_win"] }
 	,"145375063724654592": {"name": "Mig",                 "badges": ["clash", "scramble"] }
@@ -182,7 +182,7 @@
 	
 	,"438314123399397376": {"name": "Teriaqi",             "badges": ["clash"] }
 	
-	,"162257115413610496": {"name": "Juice",               "badges": ["scramble", "season_splat"] }
+	,"162257115413610496": {"name": "Juice",               "badges": ["scramble", "cookoff", "season_splat"] }
 	,"342275923434930186": {"name": "Morbol",              "badges": ["scramble"] }
 	,"337665120115228674": {"name": "Jorr",                "badges": ["scramble", "clash"] }
 	
