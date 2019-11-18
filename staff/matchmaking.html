@@ -771,7 +771,7 @@ permalink: /staff/matchmaking/index.html
 				html += "<tr class='" + (players[index].dropped ? "tr-dropped" : "") + "'><td class=''>" + (i+1) +"</td>";
 				html += "<td class='player'>" + playerScores[i].name + "</td>";
 				html += "<td class='td-pts'> " + playerScores[i].score + "</td>";
-				html += "<td onclick='dropPlayer(" + i + ")'>" + (!players[index].dropped ? "<span class='btn-drop'>-</span>" : "<span class='btn-undrop'>+</span>") + "</td></tr>";
+				html += "<td onclick='dropPlayer(" + index + ")'>" + (!players[index].dropped ? "<span class='btn-drop'>-</span>" : "<span class='btn-undrop'>+</span>") + "</td></tr>";
 			}
 		}
 		$("results").innerHTML = html;
