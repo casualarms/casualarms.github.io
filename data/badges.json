@@ -148,7 +148,7 @@
 	,"431095641226215434": {"name": "Claro0602",           "badges": ["clash"] }
 	,"530944778867572737": {"name": "MrWLG",               "badges": ["scramble"] }
 	
-	,"340257118298832945": {"name": "Mindy (WhisperingShadow)", "badges": ["season_arms", "scramble"] }
+	,"340257118298832945": {"name": "Mindy (WhisperingShadow)", "badges": ["season_arms", "scramble", "clash"] }
 	,"238976648471511041": {"name": "VerteX",              "badges": ["season_kart", "season_kart_win"] }
 	
 	,"410828670874419211": {"name": "wa",                  "badges": ["clash", "clash_win", "scramble", "scramble_win", "season_arms"] }
@@ -199,7 +199,7 @@
 	,"316387447317463041": {"name": "LAB",                 "badges": ["clash"] }
 	,"187236610046164992": {"name": "Cosalina",            "badges": ["clash"] }
 	,"460862593616183317": {"name": "squidy",              "badges": ["clash", "scramble", "season_arms", "season_splat", "season_smash"] }
-	,"449213504537231360": {"name": "DinosaurY",           "badges": ["season_smash", "season_splat", "cookoff", "scramble", "season_arms", "season_splat_win"] }  
+	,"449213504537231360": {"name": "DinosaurY",           "badges": ["season_smash", "season_splat", "cookoff", "scramble", "clash", "season_arms", "season_splat_win"] }  
 	
 	,"144138362226343936": {"name": "Udon",                "badges": ["scramble", "clash", "season_arms", "season_splat", "cookoff", "host"] }
 	,"154431224939675648": {"name": "Radio",               "badges": ["scramble"] }
@@ -217,4 +217,13 @@
 	,"625348232003715153": {"name": "Callum",      		 "badges": ["season_splat", "season_smash"] }
 	,"505212870712098826": {"name": "Kodakliv",      	 "badges": ["season_splat"] }
 	
+	,"408452935589167104": {"name": "YoungsterTom",                "badges": ["clash"] }
+	,"331273909368520725": {"name": "Racso",        	       "badges": ["clash"] }
+	,"420441655590518794": {"name": "Finch",        	       "badges": ["clash"] }
+	,"455215187360874516": {"name": "ShockWave",        	       "badges": ["clash"] }
+	,"408444034814705684": {"name": "Whaleinator",        	       "badges": ["clash"] }
+	,"209006928272162816": {"name": "2Greenluigi (False King)",    "badges": ["clash"] }
+	,"292112807091109889": {"name": "mr ramen",        	       "badges": ["clash"] }
+	,"185607219818004481": {"name": "amr",        	               "badges": ["clash"] }
+	,"310849790370119681": {"name": "Zee",            	       "badges": ["clash"] }
 }
