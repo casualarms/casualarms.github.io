@@ -103,4 +103,7 @@
 	,{ "date" : "2019-11-16", "type" : "cookoff", "players" : 8, "winner" : [
  		{ "id" : "400479213817298946", "name" : "Oddity" }
 	]}
+	,{ "date" : "2019-11-30", "type" : "clash", "players" : 18, "winner" : [
+ 		{ "id" : "410828670874419211", "name" : "wa" }
+	]}
 ]
