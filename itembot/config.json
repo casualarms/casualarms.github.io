@@ -72,9 +72,10 @@
 			"patron"   : "Spicy DX"
 		},
 		{
-			"commands" : ["ribmin"],
-			"response" : "Melty's Canon #6: Ribbon Girl and Min Min are dating",
-			"image"    : "https://www.casualarms.net/itembot/response/headcanon.jpg",
+			"commands" : ["ficmas"],
+			"response" : "Merry Ficmas, everyone! \nCheck out Melty's new Christmas ARMS fic here:
+<https://archiveofourown.org/works/21945847/chapters/52375468>",
+			"image"    : "https://www.casualarms.net/itembot/response/MeltyChristmas.PNG",
 			"timeout"  : 240,
 			"patron"   : ""
 		},
