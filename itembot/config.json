@@ -73,8 +73,7 @@
 		},
 		{
 			"commands" : ["ficmas"],
-			"response" : "Merry Ficmas, everyone! \nCheck out Melty's new Christmas ARMS fic here:
-<https://archiveofourown.org/works/21945847/chapters/52375468>",
+			"response" : "Merry Ficmas, everyone! Check out Melty's new Christmas ARMS fic here. <https://archiveofourown.org/works/21945847/chapters/52375468>",
 			"image"    : "https://www.casualarms.net/itembot/response/MeltyChristmas.PNG",
 			"timeout"  : 240,
 			"patron"   : ""
