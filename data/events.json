@@ -25,7 +25,7 @@
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-01-13T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-2v2-smash","items":"better-worse-smash","stages":"diving-smash","hosts":[{"name":"To Be Announced","code":""}]}
 
 	
-	,{"title":"Casual Cookoff","game":"splat","type":"cookoff","alert":false,"date":"2019-11-16T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
+	,{"title":"Casual Cookoff 4","game":"splat","type":"cookoff","alert":false,"date":"2020-01-04T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-12-14T20:15:00.000Z","duration":30,"tz":"EST","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 14","game":"arms","type":"scramble","alert":false,"date":"2019-12-14T21:00:00.000Z","duration":90,"tz":"EST","theme":"scramble","stages":"all-arms"}
