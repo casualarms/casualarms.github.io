@@ -584,6 +584,8 @@ function printTheme(game, theme, concise)
 		html += "</div><div class='mode-group'><span class='mode-group-heading'>More</span>";
 		html +=        printMode(theme["more"], "max-players",   "Max Players");
 		html +=        printMode(theme["more"], "stage",         "Stage");
+		html +=  printBinaryMode(theme["more"], "custom-stages", "Custom Stages");
+		html +=  printBinaryMode(theme["more"], "amiibo",        "amiibo");
 		html +=  printBinaryMode(theme["more"], "spirits",       "Spirits");
 		html +=  printBinaryMode(theme["more"], "voice-chat",    "Voice Chat");
 		html += "</div>";

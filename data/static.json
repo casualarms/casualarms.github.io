@@ -368,7 +368,8 @@
 			
 			"Mementos",
 			"Yggdrasil's Altar",
-			"Spiral Mountain"
+			"Spiral Mountain",
+			"King of Fighters Stadium"
 		],
 		"variety" : []
 	},
@@ -660,6 +661,8 @@
 				"more" : {
 				 	"max-players"   : 8,
 				 	"stage"         : "Random",
+					"custom-stages" : false,
+					"amiibo"        : false,
 				 	"spirits"       : false,
 				 	"voice-chat"    : false
 				 }
@@ -689,6 +692,8 @@
 				"more" : {
 					"max-players"   : 8,
 					"stage"         : "Random",
+					"custom-stages" : false,
+					"amiibo"        : false,
 					"spirits"       : false,
 					"voice-chat"    : false
 				}
@@ -716,20 +721,19 @@
 			 { "key" : "all-splat",          "name" : "All",                    "stages" : [{ "start" :  0, "end" : 46}]}
 			,{ "key" : "all-splat-standard", "name" : "All Standard",           "stages" : [{ "start" :  0, "end" : 22}]}
 			,{ "key" : "all-splat-shifty",   "name" : "All Shifty Stations",    "stages" : [{ "start" : 23, "end" : 46}]}
-			,{"key"	 : "Moving",		 "name":"Moving Parts",		    "stages":[5,19,26,27,33]}
-			,{"key"	 : "Pits",		 "name":"Watch Your Step",	    "stages":[6,21,23,36]}
-			,{"key"	 : "Water",		 "name":"Water Hazard",		    "stages":[10,20,40,45]}
-			,{"key"	 : "Rails",		 "name":"On A Rail",		    "stages":[12,14,16,25,37]}
-			,{"key"	 : "High",		 "name":"High Ground",		    "stages":[4,11,15,24,38]}
-			,{"key"  : "Grates",		 "name":"Great Grates",		    "stages":[8,9,18,42,44]}
-			,{"key"  : "Funnel",		 "name":"Close Quarters",	    "stages":[7,13,22,32,43]}
-			,{"key"  : "Big",		 "name":"Going Wide",		    "stages":[0,3,29,34,46]}
-			,{"key"  : "Central",		 "name":"All-Out Brawls",	    "stages":[1,2,28,31,35]}
-			,{"key"  : "Corners",		 "name":"Overlooked Corners",	    "stages":[10,17,30,39,41]}
-
+			,{ "key" : "Moving",             "name" : "Moving Parts",           "stages" : [5,19,26,27,33]}
+			,{ "key" : "Pits",               "name" : "Watch Your Step",        "stages" : [6,21,23,36]}
+			,{ "key" : "Water",              "name" : "Water Hazard",           "stages" : [10,20,40,45]}
+			,{ "key" : "Rails",              "name" : "On A Rail",              "stages" : [12,14,16,25,37]}
+			,{ "key" : "High",               "name" : "High Ground",            "stages" : [4,11,15,24,38]}
+			,{ "key" : "Grates",             "name" : "Great Grates",           "stages" : [8,9,18,42,44]}
+			,{ "key" : "Funnel",             "name" : "Close Quarters",         "stages" : [7,13,22,32,43]}
+			,{ "key" : "Big",                "name" : "Going Wide",             "stages" : [0,3,29,34,46]}
+			,{ "key" : "Central",            "name" : "All-Out Brawls",         "stages" : [1,2,28,31,35]}
+			,{ "key" : "Corners",            "name" : "Overlooked Corners",     "stages" : [10,17,30,39,41]}
 		],
 		"smash" : [
-			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 105 }]}
+			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 106 }]}
 			,{ "key" : "all-no-dlc-smash",   "name" : "All (No DLC)",           "stages" : [{ "start" : 0, "end" : 102 }]}
 			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84]}
 			,{ "key" : "transform-smash",    "name" : "Trippy Transformations", "stages" : [23,39,41,57,65,66,73,79]}
@@ -741,7 +745,7 @@
 			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82]}
 			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
 			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102]}
-			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105]}
+			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106]}
 		],
 		"variety" : []
 	},
