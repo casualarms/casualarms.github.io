@@ -29,10 +29,15 @@ permalink: /staff/advertising/index.html
 	}
 	
 	h1, h2, h3, h4 {
-		font-family: ARMS;
 		border-bottom: 1pt solid #3e4147;
 		padding-bottom: 0.25em;
 	}
+	
+	h1 {
+		font-family: ARMS;
+	}
+	
+	a { color: inherit; }
 	
 	img {
 		width: 35%;
@@ -195,7 +200,7 @@ permalink: /staff/advertising/index.html
 			var html = "";
 			var ev = nextEventList[i];
 			
-			html += "<h2>" + ev.title + "</h2>";
+			html += "<h2><a href='/events/?id=" + getEventID(ev) + "'>" + getEventID(ev) +  "</a> " + ev.title + "</h2>";
 			html += "<img id='result-" + i + "'/>";
 			
 			var id1 = "text-discord-" + getEventID(ev);
