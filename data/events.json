@@ -1,5 +1,5 @@
 [
-	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-01-06T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-01-06T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"GM-Tom","code":"3190-3514-8531"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-01-06T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"wanderers-smash","stages":"vanilla-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"The Oddity","code":"4303-5678-5601"}]}
 
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-01-08T02:00:00.000Z","duration":120,"tz":"PST","theme":"anything","stages":"large","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Jake","code":"7677-0583-7008"}]}
