@@ -31,8 +31,8 @@
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-12-14T20:15:00.000Z","duration":30,"tz":"EST","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 14","game":"arms","type":"scramble","alert":false,"date":"2019-12-14T21:00:00.000Z","duration":90,"tz":"EST","theme":"scramble","stages":"all-arms"}
 	
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2019-11-30T20:15:00.000Z","duration":30,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Casual Clash 19","game":"arms","type":"clash","alert":false,"date":"2019-11-30T21:00:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-01-18T20:15:00.000Z","duration":30,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Casual Clash 20","game":"arms","type":"clash","alert":false,"date":"2020-01-18T21:00:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
 	
 	,{"title":"Oddity's Oddball Brawl","game":"smash","type":"tournament","alert":false,"date":"2019-05-19T23:00:00.000Z","duration":90,"tz":"EDT","description":"Themed 1v1 Round Robin Tournament","url":"https://challonge.com/ritli2hj"}
 	,{"title":"Racha's Gambit VI","game":"arms","type":"tournament","alert":false,"date":"2019-07-04T23:30:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit6","stages":"all-arms"}
