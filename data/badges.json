@@ -213,7 +213,7 @@
 	,"333804452475830277": {"name": "Penzo",                "badges": ["clash"] }
 	,"395381846315368448": {"name": "Niklassen",            "badges": ["scramble"] }
 	,"276020412800827396": {"name": "Samuel Hayes",         "badges": ["scramble"] }
-	,"357272042669867009": {"name": "Nova Commander",       "badges": ["season_arms", "cookoff"] }
+	,"357272042669867009": {"name": "Nova Commander",       "badges": ["season_arms", "clash", "cookoff"] }
 	,"625348232003715153": {"name": "Callum",      		 "badges": ["season_splat", "season_smash"] }
 	,"505212870712098826": {"name": "Kodakliv",      	 "badges": ["season_splat"] }
 	
@@ -232,7 +232,15 @@
 	
 	,"557252768683917338": {"name": "Galfin", 	     	 "badges": ["season_splat", "season_smash", "cookoff"] }
 	,"282906406615777282": {"name": "Daniel", 	     	 "badges": ["season_splat"] }
-	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms"] }
-	,"282906406615777282": {"name": "SUPERBOT7789", 	     	 "badges": ["cookoff"] }
+	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms", "clash"] }
+	,"282906406615777282": {"name": "SUPERBOT7789", 	 "badges": ["cookoff"] }
+	
+	,"204281293867843584": {"name": "Lachesism", 	        "badges": ["clash"] }
+	,"658050179626172452": {"name": " なつみ", 	      "badges": ["clash"] }
+	,"601736541043163167": {"name": "SAVE-ARMS.", 	     	 "badges": ["clash"] }
+	,"198348548016832512": {"name": "BlackLotus", 	         "badges": ["clash"] }
+	,"347606716042706946": {"name": "emminet", 	     	 "badges": ["clash"] }
+	,"122193851887648769": {"name": "A Lost Soul", 	     	 "badges": ["clash"] }
+	,"143481099077681152": {"name": "sophia", 	     	 "badges": ["clash"] }
 	
 }
