@@ -179,7 +179,12 @@ permalink: /staff/advertising/index.html
 		text = text.replace("{items}", itemsText);
 		
 		if ("streamers" in ev)
-			text += "\n\nWatch the event on stream! http://twitch.tv/" + ev.streamers[0];
+			for (var i = 0; i < ev.streamers.length; ++i)
+				text += "\n\nWatch the event on stream! <https://twitch.tv/" + ev.streamers[i] + ">";
+		
+		if ("mixers" in ev)
+			for (var i = 0; i < ev.mixers.length; ++i)
+				text += "\n\nWatch the event on stream! <https://mixer.com/" + ev.mixers[i] + ">";
 		
 		return text;
 	}
