@@ -112,4 +112,7 @@
 	,{ "date" : "2020-01-04", "type" : "cookoff", "players" : 15, "winner" : [
  		{ "id" : "221773843344261122", "name" : "Nigel" }
 	]}
+	,{ "date" : "2020-01-18", "type" : "clash", "players" : 21, "winner" : [
+ 		{ "id" : "350643816404877322", "name" : "BunnyChamp" }
+	]}
 ]
