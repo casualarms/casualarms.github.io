@@ -1,5 +1,5 @@
 [
-	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-01-27T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"Grates","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"DinosaurY","code":"2926-5224-3023"}]}
+	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-01-27T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"all-splat","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-01-27T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-2v2-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-01-29T02:00:00.000Z","duration":120,"tz":"PST","theme":"anything","stages":"japan","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"streamers":["sorafirestorm"]}
