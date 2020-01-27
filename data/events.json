@@ -1,7 +1,7 @@
 [
 	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-01-27T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"Grates","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"DinosaurY","code":"2926-5224-3023"}]}
-	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-01-27T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-2v2-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-
+	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-01-27T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-2v2-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Literary","code":"4704-7597-7783"}]}
+	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-01-29T02:00:00.000Z","duration":120,"tz":"PST","theme":"anything","stages":"japan","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"streamers":["sorafirestorm"]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2020-01-29T19:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-1v1v1v1-smash","items":"wanderers-smash","stages":"chocolate-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-01-29T23:00:00.000Z","duration":120,"tz":"EST","theme":"fights-only","stages":"barriers","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"},{"name":"DinosaurY","code":"2926-5224-3023"}],"mixers":["CasualARMS"]}
