@@ -114,5 +114,7 @@
 	]}
 	,{ "date" : "2020-01-18", "type" : "clash", "players" : 21, "winner" : [
  		{ "id" : "350643816404877322", "name" : "BunnyChamp" }
+	,{ "date" : "2020-02-01", "type" : "scramble", "players" : 15, "winner" : [
+ 		{ "id" : "187236610046164992", "name" : "Cosalina" }
 	]}
 ]
