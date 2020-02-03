@@ -102,6 +102,12 @@
 			"timeout"  : 240,
 			"patron"   : ""
 		}
+				{
+			"commands" : ["sleep"],
+			"image"    : "https://www.casualarms.net/itembot/response/Dino-sleep.png",
+			"timeout"  : 240,
+			"patron"   : ""
+		}
 		
 	],
 	"feedbackMessage" : "Thanks for participating in the tournament! If you have any feedback, please fill in the form here: https://goo.gl/forms/Qe3R0z5zwK75ZQtC3",
