@@ -10,7 +10,7 @@
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2020-02-02T00:30:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"firearms-smash","stages":"transform-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-02-02T20:45:00.000Z","duration":120,"tz":"EST","theme":"anything","stages":"mmall","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-02-03T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-rainmaker","stages":"Central","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-02-03T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"diving-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-02-03T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"diving-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-02-05T02:00:00.000Z","duration":120,"tz":"PST","theme":"solo","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}],"streamers":["sorafirestorm"]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2020-02-05T19:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-2v2-smash","items":"better-worse-smash","stages":"transform-smash","hosts":[{"name":"To Be Announced","code":""}]}
