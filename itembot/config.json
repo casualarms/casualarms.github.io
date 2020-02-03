@@ -101,7 +101,7 @@
 			"image"    : "https://www.casualarms.net/itembot/response/program.png",
 			"timeout"  : 240,
 			"patron"   : ""
-		}
+		},
 				{
 			"commands" : ["sleep"],
 			"image"    : "https://www.casualarms.net/itembot/response/Dino-sleep.png",
