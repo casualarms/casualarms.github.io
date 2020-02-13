@@ -1,1 +1,861 @@
-{"commands": [{"opcodes": ["me", "coins", "badges"], "args": [{"legend": "Discord ID of member to display", "name": "id", "required": false, "type": "free"}], "admin": false, "desc": "Show information about a member's coins and badges"}, {"opcodes": ["event", "events"], "args": [{"legend": {"all": "All events (max 5)", "arms": "Only ARMS events", "current": "Any currenly ongoing event", "splat": "Only Splatoon events", "smash": "Only Super Smash Bros. events", "tournament": "Only tournaments", "kart": "Only Mario Kart events", "next": "Next event, excluding any currently ongoing ones"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Information about ongoing and upcoming events"}, {"opcodes": ["arms"], "args": [], "admin": false, "desc": "Alias for '!event arms'"}, {"opcodes": ["kart"], "args": [], "admin": false, "desc": "Alias for '!event kart'"}, {"opcodes": ["splat"], "args": [], "admin": false, "desc": "Alias for '!event splat'"}, {"opcodes": ["smash"], "args": [], "admin": false, "desc": "Alias for '!event smash'"}, {"opcodes": ["themeinfo", "rules", "settings"], "args": [{"legend": {"all": "All events (max 5)", "arms": "Only ARMS events", "current": "Any currenly ongoing event", "splat": "Only Splatoon events", "smash": "Only Super Smash Bros. events", "tournament": "Only tournaments", "kart": "Only Mario Kart events", "next": "Next event, excluding any currently ongoing ones"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Detailed theme information"}, {"opcodes": ["countdown"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Time to next event or time remaining of current event"}, {"opcodes": ["host", "hosts", "code", "friendcode"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Hosts information for events"}, {"opcodes": ["theme"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Theme information for events"}, {"opcodes": ["stages"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Stage set information for events"}, {"opcodes": ["items"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Item set information for events"}, {"opcodes": ["event-stream", "event-streamer"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Streamer information for events"}, {"opcodes": ["stream", "streamer"], "args": [{"legend": {"all": "All streams (max 5)", "arms": "Only ARMS streams", "current": "Any currenly ongoing stream", "splat": "Only Splatoon streams", "partner": "Only partner streams", "smash": "Only Super Smash Bros. streams", "official": "Only official streams", "kart": "Only Mario Kart streams", "next": "Next stream, excluding any currently ongoing ones"}, "name": "filter", "required": false, "type": "fixed"}], "admin": false, "desc": "Stream information"}, {"opcodes": ["leaderboard", "leaderboards"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "game", "required": false, "type": "fixed"}], "admin": false, "desc": "Post links to leaderboards"}, {"opcodes": ["monthly", "season"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "game", "required": false, "type": "fixed"}], "admin": false, "desc": "Posts top 10 participants in monthly leaderboards"}, {"opcodes": ["roles"], "args": [{"legend": {"smash": "Super Smash Bros.", "arms": "ARMS (default)", "kart": "Mario Kart", "splat": "Splatoon"}, "name": "game", "required": false, "type": "fixed"}], "admin": false, "desc": "Posts requirements for server role progression"}, {"opcodes": ["clash"], "args": [], "admin": false, "desc": "Posts date of next Casual Clash and website link"}, {"opcodes": ["scramble"], "args": [], "admin": false, "desc": "Posts date of next Casual Scramble and website link"}, {"opcodes": ["cookoff"], "args": [], "admin": false, "desc": "Posts date of next Casual Cookoff and website link"}, {"opcodes": ["feedback"], "args": [], "admin": false, "desc": "Feedback form for Casual Tournaments. For members who have the tournament participation role"}, {"opcodes": ["vs"], "args": [{"legend": "'remove' to remove", "name": "remove", "required": false, "type": "free"}], "admin": false, "desc": "Add or remove the VS Seeker role"}, {"opcodes": ["stream-notify"], "args": [{"legend": "'remove' to remove", "name": "remove", "required": false, "type": "free"}], "admin": false, "desc": "Add or remove the Stream Notifications role"}, {"opcodes": ["video"], "args": [{"legend": {"clash": "Casual Clash", "scramble": "Casual Scramble"}, "name": "mode", "required": true, "type": "fixed"}], "admin": false, "desc": "Links to a video showing the tournament lobby settings process"}, {"opcodes": ["set-friendcode", "set-fc"], "args": [{"legend": "The member's Switch friend code", "name": "code", "required": true, "type": "free"}], "admin": false, "desc": "Set a Discord user's Nintendo Switch friend code"}, {"opcodes": ["get-friendcode", "get-fc", "friendcode", "fc"], "args": [{"legend": "The member's Switch friend code", "name": "code", "required": false, "type": "free"}], "admin": false, "desc": "Get a Discord user's Nintendo Switch friend code"}, {"opcodes": ["convert"], "args": [], "admin": false, "desc": "Convert most units"}, {"opcodes": ["giveaway"], "args": [], "admin": false, "desc": "Sign up for the leaderboard giveaway"}, {"opcodes": ["giveaway-exit"], "args": [], "admin": false, "desc": "Unregister from the leaderboard giveaway"}, {"opcodes": ["biff"], "args": [], "admin": false, "desc": "Posts a randomized Biff expression"}, {"opcodes": ["coin", "flip", "coinflip", "dice", "roll"], "args": [{"legend": "Maximum random value to generate (range 1 to this value, inclusive)", "name": "max-value", "required": false, "type": "free"}], "admin": false, "desc": "Randomize an event"}, {"opcodes": ["voice"], "args": [{"legend": {"twin": "Twintelle", "arms": "ARMS announcer", "mummy": "Master Mummy", "ness": "Ness", "hot": "That's HOT", "byte": "Byte & Barq", "hello": "Any voice clip saying hi", "lucas": "Lucas", "helix": "Helix", "ninja": "Ninjara", "cobra": "Kid Cobra", "hedlok": "Hedlok", "min": "Min Min", "falcon": "Captain Falcon", "mech": "Mechanica", "ribbon": "Ribbon Girl", "kirby": "Kirby", "okay": "Okay", "brass": "Max Brass", "spring": "Spring Man"}, "name": "sound", "required": true, "type": "fixed"}], "admin": false, "desc": "Play a sound clip while in a voice channel"}, {"opcodes": ["vcname"], "args": [{"legend": {}, "name": "name", "required": true, "type": "fixed"}, {"legend": {"recorded": "VC is recorded"}, "name": "modifier", "required": false, "type": "fixed"}], "admin": false, "desc": "Temporarily change the name of a voice channel"}, {"opcodes": ["itembot", "help", "info"], "args": [{"legend": "Command to check help for", "name": "command", "required": false, "type": "free"}], "admin": false, "desc": "ItemBot documentation"}, {"opcodes": ["admin-reconfig"], "args": [], "admin": true, "desc": "Re-sync the bot commands read from the JSON file"}, {"opcodes": ["admin-update"], "args": [], "admin": true, "desc": "Re-sync the backend data read from JSON files"}, {"opcodes": ["admin-consistency"], "args": [], "admin": true, "desc": "Check consistency of the JSON database and Discord roles"}, {"opcodes": ["admin-documentation"], "args": [], "admin": true, "desc": "Generate documentation of bot commands"}, {"opcodes": ["admin-signup"], "args": [], "admin": true, "desc": "Event hosting signups"}, {"opcodes": ["live-alert"], "args": [{"legend": {"all": "All events (max 5)", "arms": "Only ARMS events", "current": "Any currenly ongoing event", "splat": "Only Splatoon events", "smash": "Only Super Smash Bros. events", "tournament": "Only tournaments", "kart": "Only Mario Kart events", "next": "Next event, excluding any currently ongoing ones"}, "name": "filter", "required": false, "type": "fixed"}], "admin": true, "desc": "Live alert for upcoming or ongoing event"}, {"opcodes": ["admin-manage-roles"], "args": [{"legend": "'commit' to commit", "name": "commit", "required": false, "type": "free"}], "admin": true, "desc": "Update Discord leaderboard roles to mirror the JSON database"}, {"opcodes": ["admin-tournament-badges"], "args": [{"legend": {"clash": "Casual Clash", "scramble": "Casual Scramble"}, "name": "mode", "required": true, "type": "fixed"}], "admin": true, "desc": "Tell which members have earned a new tournament badge"}, {"opcodes": ["admin-monthly-badges"], "args": [], "admin": true, "desc": "Tell which members have earned a new monthly badge"}, {"opcodes": ["website"], "args": [], "admin": false, "desc": "Posts \"Casual ARMS website: https://www.casualarms.net/\""}, {"opcodes": ["schedule"], "args": [], "admin": false, "desc": "Posts \"View upcoming events and regular time slots here: https://www.casualarms.net/events/#schedule\""}, {"opcodes": ["quiz"], "args": [], "admin": false, "desc": "Posts \"ARMS quiz with thousands of questions: https://www.casualarms.net/quiz/\""}, {"opcodes": ["discord", "invite"], "args": [], "admin": false, "desc": "Posts \"Casual ARMS Discord server: <https://discord.gg/5A7QkPC>\""}, {"opcodes": ["twitter"], "args": [], "admin": false, "desc": "Posts \"Casual ARMS Twitter account: <https://twitter.com/casualARMS>\""}, {"opcodes": ["patreon"], "args": [], "admin": false, "desc": "Posts \"Contribute to Casual ARMS on Patreon: <https://www.patreon.com/CasualARMS/>\""}, {"opcodes": ["movienight"], "args": [], "admin": false, "desc": "Posts \"Casual ARMS movie nights: https://www.casualarms.net/events/movienight/\""}, {"opcodes": ["snakepark"], "args": [], "admin": false, "desc": "Posts \"<http://neednintendo.com/index.php/2018/04/15/in-defense-of-snake-park/>\""}, {"opcodes": ["randomizers", "randomizer"], "args": [], "admin": false, "desc": "Posts \"https://www.casualarms.net/tools/randomizers/\""}, {"opcodes": ["anniversary", "birthday", "wristband", "wristbands"], "args": [], "admin": false, "desc": "Posts \"**Happy birthday, Casual ARMS!**\nWe are making a limited run of Casual ARMS wristbands to celebrate one year of community and excitement! https://www.casualarms.net/wristbands/\""}, {"opcodes": ["save"], "args": [], "admin": false, "desc": "Posts \"`AI_COLLABORATION_DETECTED\nC0DE_BR0k3N\nENTER_SAVE_ARMS:` <http://discord.gg/8mG8Uyu>\""}, {"opcodes": ["look"], "args": [{"legend": "default: look", "name": "arg 0", "required": false, "type": "free"}], "admin": false, "desc": "Posts \"I'll {{0:look}} if you {{0:look}}\""}, {"opcodes": ["hug"], "args": [{"legend": "default: everyone", "name": "arg 0", "required": false, "type": "free"}], "admin": false, "desc": "Posts \"Hugs {{0:everyone}} <:SmashBallHug:528246258679283721>\""}, {"opcodes": ["widegrab"], "args": [], "admin": false, "desc": "Posts \"<:GuardianLaugh:454638405075075072>=========================<:GuardianLaugh:454638405075075072>\""}, {"opcodes": ["useless"], "args": [], "admin": false, "desc": "Posts \"MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA!!!\""}, {"opcodes": ["ficmas"], "args": [], "admin": false, "desc": "Posts \"Merry Ficmas, everyone! Check out Melty's new Christmas ARMS fic here. <https://archiveofourown.org/works/21945847/chapters/52375468>\""}, {"opcodes": ["tbird"], "args": [], "admin": false, "desc": ""}, {"opcodes": ["brows"], "args": [], "admin": false, "desc": ""}, {"opcodes": ["lit"], "args": [], "admin": false, "desc": ""}, {"opcodes": ["program"], "args": [], "admin": false, "desc": ""}], "prompt": "!"}
+{
+  "commands": [
+    {
+      "desc": "Show information about a member's coins and badges",
+      "opcodes": [
+        "me",
+        "coins",
+        "badges"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "id",
+          "legend": "Discord ID of member to display",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Information about ongoing and upcoming events",
+      "opcodes": [
+        "event",
+        "events"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "tournament": "Only tournaments",
+            "current": "Any currenly ongoing event",
+            "smash": "Only Super Smash Bros. events",
+            "arms": "Only ARMS events",
+            "splat": "Only Splatoon events",
+            "all": "All events (max 5)",
+            "next": "Next event, excluding any currently ongoing ones",
+            "kart": "Only Mario Kart events"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Alias for '!event arms'",
+      "opcodes": [
+        "arms"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Alias for '!event kart'",
+      "opcodes": [
+        "kart"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Alias for '!event splat'",
+      "opcodes": [
+        "splat",
+        "splatoon"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Alias for '!event smash'",
+      "opcodes": [
+        "smash"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Time to next event or time remaining of current event",
+      "opcodes": [
+        "countdown"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Hosts information for events",
+      "opcodes": [
+        "host",
+        "hosts",
+        "code",
+        "friendcode"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Theme information for events",
+      "opcodes": [
+        "theme"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Stage set information for events",
+      "opcodes": [
+        "stages"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Item set information for events",
+      "opcodes": [
+        "items"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Streamer information for events",
+      "opcodes": [
+        "event-stream",
+        "event-streamer"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Stream information",
+      "opcodes": [
+        "stream",
+        "streamer"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "current": "Any currenly ongoing stream",
+            "smash": "Only Super Smash Bros. streams",
+            "arms": "Only ARMS streams",
+            "splat": "Only Splatoon streams",
+            "partner": "Only partner streams",
+            "all": "All streams (max 5)",
+            "official": "Only official streams",
+            "next": "Next stream, excluding any currently ongoing ones",
+            "kart": "Only Mario Kart streams"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Post links to leaderboards",
+      "opcodes": [
+        "leaderboard",
+        "leaderboards"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "game",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Posts top 10 participants in monthly leaderboards",
+      "opcodes": [
+        "monthly",
+        "season"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "game",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Posts requirements for server role progression",
+      "opcodes": [
+        "roles"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "game",
+          "legend": {
+            "splat": "Splatoon",
+            "smash": "Super Smash Bros.",
+            "arms": "ARMS (default)",
+            "kart": "Mario Kart"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Detailed theme information",
+      "opcodes": [
+        "themeinfo",
+        "rules",
+        "settings"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "tournament": "Only tournaments",
+            "current": "Any currenly ongoing event",
+            "smash": "Only Super Smash Bros. events",
+            "arms": "Only ARMS events",
+            "splat": "Only Splatoon events",
+            "all": "All events (max 5)",
+            "next": "Next event, excluding any currently ongoing ones",
+            "kart": "Only Mario Kart events"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Posts date of next Casual Clash and website link",
+      "opcodes": [
+        "clash"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts date of next Casual Scramble and website link",
+      "opcodes": [
+        "scramble"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts date of next Casual Cookoff and website link",
+      "opcodes": [
+        "cookoff"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Feedback form for Casual Tournaments. For members who have the tournament participation role",
+      "opcodes": [
+        "feedback"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Links to a video showing the tournament lobby settings process",
+      "opcodes": [
+        "video"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "mode",
+          "legend": {
+            "scramble": "Casual Scramble",
+            "clash": "Casual Clash"
+          },
+          "type": "fixed",
+          "required": true
+        }
+      ]
+    },
+    {
+      "desc": "Add or remove the VS Seeker role",
+      "opcodes": [
+        "vs"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "game",
+          "legend": {
+            "smash": "Super Smash Bros. Ultimate VS Seeker role",
+            "arms": "ARMS VS Seeker role",
+            "splat": "Splatoon 2 VS Seeker role"
+          },
+          "type": "fixed",
+          "required": true
+        },
+        {
+          "name": "remove",
+          "legend": "'remove' to remove",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Add or remove the Stream Notifications role",
+      "opcodes": [
+        "stream-notify"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "remove",
+          "legend": "'remove' to remove",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Set a Discord user's Nintendo Switch friend code",
+      "opcodes": [
+        "set-friendcode",
+        "set-fc"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "code",
+          "legend": "The member's Switch friend code",
+          "type": "free",
+          "required": true
+        }
+      ]
+    },
+    {
+      "desc": "Get a Discord user's Nintendo Switch friend code",
+      "opcodes": [
+        "get-friendcode",
+        "get-fc",
+        "friendcode",
+        "fc"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "code",
+          "legend": "The member's Switch friend code",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Sign up for the leaderboard giveaway",
+      "opcodes": [
+        "giveaway"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Unregister from the leaderboard giveaway",
+      "opcodes": [
+        "giveaway-exit"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Convert most units",
+      "opcodes": [
+        "convert"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts a randomized Biff expression",
+      "opcodes": [
+        "biff"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Randomize an event",
+      "opcodes": [
+        "coin",
+        "flip",
+        "coinflip",
+        "dice",
+        "roll"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "max-value",
+          "legend": "Maximum random value to generate (range 1 to this value, inclusive)",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Play a sound clip while in a voice channel",
+      "opcodes": [
+        "voice"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "sound",
+          "legend": {
+            "twin": "Twintelle",
+            "hello": "Any voice clip saying hi",
+            "hedlok": "Hedlok",
+            "ninja": "Ninjara",
+            "kirby": "Kirby",
+            "okay": "Okay",
+            "lucas": "Lucas",
+            "min": "Min Min",
+            "hot": "That's HOT",
+            "mech": "Mechanica",
+            "ness": "Ness",
+            "falcon": "Captain Falcon",
+            "brass": "Max Brass",
+            "arms": "ARMS announcer",
+            "spring": "Spring Man",
+            "helix": "Helix",
+            "cobra": "Kid Cobra",
+            "byte": "Byte & Barq",
+            "ribbon": "Ribbon Girl",
+            "mummy": "Master Mummy"
+          },
+          "type": "fixed",
+          "required": true
+        }
+      ]
+    },
+    {
+      "desc": "Temporarily change the name of a voice channel",
+      "opcodes": [
+        "vcname"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "name",
+          "legend": {},
+          "type": "fixed",
+          "required": true
+        },
+        {
+          "name": "modifier",
+          "legend": {
+            "recorded": "VC is recorded"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "ItemBot documentation",
+      "opcodes": [
+        "itembot",
+        "help",
+        "info"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "command",
+          "legend": "Command to check help for",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Re-sync the bot commands read from the JSON file",
+      "opcodes": [
+        "admin-reconfig"
+      ],
+      "admin": true,
+      "args": []
+    },
+    {
+      "desc": "Re-sync the backend data read from JSON files",
+      "opcodes": [
+        "admin-update"
+      ],
+      "admin": true,
+      "args": []
+    },
+    {
+      "desc": "Check consistency of the JSON database and Discord roles",
+      "opcodes": [
+        "admin-consistency"
+      ],
+      "admin": true,
+      "args": []
+    },
+    {
+      "desc": "Generate documentation of bot commands",
+      "opcodes": [
+        "admin-documentation"
+      ],
+      "admin": true,
+      "args": []
+    },
+    {
+      "desc": "Event hosting signups",
+      "opcodes": [
+        "admin-signup"
+      ],
+      "admin": true,
+      "args": []
+    },
+    {
+      "desc": "Update Discord leaderboard roles to mirror the JSON database",
+      "opcodes": [
+        "admin-manage-roles"
+      ],
+      "admin": true,
+      "args": [
+        {
+          "name": "commit",
+          "legend": "'commit' to commit",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Tell which members have earned a new tournament badge",
+      "opcodes": [
+        "admin-tournament-badges"
+      ],
+      "admin": true,
+      "args": [
+        {
+          "name": "mode",
+          "legend": {
+            "scramble": "Casual Scramble",
+            "clash": "Casual Clash"
+          },
+          "type": "fixed",
+          "required": true
+        }
+      ]
+    },
+    {
+      "desc": "Tell which members have earned a new monthly badge",
+      "opcodes": [
+        "admin-monthly-badges"
+      ],
+      "admin": true,
+      "args": []
+    },
+    {
+      "desc": "Live alert for upcoming or ongoing event",
+      "opcodes": [
+        "live-alert"
+      ],
+      "admin": true,
+      "args": [
+        {
+          "name": "filter",
+          "legend": {
+            "tournament": "Only tournaments",
+            "current": "Any currenly ongoing event",
+            "smash": "Only Super Smash Bros. events",
+            "arms": "Only ARMS events",
+            "splat": "Only Splatoon events",
+            "all": "All events (max 5)",
+            "next": "Next event, excluding any currently ongoing ones",
+            "kart": "Only Mario Kart events"
+          },
+          "type": "fixed",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Posts \"Casual ARMS website: https://www.casualarms.net/\"",
+      "opcodes": [
+        "website"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"View upcoming events and regular time slots here: https://www.casualarms.net/events/#schedule\"",
+      "opcodes": [
+        "schedule"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"ARMS quiz with thousands of questions: https://www.casualarms.net/quiz/\"",
+      "opcodes": [
+        "quiz"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"Casual ARMS Discord server: <https://discord.gg/5A7QkPC>\"",
+      "opcodes": [
+        "discord",
+        "invite"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"Casual ARMS Twitter account: <https://twitter.com/casualARMS>\"",
+      "opcodes": [
+        "twitter"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"Contribute to Casual ARMS on Patreon: <https://www.patreon.com/CasualARMS/>\"",
+      "opcodes": [
+        "patreon"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"Casual ARMS movie nights: https://www.casualarms.net/events/movienight/\"",
+      "opcodes": [
+        "movienight"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"<http://neednintendo.com/index.php/2018/04/15/in-defense-of-snake-park/>\"",
+      "opcodes": [
+        "snakepark"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"https://www.casualarms.net/tools/randomizers/\"",
+      "opcodes": [
+        "randomizers",
+        "randomizer"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"**Happy birthday, Casual ARMS!**\nWe are making a limited run of Casual ARMS wristbands to celebrate one year of community and excitement! https://www.casualarms.net/wristbands/\"",
+      "opcodes": [
+        "anniversary",
+        "birthday",
+        "wristband",
+        "wristbands"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"`AI_COLLABORATION_DETECTED\nC0DE_BR0k3N\nENTER_SAVE_ARMS:` <http://discord.gg/8mG8Uyu>\"",
+      "opcodes": [
+        "save"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"I'll {{0:look}} if you {{0:look}}\"",
+      "opcodes": [
+        "look"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "arg 0",
+          "legend": "default: look",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Posts \"Hugs {{0:everyone}} <:SmashBallHug:528246258679283721>\"",
+      "opcodes": [
+        "hug"
+      ],
+      "admin": false,
+      "args": [
+        {
+          "name": "arg 0",
+          "legend": "default: everyone",
+          "type": "free",
+          "required": false
+        }
+      ]
+    },
+    {
+      "desc": "Posts \"<:GuardianLaugh:454638405075075072>=========================<:GuardianLaugh:454638405075075072>\"",
+      "opcodes": [
+        "widegrab"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA!!!\"",
+      "opcodes": [
+        "useless"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "Posts \"Merry Ficmas, everyone! Check out Melty's new Christmas ARMS fic here. <https://archiveofourown.org/works/21945847/chapters/52375468>\"",
+      "opcodes": [
+        "ficmas"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "",
+      "opcodes": [
+        "tbird"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "",
+      "opcodes": [
+        "brows"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "",
+      "opcodes": [
+        "lit"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "",
+      "opcodes": [
+        "program"
+      ],
+      "admin": false,
+      "args": []
+    },
+    {
+      "desc": "",
+      "opcodes": [
+        "sleep"
+      ],
+      "admin": false,
+      "args": []
+    }
+  ],
+  "prompt": "!"
+}

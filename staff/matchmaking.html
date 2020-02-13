@@ -96,7 +96,7 @@ permalink: /staff/matchmaking/index.html
 		background-color: yellow;
 	}
 	
-	#mode-selector {
+	.mode-selector {
 		text-align: center;
 		font-size: 1.2em;
 		text-transform: uppercase;
@@ -227,19 +227,28 @@ permalink: /staff/matchmaking/index.html
 	</style>
 	<script>
 	
-	function changeMode(mode)
+	function changeRunMode(mode)
 	{
-		activeGame = game;
-		
-		var buttons = document.getElementsByClassName("mode");
+		var buttons = document.getElementsByClassName("run-mode");
 		for (var b = 0; b < buttons.length; ++b)
-			buttons[b].className = "mode";
-		$("md-" + mode).className += " active-mode active-mode-" + activeGame;
+			buttons[b].className = "mode run-mode";
+		$("md-" + mode).className += " active-mode"
 		
-		$("settings-manual").style.display = "none";
-		$("settings-simulate").style.display = "none";
+		$("settings-MANUAL").style.display = "none";
+		$("settings-SIMULATE").style.display = "none";
 		$("settings-" + mode).style.display = "block";
 		
+		runMode = mode;
+	}
+	
+	function changeScoringMode(mode)
+	{
+		var buttons = document.getElementsByClassName("scoring-mode");
+		for (var b = 0; b < buttons.length; ++b)
+			buttons[b].className = "mode scoring-mode";
+		$("md-" + mode).className += " active-mode";
+		
+		scoringMode = mode;
 	}
 	
 	function displayGraph(connectivity, rounds)
@@ -467,13 +476,13 @@ permalink: /staff/matchmaking/index.html
 					connectivity[team[ti]][team[tj]] += 1;
 	}
 	
-	function cloneMat(source)
+	function cloneMat(result, source)
 	{
-		var res = Array.apply(null, Array(source.length)).map(function() { return Array.apply(null, Array(source.length)).map(function() { return 0; }); });
+	//	var res = Array.apply(null, Array(source.length)).map(function() { return Array.apply(null, Array(source.length)).map(function() { return 0; }); });
 		for (var i = 0; i < source.length; i++)
 			for (var j = i; j < source.length; j++)
-				res[i][j] = source[i][j];
-		return res;
+				result[i][j] = source[i][j];
+	//	return res;
 	}
 	
 	function updateScore(round, teamIdx)
@@ -531,7 +540,7 @@ permalink: /staff/matchmaking/index.html
 		
 		for (var o = 0; o < options.length; ++o)
 		{
-			var tempConnectivity = cloneMat(connectivity);
+			cloneMat(tempConnectivity, connectivity);
 			for (var t = 0; t < teamCount; ++t)
 			{
 				var tempTeam = options[o][t];
@@ -659,8 +668,20 @@ permalink: /staff/matchmaking/index.html
 		presentModal(matchupText(teams));
 	}
 	
+	// Modes
+	
+	var MANUAL = "MANUAL";
+	var SIMULATE = "SIMULATE";
+	
+	var PVE = "PVE";
+	var PVP = "PVP";
+	
+	// State
+	var runMode = MANUAL;
+	var scoringMode = PVE;
 	var currentRound = 0;
 	var connectivity = [];
+	var tempConnectivity = [];
 	var players = [];
 	var scores = [];
 	var playerScores = [];
@@ -692,7 +713,8 @@ permalink: /staff/matchmaking/index.html
 		for (var i = 0; i < connectivity.length; ++i)
 			connectivity[i].push(0);
 		
-		connectivity.push(Array.apply(null, Array(players.length)).map(function() { return 0; }));
+		connectivity.push(    Array.apply(null, Array(players.length)).map(function() { return 0; }));
+		tempConnectivity.push(Array.apply(null, Array(players.length)).map(function() { return 0; }));
 		viewPlayers();
 		updateLabels();
 		viewScoreTable();
@@ -819,19 +841,24 @@ permalink: /staff/matchmaking/index.html
 		
 		<form>
 			<fieldset id="general-settings">
-			<label class="input-label">Max team size:</label> <input type="number" value="4" id="teamsize"/><br/>
-			<label class="input-label">Connectivity:</label> 0 % <input id="param-conn" type="range" min="0" max="1" step="0.1" value="0"/> 100 % <br/>
-			<label class="input-label">Internal Skill Spread:</label> 0 % <input id="param-internal" type="range" min="0" max="1" step="0.1" value="0"/> 100 %<br/>
-			<label class="input-label">External Skill Spread:</label> 0 % <input id="param-external" type="range" min="0" max="1" step="0.1" value="0"/> 100 %
+			<label class="input-label">Max team size:</label> <input type="number" min="1" value="4" id="teamsize"/><br/>
+			<label class="input-label">Connectivity:</label> 0 % <input id="param-conn" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 % <br/>
+			<label class="input-label">Internal Skill Spread:</label> 0 % <input id="param-internal" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 %<br/>
+			<label class="input-label">External Skill Spread:</label> 0 % <input id="param-external" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 %
 			</fieldset>
 		</form>
 		
-		<p id="mode-selector">
-			<em class="mode active-mode" id="md-manual" onclick="changeMode('manual');">Manual</em>
-			<em class="mode" id="md-simulate" onclick="changeMode('simulate');">Simulate</em>
+		<p class="mode-selector">
+			<em class="mode scoring-mode active-mode" id="md-PVE" onclick="changeScoringMode('PVE');">PVE</em>
+			<em class="mode scoring-mode" id="md-PVP" onclick="changeScoringMode('PVP');">PVP</em>
 		</p>
 		
-		<div id="settings-manual">
+		<p class="mode-selector">
+			<em class="mode run-mode active-mode" id="md-MANUAL" onclick="changeRunMode('MANUAL');">Manual</em>
+			<em class="mode run-mode" id="md-SIMULATE" onclick="changeRunMode('SIMULATE');">Simulate</em>
+		</p>
+		
+		<div id="settings-MANUAL">
 			<p>
 				<label class="input-label">Name:</label> <input type="text" id="input-name" placeholder="Player Name"/><br/>
 				<label class="input-label">FC:</label> <input type="text" id="input-fc" placeholder="XXXX-XXXX-XXXX"/><br/>
@@ -840,7 +867,7 @@ permalink: /staff/matchmaking/index.html
 			</p>
 		</div>
 		
-		<div id="settings-simulate" style="display: none;">
+		<div id="settings-SIMULATE" style="display: none;">
 			<p>
 				<label class="input-label">Participants:</label>  <input type="number" value="10" id="players"/><br/>
 				<label class="input-label">Rounds:</label>        <input type="number" value="4" id="rounds"/><br/>
