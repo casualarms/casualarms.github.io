@@ -199,7 +199,7 @@
 	,"316387447317463041": {"name": "LAB",                 "badges": ["clash"] }
 	,"187236610046164992": {"name": "Cosalina",            "badges": ["clash", "scramble", "scramble_win"] }
 	,"460862593616183317": {"name": "squidy",              "badges": ["clash", "scramble", "season_arms", "season_splat", "season_smash"] }
-	,"449213504537231360": {"name": "DinosaurY",           "badges": ["season_smash", "season_splat", "cookoff", "scramble", "clash", "season_arms", "season_splat_win", "host"] }  
+	,"449213504537231360": {"name": "DinosaurY",           "badges": ["season_smash", "season_splat", "cookoff", "cookoff_win", "scramble", "clash", "season_arms", "season_splat_win", "host"] }  
 	
 	,"144138362226343936": {"name": "Udon",                "badges": ["scramble", "clash", "season_arms", "season_splat", "cookoff", "host"] }
 	,"154431224939675648": {"name": "Radio",               "badges": ["scramble"] }
@@ -232,7 +232,7 @@
 	
 	,"557252768683917338": {"name": "Galfin", 	     	 "badges": ["season_splat", "season_smash", "cookoff"] }
 	,"282906406615777282": {"name": "Daniel", 	     	 "badges": ["season_splat"] }
-	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms", "clash", "scramble"] }
+	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms", "clash", "scramble", "cookoff"] }
 	,"282906406615777282": {"name": "SUPERBOT7789", 	 "badges": ["cookoff"] }
 	
 	,"204281293867843584": {"name": "Lachesism", 	        "badges": ["clash", "season_arms"] }
