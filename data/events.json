@@ -7,6 +7,7 @@
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-02-26T23:00:00.000Z","duration":120,"tz":"EST","theme":"skillshot","stages":"dynamic","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"mixers":["CasualARMS"]}
 	,{"title":"Thumpin' Thursday","game":"arms","type":"leaderboard","alert":true,"date":"2020-02-27T19:00:00.000Z","duration":120,"tz":"GMT","theme":"teams","stages":"backroom","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-02-28T02:30:00.000Z","duration":60,"tz":"PST","theme":"turf-tower","stages":"Rails","hosts":[{"name":"GM-Tom","code":"3190-3514-8531"}],"mixers":["CasualARMS"]}
+	,{"title":"CotEu Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-02-28T17:15:00.000Z","duration":95,"tz":"GMT","description":"1v1 Fights Only, No Items","stages":"cote","hosts":[{"name":"Cosalina","code":"6845-3537-5492"}]}
 	,{"title":"Splaturday","game":"splat","type":"friends","alert":true,"date":"2020-02-29T17:30:00.000Z","duration":60,"tz":"EST","theme":"turf-clams","stages":"Funnel","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Pawl S. Lax","code":"0656-1636-5890"}],"streamers":["pawlslax"]}
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2020-03-01T00:30:00.000Z","duration":60,"tz":"EST","theme":"ca-2v2-smash","items":"firearms-smash","stages":"lookout-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-03-01T20:45:00.000Z","duration":120,"tz":"EST","theme":"vball","stages":"cote","hosts":[{"name":"Udon","code":"3801-5397-8600"},{"name":"CoCovet","code":"8037-4720-4522"}]}
@@ -38,4 +39,5 @@
 
 	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":true,"date":"2019-06-28T16:00:00.000Z","duration":60,"tz":"EDT","description":"EU Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}
 	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":true,"date":"2019-06-28T21:00:00.000Z","duration":60,"tz":"EDT","description":"NA Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}
+
 ]
