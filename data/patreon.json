@@ -20,7 +20,7 @@
 	,"144906691991961601": {"name": "eXTeeGi", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"144138362226343936": {"name": "Pasta Udon", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"158902691542597632": {"name": "taste!", "tier": 1, "max": 2, "active": true, "months": 1}
-	,"285951971167305730": {"name": "Tawny", "tier": 1, "max": 2, "active": false, "months": 1}
+	,"285951971167305730": {"name": "Tawny", "tier": 1, "max": 2, "active": true, "months": 1}
 	
 	
 	,"259188591505309706": {"name": "lvl99Skrub", "tier": 3, "max": 3, "active": false, "months": 1}
