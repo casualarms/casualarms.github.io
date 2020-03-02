@@ -121,4 +121,7 @@
 	,{ "date" : "2020-02-15", "type" : "cookoff", "players" : 8, "winner" : [
  		{ "id" : "449213504537231360", "name" : "DinosaurY" }
 	]}
+	,{ "date" : "2020-02-29", "type" : "clash", "players" : 17, "winner" : [
+ 		{ "id" : "143481099077681152", "name" : "Sophia" }
+	]}	
 ]
