@@ -1,6 +1,6 @@
 [
 	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-03-02T19:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-rainmaker","stages":"Water","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
-	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-03-02T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"diving-smash","hosts":[{"name":"CoCovet","code":"8037-4720-4522","tag":"CC"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-03-02T22:30:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"diving-smash","hosts":[{"name":"CoCovet","code":"8037-4720-4522","tag":"CC"},{"name":"Literary","code":"4704-7597-7783"}]}
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-03-04T02:00:00.000Z","duration":120,"tz":"PST","theme":"bane-ranked","stages":"barriers","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}],"mixers":["sorafirestorm"]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2020-03-04T19:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-2v2-smash","items":"healing-smash","stages":"journey-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
