@@ -213,7 +213,7 @@
 	,"333804452475830277": {"name": "Penzo",                "badges": ["clash"] }
 	,"395381846315368448": {"name": "Niklassen",            "badges": ["scramble"] }
 	,"276020412800827396": {"name": "Samuel Hayes",         "badges": ["scramble"] }
-	,"357272042669867009": {"name": "Nova Commander",       "badges": ["season_arms", "clash", "cookoff", "season_splat"] }
+	,"357272042669867009": {"name": "Nova Commander",       "badges": ["season_arms", "clash", "cookoff", "season_splat", "season_splat_win"] }
 	,"625348232003715153": {"name": "Callum",      		 "badges": ["season_splat", "season_smash"] }
 	,"505212870712098826": {"name": "Kodakliv",      	 "badges": ["season_splat"] }
 	
@@ -241,7 +241,7 @@
 	,"198348548016832512": {"name": "BlackLotus", 	         "badges": ["clash"] }
 	,"347606716042706946": {"name": "emminet", 	     	 "badges": ["clash"] }
 	,"122193851887648769": {"name": "A Lost Soul", 	     	 "badges": ["clash"] }
-	,"143481099077681152": {"name": "sophia", 	     	 "badges": ["clash", "scramble"] }
+	,"143481099077681152": {"name": "sophia", 	     	 "badges": ["clash", "clash_win", "scramble", "season_arms", "season_arms_win"] }
 	,"530396176218849280": {"name": "SpiKeuR", 	     	 "badges": ["season_arms"] }
 	,"664121167006662677": {"name": "Gerhalt", 	     	 "badges": ["season_arms"] }
 	
@@ -250,4 +250,5 @@
 	,"447589902310309888": {"name": "AtomBrain",            "badges": ["clash"] }
 	,"159098788068196353": {"name": "KensaKing",            "badges": ["clash"] }
 	,"175642543134867456": {"name": "BLOOZ",            "badges": ["clash"] }
+	,"434816707916333077": {"name": "Philemax",            "badges": ["season_splat"] }
 }
