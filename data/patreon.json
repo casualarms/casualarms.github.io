@@ -1,7 +1,6 @@
 {
 	"142716556340756481": {"name": "Pawl S.Lax", "tier": 3, "max": 3, "active": true, "months": 1}
 	,"281822770395086848": {"name": "MeltyMetroid", "tier": 3, "max": 3, "active": true, "months": 1}
-	,"449213504537231360": {"name": "DinosaurY", "tier": 3, "max": 3, "active": true, "months": 1}
 	,"258098427844493316": {"name": "SoraFirestorm", "tier": 3, "max": 3, "active": true, "months": 1}
 		
 	,"294640587829805058": {"name": "JefJay", "tier": 2, "max": 2, "active": true, "months": 1}
@@ -28,7 +27,7 @@
 	,"378970992095264769": {"name": "Program", "tier": 2, "max": 3, "active": false, "months": 1}
 	,"164371048093974528": {"name": "GV-97", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"519448634631127040": {"name": "Leonardo de Carlo", "tier": 1, "max": 1, "active": false, "months": 1}
-	
+	,"449213504537231360": {"name": "DinosaurY", "tier": 3, "max": 3, "active": false, "months": 1}
 	,"464467971574595585": {"name": "Goomba", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"265251830144040970": {"name": "Vactorio", "tier": 1, "max": 1, "active": false, "months": 1}
 	
