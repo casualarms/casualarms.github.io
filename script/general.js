@@ -1,8 +1,9 @@
 /* General scripts */
 
 var monthNames = [
-	"January", "February", "March", "April", "May", "June", 
-	"July", "August", "September", "October", "November", "December"];
+	"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December"
+];
 
 var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -155,7 +156,7 @@ function textWeekday(date)
 function textMonth(date)
 {
 	var months = [
-		"January", "February", "March", "April", "May", "June", 
+		"January", "February", "March", "April", "May", "June",
 		"July", "August", "September", "October", "November", "December"];
 	return months[date.getMonth()];
 }
@@ -172,13 +173,13 @@ function formatTimeHelper(date, diff, h, m)
 		if (h < 12)
 		{
 			postfix = " AM";
-			if (h == 0) h = 12; 
+			if (h == 0) h = 12;
 		}
 		else
 		{
 			postfix = " PM";
 			h -= 12;
-			if (h == 0) h = 12; 
+			if (h == 0) h = 12;
 		}
 	}
 	
@@ -197,7 +198,7 @@ function formatTimeUTC(date, diff)
 	return formatTimeHelper(date, diff, date.getUTCHours(), date.getUTCMinutes());
 }
 
-function getNextWeekday(weekday, hours, minutes)
+function getNextWeekday(weekday, hours, minutes, diff = 0)
 {
 	var d = new Date();
 	d.setUTCHours(hours);
@@ -205,6 +206,7 @@ function getNextWeekday(weekday, hours, minutes)
 	d.setUTCSeconds(0);
 	d.setUTCMilliseconds(0);
 	d.setUTCDate(d.getUTCDate() + ((7 - d.getUTCDay()) % 7 + weekday) % 7);
+	d.setTime(d.getTime() + diff * 60000);
 	return d;
 }
 
@@ -472,7 +474,7 @@ function drawStagesItems(mode, canvasid, activeIndexes)
 				ctx.fillRect(x * config.box_width + config.offset_x, y * config.box_height + config.offset_y, config.box_width, config.box_height);
 				ctx.font = "30px sans-serif";
 				ctx.fillStyle = "rgba(255, 0, 0, 0.3)";
-				ctx.textAlign = "center"; 
+				ctx.textAlign = "center";
 				ctx.fillText("⊘", (x+0.5) * config.box_width + config.offset_x, (y+0.5) * config.box_height + config.offset_y + 9);
 			}
 		}
