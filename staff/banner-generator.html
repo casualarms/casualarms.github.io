@@ -226,7 +226,7 @@ permalink: /staff/banners/index.html
 			// Add prior hosts to database
 			if ("hosts" in ev)
 			{
-				outer: 
+				outer:
 				for (var eh = 0; eh < ev.hosts.length; eh++)
 				{
 					for (var h = 0; h < hostDatabase.length; ++h)
@@ -317,14 +317,17 @@ permalink: /staff/banners/index.html
 		selectOptionWithValue($("items"),   eventData.items, true);
 		selectOptionWithValue($("sponsor"), eventData.sponsor, true);
 		
-		if (eventData.stages.substring(0, 6) == "custom")
+		if ("stages" in eventData)
 		{
-			selectOptionWithValue($("stages"), "custom", true);
-			var stages = eventData.stages.substring(7, eventData.stages.length - 1).split(",");
-			for (var i = 0; i < stages.length; ++i)
-				$(eventData.game + stages[i]).checked = true;
+			if (eventData.stages.substring(0, 6) == "custom")
+			{
+				selectOptionWithValue($("stages"), "custom", true);
+				var stages = eventData.stages.substring(7, eventData.stages.length - 1).split(",");
+				for (var i = 0; i < stages.length; ++i)
+					$(eventData.game + stages[i]).checked = true;
+			}
+			else selectOptionWithValue($("stages"), eventData.stages, true);
 		}
-		else selectOptionWithValue($("stages"), eventData.stages, true);
 		
 		readAndGenerate();
 	}
