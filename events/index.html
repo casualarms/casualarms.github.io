@@ -36,9 +36,10 @@ redirect_from: "/lobbies/"
 		position: relative;
 	}
 	
-	#next-lobby {
+	#next-lobby, #next-lobby-img {
 		width: 100%;
 		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+		background-color: white;
 	}
 	
 	#overlay-previous, #overlay-next {
@@ -348,7 +349,15 @@ redirect_from: "/lobbies/"
 	{
 		var ev = eventData[i];
 		focusEvent = i;
-		generateBanner(880, 480, eventData[i], "next-lobby", true);
+		
+		var useImage = ("banner" in ev);
+		$("next-lobby").style.display = useImage ? "none" : "block";
+		$("next-lobby-img").style.display = useImage ? "block" : "none";
+		if (useImage)
+			$("next-lobby-img").src = ev.banner;
+		else
+			generateBanner(880, 480, ev, "next-lobby", true);
+		
 		
 		var tags = "";
 		
@@ -526,6 +535,7 @@ redirect_from: "/lobbies/"
 				<div id="overlay-previous" onclick="changeBanner(-1)" >&lt;</div>
 				<div id="overlay-next" onclick="changeBanner(1)" >&gt;</div>
 				<canvas width="880" height="480" id="next-lobby">There is no announced event right now.</canvas>
+				<img id="next-lobby-img"/>
 			</div>
 			<p id="banner-nav">
 			<!--	<button onclick="changeBanner(-1)" id="banner-previous">&lt;</button>-->
@@ -567,7 +577,7 @@ redirect_from: "/lobbies/"
 			<span style="white-space: nowrap;"><input type="checkbox" id="regular-checkbox"   checked="checked" onchange="toggleEventVisibility()"/> <label for="regular-checkbox">Show slots</label></span>
 		</p>
 		
-		<div class="event-block" id="events-arms"> 
+		<div class="event-block" id="events-arms">
 		<h2>ARMS Events</h2>
 		
 		<p>The following three weekly events all count for the Casual ARMS leaderboards! We run <em>ARMS</em> custom party lobbies in the "friend lobby" mode, so you just need to add one of the lobby hosts on the event banner as a <em class="switch-bg">Switch</em> friend to participate. All dates and times are in <em>your local time zone</em> unless otherwise specified.</p>
@@ -595,7 +605,7 @@ redirect_from: "/lobbies/"
 		<p>The <em>Sunday Showdown</em> event takes place just before a weekly tournament hosted by <a href="https://twitter.com/EraWolfOfficial" target="_blank">Network Era</a>. Like other events, this event features one of our unique themes from our <a href="themes/">theme list</a>. </p>
 		</div>
 		<!--
-		<div class="event-block" id="events-kart"> 
+		<div class="event-block" id="events-kart">
 		<h2>Mario Kart 8 Deluxe Events</h2>
 		
 		<p>Racing and Battle events hosted in Mario Kart 8 Deluxe! Join the fun by noting the code given on the event banner (or from <span class="command">ItemBot</span> in <a href="https://discord.gg/5A7QkPC"><em class="discord-bg">Discord</em></a>) and enter the lobby by selecting <em>Online</em> > <em>Tournament</em> > <em>Enter Code</em>. One or two players can join from a single <em class="switch-bg">Switch</em>, but Casual ARMS can not guarantee that leaderboard points are tracked for the second player.</p>
@@ -625,7 +635,7 @@ redirect_from: "/lobbies/"
 		</div>
 		-->
 		
-		<div class="event-block" id="events-splat"> 
+		<div class="event-block" id="events-splat">
 		<h2>Splatoon 2 Events</h2>
 		
 		<p>The Splatoon events are hosted in private lobbies. Make sure to add the host as a <em class="switch-bg">Switch</em> friend, ideally before the event starts, and join in though the central tower lobby and the <em>Friends</em> option.</p>
@@ -653,7 +663,7 @@ redirect_from: "/lobbies/"
 		
 		</div>
 		
-		<div class="event-block" id="events-smash"> 
+		<div class="event-block" id="events-smash">
 		<h2>Super Smash Bros. Ultimate Events</h2>
 		
 		<p>The Smash events are hosted in <em>Battle Arenas</em> in <em>Friend</em> mode. Make sure to add the host as a <em class="switch-bg">Switch</em> friend, ideally before the event starts, and join in though the in-game Online menu and the <em>Battle Arena > Friends</em> option.</p>

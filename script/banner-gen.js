@@ -380,6 +380,13 @@ function generateBanner(width, height, eventdata, canvasid, nativeTime)
 {
 	withImagesLoaded(bannerImageData(eventdata), function(images)
 	{
+		// Banner URL overrides generator
+		if (!canvasMode && "banner" in eventdata)
+		{
+			$(canvasid).src = eventdata.banner;
+			return;
+		}
+		
 		var canvasMode = $(canvasid).tagName == "CANVAS";
 		var c = canvasMode ? $(canvasid) : document.createElement("canvas");
 		c.width = width;

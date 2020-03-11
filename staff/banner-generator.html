@@ -172,6 +172,8 @@ permalink: /staff/banners/index.html
 		white-space: nowrap;
 	}
 	
+	#result { width: 100%; }
+	
 	</style>
 	<script>
 	
@@ -309,6 +311,7 @@ permalink: /staff/banners/index.html
 		$("title").value       = unEscapeHTML(eventData.title);
 		$("description").value = ("description" in eventData) ? unEscapeHTML(eventData.description) : "";
 		$("url").value         = ("url"         in eventData) ? unEscapeHTML(eventData.url) : "";
+		$("banner").value      = ("banner"      in eventData) ? unEscapeHTML(eventData.banner) : "";
 		
 		selectOptionWithValue($("game"),    eventData.game);
 		fillGameOptions();
@@ -429,6 +432,7 @@ permalink: /staff/banners/index.html
 		
 		if ($("description").value != "") eventdata.description = escapeHTML($("description").value);
 		if ($("url").value != "") eventdata.url = escapeHTML($("url").value);
+		if ($("banner").value != "") eventdata.banner = escapeHTML($("banner").value);
 		
 		if ($("theme")  .selectedIndex > 0) eventdata.theme   = $("theme")  .value;
 		if ($("items")  .selectedIndex > 0) eventdata.items   = $("items")  .value;
@@ -618,7 +622,8 @@ permalink: /staff/banners/index.html
 					<label for="alert">Auto live-alert:</label> <input type="checkbox" checked id="alert" onchange="readAndGenerate()"/>
 					<br/>
 					<label for="description">Description:</label>  <input type="text" id="description" size="30" placeholder="Hoops-only Swiss Tournament"/>
-					<label for="url">External Link:</label>  <input type="text" id="url"  size="35" placeholder="https://challonge.com/HoopsOnlyTournament"/>
+					<label for="url">External Link:</label>  <input type="text" id="url"  size="60" placeholder="https://challonge.com/HoopsOnlyTournament"/><br/>
+					<label for="banner">Banner Image:</label>  <input type="text" id="banner" size="60" placeholder="https://example.com/banner.jpg"/>
 					Sponsor: <select id="sponsor">
 						<option value="undefined" selected>---</option>
 						<option value="mindgames">MindGames</option>

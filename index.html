@@ -24,7 +24,14 @@
 		if (nextEventData.length > 0)
 		{
 			var ev = nextEventData[0];
-			generateBanner(880, 480, ev, "featured-canvas", true);
+		
+			var useImage = ("banner" in ev);
+			$("featured-canvas").style.display = useImage ? "none" : "inline-block";
+			$("featured-img").style.display = useImage ? "inline-block" : "none";
+			if (useImage)
+				$("featured-img").src = ev.banner;
+			else
+				generateBanner(880, 480, ev, "featured-canvas", true);
 			
 			$("featured").className = "";
 			if (ev.game == "arms" && ["clash", "scramble"].includes(ev.type))
@@ -236,8 +243,10 @@
 	
 	#featured img, #featured canvas {
 		height: 80pt;
+		max-width: 150pt;
 		margin: 5pt 5pt 5pt 0;
 		display: inline-block;
+		background-color: white;
 	}
 	
 	p.bottom {
@@ -459,7 +468,7 @@
 		<div id="featured-aligner">
 			<div id="featured" class="featured-hidden">
 				<div class="featured-left"></div>
-				<a href="events/#next" id="featured-link"><canvas width="880" height="480" id="featured-canvas"/></a>
+				<a href="events/#next" id="featured-link"><canvas width="880" height="480" id="featured-canvas"></canvas><img id="featured-img"/></a>
 			</div>
 		</div>
 		
