@@ -74,17 +74,25 @@ var hostDatabase = [
 	{ "tag" : "CC", "name" : "Rashiko",      "code" : "6822-5055-2423", tier : 2},
 	{ "tag" : "",   "name" : "Literary",     "code" : "4704-7597-7783", tier : 2},
 	
-	{ "tag" : "",   "name" : "Mileve",       "code" : "2795-2096-7893", tier : 3},
+        //{ "tag" : "",   "name" : "Mileve",       "code" : "2795-2096-7893", tier : 3},
 	{ "tag" : "",   "name" : "Sora",         "code" : "0499-4528-8293", tier : 3},
 	{ "tag" : "",   "name" : "Reis",         "code" : "1753-6049-3315", tier : 3},
-	{ "tag" : "CC", "name" : "Marie",        "code" : "5693-4645-2698", tier : 3},
+	//{ "tag" : "CC", "name" : "Marie",        "code" : "5693-4645-2698", tier : 3},
 	{ "tag" : "",   "name" : "Spenjo",       "code" : "0725-4824-1895", tier : 2},
 	{ "tag" : "",   "name" : "Levi",         "code" : "3256-0282-5625", tier : 1},
 	{ "tag" : "",   "name" : "Taste",        "code" : "4535-5139-5505", tier : 1},
 	
 	{ "tag" : "",   "name" : "The Oddity",   "code" : "4303-5678-5601", tier : 0},
 	{ "tag" : "",   "name" : "Pawl S. Lax",  "code" : "0656-1636-5890", tier : 0},
-	{ "tag" : "CC", "name" : "Fang",         "code" : "8434-0819-1597", tier : 0},
+        { "tag" : "CC", "name" : "Fang",         "code" : "8434-0819-1597", tier : 0},
+
+	{ "tag" : "",    "name" : "DinosaurY",   "code" : "2926-5224-3023", tier : 0},
+	{ "tag" : "",    "name" : "Jake",        "code" : "7677-0583-7008", tier : 0},
+	{ "tag" : "CC",  "name" : "Era",         "code" : "5972-7410-1228", tier : 0},
+	{ "tag" : "CC",  "name" : "CoCovet",     "code" : "8037-4720-4522", tier : 0},
+	{ "tag" : "",    "name" : "Ombreverte",  "code" : "3089-8564-5404", tier : 0},
+	{ "tag" : "",    "name" : "Udon",        "code" : "3801-5397-8600", tier : 0},
+	{ "tag" : "CC",  "name" : "Tom",         "code" : "3190-3514-8531", tier : 0},
 ]
 
 var dst = communityObservesDST ? -60 : 0;
