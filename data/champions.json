@@ -123,6 +123,7 @@
 	]}
 	,{ "date" : "2020-02-29", "type" : "clash", "players" : 17, "winner" : [
  		{ "id" : "143481099077681152", "name" : "Sophia" }
+	]}
 	,{ "date" : "2020-03-28", "type" : "scramble", "players" : 30, "winner" : [
  		{ "id" : "187236610046164992", "name" : "Cosalina" }
 	]}	
