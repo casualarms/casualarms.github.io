@@ -507,14 +507,34 @@ permalink: /staff/matchmaking/index.html
 	
 	function playersNotInAnyTeam(playerIdxs, teams)
 	{
-		var res = clone(playerIdxs);
+		var res = playerIdxs.slice();
 		for (var t = 0; t < teams.length; ++t)
 			res = setSubtract(res, teams[t]);
 		return res;
 	}
 	
+	function randomSet(playerIdxs, teamSize, count)
+	{
+		var res = [];
+		var idx = shuffle(playerIdxs.slice());
+		var iter = 0;
+		for (var i = 0; i < count; ++i)
+		{
+			var team = [];
+			for (var t = 0; t < teamSize; ++t)
+			{
+				team.push(idx[iter++]);
+			}
+			res.push(team);
+		}
+		return res;
+	}
+	
 	function findBestRound(maxTeamSize)
 	{
+		var performance = $("performance").checked;
+		var perfSampleSize = parseInt($("accuracy").value);
+		
 		var playerIdxs = [];
 		for (var i = 0; i < players.length; ++i)
 			if (!players[i].dropped) playerIdxs.push(i);
@@ -524,19 +544,41 @@ permalink: /staff/matchmaking/index.html
 		var baseTeamSize = Math.floor(playerIdxs.length / teamCount);
 		var largeTeamCount = playerIdxs.length % teamCount;
 		
-		var firstSet = (largeTeamCount > 0) ? combinationsPickNHigher(combinationsPickN(playerIdxs, baseTeamSize + 1), largeTeamCount) : [[]];
+		var firstSet = [];
+		if (performance)
+		{
+			for (var s = 0; s < perfSampleSize; ++s)
+				firstSet.push(randomSet(playerIdxs, baseTeamSize + 1, largeTeamCount));
+		}
+		else {
+			firstSet = (largeTeamCount > 0) ? combinationsPickNHigher(combinationsPickN(playerIdxs, baseTeamSize + 1), largeTeamCount) : [[]];
+		}
+		
+		console.log("FirstSet size: " + firstSet.length);
 		
 		var options = [];
 		for (var f = 0; f < firstSet.length; ++f)
 		{
 			var remainingPlayers = playersNotInAnyTeam(playerIdxs, firstSet[f]);
-			var secondSet = combinationsPickNHigher(combinationsPickN(remainingPlayers, baseTeamSize), teamCount - largeTeamCount);
+			
+			var secondSet = [];
+			if (performance)
+			{
+				for (var s = 0; s < perfSampleSize; ++s)
+					secondSet.push(randomSet(remainingPlayers, baseTeamSize, teamCount - largeTeamCount));
+			}
+			else {
+				secondSet = combinationsPickNHigher(combinationsPickN(remainingPlayers, baseTeamSize), teamCount - largeTeamCount);
+			}
+			
 			for (var s = 0; s < secondSet.length; ++s)
 				options.push(firstSet[f].concat(secondSet[s]));
 		}
 		
 		var minScore = 10000000;
 		var minIndexes = [];
+		
+		console.log("Searching among " + options.length + " candidate options...");
 		
 		for (var o = 0; o < options.length; ++o)
 		{
@@ -665,7 +707,7 @@ permalink: /staff/matchmaking/index.html
 		viewScores();
 		updateLabels();
 		viewScoreTable();
-		presentModal(matchupText(teams));
+		if (!simulation) presentModal(matchupText(teams));
 	}
 	
 	// Modes
@@ -746,7 +788,7 @@ permalink: /staff/matchmaking/index.html
 		players = [];
 		while (players.length < playerCount)
 			addPlayer();
-		init();
+		
 		while (currentRound < roundCount)
 		{
 			processRound();
@@ -844,7 +886,11 @@ permalink: /staff/matchmaking/index.html
 			<label class="input-label">Max team size:</label> <input type="number" min="1" value="4" id="teamsize"/><br/>
 			<label class="input-label">Connectivity:</label> 0 % <input id="param-conn" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 % <br/>
 			<label class="input-label">Internal Skill Spread:</label> 0 % <input id="param-internal" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 %<br/>
-			<label class="input-label">External Skill Spread:</label> 0 % <input id="param-external" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 %
+			<label class="input-label">External Skill Spread:</label> 0 % <input id="param-external" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 %<br/>
+			
+			<hr/>
+			<input type="checkbox" id="performance"/> Enable Performance Mode (Probabilistic)<br/>
+			<span style="display: none;">Faster <input id="accuracy" type="range" min="1" max="100" step="1" value="10"/> More Accurate</span>
 			</fieldset>
 		</form>
 		
