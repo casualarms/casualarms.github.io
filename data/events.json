@@ -26,7 +26,7 @@
 
 
 	
-	,{"title":"Casual Cookoff 6","game":"splat","type":"cookoff","alert":false,"date":"2020-04-11T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
+	,{"title":"Casual Cookoff 6","game":"splat","type":"cookoff","alert":false,"date":"2020-04-11T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-03-28T19:15:00.000Z","duration":30,"tz":"EDT","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 16","game":"arms","type":"scramble","alert":false,"date":"2020-03-28T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
