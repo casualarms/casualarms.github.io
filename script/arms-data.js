@@ -57,15 +57,15 @@ var armsStats = [
 	["Nade",        90,  90, 240,  0, "glove",      "explosion", "medium", ],
 	["Roaster",     90, 130, 235,  0, "glove",      "fire",      "medium", ],
 	["Kablammer",  100, 100, 205,  5, "hammer",     "explosion", "heavy",  ],
-	["Funchuck",    80, 100, 195,  0, "nunchuck",   "stun",      "medium", ],
+	["Funchuk",     80, 100, 195,  0, "nunchuck",   "stun",      "medium", ],
 	["Biffler",     70,  90, 120,  0, "multishot",  "blind",     "light",  ],
 	["Clapback",    80,  80, 150,  5, "shield",     "none",      "heavy",  ],
 	["Scorpio",     90, 100, 160,  0, "unique",     "poison",    "medium", ],
 	["Glusher",    100, 120, 185,  0, "heavy",      "poison",    "heavy",  ],
 	["Skully",      70,  80, 155,  0, "unique",     "poison",    "light",  ],
 	["Lokjaw",     100, 100, 265,  5, "unique",     "explosion", "heavy",  ],
-	["Parabola",    90, 90,  175,  0, "umbrella",   "electric",  "medium", ],
-	["Brrchuck",    80, 90,  180,  0, "nunchuck",   "ice",       "medium", ],
+        ["Parabola",    90,  90, 175,  0, "umbrella",   "electric",  "medium", ],
+	["Brrchuk",     80,  90, 180,  0, "nunchuck",   "ice",       "medium", ],
 ];
 
 var armStatsMap = ["uncharged", "charged", "maximum rush", "grab bonus"];
