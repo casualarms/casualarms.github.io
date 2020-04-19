@@ -89,7 +89,7 @@ var hostDatabase = [
 	{ "tag" : "",    "name" : "DinosaurY",   "code" : "2926-5224-3023", tier : 0},
 	{ "tag" : "",    "name" : "Jake",        "code" : "7677-0583-7008", tier : 0},
 	{ "tag" : "CC",  "name" : "Era",         "code" : "5972-7410-1228", tier : 0},
-	{ "tag" : "CC",  "name" : "CoCovet",     "code" : "8037-4720-4522", tier : 0},
+	{ "tag" : "CC",  "name" : "Cocovet",     "code" : "8037-4720-4522", tier : 0},
 	{ "tag" : "",    "name" : "Ombreverte",  "code" : "3089-8564-5404", tier : 0},
 	{ "tag" : "",    "name" : "Udon",        "code" : "3801-5397-8600", tier : 0},
 	{ "tag" : "CC",  "name" : "Tom",         "code" : "3190-3514-8531", tier : 0},
