@@ -193,6 +193,41 @@ a.menu-item {
 	transition: 0.2s background-color;
 }
 
+.nav-container {
+    text-align: center;
+    margin: 0 auto 0.5em auto;
+    padding: 0.5em 0 0.5em 0;
+    background: #1d94fc;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5), 0 0 100px rgba(0,0,0,0.3);
+    max-width: 700pt;
+    position: -webkit-sticky; /* for Safari, apparently */
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    z-index: 2;
+}
+
+a.nav-item {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    font: 1.8em Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+    border-top-left-radius: 1em 100%;
+    border-bottom-right-radius: 1em 100%;
+    margin: -0.1em auto;
+    z-index: 1;
+    transition: 0.2s background-color;
+}
+
+a.nav-item:hover, a.nav-item:active, a.nav-item:focus {
+    background-color: yellow;
+    color: black;
+    animation: 0.3s slidein;
+}
 
 .m1 { font-size: 3.5em !important; }
 .m2 { font-size: 3.0em !important; }
@@ -535,6 +570,10 @@ a.submenu-item > .sub-text {
 	
 	a.menu-item {
 		padding: 0.2em 10pt 0.2em 0;
+	}
+
+	.nav-container {
+	    position: relative; /* Don't permanently use precious screen space */
 	}
 	
 	.m1 { font-size: 1.8em !important; }
