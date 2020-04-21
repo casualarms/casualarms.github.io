@@ -212,7 +212,7 @@ a.nav-item {
     display: inline-block;
     text-align: center;
     color: white;
-    font: 1.8em Helvetica, Arial, sans-serif;
+    font: 1.35em Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-style: italic;
     padding: 0.2em 0.4em 0.2em 0.4em;
@@ -581,5 +581,6 @@ a.submenu-item > .sub-text {
 	.m3 { font-size: 1.4em !important; }
 	.m4 { font-size: 1.1em !important; }
 	.m5 { font-size: 1.0em !important; }
-	
+
+	a.nav-item { font-size: 1.1em !important; }
 }
