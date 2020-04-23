@@ -370,7 +370,6 @@
 			"Yggdrasil's Altar",
 			"Spiral Mountain",
 			"King of Fighters Stadium"
-			"Garreg Mach Monastery"
 		],
 		"variety" : []
 	},
@@ -734,19 +733,19 @@
 			,{ "key" : "Corners",            "name" : "Overlooked Corners",     "stages" : [10,17,30,39,41]}
 		],
 		"smash" : [
-			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 107 }]}
+			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 106 }]}
 			,{ "key" : "all-no-dlc-smash",   "name" : "All (No DLC)",           "stages" : [{ "start" : 0, "end" : 102 }]}
-			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84,105]}
+			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84]}
 			,{ "key" : "transform-smash",    "name" : "Trippy Transformations", "stages" : [23,39,41,57,65,66,73,79]}
-			,{ "key" : "journey-smash",      "name" : "On a Journey",           "stages" : [37,40,45,62,63,75,76,90,98,99,104]}
+			,{ "key" : "journey-smash",      "name" : "On a Journey",           "stages" : [37,40,45,62,63,75,76,90,98,99]}
 			,{ "key" : "scrolling-smash",    "name" : "They See Me Scrollin'",  "stages" : [11,27,30,55,56,59,60,94]}
-			,{ "key" : "walkoff-smash",      "name" : "Walk It Off",            "stages" : [9,25,33,54,58,68,69,74,80,85,86,96,107]}
+			,{ "key" : "walkoff-smash",      "name" : "Walk It Off",            "stages" : [9,25,33,54,58,68,69,74,80,85,86,96]}
 			,{ "key" : "challenger-smash",   "name" : "A New Challenger!",      "stages" : [10,42,52,61,64,70,78,83,93,97]}
 			,{ "key" : "vertical-smash",     "name" : "Going Vertical",         "stages" : [12,26,47,48,51,53,71,87,89,101]}
-			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82,103]}
+			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82]}
 			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
-			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102,106]}
-			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106,107]}
+			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102]}
+			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106]}
 		],
 		"variety" : []
 	},
