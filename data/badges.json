@@ -73,7 +73,7 @@
 	,"315301009117413376": {"name": "GM-Tom",              "badges": ["casualcrew", "season_arms", "season_arms_win", "season_splat", "season_smash", "season_smash_win", "clash", "scramble", "host", "cookoff"] }
 	,"308818549655339008": {"name": "E.P.Silon",           "badges": ["cgc"] }
 	,"398013985619968010": {"name": "idkhonestly",         "badges": ["cgc"] }
-	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_arms", "season_kart", "season_splat", "season_smash", "scramble", "host"] }
+	,"302855132431777792": {"name": "Jake",                "badges": ["cgc", "season_arms", "season_kart", "season_splat", "season_smash", "scramble", "clash", "host"] }
 	,"449596679218266112": {"name": "Spenjo",              "badges": ["cgc", "host", "season_arms", "season_kart", "clash", "scramble"] }
 	
 	,"196169851788591104": {"name": "Jiko",                "badges": ["clash", "scramble"] }
@@ -227,7 +227,7 @@
 	,"185607219818004481": {"name": "amr",        	               "badges": ["clash"] }
 	,"310849790370119681": {"name": "Zee",            	       "badges": ["clash"] }
 	
-	,"416804227327721483": {"name": "Skunky101",      	 "badges": ["season_splat", "season_arms", "season_smash", "scramble", "cookoff", "host"] }
+	,"416804227327721483": {"name": "Skunky101",      	 "badges": ["season_splat", "season_arms", "season_smash", "scramble", "cookoff", "host", "clash"] }
 	,"221773843344261122": {"name": "Nigel", 	     	 "badges": ["season_splat", "cookoff", "cookoff_win"] }
 	
 	,"557252768683917338": {"name": "Galfin", 	     	 "badges": ["season_splat", "season_smash", "cookoff"] }
@@ -252,7 +252,7 @@
 	,"175642543134867456": {"name": "BLOOZ",            "badges": ["clash"] }
 	,"434816707916333077": {"name": "Philemax",            "badges": ["season_splat"] }
 	
-	,"215271023241723904": {"name": "MathsDaddy",            "badges": ["scramble"] }
+	,"215271023241723904": {"name": "MathsDaddy",            "badges": ["scramble", "clash"] }
 	,"280016643558604800": {"name": "Leifa",            "badges": ["scramble"] }
 	,"114822495244255239": {"name": "inunui",            "badges": ["scramble"] }
 	,"153038482820956160": {"name": "Tjorven",            "badges": ["scramble"] }
@@ -264,5 +264,9 @@
 	,"335836968011169792": {"name": "Rqiny",            "badges": ["cookoff"] }
 	,"613388041460908033": {"name": "Zorua",            "badges": ["cookoff"] }
 	
+	,"430035905462403081": {"name": "HarkaPoo",            "badges": ["clash"] }
+	,"453349458433015809": {"name": "Philapio",            "badges": ["clash"] }
+	,"134471846354485248": {"name": "1slayerpikmin1",            "badges": ["clash"] }
+	,"242375411516964864": {"name": "Tim",            "badges": ["clash"] }
 	
 }
