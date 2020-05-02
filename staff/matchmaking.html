@@ -41,6 +41,11 @@ permalink: /staff/matchmaking/index.html
 	
 	fieldset {
 		border: none;
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+	
+	fieldset:disabled {
+		opacity: 0.5;
 	}
 	
 	.round {
@@ -443,7 +448,7 @@ permalink: /staff/matchmaking/index.html
 		return html;
 	}
 	
-	function getSkill(p)
+	function playerSkill(p)
 	{
 		return playerScores[p].score / 100 / (currentRound+1) + players[p].skill;
 	}
@@ -452,7 +457,7 @@ permalink: /staff/matchmaking/index.html
 	{
 		var res = 0;
 		for (var i = 0; i < team.length; ++i)
-			res += getSkill(team[i]);
+			res += playerSkill(team[i]);
 		return res / team.length;
 	}
 	
@@ -462,8 +467,8 @@ permalink: /staff/matchmaking/index.html
 		var min = Infinity;
 		for (var i = 0; i < team.length; ++i)
 		{
-			max = Math.max(max, getSkill(team[i]));
-			min = Math.min(min, getSkill(team[i]));
+			max = Math.max(max, playerSkill(team[i]));
+			min = Math.min(min, playerSkill(team[i]));
 		}
 		return max - min;
 	}
@@ -485,24 +490,45 @@ permalink: /staff/matchmaking/index.html
 	//	return res;
 	}
 	
-	function updateScore(round, teamIdx)
+	function updateScorePVE(round, teamIdx)
 	{
 		var score = parseInt($("round-" + round + "-team-" + teamIdx).value);
 		scores[round][teamIdx].score = score;
 		playerScores = getScoreSummary(0, currentRound-1);
 	}
 	
-	function simulateScore(round, teamIdx, skill)
+	function updateScorePVP(round, teamIdx, pid)
+	{
+		var score = parseInt($("round-" + round + "-team-" + teamIdx + "-player-" + pid).value);
+		scores[round][teamIdx].score[pid] = score;
+		playerScores = getScoreSummary(0, currentRound-1);
+	}
+	
+	function simulateScorePVE(round, teamIdx, skill)
 	{
 		$("round-" + round + "-team-" + teamIdx).value = Math.floor(100 * skill);
-		updateScore(round, teamIdx);
+		updateScorePVE(round, teamIdx);
+	}
+	
+	function simulateScorePVP(round, teamIdx, pid, skill)
+	{
+		$("round-" + round + "-team-" + teamIdx + "-player-" + pid).value = Math.floor(100 * skill);
+		updateScorePVP(round, teamIdx, pid);
 	}
 	
 	function viewScores()
 	{
 		for (var round = 0; round < scores.length; ++round)
 			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
-				$("round-" + round + "-team-" + teamIdx).value = scores[round][teamIdx].score;
+			{
+				if (scoringMode == PVE)
+					$("round-" + round + "-team-" + teamIdx).value = scores[round][teamIdx].score;
+				else if (scoringMode == PVP)
+				{
+					for (var pid = 0; pid < scores[round][teamIdx].team.length; ++pid)
+						$("round-" + round + "-team-" + teamIdx + "-player-" + pid).value = scores[round][teamIdx].score[pid];
+				}
+			}
 	}
 	
 	function playersNotInAnyTeam(playerIdxs, teams)
@@ -631,7 +657,15 @@ permalink: /staff/matchmaking/index.html
 			// Disable locked score inputs
 			for (var round = 0; round < scores.length; ++round)
 				for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
-					$("round-" + round + "-team-" + teamIdx).disabled = true;
+				{
+					if (scoringMode == PVE)
+						$("round-" + round + "-team-" + teamIdx).disabled = true;
+					else if (scoringMode == PVP)
+					{
+						for (var pid = 0; pid < scores[round][teamIdx].team.length; ++pid)
+							$("round-" + round + "-team-" + teamIdx + "-player-" + pid).disabled = true;
+					}
+				}
 			viewScores();
 			updateLabels();
 			viewScoreTable();
@@ -640,12 +674,21 @@ permalink: /staff/matchmaking/index.html
 	
 	function processRound()
 	{
+		$("general-settings").disabled = true;
 		playerScores = getScoreSummary(0, currentRound-1);
 		
 		// Disable locked score inputs
 		for (var round = 0; round < scores.length; ++round)
 			for (var teamIdx = 0; teamIdx < scores[round].length; ++teamIdx)
-				$("round-" + round + "-team-" + teamIdx).disabled = true;
+			{
+				if (scoringMode == PVE)
+					$("round-" + round + "-team-" + teamIdx).disabled = true;
+				else if (scoringMode == PVP)
+				{
+					for (var pid = 0; pid < scores[round][teamIdx].team.length; ++pid)
+						$("round-" + round + "-team-" + teamIdx + "-player-" + pid).disabled = true;
+				}
+			}
 		
 		
 		var html = "<h3>Round " + (currentRound + 1) + "</h3><div class='round'>";
@@ -656,23 +699,48 @@ permalink: /staff/matchmaking/index.html
 	//	scores.push(Array.apply(null, Array(teams.length)).map(function() { return 0; }));
 		var scoreRound = [];
 		
-		for (var i = 0; i < teams.length; ++i)
+		for (var teamIdx = 0; teamIdx < teams.length; ++teamIdx)
 		{
-			var team = teams[i];
-			scoreRound.push({ team: team, score: 0 });
+			var team = teams[teamIdx];
+			
+			if (scoringMode == PVE)
+			{
+				scoreRound.push({ team: team, score: 0 });
+			}
+			if (scoringMode == PVP)
+			{
+				emptyPlayerScores = [];
+				for (var pid = 0; pid < team.length; ++pid) emptyPlayerScores.push(0);
+				scoreRound.push({ team: team, score: emptyPlayerScores });
+			}
+			
+			
 			updateConnectivity(connectivity, team);
 			
-			html += printTeam(team, "highlight");
+			html += "<p id='team-results'>" + printTeam(team, "highlight");
 		//	html += " score[" + minScore + "]";
 			if ($("debug").checked)
 			{
 				html += " skill<" + Math.round(teamSkill(team) * 100) + "%>";
 				html += " spread<" + Math.round(teamSpread(team) * 100) + "%>";
 			}
-			html += " Score: <input type='number' id='round-" + currentRound + "-team-" + i + "' onchange='updateScore(" + currentRound + ", " + i + ")'/>";
-		//	html += "<button onclick=\"updateScore(" + currentRound + ", " + i + ")\">Save Score</button>";
-			html += "<button onclick='simulateScore(" + currentRound + ", " + i + ", " + teamSkill(team) + ")'>Simulate</button>";
-			html += "<br/>";
+			
+			if (scoringMode == PVE)
+			{
+				html += " Score: <input type='number' id='round-" + currentRound + "-team-" + teamIdx + "' onchange='updateScorePVE(" + currentRound + ", " + teamIdx + ")'/>";
+				html += "<button onclick='simulateScorePVE(" + currentRound + ", " + teamIdx + ", " + teamSkill(team) + ")'>Simulate</button>";
+			}
+			else if (scoringMode == PVP)
+			{
+				html += " Scores: ";
+				for (var pid = 0; pid < team.length; ++pid)
+				{
+					html += "<input type='number' id='round-" + currentRound + "-team-" + teamIdx + "-player-" + pid + "' onchange='updateScorePVP(" + currentRound + ", " + teamIdx + ", " + pid + ")'/>";
+					html += "<button onclick='simulateScorePVP(" + currentRound + ", " + teamIdx + ", " + pid + ", " + playerSkill(team[pid]) + ")'>Sim</button> ";
+				}
+			}
+			
+			html += "</p>";
 			
 		}
 		
@@ -699,8 +767,16 @@ permalink: /staff/matchmaking/index.html
 		$("score").innerHTML = connectivityScore(connectivity);
 		
 		if (simulation)
-			for (var i = 0; i < teams.length; ++i)
-				simulateScore(currentRound, i, teamSkill(teams[i]));
+			for (var teamIdx = 0; teamIdx < teams.length; ++teamIdx)
+			{
+				if (scoringMode == PVE)
+					simulateScorePVE(currentRound, teamIdx, teamSkill(teams[teamIdx]));
+				else if (scoringMode == PVP)
+				{
+					for (var pid = 0; pid < teams[teamIdx].length; ++pid)
+						simulateScorePVP(currentRound, teamIdx, pid, playerSkill(teams[teamIdx][pid]));
+				}
+			}
 		
 		playerScores = getScoreSummary(0, currentRound);
 		currentRound++;
@@ -805,9 +881,15 @@ permalink: /staff/matchmaking/index.html
 		{
 			for (var tid = 0; tid < scores[round].length; ++tid)
 			{
-			//	$("round-" + round + "-team-" + tid).value = scores[round][tid].score;
 				for (var pid = 0; pid < scores[round][tid].team.length; ++pid)
-					playerScores[scores[round][tid].team[pid]].score += scores[round][tid].score;
+				{
+					var playerID = scores[round][tid].team[pid];
+					if (scoringMode == PVE)
+						playerScores[playerID].score += scores[round][tid].score;
+					
+					else if (scoringMode == PVP)
+						playerScores[playerID].score += scores[round][tid].score[pid];
+				}
 			}
 		}
 		
@@ -883,6 +965,19 @@ permalink: /staff/matchmaking/index.html
 		
 		<form>
 			<fieldset id="general-settings">
+			<p style="text-align: center;">
+				Scoring:
+				<span class="mode-selector">
+					<button type="button" class="mode scoring-mode active-mode" id="md-PVE" onclick="changeScoringMode('PVE');">PVE</button>
+					<button type="button" class="mode scoring-mode" id="md-PVP" onclick="changeScoringMode('PVP');">PVP</button>
+				</span>
+				Operation:
+				<span class="mode-selector">
+					<button type="button" class="mode run-mode active-mode" id="md-MANUAL" onclick="changeRunMode('MANUAL');">Manual</button>
+					<button type="button" class="mode run-mode" id="md-SIMULATE" onclick="changeRunMode('SIMULATE');">Simulate</button>
+				</span>
+			</p>
+			
 			<label class="input-label">Max team size:</label> <input type="number" min="1" value="4" id="teamsize"/><br/>
 			<label class="input-label">Connectivity:</label> 0 % <input id="param-conn" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 % <br/>
 			<label class="input-label">Internal Skill Spread:</label> 0 % <input id="param-internal" type="range" min="0" max="1" step="0.1" value="0.5"/> 100 %<br/>
@@ -894,15 +989,7 @@ permalink: /staff/matchmaking/index.html
 			</fieldset>
 		</form>
 		
-		<p class="mode-selector">
-			<em class="mode scoring-mode active-mode" id="md-PVE" onclick="changeScoringMode('PVE');">PVE</em>
-			<em class="mode scoring-mode" id="md-PVP" onclick="changeScoringMode('PVP');">PVP</em>
-		</p>
 		
-		<p class="mode-selector">
-			<em class="mode run-mode active-mode" id="md-MANUAL" onclick="changeRunMode('MANUAL');">Manual</em>
-			<em class="mode run-mode" id="md-SIMULATE" onclick="changeRunMode('SIMULATE');">Simulate</em>
-		</p>
 		
 		<div id="settings-MANUAL">
 			<p>
