@@ -42,6 +42,5 @@
 	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":true,"date":"2019-06-28T16:00:00.000Z","duration":60,"tz":"EDT","description":"EU Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}
 	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":true,"date":"2019-06-28T21:00:00.000Z","duration":60,"tz":"EDT","description":"NA Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}
 
-	,{"title":"Outlaw Skirmish","game":"arms","type":"tournament","alert":false,"date":"2020-05-08T20:00:00.000Z","duration":180,"tz":"EDT","description":"Era's Partnered Tournament","url":"https://challonge.com/OutlawARMS","banner":"https://pbs.twimg.com/media/EXOdWzLWAAASIwK.jpg:large","theme":"clash","stages":"custom[0,1,2,4,6,8,14]","mixers":["CasualARMS"]}
 	
 ]
