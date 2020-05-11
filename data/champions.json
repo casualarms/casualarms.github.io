@@ -133,4 +133,7 @@
 	,{ "date" : "2020-04-25", "type" : "clash", "players" : 29, "winner" : [
  		{ "id" : "410828670874419211", "name" : "wa" }
 	]}
+	,{ "date" : "2020-03-28", "type" : "scramble", "players" : 22, "winner" : [
+ 		{ "id" : "272505335812456449", "name" : "Raffa" }
+	]}
 ]
