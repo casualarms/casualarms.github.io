@@ -79,6 +79,12 @@
 			"patron"   : ""
 		},
 		{
+			"commands" : ["small-fgc"],
+			"response" : "https://twitter.com/LiteraryFirearm/status/932282356131647489",
+			"timeout"  : 60,
+			"patron"   : ""
+		},
+		{
 			"commands" : ["tbird"],
 			"image"    : "https://www.casualarms.net/itembot/response/mainmain.gif",
 			"timeout"  : 240,
