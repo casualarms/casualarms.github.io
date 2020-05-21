@@ -56,6 +56,25 @@
         return text.replace(/[\[\]\&\s\.]/g, '').toLowerCase();
     }
 
+    /* FIXME: minimal error checking! */
+    function fillFormFromRawInput()
+    {
+        var rawInput = document.getElementById("raw-input").value;
+        var inputJson = JSON.parse(rawInput);
+
+        /* Handle friend-code specially */
+        var fcMatch = inputJson["fc"].match(/(\d{4})-(\d{4})-(\d{4})/);
+
+        if (fcMatch)
+            for (var i = 1; i < 4; i++)
+                document.getElementById("friend-code-" + i).value = fcMatch[i];
+
+        delete inputJson["fc"];
+
+        for (const key in inputJson)
+            document.getElementById(key).value = inputJson[key];
+    }
+
     function generateCommandOutput()
     {
         var output = {};
@@ -112,9 +131,54 @@
         );
     }
 
+    function changeMode(mode)
+    {
+        // update button styles
+        var buttons = document.getElementsByClassName("mode");
+        for (var i = 0; i < buttons.length; ++i)
+        {
+            buttons[i].className = "mode";
+        }
+        document.getElementById("btn-" + mode).className += " active-mode";
+
+        switch (mode)
+        {
+            case "startfromscratch":
+                putInStartFromScratchMode();
+                break;
+            default:
+                putInEditExistingMode();
+                break;
+        }
+    }
+
+    function putInStartFromScratchMode()
+    {
+        document.getElementById("raw-container").style.display = "none";
+        document.getElementById("info-heading").innerHTML = "1. Enter Your Info";
+        document.getElementById("output-heading").innerHTML = "2. Paste To Discord";
+    }
+
+    function putInEditExistingMode()
+    {
+        document.getElementById("raw-container").style.display = "block";
+        document.getElementById("info-heading").innerHTML = "2. Edit Your Info";
+        document.getElementById("output-heading").innerHTML = "3. Paste To Discord";
+    }
+
     function pageload()
     {
         generateCharacterSelectors();
+
+        switch (window.location.hash.substring(1))
+        {
+            case "editexisting":
+                changeMode("editexisting");
+                break;
+            default:
+                changeMode("startfromscratch");
+                break;
+        }
     }
     </script>
 </head>
@@ -124,7 +188,20 @@
     <div id="container">
         <h2>Profile Creator</h2>
 
-        <h3>1. Enter Your Info</h3>
+        <p id="mode-selector">
+            <em class="mode" id="btn-startfromscratch" onclick="changeMode('startfromscratch');">Start from Scratch</em>
+            <em class="mode" id="btn-editexisting" onclick="changeMode('editexisting');">Edit Existing</em>
+        </p>
+
+        <div id="raw-container">
+            <h3 id="raw-heading">1. Paste From Discord</h3>
+            <p>
+                Run <em>this command TBD</em> in Discord and paste the output here:
+            </p>
+            <textarea id="raw-input" cols="70" rows="5" onkeyup="fillFormFromRawInput();"></textarea>
+        </div>
+
+        <h3 id="info-heading"></h3>
         <div id="info-container">
             <table>
                 <tr>
@@ -188,9 +265,9 @@
             </table>
         </div>
 
-        <h3>2. Paste This In Discord</h3>
+        <h3 id="output-heading"></h3>
         <div id="command-output-container">
-            <textarea id="command-output" cols="80" rows="10" readonly></textarea>
+            <textarea id="command-output" cols="70" rows="5" readonly></textarea>
         </div>
         {% include footer.html %}
     </div>
