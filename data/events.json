@@ -32,7 +32,7 @@
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-05-09T19:15:00.000Z","duration":30,"tz":"EDT","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 17","game":"arms","type":"scramble","alert":false,"date":"2020-05-09T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-05-23T19:15:00.000Z","duration":30,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"P★ wa","code":"7606-1697-2200"}]}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-05-23T19:15:00.000Z","duration":30,"tz":"EDT","description":"Hosted by Polaris","theme":"clash","stages":"all-arms","hosts":[{"name":"P★ wa","code":"7606-1697-2200"}]}
 	,{"title":"Casual Clash 23","game":"arms","type":"clash","alert":false,"date":"2020-05-23T20:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
 	
 	,{"title":"Ultimate Rush","game":"smash","type":"tournament","alert":false,"date":"2020-05-02T20:00:00.000Z","duration":120,"tz":"EDT","description":"Casual ARMS' 1v1v1  Smash Tournament!","banner":"https://cdn.discordapp.com/attachments/356623759836446720/704828637022781440/ultimaterush-fix.png","theme":"URT","items":"URI","stages":"URS"}
