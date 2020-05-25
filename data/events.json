@@ -1,5 +1,5 @@
 [
-	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-05-25T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-rainmaker","stages":"all-splat","hosts":[{"name":"Espion","code":"2713-6556-1216"},{"name":"Udon","code":"3801-5397-8600"}],"mixers":["DinosaurY"]}
+	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-05-25T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-rainmaker","stages":"all-splat","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"},{"name":"Udon","code":"3801-5397-8600"}],"mixers":["DinosaurY"]}
 	,{"title":"Monday Smash","game":"smash","type":"arena","alert":true,"date":"2020-05-25T21:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"healing-smash","stages":"all-smash","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Cocovet","code":"8037-4720-4522","tag":"CC"}]}
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-05-27T01:00:00.000Z","duration":120,"tz":"PDT","theme":"anything","stages":"mmall","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Lachesism","code":"6782-1864-4112"}],"mixers":["SoraFirestorm"]}
