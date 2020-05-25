@@ -24,6 +24,7 @@
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2020-05-30T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"wanderers-smash","stages":"vanilla-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-05-31T19:00:00.000Z","duration":120,"tz":"EDT","theme":"gimmickless","stages":"backroom","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-06-01T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-clams","stages":"Big","hosts":[{"name":"To Be Announced","code":""}],"mixers":["DinosaurY"]}
+	,{"title":"Monday Motorway","game":"kart","type":"leaderboard","alert":true,"date":"2020-06-01T21:30:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"","code":"0628-4953-7579"}]}
 	
 	
 	,{"title":"Casual Cookoff 6","game":"splat","type":"cookoff","alert":false,"date":"2020-04-11T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
