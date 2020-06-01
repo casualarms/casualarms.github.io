@@ -139,4 +139,7 @@
 	,{ "date" : "2020-05-23", "type" : "clash", "players" : 22, "winner" : [
  		{ "id" : "143481099077681152", "name" : "sophia" }
 	]}
+	,{ "date" : "2020-05-30", "type" : "cookoff", "players" : 18, "winner" : [
+ 		{ "id" : "426447633888837635", "name" : "Espion" }
+	]}
 ]
