@@ -270,9 +270,9 @@
 	,"242375411516964864": {"name": "Tim",            "badges": ["clash"] }
 	
 	,"672624171997724707": {"name": "Kawaii M.R.",            "badges": ["season_smash"] }
-	,"464257033172942848": {"name": "Krumple",            "badges": ["season_smash"] }
+	,"464257033172942848": {"name": "Krumple",            "badges": ["season_smash", "season_smash_win"] }
 	
-	,"302820267292622849": {"name": "DukeNed",            "badges": ["scramble", "clash"] }
+	,"302820267292622849": {"name": "DukeNed",            "badges": ["scramble", "clash", "season_arms"] }
 	,"349508114258591744": {"name": "MaxLaves",            "badges": ["scramble", "clash"] }
 	,"395209402866466818": {"name": "WasabiTheInkling",            "badges": ["scramble"] }
 	,"285526895548694529": {"name": "Drue The Terrible Pro",            "badges": ["scramble"] }
@@ -282,5 +282,8 @@
 	,"243776774188695553": {"name": "BeeLy1011",            "badges": ["clash"] }
 	
 	,"268160859807678464": {"name": "Ombreverte",            "badges": ["host"] }
+	
+	,"495047060102447116": {"name": "PurpleWarrior12",            "badges": ["season_splat"] }
+	,"305329338725826561": {"name": "FamiTom",            "badges": ["season_splat"] }
 	
 }
