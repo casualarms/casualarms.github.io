@@ -205,7 +205,7 @@
 	,"154431224939675648": {"name": "Radio",               "badges": ["scramble"] }
 	,"174558464230686720": {"name": "Gryffical",           "badges": ["scramble", "scramble_win"] }
 	
-	,"238698278290456581": {"name": "Grimwood",            "badges": ["season_arms", "scramble", "clash"] }
+	,"238698278290456581": {"name": "Grimwood",            "badges": ["season_arms", "scramble", "clash", "cookoff"] }
 	
 	,"539831517262905365": {"name": "Solace",               "badges": ["clash"] }
 	,"301519653602197505": {"name": "Natty",                "badges": ["clash"] }
@@ -232,7 +232,7 @@
 	
 	,"557252768683917338": {"name": "Galfin", 	     	 "badges": ["season_splat", "season_smash", "cookoff"] }
 	,"282906406615777282": {"name": "Daniel", 	     	 "badges": ["season_splat"] }
-	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms", "clash", "scramble", "cookoff", "season_splat", "host"] }
+	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms", "clash", "scramble", "cookoff", "season_splat", "host", "cookoff_win"] }
 	,"282906406615777282": {"name": "SUPERBOT7789", 	 "badges": ["cookoff"] }
 	
 	,"204281293867843584": {"name": "Lachesism", 	        "badges": ["clash", "season_arms", "scramble", "host"] }
@@ -273,13 +273,13 @@
 	,"464257033172942848": {"name": "Krumple",            "badges": ["season_smash", "season_smash_win"] }
 	
 	,"302820267292622849": {"name": "DukeNed",            "badges": ["scramble", "clash", "season_arms"] }
-	,"349508114258591744": {"name": "MaxLaves",            "badges": ["scramble", "clash"] }
+	,"349508114258591744": {"name": "MaxLaves",            "badges": ["scramble", "clash", "cookoff"] }
 	,"395209402866466818": {"name": "WasabiTheInkling",            "badges": ["scramble"] }
 	,"285526895548694529": {"name": "Drue The Terrible Pro",            "badges": ["scramble"] }
 
 	,"178548255427133440": {"name": "Nayr",            "badges": ["clash"] }
 	,"388284341790310400": {"name": "RosePower",            "badges": ["clash"] }
-	,"243776774188695553": {"name": "BeeLy1011",            "badges": ["clash"] }
+	,"243776774188695553": {"name": "BeeLy1011",            "badges": ["clash", "cookoff"] }
 	
 	,"268160859807678464": {"name": "Ombreverte",            "badges": ["host"] }
 	
