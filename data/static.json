@@ -102,7 +102,7 @@
 	},
 	"eventTypesLeaderboards" : {
 		"arms"    : ["leaderboard"],
-		"kart"    : ["leaderboard"],
+		"kart"    : ["leaderboard", "friends"],
 		"splat"   : ["friends"],
 		"smash"   : ["arena"],
 		"variety" : []
