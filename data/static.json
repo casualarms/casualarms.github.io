@@ -778,7 +778,7 @@
 			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
 			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102,106]}
 			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106,107]}
-			,{"key"	 : "URS",		 "name" : "Ultimate Rush",	    "stages" : [3,11,12,16,23,29,34,35,40,49,57,63,65,68,70,73,75,82,97,102]}
+			,{"key"	 : "URS",		 "name" : "Ultimate Rush",	    "stages" : [3,11,12,23,34,35,49,57,63,65,68,70,73,82,97,102]}
 		],
 		"variety" : []
 	},
@@ -800,7 +800,7 @@
 			,{ "key" : "sports-smash",       "name" : "SPORTS!",                "items" : [10,29,61,73]}
 			,{ "key" : "better-worse-smash", "name" : "For Better or Worse",    "items" : [0,9,17,18,25]}
 			,{ "key" : "wanderers-smash",    "name" : "Wandering Items",        "items" : [0,9,10,17,18,45,47,51,52,69]}
-			,{"key"  : "URI",		 "name" : "Ultimate Rush",	    "items":[15,16,21,28,33,35,42,44,53,57,60,62,67,68,77,80]}
+			,{"key"  : "URI",		 "name" : "Ultimate Rush",	    "items":[16,21,28,33,35,42,44,53,57,60,62,66,67,77]}
 		],
 		"variety" : []
 	}
