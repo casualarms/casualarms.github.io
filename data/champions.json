@@ -142,4 +142,7 @@
 	,{ "date" : "2020-05-30", "type" : "cookoff", "players" : 18, "winner" : [
  		{ "id" : "426447633888837635", "name" : "Espion" }
 	]}
+	,{ "date" : "2020-06-06", "type" : "scramble", "players" : 17, "winner" : [
+ 		{ "id" : "86282152777367552", "name" : "Mileve" }
+	]}
 ]
