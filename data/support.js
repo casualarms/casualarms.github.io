@@ -109,7 +109,6 @@ var eventSlots = [
 	{ "id" : "splat-thu", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(5, 02, 30, dst), "duration" :  60, "tz" : "PST", "type" : "friends", "title" : "Turfsday"},
 	{ "id" : "splat-sat", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(6, 17, 30, dst), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "Splaturday"},
 	
-	{ "id" : "smash-mon", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(1, 22, 30, dst), "duration" :  60, "tz" : "EST", "type" : "friends", "title" : "Monday Smash"},
 	{ "id" : "smash-wed", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(3, 19, 30, dst), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "WedNessDay"},
 	{ "id" : "smash-sat", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(0, 00, 30, dst), "duration" :  60, "tz" : "PST", "type" : "friends", "title" : "Saturday Smash"},
 ];
