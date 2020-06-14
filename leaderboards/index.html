@@ -309,7 +309,7 @@
 		}
 		
 		// Leaderboard badges
-		var games = ["arms", "kart", "splat", "smash"];
+		var games = ["arms", "kart", "splat", "smash", "spotlight"];
 		
 		for (var gi = 0; gi < games.length; ++gi)
 		{
@@ -581,6 +581,7 @@
 		canvas.width = canvas.height = 500;
 		switch (game)
 		{
+		case "spotlight":
 		case "arms":
 			renderSwirl(ctx, canvas.width / 2 + 50, canvas.height / 2 + 20, canvas.width * 2, 0.6 * Math.PI, 3, 0.50, 0, "rgba(  0,   0,   0, 0.18)");
 			renderSwirl(ctx, canvas.width / 2 - 50, canvas.height / 2 - 20, canvas.width * 2, 1.7 * Math.PI, 3, 0.35, 3, "rgba(255, 255, 255, 0.06)");
@@ -661,7 +662,7 @@
 		$("season-nav").style.display = monthly ? "block" : "none";
 		
 		document.getElementsByTagName("H1")[0].className = "title-" + game;
-		document.getElementsByTagName("H1")[0].children[0].innerHTML = { patreon:"Casual ARMS", search:"Casual ARMS", arms:"Casual ARMS", kart:"Casual Kart", splat:"Casual Splat", smash :"Casual Smash" }[game];
+		document.getElementsByTagName("H1")[0].children[0].innerHTML = { patreon:"Casual ARMS", search:"Casual ARMS", arms:"Casual ARMS", kart:"Casual Kart", splat:"Casual Splat", smash :"Casual Smash", "spotlight": "Casual Spotlight" }[game];
 		
 		if (patreon)
 			displayPatreon();
@@ -687,17 +688,19 @@
 		
 		switch (window.location.hash.substring(1))
 		{
-		case "arms":          changeMode("arms",    false, false); break;
-		case "arms-monthly":  changeMode("arms",    true,  false); break;
-		case "kart":          changeMode("kart",    false, false); break;
-		case "kart-monthly":  changeMode("kart",    true,  false); break;
-		case "splat":         changeMode("splat",   false, false); break;
-		case "splat-monthly": changeMode("splat",   true,  false); break;
-		case "smash":         changeMode("smash",   false, false); break;
-		case "smash-monthly": changeMode("smash",   true,  false); break;
-		case "patrons":       changeMode("patreon", false, true ); break;
-		case "search":        changeMode("search",  false, false); break;
-		default:              changeMode("arms",    false, false);
+		case "arms":              changeMode("arms",      false, false); break;
+		case "arms-monthly":      changeMode("arms",      true,  false); break;
+		case "kart":              changeMode("kart",      false, false); break;
+		case "kart-monthly":      changeMode("kart",      true,  false); break;
+		case "splat":             changeMode("splat",     false, false); break;
+		case "splat-monthly":     changeMode("splat",     true,  false); break;
+		case "smash":             changeMode("smash",     false, false); break;
+		case "smash-monthly":     changeMode("smash",     true,  false); break;
+		case "spotlight":         changeMode("spotlight", false, false); break;
+		case "spotlight-monthly": changeMode("spotlight", true,  false); break;
+		case "patrons":           changeMode("patreon",   false, true ); break;
+		case "search":            changeMode("search",    false, false); break;
+		default:                  changeMode("arms",      false, false);
 		}
 	}
 	</script>
@@ -736,6 +739,11 @@
 			<span class="split-mode">
 				<em class="mode" id="md-smash" onClick="changeMode('smash', false, false);">Smash</em><em class="mode" id="md-smash-monthly" onClick="changeMode('smash', true, false);">Monthly</em>
 			</span>
+			<span class="split-mode">
+			  <em class="mode" id="md-spotlight" onClick="changeMode('spotlight', false, false);">Spotlight</em><em class="mode" id="md-spotlight-monthly" onClick="changeMode('spotlight', true, false);">Monthly</em>
+			</span>
+			<br>
+			<em class="mode" id="md-overall" onClick="changeMode('overall', false, false);">Overall</em>
 			<br/>
 			<em class="mode" id="md-patreon" onClick="changeMode('patreon', false, true);">Patrons</em>
 			<em class="mode" id="md-search"  onClick="changeMode('search', false, false);">Search</em>

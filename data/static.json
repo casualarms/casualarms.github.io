@@ -63,14 +63,20 @@
 			{ "start" :     5000, "name" : "Nothing Harder!", "color" : "#b700ff"},
 			{ "start" : 10000000, "name" : "[Dummy]",         "color" : "white"}
 		],
+		"spotlight" : [
+		    { "start" :        0, "name" : "[Dummy]",           "color" : "white"},
+		    { "start" :        1, "name" : "Spotlight Players", "color" : "white"},
+		    { "start" : 10000000, "name" : "[Dummy]",           "color" : "white"}
+		],
 		"variety" : []
 	},
 	"leaderboardTitles" : {
-		"arms"  : { "prefix" : "ARMS Labs ",   "suffix" : ""          },
-		"kart"  : { "prefix" : "",             "suffix" : " Cup Racer"},
-		"splat" : { "prefix" : "Grizzco ",     "suffix" : ""          },
-		"smash" : { "prefix" : "",             "suffix" : " Smasher"  },
-		"variety" : {}
+		"arms"      : { "prefix" : "ARMS Labs ", "suffix" : ""          },
+		"kart"      : { "prefix" : "",           "suffix" : " Cup Racer"},
+		"splat"     : { "prefix" : "Grizzco ",   "suffix" : ""          },
+		"smash"     : { "prefix" : "",           "suffix" : " Smasher"  },
+		"spotlight" : { "prefix" : "",           "suffix" : ""},
+		"variety"   : {}
 	},
 	"eventTypes" : {
 		"arms" : {
