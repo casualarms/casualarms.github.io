@@ -164,6 +164,16 @@
 			"style"     : "holodark",
 			"criterion" : "Achieve victory in a Casual Cookoff"
 		},
+		"rush"     : {
+			"caption"   : "Ultimate Rush Participant",
+			"style"     : "dark",
+			"criterion" : "Play in a Ultimate Rush"
+		},
+		"rush_win" : {
+			"caption"   : "Reagent of Rush",
+			"style"     : "holodark",
+			"criterion" : "Achieve victory in a Ultimate Rush"
+		},
 		"season_arms"  : {
 			"caption"   : "Monthly ARMS Leaderboards",
 			"style"     : "light",

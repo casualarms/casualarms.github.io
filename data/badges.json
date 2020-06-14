@@ -48,7 +48,7 @@
 	,"393525706816094209": {"name": "Flesheater",          "badges": ["clash", "season_arms", "scramble"] }
 	,"233713315304439808": {"name": "Spicy DX",            "badges": ["clash", "season_arms", "season_splat", "season_smash", "host"] }
 	,"208740208768843776": {"name": "Orinetta",            "badges": ["clash"] }
-	,"258098427844493316": {"name": "Sora",                "badges": ["clash", "scramble", "cookoff", "season_arms", "season_smash", "host", "season_splat"] }
+	,"258098427844493316": {"name": "Sora",                "badges": ["clash", "scramble", "cookoff", "rush", "season_arms", "season_smash", "host", "season_splat"] }
 	,"269980957212147714": {"name": "Mario119",            "badges": ["clash", "scramble"] }
 	,"231574706506039298": {"name": "RickHardslab",        "badges": ["clash"] }
 	,"191293552142057473": {"name": "Kat",                 "badges": ["clash", "scramble"] }
@@ -222,7 +222,7 @@
 	,"420441655590518794": {"name": "Finch",        	       "badges": ["clash"] }
 	,"455215187360874516": {"name": "ShockWave",        	       "badges": ["clash"] }
 	,"408444034814705684": {"name": "Whaleinator",        	       "badges": ["clash"] }
-	,"209006928272162816": {"name": "2Greenluigi (False King)",    "badges": ["clash", "season_arms", "season_splat", "season_smash", "cookoff"] }
+	,"209006928272162816": {"name": "2Greenluigi (False King)",    "badges": ["clash", "season_arms", "season_splat", "season_smash", "cookoff", "rush", "rush_win"] }
 	,"292112807091109889": {"name": "mr ramen",        	       "badges": ["clash", "season_arms"] }
 	,"185607219818004481": {"name": "amr",        	               "badges": ["clash"] }
 	,"310849790370119681": {"name": "Zee",            	       "badges": ["clash"] }
