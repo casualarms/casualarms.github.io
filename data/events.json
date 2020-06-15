@@ -1,6 +1,6 @@
 [
 	{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-06-15T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-tower","stages":"Funnel","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"The Oddity","code":"4303-5678-5601"}],"mixers":["DinosaurY"]}
-	,{"title":"Monday Motorway","game":"kart","type":"friends","alert":true,"date":"2020-06-15T21:30:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"},{"name":"Lucario","code":"8457-8877-6573"}]}
+	,{"title":"Monday Motorway","game":"kart","type":"friends","alert":true,"date":"2020-06-15T21:30:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-06-17T01:00:00.000Z","duration":120,"tz":"PDT","theme":"teams","stages":"large","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Lachesism","code":"6781-1864-4112"}],"mixers":["SoraFirestorm"]}
 	,{"title":"WedNessday","game":"smash","type":"arena","alert":true,"date":"2020-06-17T18:30:00.000Z","duration":60,"tz":"GMT","theme":"ca-1v1v1v1-smash","items":"parts-smash","stages":"scrolling-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
