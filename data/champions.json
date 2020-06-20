@@ -145,4 +145,7 @@
 	,{ "date" : "2020-06-06", "type" : "scramble", "players" : 17, "winner" : [
  		{ "id" : "86282152777367552", "name" : "Mileve" }
 	]}
+	,{ "date" : "2020-06-20", "type" : "clash", "players" : 20, "winner" : [
+ 		{ "id" : "410828670874419211", "name" : "wa" }
+	]}
 ]
