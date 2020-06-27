@@ -133,6 +133,9 @@
 	,{ "date" : "2020-04-25", "type" : "clash", "players" : 29, "winner" : [
  		{ "id" : "410828670874419211", "name" : "wa" }
 	]}
+	,{ "date" : "2020-05-02", "type" : "rush", "players" : 18, "winner" : [
+ 		{ "id" : "219155908830298132", "name" : "Uran10" }
+	]}
 	,{ "date" : "2020-05-09", "type" : "scramble", "players" : 22, "winner" : [
  		{ "id" : "272505335812456449", "name" : "Raffa" }
 	]}
@@ -144,6 +147,9 @@
 	]}
 	,{ "date" : "2020-06-06", "type" : "scramble", "players" : 17, "winner" : [
  		{ "id" : "86282152777367552", "name" : "Mileve" }
+	]}
+	,{ "date" : "2020-06-13", "type" : "rush", "players" : 15, "winner" : [
+ 		{ "id" : "209006928272162816", "name" : "2GreenLuigi" }
 	]}
 	,{ "date" : "2020-06-20", "type" : "clash", "players" : 20, "winner" : [
  		{ "id" : "410828670874419211", "name" : "wa" }
