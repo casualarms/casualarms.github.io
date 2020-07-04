@@ -41,13 +41,6 @@
 			"response" : "**Happy birthday, Casual ARMS!**\nWe are making a limited run of Casual ARMS wristbands to celebrate one year of community and excitement! https://www.casualarms.net/wristbands/"
 		},
 		{
-			"commands" : ["save"],
-			"response" : "`AI_COLLABORATION_DETECTED\nC0DE_BR0k3N\nENTER_SAVE_ARMS:` <http://discord.gg/8mG8Uyu>"
-		},
-		
-		
-		
-		{
 			"commands" : ["look"],
 			"response" : "I'll {{0:look}} if you {{0:look}}",
 			"timeout"  : 60,
