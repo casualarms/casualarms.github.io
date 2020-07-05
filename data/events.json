@@ -25,8 +25,9 @@
 	,{"title":"Saturday Smash","game":"smash","type":"arena","alert":true,"date":"2020-07-11T23:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"URI","stages":"lookout-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-07-12T19:00:00.000Z","duration":120,"tz":"EDT","theme":"anything","stages":"backroom","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Monday Motorway","game":"kart","type":"friends","alert":true,"date":"2020-07-13T21:30:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"To Be Announced","code":""}],"mixers":["DinosaurY"]}
-	
+	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-07-13T18:30:00.000Z","duration":60,"tz":"GMT","theme":"turf-clams","stages":"Funnel","hosts":[{"name":"To Be Announced","code":""}],"mixers":["DinosaurY"]}
 
+	
 	,{"title":"Casual Cookoff 7","game":"splat","type":"cookoff","alert":false,"date":"2020-05-30T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-07-04T19:15:00.000Z","duration":30,"tz":"EDT","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
