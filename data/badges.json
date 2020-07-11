@@ -5,7 +5,7 @@
 	,"398284103541063690": {"name": "River",               "badges": ["clash", "clash_win"] }
 	,"187272277220392960": {"name": "SlosherWailord",      "badges": ["clash", "scramble", "clash_win", "scramble_win", "season_arms"] }
 	,"192081577306488842": {"name": "Serperiorfan",        "badges": ["clash", "scramble", "clash_win", "scramble_win", "season_kart", "season_smash"] }
-	,"180917649444700160": {"name": "Piper",               "badges": ["clash", "scramble", "scramble_win", "cgc"] }
+	,"180917649444700160": {"name": "Piper",               "badges": ["clash", "scramble", "scramble_win", "cgc", "cookoff"] }
 	
 	,"378970992095264769": {"name": "Program",             "badges": ["casualcrew", "clash", "scramble", "cookoff", "cookoff_win", "season_arms", "season_kart", "season_splat", "season_smash", "cgc", "host"] }
 	,"403932918466215948": {"name": "Main Main",           "badges": ["casualcrew", "clash", "scramble", "cgc", "host", "season_arms"] }
@@ -269,7 +269,7 @@
 	,"134471846354485248": {"name": "1slayerpikmin1",            "badges": ["clash"] }
 	,"242375411516964864": {"name": "Tim",            "badges": ["clash"] }
 	
-	,"672624171997724707": {"name": "Kawaii M.R.",            "badges": ["season_smash", "rush"] }
+	,"672624171997724707": {"name": "Kawaii M.R.",            "badges": ["season_smash", "rush", "cookoff"] }
 	,"464257033172942848": {"name": "Krumple",            "badges": ["season_smash", "season_smash_win", "rush"] }
 	
 	,"302820267292622849": {"name": "DukeNed",            "badges": ["scramble", "clash", "season_arms"] }
@@ -293,11 +293,17 @@
 	,"236210583702208513": {"name": "Gamertower",            "badges": ["rush"] }
 	,"339632593081335809": {"name": "Lucario<3",            "badges": ["rush"] }
 	
-	,"266757898346954752": {"name": "SinVraal",            "badges": ["season_arms", "season_splat"] }
+	,"266757898346954752": {"name": "SinVraal",            "badges": ["season_arms", "season_splat", "cookoff"] }
 	,"259146648570036225": {"name": "Imposter",            "badges": ["season_arms"] }
 	,"99873152930172928": {"name": "Taz",            "badges": ["season_kart"] }
 	,"531874396692938783": {"name": "FST_Pluis",            "badges": ["season_splat"] }
-	,"689909432175427589": {"name": "Jukenewt",            "badges": ["season_splat"] }
+	,"689909432175427589": {"name": "Jukenewt",            "badges": ["season_splat", "cookoff"] }
 	
-	
+	,"99873152930172928": {"name": "Dave2020",            "badges": ["cookoff"] }
+	,"99873152930172928": {"name": "R.E.Z",            "badges": ["cookoff"] }
+	,"99873152930172928": {"name": "abcfuxq",            "badges": ["cookoff"] }
+	,"99873152930172928": {"name": "TnT",            "badges": ["cookoff", "cookoff_win"] }
+	,"99873152930172928": {"name": "Rutger",            "badges": ["cookoff"] }
+	,"99873152930172928": {"name": "Anthony (Bladethehedgehog)",            "badges": ["cookoff"] }
+	,"99873152930172928": {"name": "くそぼけ",            "badges": ["cookoff"] }
 }
