@@ -154,4 +154,9 @@
 	,{ "date" : "2020-06-20", "type" : "clash", "players" : 20, "winner" : [
  		{ "id" : "410828670874419211", "name" : "wa" }
 	]}
+	,{ "date" : "2020-07-04", "type" : "scramble", "players" : 23, "winner" : [
+ 		{ "id" : "192081577306488842", "name" : "Serp" }
+	]}
+	,{ "date" : "2020-07-11", "type" : "cookoff", "players" : 24, "winner" : [
+ 		{ "id" : "242544943770370048", "name" : "TnT" }
 ]
