@@ -685,7 +685,7 @@
 				 }
 			 } ,{
 				"key"              : "ca-1v1v1v1-smash",
-				"name"             : "Free for All",
+				"name"             : "Free for All (4 Player)",
 				"description"      : "",
 				"title"            : "Casual ARMS",
 				"type"             : "All Skill Levels",
@@ -739,6 +739,37 @@
 				},
 				"more"	: {
 					"max-players"	:3,
+					"stage"		:"Random",
+					"custom-stages"	:false,
+					"amiibo"	:false,
+					"spirits"	:false,
+					"voice-chat":false
+				}
+			} ,{
+				"key"			:"ca-1v1v1-smash",
+				"name"			:"Free for All (3 Player)",
+				"description"		:"",
+				"title"			:"Casual ARMS",
+				"type"			:"All Skill Levels",
+				"visibility"		:"Public",
+				"format"		:"3-Player Smash",
+				"rotation"		:"Top Two Leave",
+				"rules"	: {
+					"style"		:"Time",
+					"stamina"	:10,
+					"stock"		:1,
+					"time"		:"2:30",
+					"fs-meter"	:true,
+					"handicap"	:false,
+					"items"		:"Med",
+					"hazards"	:true,
+					"team-attack"	:false,
+					"launch-rate"	:1,
+					"score-display"	:true,
+					"show-damage"	:true
+				},
+				"more"	: {
+					"max-players"	:6,
 					"stage"		:"Random",
 					"custom-stages"	:false,
 					"amiibo"	:false,
