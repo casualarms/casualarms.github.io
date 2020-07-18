@@ -222,7 +222,7 @@
 	,"420441655590518794": {"name": "Finch",        	       "badges": ["clash"] }
 	,"455215187360874516": {"name": "ShockWave",        	       "badges": ["clash"] }
 	,"408444034814705684": {"name": "Whaleinator",        	       "badges": ["clash"] }
-	,"209006928272162816": {"name": "2Greenluigi (False King)",    "badges": ["clash", "season_arms", "season_splat", "season_smash", "cookoff", "rush", "rush_win", "season_kart", "scramble"] }
+	,"209006928272162816": {"name": "2Greenluigi (False King)",    "badges": ["clash", "season_arms", "season_splat", "season_smash", "cookoff", "rush", "rush_win", "season_kart", "scramble", "clash_win"] }
 	,"292112807091109889": {"name": "mr ramen",        	       "badges": ["clash", "season_arms"] }
 	,"185607219818004481": {"name": "amr",        	               "badges": ["clash"] }
 	,"310849790370119681": {"name": "Zee",            	       "badges": ["clash"] }
@@ -274,7 +274,7 @@
 	
 	,"302820267292622849": {"name": "DukeNed",            "badges": ["scramble", "clash", "season_arms"] }
 	,"349508114258591744": {"name": "MaxLaves",            "badges": ["scramble", "clash", "cookoff"] }
-	,"395209402866466818": {"name": "WasabiTheInkling",            "badges": ["scramble"] }
+	,"395209402866466818": {"name": "WasabiTheInkling",            "badges": ["scramble", "clash"] }
 	,"285526895548694529": {"name": "Drue The Terrible Pro",            "badges": ["scramble"] }
 
 	,"178548255427133440": {"name": "Nayr",            "badges": ["clash"] }
@@ -299,8 +299,8 @@
 	,"531874396692938783": {"name": "FST_Pluis",            "badges": ["season_splat"] }
 	,"689909432175427589": {"name": "Jukenewt",            "badges": ["season_splat", "cookoff"] }
 	
-	,"354314385864392709": {"name": "Primrose",            "badges": ["scramble"] }
-	,"99873152930172928": {"name": "Anthony (Bladethehedgehog)",            "badges": ["scramble", "cookoff"] }
+	,"354314385864392709": {"name": "Primrose",            "badges": ["scramble", "clash"] }
+	,"163433466799587328": {"name": "Anthony (Bladethehedgehog)",            "badges": ["scramble", "cookoff", "clash"] }
 	,"716460335631958018": {"name": "Flynn.MP3",            "badges": ["scramble"] }
 	,"205086231187423233": {"name": "Wyborn",            "badges": ["scramble"] }
 	,"505979558848364556": {"name": "Fabits",            "badges": ["scramble"] }
@@ -312,4 +312,9 @@
 	,"99873152930172928": {"name": "TnT",            "badges": ["cookoff", "cookoff_win"] }
 	,"99873152930172928": {"name": "Rutger",            "badges": ["cookoff"] }
 	,"99873152930172928": {"name": "くそぼけ",            "badges": ["cookoff"] }
+	
+	,"696531035877408858": {"name": "grimgrinningghost",            "badges": ["clash"] }
+	,"317811108679516160": {"name": "GiantJigglypuff3",            "badges": ["clash"] }
+	,"326853897530638336": {"name": "MysteryManBro",            "badges": ["clash"] }
+	,"150026147323707392": {"name": "DDB of the Stars",            "badges": ["clash"] }
 }
