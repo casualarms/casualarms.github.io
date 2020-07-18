@@ -160,4 +160,7 @@
 	,{ "date" : "2020-07-11", "type" : "cookoff", "players" : 24, "winner" : [
  		{ "id" : "242544943770370048", "name" : "TnT" }
 	]}
+	,{ "date" : "2020-07-18", "type" : "clash", "players" : 22, "winner" : [
+ 		{ "id" : "209006928272162816", "name" : "2GreenLuigi" }
+	]}
 ]
