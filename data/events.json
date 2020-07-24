@@ -33,7 +33,7 @@
 	
 	,{"title":"Ultimate Rush","game":"smash","type":"tournament","alert":false,"date":"2020-06-13T20:00:00.000Z","duration":120,"tz":"EDT","description":"Casual ARMS' 1v1v1  Smash Tournament!","banner":"https://cdn.discordapp.com/attachments/356623759836446720/719917864647393320/ultimaterush2JUNE-13-2020.png","theme":"URT","items":"URI","stages":"URS"}
 	
-	,{"title":"Casual Evolution 3","game":"variety","type":"impromptu","alert":false,"date":"2020-06-27T20:00:00.000Z","duration":90,"tz":"EDT","banner":"https://cdn.discordapp.com/attachments/356623759836446720/725360783923609721/POKEMON.png"}
+	,{"title":"Casual Evolution 4","game":"variety","type":"impromptu","alert":false,"date":"2020-07-25T20:00:00.000Z","duration":90,"tz":"EDT","banner":"https://cdn.discordapp.com/attachments/356623759836446720/725360783923609721/POKEMON.png"}
 	
 	,{"title":"Oddity's Oddball Brawl","game":"smash","type":"tournament","alert":false,"date":"2019-05-19T23:00:00.000Z","duration":90,"tz":"EDT","description":"Themed 1v1 Round Robin Tournament","url":"https://challonge.com/ritli2hj"}
 	,{"title":"Racha's Gambit VI","game":"arms","type":"tournament","alert":false,"date":"2019-07-04T23:30:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit6","stages":"all-arms"}
