@@ -18,7 +18,7 @@
 	,{"title":"Thumpin' Thursday (Unofficial)","game":"arms","type":"impromptu","alert":true,"date":"2020-07-30T18:00:00.000Z","duration":60,"tz":"PDT","description":"1v1 + 3FA + 4FA + 2-4FA Scramble with Streak Bonus!","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Turfsday (Unofficial)","game":"splat","type":"impromptu","alert":true,"date":"2020-07-31T01:30:00.000Z","duration":60,"tz":"PDT","theme":"turf-tower","stages":"High","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"FPF: Clubhouse Games","game":"variety","type":"impromptu","alert":false,"date":"2020-07-31T23:30:00.000Z","duration":90,"tz":"EDT","hosts":[{"name":"Sora","code":"0499-4528-8293"}],"streamers":["SoraFirestorm"]}
-	,{"title":"FPF: MK8DX Battles","game":"kart","type":"impromptu","alert":false,"date":"2020-07-31T19:00:00.000Z","duration":90,"tz":"EDT","theme":"mk_battle","stages":"all-battle","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	,{"title":"FPF: MK8DX Battles","game":"kart","type":"impromptu","alert":false,"date":"2020-07-31T19:00:00.000Z","duration":60,"tz":"EDT","theme":"mk_battle","stages":"all-battle","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
 	,{"title":"Splaturday (Unofficial)","game":"splat","type":"impromptu","alert":true,"date":"2020-08-01T16:30:00.000Z","duration":60,"tz":"PDT","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-05T01:00:00.000Z","duration":120,"tz":"PDT","theme":"bane-ranked","stages":"dynamic","hosts":[{"name":"To Be Announced","code":""}],"streamers":["SoraFirestorm"]}
