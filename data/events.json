@@ -36,8 +36,8 @@
 	
 	,{"title":"Casual Cookoff 8","game":"splat","type":"cookoff","alert":false,"date":"2020-07-11T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
-	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-07-04T19:15:00.000Z","duration":30,"tz":"EDT","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Casual Scramble 19","game":"arms","type":"scramble","alert":false,"date":"2020-07-04T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
+	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-08-01T19:15:00.000Z","duration":30,"tz":"EDT","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Casual Scramble 20","game":"arms","type":"scramble","alert":false,"date":"2020-08-01T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-07-18T19:15:00.000Z","duration":30,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 25","game":"arms","type":"clash","alert":false,"date":"2020-07-18T20:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
