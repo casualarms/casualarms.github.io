@@ -163,4 +163,7 @@
 	,{ "date" : "2020-07-18", "type" : "clash", "players" : 22, "winner" : [
  		{ "id" : "209006928272162816", "name" : "2GreenLuigi" }
 	]}
+	,{ "date" : "2020-08-01", "type" : "scramble", "players" : 14, "winner" : [
+ 		{ "id" : "219155908830298132", "name" : "Uran10" }
+	]}
 ]
