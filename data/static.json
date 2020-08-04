@@ -1,10 +1,11 @@
 {
 	"eventGames" : {
-		"arms"     : "ARMS",
-		"kart"     : "Mario Kart 8 Deluxe",
-		"splat"    : "Splatoon 2",
-		"smash"    : "Super Smash Bros. Ultimate",
-		"variety"  : "Variety Game"
+		"arms"      : "ARMS",
+		"kart"      : "Mario Kart 8 Deluxe",
+		"splat"     : "Splatoon 2",
+		"smash"     : "Super Smash Bros. Ultimate",
+		"spotlight" : "Spotlight Game (Ninjala)",
+		"variety"   : "Variety Game"
 	},
 	"leaderboardTiers" : {
 		"arms" : [
@@ -102,16 +103,21 @@
 			"impromptu"     : "Impromptu Lobby",
 			"tournament"    : "Tournament"
 		},
+		"spotlight" : {
+			"leaderboard"   : "Leaderboard Lobby",
+			"impromptu"     : "Impromptu Lobby"
+		},
 		"variety" : {
 			"impromptu"     : "Impromptu Lobby"
 		}
 	},
 	"eventTypesLeaderboards" : {
-		"arms"    : ["leaderboard"],
-		"kart"    : ["leaderboard", "friends"],
-		"splat"   : ["friends"],
-		"smash"   : ["arena"],
-		"variety" : []
+		"arms"      : ["leaderboard"],
+		"kart"      : ["leaderboard", "friends"],
+		"splat"     : ["friends"],
+		"smash"     : ["arena"],
+		"spotlight" : ["leaderboard"],
+		"variety"   : []
 	},
 	"badgeList" : {
 		"casualcouple" : {
@@ -388,6 +394,7 @@
 			"King of Fighters Stadium",
 			"Garreg Mach Monastery"
 		],
+		"spotlight" : [],
 		"variety" : []
 	},
 	"eventItems" : {
@@ -778,6 +785,7 @@
 				}
 			}
 		],
+		"spotlight" : [],
 		"variety" : []
 	},
 	"stageSets" : {
@@ -827,6 +835,7 @@
 			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106,107]}
 			,{"key"	 : "URS",		 "name" : "Ultimate Rush",	    "stages" : [3,11,12,23,34,35,49,57,63,65,68,70,73,82,97,102]}
 		],
+		"spotlight" : [],
 		"variety" : []
 	},
 	"itemSets" : {
@@ -849,6 +858,7 @@
 			,{ "key" : "wanderers-smash",    "name" : "Wandering Items",        "items" : [0,9,10,17,18,45,47,51,52,69]}
 			,{"key"  : "URI",		 "name" : "Ultimate Rush",	    "items":[16,21,28,33,35,42,44,53,57,60,62,66,67,77]}
 		],
+		"spotlight" : [],
 		"variety" : []
 	}
 }
