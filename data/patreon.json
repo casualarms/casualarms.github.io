@@ -5,10 +5,8 @@
 	,"223927575053991936": {"name": "LandFrog", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"427587118030651393": {"name": "Reis", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"523864053542682624": {"name": "5after12", "tier": 2, "max": 2, "active": true, "months": 1}
-	,"197925840292544512": {"name": "Docshado", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"353673806008549377": {"name": "Hamma", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"403932918466215948": {"name": "Main Main", "tier": 2, "max": 3, "active": true, "months": 1}
-	,"464467971574595585": {"name": "Goomba", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"339632593081335809": {"name": "Lucario", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"215271023241723904": {"name": "MathsDaddy", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"449213504537231360": {"name": "DinosaurY", "tier": 2, "max": 3, "active": true, "months": 1}
@@ -33,6 +31,9 @@
 	,"329777372863660032": {"name": "Devinus Prime", "tier": 1, "max": 1, "active": false, "months": 1}
 	,"449596679218266112": {"name": "Spenjo", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"540331615088541705": {"name": "Kkarbon", "tier": 2, "max": 2, "active": false, "months": 1}
+	,"197925840292544512": {"name": "Docshado", "tier": 2, "max": 2, "active": false, "months": 1}
+	,"464467971574595585": {"name": "Goomba", "tier": 2, "max": 2, "active": false, "months": 1}
+
 	
 	,"UNKNOWN": [
 		 {"name": "DatoldMan", "tier": 3, "max": 3, "active": false, "months": 1}
