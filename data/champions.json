@@ -166,4 +166,7 @@
 	,{ "date" : "2020-08-01", "type" : "scramble", "players" : 14, "winner" : [
  		{ "id" : "219155908830298132", "name" : "Uran10" }
 	]}
+	,{ "date" : "2020-08-08", "type" : "rush", "players" : 11, "winner" : [
+ 		{ "id" : "613388041460908033", "name" : "Zorua3" }
+	]}
 ]
