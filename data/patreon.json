@@ -16,9 +16,8 @@
 	,"136343819829510145": {"name": "tehbs", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"144906691991961601": {"name": "eXTeeGi", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"144138362226343936": {"name": "Pasta Udon", "tier": 1, "max": 1, "active": true, "months": 1}
-	,"285951971167305730": {"name": "Tawny", "tier": 1, "max": 2, "active": true, "months": 1}
 	
-
+	
 	,"294640587829805058": {"name": "JefJay", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"331273909368520725": {"name": "Racso", "tier": 1, "max": 2, "active": false, "months": 1}
 	,"259188591505309706": {"name": "lvl99Skrub", "tier": 3, "max": 3, "active": false, "months": 1}
@@ -33,6 +32,7 @@
 	,"540331615088541705": {"name": "Kkarbon", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"197925840292544512": {"name": "Docshado", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"464467971574595585": {"name": "Goomba", "tier": 2, "max": 2, "active": false, "months": 1}
+	,"285951971167305730": {"name": "Tawny", "tier": 1, "max": 2, "active": false, "months": 1}
 
 	
 	,"UNKNOWN": [
