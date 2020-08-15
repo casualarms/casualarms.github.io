@@ -56,7 +56,7 @@
 	,"415266965788295168": {"name": "Dendrimer",           "badges": ["clash"] }
 	,"333469682952830976": {"name": "ai-chan",             "badges": ["clash"] }
 	,"353673806008549377": {"name": "Hamma",               "badges": ["clash"] }
-	,"221495328497467392": {"name": "Cocovet",             "badges": ["clash", "casualcrew", "scramble", "season_arms_win", "season_arms", "season_smash", "season_smash_win", "host"] }
+	,"221495328497467392": {"name": "Cocovet",             "badges": ["clash", "clash_win", "casualcrew", "scramble", "season_arms_win", "season_arms", "season_smash", "season_smash_win", "host"] }
 	,"213547862523379712": {"name": "KegMinami",           "badges": ["clash"] }
 	,"339645959610826752": {"name": "Comet",               "badges": ["clash"] }
 	,"109484254517293056": {"name": "Drift",               "badges": ["clash", "scramble"] }
@@ -322,4 +322,7 @@
 	,"147778194655674369": {"name": "Moose",            "badges": ["season_kart"] }
 	,"280840720846290944": {"name": "AGENT#0008",            "badges": ["season_splat"] }
 
+	,"694208593570037861": {"name": "russ",            "badges": ["clash"] }
+	,"703564089628164109": {"name": "KilzerPlayZ",            "badges": ["clash"] }
+	,"473768696637161483": {"name": "TC",            "badges": ["clash"] }
 }
