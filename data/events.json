@@ -20,8 +20,8 @@
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-08-21T01:30:00.000Z","duration":90,"tz":"PDT","theme":"turf-rainmaker","stages":"High","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Ninjala Friday","game":"variety","type":"impromptu","alert":true,"date":"2020-08-21T19:00:00.000Z","duration":60,"tz":"EDT","description":"Ninjala Team Event","hosts":[{"name":"To Be Announced","code":""}],"streamers":["pawlslax"]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-23T19:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"mmall","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Messy Monday","game":"splat","type":"friends","alert":true,"date":"2020-08-24T18:30:00.000Z","duration":90,"tz":"GMT","theme":"turf-zones","stages":"Funnel","hosts":[{"name":"To Be Announced","code":""}]}
-
+	,{"title":"Spotlight Monday","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-08-24T18:30:00.000Z","duration":90,"tz":"GMT","description":"Private Lobbies with CA Friends!","hosts":[{"name":"To Be Announced","code":""}]}
+	
 
 	
 	,{"title":"Casual Cookoff 9","game":"splat","type":"cookoff","alert":false,"date":"2020-08-22T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
