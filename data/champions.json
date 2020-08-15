@@ -169,4 +169,7 @@
 	,{ "date" : "2020-08-08", "type" : "rush", "players" : 11, "winner" : [
  		{ "id" : "613388041460908033", "name" : "Zorua3" }
 	]}
+	,{ "date" : "2020-08-15", "type" : "clash", "players" : 14, "winner" : [
+ 		{ "id" : "221495328497467392", "name" : "CoCovet" }
+	]}
 ]
