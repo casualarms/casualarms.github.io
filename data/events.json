@@ -18,7 +18,7 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-19T01:00:00.000Z","duration":90,"tz":"PDT","theme":"bane-ranked","stages":"barriers","hosts":[{"name":"To Be Announced","code":""}],"streamers":["SoraFirestorm"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-19T22:00:00.000Z","duration":90,"tz":"EDT","theme":"skillshot","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-08-21T01:30:00.000Z","duration":90,"tz":"PDT","theme":"turf-rainmaker","stages":"High","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Ninjala Friday","game":"variety","type":"impromptu","alert":true,"date":"2020-08-21T19:00:00.000Z","duration":60,"tz":"EDT","description":"Ninjala Team Event","hosts":[{"name":"To Be Announced","code":""}],"streamers":["pawlslax"]}
+	,{"title":"Frantic Friday","game":"smash","type":"arena","alert":true,"date":"2020-08-21T19:00:00.000Z","duration":90,"tz":"EDT","theme":"ca-1v1v1-smash","items":"allies-smash","stages":"all-no-dlc-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-23T19:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"mmall","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Spotlight Monday","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-08-24T18:30:00.000Z","duration":90,"tz":"GMT","description":"Private Lobbies with CA Friends!","hosts":[{"name":"To Be Announced","code":""}]}
 	
