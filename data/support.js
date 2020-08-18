@@ -97,20 +97,15 @@ var hostDatabase = [
 
 var dst = communityObservesDST ? -60 : 0;
 var eventSlots = [
-	{ "id" : "arms-tue",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(3, 02, 00, dst), "duration" : 120, "tz" : "PST", "type" : "leaderboard", "title" : "Tidal Tuesday"},
-	{ "id" : "arms-wed",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(3, 23, 00, dst), "duration" : 120, "tz" : "EST", "type" : "leaderboard", "title" : "Wildcard Wednesday"},
-	{ "id" : "arms-thu",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(4, 19, 00, dst), "duration" : 120, "tz" : "GMT", "type" : "leaderboard", "title" : "Thumpin' Thursday"},
-	{ "id" : "arms-sun",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(0, 20, 00, dst), "duration" : 120, "tz" : "EST", "type" : "leaderboard", "title" : "Sunday Showdown"},
-	
-	{ "id" : "kart-mon",  "slot_game" : "flex",  "game" : "kart",  "date" : getNextWeekday(1, 22, 30, dst), "duration" :  60, "tz" : "GMT", "type" : "race",   "title" : "Monday Motorway",   "stages" : "all-race",   "theme" : "150cc",     "hosts" : [{"name":"","code":"1077-9421-4443"}]},
-	{ "id" : "kart-fri",  "slot_game" : "flex", "game" : "kart",  "date" : getNextWeekday(5, 20, 00, dst), "duration" :  60, "tz" : "EST", "type" : "battle", "title" : "Frantic Friday",    "stages" : "all-battle", "theme" : "mk_battle"},
-	
-	{ "id" : "splat-mon", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(1, 19, 30, dst), "duration" :  60, "tz" : "EST", "type" : "friends", "title" : "Messy Monday"},
-	{ "id" : "splat-thu", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(5, 02, 30, dst), "duration" :  60, "tz" : "PST", "type" : "friends", "title" : "Turfsday"},
-	{ "id" : "splat-sat", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(6, 17, 30, dst), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "Splaturday"},
-	
-	{ "id" : "smash-wed", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(3, 19, 30, dst), "duration" :  60, "tz" : "GMT", "type" : "friends", "title" : "WedNessDay"},
-	{ "id" : "smash-sat", "slot_game" : "smash",  "game" : "smash", "date" : getNextWeekday(0, 00, 30, dst), "duration" :  60, "tz" : "PST", "type" : "friends", "title" : "Saturday Smash"},
+    	{ "id" : "spotlight-mon", "slot_game" : "flex",  "game" : "spotlight", "date" : getNextWeekday(1, 19, 30, dst), "duration" :  90, "tz" : "EST", "type" : "friends", "title" : "Spotlight Monday"},
+	{ "id" : "arms-tue",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(3, 02, 00, dst), "duration" : 90, "tz" : "PST", "type" : "leaderboard", "title" : "Tidal Tuesday"},
+	{ "id" : "arms-wed",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(3, 23, 00, dst), "duration" : 90, "tz" : "EST", "type" : "leaderboard", "title" : "Wildcard Wednesday"},
+
+	{ "id" : "splat-thu", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(5, 02, 30, dst), "duration" :  90, "tz" : "PST", "type" : "friends", "title" : "Turfsday"},
+
+	{ "id" : "rotator-fri",  "slot_game" : "flex", "game" : "variety",  "date" : getNextWeekday(5, 20, 00, dst), "duration" :  90, "tz" : "EST", "type" : "battle", "title" : "Frantic Friday",    "stages" : "all-battle", "theme" : "mk_battle"},
+
+	{ "id" : "rotator-sun",  "slot_game" : "flex",  "game" : "variety",  "date" : getNextWeekday(0, 20, 00, dst), "duration" : 90, "tz" : "EST", "type" : "leaderboard", "title" : "Sunday Showdown"},
 ];
 
 var streamSlots = [
