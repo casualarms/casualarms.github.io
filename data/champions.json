@@ -172,4 +172,7 @@
 	,{ "date" : "2020-08-15", "type" : "clash", "players" : 14, "winner" : [
  		{ "id" : "221495328497467392", "name" : "CoCovet" }
 	]}
+	,{ "date" : "2020-08-22", "type" : "cookoff", "players" : 23, "winner" : [
+ 		{ "id" : "179803894434627584", "name" : "Aileron" }
+	]}
 ]
