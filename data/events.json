@@ -16,6 +16,7 @@
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-08-28T01:30:00.000Z","duration":90,"tz":"PDT","theme":"turf-clams","stages":"Grates","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
 	,{"title":"Frantic Friday","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-08-28T19:00:00.000Z","duration":90,"tz":"EDT","description":"Battle Royale Event!","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Sunday Showdown","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-30T19:00:00.000Z","duration":90,"tz":"EDT","theme":"gimmickless","stages":"large","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Pokemon Jeopardy!","game":"variety","type":"impromptu","alert":true,"date":"2020-08-23T21:00:00.000Z","duration":30,"tz":"EDT","description":"Pokemon trivia games! "}
 	,{"title":"Spotlight Monday","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-08-31T18:30:00.000Z","duration":90,"tz":"GMT","description":"Team Battle Ninjala Event!","hosts":[{"name":"To Be Announced","code":""}]}
 
 	
