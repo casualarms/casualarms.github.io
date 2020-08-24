@@ -288,9 +288,9 @@
 	
 	,"395138544278044674": {"name": "Halgard",            "badges": ["scramble"] }
 	
-	,"102606480804417536": {"name": "DiscoConfucius",            "badges": ["rush"] }
+	,"102606480804417536": {"name": "DiscoConfucius",            "badges": ["rush", "cookoff"] }
 	,"320624699094597642": {"name": "Garrett",            "badges": ["rush"] }
-	,"236210583702208513": {"name": "Gamertower",            "badges": ["rush"] }
+	,"236210583702208513": {"name": "Gamertower",            "badges": ["rush", "cookoff"] }
 	,"339632593081335809": {"name": "Lucario<3",            "badges": ["rush"] }
 	
 	,"266757898346954752": {"name": "SinVraal",            "badges": ["season_arms", "season_splat", "cookoff"] }
@@ -299,19 +299,19 @@
 	,"531874396692938783": {"name": "FST_Pluis",            "badges": ["season_splat"] }
 	,"689909432175427589": {"name": "Jukenewt",            "badges": ["season_splat", "cookoff", "season_kart"] }
 	
-	,"354314385864392709": {"name": "Primrose",            "badges": ["scramble", "clash", "season_smash"] }
+	,"354314385864392709": {"name": "Primrose",            "badges": ["scramble", "clash", "season_smash", "cookoff"] }
 	,"163433466799587328": {"name": "Anthony (Bladethehedgehog)",            "badges": ["scramble", "cookoff", "clash"] }
 	,"716460335631958018": {"name": "Flynn.MP3",            "badges": ["scramble"] }
 	,"205086231187423233": {"name": "Wyborn",            "badges": ["scramble", "season_smash"] }
 	,"505979558848364556": {"name": "Fabits",            "badges": ["scramble"] }
 	,"621742459642445865": {"name": "Narcotic",            "badges": ["scramble"] }
 	
-	,"99873152930172928": {"name": "Dave2020",            "badges": ["cookoff"] }
-	,"99873152930172928": {"name": "R.E.Z",            "badges": ["cookoff"] }
-	,"99873152930172928": {"name": "abcfuxq",            "badges": ["cookoff"] }
-	,"99873152930172928": {"name": "TnT",            "badges": ["cookoff", "cookoff_win"] }
-	,"99873152930172928": {"name": "Rutger",            "badges": ["cookoff"] }
-	,"99873152930172928": {"name": "くそぼけ",            "badges": ["cookoff"] }
+	,"697065812913029161": {"name": "Dave2020",            "badges": ["cookoff"] }
+	,"604771404466094091": {"name": "R.E.Z",            "badges": ["cookoff"] }
+	,"499249197627998237": {"name": "abcfuxq",            "badges": ["cookoff"] }
+	,"242544943770370048": {"name": "TnT",            "badges": ["cookoff", "cookoff_win"] }
+	,"258348472699322368": {"name": "Rutger",            "badges": ["cookoff"] }
+	,"319731113759211522": {"name": "くそぼけ",            "badges": ["cookoff"] }
 	
 	,"696531035877408858": {"name": "grimgrinningghost",            "badges": ["clash"] }
 	,"317811108679516160": {"name": "GiantJigglypuff3",            "badges": ["clash"] }
@@ -324,5 +324,8 @@
 
 	,"694208593570037861": {"name": "russ",            "badges": ["clash"] }
 	,"703564089628164109": {"name": "KilzerPlayZ",            "badges": ["clash"] }
-	,"473768696637161483": {"name": "TC",            "badges": ["clash"] }
+	,"473768696637161483": {"name": "TC",            "badges": ["clash", "cookoff"] }
+	
+	,"179803894434627584": {"name": "Aileron",            "badges": ["cookoff", "cookoff_win"] }
+	,"304024852036321291": {"name": "psowill",            "badges": ["cookoff"] }
 }
