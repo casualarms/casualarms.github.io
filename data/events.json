@@ -1,5 +1,5 @@
 [
-	{"title":"Spotlight Monday","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-08-24T18:30:00.000Z","duration":90,"tz":"GMT","description":"Battle Royal Ninjala Event!","hosts":[{"name":"Pawl S. Lax","code":"0656-1636-5890"},{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["pawlslax","Dinosauryy"]}
+	{"title":"Spotlight Monday","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-08-24T18:30:00.000Z","duration":90,"tz":"GMT","description":"Battle Royal Ninjala Event!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["Dinosauryy"]}
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-26T01:00:00.000Z","duration":90,"tz":"PDT","theme":"solo","stages":"barriers","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Jake","code":"7677-0583-7008"}],"streamers":["SoraFirestorm"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-08-26T22:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"mmall","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Lachesism","code":"6781-1864-4112"}],"streamers":["CasualARMS"]}
