@@ -175,4 +175,7 @@
 	,{ "date" : "2020-08-22", "type" : "cookoff", "players" : 23, "winner" : [
  		{ "id" : "179803894434627584", "name" : "Aileron" }
 	]}
+	,{ "date" : "2020-08-29", "type" : "scramble", "players" : 11, "winner" : [
+ 		{ "id" : "219155908830298132", "name" : "Uran10" }
+	]}
 ]
