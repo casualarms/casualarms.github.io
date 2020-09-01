@@ -324,8 +324,11 @@
 
 	,"694208593570037861": {"name": "russ",            "badges": ["clash"] }
 	,"703564089628164109": {"name": "KilzerPlayZ",            "badges": ["clash"] }
-	,"473768696637161483": {"name": "TC",            "badges": ["clash", "cookoff"] }
+	,"473768696637161483": {"name": "TC",            "badges": ["clash", "cookoff", "scramble"] }
 	
 	,"179803894434627584": {"name": "Aileron",            "badges": ["cookoff", "cookoff_win"] }
 	,"304024852036321291": {"name": "psowill",            "badges": ["cookoff"] }
+	
+	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble"] }
+	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble"] }
 }
