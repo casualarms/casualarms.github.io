@@ -223,7 +223,7 @@
 	,"455215187360874516": {"name": "ShockWave",        	       "badges": ["clash"] }
 	,"408444034814705684": {"name": "Whaleinator",        	       "badges": ["clash"] }
 	,"209006928272162816": {"name": "2Greenluigi (False King)",    "badges": ["clash", "season_arms", "season_splat", "season_smash", "cookoff", "rush", "rush_win", "season_kart", "scramble", "clash_win", "season_kart_win", "season_smash_win", "season_spotlight"] }
-	,"292112807091109889": {"name": "mr ramen",        	       "badges": ["clash", "season_arms"] }
+	,"292112807091109889": {"name": "mr ramen",        	       "badges": ["clash", "season_arms", "clash_win"] }
 	,"185607219818004481": {"name": "amr",        	               "badges": ["clash"] }
 	,"310849790370119681": {"name": "Zee",            	       "badges": ["clash"] }
 	
@@ -329,7 +329,7 @@
 	,"179803894434627584": {"name": "Aileron",            "badges": ["cookoff", "cookoff_win", "season_splat"] }
 	,"304024852036321291": {"name": "psowill",            "badges": ["cookoff"] }
 	
-	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble"] }
+	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble", "clash"] }
 	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble"] }
 	
 	,"607696385982201857": {"name": "Gashet",            "badges": ["season_spotlight"] }
