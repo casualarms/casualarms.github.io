@@ -24,7 +24,7 @@
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-09-12T19:15:00.000Z","duration":30,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 27","game":"arms","type":"clash","alert":false,"date":"2020-09-12T20:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
 	
-	,{"title":"Ultimate Rush","game":"smash","type":"tournament","alert":false,"date":"2020-08-08T20:00:00.000Z","duration":120,"tz":"EDT","description":"Casual ARMS' 1v1v1  Smash Tournament!","banner":"https://cdn.discordapp.com/attachments/356623759836446720/740680183438246068/ultimaterush3.png","theme":"URT","items":"URI","stages":"URS"}
+	,{"title":"Ultimate Rush 4","game":"smash","type":"tournament","alert":false,"date":"2020-09-19T20:00:00.000Z","duration":90,"tz":"EDT","description":"Casual ARMS' 1v1v1  Smash Tournament!","banner":"https://cdn.discordapp.com/attachments/356623759836446720/755418016417579060/ultimaterush4.png","theme":"URT","items":"URI","stages":"URS"}
 	
 	,{"title":"Casual Evolution 5","game":"variety","type":"impromptu","alert":false,"date":"2020-09-05T20:00:00.000Z","duration":90,"tz":"EDT","banner":"https://cdn.discordapp.com/attachments/356623759836446720/725360783923609721/POKEMON.png"}
 	
