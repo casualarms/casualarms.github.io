@@ -187,4 +187,7 @@
 	,{ "date" : "2020-09-26", "type" : "scramble", "players" : 13, "winner" : [
  		{ "id" : "219155908830298132", "name" : "Uran10" }
 	]}
+	,{ "date" : "2020-10-03", "type" : "cookoff", "players" : 12, "winner" : [
+ 		{ "id" : "335836968011169792", "name" : "Rqiny" }
+	]}
 ]
