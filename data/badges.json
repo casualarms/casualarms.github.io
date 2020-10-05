@@ -261,7 +261,7 @@
 	,"153040057236717568": {"name": "GreyBlender",            "badges": ["scramble"] }
 	,"420733573331681280": {"name": "Jandor3s",            "badges": ["scramble"] }
 	
-	,"335836968011169792": {"name": "Rqiny",            "badges": ["cookoff", "scramble"] }
+	,"335836968011169792": {"name": "Rqiny",            "badges": ["cookoff", "scramble", "cookoff_win"] }
 	,"613388041460908033": {"name": "Zorua",            "badges": ["cookoff", "season_splat", "season_smash", "scramble", "rush"] }
 	
 	,"430035905462403081": {"name": "HarkaPoo",            "badges": ["clash"] }
@@ -330,7 +330,7 @@
 	,"304024852036321291": {"name": "psowill",            "badges": ["cookoff"] }
 	
 	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble", "clash"] }
-	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble"] }
+	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble", "cookoff"] }
 	
-	,"607696385982201857": {"name": "Gashet",            "badges": ["season_spotlight"] }
+	,"607696385982201857": {"name": "Gashet",            "badges": ["season_spotlight", "cookoff"] }
 }
