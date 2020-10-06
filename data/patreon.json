@@ -12,7 +12,6 @@
 	,"339632593081335809": {"name": "Lucario", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"215271023241723904": {"name": "MathsDaddy", "tier": 2, "max": 2, "active": true, "months": 1}
 	,"449213504537231360": {"name": "DinosaurY", "tier": 2, "max": 3, "active": true, "months": 1}
-	,"240644633871253504": {"name": "Tails2020", "tier": 2, "max": 2, "active": true, "months": 1}
 		
 	,"144906691991961601": {"name": "eXTeeGi", "tier": 1, "max": 1, "active": true, "months": 1}
 	,"144138362226343936": {"name": "Pasta Udon", "tier": 1, "max": 1, "active": true, "months": 1}
@@ -34,6 +33,7 @@
 	,"464467971574595585": {"name": "Goomba", "tier": 2, "max": 2, "active": false, "months": 1}
 	,"285951971167305730": {"name": "Tawny", "tier": 1, "max": 2, "active": false, "months": 1}
 	,"136343819829510145": {"name": "tehbs", "tier": 1, "max": 1, "active": false, "months": 1}
+	,"240644633871253504": {"name": "Tails2020", "tier": 2, "max": 2, "active": false, "months": 1}
 	
 	,"UNKNOWN": [
 		 {"name": "DatoldMan", "tier": 3, "max": 3, "active": false, "months": 1}
