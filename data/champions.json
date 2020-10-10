@@ -190,4 +190,7 @@
 	,{ "date" : "2020-10-03", "type" : "cookoff", "players" : 12, "winner" : [
  		{ "id" : "335836968011169792", "name" : "Rqiny" }
 	]}
+	,{ "date" : "2020-10-10", "type" : "clash", "players" : 18, "winner" : [
+ 		{ "id" : "272505335812456449", "name" : "Raffa" }
+	]}
 ]
