@@ -16,6 +16,7 @@
 	,{"title":"Spotlight Monday (MK8)","game":"kart","type":"friends","alert":true,"date":"2020-10-19T18:30:00.000Z","duration":90,"tz":"GMT","theme":"mirror","stages":"all-race","hosts":[{"name":"To Be Announced","code":""}]}
 
 	
+	,{"title":"Mario35 - VC Trial","game":"variety","type":"impromptu","alert":false,"date":"2020-10-12T17:30:00.000Z","duration":45,"tz":"EDT","description":"Join Kalion in voice chat and try to queue up together!","hosts":[{"name":"Kalion","code":"- Join through VC"}]}
 	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-10-14T02:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-10-14T20:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}]}
 	,{"title":"Free Play (Rocket League)","game":"variety","type":"impromptu","alert":false,"date":"2020-10-15T19:00:00.000Z","duration":90,"tz":"PDT","description":"Standard &amp; Rumble game modes!","hosts":[{"name":"Jake     ","code":"Name and Password: &quot;CA Event&quot;"}]}
