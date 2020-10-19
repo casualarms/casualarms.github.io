@@ -2,19 +2,20 @@
 	{"title":"Spotlight Monday (MK8)","game":"kart","type":"friends","alert":true,"date":"2020-10-19T18:30:00.000Z","duration":90,"tz":"GMT","theme":"mirror","stages":"all-race","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
 	,{"title":"Free Play (Ninjala)","game":"variety","type":"impromptu","alert":false,"date":"2020-10-19T20:30:00.000Z","duration":60,"tz":"EDT","description":"Battle Royale Event!","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
 	
-	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-21T01:00:00.000Z","duration":90,"tz":"PDT","theme":"teams","stages":"backroom","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-21T22:00:00.000Z","duration":90,"tz":"EDT","theme":"bane-ranked","stages":"corners","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
-	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-10-23T01:30:00.000Z","duration":90,"tz":"PDT","theme":"turf-clams","stages":"High","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
-	,{"title":"Frantic Friday (Splatoon)","game":"splat","type":"friends","alert":true,"date":"2020-10-23T19:00:00.000Z","duration":90,"tz":"EDT","theme":"turf-tower","stages":"Grates","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Sunday Showdown (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-25T19:00:00.000Z","duration":90,"tz":"EDT","theme":"gimmickless","stages":"japan","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Spotlight Monday (MK8)","game":"kart","type":"friends","alert":true,"date":"2020-10-26T18:30:00.000Z","duration":90,"tz":"GMT","theme":"200cc","stages":"all-race","hosts":[{"name":"To Be Announced","code":""}]}
-
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-21T01:00:00.000Z","duration":90,"tz":"PDT","theme":"teams","stages":"backroom","hosts":[{"name":"CoCovet","code":"8037-4720-4522","tag":"CC"},{"name":"Lachesism","code":"6781-1864-4112"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-21T22:00:00.000Z","duration":90,"tz":"EDT","theme":"bane-ranked","stages":"corners","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Anthony","code":"1406-0760-9130"}],"streamers":["CasualARMS","dinosauryy","gamemastertom","sonicwindyblade"]}
+	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-10-23T01:30:00.000Z","duration":90,"tz":"PDT","theme":"turf-clams","stages":"High","hosts":[{"name":"False King","code":"2280-3366-3433"},{"name":"The Oddity","code":"4303-5678-5601"}],"streamers":["CasualARMS","dinosauryy","gamemastertom"]}
+	,{"title":"Frantic Friday (Splatoon)","game":"splat","type":"friends","alert":true,"date":"2020-10-23T19:00:00.000Z","duration":90,"tz":"EDT","theme":"turf-tower","stages":"Grates","hosts":[{"name":"False King","code":"2280-3366-3433"},{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Sunday Showdown (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-25T19:00:00.000Z","duration":90,"tz":"EDT","theme":"gimmickless","stages":"japan","hosts":[{"name":"Literary","code":"4704-7597-7783"},{"name":"Anthony","code":"1406-0760-9130"}],"streamers":["dinosauryy","sonicwindyblade"]}
+	,{"title":"Spotlight Monday (MK8)","game":"kart","type":"friends","alert":true,"date":"2020-10-26T18:30:00.000Z","duration":90,"tz":"GMT","theme":"200cc","stages":"all-race","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+		
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-28T01:00:00.000Z","duration":90,"tz":"PDT","theme":"bane-ranked","stages":"dynamic","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-28T22:00:00.000Z","duration":90,"tz":"EDT","theme":"teams","stages":"japan","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
+	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-10-30T01:30:00.000Z","duration":90,"tz":"PDT","theme":"turf-zones","stages":"Moving","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
+	,{"title":"Frantic Friday (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-10-30T19:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"corners","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Sunday Showdown (Splat)","game":"splat","type":"friends","alert":true,"date":"2020-11-01T19:00:00.000Z","duration":90,"tz":"EDT","theme":"turf-zones","stages":"Funnel","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"  Spotlight Monday (Among Us)","game":"variety","type":"impromptu","alert":true,"date":"2020-11-02T18:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"To Be Announced","code":""}]}
 	
-	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-10-14T02:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
-	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-10-14T20:30:00.000Z","duration":60,"tz":"EDT","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}]}
-	,{"title":"Free Play (Jackbox)","game":"variety","type":"impromptu","alert":false,"date":"2020-10-16T23:00:00.000Z","duration":60,"tz":"EDT","description":"Party Pack 7 with Dinosauryy!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	
-
 	
 	,{"title":"Casual Cookoff 10","game":"splat","type":"cookoff","alert":false,"date":"2020-10-03T20:00:00.000Z","duration":90,"tz":"EDT","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
