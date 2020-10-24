@@ -193,4 +193,7 @@
 	,{ "date" : "2020-10-10", "type" : "clash", "players" : 18, "winner" : [
  		{ "id" : "272505335812456449", "name" : "Raffa" }
 	]}
+	,{ "date" : "2020-10-24", "type" : "scramble", "players" : 18, "winner" : [
+ 		{ "id" : "315301009117413376", "name" : "GM-Tom" }
+	]}
 ]
