@@ -37,7 +37,7 @@
 	
 	,"UNKNOWN": [
 		 {"name": "DatoldMan", "tier": 3, "max": 3, "active": false, "months": 1}
-		,{"name": "Vanmuundegar", "tier": 2, "max": 2, "active": true, "months": 1}
+		,{"name": "Vanmuundegar", "tier": 2, "max": 2, "active": false, "months": 1}
 		
 	]
 }
