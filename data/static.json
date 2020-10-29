@@ -392,7 +392,10 @@
 			"Yggdrasil's Altar",
 			"Spiral Mountain",
 			"King of Fighters Stadium",
-			"Garreg Mach Monastery"
+			"Garreg Mach Monastery",
+
+			"Spring Stadium,"
+			"Minecraft World"
 		],
 		"spotlight" : [],
 		"variety" : []
@@ -820,9 +823,9 @@
 			,{ "key" : "Corners",            "name" : "Overlooked Corners",     "stages" : [10,17,30,39,41]}
 		],
 		"smash" : [
-			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 107 }]}
+			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 109 }]}
 			,{ "key" : "all-no-dlc-smash",   "name" : "All (No DLC)",           "stages" : [{ "start" : 0, "end" : 102 }]}
-			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84,105]}
+			,{ "key" : "vanilla-smash",      "name" : "Vanilla Dreams",         "stages" : [0,1,2,7,18,19,35,36,38,43,84,105,108]}
 			,{ "key" : "transform-smash",    "name" : "Trippy Transformations", "stages" : [23,39,41,57,65,66,73,79]}
 			,{ "key" : "journey-smash",      "name" : "On a Journey",           "stages" : [37,40,45,62,63,75,76,90,99,104]}
 			,{ "key" : "scrolling-smash",    "name" : "They See Me Scrollin'",  "stages" : [11,27,30,55,56,59,60,94]}
@@ -831,9 +834,9 @@
 			,{ "key" : "vertical-smash",     "name" : "Going Vertical",         "stages" : [12,26,47,48,51,53,71,87,89,101]}
 			,{ "key" : "lookout-smash",      "name" : "Look Out!",              "stages" : [5,8,16,21,24,31,32,34,50,72,82,103]}
 			,{ "key" : "diving-smash",       "name" : "Take a Dive",            "stages" : [13,14,29,45,49,67,91]}
-			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102,106]}
-			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106,107]}
-			,{"key"	 : "URS",		 "name" : "Ultimate Rush",	    "stages" : [3,11,12,23,34,35,49,57,63,65,68,70,73,82,97,102]}
+			,{ "key" : "chocolate-smash",    "name" : "Chocolate Nightmares",   "stages" : [3,4,6,17,20,22,28,46,88,92,95,100,102,106,109]}
+			,{ "key" : "dlc-stages-smash",   "name" : "DLC Exclusives",         "stages" : [103,104,105,106,107,108,109]}
+			,{"key"	 : "URS",		 "name" : "Ultimate Rush",	    "stages" : [3,11,12,23,34,35,49,57,63,65,70,73,82,97,102,103,108]}
 		],
 		"spotlight" : [],
 		"variety" : []
