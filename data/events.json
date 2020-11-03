@@ -22,8 +22,8 @@
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-10-24T19:15:00.000Z","duration":30,"tz":"EDT","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Scramble 23","game":"arms","type":"scramble","alert":false,"date":"2020-10-24T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	
-	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-10-10T19:15:00.000Z","duration":30,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Casual Clash 28","game":"arms","type":"clash","alert":false,"date":"2020-10-10T20:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms"}
+	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":false,"date":"2020-11-07T20:15:00.000Z","duration":30,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Casual Clash 29","game":"arms","type":"clash","alert":false,"date":"2020-11-07T21:00:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
 	
 	,{"title":"Ultimate Rush 5","game":"smash","type":"tournament","alert":false,"date":"2020-10-31T20:00:00.000Z","duration":90,"tz":"EDT","description":"Casual ARMS' 1v1v1  Smash Tournament!","banner":"https://cdn.discordapp.com/attachments/356623759836446720/770673591829397504/fixedultimaterush5.png","theme":"URT","items":"URI","stages":"URS"}
 	
