@@ -2,7 +2,7 @@
 ---
 
 // Change this when the community administration enters/leaves DST!
-var communityObservesDST = true; // true or false
+var communityObservesDST = false; // true or false
 // End DST change region
 
 var staticDataJSON = {% include_relative static.json %};
