@@ -1,23 +1,21 @@
 [
-	{"title":"  Spotlight Monday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-02T19:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Anthony","code":"1406-0760-9130"}],"streamers":["sonicwindyblade"]}
-	
-	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-04T02:00:00.000Z","duration":90,"tz":"PST","theme":"hoops","stages":"mmall","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"Lachesism","code":"6781-1864-4112"}],"streamers":["sorafirestorm","gamemastertom"]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-04T23:00:00.000Z","duration":90,"tz":"EST","theme":"gimmickless","stages":"barriers","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["CasualARMS","dinosauryy","gamemastertom"]}
-	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-11-06T02:30:00.000Z","duration":90,"tz":"PST","theme":"turf-tower","stages":"all-splat-standard","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Literary","code":"4704-7597-7783"}],"streamers":["CasualARMS","dinosauryy","gamemastertom"]}
-	,{"title":"Frantic Friday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-06T20:00:00.000Z","duration":90,"tz":"EST","hosts":[{"name":"Anthony","code":"1406-0760-9130"},{"name":"Udon","code":"3801-5397-8600"}],"streamers":["sonicwindyblade"]}
-	,{"title":"Sunday Showdown (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-08T20:00:00.000Z","duration":90,"tz":"EST","theme":"fights-only","stages":"japan","hosts":[{"name":"Ombreverte","code":"3089-8564-5404"},{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	,{"title":"  Spotlight Monday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-09T19:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Anthony","code":"1406-0760-9130"}],"streamers":["sonicwindyblade"]}
-	
-	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-11T02:00:00.000Z","duration":90,"tz":"PST","theme":"teams","stages":"cote","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-11T23:00:00.000Z","duration":90,"tz":"EST","theme":"bane-ranked","stages":"cote","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
-	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-11-13T02:30:00.000Z","duration":90,"tz":"PST","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
-	,{"title":"Frantic Friday (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-13T20:00:00.000Z","duration":90,"tz":"EST","theme":"anything","stages":"large","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"Sunday Showdown (Splat)","game":"splat","type":"friends","alert":true,"date":"2020-11-15T20:00:00.000Z","duration":90,"tz":"EST","theme":"turf-zones","stages":"High","hosts":[{"name":"To Be Announced","code":""}]}
-	,{"title":"  Spotlight Monday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-16T19:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"To Be Announced","code":""}]}
-	
-	,{"title":"Free Play (MK8)","game":"kart","type":"impromptu","alert":false,"date":"2020-11-06T21:45:00.000Z","duration":60,"tz":"EST","description":"Mirror and 150cc","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
-	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-11-07T23:00:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"dlc-stages-smash","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	{"title":"  Spotlight Monday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-16T19:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"Free Play (Ninjala)","game":"variety","type":"impromptu","alert":false,"date":"2020-11-09T21:30:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-11T02:00:00.000Z","duration":90,"tz":"PST","theme":"teams","stages":"cote","hosts":[{"name":"Sora","code":"0499-4528-8293"},{"name":"The Oddity","code":"4303-5678-5601"}],"streamers":["sorafirestorm","dinosauryy","gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-11T23:00:00.000Z","duration":90,"tz":"EST","theme":"bane-ranked","stages":"cote","hosts":[{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"},{"name":"Lachesism","code":"6781-1864-4112"}],"streamers":["CasualARMS","dinosauryy","gamemastertom"]}
+	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-11-13T02:30:00.000Z","duration":90,"tz":"PST","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"},{"name":"Emperor","code":"7827-1266-0112"}],"streamers":["CasualARMS","dinosauryy","gamemastertom"]}
+	,{"title":"Frantic Friday (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-13T20:00:00.000Z","duration":90,"tz":"EST","theme":"anything","stages":"large","hosts":[{"name":"Lachesism","code":"6781-1864-4112"},{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Sunday Showdown (Splat)","game":"splat","type":"friends","alert":true,"date":"2020-11-15T20:00:00.000Z","duration":90,"tz":"EST","theme":"turf-zones","stages":"High","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"},{"name":"Sora","code":"0499-4528-8293"}],"streamers":["dinosauryy"]}
+	,{"title":"  Spotlight Monday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-16T19:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"The Oddity","code":"4303-5678-5601"},{"name":"Rashiko","code":"6822-5055-2423","tag":"CC"}]}
+	
+	
+	,{"title":"Tidal Tuesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-18T02:00:00.000Z","duration":90,"tz":"PST","theme":"bane-ranked","stages":"mmall","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-18T23:00:00.000Z","duration":90,"tz":"EST","theme":"gimmickless","stages":"cote","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
+	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2020-11-20T02:30:00.000Z","duration":90,"tz":"PST","theme":"turf-clams","stages":"Water","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
+	,{"title":"Frantic Friday (Splatoon)","game":"splat","type":"friends","alert":true,"date":"2020-11-20T20:00:00.000Z","duration":90,"tz":"EST","theme":"turf-tower","stages":"High","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"Sunday Showdown (ARMS)","game":"arms","type":"leaderboard","alert":true,"date":"2020-11-22T20:00:00.000Z","duration":90,"tz":"EST","theme":"teams","stages":"cote","hosts":[{"name":"To Be Announced","code":""}]}
+	,{"title":"  Spotlight Monday (Among Us)","game":"spotlight","type":"leaderboard","alert":true,"date":"2020-11-23T19:30:00.000Z","duration":90,"tz":"GMT","hosts":[{"name":"To Be Announced","code":""}]}
 	
 	
 	
