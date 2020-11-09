@@ -230,7 +230,7 @@
 	,"715291444323024957": {"name": "Skunky101",      	 "badges": ["season_splat", "season_arms", "season_smash", "scramble", "cookoff", "host", "clash", "rush", "season_kart"] }
 	,"221773843344261122": {"name": "Nigel", 	     	 "badges": ["season_splat", "cookoff", "cookoff_win"] }
 	
-	,"557252768683917338": {"name": "Galfin", 	     	 "badges": ["season_splat", "season_smash", "cookoff"] }
+	,"557252768683917338": {"name": "Galfin", 	     	 "badges": ["season_splat", "season_smash", "cookoff", "clash"] }
 	,"282906406615777282": {"name": "Daniel", 	     	 "badges": ["season_splat"] }
 	,"426447633888837635": {"name": "Espion", 	     	 "badges": ["season_arms", "clash", "scramble", "cookoff", "season_splat", "host", "cookoff_win"] }
 	,"282906406615777282": {"name": "SUPERBOT7789", 	 "badges": ["cookoff"] }
@@ -330,15 +330,18 @@
 	,"304024852036321291": {"name": "psowill",            "badges": ["cookoff"] }
 	
 	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble", "clash", "season_arms", "season_kart"] }
-	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble", "cookoff", "season_splat"] }
+	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble", "cookoff", "season_splat", "clash"] }
 	
 	,"607696385982201857": {"name": "Gashet",            "badges": ["season_spotlight", "cookoff", "season_splat"] }
 	
 	,"344662791212498945": {"name": "Mr GamerKiller",            "badges": ["scramble"] }
 	,"720855114725720084": {"name": "moon.beat",            "badges": ["scramble"] }
 	
-	,"537114426449592336": {"name": "Racheve",            "badges": ["season_arms"] }
+	,"537114426449592336": {"name": "Racheve",            "badges": ["season_arms", "clash"] }
 	,"328644137412984843": {"name": "Glace",            "badges": ["season_kart"] }
 	,"495992111724888093": {"name": "Hypernova",            "badges": ["season_splat"] }
+	
+	,"754179451696316446": {"name": "ARTMH",            "badges": ["clash"] }
+	,"431970589230759936": {"name": "Zenith",            "badges": ["clash"] }
 
 }
