@@ -17,7 +17,7 @@
 
 	,{"title":"Free Play (Ninjala)","game":"variety","type":"impromptu","alert":false,"date":"2020-11-18T20:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Free Play (MK8)","game":"kart","type":"impromptu","alert":false,"date":"2020-11-20T21:45:00.000Z","duration":60,"tz":"EST","description":"Mirror and 150cc","theme":"mirror","stages":"all-race","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
-	,{"title":"Free Play (Smash)","game":"smash","type":"arena","alert":false,"date":"2020-11-21T23:00:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"dlc-stages-smash","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-11-21T23:00:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"dlc-stages-smash","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
 	
 	
 	
