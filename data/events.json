@@ -16,6 +16,7 @@
 	,{"title":"  Spotlight Monday (Smash)","game":"smash","type":"arena","alert":true,"date":"2020-12-07T19:30:00.000Z","duration":90,"tz":"GMT","theme":"ca-2v2-smash","items":"explosives-smash","stages":"all-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	
 	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-11-26T22:30:00.000Z","duration":90,"tz":"CST","description":"Spirits On!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Free Play (ARMS)","game":"arms","type":"impromptu","alert":false,"date":"2020-11-28T14:30:00.000Z","duration":90,"tz":"PST","description":"99 Coin [REDACTED] Hoops!","theme":"hoops","stages":"custom[14]","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
