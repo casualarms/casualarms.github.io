@@ -199,4 +199,11 @@
 	,{ "date" : "2020-11-07", "type" : "clash", "players" : 17, "winner" : [
  		{ "id" : "292112807091109889", "name" : "Mr Ramen" }
 	]}
+	,{ "date" : "2020-11-21", "type" : "cookoff", "players" : 23, "winner" : [
+ 		{ "id" : "383925712047833089", "name" : "jane" },
+		{ "id" : "242544943770370048", "name" : "TnT" }	
+	]}
+	,{ "date" : "2020-11-28", "type" : "scramble", "players" : 15, "winner" : [
+ 		{ "id" : "615525838724530196", "name" : "Mr Adal" }
+	]}
 ]
