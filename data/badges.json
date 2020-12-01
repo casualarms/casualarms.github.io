@@ -329,7 +329,7 @@
 	,"179803894434627584": {"name": "Aileron",            "badges": ["cookoff", "cookoff_win", "season_splat"] }
 	,"304024852036321291": {"name": "psowill",            "badges": ["cookoff"] }
 	
-	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble", "clash", "season_arms", "season_kart"] }
+	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble", "clash", "season_arms", "season_kart", "scramble_win"] }
 	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble", "cookoff", "season_splat", "clash"] }
 	
 	,"607696385982201857": {"name": "Gashet",            "badges": ["cookoff", "season_splat", "scramble"] }
@@ -345,7 +345,7 @@
 	,"431970589230759936": {"name": "Zenith",            "badges": ["clash", "scramble"] }
 	
 	,"646749114352140303": {"name": "Scrudgie",            "badges": ["cookoff"] }
-	,"383925712047833089": {"name": "jane",            "badges": ["cookoff"] }
+	,"383925712047833089": {"name": "jane",            "badges": ["cookoff", "cookoff_win"] }
 	,"358576616290516992": {"name": "insert",            "badges": ["cookoff"] }
 	
 	,"430488881528569856": {"name": "zev",			"badges": ["scramble"] }
