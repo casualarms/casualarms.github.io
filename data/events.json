@@ -15,6 +15,8 @@
 	,{"title":"Sunday Showdown (Splat)","game":"splat","type":"friends","alert":true,"date":"2020-12-13T20:00:00.000Z","duration":90,"tz":"EST","theme":"turf-tower","stages":"Funnel","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"  Spotlight Monday (Smash)","game":"smash","type":"arena","alert":true,"date":"2020-12-14T19:30:00.000Z","duration":90,"tz":"GMT","theme":"ca-1v1v1v1-smash","items":"wanderers-smash","stages":"scrolling-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	
+	,{"title":"Free Play (MK8)","game":"kart","type":"impromptu","alert":false,"date":"2020-12-04T21:45:00.000Z","duration":60,"tz":"EST","description":"Battle &amp; 200cc","theme":"mk_battle","stages":"all-battle","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
