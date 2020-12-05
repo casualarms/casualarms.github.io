@@ -17,6 +17,7 @@
 	
 	,{"title":"Free Play (MK8)","game":"kart","type":"impromptu","alert":false,"date":"2020-12-04T21:45:00.000Z","duration":60,"tz":"EST","description":"Battle &amp; 200cc","theme":"mk_battle","stages":"all-battle","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
 	,{"title":"Free Play (Fortnite)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-05T00:30:00.000Z","duration":60,"tz":"EST","description":"Make sure to update your game!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
+	,{"title":"Free Play (Ninjala)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-07T21:30:00.000Z","duration":60,"tz":"EST","description":"Battle Royale","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
