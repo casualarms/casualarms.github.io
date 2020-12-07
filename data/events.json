@@ -16,6 +16,10 @@
 	,{"title":"  Spotlight Monday (Smash)","game":"smash","type":"arena","alert":true,"date":"2020-12-21T19:30:00.000Z","duration":90,"tz":"GMT","theme":"ca-2v2-smash","items":"upgrades-smash","stages":"chocolate-smash","hosts":[{"name":"To Be Announced","code":""}]}
 		
 	,{"title":"Free Play (Ninjala)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-07T21:30:00.000Z","duration":60,"tz":"EST","description":"Battle Royale","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	,{"title":"Free Play (Among Us)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-10T19:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Free Play (Mario Kart)","game":"kart","type":"impromptu","alert":false,"date":"2020-12-11T21:45:00.000Z","duration":60,"tz":"EST","description":"Mirror &amp; 150cc","theme":"mirror","stages":"all-race","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	,{"title":"Free Play (Fortnite)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-09T20:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Free Play (Fortnite)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-12T00:30:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
