@@ -206,4 +206,7 @@
 	,{ "date" : "2020-11-28", "type" : "scramble", "players" : 15, "winner" : [
  		{ "id" : "615525838724530196", "name" : "Mr Adal" }
 	]}
+	,{ "date" : "2020-12-12", "type" : "clash", "players" : 18, "winner" : [
+ 		{ "id" : "673622543696920607", "name" : "Woomy" }
+	]}
 ]
