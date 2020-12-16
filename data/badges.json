@@ -290,7 +290,7 @@
 	
 	,"102606480804417536": {"name": "DiscoConfucius",            "badges": ["rush", "cookoff"] }
 	,"320624699094597642": {"name": "Garrett",            "badges": ["rush"] }
-	,"236210583702208513": {"name": "Gamertower",            "badges": ["rush", "cookoff", "scramble"] }
+	,"236210583702208513": {"name": "Gamertower",            "badges": ["rush", "cookoff", "scramble", "clash"] }
 	,"339632593081335809": {"name": "Lucario<3",            "badges": ["rush"] }
 	
 	,"266757898346954752": {"name": "SinVraal",            "badges": ["season_arms", "season_splat", "cookoff"] }
@@ -349,5 +349,9 @@
 	,"358576616290516992": {"name": "insert",            "badges": ["cookoff"] }
 	
 	,"430488881528569856": {"name": "zev",			"badges": ["scramble"] }
+	
+	,"673622543696920607": {"name": "Woomy",            "badges": ["clash", "clash_win"] }
+	,"464260676526014474": {"name": "Delta",            "badges": ["clash"] }
+	,"233796780116934658": {"name": "Oddball",            "badges": ["clash"] }
 
 }
