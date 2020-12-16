@@ -16,6 +16,11 @@
 	,{"title":"Sunday Showdown (Smash)","game":"smash","type":"arena","alert":true,"date":"2020-12-27T20:00:00.000Z","duration":90,"tz":"EST","theme":"ca-2v2-smash","items":"wanderers-smash","stages":"challenger-smash","hosts":[{"name":"To Be Announced","code":""}]}
 	,{"title":"  Spotlight Monday (Smash)","game":"smash","type":"arena","alert":true,"date":"2020-12-28T19:30:00.000Z","duration":90,"tz":"GMT","theme":"ca-1v1v1v1-smash","items":"better-worse-smash","stages":"URS","hosts":[{"name":"To Be Announced","code":""}]}
 	
+	,{"title":"Free Play Event (ARMS)","game":"arms","type":"impromptu","alert":false,"date":"2020-12-16T19:00:00.000Z","duration":60,"tz":"EST","theme":"anything","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Free Play Event (Among Us)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-17T19:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Free Play Event (MK8)","game":"kart","type":"impromptu","alert":false,"date":"2020-12-18T21:45:00.000Z","duration":60,"tz":"EST","description":"Battle &amp; 200cc","theme":"mk_battle","stages":"all-battle","hosts":[{"name":"False King","code":"2280-3366-3433"}]}
+	
+	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
