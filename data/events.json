@@ -12,13 +12,8 @@
 	,{"title":"Wildcard Wednesday","game":"arms","type":"leaderboard","alert":true,"date":"2020-12-30T23:00:00.000Z","duration":90,"tz":"EST","theme":"anything","stages":"all-arms","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
 	,{"title":"Turfsday","game":"splat","type":"friends","alert":true,"date":"2021-01-01T02:30:00.000Z","duration":90,"tz":"PST","theme":"turf-tower","stages":"Grates","hosts":[{"name":"To Be Announced","code":""}],"streamers":["CasualARMS"]}
 
-	,{"title":"Free Play (Ninjala)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-21T21:30:00.000Z","duration":60,"tz":"EST","description":"Battle Royale","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
-	,{"title":"Free Play Event (ARMS)","game":"arms","type":"impromptu","alert":false,"date":"2020-12-23T19:00:00.000Z","duration":60,"tz":"EST","theme":"anything","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
-	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-12-23T04:00:00.000Z","duration":60,"tz":"EST","description":"Let's Celebrate Geno &amp; Sephiroth!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
-	,{"title":"Free Play (Smash)","game":"smash","type":"impromptu","alert":false,"date":"2020-12-23T18:00:00.000Z","duration":60,"tz":"CST","theme":"ca-2v2-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Free Play (Fortnite)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-24T00:45:00.000Z","duration":60,"tz":"EST","description":"Christmas Update!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	,{"title":"Free Play Event (Among Us)","game":"variety","type":"impromptu","alert":false,"date":"2020-12-24T19:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
-
+	,{"title":"Smash Bros. Event!","game":"smash","type":"impromptu","alert":false,"date":"2021-01-01T19:30:00.000Z","duration":60,"tz":"CST","description":"Happy New Year!","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
