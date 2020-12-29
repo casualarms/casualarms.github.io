@@ -209,4 +209,7 @@
 	,{ "date" : "2020-12-12", "type" : "clash", "players" : 18, "winner" : [
  		{ "id" : "673622543696920607", "name" : "Woomy" }
 	]}
+	,{ "date" : "2020-12-26", "type" : "scramble", "players" : 20, "winner" : [
+ 		{ "id" : "315301009117413376", "name" : "GM-Tom" }
+	]}
 ]
