@@ -271,7 +271,7 @@
 		display: block;
 		background-color: #738bd7;
 		height: 100%;
-		width: 53%;
+		width: 100%;
 		text-decoration: none;
 		color: white;
 	}
@@ -283,28 +283,6 @@
 		padding: 5pt;
 	}
 	
-	#patreon-footer {
-		position: absolute;
-		right: 0;
-		top: 0;
-		text-align: center;
-		line-height: 30pt;
-		display: block;
-		height: 102%;
-		width: 53%;
-	}
-	
-	#footer-patreon-text {
-		display: inline-block;
-		width: 75%;
-		line-height: 30pt;
-		padding: 5pt;
-		position: absolute;
-		top: 0;
-		right: 40pt;
-		color: white !important;
-	}
-	
 	#patron-feature, #discord-number {
 		font-weight: bold;
 	}
@@ -312,7 +290,12 @@
 	#discord-footer:hover {
 		background-color: #5c70ae;
 	}
-	
+
+	/*
+	 * FIXME: The Discord logo *really* ought to be repositioned to be closer to the
+	 * text, in light of removing the Patreon part of the bar. However, I (Sora) am
+	 * not wizard enough at CSS to fix it.
+         */
 	img#discord-logo  {
 		height: 20pt;
 		position: absolute;
@@ -320,24 +303,8 @@
 		left: 10pt;
 	}
 	
-	img#patreon-logo  {
-		height: 20pt;
-		position: absolute;
-		top: 10pt;
-		right: 10pt;
-	}
-	
 	#featured.featured-hidden {
 		display: none !important;
-	}
-	
-	#patreon-footer svg {
-		display: block;
-		height: 100%;
-	}
-	
-	#patreon-footer:hover > svg > polygon {
-		fill: #d65a4e;
 	}
 	
 	a > em.subselect {
@@ -488,13 +455,6 @@
 		<div id="main-footer">
 			<img id="discord-logo" src="/assets/main/discord-logo.png"/>
 			<a id="discord-footer" href="https://discord.gg/5A7QkPC"><span id="footer-discord-text">Join the <u>Discord</u> server!</span></a>
-			<a id="patreon-footer" href="https://www.patreon.com/CasualARMS">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
-					<polygon points="100 0 100 10 0 10 6 0" fill="#f36b61"/>
-				</svg>
-				<span id="footer-patreon-text"><u>Patreon</u> spotlight: <span id="patron-feature">tehbs</span></span>
-			</a>
-			<img id="patreon-logo" src="/assets/main/patreon-logo.png"/>
 		</div>
 	</div>
 	
