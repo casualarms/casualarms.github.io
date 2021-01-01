@@ -96,17 +96,9 @@ var hostDatabase = [
 ]
 
 var dst = communityObservesDST ? -60 : 0;
-var eventSlots = [
-    	{ "id" : "spotlight-mon", "slot_game" : "flex",  "game" : "spotlight", "date" : getNextWeekday(1, 19, 30, dst), "duration" :  90, "tz" : "EST", "type" : "friends", "title" : "Spotlight Monday"},
-	{ "id" : "arms-tue",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(3, 02, 00, dst), "duration" : 90, "tz" : "PST", "type" : "leaderboard", "title" : "Tidal Tuesday"},
-	{ "id" : "arms-wed",  "slot_game" : "arms",  "game" : "arms",  "date" : getNextWeekday(3, 23, 00, dst), "duration" : 90, "tz" : "EST", "type" : "leaderboard", "title" : "Wildcard Wednesday"},
 
-	{ "id" : "splat-thu", "slot_game" : "splat",  "game" : "splat", "date" : getNextWeekday(5, 02, 30, dst), "duration" :  90, "tz" : "PST", "type" : "friends", "title" : "Turfsday"},
-
-	{ "id" : "rotator-fri",  "slot_game" : "flex", "game" : "variety",  "date" : getNextWeekday(5, 20, 00, dst), "duration" :  90, "tz" : "EST", "type" : "battle", "title" : "Frantic Friday",    "stages" : "all-battle", "theme" : "mk_battle"},
-
-	{ "id" : "rotator-sun",  "slot_game" : "flex",  "game" : "variety",  "date" : getNextWeekday(0, 20, 00, dst), "duration" : 90, "tz" : "EST", "type" : "leaderboard", "title" : "Sunday Showdown"},
-];
+// FIXME: No longer used, check rest of references and remove
+var eventSlots = [];
 
 var streamSlots = [
 //	{ "id" : "maker-mon", "slot_game" : "variety", "platform" : "mixer", "game" : "variety", "date" : getNextWeekday(1, 18, 30), "duration" :  60, "tz" : "EDT", "title" : "Maker Monday"},
