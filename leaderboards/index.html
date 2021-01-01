@@ -517,7 +517,8 @@
 		
 		$("leaderboard").innerHTML = html + "</div>";
 	}
-	
+
+	/* FIXME: dead code! remove! */
 	function displayPatreon()
 	{
 		var html = "<p style='text-align: center;'>Contribute to Casual ARMS on <a href='https://www.patreon.com/CasualARMS'><em style='background-color: #f36b61;''>Patreon</em></a>!</p>";
@@ -698,7 +699,6 @@
 		case "smash-monthly":     changeMode("smash",     true,  false); break;
 		case "spotlight":         changeMode("spotlight", false, false); break;
 		case "spotlight-monthly": changeMode("spotlight", true,  false); break;
-		case "patrons":           changeMode("patreon",   false, true ); break;
 		case "search":            changeMode("search",    false, false); break;
 		default:                  changeMode("arms",      false, false);
 		}
@@ -745,7 +745,6 @@
 			<br>
 			<em class="mode" id="md-overall" onClick="changeMode('overall', false, false);">Overall</em>
 			<br/>
-			<em class="mode" id="md-patreon" onClick="changeMode('patreon', false, true);">Patrons</em>
 			<em class="mode" id="md-search"  onClick="changeMode('search', false, false);">Search</em>
 		</p>
 		
