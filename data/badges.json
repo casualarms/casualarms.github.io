@@ -300,7 +300,7 @@
 	,"689909432175427589": {"name": "Jukenewt",            "badges": ["season_splat", "cookoff", "season_kart"] }
 	
 	,"354314385864392709": {"name": "Primrose",            "badges": ["scramble", "clash", "season_smash", "cookoff"] }
-	,"163433466799587328": {"name": "Anthony (Bladethehedgehog)",            "badges": ["scramble", "cookoff", "clash", "season_smash", "season_arms"] }
+	,"163433466799587328": {"name": "Anthony (Bladethehedgehog)",            "badges": ["scramble", "cookoff", "clash", "season_smash", "season_arms", "season_splat"] }
 	,"716460335631958018": {"name": "Flynn.MP3",            "badges": ["scramble"] }
 	,"205086231187423233": {"name": "Wyborn",            "badges": ["scramble", "season_smash"] }
 	,"505979558848364556": {"name": "Fabits",            "badges": ["scramble"] }
@@ -332,7 +332,7 @@
 	,"615525838724530196": {"name": "Mr. Adal",            "badges": ["scramble", "clash", "season_arms", "season_kart", "scramble_win"] }
 	,"591405768004337665": {"name": "Emperor",            "badges": ["scramble", "cookoff", "season_splat", "clash", "season_arms"] }
 	
-	,"607696385982201857": {"name": "Gashet",            "badges": ["cookoff", "season_splat", "scramble"] }
+	,"607696385982201857": {"name": "Gashet",            "badges": ["cookoff", "season_splat", "season_smash", "scramble"] }
 	
 	,"344662791212498945": {"name": "Mr GamerKiller",            "badges": ["scramble"] }
 	,"720855114725720084": {"name": "moon.beat",            "badges": ["scramble"] }
