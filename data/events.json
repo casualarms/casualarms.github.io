@@ -10,7 +10,7 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":false,"date":"2021-01-07T20:30:00.000Z","duration":60,"tz":"EST","theme":"vball","stages":"custom[0,1,3,5,7,8,9,11,12,13]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Kart Event!","game":"kart","type":"impromptu","alert":false,"date":"2021-01-08T20:30:00.000Z","duration":60,"tz":"EST","description":"Races &amp; Battles!","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Among Us Event!","game":"variety","type":"impromptu","alert":false,"date":"2021-01-07T19:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
-	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":false,"date":"2021-01-12T21:30:00.000Z","duration":90,"tz":"EST","theme":"ca-1v1v1v1-smash","stages":"custom[0,2]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":false,"date":"2021-01-12T20:30:00.000Z","duration":90,"tz":"EST","theme":"ca-1v1v1v1-smash","stages":"custom[0,2]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":false,"date":"2021-01-13T20:30:00.000Z","duration":90,"tz":"EST","theme":"turf-clams","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
 	
