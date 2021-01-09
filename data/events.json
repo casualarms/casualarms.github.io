@@ -13,6 +13,8 @@
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":false,"date":"2021-01-13T20:30:00.000Z","duration":90,"tz":"EST","theme":"turf-clams","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":false,"date":"2021-01-13T23:00:00.000Z","duration":90,"tz":"EST","theme":"skillshot","stages":"dynamic","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Saturday Smash!","game":"smash","type":"impromptu","alert":true,"date":"2021-01-09T21:30:00.000Z","duration":90,"tz":"CST","theme":"ca-2v2-smash","items":"healing-smash","stages":"diving-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Sunday ARMS!","game":"arms","type":"impromptu","alert":true,"date":"2021-01-10T18:30:00.000Z","duration":90,"tz":"CST","theme":"bane-ranked","stages":"large","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	
