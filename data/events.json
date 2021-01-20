@@ -28,6 +28,9 @@
 	,{"title":"Among Us Event!","game":"variety","type":"impromptu","alert":true,"date":"2021-01-21T19:00:00.000Z","duration":60,"tz":"EST","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":true,"date":"2021-01-22T20:30:00.000Z","duration":120,"tz":"EST","theme":"150cc","stages":"all-race","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2","dinosauryy"]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":true,"date":"2021-01-24T19:30:00.000Z","duration":90,"tz":"CST","theme":"anything","stages":"japan","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":true,"date":"2021-01-26T20:30:00.000Z","duration":120,"tz":"EST","description":"Amiibo are welcome!","theme":"ca-1v1v1v1-smash","items":"allies-smash","stages":"custom[0,2]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":true,"date":"2021-01-27T20:30:00.000Z","duration":120,"tz":"EST","theme":"turf-rainmaker","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":true,"date":"2021-01-29T20:30:00.000Z","duration":120,"tz":"EST","description":"Battles &amp; Races","theme":"mk_battle","stages":"all-race","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
 	
 	
