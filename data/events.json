@@ -32,7 +32,7 @@
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":true,"date":"2021-01-27T20:30:00.000Z","duration":120,"tz":"EST","theme":"turf-rainmaker","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":true,"date":"2021-01-29T20:30:00.000Z","duration":120,"tz":"EST","description":"Battles &amp; Races","theme":"mk_battle","stages":"all-race","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
-	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":true,"date":"2021-01-28T19:00:00.000Z","duration":90,"tz":"CST","theme":"clash","stages":"barriers","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":true,"date":"2021-01-28T19:00:00.000Z","duration":90,"tz":"CST","theme":"solo","stages":"barriers","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":true,"date":"2021-01-27T02:00:00.000Z","duration":90,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Tom","code":"3190-3514-8531","tag":"CC"}]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":true,"date":"2021-01-27T23:00:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Tom","code":"3190-3514-8531","tag":"CC"}]}
 	
