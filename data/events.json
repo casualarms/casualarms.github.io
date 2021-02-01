@@ -45,6 +45,8 @@
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":true,"date":"2021-02-05T20:30:00.000Z","duration":120,"tz":"EST","description":"Battles &amp; Races","theme":"mk_battle","stages":"all-race","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":true,"date":"2021-02-03T02:00:00.000Z","duration":90,"tz":"EST","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":true,"date":"2021-02-03T23:00:00.000Z","duration":55,"tz":"EST","theme":"fights-only","stages":"large","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":true,"date":"2021-02-02T23:00:00.000Z","duration":60,"tz":"EST","description":"Happy Biffday Anthony!","theme":"gimmickless","stages":"dynamic","hosts":[{"name":"Anthony","code":"1406-0760-9130"}],"streamers":["sonicwindyblade"]}
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":true,"date":"2021-02-04T22:30:00.000Z","duration":90,"tz":"CST","theme":"turf-clams","stages":"High","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":false,"date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
