@@ -425,7 +425,7 @@ permalink: /staff/banners/index.html
 		eventdata.title       = escapeHTML($("title").value);
 		eventdata.game        = game;
 		eventdata.type        = $("type").value;
-		eventdata.alert       = $("alert").checked;
+		eventdata.alert       = $("alert").value;
 		eventdata.date        = startDate;
 		eventdata.duration    = durationMinutes;
 		eventdata.tz          = zoneString;
@@ -619,7 +619,12 @@ permalink: /staff/banners/index.html
 					<label for="title">Title:</label>  <input type="text" id="title" placeholder="Custom Party Lobby" value="Custom Party Lobby"/>
 					<label for="game">Game:</label>   <select id="game" onChange="fillGameOptions(); readAndGenerate()"></select>
 					<label for="type">Type:</label>   <select id="type"></select>
-					<label for="alert">Auto live-alert:</label> <input type="checkbox" checked id="alert" onchange="readAndGenerate()"/>
+					<label for="alert">Auto live-alert:</label>
+					<select id="alert" onchange="readAndGenerate()">
+					  <option value="none">Ping None</option>
+					  <option value="here">Ping @here</option>
+					  <option value="everyone">Ping @everyone</option>
+					</select>
 					<br/>
 					<label for="description">Description:</label>  <input type="text" id="description" size="30" placeholder="Hoops-only Swiss Tournament"/>
 					<label for="url">External Link:</label>  <input type="text" id="url"  size="60" placeholder="https://challonge.com/HoopsOnlyTournament"/><br/>
