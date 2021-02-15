@@ -62,7 +62,7 @@
 	,{"title":"ARMS Chaos Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-18T19:00:00.000Z","duration":180,"tz":"EST","description":"Random settings every lobby!","theme":"anything","stages":"all-arms","hosts":[{"name":"Ombreverte","code":"3089-8564-5404"}]}
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-02-18T22:30:00.000Z","duration":90,"tz":"EST","theme":"turf-tower","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-17T02:00:00.000Z","duration":90,"tz":"EST","theme":"vball","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-17T23:00:00.000Z","duration":55,"tz":"EST","theme":"hoops","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-17T23:00:00.000Z","duration":60,"tz":"EST","theme":"hoops","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	
 	
 	
