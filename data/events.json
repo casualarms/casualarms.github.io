@@ -64,6 +64,9 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-17T02:00:00.000Z","duration":90,"tz":"EST","theme":"vball","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-17T23:00:00.000Z","duration":60,"tz":"EST","theme":"hoops","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"},{"name":"False King","code":"2280-3366-3433"}],"streamers":["gamemastertom","luigipow2"]}
 	
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-02-19T20:30:00.000Z","duration":90,"tz":"EST","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Ninjala Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2021-02-19T22:30:00.000Z","duration":90,"tz":"EST","description":"Battle Royale","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-02-21T21:30:00.000Z","duration":90,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"allies-smash","stages":"custom[0,2]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
 	
 	
