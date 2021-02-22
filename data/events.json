@@ -72,7 +72,9 @@
 	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-02-24T19:00:00.000Z","duration":90,"tz":"CST","theme":"ca-1v1v1v1-smash","items":"melee-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-24T02:00:00.000Z","duration":90,"tz":"EST","theme":"fights-only","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-17T23:00:00.000Z","duration":60,"tz":"EST","theme":"solo","stages":"barriers","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-02-25T22:30:00.000Z","duration":90,"tz":"EST","theme":"turf-zones","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-02-28T21:30:00.000Z","duration":90,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"allies-smash","stages":"custom[0,2]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	
 	
 	
 	
