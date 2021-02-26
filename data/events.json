@@ -76,6 +76,10 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-02-25T20:00:00.000Z","duration":60,"tz":"CST","theme":"clash","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-02-25T22:30:00.000Z","duration":90,"tz":"EST","theme":"turf-zones","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-03T02:00:00.000Z","duration":90,"tz":"EST","theme":"anything","stages":"dynamic","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-03T23:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-03-04T22:30:00.000Z","duration":90,"tz":"EST","theme":"turf-clams","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	
 	
 	
 	
