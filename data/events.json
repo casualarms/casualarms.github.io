@@ -80,7 +80,11 @@
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-03T23:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-03-04T22:30:00.000Z","duration":90,"tz":"EST","theme":"turf-clams","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
-	
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","everyone":"none","date":"2021-03-01T21:00:00.000Z","duration":100,"tz":"CST","theme":"teams","stages":"backroom","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-03-03T20:30:00.000Z","duration":60,"tz":"EST","theme":"turf-zones","stages":"Funnel","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-04T19:00:00.000Z","duration":90,"tz":"CET","theme":"anything","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-03-05T20:30:00.000Z","duration":90,"tz":"EST","description":"150cc &amp; 200cc Races!","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+
 	
 	
 	
