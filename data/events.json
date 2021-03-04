@@ -85,6 +85,10 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-04T19:00:00.000Z","duration":90,"tz":"CET","theme":"anything","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-03-05T20:30:00.000Z","duration":90,"tz":"EST","description":"150cc &amp; 200cc Races!","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-03-02T19:30:00.000Z","duration":90,"tz":"CST","theme":"ca-1v1v1v1-smash","items":"tossables-smash","stages":"chocolate-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-03-05T03:00:00.000Z","duration":60,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-03-07T21:30:00.000Z","duration":90,"tz":"EST","description":"Stamina Battles!","theme":"ca-1v1v1v1-smash","stages":"dlc-stages-smash","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-10T02:00:00.000Z","duration":90,"tz":"EST","theme":"gimmickless","stages":"dynamic","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-10T23:00:00.000Z","duration":60,"tz":"EST","theme":"clash","stages":"cote","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	
 	
 	
