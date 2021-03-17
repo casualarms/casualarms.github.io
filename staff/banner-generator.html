@@ -281,7 +281,7 @@ permalink: /staff/banners/index.html
 		$("start-minutes").value = date.getUTCMinutes();
 		$("duration-minutes").value = eventData.duration;
 		$("timezone").value = eventData.tz;
-		$("alert").checked = eventData.alert;
+		$("alert").value = eventData.alert;
 		
 		var hostCount = ("hosts" in eventData) ? eventData.hosts.length : 0;
 		generateHosts(hostCount);
