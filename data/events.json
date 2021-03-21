@@ -106,13 +106,14 @@
 	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-03-19T23:00:00.000Z","duration":120,"tz":"EDT","description":"Drop in for some Battle Royale!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-03-20T18:00:00.000Z","duration":90,"tz":"EDT","description":"Drop in for some Battle Royale!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-03-21T21:00:00.000Z","duration":90,"tz":"EDT","theme":"ca-1v1v1v1-smash","stages":"custom[0,2]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
-	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-03-25T21:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-tower","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-24T02:00:00.000Z","duration":90,"tz":"EST","theme":"fights-only","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-24T23:00:00.000Z","duration":60,"tz":"EST","theme":"anything","stages":"corners","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	
-	
-	
-	
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-03-22T18:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-clams","stages":"Big","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}],"streamers":["emperorarms"]}
+	,{"title":"PvZ Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-03-24T19:00:00.000Z","duration":90,"tz":"EST","description":"PvZ: Battle for Neighborville Turf Take Over","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-03-25T21:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-tower","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"PvZ Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-03-27T19:00:00.000Z","duration":90,"tz":"EST","description":"PvZ: Battle for Neighborville Turf Take Over","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-03-28T21:00:00.000Z","duration":90,"tz":"EDT","description":"Stamina Battles on Omega/Battlefield stages. Smash Balls, Pokeballs, and Assist trophies, oh my!","theme":"ca-1v1v1v1-smash","items":"allies-smash","stages":"custom[]","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
