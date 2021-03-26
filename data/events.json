@@ -122,6 +122,17 @@
 	,{"title":"Frantic Friday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-03T02:00:00.000Z","duration":90,"tz":"EST","theme":"skillshot","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-31T23:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"barriers","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 
+	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-01T21:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-rainmaker","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-04-02T19:30:00.000Z","duration":90,"tz":"EDT","description":"150cc &amp; 250cc Races","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-03T18:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-02T23:00:00.000Z","duration":120,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
+	,{"title":"Ninjala Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-03-29T19:00:00.000Z","duration":60,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-03-31T18:00:00.000Z","duration":60,"tz":"EDT","description":"Amiibo Welcome!","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-01T23:30:00.000Z","duration":60,"tz":"EDT","description":"Turf Takeover","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Ninjala Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-01T18:30:00.000Z","duration":60,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-03T23:00:00.000Z","duration":120,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	
+
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
