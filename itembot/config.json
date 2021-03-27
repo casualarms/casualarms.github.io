@@ -127,7 +127,6 @@
 		"event2"    : "{EVENT_GAME}",
 		"event3"    : "{EVENT_GAME}: {EVENT_TITLE}",
 		"party"     : "ARMS Party Lobby",
-		"crash"     : "ARMS Party Crash",
 		"arena"     : "ARMS Arena",
 		"kart"      : "Mario Kart",
 		"turf"      : "Splatoon Turf Wars",
