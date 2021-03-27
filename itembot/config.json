@@ -79,7 +79,7 @@
 		},
 		{
 			"commands" : ["resistance", "level-of-resistance", "levels-of-resistance"],
-			"response" : "*[ Content Warning: moderately sweary]*\nhttps://www.youtube.com/watch?v=-OKIoYeQyLI",
+			"response" : "*[ Content Warning: moderately sweary ]*\nhttps://www.youtube.com/watch?v=-OKIoYeQyLI",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
