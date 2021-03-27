@@ -84,6 +84,12 @@
 			"patron"   : ""
 		},
 		{
+			"commands" : ["woop"],
+			"image"    : "https://cdn.discordapp.com/attachments/638190346710417410/824898120994652160/unknown-18.png",
+			"timeout"  : 60,
+			"patron"   : ""
+		},
+		{
 			"commands" : ["tbird"],
 			"image"    : "https://www.casualarms.net/itembot/response/mainmain.gif",
 			"timeout"  : 240,
