@@ -78,6 +78,12 @@
 			"patron"   : ""
 		},
 		{
+			"commands" : ["resistance", "level-of-resistance", "levels-of-resistance"],
+			"response" : "*[ Content Warning: moderately sweary]*\nhttps://www.youtube.com/watch?v=-OKIoYeQyLI",
+			"timeout"  : 60,
+			"patron"   : ""
+		},
+		{
 			"commands" : ["tbird"],
 			"image"    : "https://www.casualarms.net/itembot/response/mainmain.gif",
 			"timeout"  : 240,
