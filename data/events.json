@@ -132,7 +132,7 @@
 	,{"title":"Ninjala Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-01T18:30:00.000Z","duration":60,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-03T23:00:00.000Z","duration":120,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
-
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-03-28T01:00:00.000Z","duration":60,"tz":"CDT","description":"Snake Park Smackdown!","theme":"fights-only","stages":"custom[8]","hosts":[{"name":"Lachesism","code":"6781-1864-4112"}]}
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
