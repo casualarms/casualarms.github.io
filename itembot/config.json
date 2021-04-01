@@ -121,25 +121,25 @@
 		},
 		{
 			"commands" : ["be-excellent", "party-on"],
-			"image"    : "https://media.tenor.co/videos/350df9ba1d0deb4de6ebb7820bf05cc1/mp4",
+			"response"    : "https://media.tenor.co/videos/350df9ba1d0deb4de6ebb7820bf05cc1/mp4",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
 		{
 			"commands" : ["bogus"],
-			"image"    : "https://media.tenor.co/videos/268e0ad823cca8eaf6cd6d677f7d9b6a/mp4",
+			"response"    : "https://media.tenor.co/videos/268e0ad823cca8eaf6cd6d677f7d9b6a/mp4",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
 		{
 			"commands" : ["excellent"],
-			"image"    : "https://media.tenor.co/videos/c48d506d00b7e13f14ae545b0f223a37/mp4",
+			"response"    : "https://media.tenor.co/videos/c48d506d00b7e13f14ae545b0f223a37/mp4",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
 		{
 			"commands" : ["air-guitar"],
-			"image"    : "https://media.tenor.co/videos/a8afa70868542f63dbfcb09d92b23f39/mp4",
+			"response"    : "https://media.tenor.co/videos/a8afa70868542f63dbfcb09d92b23f39/mp4",
 			"timeout"  : 60,
 			"patron"   : ""
 		}
