@@ -121,25 +121,25 @@
 		},
 		{
 			"commands" : ["be-excellent", "party-on"],
-			"response"    : "https://media.tenor.co/videos/350df9ba1d0deb4de6ebb7820bf05cc1/mp4",
+			"response"    : "https://tenor.com/view/keanu-reeves-eexcellent-party-nudes-gif-9315456",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
 		{
 			"commands" : ["bogus"],
-			"response"    : "https://media.tenor.co/videos/268e0ad823cca8eaf6cd6d677f7d9b6a/mp4",
+			"response"    : "https://tenor.com/view/bill-and-ted-bogus-gif-8503806",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
 		{
 			"commands" : ["excellent"],
-			"response"    : "https://media.tenor.co/videos/c48d506d00b7e13f14ae545b0f223a37/mp4",
+			"response"    : "https://tenor.com/view/funny-waynes-world-excellent-mike-myers-wayne-campbell-gif-16289098",
 			"timeout"  : 60,
 			"patron"   : ""
 		},
 		{
 			"commands" : ["air-guitar"],
-			"response"    : "https://media.tenor.co/videos/a8afa70868542f63dbfcb09d92b23f39/mp4",
+			"response"    : "https://tenor.com/view/bill-and-teds-excellent-adventure-excellent-air-guitar-party-on-bill-and-ted-gif-5517140",
 			"timeout"  : 60,
 			"patron"   : ""
 		}
