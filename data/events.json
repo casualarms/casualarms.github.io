@@ -137,6 +137,7 @@
 	,{"title":"Easter Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-04-04T23:00:00.000Z","duration":90,"tz":"CDT","description":"Custom Easter Items!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"custom[6,7,17,18,20,24,43,76,84,88,92,105]","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-08T22:30:00.000Z","duration":90,"tz":"EST","theme":"turf-zones","stages":"all-splat","hosts":[{"name":"False King","code":"2280-3366-3433"}],"streamers":["luigipow2"]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-08T19:00:00.000Z","duration":60,"tz":"CET","theme":"anything","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-05T18:30:00.000Z","duration":90,"tz":"CST","theme":"turf-clams","stages":"Grates","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	
