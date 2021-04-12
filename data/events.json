@@ -148,7 +148,11 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-14T03:00:00.000Z","duration":90,"tz":"EDT","theme":"solo","stages":"large","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-15T00:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Frantic Friday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-17T03:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	
+	,{"title":"Smash Ultimate Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-04-12T19:00:00.000Z","duration":90,"tz":"CST","theme":"ca-2v2-smash","items":"deployables-smash","stages":"chocolate-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Ultimate Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-04-14T21:00:00.000Z","duration":90,"tz":"CST","theme":"ca-1v1v1v1-smash","items":"allies-smash","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-04-16T19:30:00.000Z","duration":90,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-17T18:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+
 	
 	
 	
