@@ -153,6 +153,12 @@
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-17T18:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Turfsday!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-16T01:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-tower","stages":"custom[6,7,13,15,18,20,31,44,46]","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
 	
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-21T03:00:00.000Z","duration":90,"tz":"EDT","theme":"anything","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-22T00:00:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Smash Ultimate Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-04-22T21:00:00.000Z","duration":90,"tz":"CST","description":"Earth Day celebration with custom item set!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"custom[4,7,12,20,25,36,42,43,53,54,67,83,84,88,92,105,109]","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Ultimate Event!","game":"splat","type":"friends","alert":"everyone","date":"2021-04-23T22:30:00.000Z","duration":90,"tz":"CST","description":"Earth Day celebration with custom item set!","theme":"turf-zones","stages":"Big","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-24T18:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Turfsday!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-23T01:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-clams","stages":"all-splat-shifty","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
 	
 	
 	
