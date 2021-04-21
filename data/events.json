@@ -159,7 +159,8 @@
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-23T22:30:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"Big","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-04-25T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Turfsday!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-04-23T01:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-clams","stages":"all-splat-shifty","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
-	
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-04-23T19:00:00.000Z","duration":120,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+		
 	
 	
 	
