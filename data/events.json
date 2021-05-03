@@ -168,7 +168,14 @@
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-05-02T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-04-29T18:00:00.000Z","duration":60,"tz":"CDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	
-	
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-05-03T21:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-05-05T03:00:00.000Z","duration":90,"tz":"EDT","theme":"hoops","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-05-06T00:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-05-06T19:00:00.000Z","duration":60,"tz":"EDT","theme":"anything","stages":"all-arms","hosts":[{"name":"Ombreverte","code":"3089-8564-5404"}]}
+	,{"title":"Turfsday!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-05-07T01:30:00.000Z","duration":90,"tz":"EDT","theme":"turf-clams","stages":"Corners","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
+	,{"title":"Smash Ultimate Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-05-07T19:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"allies-smash","stages":"diving-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-05-09T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
