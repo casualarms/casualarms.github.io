@@ -81,31 +81,31 @@
 	},
 	"eventTypes" : {
 		"arms" : {
+			"impromptu"     : "Impromptu Lobby",
 			"leaderboard"   : "Leaderboard Lobby",
 			"clash"         : "Casual Clash",
 			"scramble"      : "Casual Scramble",
-			"impromptu"     : "Impromptu Lobby",
 			"tournament"    : "Tournament"
 		},
 		"kart" : {
+			"impromptu"     : "Impromptu Lobby",
 			"leaderboard"   : "Tournament",
-			"friends"       : "Friend Lobby",
-			"impromptu"     : "Impromptu Lobby"
+			"friends"       : "Friend Lobby"
 		},
 		"splat" : {
+			"impromptu"     : "Impromptu Lobby",
 			"friends"       : "Friends Lobby",
 			"salmon"        : "Salmon Run Lobby",
-			"impromptu"     : "Impromptu Lobby",
 			"cookoff"       : "Casual Cookoff"
 		},
 		"smash" : {
-			"arena"         : "Battle Arena",
 			"impromptu"     : "Impromptu Lobby",
+			"arena"         : "Battle Arena",
 			"tournament"    : "Tournament"
 		},
 		"spotlight" : {
-			"leaderboard"   : "Leaderboard Lobby",
-			"impromptu"     : "Impromptu Lobby"
+			"impromptu"     : "Impromptu Lobby",
+			"leaderboard"   : "Leaderboard Lobby"
 		},
 		"variety" : {
 			"impromptu"     : "Impromptu Lobby"
