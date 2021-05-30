@@ -204,6 +204,12 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-02T03:00:00.000Z","duration":90,"tz":"EDT","theme":"solo","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-03T00:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-06-06T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Smash Ultimate Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-05-31T20:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"upgrades-smash","stages":"challenger-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-06-02T20:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"Pits","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+		
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-09T03:00:00.000Z","duration":90,"tz":"EDT","theme":"skillshot","stages":"cote","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-10T00:00:00.000Z","duration":60,"tz":"EDT","theme":"hoops","stages":"barriers","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-06-13T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
 	
 	
