@@ -54,6 +54,8 @@
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-23T03:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-24T00:00:00.000Z","duration":60,"tz":"EDT","theme":"hoops","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Mario Kart 8 DX Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-06-25T19:30:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-06-25T23:30:00.000Z","duration":90,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-06-27T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-06-30T03:00:00.000Z","duration":90,"tz":"EDT","theme":"bane-ranked","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
