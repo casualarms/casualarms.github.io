@@ -64,7 +64,7 @@
 	,{"title":"Smashity Odds","game":"smash","type":"impromptu","alert":"everyone","date":"2021-06-23T21:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"wanderers-smash","stages":"chocolate-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-06-28T20:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"Funnel","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Smashity Odds","game":"smash","type":"impromptu","alert":"everyone","date":"2021-07-04T18:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"custom[0]","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smashity Odds","game":"smash","type":"impromptu","alert":"everyone","date":"2021-07-04T19:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"custom[0]","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
