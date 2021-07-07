@@ -71,6 +71,14 @@
 	,{"title":"Splatity Odds","game":"splat","type":"impromptu","alert":"everyone","date":"2021-07-05T20:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smashity Odds","game":"smash","type":"impromptu","alert":"everyone","date":"2021-07-07T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"healing-smash","stages":"walkoff-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
         ,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"none","date":"2021-07-09T21:30:00.000Z","duration":90,"tz":"CET","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Adal","code":"4269-3453-5023"}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-07-08T00:00:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	
+	
+	
+	
+	
+	
+	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
