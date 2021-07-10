@@ -72,13 +72,13 @@
 	,{"title":"Smashity Odds","game":"smash","type":"impromptu","alert":"everyone","date":"2021-07-07T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"healing-smash","stages":"walkoff-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
         ,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-07-09T20:30:00.000Z","duration":90,"tz":"CEST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Adal","code":"4269-3453-5023"}]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-07-08T00:00:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-07-11T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
-	
-	
-	
-	
-	
-	
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-07-14T03:00:00.000Z","duration":90,"tz":"EDT","theme":"gimmickless","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-07-15T00:00:00.000Z","duration":60,"tz":"EDT","theme":"hoops","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-07-18T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	,{"title":"Smashity Odds","game":"smash","type":"impromptu","alert":"everyone","date":"2021-07-12T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"sports-smash","stages":"chocolate-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatity Odds","game":"splat","type":"impromptu","alert":"everyone","date":"2021-07-16T20:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"Moving","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
