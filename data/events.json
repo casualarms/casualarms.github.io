@@ -96,7 +96,10 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-04T03:00:00.000Z","duration":90,"tz":"EDT","theme":"vball","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-05T00:00:00.000Z","duration":60,"tz":"EDT","theme":"hoops","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-08-08T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	
+	,{"title":"The Oddest Splat","game":"splat","type":"impromptu","alert":"everyone","date":"2021-08-05T20:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"Water","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Add Smosh","game":"smash","type":"impromptu","alert":"everyone","date":"2021-08-06T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"upgrades-smash","stages":"vertical-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Competitive Test","game":"smash","type":"impromptu","alert":"everyone","date":"2021-08-08T20:30:00.000Z","duration":90,"tz":"CDT","description":"1v1, 3 Stock, Hazzards Off stages, FS Meter","stages":"custom[]","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+
 
 
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
