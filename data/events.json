@@ -100,6 +100,18 @@
 	,{"title":"Add Smosh","game":"smash","type":"impromptu","alert":"everyone","date":"2021-08-06T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"upgrades-smash","stages":"vertical-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Competitive Test","game":"smash","type":"impromptu","alert":"everyone","date":"2021-08-08T20:30:00.000Z","duration":90,"tz":"CDT","description":"1v1, 3 Stock, Hazzards Off stages, FS Meter","stages":"custom[]","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-08-10T20:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Pits","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-11T03:00:00.000Z","duration":90,"tz":"EDT","theme":"gimmickless","stages":"dynamic","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-08-11T20:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"explosives-smash","stages":"journey-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-12T00:00:00.000Z","duration":60,"tz":"EDT","theme":"teams","stages":"large","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-08-15T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-18T03:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-19T00:00:00.000Z","duration":60,"tz":"EDT","theme":"skillshot","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-08-22T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	
+	
+	
 
 
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
