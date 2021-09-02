@@ -123,7 +123,9 @@
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-09-05T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-08T03:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"large","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-02T19:00:00.000Z","duration":60,"tz":"CEST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"GarticPhone Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2021-09-03T20:00:00.000Z","duration":60,"tz":"CEST","description":"Nintendo themed GarticPhone event! Happening on https://garticphone.com/ ; ask Udon for details","hosts":[{"name":"Udon","code":"N/A"}]}
+	,{"title":"Mario Kart 8 DX Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2021-09-04T19:00:00.000Z","duration":60,"tz":"CEST","theme":"150cc","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
