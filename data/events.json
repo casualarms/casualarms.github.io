@@ -129,7 +129,7 @@
 	
 	,{"title":"Turf Control &amp; Tower War","game":"splat","type":"impromptu","alert":"everyone","date":"2021-09-07T19:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Moving","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-08T02:00:00.000Z","duration":90,"tz":"EDT","theme":"clash","stages":"large","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-08-04T23:00:00.000Z","duration":60,"tz":"EDT","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-08T23:00:00.000Z","duration":60,"tz":"EDT","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-09-11T19:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"healing-smash","stages":"challenger-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
