@@ -136,7 +136,7 @@
 	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-15T02:00:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-15T23:00:00.000Z","duration":60,"tz":"EDT","theme":"skillshot","stages":"barriers","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-09-19T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-09-18T19:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"Water","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-09-18T00:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"Water","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-09-19T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"explosives-smash","stages":"walkoff-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
