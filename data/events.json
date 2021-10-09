@@ -157,7 +157,11 @@
 	,{"title":"Sunday Surprise ARMS!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-10T19:00:00.000Z","duration":60,"tz":"EDT","theme":"fights-only","stages":"dynamic","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-11T19:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"firearms-smash","stages":"lookout-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 
-
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-06T02:00:00.000Z","duration":60,"tz":"EDT","theme":"vball","stages":"barriers","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-06T23:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
+	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-10-17T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-23T18:00:00.000Z","duration":60,"tz":"EDT","description":"Welcome the final DLC character Sora ~~Firestorm~~ to Smash!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
