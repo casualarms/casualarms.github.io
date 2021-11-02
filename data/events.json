@@ -63,7 +63,8 @@
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-31T19:00:00.000Z","duration":90,"tz":"CDT","description":"Mystery Stages &amp; Items! Exciting!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Halloween ARMS","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-31T17:30:00.000Z","duration":60,"tz":"EDT","description":"Halloween! Lola, Mummy, Coyle battle!","theme":"fights-only","stages":"all-arms","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	
-	
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-11-04T19:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-11-05T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"parts-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	
