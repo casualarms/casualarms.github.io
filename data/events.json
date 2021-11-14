@@ -45,6 +45,9 @@
 	,{"title":"Clubhouse Games Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2021-11-11T21:00:00.000Z","duration":60,"tz":"PST","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-11-21T00:00:00.000Z","duration":60,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
+	,{"title":"Sunday Surprise ARMS","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-14T21:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-17T02:00:00.000Z","duration":60,"tz":"EST","theme":"gimmickless","stages":"cote","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}]}
+	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-17T23:00:00.000Z","duration":90,"tz":"EST","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
 	
 	
 
