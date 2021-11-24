@@ -58,7 +58,8 @@
 	,{"title":"THROWING HANDS","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-24T23:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Splat Friday!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-11-26T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-clams","stages":"Water","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"ARMS!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-27T21:30:00.000Z","duration":90,"tz":"CST","theme":"vball","stages":"dynamic","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-
+	,{"title":"An ARMS Royale with Cheese","game":"arms","type":"impromptu","alert":"none","date":"2021-11-26T20:00:00.000Z","duration":60,"tz":"EST","theme":"gimmickless","stages":"all-arms","hosts":[{"name":"Anthony","code":"1406-0760-9130"}]}
+	
 
 
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
