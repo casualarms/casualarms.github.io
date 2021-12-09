@@ -65,6 +65,12 @@
 	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2021-12-10T00:00:00.000Z","duration":120,"tz":"EST","description":"Battle Royale: Chapter 3 Hype","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2021-12-05T00:00:00.000Z","duration":60,"tz":"EST","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
+	,{"title":"Smoosh Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-12-10T22:00:00.000Z","duration":90,"tz":"CST","theme":"ca-2v2-smash","items":"allies-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+
+,{"title":"Sploot Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-12-11T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+
+,{"title":"Arm game","game":"arms","type":"impromptu","alert":"everyone","date":"2021-12-12T20:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":"none","date":"2020-12-26T20:15:00.000Z","duration":30,"tz":"EST","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
