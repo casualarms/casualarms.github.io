@@ -69,7 +69,7 @@
 
 ,{"title":"Sploot Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-12-11T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-rainmaker","stages":"Grates","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 
-,{"title":"Arm game","game":"arms","type":"impromptu","alert":"everyone","date":"2021-12-12T20:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+,{"title":"Arm game","game":"arms","type":"impromptu","alert":"everyone","date":"2021-12-12T21:00:00.000Z","duration":60,"tz":"EST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
