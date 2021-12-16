@@ -176,59 +176,59 @@ permalink: /staff/banners/index.html
 	
 	</style>
 	<script>
-	
-	var eventsHistory = eventDataJSON;
-	
-	function fillGameOptions()
-	{
-		var game = $("game").options[$("game").selectedIndex].value;
-		
-		// Themes
-		var options = "<option value='undefined' selected>---</option>";
-		for (var i = 0; i < eventThemes[game].length; ++i)
-			options += "<option value='" + eventThemes[game][i].key + "'>" + eventThemes[game][i].name + "</option>";
-		$("theme").innerHTML = options;
-		
-		// Stage sets
-		options = "<option value='undefined' selected>---</option>";
-		for (var i = 0; i < stageSets[game].length; ++i)
-			options += "<option value='" + stageSets[game][i].key + "'>" + stageSets[game][i].name + "</option>";
-		options += "<option value='custom'>Custom</option>";
-		$("stages").innerHTML = options;
-		
-		// Custom Stage Sets
-		var custom_stages = "";
-		for (var i = 0; i < eventStages[game].length; ++i)
-			custom_stages += "<span class='setting-stage'><input type='checkbox' id='" + (game + i) + "'> <label for='" + (game + i) + "'>" + eventStages[game][i] + "</label></span>";
-		$("controls-stages").innerHTML = custom_stages;
-		
-		// Item sets
-		options = "<option value='undefined' selected>---</option>";
-		for (var i = 0; i < itemSets[game].length; ++i)
-			options += "<option value='" + itemSets[game][i].key + "'>" + itemSets[game][i].name + "</option>";
-		$("items").innerHTML = options;
-		
-		// Event types
-		options = "";
-		for (var type in eventTypes[game])
-			options += "<option value='" + type + "'>" + eventTypes[game][type] + "</option>";
-		$("type").innerHTML = options;
-	}
-	
-	function load()
-	{
-		// Read old events
-		var options = "<option value='undefined' selected>---</option>";
-		for (var i = 0; i < eventsHistory.length; ++i)
-		{
-			var ev = eventsHistory[i];
-			var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
-			options += "<option>" + dateString + ": " + ev.title + "</option>";
-			
-			// Add prior hosts to database
-			if ("hosts" in ev)
-			{
-				outer:
+	 
+	 var eventsHistory = eventDataJSON;
+	 
+	 function fillGameOptions()
+	 {
+		 var game = $("game").options[$("game").selectedIndex].value;
+		 
+		 // Themes
+		 var options = "<option value='undefined' selected>---</option>";
+		 for (var i = 0; i < eventThemes[game].length; ++i)
+			 options += "<option value='" + eventThemes[game][i].key + "'>" + eventThemes[game][i].name + "</option>";
+		 $("theme").innerHTML = options;
+		 
+		 // Stage sets
+		 options = "<option value='undefined' selected>---</option>";
+		 for (var i = 0; i < stageSets[game].length; ++i)
+			 options += "<option value='" + stageSets[game][i].key + "'>" + stageSets[game][i].name + "</option>";
+		 options += "<option value='custom'>Custom</option>";
+		 $("stages").innerHTML = options;
+		 
+		 // Custom Stage Sets
+		 var custom_stages = "";
+		 for (var i = 0; i < eventStages[game].length; ++i)
+			 custom_stages += "<span class='setting-stage'><input type='checkbox' id='" + (game + i) + "'> <label for='" + (game + i) + "'>" + eventStages[game][i] + "</label></span>";
+		 $("controls-stages").innerHTML = custom_stages;
+		 
+		 // Item sets
+		 options = "<option value='undefined' selected>---</option>";
+		 for (var i = 0; i < itemSets[game].length; ++i)
+			 options += "<option value='" + itemSets[game][i].key + "'>" + itemSets[game][i].name + "</option>";
+		 $("items").innerHTML = options;
+		 
+		 // Event types
+		 options = "";
+		 for (var type in eventTypes[game])
+			 options += "<option value='" + type + "'>" + eventTypes[game][type] + "</option>";
+		 $("type").innerHTML = options;
+	 }
+	 
+	 function load()
+	 {
+		 // Read old events
+		 var options = "<option value='undefined' selected>---</option>";
+		 for (var i = 0; i < eventsHistory.length; ++i)
+		 {
+			 var ev = eventsHistory[i];
+			 var dateString = dayNames[ev.date.getUTCDay()] + " " + monthNames[ev.date.getUTCMonth()] + ' ' + ev.date.getUTCDate();
+			 options += "<option>" + dateString + ": " + ev.title + "</option>";
+			 
+			 // Add prior hosts to database
+			 if ("hosts" in ev)
+			 {
+				 outer:
 				for (var eh = 0; eh < ev.hosts.length; eh++)
 				{
 					for (var h = 0; h < hostDatabase.length; ++h)
@@ -236,375 +236,425 @@ permalink: /staff/banners/index.html
 							continue outer;
 					hostDatabase.push(ev.hosts[eh]);
 				}
-			}
-			$("event-history").innerHTML = options;
-		}
-		
-		// Month options
-		for (var m = 0; m < monthNames.length; ++m)
-			$("month").innerHTML += "<option value='" + m + "'>" + monthNames[m] + "</option>";
-		
-		// Default date
-		var now = new Date();
-		$("year").value  = now.getUTCFullYear();
-		$("month").value = now.getUTCMonth();
-		$("day").value   = now.getUTCDate();
-		
-		// Fill quick entry lists
-		hostDatabase.sort(function(a, b){ return a.name > b.name; });
-		
-		// Fill event slot selector
-		var options = "<option value='undefined' selected>---</option>";
-		for (var i = 0; i < eventSlots.length; ++i)
-			options += "<option>" + eventGames[eventSlots[i].game] + ": " + eventSlots[i].title + "</option>";
-		$("event-slots").innerHTML = options;
-		
-		// Fill game options
-		var options = "";
-		for (var game in eventGames)
-			options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
-		$("game").innerHTML = options;
-		
-		fillGameOptions();
-		readAndGenerate();
-	}
-	
-	function fillFromEventData(eventData)
-	{
-		var date = new Date(eventData.date);
-		date.setHours(date.getHours() + timeZoneOffset(eventData.tz));
-		
-		$("month").selectedIndex = date.getUTCMonth();
-		$("day").value = date.getUTCDate();
-		$("year").value = date.getFullYear();
-		$("start-hours").value = date.getUTCHours();
-		$("start-minutes").value = date.getUTCMinutes();
-		$("duration-minutes").value = eventData.duration;
-		$("timezone").value = eventData.tz;
-		$("alert").value = eventData.alert;
-		
-		var hostCount = ("hosts" in eventData) ? eventData.hosts.length : 0;
-		generateHosts(hostCount);
-		for (var i = 0; i < hostCount; ++i)
-		{
-			$("name-" + i).value         = unEscapeHTML(eventData.hosts[i].name);
-			$("tag-"  + i).selectedIndex = (eventData.hosts[i].tag == "CC") ? 1: 0;
-			$("code-" + i).value         = unEscapeHTML(eventData.hosts[i].code);
-			$("host-" + i).selectedIndex = eventData.hosts[i].tier;
-		}
-		
-		var twitcherCount = ("streamers" in eventData) ? eventData.streamers.length : 0;
-		var    mixerCount = (   "mixers" in eventData) ? eventData.mixers.length : 0;
-		generateStreamers(twitcherCount + mixerCount);
-		for (var i = 0; i < twitcherCount; ++i)
-		{
-			$("stream-provider-" + i).selectedIndex = 0;
-			$("streamer-" + i).value = eventData.streamers[i];
-		}
-		for (var i = 0; i < mixerCount; ++i)
-		{
-			var j = i + twitcherCount;
-			$("stream-provider-" + j).selectedIndex = 1;
-			$("streamer-" + j).value = eventData.mixers[i];
-		}
-		
-		$("title").value       = unEscapeHTML(eventData.title);
-		$("description").value = ("description" in eventData) ? unEscapeHTML(eventData.description) : "";
-		$("url").value         = ("url"         in eventData) ? unEscapeHTML(eventData.url) : "";
-		$("banner").value      = ("banner"      in eventData) ? unEscapeHTML(eventData.banner) : "";
-		
-		selectOptionWithValue($("game"),    eventData.game);
-		fillGameOptions();
-		selectOptionWithValue($("type"),    eventData.type);
-		selectOptionWithValue($("theme"),   eventData.theme, true);
-		selectOptionWithValue($("items"),   eventData.items, true);
-		selectOptionWithValue($("sponsor"), eventData.sponsor, true);
-		
-		if ("stages" in eventData)
-		{
-			if (eventData.stages.substring(0, 6) == "custom")
-			{
-				selectOptionWithValue($("stages"), "custom", true);
-				var stages = eventData.stages.substring(7, eventData.stages.length - 1).split(",");
-				for (var i = 0; i < stages.length; ++i)
-					$(eventData.game + stages[i]).checked = true;
-			}
-			else selectOptionWithValue($("stages"), eventData.stages, true);
-		}
-		
-		readAndGenerate();
-	}
-	
-	function fillFromEventDataHistory()
-	{
-		var eventDataIndex = $("event-history").selectedIndex;
-		if (eventDataIndex > 0)
-			fillFromEventData(eventsHistory[eventDataIndex - 1]);
-	}
-	
-	function fillFromEventSlot()
-	{
-		var eventDataIndex = $("event-slots").selectedIndex;
-		if (eventDataIndex > 0)
-		{
-			var slot = eventSlots[eventDataIndex - 1];
-			fillFromEventData({
-				"title"    : slot.title,
-				"game"     : slot.game,
-				"type"     : slot.type,
-				"alert"    : true,
-				"date"     : slot.date,
-				"duration" : slot.duration,
-				"tz"       : slot.tz,
-				"theme"    : slot.theme,
-				"stages"   : slot.stages,
-				"items"    : slot.items,
-				"hosts"    : ("hosts" in slot) ? slot.hosts : [{"name" : "To Be Announced", "code" : ""}]
-			});
-		}
-	}
-	
-	function fillFromEventDataJSON()
-	{
-		var json = $("text-output").value;
-		var eventdata = JSON.parse(json.substr(1, json.length - 1));
-		eventdata.date = new Date(eventdata.date);
-		fillFromEventData(eventdata);
-	}
-	
-	function reportError(text)
-	{
-		$("error").innerHTML = "ERROR: " + text;
-		$("error").style.display = "block";
-	}
-	
-	function readAndGenerate()
-	{
-		$("error").style.display = "none";
-		
-		$("controls-stages").style.display = ($("stages").value == "custom") ? "block" : "none";
-		
-		var eventdata = {};
-		var game = $("game").options[$("game").selectedIndex].value;
-		
-		var month           = $("month").selectedIndex;
-		var day             = parseInt($("day").value);
-		var year            = parseInt($("year").value);
-		var startHours      = parseInt($("start-hours").value);
-		var startMinutes    = parseInt($("start-minutes").value);
-		var durationMinutes = parseInt($("duration-minutes").value);
-		var zoneString      = $("timezone").value;
-		var offset          = timeZoneOffset(zoneString);
-		var startDate       = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
-		
-		if (offset == undefined)
-			return reportError("Unsupported time zone");
-		
-		var hosts = [];
-		for (var i = 0; i < $("hosts-form").childNodes.length; ++i)
-		{
-			var host = {
-				name: escapeHTML($("name-" + i).value),
-				code: escapeHTML($("code-" + i).value),
-			};
-			if ($("tag-" + i).selectedIndex == 1) host.tag = "CC";
-			if ($("host-" + i).selectedIndex > 0) host.tier = $("host-" + i).selectedIndex;
-			if (host.name != "" || host.code != "") hosts.push(host);
-		}
-		
-		var twitchers = [];
-		var mixers = [];
-		for (var i = 0; i < $("streamers-form").childNodes.length; ++i)
-		{
-			var streamID = $("streamer-" + i).value;
-			var provider = $("stream-provider-" + i).value;
-			if (provider == "twitch" && streamID != "") twitchers.push(streamID);
-			if (provider == "mixer"  && streamID != "") mixers.push(streamID);
-		}
-		
-		eventdata.title       = escapeHTML($("title").value);
-		eventdata.game        = game;
-		eventdata.type        = $("type").value;
-		eventdata.alert       = $("alert").value;
-		eventdata.date        = startDate;
-		eventdata.duration    = durationMinutes;
-		eventdata.tz          = zoneString;
-		
-		if ($("description").value != "") eventdata.description = escapeHTML($("description").value);
-		if ($("url").value != "") eventdata.url = escapeHTML($("url").value);
-		if ($("banner").value != "") eventdata.banner = escapeHTML($("banner").value);
-		
-		if ($("theme")  .selectedIndex > 0) eventdata.theme   = $("theme")  .value;
-		if ($("items")  .selectedIndex > 0) eventdata.items   = $("items")  .value;
-		if ($("sponsor").selectedIndex > 0) eventdata.sponsor = $("sponsor").value;
-		
-		if ($("stages") .selectedIndex > 0)
-		{
-			if ($("stages").value != "custom") eventdata.stages  = $("stages").value;
-			else {
-				var stages = [];
-				for (var i = 0; i < eventStages[game].length; ++i)
-					if ($(game + i).checked) stages.push(i);
-				eventdata.stages = "custom[" + stages.toString() + "]";
-			}
-		}
-		
-		if (hosts.length > 0)     eventdata.hosts     = hosts;
-		if (twitchers.length > 0) eventdata.streamers = twitchers;
-		if (   mixers.length > 0) eventdata.mixers    = mixers;
-		
-		$("text-output").value = "," + JSON.stringify(eventdata);
-		$("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
-		
-		$("preview-theme") .innerHTML = ($("theme") .selectedIndex > 0) ?    printTheme(game,    getTheme(game, $("theme") .value), false) : "";
-		$("preview-items") .innerHTML = ($("items") .selectedIndex > 0) ?  printItemSet(game,  getItemSet(game, $("items").value))         : "";
-		
-		if ($("stages").value != "custom")
-			$("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
-		else {
-			var stages = [];
-			for (var i = 0; i < eventStages[game].length; ++i)
-				if ($(game + i).checked) stages.push(i);
-			$("preview-stages").innerHTML = printStageSet(game, stages);
-		}
-		
-		if (game == "smash" && $("stages").selectedIndex > 0)
-		{
-			var stages = [];
-			if ($("stages").value != "custom")
-				stages = getStageSet(game, $("stages").value);
-			else {
-				for (var i = 0; i < eventStages[game].length; ++i)
-					if ($(game + i).checked) stages.push(i);
-			}
-			$("preview-stages").innerHTML += "<p style='text-align: center;'><canvas id='stages-graphic'></canvas></p>";
-			drawStagesItems("stages", "stages-graphic", stages);
-		}
-		
-		if (game == "smash" && $("items").selectedIndex > 0)
-		{
-			$("preview-items").innerHTML += "<p style='text-align: center;'><canvas id='items-graphic'></canvas></p>";
-			drawStagesItems("items", "items-graphic", getItemSet(game, $("items").value));
-		}
-		
-		generateBanner(880, 480, eventdata, "result", false);
-		return eventdata;
-	}
-	
-	function clearHost(id)
-	{
-		$("name-" + id).value = $("code-" + id).value = "";
-		$("tag-"  + id).selectedIndex = $("host-" + id).selectedIndex = 0;
-	}
-	
-	function quickEntry(id)
-	{
-		var index = $("quickEntry-" + id).selectedIndex;
-		if (index > 0)
-		{
-			var useHost = hostDatabase[index-1];
-			$("name-" + id).value         = useHost.name;
-			$("tag-"  + id).selectedIndex = (useHost.tag == "CC") ? 1 : 0;
-			$("code-" + id).value         = useHost.code;
-		//	$("host-" + id).selectedIndex = useHost.tier;
-		}
-		else clearHost(id);
-		readAndGenerate();
-		
-		for (var i = 0; i < $("hosts-form").childNodes.length; ++i)
-			$("quickEntry-" + i).selectedIndex = 0;
-	}
-	
-	function fillTBAHost()
-	{
-		generateHosts(1);
-		$("name-0").value = "To Be Announced";
-		$("code-0").value = "";
-		$("tag-0").selectedIndex = $("host-0").selectedIndex = 0;
-		readAndGenerate();
-	}
-	
-	function addOneWeek()
-	{
-		var eventdata = readAndGenerate();
-		eventdata.date.setUTCDate(eventdata.date.getUTCDate() + 7);
-		fillFromEventData(eventdata);
-	}
-	
-	function randomTheme()
-	{
-		var game = $("game").options[$("game").selectedIndex].value;
-		$("theme") .selectedIndex = Math.floor(Math.random() * eventThemes[game].length) + 1;
-		$("stages").selectedIndex = Math.floor(Math.random() *   stageSets[game].length) + 1;
-		if (game == "smash")
-			$("items").selectedIndex = Math.floor(Math.random() * itemSets[game].length) + 1;
-		readAndGenerate();
-	}
-	
-	function generateHostForm(idx)
-	{
-		var html = "<div><select id='host-##ID##'>";
-		html += "<option value='0' selected>No Tier</option><option value='1'>Easy</option><option value='2'>Medium</option><option value='3'>Hard</option>";
-		html += "</select>";
-		html += "host: <select id='tag-##ID##'><option value='0'>--</option><option value='1'>CC</option></select>";
-		html += "<input type='text' id='name-##ID##' placeholder='Player name'/>";
-		html += "code: <input type='text' id='code-##ID##' placeholder='XXXX-XXXX-XXXX'/>";
-//		html += "<button onclick='clearHost(\"##ID##\");' style='background-color: red;'>Clear</button>";
-		
-		html += "Fill: <select id='quickEntry-##ID##' onchange='quickEntry(\"##ID##\");'><option value='0' selected>---</option>";
-		for (var h = 0; h < hostDatabase.length; ++h)
-			html += "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
-		html += "</select></div>";
-		
-		var host = document.createElement("div");
-		host.innerHTML = html.replace(/##ID##/g, idx);
-		return host;
-	}
-	
-	function addHost()
-	{
-		$("hosts-form").appendChild(generateHostForm($("hosts-form").childNodes.length));
-	}
-	
-	function removeHost()
-	{
-		$("hosts-form").removeChild($("hosts-form").lastChild);
-	}
-	
-	function generateHosts(count)
-	{
-		$("hosts-form").innerHTML = "";
-		for (var i = 0; i < count; ++i)
-			$("hosts-form").appendChild(generateHostForm(i));
-	}
-	
-	function generateStreamerForm(idx)
-	{
-		var html = "Streamer: <select id='stream-provider-##ID##'> <option value='twitch' selected>Twitch</option> <option value='mixer'>Mixer</option></select>";
-		html += " <input type='text' id='streamer-##ID##' placeholder='channelName'/>";
-		var streamer = document.createElement("div");
-		streamer.innerHTML = html.replace(/##ID##/g, idx);
-		return streamer;
-	}
-	
-	function addStreamer()
-	{
-		$("streamers-form").appendChild(generateStreamerForm($("streamers-form").childNodes.length));
-	}
-	
-	function removeStreamer()
-	{
-		$("streamers-form").removeChild($("streamers-form").lastChild);
-	}
-	
-	function generateStreamers(count)
-	{
-		$("streamers-form").innerHTML = "";
-		for (var i = 0; i < count; ++i)
-			$("streamers-form").appendChild(generateStreamerForm(i));
-	}
-	
-</script>
+			 }
+			 $("event-history").innerHTML = options;
+		 }
+		 
+		 // Month options
+		 for (var m = 0; m < monthNames.length; ++m)
+			 $("month").innerHTML += "<option value='" + m + "'>" + monthNames[m] + "</option>";
+		 
+		 // Default date
+		 var now = new Date();
+		 $("year").value  = now.getUTCFullYear();
+		 $("month").value = now.getUTCMonth();
+		 $("day").value   = now.getUTCDate();
+		 
+		 // Fill quick entry lists
+		 hostDatabase.sort(function(a, b){ return a.name > b.name; });
+		 
+		 // Fill event slot selector
+		 var options = "<option value='undefined' selected>---</option>";
+		 for (var i = 0; i < eventSlots.length; ++i)
+			 options += "<option>" + eventGames[eventSlots[i].game] + ": " + eventSlots[i].title + "</option>";
+		 $("event-slots").innerHTML = options;
+		 
+		 // Fill game options
+		 var options = "";
+		 for (var game in eventGames)
+			 options += "<option value='" + game + "'>" + eventGames[game] + "</option>";
+		 $("game").innerHTML = options;
+		 
+		 fillGameOptions();
+		 readAndGenerate();
+	 }
+	 
+	 function fillFromEventData(eventData)
+	 {
+		 var date = new Date(eventData.date);
+		 date.setHours(date.getHours() + timeZoneOffset(eventData.tz));
+		 
+		 $("month").selectedIndex = date.getUTCMonth();
+		 $("day").value = date.getUTCDate();
+		 $("year").value = date.getFullYear();
+		 $("start-hours").value = date.getUTCHours();
+		 $("start-minutes").value = date.getUTCMinutes();
+		 $("duration-minutes").value = eventData.duration;
+		 $("timezone").value = eventData.tz;
+		 $("alert").value = eventData.alert;
+		 
+		 var hostCount = ("hosts" in eventData) ? eventData.hosts.length : 0;
+		 generateHosts(hostCount);
+		 for (var i = 0; i < hostCount; ++i)
+		 {
+			 $("name-" + i).value         = unEscapeHTML(eventData.hosts[i].name);
+			 $("tag-"  + i).selectedIndex = (eventData.hosts[i].tag == "CC") ? 1: 0;
+			 $("code-" + i).value         = unEscapeHTML(eventData.hosts[i].code);
+			 $("host-" + i).selectedIndex = eventData.hosts[i].tier;
+		 }
+		 
+		 var twitcherCount = ("streamers" in eventData) ? eventData.streamers.length : 0;
+		 var    mixerCount = (   "mixers" in eventData) ? eventData.mixers.length : 0;
+		 generateStreamers(twitcherCount + mixerCount);
+		 for (var i = 0; i < twitcherCount; ++i)
+		 {
+			 $("stream-provider-" + i).selectedIndex = 0;
+			 $("streamer-" + i).value = eventData.streamers[i];
+		 }
+		 for (var i = 0; i < mixerCount; ++i)
+		 {
+			 var j = i + twitcherCount;
+			 $("stream-provider-" + j).selectedIndex = 1;
+			 $("streamer-" + j).value = eventData.mixers[i];
+		 }
+		 
+		 $("title").value       = unEscapeHTML(eventData.title);
+		 $("description").value = ("description" in eventData) ? unEscapeHTML(eventData.description) : "";
+		 $("url").value         = ("url"         in eventData) ? unEscapeHTML(eventData.url) : "";
+		 $("banner").value      = ("banner"      in eventData) ? unEscapeHTML(eventData.banner) : "";
+		 
+		 selectOptionWithValue($("game"),    eventData.game);
+		 fillGameOptions();
+		 selectOptionWithValue($("type"),    eventData.type);
+		 selectOptionWithValue($("theme"),   eventData.theme, true);
+		 selectOptionWithValue($("items"),   eventData.items, true);
+		 selectOptionWithValue($("sponsor"), eventData.sponsor, true);
+		 
+		 if ("stages" in eventData)
+		 {
+			 if (eventData.stages.substring(0, 6) == "custom")
+			 {
+				 selectOptionWithValue($("stages"), "custom", true);
+				 var stages = eventData.stages.substring(7, eventData.stages.length - 1).split(",");
+				 for (var i = 0; i < stages.length; ++i)
+					 $(eventData.game + stages[i]).checked = true;
+			 }
+			 else selectOptionWithValue($("stages"), eventData.stages, true);
+		 }
+		 
+		 readAndGenerate();
+	 }
+	 
+	 function fillFromEventDataHistory()
+	 {
+		 var eventDataIndex = $("event-history").selectedIndex;
+		 if (eventDataIndex > 0)
+			 fillFromEventData(eventsHistory[eventDataIndex - 1]);
+	 }
+	 
+	 function fillFromEventSlot()
+	 {
+		 var eventDataIndex = $("event-slots").selectedIndex;
+		 if (eventDataIndex > 0)
+		 {
+			 var slot = eventSlots[eventDataIndex - 1];
+			 fillFromEventData({
+				 "title"    : slot.title,
+				 "game"     : slot.game,
+				 "type"     : slot.type,
+				 "alert"    : true,
+				 "date"     : slot.date,
+				 "duration" : slot.duration,
+				 "tz"       : slot.tz,
+				 "theme"    : slot.theme,
+				 "stages"   : slot.stages,
+				 "items"    : slot.items,
+				 "hosts"    : ("hosts" in slot) ? slot.hosts : [{"name" : "To Be Announced", "code" : ""}]
+			 });
+		 }
+	 }
+	 
+	 function fillFromEventDataJSON()
+	 {
+		 var json = $("text-output").value;
+		 var eventdata = JSON.parse(json.substr(1, json.length - 1));
+		 eventdata.date = new Date(eventdata.date);
+		 fillFromEventData(eventdata);
+	 }
+	 
+	 function reportError(text)
+	 {
+		 $("error").innerHTML = "ERROR: " + text;
+		 $("error").style.display = "block";
+	 }
+	 
+	 function readAndGenerate()
+	 {
+		 $("error").style.display = "none";
+		 
+		 $("controls-stages").style.display = ($("stages").value == "custom") ? "block" : "none";
+		 
+		 var eventdata = {};
+		 var game = $("game").options[$("game").selectedIndex].value;
+		 
+		 var month           = $("month").selectedIndex;
+		 var day             = parseInt($("day").value);
+		 var year            = parseInt($("year").value);
+		 var startHours      = parseInt($("start-hours").value);
+		 var startMinutes    = parseInt($("start-minutes").value);
+		 var durationMinutes = parseInt($("duration-minutes").value);
+		 var zoneString      = $("timezone").value;
+		 var offset          = timeZoneOffset(zoneString);
+		 var startDate       = new Date(Date.UTC(year, month, day, startHours - offset, startMinutes, 0));
+		 
+		 if (offset == undefined)
+			 return reportError("Unsupported time zone");
+		 
+		 var hosts = [];
+		 for (var i = 0; i < $("hosts-form").childNodes.length; ++i)
+		 {
+			 var host = {
+				 name: escapeHTML($("name-" + i).value),
+				 code: escapeHTML($("code-" + i).value),
+			 };
+			 if ($("tag-" + i).selectedIndex == 1) host.tag = "CC";
+			 if ($("host-" + i).selectedIndex > 0) host.tier = $("host-" + i).selectedIndex;
+			 if (host.name != "" || host.code != "") hosts.push(host);
+		 }
+		 
+		 var twitchers = [];
+		 var mixers = [];
+		 for (var i = 0; i < $("streamers-form").childNodes.length; ++i)
+		 {
+			 var streamID = $("streamer-" + i).value;
+			 var provider = $("stream-provider-" + i).value;
+			 if (provider == "twitch" && streamID != "") twitchers.push(streamID);
+			 if (provider == "mixer"  && streamID != "") mixers.push(streamID);
+		 }
+		 
+		 eventdata.title       = escapeHTML($("title").value);
+		 eventdata.game        = game;
+		 eventdata.type        = $("type").value;
+		 eventdata.alert       = $("alert").value;
+		 eventdata.date        = startDate;
+		 eventdata.duration    = durationMinutes;
+		 eventdata.tz          = zoneString;
+		 
+		 if ($("description").value != "") eventdata.description = escapeHTML($("description").value);
+		 if ($("url").value != "") eventdata.url = escapeHTML($("url").value);
+		 if ($("banner").value != "") eventdata.banner = escapeHTML($("banner").value);
+		 
+		 if ($("theme")  .selectedIndex > 0) eventdata.theme   = $("theme")  .value;
+		 if ($("items")  .selectedIndex > 0) eventdata.items   = $("items")  .value;
+		 if ($("sponsor").selectedIndex > 0) eventdata.sponsor = $("sponsor").value;
+		 
+		 if ($("stages") .selectedIndex > 0)
+		 {
+			 if ($("stages").value != "custom") eventdata.stages  = $("stages").value;
+			 else {
+				 var stages = [];
+				 for (var i = 0; i < eventStages[game].length; ++i)
+					 if ($(game + i).checked) stages.push(i);
+				 eventdata.stages = "custom[" + stages.toString() + "]";
+			 }
+		 }
+		 
+		 if (hosts.length > 0)     eventdata.hosts     = hosts;
+		 if (twitchers.length > 0) eventdata.streamers = twitchers;
+		 if (   mixers.length > 0) eventdata.mixers    = mixers;
+		 
+		 $("text-output").value = "," + JSON.stringify(eventdata);
+		 $("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
+		 
+		 $("preview-theme") .innerHTML = ($("theme") .selectedIndex > 0) ?    printTheme(game,    getTheme(game, $("theme") .value), false) : "";
+		 $("preview-items") .innerHTML = ($("items") .selectedIndex > 0) ?  printItemSet(game,  getItemSet(game, $("items").value))         : "";
+		 
+		 if ($("stages").value != "custom")
+			 $("preview-stages").innerHTML = ($("stages").selectedIndex > 0) ? printStageSet(game, getStageSet(game, $("stages").value))        : "";
+		 else {
+			 var stages = [];
+			 for (var i = 0; i < eventStages[game].length; ++i)
+				 if ($(game + i).checked) stages.push(i);
+			 $("preview-stages").innerHTML = printStageSet(game, stages);
+		 }
+		 
+		 if (game == "smash" && $("stages").selectedIndex > 0)
+		 {
+			 var stages = [];
+			 if ($("stages").value != "custom")
+				 stages = getStageSet(game, $("stages").value);
+			 else {
+				 for (var i = 0; i < eventStages[game].length; ++i)
+					 if ($(game + i).checked) stages.push(i);
+			 }
+			 $("preview-stages").innerHTML += "<p style='text-align: center;'><canvas id='stages-graphic'></canvas></p>";
+			 drawStagesItems("stages", "stages-graphic", stages);
+		 }
+		 
+		 if (game == "smash" && $("items").selectedIndex > 0)
+		 {
+			 $("preview-items").innerHTML += "<p style='text-align: center;'><canvas id='items-graphic'></canvas></p>";
+			 drawStagesItems("items", "items-graphic", getItemSet(game, $("items").value));
+		 }
+		 
+		 generateBanner(880, 480, eventdata, "result", false);
+		 generateDiscordEvText(eventdata);
+		 return eventdata;
+	 }
+
+	 function getNameByKey(data, key)
+	 {
+		 console.log(data);
+		 console.log(key);
+		 for (val of data)
+			 if (key == val["key"]) return val["name"];
+
+		 alert(`Did not find key '${key}'! This shouldn't happen; show to Sora!`);
+	 }
+
+	 function generateDiscordEvText(eventdata)
+	 {
+		 let bot_chan_id = "396450133132312578";
+
+		 let game = eventdata["game"];
+
+		 let out_string = "";
+
+		 let first_word = eventdata["game"] == "arms" ? "An" : "A";
+		 out_string += `${first_word} *${eventGames[game]}* event`;
+
+		 if (eventdata["game"] != "variety" && eventdata["theme"] && eventdata["stages"]) {
+			 out_string += `, featuring **${getNameByKey(eventThemes[game], eventdata["theme"])}** `;
+			 out_string += `on **${getNameByKey(stageSets[game], eventdata["stages"])}** stages`;
+		 }
+
+		 if (eventdata["game"] == "smash" && eventdata["items"])
+			 out_string += ` using **${getNameByKey(itemSets[game], eventdata["items"])}** items`;
+
+		 out_string += "!\n\n";
+
+		 if (eventdata["description"])
+			 out_string += `Host's description:\n> ${eventdata["description"]}\n\n`;
+
+		 //out_string += `Run \`!event ${getEventID(eventdata)}\` in <#${bot_chan_id}> for more info, including links to relevant theme descriptions.\n\n`;
+		 out_string += `Run \`!event all\` in <#${bot_chan_id}> for more info on this and other upcoming events, including links to relevant theme descriptions.\n\n`;
+
+		 if (eventdata["hosts"]) {
+			 out_string += "*Hosts*:";
+
+			 for (host of eventdata["hosts"])
+				 out_string += `\n**${host["name"]}** - \`${host["code"]}\``;
+		 } else {
+			 out_string += "***Hosts to be determined***";
+		 }
+
+		 $("discord-ev-output").value = out_string;
+	 }
+	 
+	 function clearHost(id)
+	 {
+		 $("name-" + id).value = $("code-" + id).value = "";
+		 $("tag-"  + id).selectedIndex = $("host-" + id).selectedIndex = 0;
+	 }
+	 
+	 function quickEntry(id)
+	 {
+		 var index = $("quickEntry-" + id).selectedIndex;
+		 if (index > 0)
+		 {
+			 var useHost = hostDatabase[index-1];
+			 $("name-" + id).value         = useHost.name;
+			 $("tag-"  + id).selectedIndex = (useHost.tag == "CC") ? 1 : 0;
+			 $("code-" + id).value         = useHost.code;
+			 //	$("host-" + id).selectedIndex = useHost.tier;
+		 }
+		 else clearHost(id);
+		 readAndGenerate();
+		 
+		 for (var i = 0; i < $("hosts-form").childNodes.length; ++i)
+			 $("quickEntry-" + i).selectedIndex = 0;
+	 }
+	 
+	 function fillTBAHost()
+	 {
+		 generateHosts(1);
+		 $("name-0").value = "To Be Announced";
+		 $("code-0").value = "";
+		 $("tag-0").selectedIndex = $("host-0").selectedIndex = 0;
+		 readAndGenerate();
+	 }
+	 
+	 function addOneWeek()
+	 {
+		 var eventdata = readAndGenerate();
+		 eventdata.date.setUTCDate(eventdata.date.getUTCDate() + 7);
+		 fillFromEventData(eventdata);
+	 }
+	 
+	 function randomTheme()
+	 {
+		 var game = $("game").options[$("game").selectedIndex].value;
+		 $("theme") .selectedIndex = Math.floor(Math.random() * eventThemes[game].length) + 1;
+		 $("stages").selectedIndex = Math.floor(Math.random() *   stageSets[game].length) + 1;
+		 if (game == "smash")
+			 $("items").selectedIndex = Math.floor(Math.random() * itemSets[game].length) + 1;
+		 readAndGenerate();
+	 }
+	 
+	 function generateHostForm(idx)
+	 {
+		 var html = "<div><select id='host-##ID##'>";
+		 html += "<option value='0' selected>No Tier</option><option value='1'>Easy</option><option value='2'>Medium</option><option value='3'>Hard</option>";
+		 html += "</select>";
+		 html += "host: <select id='tag-##ID##'><option value='0'>--</option><option value='1'>CC</option></select>";
+		 html += "<input type='text' id='name-##ID##' placeholder='Player name'/>";
+		 html += "code: <input type='text' id='code-##ID##' placeholder='XXXX-XXXX-XXXX'/>";
+		 //		html += "<button onclick='clearHost(\"##ID##\");' style='background-color: red;'>Clear</button>";
+		 
+		 html += "Fill: <select id='quickEntry-##ID##' onchange='quickEntry(\"##ID##\");'><option value='0' selected>---</option>";
+		 for (var h = 0; h < hostDatabase.length; ++h)
+			 html += "<option value='" + h + "'>" + hostDatabase[h].name + "</option>";
+		 html += "</select></div>";
+		 
+		 var host = document.createElement("div");
+		 host.innerHTML = html.replace(/##ID##/g, idx);
+		 return host;
+	 }
+	 
+	 function addHost()
+	 {
+		 $("hosts-form").appendChild(generateHostForm($("hosts-form").childNodes.length));
+	 }
+	 
+	 function removeHost()
+	 {
+		 $("hosts-form").removeChild($("hosts-form").lastChild);
+	 }
+	 
+	 function generateHosts(count)
+	 {
+		 $("hosts-form").innerHTML = "";
+		 for (var i = 0; i < count; ++i)
+			 $("hosts-form").appendChild(generateHostForm(i));
+	 }
+	 
+	 function generateStreamerForm(idx)
+	 {
+		 var html = "Streamer: <select id='stream-provider-##ID##'> <option value='twitch' selected>Twitch</option> <option value='mixer'>Mixer</option></select>";
+		 html += " <input type='text' id='streamer-##ID##' placeholder='channelName'/>";
+		 var streamer = document.createElement("div");
+		 streamer.innerHTML = html.replace(/##ID##/g, idx);
+		 return streamer;
+	 }
+	 
+	 function addStreamer()
+	 {
+		 $("streamers-form").appendChild(generateStreamerForm($("streamers-form").childNodes.length));
+	 }
+	 
+	 function removeStreamer()
+	 {
+		 $("streamers-form").removeChild($("streamers-form").lastChild);
+	 }
+	 
+	 function generateStreamers(count)
+	 {
+		 $("streamers-form").innerHTML = "";
+		 for (var i = 0; i < count; ++i)
+			 $("streamers-form").appendChild(generateStreamerForm(i));
+	 }
+	 
+	</script>
 </head>
 	<body onload="load()">
 		<div id="wrapper">
@@ -666,9 +716,16 @@ permalink: /staff/banners/index.html
 			<p id="error"></p>
 			
 			<p>
+				<label for="text-output"><code>events.json</code> data</label>
 				<textarea id="text-output" rows="4"></textarea>
 				<button onCLick="copyToClipboard('text-output')" class="btn-cpy">Copy to Clipboard</button>
 				<input type="button" value="Fill form from text field" onClick="fillFromEventDataJSON()"/>
+				<br>
+				<label for="discord-ev-output">Discord built-in events blurb</label>
+				<textarea id="discord-ev-output" rows="4"></textarea>
+				<button onCLick="copyToClipboard('discord-ev-output')" class="btn-cpy">Copy to Clipboard</button>
+				<br>
+
 				Direct link (valid only after publishing): <a id="direct-link"></a>
 			</p>
 			
