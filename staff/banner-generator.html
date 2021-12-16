@@ -526,8 +526,7 @@ permalink: /staff/banners/index.html
 		 if (eventdata["description"])
 			 out_string += `Host's description:\n> ${eventdata["description"]}\n\n`;
 
-		 //out_string += `Run \`!event ${getEventID(eventdata)}\` in <#${bot_chan_id}> for more info, including links to relevant theme descriptions.\n\n`;
-		 out_string += `Run \`!event all\` in <#${bot_chan_id}> for more info on this and other upcoming events, including links to relevant theme descriptions.\n\n`;
+		 out_string += `Visit https://www.casualarms.net/events/?id=${getEventID(eventdata)} for more info, including detailed info on relevant theme descriptions.\n\n`;
 
 		 if (eventdata["hosts"]) {
 			 out_string += "*Hosts*:";
