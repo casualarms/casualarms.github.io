@@ -75,7 +75,6 @@
 	,{"title":"Punch Game Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-12-19T20:30:00.000Z","duration":90,"tz":"CST","theme":"bane-ranked","stages":"large","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	,{"title":"THROWING HANDS","game":"arms","type":"impromptu","alert":"everyone","date":"2021-12-22T02:00:00.000Z","duration":90,"tz":"EST","theme":"skillshot","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Splatatat","game":"splat","type":"impromptu","alert":"everyone","date":"2021-12-24T02:00:00.000Z","duration":90,"tz":"EST","theme":"turf-clams","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Smoosh Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-12-23T22:00:00.000Z","duration":90,"tz":"CST","description":"It's chrimmus time (themed stages and items!)","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Sploot Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-12-22T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"Big","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
