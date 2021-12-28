@@ -78,6 +78,16 @@
 	,{"title":"Smoosh Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-12-23T22:00:00.000Z","duration":90,"tz":"CST","description":"It's chrimmus time (themed stages and items!)","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Sploot Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-12-22T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"Big","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
+	,{"title":"Sploot Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-12-28T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-clams","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-12-29T21:30:00.000Z","duration":90,"tz":"CST","theme":"vball","stages":"barriers","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-12-31T21:00:00.000Z","duration":90,"tz":"CST","description":"Unique Custom Items &amp; Stages!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
+	
+	
+	
+	
+	
+	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":"none","date":"2020-12-26T20:15:00.000Z","duration":30,"tz":"EST","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
