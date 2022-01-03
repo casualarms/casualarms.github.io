@@ -1,40 +1,7 @@
 [
-	{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-29T02:00:00.000Z","duration":60,"tz":"EDT","theme":"fights-only","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-29T23:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Thursday Surprise ARMS!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-09-30T21:00:00.000Z","duration":60,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-10-03T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-06T23:00:00.000Z","duration":60,"tz":"EDT","theme":"fights-only","stages":"japan","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	
-	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-10-10T00:00:00.000Z","duration":60,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-10-09T19:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"Funnel","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Sunday Surprise ARMS!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-10T19:00:00.000Z","duration":60,"tz":"EDT","theme":"fights-only","stages":"dynamic","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-11T19:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"firearms-smash","stages":"lookout-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-
-	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-06T02:00:00.000Z","duration":60,"tz":"EDT","theme":"vball","stages":"barriers","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-06T23:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"mmall","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-10-17T00:00:00.000Z","duration":90,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-		
-	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-13T02:00:00.000Z","duration":60,"tz":"EDT","theme":"gimmickless","stages":"cote","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-13T23:00:00.000Z","duration":60,"tz":"EDT","theme":"hoops","stages":"large","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Thursday ARMS","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-14T21:00:00.000Z","duration":60,"tz":"EDT","theme":"skillshot","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-		
-	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-10-18T19:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-clams","stages":"Grates","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-19T02:30:00.000Z","duration":60,"tz":"EDT","description":"Welcome the final DLC character Sora ~~Firestorm~~ to Smash!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"dlc-stages-smash","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-22T18:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1-smash","items":"explosives-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	
-	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-27T02:00:00.000Z","duration":60,"tz":"EDT","theme":"clash","stages":"corners","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}]}
-	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-27T23:00:00.000Z","duration":90,"tz":"EDT","theme":"skillshot","stages":"cote","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-10-24T00:00:00.000Z","duration":60,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-
-	,{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-03T02:00:00.000Z","duration":60,"tz":"EDT","theme":"teams","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}]}
+	{"title":"Tidal Tuesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-03T02:00:00.000Z","duration":60,"tz":"EDT","theme":"teams","stages":"backroom","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}]}
 	,{"title":"Wildcard Wednesday","game":"arms","type":"impromptu","alert":"everyone","date":"2021-11-03T23:00:00.000Z","duration":90,"tz":"EDT","theme":"gimmickless","stages":"corners","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":["gamemastertom"]}
-	,{"title":"Plants v Zombies Event!","game":"variety","type":"impromptu","alert":"here","date":"2021-10-31T00:00:00.000Z","duration":60,"tz":"EDT","description":"Turf Takeover (Switch Only)","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
-	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-29T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"upgrades-smash","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-10-30T19:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"Rails","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-10-31T19:00:00.000Z","duration":90,"tz":"CDT","description":"Mystery Stages &amp; Items! Exciting!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	,{"title":"Halloween ARMS","game":"arms","type":"impromptu","alert":"everyone","date":"2021-10-31T17:30:00.000Z","duration":60,"tz":"EDT","description":"Halloween! Lola, Mummy, Coyle battle!","theme":"fights-only","stages":"all-arms","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
-	
+
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-11-04T19:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-11-05T20:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"parts-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
@@ -110,7 +77,5 @@
 	,{"title":"Racha's Gambit VI","game":"arms","type":"tournament","alert":"none","date":"2019-07-04T23:30:00.000Z","duration":120,"tz":"CDT","description":"Themed Swiss Tournament","url":"https://challonge.com/RachasGambit6","stages":"all-arms"}
 
 	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":"everyone","date":"2019-06-28T16:00:00.000Z","duration":60,"tz":"EDT","description":"EU Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}
-	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":"everyone","date":"2019-06-28T21:00:00.000Z","duration":60,"tz":"EDT","description":"NA Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}
-
-	
+	,{"title":"Central Smackdown Warmup","game":"arms","type":"impromptu","alert":"everyone","date":"2019-06-28T21:00:00.000Z","duration":60,"tz":"EDT","description":"NA Defaults Bracket","url":"https://smash.gg/tournament/central-smackdown-3/details","stages":"all-arms","hosts":[{"name":"Era Wolf","code":"5972-7410-1228"}]}	
 ]
