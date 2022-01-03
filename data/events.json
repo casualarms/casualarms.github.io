@@ -83,6 +83,10 @@
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-12-31T21:00:00.000Z","duration":90,"tz":"CST","description":"Unique Custom Items &amp; Stages!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"none","date":"2021-12-31T19:00:00.000Z","duration":60,"tz":"EST","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2021-01-04T21:00:00.000Z","duration":90,"tz":"CDT","theme":"teams","stages":"dynamic","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2021-01-05T21:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-clams","stages":"High","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2021-01-06T21:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"better-worse-smash","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	
 	
 	
