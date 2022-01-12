@@ -63,7 +63,7 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-01-14T21:30:00.000Z","duration":90,"tz":"CST","theme":"anything","stages":"cote","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-01-15T21:30:00.000Z","duration":90,"tz":"CST","theme":"turf-tower","stages":"Funnel","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
-	
+	,{"title":"dummy event","game":"variety","type":"impromptu","alert":"none","date":"3017-06-16T22:30:00.000Z","duration":90,"tz":"PST","description":"dummy event ignore this","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
