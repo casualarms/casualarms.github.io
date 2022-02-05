@@ -69,7 +69,7 @@
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-01-27T22:30:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"Moving","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-01-28T22:00:00.000Z","duration":90,"tz":"CST","theme":"ca-1v1v1v1-smash","items":"explosives-smash","stages":"URS","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
-	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-02-05T20:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"upgrades-smash","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-02-05T21:30:00.000Z","duration":90,"tz":"CST","theme":"ca-2v2-smash","items":"upgrades-smash","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-02-06T20:30:00.000Z","duration":90,"tz":"CDT","theme":"gimmickless","stages":"corners","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-02-07T22:30:00.000Z","duration":90,"tz":"CST","theme":"turf-clams","stages":"High","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 
