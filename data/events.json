@@ -74,6 +74,12 @@
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-02-07T21:30:00.000Z","duration":90,"tz":"CST","theme":"turf-clams","stages":"High","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-02-11T20:30:00.000Z","duration":60,"tz":"CET","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"Smash Bros. Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-02-18T00:00:00.000Z","duration":90,"tz":"EST","theme":"ca-1v1v1v1-smash","items":"melee-smash","stages":"dlc-stages-smash","hosts":[{"name":"Zorua","code":"4861-8472-3512"}]}
+	
+	
+	
+	
+	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
