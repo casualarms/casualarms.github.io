@@ -87,6 +87,8 @@
 ,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-03-12T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-rainmaker","stages":"Corners","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 
 ,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-03-13T20:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"none","date":"2022-03-19T01:00:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"none","date":"2022-03-19T18:00:00.000Z","duration":90,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
 	
 	
