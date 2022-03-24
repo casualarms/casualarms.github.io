@@ -90,6 +90,8 @@
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"none","date":"2022-03-19T01:00:00.000Z","duration":60,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"none","date":"2022-03-19T18:00:00.000Z","duration":90,"tz":"EDT","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
 	
+	,{"title":"Fortnite Session!","game":"variety","type":"impromptu","alert":"none","date":"2022-03-27T00:00:00.000Z","duration":60,"tz":"EDT","description":"Battle Royale","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}],"streamers":["dinosauryy"]}
+	
 	
 	
 	
