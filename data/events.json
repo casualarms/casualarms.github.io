@@ -95,6 +95,11 @@
 	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-04-03T18:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"upgrades-smash","stages":"chocolate-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	,{"title":"Prized Pig Judging","game":"variety","type":"impromptu","alert":"none","date":"2022-04-01T04:00:00.000Z","duration":1435,"tz":"EDT","description":"Find your finest prized pig and bring it to #events on the Casual FARMS for judging!!! ","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-04-09T18:00:00.000Z","duration":90,"tz":"CDT","theme":"anything","stages":"barriers","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-04-10T19:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"healing-smash","stages":"journey-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
+	
+	
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
