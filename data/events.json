@@ -98,6 +98,7 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-04-09T18:00:00.000Z","duration":90,"tz":"CDT","theme":"anything","stages":"barriers","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-04-10T19:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"healing-smash","stages":"journey-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-04-14T22:00:00.000Z","duration":90,"tz":"PDT","theme":"turf-clams","stages":"Rails","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
+	,{"title":"Pawl's Punchy McPunchfest!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-04-19T20:00:00.000Z","duration":90,"tz":"BST","theme":"anything","stages":"all-arms","hosts":[{"name":"Pawl S. Lax","code":"0656-1636-5890"}]}
 	
 	
 	
