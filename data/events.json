@@ -100,6 +100,8 @@
 	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-04-14T22:00:00.000Z","duration":90,"tz":"PDT","theme":"turf-clams","stages":"Rails","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
 	,{"title":"Pawl's Punchy McPunchfest!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-04-19T20:00:00.000Z","duration":90,"tz":"BST","theme":"anything","stages":"all-arms","hosts":[{"name":"Pawl S. Lax","code":"0656-1636-5890"}]}
 	
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-04-22T19:00:00.000Z","duration":120,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"healing-smash","stages":"transform-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	
 	
 	
