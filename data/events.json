@@ -101,6 +101,7 @@
 	,{"title":"Pawl's Punchy McPunchfest!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-04-19T20:00:00.000Z","duration":90,"tz":"BST","theme":"anything","stages":"all-arms","hosts":[{"name":"Pawl S. Lax","code":"0656-1636-5890"}]}
 	
 ,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"none","date":"2022-04-26T18:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"healing-smash","stages":"transform-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-04-25T18:00:00.000Z","duration":60,"tz":"EDT","theme":"turf-zones","stages":"all-splat","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	
 	
 	
