@@ -37,6 +37,7 @@
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-05-11T19:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"Big","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-05-13T21:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"deployables-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-05-12T21:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-05-16T00:00:00.000Z","duration":90,"tz":"EDT","theme":"fights-only","stages":"dynamic","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	
 	
 	
