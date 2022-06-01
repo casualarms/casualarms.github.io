@@ -832,5 +832,10 @@
 		],
 		"spotlight" : [],
 		"variety" : []
+	},
+	"streamingServices": {
+		"twitch": "https://twitch.tv/",
+		"glimesh": "https://glimesh.tv/",
+		"mixer": "https://mixer.com/"
 	}
 }
