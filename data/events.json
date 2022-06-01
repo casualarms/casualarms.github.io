@@ -41,7 +41,7 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-05-26T18:00:00.000Z","duration":60,"tz":"CEST","theme":"fights-only","stages":"all-arms","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-06-03T18:00:00.000Z","duration":60,"tz":"CEST","theme":"150cc","stages":"all-race","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
-	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-06-03T21:00:00.000Z","duration":90,"tz":"PDT","theme":"URT","items":"URI","stages":"all-smash","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-06-03T22:30:00.000Z","duration":90,"tz":"PDT","theme":"URT","items":"URI","stages":"all-smash","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
 	
 	
 	
