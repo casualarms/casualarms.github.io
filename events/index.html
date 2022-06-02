@@ -395,13 +395,13 @@ redirect_from: "/lobbies/"
 		
 		// Streamer tags
 		if ("streamers" in ev)
-			for (var s = 0; s < ev["streamers"].length; ++s)
-				tags += "<a href='https://twitch.tv/" + ev["streamers"][s] + "' class='next-box next-streamer'>twitch.tv/ <span class='nx-big'>" + ev["streamers"][s] + "</span></a>";
-		
-		if ("mixers" in ev)
-			for (var s = 0; s < ev["mixers"].length; ++s)
-				tags += "<a href='https://mixer.com/" + ev["mixers"][s] + "' class='next-box next-mixer'>mixer.com/ <span class='nx-big'>" + ev["mixers"][s] + "</span></a>";
-		
+			for (var s = 0; s < ev["streamers"].length; ++s) {
+				var streamer = ev["streamers"];
+				var username = Object.keys(streamer)[0];
+				var platform = streamer[username];
+				var platform_short_url = streamingServices[platform].split("//", 1)[1];
+				tags += `<a href='${streamingServices["platform"]}${username}' class='next-box next-streamer'>${platform_short_url} <span class='nx-big'>${username}</span></a>`;
+			}
 		
 		// Sponsor tags
 		if ("sponsor" in ev)
