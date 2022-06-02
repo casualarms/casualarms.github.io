@@ -536,6 +536,16 @@ permalink: /staff/banners/index.html
 			 out_string += "***Hosts to be determined***\n";
 		 }
 
+		 if (eventdata["streamers"]) {
+			 out_string += "\nWatch this event live on the following streams:\n";
+
+			 for (const streamer of eventdata["streamers"]) {
+				 var username = Object.keys(streamer)[0];
+				 var platform = streamer[username];
+				 out_string += `${streamingServices[platform]}${username}\n`;
+			 }
+		 }
+
 		 out_string += `\nVisit https://www.casualarms.net/events/?id=${getEventID(eventdata)} for more info, including details on relevant themes.`;
 
 		 $("discord-ev-output").value = out_string;
