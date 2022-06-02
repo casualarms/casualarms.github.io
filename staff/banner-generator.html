@@ -295,19 +295,19 @@ permalink: /staff/banners/index.html
 			 $("host-" + i).selectedIndex = eventData.hosts[i].tier;
 		 }
 		 
-		 var twitcherCount = ("streamers" in eventData) ? eventData.streamers.length : 0;
-		 var    mixerCount = (   "mixers" in eventData) ? eventData.mixers.length : 0;
-		 generateStreamers(twitcherCount + mixerCount);
-		 for (var i = 0; i < twitcherCount; ++i)
-		 {
-			 $("stream-provider-" + i).selectedIndex = 0;
-			 $("streamer-" + i).value = eventData.streamers[i];
-		 }
-		 for (var i = 0; i < mixerCount; ++i)
-		 {
-			 var j = i + twitcherCount;
-			 $("stream-provider-" + j).selectedIndex = 1;
-			 $("streamer-" + j).value = eventData.mixers[i];
+		 var streamerCount = ("streamers" in eventData) ? eventData.streamers.length : 0;
+
+		 generateStreamers(streamerCount);
+
+		 for (var i = 0; i < streamerCount; i++) {
+			 var streamer = eventData.streamers[i];
+			 var username = Object.keys(streamer)[0];
+			 var platform = streamer[username];
+			 var options_array = Array.apply(null, $("stream-provider-0").options).map(x => x.value);
+			 var platform_idx = options_array.indexOf(platform);
+
+			 $("stream-provider-" + i).selectedIndex = platform_idx;
+			 $("streamer-" + i).value = username;
 		 }
 		 
 		 $("title").value       = unEscapeHTML(eventData.title);
@@ -414,14 +414,14 @@ permalink: /staff/banners/index.html
 			 if (host.name != "" || host.code != "") hosts.push(host);
 		 }
 		 
-		 var twitchers = [];
-		 var mixers = [];
-		 for (var i = 0; i < $("streamers-form").childNodes.length; ++i)
-		 {
+		 var streamers = [];
+
+		 for (var i = 0; i < $("streamers-form").childNodes.length; i++) {
 			 var streamID = $("streamer-" + i).value;
 			 var provider = $("stream-provider-" + i).value;
-			 if (provider == "twitch" && streamID != "") twitchers.push(streamID);
-			 if (provider == "mixer"  && streamID != "") mixers.push(streamID);
+
+			 if (streamID != "")
+				 streamers.push({[streamID]: provider});
 		 }
 		 
 		 eventdata.title       = escapeHTML($("title").value);
@@ -452,8 +452,7 @@ permalink: /staff/banners/index.html
 		 }
 		 
 		 if (hosts.length > 0)     eventdata.hosts     = hosts;
-		 if (twitchers.length > 0) eventdata.streamers = twitchers;
-		 if (   mixers.length > 0) eventdata.mixers    = mixers;
+		 if (streamers.length > 0) eventdata.streamers = streamers;
 		 
 		 $("text-output").value = "," + JSON.stringify(eventdata);
 		 $("direct-link").href = $("direct-link").innerHTML = "https://www.casualarms.net/events/?id=" + getEventID(eventdata);
@@ -637,7 +636,17 @@ permalink: /staff/banners/index.html
 	 
 	 function generateStreamerForm(idx)
 	 {
-		 var html = "Streamer: <select id='stream-provider-##ID##'> <option value='twitch' selected>Twitch</option> <option value='mixer'>Mixer</option></select>";
+		 var list_options = [];
+
+		 for (const k in streamingServices) {
+			 list_options.push(
+				 `<option value='${k}'>${k[0].toUpperCase() + k.slice(1)}</option>`
+			 )
+		 }
+
+		 var options_html = list_options.join()
+
+		 var html = `Streamer: <select id='stream-provider-##ID##'>${options_html}</select>`;
 		 html += " <input type='text' id='streamer-##ID##' placeholder='channelName'/>";
 		 var streamer = document.createElement("div");
 		 streamer.innerHTML = html.replace(/##ID##/g, idx);
