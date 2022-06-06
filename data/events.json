@@ -43,6 +43,9 @@
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-06-03T18:00:00.000Z","duration":60,"tz":"CEST","theme":"150cc","stages":"all-race","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-06-03T22:30:00.000Z","duration":90,"tz":"PDT","theme":"URT","items":"URI","stages":"all-smash","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
 
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-06-06T17:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"all-splat-shifty","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-06-09T00:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"vertical-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	,{"title":"DNF Duel Launch Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2022-07-02T18:00:00.000Z","duration":90,"tz":"PDT","hosts":[{"name":"SoraFirestorm","code":"Join via lobby code"}],"streamers":[{"SoraFirestorm":"glimesh"}]}
 	,{"title":"DNF Duel Tournament!","game":"variety","type":"impromptu","alert":"everyone","date":"2022-07-02T20:00:00.000Z","duration":90,"tz":"PDT","hosts":[{"name":"Details in #rules","code":"on Discord"}],"streamers":[{"SoraFirestorm":"glimesh"}]}
 	
