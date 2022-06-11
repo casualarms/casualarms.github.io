@@ -108,7 +108,8 @@
 			"leaderboard"   : "Leaderboard Lobby"
 		},
 		"variety" : {
-			"impromptu"     : "Impromptu Lobby"
+			"impromptu"     : "Impromptu Lobby",
+			"tournament"    : "Tournament"
 		}
 	},
 	"eventTypesLeaderboards" : {
