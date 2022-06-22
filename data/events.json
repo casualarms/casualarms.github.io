@@ -46,6 +46,9 @@
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-06-06T17:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-zones","stages":"all-splat-shifty","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-06-09T00:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"vertical-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-06-23T00:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-clams","stages":"Pits","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-06-25T21:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"allies-smash","stages":"lookout-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	,{"title":"DNF Duel Launch Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2022-07-02T18:00:00.000Z","duration":90,"tz":"PDT","hosts":[{"name":"SoraFirestorm","code":"Join via lobby code"}],"streamers":[{"SoraFirestorm":"glimesh"}]}
 	,{"title":"DNF Duel Tournament!","game":"variety","type":"tournament", "url": "https://challonge.com/SORASAYSGETHYPED", "alert":"everyone","date":"2022-07-02T20:00:00.000Z","duration":90,"tz":"PDT","hosts":[{"name":"Details in #rules","code":"on Discord"}],"streamers":[{"SoraFirestorm":"glimesh"}]}
 	,{"title":"Fortnite Event!","game":"variety","type":"impromptu","alert":"none","date":"2022-06-12T17:30:00.000Z","duration":60,"tz":"EDT","description":"Youtube Stream: https://youtu.be/wrc-BFBeH_I","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
