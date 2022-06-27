@@ -55,6 +55,8 @@
 	,{"title":"ARMS 5 Year Anniversary!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-06-17T01:00:00.000Z","duration":120,"tz":"EDT","theme":"anything","stages":"all-arms","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":[{"gamemastertom":"twitch"}]}
 	
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-06-18T20:00:00.000Z","duration":60,"tz":"CEST","theme":"150cc","stages":"all-race","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-06-29T21:00:00.000Z","duration":90,"tz":"CDT","theme":"solo","stages":"backroom","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Fall Guys Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2022-07-03T19:30:00.000Z","duration":90,"tz":"CDT","description":"Solo Competition w/ ALL Minigames","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	
