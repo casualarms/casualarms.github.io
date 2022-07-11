@@ -58,6 +58,9 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-06-29T21:00:00.000Z","duration":90,"tz":"CDT","theme":"solo","stages":"backroom","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Fall Guys Event!","game":"variety","type":"impromptu","alert":"everyone","date":"2022-07-03T19:30:00.000Z","duration":90,"tz":"CDT","description":"Solo Competition w/ ALL Minigames","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-07-12T20:00:00.000Z","duration":90,"tz":"CDT","theme":"fights-only","stages":"cote","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-07-14T00:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-clams","stages":"Pits","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
