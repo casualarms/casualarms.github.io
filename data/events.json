@@ -61,7 +61,11 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-07-12T20:00:00.000Z","duration":90,"tz":"CDT","theme":"fights-only","stages":"cote","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-07-14T00:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-clams","stages":"Pits","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
-	
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-07-23T17:30:00.000Z","duration":90,"tz":"CDT","theme":"gimmickless","stages":"mmall","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-07-20T21:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"firearms-smash","stages":"journey-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"DNF Duel Event!","game":"variety","type":"impromptu","alert":"here","date":"2022-07-23T19:00:00.000Z","duration":90,"tz":"PDT","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
+
+
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
