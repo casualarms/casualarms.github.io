@@ -66,6 +66,7 @@
 	,{"title":"DNF Duel Event!","game":"variety","type":"impromptu","alert":"here","date":"2022-07-23T19:00:00.000Z","duration":90,"tz":"PDT","hosts":[{"name":"Sora","code":"0499-4528-8293"}]}
 
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-07-28T00:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-08-07T21:00:00.000Z","duration":90,"tz":"CDT","theme":"skillshot","stages":"dynamic","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 
 	
