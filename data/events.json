@@ -67,6 +67,7 @@
 
 	,{"title":"Splatoon 2 Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-07-28T00:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"Central","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-08-07T21:00:00.000Z","duration":90,"tz":"CDT","theme":"skillshot","stages":"dynamic","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-08-06T17:30:00.000Z","duration":90,"tz":"EDT","url":"https://youtu.be/z8_xpcq_qPI","theme":"150cc","stages":"all-race","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 	
 
 	
