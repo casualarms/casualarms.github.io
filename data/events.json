@@ -73,6 +73,7 @@
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-08-21T00:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"upgrades-smash","stages":"dlc-stages-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-08-21T17:00:00.000Z","duration":90,"tz":"CDT","theme":"hoops","stages":"barriers","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros. Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-08-28T17:00:00.000Z","duration":90,"tz":"CDT","theme":"ca-1v1v1v1-smash","items":"wanderers-smash","stages":"vanilla-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon 2 Farewell Event!","game":"splat","type":"impromptu","alert":"everyone","date":"2022-09-09T17:30:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"all-splat","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	
