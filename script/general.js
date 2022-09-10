@@ -553,7 +553,7 @@ function printTheme(game, theme, concise)
 		html += printMode(theme, "vehicles", "Vehicles");
 		html += printBinaryMode(theme, "smart_steering", "Smart Steering");
 	}
-	else if (game == "splat")
+	else if (game == "splat" || game == "splat3")
 	{
 		html += printMode(theme, "mode-1", "Mode 1");
 		html += printMode(theme, "mode-2", "Mode 2");

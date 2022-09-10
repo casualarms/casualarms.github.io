@@ -3,6 +3,7 @@
 		"arms"      : "ARMS",
 		"kart"      : "Mario Kart 8 Deluxe",
 		"splat"     : "Splatoon 2",
+		"splat3"    : "Splatoon 3",
 		"smash"     : "Super Smash Bros. Ultimate",
 		"spotlight" : "Spotlight Game",
 		"variety"   : "Variety Game"
@@ -50,6 +51,7 @@
 			{ "start" :     5000, "name" : "Profreshional", "color" : "#b700ff"},
 			{ "start" : 10000000, "name" : "[Dummy]",       "color" : "white"}
 		],
+		"splat3": [],
 		"smash" : [
 			{ "start" :        0, "name" : "[Dummy]",         "color" : "white"},
 			{ "start" :        1, "name" : "Effortless",      "color" : "#bfffff"},
@@ -75,6 +77,7 @@
 		"arms"      : { "prefix" : "ARMS Labs ", "suffix" : ""          },
 		"kart"      : { "prefix" : "",           "suffix" : " Cup Racer"},
 		"splat"     : { "prefix" : "Grizzco ",   "suffix" : ""          },
+		"splat3"    : {},
 		"smash"     : { "prefix" : "",           "suffix" : " Smasher"  },
 		"spotlight" : { "prefix" : "",           "suffix" : ""},
 		"variety"   : {}
@@ -98,6 +101,12 @@
 			"salmon"        : "Salmon Run Lobby",
 			"cookoff"       : "Casual Cookoff"
 		},
+		"splat3" : {
+			"impromptu"	: "Impromptu Lobby",
+			"friends"	: "Friends Lobby",
+			"salmon"	: "Salmon Run Lobby",
+			"cookoff"	: "Casual Cookoff"
+		},
 		"smash" : {
 			"impromptu"     : "Impromptu Lobby",
 			"arena"         : "Battle Arena",
@@ -116,6 +125,7 @@
 		"arms"      : ["leaderboard"],
 		"kart"      : ["leaderboard", "friends"],
 		"splat"     : ["friends"],
+		"splat3"    : ["friends"],
 		"smash"     : ["arena"],
 		"spotlight" : ["leaderboard"],
 		"variety"   : []
@@ -275,6 +285,11 @@
 			"Gusher Towns", "The Maze Dasher", "Flooders in the Attic", "The Splat in our Zones", "The Ink is Spreading",
 			"Bridge to Tentaswitchia", "The Chronicles of Rolonium", "Furler in the Ashes", "MC.Princess Diaries"
 		],
+		"splat3" : [
+			"Museum D'Alfonsino", "Hammerhead Bridge", "Mahi-Mahi Resort",
+			"Inkblot Art Academy", "Sturgeon Shipyard", "MakoMart", "Wahoo World",
+			"Scorch Gorge", "Eeltail Alley", "Mincemeat Metalworks", "Undertow Spillway", "Hagglefish Market"
+		],
 		"smash" : [
 			"Battlefield",
 			"Big Battlefield",
@@ -405,6 +420,7 @@
 		"arms"  : [],
 		"kart"  : [],
 		"splat" : [],
+		"splat3": [],
 		"smash" : [
 			"Smash Ball", "Assist Trophy", "Poké Ball", "Master Ball",
 			"Dragoon Parts", "Daybreak Parts", "Container", "Bomber", "Blast Box",
@@ -662,6 +678,37 @@
 				"abilities"       : true
 			}
 		],
+		"splat3" : [
+			{
+				"key"		  : "turf-zones",
+				"name"		  : "Turf War and Splat Zones",
+				"description"	  : "Turf War first half, Splat Zones second half.",
+				"mode-1"	  : "Turf War",
+				"mode-2"	  : "Splat Zones",
+				"abilities"	  : true
+			}, {
+				"key"		  : "turf-tower",
+				"name"		  : "Turf War and Tower Control",
+				"description"	  : "Turf War first half, Tower Control second half.",
+				"mode-1"	  : "Turf War",
+				"mode-2"	  : "Tower Control",
+				"abilities"	  : true
+			}, {
+				"key"		  : "turf-rainmaker",
+				"name"		  : "Turf War and Rainmaker",
+				"description"	  : "Turf War first half, Rainmaker second half.",
+				"mode-1"	  : "Turf War",
+				"mode-2"	  : "Rainmaker",
+				"abilities"	  : true
+			}, {
+				"key"		  : "turf-clams",
+				"name"		  : "Turf War and Clam Blitz",
+				"description"	  : "Turf War first half, Clam Blitz second half.",
+				"mode-1"	  : "Turf War",
+				"mode-2"	  : "Clam Blitz",
+				"abilities"	  : true
+			}
+		],
 		"smash" : [
 			{
 				"key"              : "ca-2v2-smash",
@@ -792,6 +839,13 @@
 			,{ "key" : "Central",            "name" : "All-Out Brawls",         "stages" : [1,2,28,31,35]}
 			,{ "key" : "Corners",            "name" : "Overlooked Corners",     "stages" : [10,17,30,39,41]}
 		],
+		"splat3" : [
+			 { "key" : "all-splat3",         "name" : "All",                    "stages" : [{ "start" :  0, "end" : 11}]}
+		        ,{ "key" : "inkopolis-classics", "name" : "Inkopolis Classics",     "stages" : [0, 1, 2]}
+		        ,{ "key" : "modern-inkopolis",	 "name" : "Modern Inkopolis",       "stages" : [3, 4, 5, 6]}
+		        ,{ "key" : "splatland-marks",	 "name" : "Splatland Marks",        "stages" : [7, 8, 9, 10, 11]}
+
+		],
 		"smash" : [
 			 { "key" : "all-smash",          "name" : "All",                    "stages" : [{ "start" : 0, "end" : 109 }]}
 			,{ "key" : "all-no-dlc-smash",   "name" : "All (No DLC)",           "stages" : [{ "start" : 0, "end" : 102 }]}
@@ -815,6 +869,7 @@
 		"arms"  : [],
 		"kart"  : [],
 		"splat" : [],
+		"splat3": [],
 		"smash" : [
 			 { "key" : "all-items",          "name" : "All",                    "items" : [{ "start" : 0, "end" : 81 }]}
 			,{ "key" : "allies-smash",       "name" : "Surprise Allies",        "items" : [1,2,3,6,10,69,70,72]}

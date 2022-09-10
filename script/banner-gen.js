@@ -161,6 +161,7 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		renderCheckerboard(ctx, 115 / 3, 50,  50,  50, "#555", 0, 0, width, 115, false);
 		break;
 	
+	case "splat3": /* fall-through */
 	case "splat":
 		if (eventdata.type == "salmon")
 		{
@@ -170,11 +171,12 @@ function performBannerRendering(ctx, eventdata, nativeTime, images)
 		//	ctx.fillRect(0, 0, width, 115);
 		}
 		
+	        var splat_color = eventdata.game == "splat" ? "#00dd00" : "#5c35df";
 		stripeBgColor = (eventdata.type == "salmon") ? "#e321cb" : bgColor;
-		titleColor = websiteBgColor = (eventdata.type == "salmon") ? "#35a054" : "#00dd00";;
+		titleColor = websiteBgColor = (eventdata.type == "salmon") ? "#35a054" : splat_color;
 		renderSplash(ctx, width, height, -200, 100, 1.0, "rgb(0,0,0)",       0.10, Math.seed("ec7O63".hashCode()));
 		renderSplash(ctx, width, height,  200,   0, 1.4, "rgb(255,255,255)", 0.15, Math.seed("pGvubT".hashCode()));
-		ctx.fillStyle = (eventdata.type == "salmon") ? "#35a054" : "#00dd00";
+		ctx.fillStyle = (eventdata.type == "salmon") ? "#35a054" : splat_color;
 		ctx.fillRect(0, 0, width, 115);
 		break;
 	

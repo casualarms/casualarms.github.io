@@ -131,6 +131,7 @@ h1 > a {
 
 h1.title-kart  > a { background-color: #f92473 !important; }
 h1.title-splat > a { background-color: #00dd00 !important; }
+h1.title-splat3 > a { background-color: #5c35df !important; }
 h1.title-smash > a { background-color: #ffffff !important; }
 
 h1 > a:hover {
@@ -502,6 +503,7 @@ a.submenu-item > .sub-text {
 
 .mode.active-mode-kart    { background-color: #f92473; }
 .mode.active-mode-splat   { background-color: #00dd00; }
+.mode.active-mode-splat3  { background-color: #5c35df; }
 .mode.active-mode-smash   { background-color: #ffffff; }
 .mode.active-mode-patreon { background-color: #f36b61; }
 
