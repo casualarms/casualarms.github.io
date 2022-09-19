@@ -79,7 +79,7 @@
 	,{"title":"Splatoon 3 Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-09-11T18:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"all-splat3","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon 3 Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-09-12T18:00:00.000Z","duration":60,"tz":"EDT","theme":"turf-tower","stages":"all-splat3","hosts":[{"name":"DinosaurY","code":"2926-5224-3023"}]}
 
-	
+	,{"title":"Custom Party Lobby","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-09-19T22:00:00.000Z","duration":90,"tz":"PDT","theme":"turf-rainmaker","stages":"all-splat3","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
 	
 	
 	
