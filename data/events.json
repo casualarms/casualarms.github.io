@@ -81,8 +81,6 @@
 
 	,{"title":"Custom Party Lobby","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-09-19T22:00:00.000Z","duration":90,"tz":"PDT","theme":"turf-rainmaker","stages":"all-splat3","hosts":[{"name":"Emperor","code":"7827-1266-0112"}]}
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-09-22T18:00:00.000Z","duration":60,"tz":"CEST","theme":"150cc","stages":"all-race","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
-	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-09-25T18:30:00.000Z","duration":90,"tz":"CDT","theme":"ca-2v2-smash","items":"explosives-smash","stages":"vertical-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	
 	
 	
 	
