@@ -86,6 +86,9 @@
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-10-05T18:00:00.000Z","duration":60,"tz":"CEST","theme":"150cc","stages":"all-race","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	,{"title":"Splatoon 3 Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-10-07T18:00:00.000Z","duration":60,"tz":"CEST","description":"TURF ONLY","theme":"turf-zones","stages":"all-splat3","hosts":[{"name":"Udon","code":"3801-5397-8600"}]}
 	
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-10-12T00:00:00.000Z","duration":90,"tz":"CDT","theme":"gimmickless","stages":"dynamic","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Splatoon 3 Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-10-15T18:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-tower","stages":"inkopolis-classics","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	
 	
 	
