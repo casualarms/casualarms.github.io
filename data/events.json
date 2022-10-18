@@ -95,7 +95,7 @@
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
 	,{"title":"Casual Scramble Warmup","game":"arms","type":"impromptu","alert":"none","date":"2020-12-26T20:15:00.000Z","duration":30,"tz":"EST","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
-	,{"title":"Casual Scramble 28","game":"arms","type":"scramble","alert":"none","date":"2022-06-11T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
+	,{"title":"Casual Scramble 29","game":"arms","type":"scramble","alert":"none","date":"2022-11-05T20:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms"}
 	
 	,{"title":"Casual Clash Warmup","game":"arms","type":"impromptu","alert":"none","date":"2020-12-12T20:15:00.000Z","duration":30,"tz":"EST","theme":"clash","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	,{"title":"Casual Clash 30","game":"arms","type":"clash","alert":"none","date":"2020-12-12T21:00:00.000Z","duration":90,"tz":"EST","theme":"clash","stages":"all-arms"}
