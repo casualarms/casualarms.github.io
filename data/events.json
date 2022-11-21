@@ -91,7 +91,8 @@
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-10-27T00:00:00.000Z","duration":90,"tz":"CDT","theme":"vball","stages":"cote","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Splatoon 3 Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-10-29T17:00:00.000Z","duration":90,"tz":"CDT","theme":"turf-rainmaker","stages":"modern-inkopolis","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-10-31T17:00:00.000Z","duration":90,"tz":"CDT","description":"Custom SPOOKY stages and items!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-11-04T00:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-11-04T00:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-11-26T18:00:00.000Z","duration":90,"tz":"CDT","theme":"solo","stages":"japan","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	
