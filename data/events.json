@@ -93,6 +93,8 @@
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-10-31T17:00:00.000Z","duration":90,"tz":"CDT","description":"Custom SPOOKY stages and items!","theme":"ca-1v1v1v1-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-11-04T00:00:00.000Z","duration":90,"tz":"EDT","theme":"scramble","stages":"all-arms","hosts":[{"name":"Literary","code":"4704-7597-7783"}]}
 	
+	,{"title":"Splatoon Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-12-04T19:00:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"splatland-marks","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
