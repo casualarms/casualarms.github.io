@@ -95,6 +95,8 @@
 	
 	,{"title":"Splatoon Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2022-12-04T19:00:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"splatland-marks","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-12-10T00:30:00.000Z","duration":90,"tz":"CST","description":"SMESh!","theme":"ca-1v1v1v1-smash","items":"URI","stages":"walkoff-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"ARMS Event!","game":"arms","type":"impromptu","alert":"everyone","date":"2022-12-18T22:30:00.000Z","duration":90,"tz":"CST","theme":"vball","stages":"mmall","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
+	,{"title":"Smash Bros Event!","game":"smash","type":"impromptu","alert":"everyone","date":"2022-12-22T00:30:00.000Z","duration":90,"tz":"CST","description":"Spirits on! Custom stages and items!","theme":"ca-2v2-smash","items":"all-items","stages":"all-smash","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
 	
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
