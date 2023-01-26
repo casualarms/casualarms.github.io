@@ -100,7 +100,10 @@
 	
 	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2022-12-29T23:00:00.000Z","duration":90,"tz":"EST","description":"Testing new custom items!","theme":"150cc","stages":"all-race","hosts":[{"name":"Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":[{"gamemastertom":"twitch"}]}
 	,{"title":"Splatoon 3 Event!","game":"splat3","type":"impromptu","alert":"everyone","date":"2023-01-22T22:00:00.000Z","duration":90,"tz":"CST","theme":"turf-zones","stages":"inkopolis-classics","hosts":[{"name":"The Oddity","code":"4303-5678-5601"}]}
-	
+	,{"title":"Mario Kart Event!","game":"kart","type":"impromptu","alert":"everyone","date":"2023-01-26T23:30:00.000Z","duration":90,"tz":"EST","description":"Custom items!","theme":"150cc","stages":"all-race","hosts":[{"name":"GM-Tom","code":"3190-3514-8531","tag":"CC"}],"streamers":[{"gamemastertom":"twitch"}]}
+
+
+
 	
 	,{"title":"Casual Cookoff 11","game":"splat","type":"cookoff","alert":"none","date":"2020-11-21T21:00:00.000Z","duration":90,"tz":"EST","url":"https://www.casualarms.net/cookoff/","hosts":[{"name":"Details in #rules","code":"on Discord"}]}
 	
